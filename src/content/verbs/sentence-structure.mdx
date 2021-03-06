@@ -1,0 +1,120 @@
+---
+title: Sentence Structure
+---
+
+<!-- 
+
+Copyright (c) 2021 lingdocs.com 
+
+The content of the chapters/book is licensed by a
+Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+    
+-->
+
+
+import bucket from "./bucket.svg";
+import crown from "./crown.svg";
+import {
+    defaultTextOptions,
+    Examples,
+    InlinePs,
+} from "@lingdocs/pashto-inflector";
+
+export const opts = defaultTextOptions;
+
+export const SentenceStructure = (props) => (
+    <div className="my-4 mx-auto" style={{ width: "100%", maxWidth: "45rem" }}>
+        <div className={`d-flex flex-row justify-content-${props.object ? "between" : "center"} align-items-end`}>
+            <div className={`text-center mr-lg-4 mr-${props.object ? "1" : "3"}`} style={{ flexGrow: 1, width: "35%", maxWidth: "35%" }}>
+                {props.subject}
+                <div className="px-1">
+                    <img src={bucket} style={{ width: "100%" }} />
+                </div>
+                <p className="h4">Subject</p>
+            </div>
+            {props.object &&
+                <div className="text-center mr-lg-4 mr-2" style={{ flexGrow: 1, width: "35%", maxWidth: "35%" }}>
+                    {props.object}
+                    <div className="px-2">
+                        <img src={bucket} style={{ width: "100%" }} />
+                    </div>
+                    <p className="h4">Object</p>
+                </div>
+            }
+            <div className="text-center align-self-center" style={{ maxWidth: "30%" }}> 
+                <div className="p-2" style={{ border: "0.25rem solid black" }}>
+                    <p className="h4">Verb</p>
+                    <div className="text-muted">{props.verb}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+);
+
+Pashto is a [Subject-object-verb (SOV) language](https://en.wikipedia.org/wiki/Subject%E2%80%93object%E2%80%93verb), meaning that the subject, object, and verb *usually* go in that order. However, this order can often be flipped around depending on the emphasis, the types of pronouns used, etc.
+
+One thing that never changes though, is the hard and fast rules about what goes into these subject, object, and verb slots, and how they relate to each other.
+
+## With intransitive verbs
+
+With intransitive verbs the sentence structure is simple.
+
+<SentenceStructure
+    subject={[
+        <img src={crown} style={{ width: "4rem" }} />,
+        <div className="h5">plain</div>,
+    ]}
+    verb={<span>agrees w/ <strong>subject</strong></span>}
+/>
+
+## With transitive verbs
+
+Transitive verbs are where things get more tricky.
+
+In the present/future tenses, the only real "gotcha" is the fact that the object *only inflects with 1st/2nd person pronouns*. For example, you say <InlinePs opts={opts} ps={{ p: "زه تا وینم", f: "zu taa weenum", e: "I see you" }} />, but not ❌ <InlinePs opts={opts} ps={{ p: "زه هغې وینم", f: "zu haghé weenum", e: "I see her" }} />. Instead, it's ✔ <InlinePs opts={opts} ps={{ p: "زه هغه وینم", f: "zu haghá weenum", e: "I see her" }} />.
+
+### Present/Future Tenses
+
+<SentenceStructure
+    subject={[
+        <img src={crown} style={{ width: "4rem" }} />,
+        <div className="h5">plain</div>,
+    ]}
+    object={[
+        <div className="h5 mb-0">plain</div>,
+        <div className="text-muted" style={{ fontSize: "smaller"}}>but inflected 1st/2nd pronoun, or</div>,
+        <div className="h5">mini-pronoun</div>,
+    ]}
+    verb={<span>agrees w/ <strong>subject</strong></span>}
+/>
+
+### Past Tense
+
+But notice how the sentence structure becomes totally different with the past tense. This takes *a lot* of getting used to for learners.
+
+<SentenceStructure
+    subject={[
+        <div className="h5 mb-0">inflected</div>,
+        <div className="text-muted" style={{ fontSize: "smaller"}}>or</div>,
+        <div className="h5">mini-pronoun</div>,
+    ]}
+    object={[
+        <img src={crown} style={{ width: "4rem" }} />,
+        <div className="h5">plain</div>,
+    ]}
+    verb={<span>agrees w/ <strong>object</strong></span>}
+/>
+
+## With grammatically transitive verbs
+
+There are some verbs like <InlinePs ps={{ p: "ژړل", f: "jzaRul", e: "to cry" }} opts={opts} /> or <InlinePs ps={{ p: "خندل", f: "khandul", e: "to laugh" }} opts={opts} /> which would seem to be intransitive, but they are actually used as if they were transitive verbs. Since there is no spoken object, the verb is used *as if there were an imaginary 3rd person masculine plural object*.
+
+For example:
+
+<Examples opts={opts}>{[
+    { p: "ما وژړل.", f: "maa óojzaRul.", e: "I cried." },
+    { p: "ټولو وخندل.", f: "Tolo óokhandul.", e: "They all laughed." },
+]}</Examples>
+

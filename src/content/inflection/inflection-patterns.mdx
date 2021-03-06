@@ -1,0 +1,88 @@
+---
+title: Inflection Patterns
+---
+
+<!-- 
+
+Copyright (c) 2021 lingdocs.com 
+
+The content of the chapters/book is licensed by a
+Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+    
+-->
+
+
+import {
+    defaultTextOptions,
+    Examples,
+    InlinePs,
+    grammarUnits,
+    removeFVariants,
+    InflectionsTable,
+    inflectWord,
+} from "@lingdocs/pashto-inflector";
+import shuffle from "../../lib/shuffle-array";
+import Carousel from "../../components/Carousel";
+import words from "../../words/nouns-adjs";
+import Link from "../../components/Link";
+
+export const opts = defaultTextOptions;
+
+export function InfoCarousel({ items }) {
+    return (
+        <div className="mt-3">
+            <Carousel items={items} render={(item) => {
+                const inf = inflectWord(item.entry);
+                if (!inf) {
+                    return (
+                        <div>Oops! No inflections for <InlinePs opts={opts} ps={item.entry} /></div>
+                    );
+                }
+                return {
+                    title: <InlinePs opts={opts} ps={{
+                        ...removeFVariants(item.entry),
+                        e: item.def,
+                    }} />,
+                    body: <InflectionsTable
+                        inf={inf}
+                        textOptions={opts}
+                    />,
+                };
+            }}/>
+        </div>
+    );
+}
+
+In Pashto nouns and adjectives inflect in the same way. Although the varieties in inflections may seem overwhelming at first, there only **5 patterns for how words inflect** (plus a few other patterns with feminine only words - will be added later), and it's very predictable.
+
+Look over the 5 different types of words below, and try to find the pattern for how they inflect. 
+
+## Words ending in a consonant
+
+<InfoCarousel items={shuffle(words.filter(w => w.category === "consonant" ))} />
+
+## Words ending in an unstressed <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} />
+
+<InfoCarousel items={shuffle(words.filter(w => w.category === "ey-unstressed" ))} />  
+
+## Words ending in a stressed <InlinePs opts={opts} ps={{ p: "ی", f: "éy" }} />
+
+<InfoCarousel items={shuffle(words.filter(w => w.category === "ey-stressed" ))} />  
+
+## Words with the "Pashtun" pattern
+
+export const aanuWords = words.filter(w => w.category === "aanu" )
+
+<InfoCarousel items={[
+    aanuWords.find(w => w.entry.p === "پښتون"),
+    ...shuffle(aanuWords.filter(w => w.entry.p !== "پښتون"))
+]} />
+
+Note: Nouns in this pattern will often only use the first inflection for the plural. Adjectives will use the 1st inflection for all 3 reasons.
+
+## Shorter irregular words
+
+<InfoCarousel items={shuffle(words.filter(w => w.category === "short-irreg" ))} />  
+

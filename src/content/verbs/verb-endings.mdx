@@ -1,0 +1,54 @@
+---
+title: Verb Endings
+---
+
+<!-- 
+
+Copyright (c) 2021 lingdocs.com 
+
+The content of the chapters/book is licensed by a
+Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+    
+-->
+
+
+import {
+    addToForm,
+    defaultTextOptions,
+    grammarUnits,
+    VerbFormDisplay,
+} from "@lingdocs/pashto-inflector";
+
+export function addTail(form) {
+    return addToForm([{ p: "ـ", f: "-" }], form, true);
+}
+
+## Present Verb Endings
+
+These endings are added on to the ends of present, subjunctive, and future verbs.
+
+<VerbFormDisplay
+    displayForm={addTail(grammarUnits.presentEndings)}
+    textOptions={defaultTextOptions}
+/>
+
+## Imperative Verb Endings
+
+These endings are added on to the ends of imperative verbs.
+
+<VerbFormDisplay
+    displayForm={addTail(grammarUnits.imperativeEndings)}
+    textOptions={defaultTextOptions}
+/>
+
+## Past Verb Endings
+
+These endings are added on to the ends of simple and continuous past verbs.
+
+<VerbFormDisplay
+    displayForm={addTail(grammarUnits.pastEndings)}
+    textOptions={defaultTextOptions}
+/>
+

@@ -1,0 +1,158 @@
+/**
+ * Copyright (c) 2021 lingdocs.com
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+.table-of-contents {
+    padding-top: 1rem;
+    position: sticky !important;
+    top: 1rem;
+    height: calc(100vh - 2rem);
+    overflow-y: auto;
+}
+
+@media (max-width: 980px) {
+    .table-of-contents {
+        display: none;
+    }
+}
+
+.overlay {
+    display: none;
+}
+
+.side-nav-btn {
+    display: none;
+}
+
+.header-title {
+    margin-left: 0.5rem;
+}
+
+@media (min-width: 821px) {
+    .sticky-on-big {
+        position: sticky;
+        top: 0;
+    }
+}
+
+@media (max-width: 820px) {
+    .main-row {
+        height: calc(100vh - 62px);
+    }
+    .header-title {
+        margin-left: 3.5rem;
+    }
+    .side-nav-btn {
+        display: block;
+        position: fixed;
+        z-index: 99996;
+        background: white;
+        margin-left: 0.25rem;
+    }
+    aside {
+        overflow-x: hidden;
+    }
+    .side-nav {
+        display: block;
+        min-width: 15rem;
+        height: 100vh;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        /* top layer */
+        z-index: 99999;
+        transition: all 0.25s linear;
+    }
+    .side-nav-closed {
+        transform: translate(-100%);
+        -webkit-transform: translate(-100%); 
+    }
+    .overlay {
+        display: block;
+        position: fixed;
+        /* full screen */
+        width: 100vw;
+        height: 100vh;
+        /* transparent black */
+        background: rgba(0, 0, 0, 0.7);
+        /* middle layer, i.e. appears below the sidebar */
+        opacity: 0;
+        /* animate the transition */
+        transition: all 0.2s ease-in-out;
+    }
+    .overlay-showing {
+        z-index: 99998;
+        top: 0;
+        display: block;
+        opacity: 1;
+    }
+}
+
+.link-unstyled a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.link-unstyled:hover a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.link-unstyled:visited a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.side-nav-item {
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.side-nav-item-selected {
+    background-color: rgb(25,101,189, 0.3);
+}
+
+.side-nav-item-secondary {
+    font-size: smaller;
+    padding-left: 1.25rem;
+    color: #444;
+}
+
+.side-nav-item:hover {
+    background-color: #c0c0c0;
+    cursor: pointer;
+}
+
+.copyright {
+    font-size: smaller;
+}
+
+.copyright a {
+    color: inherit;
+    font-weight: bold;
+}
+.copyright a:hover {
+    color: inherit;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.table-of-contents-item {
+    padding-left: 1rem;
+    border-left: 1px solid grey;
+}
+
+.is-current {
+    font-weight: bolder;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+

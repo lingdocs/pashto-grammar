@@ -1,0 +1,77 @@
+---
+title: Pronouns
+---
+
+<!-- 
+
+Copyright (c) 2021 lingdocs.com 
+
+The content of the chapters/book is licensed by a
+Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+    
+-->
+
+
+import {
+    defaultTextOptions,
+    grammarUnits,
+    VerbTable,
+    ButtonSelect,
+} from "@lingdocs/pashto-inflector";
+
+export function PronounInflectionChoice({ pronouns, far }) {
+    const [choice, setChoice] = React.useState("plain");
+    const english = {
+        plain: [
+            ["I", "we"],
+            ["I", "we"],
+            ["you", "you"], 
+            ["you", "you"],
+            [far ? "he/she/it" : "he/it", "they"], 
+            ["she/it", "they"], 
+        ],
+        inflected: [
+            ["me", "us"],
+            ["me", "us"],
+            ["you", "you"], 
+            ["you", "you"],
+            ["him/it", "them"], 
+            ["her/it", "them"], 
+        ],
+    }
+    return (
+        <div>
+            <div className="text-center my-3">
+                <ButtonSelect
+                    options={[
+                        { label: "Plain", value: "plain" },
+                        { label: "Inflected", value: "inflected" },
+                    ]}
+                    value={choice}
+                    handleChange={(p) => setChoice(p)}
+                />
+            </div>
+            <VerbTable
+                block={pronouns[choice]}
+                textOptions={defaultTextOptions}
+                english={english[choice]}
+            />
+        </div>
+    );
+}
+
+## Far Pronouns
+
+These pronouns are used to reference people or things that are far.
+
+<PronounInflectionChoice pronouns={grammarUnits.pronouns.far} far />
+
+## Near Pronouns
+
+These pronouns are used to reference people or things that are close (either physically close or close in conversation).
+
+Notice that only the third person pronouns are different from the far pronouns.
+
+<PronounInflectionChoice pronouns={grammarUnits.pronouns.near} />

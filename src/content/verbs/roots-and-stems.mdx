@@ -1,0 +1,191 @@
+---
+title: Roots and Stems
+---
+
+<!-- 
+
+Copyright (c) 2021 lingdocs.com 
+
+The content of the chapters/book is licensed by a
+Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+    
+-->
+
+
+import {
+    defaultTextOptions,
+    Examples,
+    InlinePs,
+    grammarUnits,
+    RootsAndStems,
+    getVerbInfo,
+    removeFVariants,
+} from "@lingdocs/pashto-inflector";
+import shuffle from "../../lib/shuffle-array";
+import Carousel from "../../components/Carousel";
+import verbs from "../../words/verbs";
+import Link from "../../components/Link";
+
+export const opts = defaultTextOptions;
+
+export function InfoCarousel({ items }) {
+    return (
+        <Carousel items={shuffle(items)} render={(item) => {
+            let inf = getVerbInfo(item.entry);
+            const info = (inf.transitive)
+                ? inf.transitive
+                : inf.stative
+                ? inf.stative
+                : inf;
+            return {
+                title: <InlinePs opts={opts} ps={{
+                    ...removeFVariants(item.entry),
+                    e: item.def,
+                }} />,
+                body: <RootsAndStems
+                    info={info}
+                    textOptions={opts}
+                />,
+            };
+        }}/>
+    );
+} 
+
+All verbs have **a set of two roots and two stems**.
+
+These are divided between two aspects:
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><i class="fas fa-camera" /> Imperfective</th>
+      <th scope="col"><i class="fas fa-video" /> Perfective</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>An ongoing or repeated event - think of a video</td>
+      <td>A single, whole event - think of a photo</td>
+    </tr>
+  </tbody>
+</table>
+
+## Regular Verbs
+
+With regular verbs, knowing all the roots and stems is simple:
+
+- The stems are just the short version of the roots
+- The perfective root/stem is made by:
+  1. Adding a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix 
+  2. shifting the accent up to the front
+
+Flip through all these regular verbs and notice the pattern of how they're all built. Notice how the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> behaves differently when it's added on to a word starting with a vowel. 
+
+export const regularVerbs = verbs.filter((verb) => (
+    !verb.entry.psp && !verb.entry.ssp && !verb.entry.prp && !verb.entry.pprtp && !verb.entry.noOo && !verb.entry.sepOo
+));
+
+export const regularTrans = regularVerbs.filter((verb) => verb.entry.c && verb.entry.c.includes("v. trans."));
+
+<InfoCarousel items={regularTrans} />
+
+It's important to remember that **in the perfective <i class="fas fa-camera" /> forms the accent is always on the first syllable**. With Pashto verbs, the accent is extremely important to the meaning of the verb.
+
+## Regular Intransitive Verbs
+
+Regular intransitive verb work the same except that:
+
+- the stems change the <InlinePs opts={opts} ps={{ p: "ـېد", f: "-ed" }} /> in the roots to a <InlinePs opts={opts} ps={{ p: "ـېږ", f: "-eG" }} />
+- Some of these verbs can also leave the <InlinePs opts={opts} ps={{ p: "ـېږ", f: "-eG" }} /> out completely for a short version
+
+export const regularIntrans = regularVerbs.filter((verb) => verb.entry.c && verb.entry.c.includes("v. intrans."));
+
+<InfoCarousel items={regularIntrans} />
+
+## Verbs with irregular present forms
+
+There are many verbs that use an irregular present form. With these verbs the stems are totally different from the roots.
+
+export const irregularPresentFormVerbs = verbs.filter((verb) => (
+    verb.entry.psp && !verb.entry.ssp && !verb.entry.prp && !verb.entry.pprtp && !verb.entry.noOo && !verb.entry.sepO
+));
+
+<InfoCarousel items={irregularPresentFormVerbs} />
+
+## Seperable Verbs
+
+Some verbs don't take an <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix because they have little particles in the front like <InlinePs opts={opts} ps={{ p: "کې", f: "ke" }} />, <InlinePs opts={opts} ps={{ p: "پرې", f: "pre" }} />, <InlinePs opts={opts} ps={{ p: "بو", f: "bo" }} />, or <InlinePs opts={opts} ps={{ p: "څم", f: "tsam" }} />. These little particles split away from the verb in the perfective aspect just like the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> would.
+
+Even though we can't add a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix, we still have to shift the accent to the front of the root/stem in the perfective aspect.
+
+  1. <s>Add a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix</s>
+  2. shift the accent up to the front
+
+Notice how the only difference between the imperfective and perfective aspects is where the emphasis falls. The accent totally changes the meaning of the verb form! 🤯
+
+export const separableVerbs = verbs.filter((verb) => (
+    verb.entry.separationAtP && [
+        "پرې",
+        "کې",
+        "بو",
+        "څم",
+        "را",
+    ].some(x => verb.entry.p.startsWith(x)) &&
+    !verb.entry.ssp
+));
+
+<InfoCarousel items={separableVerbs} />
+
+## Totally Irregular Verbs
+
+There are a few more verbs which are even more irregular, and these just have to be memorized. Here are some of them.
+
+export const irregularVerbs = verbs.filter((verb) => {
+    let score = 0;
+    if (verb.entry.psp) score = score + 1;
+    if (verb.entry.ssp) score = score + 1;
+    if (verb.entry.prp) score = score + 1;
+    if (verb.entry.pprtp) score = score + 1;
+    return score > 1 && !verb.entry.l;
+});
+
+<InfoCarousel items={irregularVerbs} />
+
+## About the split in the perfective forms
+
+Most of the perfective roots and stems have a spot where the verb can be broken apart. You can shove the following particles in this opening:
+
+- <InlinePs opts={opts} ps={{ p: "نه", f: "nu", e: "negative marker" }} /> 
+- <InlinePs opts={opts} ps={grammarUnits.baParticle} />
+- <InlinePs opts={opts} ps={{ p: "هم", f: "hum" }} />
+- <Link to="/pronouns/pronouns-mini/">mini-pronouns</Link>
+
+### About inserting <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> 
+
+If the verb takes a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix and you want to use a <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> to make it negative, you always have to insert the <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> into the split in the perfective form.
+
+For example:
+
+<Examples opts={opts}>{[
+    { p: "زه ورسره ونه غږېدم", f: "zu wăr-sara oo-nú-ghuGedum", e: "I didn't talk with him" },
+]}</Examples>
+
+<Examples opts={opts}>{[
+    { p: "زه ورسره نه وغږېدم ❌", f: "zu wăr-sara nú ooghuGedum ❌", e: "I didn't talk with him" },
+]}</Examples>
+
+But if the verb is a one of the <Link to="/verbs/roots-and-stems/#seperable-verbs">seperable verbs</Link> that doesn't take a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix, then the <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> can be inserted *inside or outside of the split*.
+
+<Examples opts={opts}>{[
+    { p: "زه ورسره کې نه ناستم", f: "zu wăr-sara ke-nú-naastum", e: "I didn't sit with him" },
+]}</Examples>
+
+<Examples opts={opts}>{[
+    { p: "زه ورسره نه کېناستم", f: "zu wăr-sara nú kenaastum", e: "I didn't sit with him" },
+]}</Examples>
+
+#### <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> always takes over the accent
+
+Whenever a <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> is inserted in a split or in front of a verb, it takes over the accent and receives the emphasis for a verb. It's like a mean, negative bully.

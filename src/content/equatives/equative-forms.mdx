@@ -1,0 +1,273 @@
+---
+title: Equative Forms
+---
+
+<!-- 
+
+Copyright (c) 2021 lingdocs.com 
+
+The content of the chapters/book is licensed by a
+Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+    
+-->
+
+import {
+    addToForm,
+    defaultTextOptions,
+    grammarUnits,
+    VerbFormDisplay,
+    ButtonSelect,
+    concatPsString,
+    InlinePs,
+} from "@lingdocs/pashto-inflector";
+import Formula from "../../components/Formula";
+import Link from "../../components/Link";
+export const opts = defaultTextOptions;
+
+export function FormChoice({forms}) {
+    const [choice, setChoice] = React.useState("pure");
+    return (
+        <div>
+            <div className="text-center my-3">
+                <ButtonSelect
+                    options={[
+                        { label: "Equative", value: "pure" },
+                        { label: "w/ Sentences", value: "sentence" },
+                    ]}
+                    value={choice}
+                    handleChange={(p) => setChoice(p)}
+                />
+            </div>
+            <VerbFormDisplay
+                displayForm={forms[choice].displayForm}
+                english={forms[choice].english}
+                textOptions={opts}
+            />
+        </div>
+    );
+}
+
+## Present Equative
+
+This is used to say something is something currently.
+
+<FormChoice 
+    forms={{
+        sentence: {
+            displayForm: addToForm(
+                [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
+                grammarUnits.equativeEndings.present,
+            ),
+            english: [
+                ["I am ...", "We are ..."],
+                ["I am ...", "We are ..."],
+                ["You are ...", "You are ..."],
+                ["You are ...", "You are ..."],
+                ["He/it is ...", "They are ..."],
+                ["She/it is ...", "They are ..."],
+            ],
+        },
+        pure: {
+            displayForm: grammarUnits.equativeEndings.present,
+        }
+    }}
+/>
+
+## Subjunctive / Habitual Equative
+
+This is used to talk about something being something, when the statement involves a wish, desire, hope, or statement of whether it should or shouldn't be.
+
+It is also used to say that something is generally or repeatedly something. This is like the the [habitual be](https://en.wikipedia.org/wiki/Habitual_be) found in African American Vernacular English (AAVE), as in, "The grass *be* wet in the morning."
+
+It's the same as the present equative above, except for the 3rd person.
+
+<FormChoice 
+    forms={{
+        sentence: {
+            displayForm: addToForm(
+                [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
+                grammarUnits.equativeEndings.subjunctive,
+            ),
+            english: [
+                ["I am ...", "We are ..."],
+                ["I am ...", "We are ..."],
+                ["You are ...", "You are ..."],
+                ["You are ...", "You are ..."],
+                ["He/she/it is ...", "They are ..."],
+                ["He/she/it is ...", "They are ..."],
+            ],
+        },
+        pure: {
+            displayForm: grammarUnits.equativeEndings.subjunctive,
+        },
+    }}
+/>
+
+## Future / Presumptive Equative
+
+This is used to say that something will be something in the future. It's also used to guess or surmise about something being something.
+
+<Formula>
+    <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="#subjunctive--informative-equative">subjunctive/informative equative</Link>
+</Formula>
+
+<FormChoice
+    forms={{
+        sentence: {
+            displayForm: addToForm([
+                    grammarUnits.pronouns.far.plain,
+                    " ",
+                    grammarUnits.baParticle,
+                    " ",
+                    { p: "...", f: "..." },
+                    " ",
+                ],
+                grammarUnits.equativeEndings.subjunctive,
+            ),
+            english: [
+                ["I will be ...", "We will be ..."],
+                ["I will be ...", "We will be ..."],
+                ["You will be ...", "You will be ..."],
+                ["You will be ...", "You will be ..."],
+                ["He/she/it will be ...", "They will be ..."],
+                ["He/she/it will be ...", "They will be ..."],
+            ],
+        },
+        pure: {
+            displayForm: addToForm([
+                grammarUnits.baParticle,
+                " ",
+                { p: "...", f: "..." },
+                " ",
+            ], grammarUnits.equativeEndings.subjunctive)
+        },
+    }}
+/>
+
+## Past Equative
+
+This is used to say that something was something in the past.
+
+It is usually used in the short form.
+
+<Formula>
+    <InlinePs opts={opts} ps={{ p: "ول", f: "wul" }} /> + <Link to="/verbs/verb-endings/#past-verb-endings">past verb endings</Link>
+</Formula>
+
+<FormChoice
+    forms={{
+        sentence: {
+            displayForm: addToForm([
+                grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
+                grammarUnits.equativeEndings.past,
+            ),
+            english: [
+                ["I was ...", "We were ..."],
+                ["I was ...", "We were ..."],
+                ["You were ...", "You were ..."],
+                ["You were ...", "You were ..."],
+                ["He/it was ...", "They were ..."],
+                ["She/it was ...", "They were ..."],
+            ],
+        },
+        pure: {
+            displayForm: grammarUnits.equativeEndings.past,
+        },
+    }}
+/>
+
+## Affirmative Equative
+
+This is used to affirm or to make a strong assumption that something will be something.
+
+<Formula>
+    <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="#past-equative">past equative</Link>
+</Formula>
+
+<FormChoice
+    forms={{
+        sentence: {
+            displayForm: addToForm([
+                    grammarUnits.pronouns.far.plain,
+                    " ",
+                    grammarUnits.baParticle,
+                    " ",
+                    { p: "...", f: "..." },
+                    " ",
+                ],
+                grammarUnits.equativeEndings.past,
+            ),
+            english: [
+                ["I'll be ...", "We'll be ..."],
+                ["I'll be ...", "We'll be ..."],
+                ["You'll be ...", "You'll be ..."],
+                ["You'll be ...", "You'll be ..."],
+                ["He/she/it'll be ...", "They'll be ..."],
+                ["He/she/it'll be ...", "They'll be ..."],
+            ],
+        },
+        pure: {
+            displayForm: addToForm([
+                grammarUnits.baParticle,
+                " ",
+                { p: "...", f: "..." },
+                " ",
+            ], grammarUnits.equativeEndings.past)
+        }
+    }}
+/>
+
+## Conterfactual / Past Subjunctive / Wish Equative
+
+This is used to talk about something being hypothetically something, or to wish that something were something. It is also used for prayers and blessings in some dialects.
+
+Because this uses the non-inflecting tail, it doesn't change at all depending on the person.
+
+<Formula>
+    <InlinePs opts={opts} ps={{ p: "و", f: "w" }} /> + non-inflecting tail
+</Formula>
+
+export function WithTailChoice() {
+    const [choice, setChoice] = React.useState("aay");
+    const waay = concatPsString(
+        {p: "و", f: "w"},
+        choice === "aay" ? { p: "ای", f: "aay" } : { p: "ی", f: "ey" },
+    );
+    return (
+        <div>
+            <div className="text-center my-3">
+                <div className="text-muted mb-1">
+                    <small>The spelling/pronunciation of the non-inflecting tail can vary based on dialect</small>
+                </div>
+                <ButtonSelect
+                    options={[
+                        { label: <InlinePs opts={opts} ps={{ p: "ای", f: "aay" }} />, value: "aay" },
+                        { label: <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} />, value: "ey" },
+                    ]}
+                    value={choice}
+                    handleChange={(p) => setChoice(p)}
+                />
+            </div>
+            <FormChoice
+                forms={{
+                    sentence: {
+                        displayForm: concatPsString(
+                            { p: "کاشکې ... ...", f: "kaashke ... ..."}, " ",
+                            waay, { p: "!", f: "!" },
+                        ),
+                        english: [[["If only ... was/were ...!"]]],
+                    },
+                    pure: {
+                        displayForm: waay,
+                    }
+                }}
+            />
+        </div>
+    );
+}
+
+<WithTailChoice />
+
+
