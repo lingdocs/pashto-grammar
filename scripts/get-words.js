@@ -1,5 +1,6 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
+const { readDictionary } = require("@lingdocs/pashto-inflector");
 const path = require("path");
 const verbsPath = path.join(".", "src", "words");
 const verbCollectionPath = path.join(verbsPath, "verb-categories");
@@ -19,8 +20,9 @@ const allNounAdjTsS = [...new Set(nounAdjTsFiles.reduce((arr, fileName) => {
 
 console.log("getting words from dictionary...");
 
-fetch(process.env.LINGDOCS_DICTIONARY_URL).then(res => res.json()).then(data => {
-  const entries = data.entries;
+fetch(process.env.LINGDOCS_DICTIONARY_URL).then(res => res.arrayBuffer()).then(buffer => {
+  const dictionary = readDictionary(buffer);
+  const entries = dictionary.entries;
   // MAKE VERBS FILE
   const allVerbs = getVerbsFromTsS(entries);
   const content = `const verbs = ${JSON.stringify(allVerbs)};
