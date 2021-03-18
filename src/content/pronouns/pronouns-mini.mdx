@@ -1,5 +1,5 @@
 ---
-title: Mini Pronouns
+title: Mini Pronouns 👶
 ---
 
 <!-- 
@@ -13,19 +13,23 @@ https://creativecommons.org/licenses/by-sa/4.0/legalcode
     
 -->
 
-
 import {
     defaultTextOptions,
     grammarUnits,
     VerbTable,
+    Examples,
 } from "@lingdocs/pashto-inflector";
+import bigAndLittleBrother from "../../images/big-and-little-brother.jpg";
+import Chart from "../../components/Chart";
 
-These are **enclitic prounouns** that hang on to the back of words. They can't be used at the beginning of a sentence.
+Mini pronouns are **enclitic prounouns** that hang on to the back of words. They can't be used at the beginning of a sentence. You can think of them as little babies 👶 that can't stand on their own. **They can't be used to start a sentence.** They always need to lean up against the back of another word.
 
-The can only be used as:
+<img className="rounded mx-auto d-block my-3" src={bigAndLittleBrother} />
 
-1. The object of a non-past tense transitive verb
-2. The subject/agent of a past tense transitive verb
+Mini pronouns can only be used as one of three things:
+
+1. The object of a present/future verb
+2. The subject of a past tense transitive verb
 3. A possesive pronoun
 
 <VerbTable
@@ -40,3 +44,95 @@ The can only be used as:
         ["him/her/it", "they"],
     ]}
 />
+
+## Examples
+
+Below are some examples of how mini pronouns can be used in the place of regular pronouns. The mini pronouns are used when you don't need a strong emphasis on the pronoun.
+
+### 1. As the object of a present/future verb
+
+<Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={defaultTextOptions}>{[
+    [
+        { p: "زه تا وینم", f: "zu taa weenum", e: "I see you"},
+        { p: "زه دې وینم", f: "zu de weenum", e: "I see you"},
+    ],
+    [
+        { p: "هلک ما وهي", f: "haluk maa wahee", e: "The boy's hitting me" },
+        { p: "هلک مې وهي", f: "haluk me wahee", e: "The boy's hitting me" },
+    ],
+    [
+        { p: "دوي ولې مونږ وهی؟", f: "dwee wăle moonG wahée?", e: "Why are they hitting us?" },
+        { p: "دوي ولې مو وهی؟", f: "dwee wăle mU wahée?", e: "Why are they hitting us?" },
+    ],
+]}</Chart>
+
+### 2. As the subject of a past tense transitive verb
+
+<Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={defaultTextOptions}>{[
+    [
+        { p: "ما ډوډۍ وخوړله", f: "maa DoDuy óokhoRula", e: "I ate food"},
+        { p: "ډوډۍ مې وخوړله", f: "DoDuy me óokhoRula", e: "I ate food"},
+    ],
+    [
+        { p: "هغه واده کړی دی", f: "haghú waadu kúRey dey", e: "He's gotten married" },
+        { p: "واده یې کړی دی", f: "waadu ye kúRey dey", e: "He's gotten married" },
+    ],
+    [
+        { p: "ما ولیدې", f: "maa óoleede", e: "I saw you" },
+        { p: "ومې لیدې", f: "óo-me-leede", e: "I saw you" },
+    ],
+]}</Chart>
+
+### 3. As a possesive pronoun  
+
+<Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={defaultTextOptions}>{[
+    [
+        { p: "د هغې پلار مریض دی", f: "du haghe plaar mareez dey", e: "Her father is ill" },
+        { p: "پلار یې مریض دی", f: "plaar ye mareez dey", e: "Her father is ill" },
+    ],
+    [
+        { p: "ستاسو کار سخت دی", f: "staaso kaar sakht dey", e: "Your work is difficult" },
+        { p: "کار مو سخت دی", f: "kaar mU sakht dey", e: "Your work is difficult" },
+    ],
+    [
+        { p: "زمونږ کور په کابل کې دی", f: "zmoonG kor pu kaabul ke dey", e: "Our house is in Kabul" },
+        { p: "کور مو په کابل کې دی", f: "kor mU pu kaabul ke dey", e: "Our house is in Kabul" },
+    ],
+]}</Chart>
+
+## The order of mini-pronouns
+
+In some sentences we might have more than one mini-prounoun. In these cases, it can be confusing for learners to know which pronoun has what role. For example, have a look at these sentences:
+
+<Examples opts={defaultTextOptions}>{[
+    { p: "پلار مې یې وهي", f: "plaar me ye wahee" },
+]}</Examples>
+
+Does this mean "My dad is hitting him" or "His dad is hitting me" ?
+
+<details className="mb-3">
+    <summary>Answer:</summary>
+    It means, "."
+</details>
+
+<Examples opts={defaultTextOptions}>{[
+    { p: "کتاب مې یې ولیده", f: "kitaab me ye óoleedu" },
+]}</Examples>
+
+Does this mean "He saw my book" or "I saw his book" ?
+
+<details className="mb-3">
+    <summary>Answer:</summary>
+    It means, "I saw his book."
+</details>
+
+<Examples opts={defaultTextOptions}>{[
+    { p: "غږ مې دې واورېده", f: "ghuG me de wáawredu" },
+]}</Examples>
+
+Does this mean "I heard your voice" or "You heard my voice" ?
+
+<details className="mb-3">
+    <summary>Answer:</summary>
+    It means, "I heard your voice."
+</details>
