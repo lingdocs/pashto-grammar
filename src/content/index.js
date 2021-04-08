@@ -9,9 +9,9 @@
 /* eslint-disable import/no-webpack-loader-syntax */
 import * as about from "!babel-loader!mdx-loader!./about.mdx";
 
-import * as equativePresent from "!babel-loader!mdx-loader!./equatives/equative-present.mdx"
-import * as equativeOthers from "!babel-loader!mdx-loader!./equatives/equative-others.mdx";
-// import * as advancedEquative from "!babel-loader!mdx-loader!./equative/equative-advanced.mdx";
+import * as presentEquative from "!babel-loader!mdx-loader!./equatives/present-equative.mdx"
+import * as subjunctiveHabitualEquative from "!babel-loader!mdx-loader!./equatives/subjunctive-habitual-equative.mdx";
+import * as otherEquatives from "!babel-loader!mdx-loader!./equatives/other-equatives.mdx";
 
 import * as verbEndings from "!babel-loader!mdx-loader!./verbs/verb-endings.mdx";
 import * as rootsAndStems from "!babel-loader!mdx-loader!./verbs/roots-and-stems.mdx";
@@ -32,12 +32,16 @@ const contentTree = [
         subdirectory: "equatives",
         chapters: [
             {
-                import: equativePresent,
-                slug: "equative-present",
+                import: presentEquative,
+                slug: "present-equative",
             },
             {
-                import: equativeOthers,
-                slug: "equative-others",
+                import: subjunctiveHabitualEquative,
+                slug: "subjunctive-habitual-equative",
+            },
+            {
+                import: otherEquatives,
+                slug: "other-equatives",
             },
         ],
     },

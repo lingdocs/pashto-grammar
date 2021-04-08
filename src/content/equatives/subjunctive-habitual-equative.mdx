@@ -1,0 +1,147 @@
+---
+title: Subjunctive / Habitual Equative
+---
+
+import {
+    addToForm,
+    defaultTextOptions,
+    grammarUnits,
+    Examples,
+    concatPsString,
+    InlinePs,
+} from "@lingdocs/pashto-inflector";
+import EquativeFormChoice from "../../components/EquativeFormChoice";
+import Link from "../../components/Link";
+export const opts = defaultTextOptions;
+import grassBeWet from "../../images/grass-be-wet.jpg";
+
+In the last section we looked at the present equative, which we use to say something *is* something currently. But **we can only use the present equative for something is something *right now, at this moment***. What if we want to say that something *generally is something* or if we *hope something is something*? For that **we need to use a different form**.
+
+## Subjunctive / Habitual Equative Form
+
+<EquativeFormChoice 
+    forms={{
+        sentence: {
+            displayForm: addToForm(
+                [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
+                grammarUnits.equativeEndings.subjunctive,
+            ),
+            english: [
+                ["I am ...", "We are ..."],
+                ["I am ...", "We are ..."],
+                ["You are ...", "You are ..."],
+                ["You are ...", "You are ..."],
+                ["He/she/it is ...", "They are ..."],
+                ["He/she/it is ...", "They are ..."],
+            ],
+        },
+        pure: {
+            displayForm: grammarUnits.equativeEndings.subjunctive,
+        },
+    }}
+    opts={opts}
+/>
+
+This form is used with two different meanings:
+
+1. **Subjunctive** - to talk about something being something when the statement involves a hypothetical condition, a wish, desire, hope, or statement of whether it should or shouldn't be, as in:
+
+    <Examples opts={opts}>{[
+        { p: "امید لرم چې خوشحاله وي", f: "Umeed larum che khosháala wee", e: "I hope he's happy" },
+    ]}</Examples>
+
+2. **Habitual** - to say that something is generally or repeatedly something, as in:
+
+    <Examples opts={opts}>{[
+        { p: "سحار کې چمن لوند وي", f: "saháar ke chaman loond wee", e: "The grass is wet in the morning. (generally, habitually)" },
+    ]}</Examples>
+
+### With a Subjunctive Meaning
+
+#### Judgement/obligation
+
+The subjunctive form can be used to talk about it being being good or bad, necessary, or required that something is something.
+
+<Examples opts={opts}>{[
+    { p: "ښه ده چې دلته یې", f: "xa da che dălta ye.", e: "It's good that you're here." },
+    { p: "هغوي باید په ښوونځي کې وي", f: "hagwee baayad pu xowundzee ke wee.", e: "They have to be in school." },
+]}</Examples>
+
+#### Desire
+
+<Examples opts={opts}>{[
+    { p: "امید لرم چې هلته وي", f: "Umeed larum che halta wee.", e: "I hope they're there." },
+    { p: "هغه غواړي چې مونږ په کور کې یو", f: "haghá ghwaaRee che moonG pu kor ke yoo.", e: "He wants us to be home." },
+]}</Examples>
+
+#### Conditions
+
+The subjunctive form is also used to talk about conditions or possibilities. *If A = B, then...* or *It could be that A = B ...*
+
+<Examples opts={opts}>{[
+    { p: "که دوکان کې وریژې وي نو وایې خله", f: "ku dokaan ke wrejze wee, no waa-ye-khla", e: "If there's rice in the store, buy it" },
+    { p: "کېدی شي چې ډوډۍ تیاره وي", f: "kedey shee che DoDúy tayaara wee", e: "The food could be ready" },
+]}</Examples>
+
+### With a Habitual Meaning
+
+This same form is used when you are saying that **A = B generally, habitually, or repeatedly**. For example:
+
+<Examples opts={opts}>{[
+    { p: "هغه تر ماښامه پورې په دوکان کې وي", f: "haghá tur maaxaama pore pu dookáan ke wee", e: "He's in the shop until evening. (generally, habitually)" },
+    { p: "اته بجو نه بعد دوکان بند وي", f: "atu bajo na bad dookáan band wee", e: "The shop is closed after 8 o'clock. (generally, habitually)" },
+]}</Examples>
+
+⚠ **Warning**: For English speakers **it take some time to get used to choosing between the *present* and *habitual* equatives**. Standard English uses the same form for both, but in Pashto the forms change!
+
+<Examples opts={opts}>{[
+    { p: "ماښام دوکان بند وي.", f: "maaxáam dookáan band wee", e: "The shop is closed in the evening. (generally, every day - habitual form)" },
+    { p: "دوکان دند دی.", f: "dookáan band dey.", e: "The shop is closed. (right now, at this moment - present form)" },
+]}</Examples>
+
+In English, we just say "is" in both situations. But **in Pashto, you have to pick between the two forms**. Use the present form for things that are something in the moment, and use the habitual form for things are generally or habitually something.
+
+Interestingly, there is also a separate [habitual equative](https://en.wikipedia.org/wiki/Habitual_be) or "habitual be" in Southern or African American Vernacular English (AAVE). Take this pun for example:
+
+<img className="img-fluid mb-4" src={grassBeWet} />
+
+<div style={{ overflowX: "auto" }}>
+        <table class="table" style={{ minWidth: "400px" }}>
+            <thead>
+                <tr>
+                    <th scope="col">Form</th>
+                    <th scope="col">Standard English</th>
+                    <th scope="col">AAVE</th>
+                    <th scope="col">Pashto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Present</th>
+                    <td>
+                        <div>The grass <strong>is</strong> wet</div>
+                        <div className="small text-muted">right now</div>
+                    </td>
+                    <td>The grass <strong>is</strong> wet</td>
+                    <td>
+                        <Examples opts={opts}>{[
+                            { p: "چمن لوند دی", f: "chaman loond dey" },
+                        ]}</Examples>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Habitual</th>
+                    <td>
+                        <div>The grass <strong>is</strong> wet in the morning</div>
+                        <div className="small text-muted">generally</div>
+                    </td>
+                    <td>The grass <strong>be</strong> wet in the morning</td>
+                    <td>
+                        <Examples opts={opts}>{[
+                            { p: "په سحار کې چمن لوند وي", f: "pu sahaar ke chaman loond wee" },
+                        ]}</Examples>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>

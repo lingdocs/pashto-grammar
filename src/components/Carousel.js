@@ -45,9 +45,9 @@ export default function(props) {
                     onClick={back}
                 />
                     {title ?
-                        <div className="h5 text-center">{title}</div>
+                        <div className="h5">{title}</div>
                         :
-                        <div className="text-center">{body}</div>
+                        <div>{body}</div>
                     }
                 <img 
                     src={rightChevron}
@@ -57,7 +57,7 @@ export default function(props) {
                     alt={"next"}
                 /> 
             </div>
-            {title && <div>
+            {title && <div className="text-center">
                 {body}
             </div>}
         </div>
