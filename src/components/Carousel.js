@@ -44,7 +44,11 @@ export default function(props) {
                     alt={"previous"}
                     onClick={back}
                 />
-                    <div className="h5 text-center">{title}</div>
+                    {title ?
+                        <div className="h5 text-center">{title}</div>
+                        :
+                        <div className="text-center">{body}</div>
+                    }
                 <img 
                     src={rightChevron}
                     className="clickable mr-lg-3"
@@ -53,9 +57,9 @@ export default function(props) {
                     alt={"next"}
                 /> 
             </div>
-            <div>
+            {title && <div>
                 {body}
-            </div>
+            </div>}
         </div>
     )
 }

@@ -156,3 +156,8 @@
     cursor: pointer;
 }
 
+blockquote {
+    border-left: 3px solid rgb(99, 99, 99);
+    padding-left: 1rem;
+    font-style: italic;
+}

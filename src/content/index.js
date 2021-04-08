@@ -9,7 +9,8 @@
 /* eslint-disable import/no-webpack-loader-syntax */
 import * as about from "!babel-loader!mdx-loader!./about.mdx";
 
-import * as equativesForms from "!babel-loader!mdx-loader!./equatives/equative-forms.mdx";
+import * as equativePresent from "!babel-loader!mdx-loader!./equatives/equative-present.mdx"
+import * as equativeOthers from "!babel-loader!mdx-loader!./equatives/equative-others.mdx";
 // import * as advancedEquative from "!babel-loader!mdx-loader!./equative/equative-advanced.mdx";
 
 import * as verbEndings from "!babel-loader!mdx-loader!./verbs/verb-endings.mdx";
@@ -31,13 +32,13 @@ const contentTree = [
         subdirectory: "equatives",
         chapters: [
             {
-                import: equativesForms,
-                slug: "equative-forms",
+                import: equativePresent,
+                slug: "equative-present",
             },
-            // {
-            //     import: advancedEquative,
-            //     slug: "equative-advanced",
-            // },
+            {
+                import: equativeOthers,
+                slug: "equative-others",
+            },
         ],
     },
     {

@@ -1,5 +1,5 @@
 ---
-title: Equative Forms
+title: Other Equatives
 ---
 
 <!-- 
@@ -22,58 +22,12 @@ import {
     concatPsString,
     InlinePs,
 } from "@lingdocs/pashto-inflector";
+import EquativeFormChoice from "../../components/EquativeFormChoice";
 import Formula from "../../components/Formula";
 import Link from "../../components/Link";
 export const opts = defaultTextOptions;
 
-export function FormChoice({forms}) {
-    const [choice, setChoice] = React.useState("pure");
-    return (
-        <div>
-            <div className="text-center my-3">
-                <ButtonSelect
-                    options={[
-                        { label: "Equative", value: "pure" },
-                        { label: "w/ Sentences", value: "sentence" },
-                    ]}
-                    value={choice}
-                    handleChange={(p) => setChoice(p)}
-                />
-            </div>
-            <VerbFormDisplay
-                displayForm={forms[choice].displayForm}
-                english={forms[choice].english}
-                textOptions={opts}
-            />
-        </div>
-    );
-}
-
-## Present Equative
-
-This is used to say something is something currently.
-
-<FormChoice 
-    forms={{
-        sentence: {
-            displayForm: addToForm(
-                [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
-                grammarUnits.equativeEndings.present,
-            ),
-            english: [
-                ["I am ...", "We are ..."],
-                ["I am ...", "We are ..."],
-                ["You are ...", "You are ..."],
-                ["You are ...", "You are ..."],
-                ["He/it is ...", "They are ..."],
-                ["She/it is ...", "They are ..."],
-            ],
-        },
-        pure: {
-            displayForm: grammarUnits.equativeEndings.present,
-        }
-    }}
-/>
+In the last section we looked at the present equative, which we use to say something *is* something currently. But sometimes we want to say something *was*, *will be*, or *generally is*. For these different ideas we will need the following different forms: 
 
 ## Subjunctive / Habitual Equative
 
@@ -83,7 +37,7 @@ It is also used to say that something is generally or repeatedly something. This
 
 It's the same as the present equative above, except for the 3rd person.
 
-<FormChoice 
+<EquativeFormChoice 
     forms={{
         sentence: {
             displayForm: addToForm(
@@ -103,6 +57,7 @@ It's the same as the present equative above, except for the 3rd person.
             displayForm: grammarUnits.equativeEndings.subjunctive,
         },
     }}
+    opts={defaultTextOptions}
 />
 
 ## Future / Presumptive Equative
@@ -113,7 +68,7 @@ This is used to say that something will be something in the future. It's also us
     <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="#subjunctive--informative-equative">subjunctive/informative equative</Link>
 </Formula>
 
-<FormChoice
+<EquativeFormChoice
     forms={{
         sentence: {
             displayForm: addToForm([
@@ -144,6 +99,7 @@ This is used to say that something will be something in the future. It's also us
             ], grammarUnits.equativeEndings.subjunctive)
         },
     }}
+    opts={defaultTextOptions}
 />
 
 ## Past Equative
@@ -156,7 +112,7 @@ It is usually used in the short form.
     <InlinePs opts={opts} ps={{ p: "ول", f: "wul" }} /> + <Link to="/verbs/verb-endings/#past-verb-endings">past verb endings</Link>
 </Formula>
 
-<FormChoice
+<EquativeFormChoice
     forms={{
         sentence: {
             displayForm: addToForm([
@@ -176,6 +132,7 @@ It is usually used in the short form.
             displayForm: grammarUnits.equativeEndings.past,
         },
     }}
+    opts={defaultTextOptions}
 />
 
 ## Affirmative Equative
@@ -186,7 +143,7 @@ This is used to affirm or to make a strong assumption that something will have b
     <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="#past-equative">past equative</Link>
 </Formula>
 
-<FormChoice
+<EquativeFormChoice
     forms={{
         sentence: {
             displayForm: addToForm([
@@ -217,6 +174,7 @@ This is used to affirm or to make a strong assumption that something will have b
             ], grammarUnits.equativeEndings.past)
         }
     }}
+    opts={defaultTextOptions}
 />
 
 ## Conterfactual / Past Subjunctive / Wish Equative
@@ -250,7 +208,7 @@ export function WithTailChoice() {
                     handleChange={(p) => setChoice(p)}
                 />
             </div>
-            <FormChoice
+            <EquativeFormChoice
                 forms={{
                     sentence: {
                         displayForm: concatPsString(
@@ -263,11 +221,10 @@ export function WithTailChoice() {
                         displayForm: waay,
                     }
                 }}
+                opts={defaultTextOptions}
             />
         </div>
     );
 }
 
 <WithTailChoice />
-
-

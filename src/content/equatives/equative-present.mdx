@@ -1,0 +1,229 @@
+---
+title: Present Equative
+---
+
+<!-- 
+
+Copyright (c) 2021 lingdocs.com 
+
+The content of the chapters/book is licensed by a
+Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+    
+-->
+
+import EquativeFormChoice from "../../components/EquativeFormChoice";
+import Carousel from "../../components/Carousel";
+import { useState } from "react"; 
+import {
+    grammarUnits,
+    Examples,
+    defaultTextOptions,
+    ButtonSelect,
+    addToForm,
+    InlinePs,
+} from "@lingdocs/pashto-inflector";
+
+The [equative](https://en.wikipedia.org/wiki/Equative) might be the most basic way of joining words together. We use it to say that something *is/equals* something else. It's kind of like an equals "=" sign in math. 
+
+<div className="d-flex justify-content-around mx-auto mb-3" style={{ maxWidth: "400px" }}>
+    <div className="text-center p-2">
+        <div className="display-3">A</div>
+        <div>subject</div>
+        <div className="h4 mt-3">I</div>
+        <div className="h4 mt-3">He</div>
+        <div className="h4 mt-3">We</div>
+    </div>
+    <div className="text-center p-2" style={{ border: "1px solid black", borderRadius: "10px" }}>
+        <div className="display-3">=</div>
+        <div>equative</div>
+        <div className="h4 mt-3">am</div>
+        <div className="h4 mt-3">is</div>
+        <div className="h4 mt-3">are</div>
+    </div>
+    <div className="text-center p-2">
+        <div className="display-3">B</div>
+        <div>complement</div>
+        <div className="h4 mt-3">tired.</div>
+        <div className="h4 mt-3">here.</div>
+        <div className="h4 mt-3">students.</div>
+    </div>
+</div>
+
+When we look at these 3 sentences, we notice 2 rules that will be true for both English and Pashto. 
+
+1. **You have to use the right equative for the subject**. It would sound strange to say "I are tired."
+2. **The subject and complement have to agree**. It would be wrong to say "We are student."
+
+But **in Pashto, the word order is different**. Here are those same three sentences, written in Pashto:
+
+export function EquativeIllustration({forms, opts}) {
+    const [choice, setChoice] = useState("f");
+    return (
+        <div>
+            <div className="text-center my-3">
+                <ButtonSelect
+                    options={[
+                        { label: "Phonetics", value: "f" },
+                        { label: "Pashto Script", value: "p" },
+                    ]}
+                    value={choice}
+                    handleChange={(p) => setChoice(p)}
+                />
+            </div>
+            {choice === "f" ?
+                <div className="d-flex justify-content-around mx-auto mb-3" style={{ maxWidth: "400px" }}>
+                    <div className="text-center p-2">
+                        <div className="display-3">A</div>
+                        <div>subject</div>
+                        <div className="h4 mt-3">zu</div>
+                        <div className="h4 mt-3">haghá</div>
+                        <div className="h4 mt-3">moonG</div>
+                    </div>
+                    <div className="text-center p-2">
+                        <div className="display-3">B</div>
+                        <div>complement</div>
+                        <div className="h4 mt-3">stuRey</div>
+                        <div className="h4 mt-3">dălta</div>
+                        <div className="h4 mt-3">zdakawóonkee</div>
+                    </div>
+                    <div className="text-center p-2" style={{ border: "1px solid black", borderRadius: "10px" }}>
+                        <div className="display-3">=</div>
+                        <div>equative</div>
+                        <div className="h4 mt-3">yum.</div>
+                        <div className="h4 mt-3">dey.</div>
+                        <div className="h4 mt-3">yoo.</div>
+                    </div>
+                </div>
+            :
+                <div className="d-flex justify-content-around mx-auto mb-3" style={{ direction: "rtl", maxWidth: "400px" }}>
+                    <div className="text-center p-2">
+                        <div className="display-3">ا</div>
+                        <div>subject</div>
+                        <div className="h4 mt-3">زه</div>
+                        <div className="h4 mt-3">هغه</div>
+                        <div className="h4 mt-3">مونږ</div>
+                    </div>
+                    <div className="text-center p-2">
+                        <div className="display-3">ب</div>
+                        <div>complement</div>
+                        <div className="h4 mt-3">ستړی</div>
+                        <div className="h4 mt-3">دلته</div>
+                        <div className="h4 mt-3">زدکوونکي</div>
+                    </div>
+                    <div className="text-center p-2" style={{ border: "1px solid black", borderRadius: "10px" }}>
+                        <div className="display-3">=</div>
+                        <div>equative</div>
+                        <div className="h4 mt-3">یم.</div>
+                        <div className="h4 mt-3">دی.</div>
+                        <div className="h4 mt-3">یو.</div>
+                    </div>
+                </div>
+            }
+        </div>
+    );
+};
+
+<EquativeIllustration />
+
+**Warning: ⚠** Often times English speakers learning Pashto will be tempted to just forget the equative when they get to the end of the sentence because it might feel like they're done, or it might be hard to remember which equative to use. But don't leave it out, it's a vital part of the sentence! 
+
+As we noticed earlire, there are two main rules about joining things together with equatives:
+
+1. You have to use the right equative for the subject
+2. The subject and the complement have to agree
+
+First of all, let's look at which equatives you have to use depending on what the subject is:
+
+## 1. Present Equative Form
+
+<EquativeFormChoice 
+    forms={{
+        sentence: {
+            displayForm: addToForm(
+                [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
+                grammarUnits.equativeEndings.present,
+            ),
+            english: [
+                ["I am ...", "We are ..."],
+                ["I am ...", "We are ..."],
+                ["You are ...", "You are ..."],
+                ["You are ...", "You are ..."],
+                ["He/it is ...", "They are ..."],
+                ["She/it is ...", "They are ..."],
+            ],
+        },
+        pure: {
+            displayForm: grammarUnits.equativeEndings.present,
+        }
+    }}
+    opts={defaultTextOptions}
+/>
+
+**Note**: in colloquial speech with some dialects, people will use <InlinePs opts={defaultTextOptions} ps={{ p: "ده", f: "da" }} /> for both masculine and feminine subjects. 
+
+Flip through the following examples and notice how the equative changes depending on the subject.
+
+<Carousel 
+    items={[
+        { p: "زه خوشحاله یم", f: "zu khosháala yum", e: "I am happy" },
+        { p: "ته خوشحاله یې", f: "tu khosháala ye", e: "You are happy" },
+        { p: "هغه خوشحاله دی", f: "haghá khosháala dey", e: "He is happy" },
+        { p: "پلوشه خوشحاله ده", f: "pulwasha khosháala da", e: "Pulwasha is happy" },
+        { p: "مونږ خوشحاله یو", f: "moonG khosháala yoo", e: "We are happy" },
+        { p: "تاسو خوشحاله یئ", f: "taaso khosháala yeyy", e: "You (pl.) are happy" },
+        { p: "ماشومان خوشحاله دي", f: "maashoomáan khosháala dee", e: "The children are happy" },
+        { p: "دوي خوشحاله دي", f: "dwee khosháala dee", e: "They are happy" },
+    ]} 
+    render={(item) => ({
+        body: <Examples opts={defaultTextOptions}>{[item]}</Examples>,
+    })}
+/>
+
+## 2. Subject / Complement Agreement
+
+We also mentioned how the subject and the complement need to agree.
+
+### Agreement in number
+
+Natually, if the subject is plural, the complement will be plural as well.
+
+<Examples opts={defaultTextOptions}>{[
+    { p: "هغه ماشوم دی", f: "haghá mashóom dey", e: "He is a child" },
+    { p: "هغوي ماشومان دي", f: "haghwée mashoomáan dee", e: "They are children" },
+    { p: "ته ډاکټر یې؟", f: "tu DakTár ye?", e: "Are you a doctor?" },
+    { p: "تاسو ډاکټران یئ؟", f: "taaso DakTaráan yeyy?", e: "Are you (pl.) doctors?" },
+    { p: "دا ستا کور دی", f: "daa staa kor dey", e: "That's your house" },
+    { p: "دا ستا کورونه دی", f: "daa staa koróona dee", e: "Those are your houses" },
+]}</Examples>
+
+### Agreement in gender
+
+But that's not all, in Pashto, many nouns and adjectives inflect (change) according to their gender. The subject and complement need to agree in gender as well. 
+
+<Examples opts={defaultTextOptions}>{[
+    { p: "زه ستړی یم", f: "zu stúRey yum", e: "I (m.) am tired 👨"},
+    { p: "زه ستړې یم", f: "zu stúRe yum", e: "I (f.) am tired 👩"},
+    { p: "ته پښتون یې؟", f: "tu puxtoon ye?", e: "Are you (m.) a Pashtun?" },
+    { p: "ته پښتنه یې؟", f: "tu puxtana ye?", e: "Are you (f.) a Pashtun?" },
+    { p: "تاسو پښتانه یې؟", f: "taaso puxtaanu yeyy?", e: "Are you (m. pl.) Pashtuns?" },
+    { p: "تاسو پښتنې یې؟", f: "taaso puxtane yeyy?", e: "Are you (f. pl.) Pashtuns?" },
+]}</Examples>
+
+Note: To understand why/how these words are changing, you will need to read up on *inflection*. 
+
+## Notes on word order
+
+When you're asking a question, all you have to do is change the intonation. You don't have to change the word order like you do in English.
+
+<Examples opts={defaultTextOptions}>{[
+    { p: "ته پښتون یې.", f: "tu puxtoon ye.", e: "You (m.) are a Pashtun." },
+    { p: "ته پښتون یې؟", f: "tu puxtoon ye?", e: "Are you (m.) a Pashtun?" },
+]}</Examples>
+
+**99.9% of the time the equative will go at the end of the sentence.** But in poetry the order often gets flipped around. You can also flip the order around to make an emphatic point.
+
+<Examples opts={defaultTextOptions}>{[
+    { p: "خو ته یې افعان", f: "kho tu ye afgháan", e: "But you are Afghan!" }
+]}</Examples>
