@@ -13,6 +13,8 @@ import * as presentEquative from "!babel-loader!mdx-loader!./equatives/present-e
 import * as subjunctiveHabitualEquative from "!babel-loader!mdx-loader!./equatives/subjunctive-habitual-equative.mdx";
 import * as otherEquatives from "!babel-loader!mdx-loader!./equatives/other-equatives.mdx";
 
+import * as nounsGender from "!babel-loader!mdx-loader!./nouns/nouns-gender.mdx";
+
 import * as verbEndings from "!babel-loader!mdx-loader!./verbs/verb-endings.mdx";
 import * as rootsAndStems from "!babel-loader!mdx-loader!./verbs/roots-and-stems.mdx";
 import * as sentenceStructure from "!babel-loader!mdx-loader!./verbs/sentence-structure.mdx";
@@ -42,6 +44,16 @@ const contentTree = [
             {
                 import: otherEquatives,
                 slug: "other-equatives",
+            },
+        ],
+    },
+    {
+        heading: "Nouns",
+        subdirectory: "nouns",
+        chapters: [
+            {
+                import: nounsGender,
+                slug: "nouns-gender",
             },
         ],
     },

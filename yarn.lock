@@ -1504,7 +1504,7 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@lingdocs/pashto-inflector@^0.3.3":
+"@lingdocs/pashto-inflector@^0.3.5":
   version "0.3.5"
   resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-0.3.5.tgz#c6e99e807d38addf61aed93997c95eafde6bb2ab"
   integrity sha512-m8IzUE+gxLcI/Cyu7iLEx+R65juaHmztJFMtsAP33mfyOseBq0ZTD8xC9CjRz/n8PvIPFcy+lpYrTcaBd0cPvQ==

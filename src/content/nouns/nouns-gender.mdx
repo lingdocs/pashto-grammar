@@ -1,0 +1,216 @@
+---
+title: Nouns and Gender
+---
+
+import {
+    defaultTextOptions as opts,
+    InlinePs,
+    Examples,
+} from "@lingdocs/pashto-inflector";
+export const femColor = "#FFECEF"
+export const mascColor = "#C1D5F4";
+
+export const Masc = () => (
+    <span style={{ backgroundColor: mascColor }}>masculine</span>
+);
+
+export const Fem = () => (
+    <span style={{ backgroundColor: femColor }}>feminine</span>
+);
+
+All nouns in Pashto are either <Masc /> or <Fem />. Thankfully, you can pretty much always tell the gender of a word by its ending.
+
+## Gender by Ending
+
+Basically:
+
+ - if a noun ends in a *consonant* (including ی - y at the end), it's <Masc />
+ - if a noun ends in a *vowel*, it's <Fem />
+
+Well... almost. 😉 There are a few exceptions and it's a little more complicated than that. 
+
+export function GenderTable({ rows }) {
+    return <table className="table" style={{ tableLayout: "fixed" }}>
+        <thead>
+            <tr>
+                <th scope="col">Masculine</th>
+                <th scope="col">Feminine</th>
+            </tr>
+        </thead>
+        <tbody>
+            {rows.map((row, i) => (
+                <tr key={`gender-row${i}`}>
+                    {["masc", "fem"].map((gender) => {
+                        const item = row[gender];
+                        return <td key={`row-${i}-${gender}`} style={{ background: gender === "masc" ? mascColor : femColor }}>
+                            {item.ending && <div>
+                                {typeof item.ending === "string" ? item.ending
+                                : <InlinePs opts={opts}>{item.ending}</InlinePs>}
+                            </div>}
+                            <div>
+                                {item.ending ? "eg. " : ""}<InlinePs opts={opts}>{item.ex}</InlinePs>
+                            </div>
+                        </td>
+                    })}
+                </tr>
+            ))}
+        </tbody>
+    </table>;
+} 
+
+<GenderTable rows={[
+    {
+        masc: {
+            ending: "any consonant",
+            ex: { p: "کور", f: "kor", e: "house" },
+        },
+        fem: {
+            ending: { p: "ه", f: "a" },
+            ex: { p: "ښځه", f: "xudza", e: "woman" },
+        },
+    },
+    {
+        masc: {
+            ending: { p: "ی", f: "ey" },
+            ex: {p:"سړی", f:"saRey", e:"man"},
+        }, 
+        fem: {
+            ending: { p: "ا", f: "aa" },
+            ex: {p:"جزا", f:"jăzaa", e:"punishment"},
+        },
+    },
+    {
+        masc: {
+            ending: { p: "ای", f: "aay" },
+            ex: {p:"ځای", f:"dzaay", e:"place"},
+        },
+        fem: {
+            ending: { p: "ي", f: "ee" },
+            ex: {p:"دوستي", f:"dostee", e:"friendship"},
+        },
+    },
+    {
+        masc: {
+            ending: { p: "ه", f: "u" },
+            ex: {p:"واده", f:"waadu", e:"marriage"},
+        }, 
+        fem: {
+            ending: { p: "ۍ", f: "uy" },
+            ex: {p:"هګۍ", f:"haguy", e:"egg"},
+        },
+    },
+    {
+        masc: {
+            ending: { p:"و", f: "aw" },
+            ex: {p:"کنډو", f:"kanDáw", e:"crack"},
+        },
+        fem: { 
+            ending: { p: "و", f: "o" },
+            ex: { p:"پښتو", f:"puxto", e:"Pashto" },
+        },
+    },
+    {
+        masc: {
+            ending: { p: "وی", f: "ooy" },
+            ex: {p:"سوی", f:"sooy", e:"rabbit"},
+        },
+        fem: {
+            ending: { p: "ې", f: "e" },
+            ex: {p:"ملګرې", f:"malgure", e:"female friend"},
+        },
+    },
+]} />
+
+Words ending in <InlinePs opts={opts} ps={{p:"و", f:"oo"}} /> can be either <Masc /> or <Fem />.
+
+Words ending in <InlinePs opts={opts} ps={{ p: "ه", f: "u" }} /> can also be <Fem /> plural, as in <InlinePs opts={opts} ps={{ p: "اوبه", f: "oobu", e: "water" }} />
+
+## Exceptions
+
+### Feminine words that lost their <InlinePs opts={opts} ps={{ p: "ه", f: "a" }} />
+
+Some <Fem /> words have had their <InlinePs opts={opts} ps={{p:"ه", f:"a"}} />'s on the end chopped off. This makes them look like masculine nouns, but actually the do behave (and get inflected) just like other feminine nouns.
+
+For example, the word <InlinePs opts={opts} ps={{p:"لار", f:"laar", e:"road/way"}} /> ends in a consanant, but it's feminine. 🤔 Why? It's just that the <InlinePs opts={opts} ps={{p:"ه", f:"a"}} /> on the end is usually left out. For the singular/plain form the word, you will hear people say either <InlinePs opts={opts} ps={{p:"لار", f:"laar" }} /> or <InlinePs opts={opts} ps={{p:"لاره", f:"laara" }} />, sometimes with or without the <InlinePs opts={opts} ps={{p:"ه", f:"a"}} /> on the end. But regardless, the word is always considered <Fem />, and it inflects just like any other feminine word ending with an <InlinePs opts={opts} ps={{p:"ه", f:"a"}} />. (eg. <InlinePs opts={opts} ps={{p:"لارې", f:"laare", e: "roads" }} />)
+
+Here are a few other <Fem /> words that have lost their <InlinePs opts={opts} ps={{p:"ه", f:"a"}} /> ending:
+
+- <InlinePs opts={opts} ps={{p:"څنګل", f:"tsangúl", e: "elbow" }} />
+- <InlinePs opts={opts} ps={{p:"غېږ", f:"gheG", e:"bosom"}} />
+- <InlinePs opts={opts} ps={{p:"میاشت", f:"miyaasht", e:"month"}} /> 
+
+### Words for people
+
+Some words are used to describe people who obviously have a gender and they *totally break or ignore the rules we saw above*. For example:
+
+<GenderTable rows={[
+    {
+        masc: {
+            ex: { p: "بندي", f: "bandee", e: "prisoner" },
+        },
+        fem: {
+            ex: { p: "مور", f: "mor", e: "mother" },
+        },
+    },
+    {
+        masc: {
+            ex: {p:"مېلمه", f:"melmá", e:"guest (male)"},
+        },
+        fem: {
+            ex: {p: "ترور", f:"tror", e: "aunt" },
+        },
+    },
+    {
+        masc: {
+            ex: {p: "ماما", f:"maamáa", e: "uncle" },
+        },
+        fem: {
+            ex: { p: "خور", f: "khor", e: "sister" },
+        },
+    },
+    {
+        masc: {
+            ex: {p: "بوډا", f: "booDáa", e: "old man" },
+        },
+        fem: {
+            ex: {p: "بوډۍ", f: "booDúy", e: "old woman" },
+        },
+    }
+]} />
+
+But many other words for people will change and follow the rules for their masculine and feminine forms...
+
+<GenderTable rows={[
+    {
+        masc: {
+            ex: { p: "ډاکټر", f: "DakTár", e: "male doctor 👨‍⚕️" },
+        },
+        fem: {
+            ex: { p: "ډاکټره", f: "DakTára", e: "female doctor 👩‍⚕️" },
+        },
+    },
+    {
+        masc: {
+            ex: {p:"نرس", f:"nurs", e:"male nurse"},
+        },
+        fem: {
+            ex: {p: "نرسه", f:"nursa", e: "female nurse" },
+        },
+    },
+    {
+        masc: {
+            ex: {p: "ښوونکی", f:"xowunkey", e: "male teacher 👨‍🏫" },
+        },
+        fem: {
+            ex: { p: "ښوونکې", f: "xowunke", e: "female teacher 👩‍🏫" },
+        },
+    },
+    {
+        masc: {
+            ex: {p: "لمسی", f: "lmaséy", e: "grandson 👦"},
+        },
+        fem: {
+            ex: {p: "لمسۍ", f: "lmasúy", e: "granddaughter 👧"},
+        },
+    },
+]} />
