@@ -14,6 +14,8 @@ import * as subjunctiveHabitualEquative from "!babel-loader!mdx-loader!./equativ
 import * as otherEquatives from "!babel-loader!mdx-loader!./equatives/other-equatives.mdx";
 
 import * as nounsGender from "!babel-loader!mdx-loader!./nouns/nouns-gender.mdx";
+import * as nounsPlural from "!babel-loader!mdx-loader!./nouns/nouns-plural.mdx";
+import * as arabicPlurals from "!babel-loader!mdx-loader!./nouns/arabic-plurals.mdx";
 
 import * as verbEndings from "!babel-loader!mdx-loader!./verbs/verb-endings.mdx";
 import * as rootsAndStems from "!babel-loader!mdx-loader!./verbs/roots-and-stems.mdx";
@@ -54,6 +56,14 @@ const contentTree = [
             {
                 import: nounsGender,
                 slug: "nouns-gender",
+            },
+            {
+                import: nounsPlural,
+                slug: "nouns-plural",
+            },
+            {
+                import: arabicPlurals,
+                slug: "arabic-plurals",
             },
         ],
     },
