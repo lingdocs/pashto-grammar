@@ -1,0 +1,42 @@
+---
+title: Bundled Plurals
+---
+
+import {
+    Examples,
+    InlinePs,
+    defaultTextOptions as opts,
+} from "@lingdocs/pashto-inflector";
+import Table from "../../components/Table";
+import penBundle from "../../images/pen-bundle.jpg";
+
+export function BundledPluralTable({ children, inflection }) {
+    return (
+        <Table headRow={["singular", "bundled plural"]} opts={opts}>
+            {children}
+        </Table>
+    );
+}
+
+For many nouns ending in a consonant, we can make a special kind of **"bundled plural"** to show that the things are closely lumped together.
+
+<div className="mx-auto" style={{ maxWidth: "300px" }}>
+    <img src={penBundle} className="img-fluid" />
+</div>
+
+To make this "bundled plural" we add a <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> on the end of the noun.
+
+<BundledPluralTable>{[
+    [
+        { p: "کال", f: "kaal", e: "year" },
+        { p: "کاله", f: "kaala", e: "years" },
+    ],
+    [
+        { p: "کس", f: "kas", e: "person" },
+        { p: "کسه", f: "kasa", e: "people" },
+    ],
+    [
+        { p: "کرت", f: "karat", e: "time" },
+        { p: "کرته", f: "karata", e: "times" },
+    ]
+]}</BundledPluralTable>
