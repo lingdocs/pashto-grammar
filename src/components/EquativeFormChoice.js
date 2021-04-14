@@ -22,6 +22,7 @@ function EquativeFormChoice({forms, opts}) {
                 displayForm={forms[choice].displayForm}
                 english={forms[choice].english}
                 textOptions={opts}
+                shortDefault
             />
         </div>
     );

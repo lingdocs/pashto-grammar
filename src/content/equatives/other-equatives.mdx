@@ -15,24 +15,27 @@ https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 import {
     addToForm,
-    defaultTextOptions,
+    defaultTextOptions as opts,
     grammarUnits,
     VerbFormDisplay,
     ButtonSelect,
     concatPsString,
     InlinePs,
+    Examples,
 } from "@lingdocs/pashto-inflector";
 import EquativeFormChoice from "../../components/EquativeFormChoice";
 import Formula from "../../components/Formula";
 import Link from "../../components/Link";
-export const opts = defaultTextOptions;
 
 ## Future / Presumptive Equative
 
-This is used to say that something will be something in the future. It's also used to guess or surmise about something being something.
+This is used for:
+
+1. Saying that something will be something in the future. ("I'll be...")
+2. To guess or surmise about something being something (now or in the future). ("I'll be...")
 
 <Formula>
-    <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="#subjunctive--informative-equative">subjunctive/informative equative</Link>
+    <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="/equatives/subjunctive-habitual-equative/">subjunctive/habitual equative</Link>
 </Formula>
 
 <EquativeFormChoice
@@ -66,12 +69,37 @@ This is used to say that something will be something in the future. It's also us
             ], grammarUnits.equativeEndings.subjunctive)
         },
     }}
-    opts={defaultTextOptions}
+    opts={opts}
 />
+
+#### Examples
+
+<Examples opts={opts}>{[
+    {
+        p: "زه به په کور کې یم.",
+        f: "zu ba pu kor ke yum.",
+        e: "I will be at home.",
+    },
+    {
+        p: "مونږ به ستړي یو",
+        f: "moonG ba stúRee yoo.",
+        e: "We will be tired.",
+    },
+    {
+        p: "ډوډۍ به تیاره وي.",
+        f: "DoDúy ba tayáara wee.",
+        e: "The food will be ready.",
+    },
+    {
+        p: "تاسو به وږي یئ، که نه؟",
+        f: "taaso ba wuGee yeyy, ku nu?",
+        e: "You'll be hungry, won't you?",
+    },
+]}</Examples>
 
 ## Past Equative
 
-This is used to say that something was something in the past.
+This is used to say that something was something in the past. ("I was...")
 
 It is usually used in the short form.
 
@@ -99,12 +127,47 @@ It is usually used in the short form.
             displayForm: grammarUnits.equativeEndings.past,
         },
     }}
-    opts={defaultTextOptions}
+    opts={opts}
 />
+
+#### Examples
+
+<Examples opts={opts}>{[
+    {
+        p: "ته چېرته وې؟",
+        f: "tu cherta we?",
+        e: "Where were you?",
+    },
+    {
+        p: "زه په کور کې وم.",
+        f: "zu pu kor ke wum.",
+        e: "I was at home.",
+    },
+    {
+        p: "هغه ډېر ستړی و.",
+        f: "haghá Der stúRey wo.",
+        e: "He was very tired.",
+    },
+    {
+        p: "هغه ډېره ستړې وه.",
+        f: "haghá Déra stúRe wa.",
+        e: "She was very tired.",
+    },
+    {
+        p: "مونږ خفه وو",
+        f: "moonG khúfa woo.",
+        e: "We were sad.",
+    },
+]}</Examples>
 
 ## Affirmative Equative
 
-This is used to affirm or to make a strong assumption that something will have been something.
+This is used:
+
+1. To affirm or to make a strong assumption that something will have been something. ("I'll have been ...")
+2. To say what would have happened if a hypothetical condition were true. ("If ..., I'd be ...")
+
+Like the <Link to="#past-equative">past equative</Link> that it's based on, it's usually used with the short form.
 
 <Formula>
     <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="#past-equative">past equative</Link>
@@ -141,14 +204,34 @@ This is used to affirm or to make a strong assumption that something will have b
             ], grammarUnits.equativeEndings.past)
         }
     }}
-    opts={defaultTextOptions}
+    opts={opts}
 />
+
+#### Examples
+
+<Examples opts={opts}>{[
+    {
+        p: "ډوډۍ به تیاره وه.",
+        f: "DoDúy ba tayáara wa.",
+        e: "The food will havve been ready.",
+    },
+    {
+        p: "ته به خبر وې",
+        f: "tu ba khabúr we.",
+        e: "You will have known.",
+    },
+    {
+        p: "که خوب مې نه وای کړی، زه به ستړی وم.",
+        f: "ku khob me nu waay kúRey, zu ba stúRey wum.",
+        e: "If I hadn't slept, I would have been tired.",
+    },
+]}</Examples>
 
 ## Conterfactual / Past Subjunctive / Wish Equative
 
-This is used to talk about something being hypothetically something, or to wish that something were something. It is also used for prayers and blessings in some dialects.
+This is used to talk about something being hypothetically something, or to wish that something were something. ("If I was ...", "If only I was ..."). It is also used for prayers and blessings in some dialects.
 
-Because this uses the non-inflecting tail, it doesn't change at all depending on the person.
+Because this is based on the the non-inflecting tail, *it doesn't change at all, no matter what the subject is*.
 
 <Formula>
     <InlinePs opts={opts} ps={{ p: "و", f: "w" }} /> + non-inflecting tail
@@ -188,10 +271,28 @@ export function WithTailChoice() {
                         displayForm: waay,
                     }
                 }}
-                opts={defaultTextOptions}
+                opts={opts}
             />
         </div>
     );
 }
 
 <WithTailChoice />
+
+<Examples opts={opts}>{[
+    {
+        p: "کاشکې ته دلته وای!",
+        f: "kaashke tu dălta waay!",
+        e: "If only you were here!",
+    },
+    {
+        p: "که زه ستا پلار نه وای...",
+        f: "ku zu staa plaar nu waay...",
+        e: "If I wasn't your father...",
+    },
+    {
+        p: "که مونږ خبر وای، نه راتلو.",
+        f: "ku moonG khabúr waay, nú raatloo.",
+        e: "I we had known, we wouldn't have come.",
+    },
+]}</Examples>
