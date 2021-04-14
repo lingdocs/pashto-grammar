@@ -15,6 +15,7 @@ import Chapter from "./components/Chapter";
 import { content } from "./content/index";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
+import TableOfContentsPage from "./pages/TableOfContentsPage";
 import { useEffect } from "react";
 const chapters = content.reduce((chapters, item) => (
   item.content
@@ -40,7 +41,7 @@ function App(props) {
           />
           <Switch>
             <Route path="/" exact>
-              <Chapter>{chapters[0]}</Chapter>
+              <TableOfContentsPage />
             </Route>
             {chapters.map((chapter) => (
               <Route key={chapter.path} path={chapter.path}>

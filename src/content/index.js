@@ -7,7 +7,7 @@
  */
 
 /* eslint-disable import/no-webpack-loader-syntax */
-import * as about from "!babel-loader!mdx-loader!./about.mdx";
+import * as intro from "!babel-loader!mdx-loader!./intro.mdx";
 
 import * as presentEquative from "!babel-loader!mdx-loader!./equatives/present-equative.mdx"
 import * as subjunctiveHabitualEquative from "!babel-loader!mdx-loader!./equatives/subjunctive-habitual-equative.mdx";
@@ -29,8 +29,8 @@ import * as inflectionPatterns from "!babel-loader!mdx-loader!./inflection/infle
 
 const contentTree = [
     {
-        import: about,
-        slug: "about",
+        import: intro,
+        slug: "intro",
     },
     {
         heading: "Equatives",
