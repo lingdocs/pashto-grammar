@@ -25,6 +25,7 @@ import * as sentenceStructure from "!babel-loader!mdx-loader!./verbs/sentence-st
 import * as pronounsBasic from "!babel-loader!mdx-loader!./pronouns/pronouns-basic.mdx";
 import * as pronounsMini from "!babel-loader!mdx-loader!./pronouns/pronouns-mini.mdx";
 
+import * as inflectionIntro from "!babel-loader!mdx-loader!./inflection/inflection-intro.mdx";
 import * as inflectionPatterns from "!babel-loader!mdx-loader!./inflection/inflection-patterns.mdx";
 
 const contentTree = [
@@ -108,6 +109,10 @@ const contentTree = [
         heading: "Inflection",
         subdirectory: "inflection",
         chapters: [
+            {
+                import: inflectionIntro,
+                slug: "inflection-intro",
+            },
             {
                 import: inflectionPatterns,
                 slug: "inflection-patterns",
