@@ -1,0 +1,67 @@
+---
+title: Feminine Inflection Patterns
+---
+
+<!-- 
+
+Copyright (c) 2021 lingdocs.com 
+
+The content of the chapters/book is licensed by a
+Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+    
+-->
+
+
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+    grammarUnits,
+    removeFVariants,
+    InflectionsTable,
+    inflectWord,
+} from "@lingdocs/pashto-inflector";
+import shuffle from "../../lib/shuffle-array";
+import InflectionCarousel from "../../components/InflectionCarousel";
+import words from "../../words/nouns-adjs";
+import Link from "../../components/Link";
+import Table from "../../components/Table";
+import { startingWord } from "../../lib/starting-word";
+
+The <Link to="/inflection/inflection-patterns/">5 basic patterns in the last chapter</Link> work with both masculine and feminine words (nouns and adjectives).
+
+There are also a few more patterns that are only for **feminine nouns**.
+
+## Feminine Nouns Ending in <InlinePs opts={opts} ps={{ p: "ي", f: "ee" }} /> 
+
+<InflectionCarousel items={startingWord(words, "ee-fem-noun", "آزادي")} />
+
+**Note:** This only works with **inanimate nouns**. (ie. words for people like <InlinePs opts={opts} ps={{ p: "باجي", f: "baajée", e: "older sister" }} /> will not inflect like this.)
+
+
+## Feminine Nouns Ending in <InlinePs opts={opts} ps={{ p: "ۍ", f: "uy" }} />
+
+<InflectionCarousel items={startingWord(words, "uy-fem-noun", "هګۍ")} />
+
+## Feminine Nouns Ending in <InlinePs opts={opts} ps={{ p: "ا", f: "aa" }} />  
+
+<InflectionCarousel items={startingWord(words, "aa-fem-noun", "وینا")} />
+
+**Note:** With this pattern, the first inflection is often only used for making the noun plural. Also, many dialects use the plural <InlinePs opts={opts} ps={{ p: "ګانې", f: "gáane" }} /> ending instead. For instance:
+
+<Table headRow={["Standard", "Common"]} opts={opts}>{[
+    [
+        { p: "دعا", f: "dUáa", e: "prayer" },
+        { p: "دعا", f: "dUáa", e: "prayer" },
+    ],
+    [
+        { p: "دعاوې", f: "dUáawe", e: "prayers" },
+        { p: "دعا ګانې", f: "dUaa gáane", e: "prayers" },
+    ],
+    [
+        { p: "دعا ګانو", f: "dUáawo", e: "prayers", sub: "with second inflection" },
+        { p: "دعا ګانې", f: "dUaa gáano", e: "prayers", sub: "with second inflection" },
+    ],
+]}</Table>

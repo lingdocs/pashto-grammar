@@ -43,7 +43,7 @@ module.exports = [
     { ts: 1527820414, e: "middle, central" }, // منځنی - mandzunéy
     { ts: 1527811202, e: "monthly" }, // میاشتنی - miyaashtanéy
     { ts: 1527819320, e: "thin" }, // نری - naréy
-    { ts: 1527816251, e: "grandson" }, // نمسی - nmaséy
+    { ts: 1527816251, e: "grandchild" }, // نمسی - nmaséy
     { ts: 1527821373, e: "deer" }, // هوسی - hoséy
     { ts: 1527813636, e: "last" }, // وروستی - wroostéy
     { ts: 1527815430, e: "only" }, // یوازنی - yawaazunéy

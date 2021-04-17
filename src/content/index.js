@@ -27,6 +27,7 @@ import * as pronounsMini from "!babel-loader!mdx-loader!./pronouns/pronouns-mini
 
 import * as inflectionIntro from "!babel-loader!mdx-loader!./inflection/inflection-intro.mdx";
 import * as inflectionPatterns from "!babel-loader!mdx-loader!./inflection/inflection-patterns.mdx";
+import * as feminineInflection from "!babel-loader!mdx-loader!./inflection/feminine-inflection.mdx";
 
 const contentTree = [
     {
@@ -116,6 +117,10 @@ const contentTree = [
             {
                 import: inflectionPatterns,
                 slug: "inflection-patterns",
+            },
+            {
+                import: feminineInflection,
+                slug: "feminine-inflection",
             },
         ],
     },

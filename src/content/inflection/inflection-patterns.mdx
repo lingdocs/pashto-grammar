@@ -15,74 +15,45 @@ https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 
 import {
-    defaultTextOptions,
+    defaultTextOptions as opts,
     Examples,
     InlinePs,
     grammarUnits,
-    removeFVariants,
     InflectionsTable,
     inflectWord,
 } from "@lingdocs/pashto-inflector";
-import shuffle from "../../lib/shuffle-array";
-import Carousel from "../../components/Carousel";
+import InflectionCarousel from "../../components/InflectionCarousel";
 import words from "../../words/nouns-adjs";
+import { startingWord } from "../../lib/starting-word";
 import Link from "../../components/Link";
 
-export const opts = defaultTextOptions;
+In the <Link to="/inflection/inflection-intro/">previous chapter</Link> we talked about **why** words inflect. Now we will explain **how** words inflect. What actualy happens to them? How do they change?
 
-export function InfoCarousel({ items }) {
-    return (
-        <div className="mt-3">
-            <Carousel items={items} render={(item) => {
-                const inf = inflectWord(item.entry);
-                if (!inf) {
-                    return (
-                        <div>Oops! No inflections for <InlinePs opts={opts} ps={item.entry} /></div>
-                    );
-                }
-                return {
-                    title: <InlinePs opts={opts} ps={{
-                        ...removeFVariants(item.entry),
-                        e: item.def,
-                    }} />,
-                    body: <InflectionsTable
-                        inf={inf}
-                        textOptions={opts}
-                    />,
-                };
-            }}/>
-        </div>
-    );
-}
+Like many things in Pashto, inflection can seem mysterious and intimidating. Why do the words change so much, and how!? 😩 But, we'll see that there are just a few basic patterns that the words follow, and it's not so scary or confusing after all.
 
-In Pashto nouns and adjectives inflect in the same way. Although the varieties in inflections may seem overwhelming at first, there only **5 patterns for how words inflect** (plus a few other patterns with feminine only words - will be added later), and it's very predictable.
+Below are the **5 basic patterns for inflecting** nouns and adjectives. Notice how all these patterns work with both masculine and feminine genders.
 
-Look over the 5 different types of words below, and try to find the pattern for how they inflect. 
+Don't worry about memorizing them all perfectly to start. Instead keep looking back and use them as guides to help you as you get familiar with the inflections over time.
 
 ## Words ending in a consonant
 
-<InfoCarousel items={shuffle(words.filter(w => w.category === "consonant" ))} />
+<InflectionCarousel items={startingWord(words, "consonant", "غټ")} />
 
 ## Words ending in an unstressed <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} />
 
-<InfoCarousel items={shuffle(words.filter(w => w.category === "ey-unstressed" ))} />  
+<InflectionCarousel items={startingWord(words, "ey-unstressed", "ستړی")} />  
 
 ## Words ending in a stressed <InlinePs opts={opts} ps={{ p: "ی", f: "éy" }} />
 
-<InfoCarousel items={shuffle(words.filter(w => w.category === "ey-stressed" ))} />  
+<InflectionCarousel items={startingWord(words, "ey-stressed", "لومړی")} />  
 
 ## Words with the "Pashtun" pattern
 
-export const aanuWords = words.filter(w => w.category === "aanu" )
-
-<InfoCarousel items={[
-    aanuWords.find(w => w.entry.p === "پښتون"),
-    ...shuffle(aanuWords.filter(w => w.entry.p !== "پښتون"))
-]} />
+<InflectionCarousel items={startingWord(words, "aanu", "پښتون")} />
 
 Note: Nouns in this pattern will often only use the first inflection for the plural. Adjectives will use the 1st inflection for all 3 reasons.
 
 ## Shorter irregular words
 
-<InfoCarousel items={shuffle(words.filter(w => w.category === "short-irreg" ))} />  
+<InflectionCarousel items={startingWord(words, "short-irreg", "غل")} />  
 

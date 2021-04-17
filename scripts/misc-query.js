@@ -1,6 +1,7 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
 const path = require("path");
+const { readDictionary } = require("@lingdocs/pashto-inflector");
 const verbsPath = path.join(".", "src", "words");
 const collectionPath = path.join(verbsPath, "verb-categories");
 const verbTsFiles = fs.readdirSync(collectionPath);
@@ -10,12 +11,10 @@ const verbTsFiles = fs.readdirSync(collectionPath);
 //     return [...arr, ...TsS];
 // }, []))];
 
-fetch(process.env.LINGDOCS_DICTIONARY_URL).then(res => res.json()).then(data => {
-  const entries = data.entries;
+fetch(process.env.LINGDOCS_DICTIONARY_URL).then(res => res.arrayBuffer()).then(data => {
+  const { entries } = readDictionary(data);
   const filtered = entries.filter(e => (
-      e.c && (e.c.includes("adj.") || e.c.includes("unisex"))
-      && !e.infap && !e.noInf &&
-      ["ب", "پ", "ت", "ټ", "ث", "ج", "چ", "ح", "خ", "څ", "ځ", "د", "ډ", "ذ", "ر", "ړ", "ز", "ژ", "ږ", "س", "ش", "ښ", "ص", "ض", "ط", "ظ", "غ", "ف", "ق", "ک", "ګ", "گ", "ل", "ل", "م", "ن", "ڼ"].includes(e.p.slice(-1))
+      e.c && (e.c === "n. f.") && e.p.slice(-1) === "ا"
   ));
   const content = `module.exports = [
 ${filtered.reduce((text, entry) => (
