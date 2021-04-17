@@ -7,6 +7,7 @@
  */
 
 import React, { useState } from "react";
+import { useSwipeable } from "react-swipeable";
 import leftChevron from "./chevron_left-24px.svg";
 import rightChevron from "./chevron_right-24px.svg";
 
@@ -19,6 +20,10 @@ export default function(props) {
     // console.log("pppp");
     // console.log(props.items);
     const [current, setCurrent] = useState(0);
+    const swipeHandlers = useSwipeable({
+        onSwipedLeft: () => forward(),
+        onSwipedRight: () => back(),
+    });
     function forward() {
         setCurrent(
             (current + 1) % props.items.length
@@ -35,7 +40,7 @@ export default function(props) {
         return <div>EMPTY</div>;
     }
     return (
-        <div className="mb-3">
+        <div className="mb-3" {...swipeHandlers}>
             <div className="d-flex flex-row justify-content-between align-items-center">
                 <img 
                     src={leftChevron}
