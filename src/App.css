@@ -171,3 +171,11 @@ blockquote {
     padding-left: 1rem;
     font-style: italic;
 }
+
+details {
+    margin-bottom: 1.5rem;
+}
+
+summary {
+    margin-bottom: 1rem;
+}
