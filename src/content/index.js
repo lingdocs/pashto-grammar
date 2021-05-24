@@ -18,6 +18,7 @@ import * as nounsPlural from "!babel-loader!mdx-loader!./nouns/nouns-plural.mdx"
 import * as arabicPlurals from "!babel-loader!mdx-loader!./nouns/arabic-plurals.mdx";
 import * as bundledPlurals from "!babel-loader!mdx-loader!./nouns/bundled-plurals.mdx";
 
+import * as verbsIntro from "!babel-loader!mdx-loader!./verbs/verbs-intro.mdx";
 import * as verbEndings from "!babel-loader!mdx-loader!./verbs/verb-endings.mdx";
 import * as rootsAndStems from "!babel-loader!mdx-loader!./verbs/roots-and-stems.mdx";
 import * as sentenceStructure from "!babel-loader!mdx-loader!./verbs/sentence-structure.mdx";
@@ -78,6 +79,10 @@ const contentTree = [
         heading: "Verbs",
         subdirectory: "verbs",
         chapters: [
+            {
+                import: verbsIntro,
+                slug: "verbs-intro",
+            },
             {
                 import: verbEndings,
                 slug: "verb-endings",
