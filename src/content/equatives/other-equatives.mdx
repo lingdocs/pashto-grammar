@@ -23,6 +23,7 @@ import {
     InlinePs,
     Examples,
 } from "@lingdocs/pashto-inflector";
+import psmd from "../../lib/psmd";
 import EquativeFormChoice from "../../components/EquativeFormChoice";
 import Formula from "../../components/Formula";
 import Link from "../../components/Link";
@@ -74,28 +75,28 @@ This is used for:
 
 #### Examples
 
-<Examples opts={opts}>{[
+<Examples opts={opts}>{psmd([
     {
-        p: "زه به په کور کې یم.",
-        f: "zu ba pu kor ke yum.",
-        e: "I will be at home.",
+        p: "زه **به** په کور کې **یم**.",
+        f: "zu **ba** pu kor ke **yum**.",
+        e: "I **will be** at home.",
     },
     {
-        p: "مونږ به ستړي یو",
-        f: "moonG ba stúRee yoo.",
-        e: "We will be tired.",
+        p: "مونږ **به** ستړي **یو**",
+        f: "moonG ba stúRee **yoo**.",
+        e: "We **will be** tired.",
     },
     {
-        p: "ډوډۍ به تیاره وي.",
-        f: "DoDúy ba tayáara wee.",
-        e: "The food will be ready.",
+        p: "ډوډۍ **به** تیاره **وي**.",
+        f: "DoDúy **ba** tayáara **wee**.",
+        e: "The food **will be** ready.",
     },
     {
-        p: "تاسو به وږي یئ، که نه؟",
-        f: "taaso ba wuGee yeyy, ku nu?",
-        e: "You'll be hungry, won't you?",
+        p: "تاسو **به** وږي **یئ**، که نه؟",
+        f: "taaso **ba** wuGee **yeyy**, ku nu?",
+        e: "You**'ll be** hungry, won't you?",
     },
-]}</Examples>
+])}</Examples>
 
 ## Past Equative
 
@@ -132,33 +133,33 @@ It is usually used in the short form.
 
 #### Examples
 
-<Examples opts={opts}>{[
+<Examples opts={opts}>{psmd([
     {
-        p: "ته چېرته وې؟",
-        f: "tu cherta we?",
-        e: "Where were you?",
+        p: "ته چېرته **وې**؟",
+        f: "tu cherta **we**?",
+        e: "Where **were** you?",
     },
     {
-        p: "زه په کور کې وم.",
-        f: "zu pu kor ke wum.",
-        e: "I was at home.",
+        p: "زه په کور کې **وم**.",
+        f: "zu pu kor ke **wum**.",
+        e: "I **was** at home.",
     },
     {
-        p: "هغه ډېر ستړی و.",
-        f: "haghá Der stúRey wo.",
-        e: "He was very tired.",
+        p: "هغه ډېر ستړی **و**.",
+        f: "haghá Der stúRey **wo**.",
+        e: "He **was** very tired.",
     },
     {
-        p: "هغه ډېره ستړې وه.",
-        f: "haghá Déra stúRe wa.",
-        e: "She was very tired.",
+        p: "هغه ډېره ستړې **وه**.",
+        f: "haghá Déra stúRe **wa**.",
+        e: "She **was** very tired.",
     },
     {
-        p: "مونږ خفه وو",
-        f: "moonG khúfa woo.",
-        e: "We were sad.",
+        p: "مونږ خفه **وو**",
+        f: "moonG khúfa **woo**.",
+        e: "We **were** sad.",
     },
-]}</Examples>
+])}</Examples>
 
 ## Affirmative Equative
 
@@ -209,23 +210,23 @@ Like the <Link to="#past-equative">past equative</Link> that it's based on, it's
 
 #### Examples
 
-<Examples opts={opts}>{[
+<Examples opts={opts}>{psmd([
     {
-        p: "ډوډۍ به تیاره وه.",
-        f: "DoDúy ba tayáara wa.",
-        e: "The food will havve been ready.",
+        p: "ډوډۍ **به** تیاره **وه**.",
+        f: "DoDúy **ba** tayáara **wa**.",
+        e: "The food **will have been** ready.",
     },
     {
-        p: "ته به خبر وې",
-        f: "tu ba khabúr we.",
-        e: "You will have known.",
+        p: "ته **به** خبر **وې**",
+        f: "tu **ba** khabúr **we**.",
+        e: "Youwill have known.",
     },
     {
-        p: "که خوب مې نه وای کړی، زه به ستړی وم.",
-        f: "ku khob me nu waay kúRey, zu ba stúRey wum.",
-        e: "If I hadn't slept, I would have been tired.",
+        p: "که خوب مې نه وای کړی، زه **به** ستړی **وم**.",
+        f: "ku khob me nu waay kúRey, zu **ba** stúRey **wum**.",
+        e: "If I hadn't slept, I **would have been** tired.",
     },
-]}</Examples>
+])}</Examples>
 
 ## Conterfactual / Past Subjunctive / Wish Equative
 
@@ -279,20 +280,20 @@ export function WithTailChoice() {
 
 <WithTailChoice />
 
-<Examples opts={opts}>{[
+<Examples opts={opts}>{psmd([
     {
-        p: "کاشکې ته دلته وای!",
-        f: "kaashke tu dălta waay!",
+        p: "**کاشکې ته دلته **وای!",
+        f: "kaashke tu dălta **waay**!",
         e: "If only you were here!",
     },
     {
-        p: "که زه ستا پلار نه وای...",
-        f: "ku zu staa plaar nu waay...",
+        p: "که زه ستا پلار نه **وای**...",
+        f: "ku zu staa plaar nu **waay**...",
         e: "If I wasn't your father...",
     },
     {
-        p: "که مونږ خبر وای، نه راتلو.",
-        f: "ku moonG khabúr waay, nú raatloo.",
+        p: "که مونږ خبر **وای**، نه راتلو.",
+        f: "ku moonG khabúr **waay**, nú raatloo.",
         e: "I we had known, we wouldn't have come.",
     },
-]}</Examples>
+])}</Examples>
