@@ -14,7 +14,7 @@ https://creativecommons.org/licenses/by-sa/4.0/legalcode
 -->
 
 import {
-    defaultTextOptions,
+    defaultTextOptions as opts,
     grammarUnits,
     VerbTable,
     Examples,
@@ -34,7 +34,7 @@ Mini pronouns can only be used as one of three things:
 
 <VerbTable
     block={grammarUnits.pronouns.mini}
-    textOptions={defaultTextOptions}
+    textOptions={opts}
     english={[
         ["I", "we"],
         ["I", "we"],
@@ -51,7 +51,7 @@ Below are some examples of how mini pronouns can be used in the place of regular
 
 ### 1. As the object of a present/future verb
 
-<Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={defaultTextOptions}>{[
+<Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={opts}>{[
     [
         { p: "زه تا وینم", f: "zu taa weenum", e: "I see you"},
         { p: "زه دې وینم", f: "zu de weenum", e: "I see you"},
@@ -68,7 +68,7 @@ Below are some examples of how mini pronouns can be used in the place of regular
 
 ### 2. As the subject of a past tense transitive verb
 
-<Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={defaultTextOptions}>{[
+<Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={opts}>{[
     [
         { p: "ما ډوډۍ وخوړله", f: "maa DoDuy óokhoRula", e: "I ate food"},
         { p: "ډوډۍ مې وخوړله", f: "DoDuy me óokhoRula", e: "I ate food"},
@@ -85,7 +85,7 @@ Below are some examples of how mini pronouns can be used in the place of regular
 
 ### 3. As a possesive pronoun  
 
-<Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={defaultTextOptions}>{[
+<Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={opts}>{[
     [
         { p: "د هغې پلار مریض دی", f: "du haghe plaar mareez dey", e: "Her father is ill" },
         { p: "پلار یې مریض دی", f: "plaar ye mareez dey", e: "Her father is ill" },
@@ -99,3 +99,12 @@ Below are some examples of how mini pronouns can be used in the place of regular
         { p: "کور مو په کابل کې دی", f: "kor mU pu kaabul ke dey", e: "Our house is in Kabul" },
     ],
 ]}</Chart>
+
+## Notes
+
+Mini prounouns **can't go inside sandwiches**.
+
+<Examples opts={opts}>{[
+    { p: "❌ زه دفتر یې ته ځم", f: "❌ zu dăftar ye ta dzum", e: "I'm going to his office" },
+    { p: "زه دفتر ته یې ځم", f: "zu dăftar ta ye dzum", e: "I'm going to his office" },
+]}</Examples>

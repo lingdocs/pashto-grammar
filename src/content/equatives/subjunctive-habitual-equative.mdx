@@ -10,6 +10,8 @@ import {
     concatPsString,
     InlinePs,
 } from "@lingdocs/pashto-inflector";
+import psmd from "../../lib/psmd";
+import Markdown from "markdown-to-jsx";
 import EquativeFormChoice from "../../components/EquativeFormChoice";
 import Link from "../../components/Link";
 export const opts = defaultTextOptions;
@@ -47,13 +49,21 @@ This form is used with two different meanings:
 1. **Subjunctive** - to talk about something being something when the statement involves a hypothetical condition, a wish, desire, hope, or statement of whether it should or shouldn't be, as in:
 
     <Examples opts={opts}>{[
-        { p: "امید لرم چې خوشحاله وي", f: "Umeed larum che khosháala wee", e: "I hope he's happy" },
+        psmd({
+            p: "امید لرم چې خوشحاله **وي**",
+            f: "Umeed larum che khosháala **wee**",
+            e: "I hope he **is** happy",
+        }),
     ]}</Examples>
 
 2. **Habitual** - to say that something is generally or repeatedly something, as in:
 
     <Examples opts={opts}>{[
-        { p: "سحار کې چمن لوند وي", f: "saháar ke chaman loond wee", e: "The grass is wet in the morning. (generally, habitually)" },
+        psmd({
+            p: "سحار کې چمن لوند **وي**",
+            f: "saháar ke chaman loond **wee**",
+            e: "The grass **is** wet in the morning. (generally, habitually)",
+        }),
     ]}</Examples>
 
 ### With a Subjunctive Meaning
@@ -62,42 +72,84 @@ This form is used with two different meanings:
 
 The subjunctive form can be used to talk about it being being good or bad, necessary, or required that something is something.
 
-<Examples opts={opts}>{[
-    { p: "ښه ده چې دلته یې", f: "xa da che dălta ye.", e: "It's good that you're here." },
-    { p: "هغوي باید په ښووونځي کې وي", f: "hagwee baayad pu xowoondzee ke wee.", e: "They have to be in school." },
-]}</Examples>
+<Examples opts={opts}>{psmd([
+    {
+        p: "ښه ده چې دلته **یې**",
+        f: "xa da che dălta **ye**.",
+        e: "It's good that you're here.",
+    },
+    {
+        p: "هغوي باید په ښووونځي کې **وي**",
+        f: "hagwee baayad pu xowoondzee ke **wee**.",
+        e: "They have to be in school.",
+    },
+])}</Examples>
 
 #### Desire
 
-<Examples opts={opts}>{[
-    { p: "امید لرم چې هلته وي", f: "Umeed larum che halta wee.", e: "I hope they're there." },
-    { p: "هغه غواړي چې مونږ په کور کې یو", f: "haghá ghwaaRee che moonG pu kor ke yoo.", e: "He wants us to be home." },
-]}</Examples>
+<Examples opts={opts}>{psmd([
+    {
+        p: "امید لرم چې هلته **وي**",
+        f: "Umeed larum che halta **wee**.",
+        e: "I hope they're there.",
+    },
+    {
+        p: "هغه غواړي چې مونږ په کور کې **یو**",
+        f: "haghá ghwaaRee che moonG pu kor ke **yoo**.",
+        e: "He wants us to be home.",
+    },
+])}</Examples>
 
 #### Conditions
 
 The subjunctive form is also used to talk about conditions or possibilities. *If A = B, then...* or *It could be that A = B ...*
 
-<Examples opts={opts}>{[
-    { p: "که دوکان کې وریژې وي نو وایې خله", f: "ku dokaan ke wrejze wee, no waa-ye-khla", e: "If there's rice in the store, buy it" },
-    { p: "کېدی شي چې ډوډۍ تیاره وي", f: "kedey shee che DoDúy tayaara wee", e: "The food could be ready" },
-]}</Examples>
+<Examples opts={opts}>{psmd([
+    {
+        p: "که دوکان کې وریژې **وي** نو وایې خله",
+        f: "ku dokaan ke wrejze **wee**, no waa-ye-khla",
+        e: "If there's rice in the store, buy it",
+    },
+    {
+        p: "کېدی شي چې ډوډۍ تیاره **وي**",
+        f: "kedey shee che DoDúy tayaara **wee**",
+        e: "The food could be ready",
+    },
+])}</Examples>
 
 ### With a Habitual Meaning
 
 This same form is used when you are saying that **A = B generally, habitually, or repeatedly**. For example:
 
-<Examples opts={opts}>{[
-    { p: "هغه تر ماښامه پورې په دوکان کې وي", f: "haghá tur maaxaama pore pu dookáan ke wee", e: "He's in the shop until evening. (generally, habitually)" },
-    { p: "اتو بجو نه بعد دوکان بند وي", f: "atu bajo na bad dookáan band wee", e: "The shop is closed after 8 o'clock. (generally, habitually)" },
-]}</Examples>
+<Examples opts={opts}>{psmd([
+    {
+        p: "هغه تر ماښامه پورې په دوکان کې **وي**",
+        f: "haghá tur maaxaama pore pu dookáan ke **wee**",
+        e: "He's in the shop until evening. (generally, habitually)",
+    },
+    { 
+        p: "اتو بجو نه بعد دوکان بند **وي**.",
+        f: "atu bajo na bad dookáan band **wee**",
+        e: "The shop is closed after 8 o'clock. (generally, habitually)",
+    },
+])}</Examples>
 
 ⚠ **Warning**: For English speakers **it take some time to get used to choosing between the *present* and *habitual* equatives**. Standard English uses the same form for both, but in Pashto the forms change!
 
-<Examples opts={opts}>{[
-    { p: "ماښام دوکان بند وي.", f: "maaxáam dookáan band wee", e: "The shop is closed in the evening. (generally, every day - habitual form)" },
-    { p: "دوکان دند دی.", f: "dookáan band dey.", e: "The shop is closed. (right now, at this moment - present form)" },
-]}</Examples>
+<Examples opts={opts}>{psmd([
+    {
+        p: "دوکان دند **دی**.",
+        f: "dookáan band **dey**.",
+        e: "The shop **is** closed. (right now, at this moment)",
+        sub: "1. Present Form"
+    },
+    {
+        p: "دوکان هر وخت بند **وي**",
+        f: "dookáan hăr wakht band **wee**",
+        e: "The shop **is** always closed. (generally, every day)",
+        sub: "2. Habitual Form"
+    },
+])}</Examples>
 
 In English, we just say "is" in both situations. But **in Pashto, you have to pick between the two forms**. Use the present form for things that are something in the moment, and use the habitual form for things are generally or habitually something.
 
@@ -125,7 +177,7 @@ Interestingly, there is also a separate [habitual equative](https://en.wikipedia
                     <td>The grass <strong>is</strong> wet</td>
                     <td>
                         <Examples opts={opts}>{[
-                            { p: "چمن لوند دی", f: "chaman loond dey" },
+                            { p: <>چمن لوند <strong>دی</strong></>, f: <>chaman loond <strong>dey</strong></> },
                         ]}</Examples>
                     </td>
                 </tr>
@@ -137,9 +189,9 @@ Interestingly, there is also a separate [habitual equative](https://en.wikipedia
                     </td>
                     <td>The grass <strong>be</strong> wet in the morning</td>
                     <td>
-                        <Examples opts={opts}>{[
-                            { p: "په سحار کې چمن لوند وي", f: "pu sahaar ke chaman loond wee" },
-                        ]}</Examples>
+                        <Examples opts={opts}>
+                            {[{ p: <>په سحار کې چمن لوند <strong>وي</strong></>, f: <>pu sahaar ke chaman loond <strong>wee</strong></> }]}
+                        </Examples>
                     </td>
                 </tr>
             </tbody>
