@@ -17,11 +17,19 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import TableOfContentsPage from "./pages/TableOfContentsPage";
 import { useEffect } from "react";
+import ReactGA from "react-ga";
 const chapters = content.reduce((chapters, item) => (
   item.content
     ? [...chapters, item]
     : [...chapters, ...item.chapters]
 ), []);
+
+const prod = document.location.hostname === "grammar.lingdocs.com";
+
+if (prod) {
+  ReactGA.initialize("UA-196576671-2");
+  ReactGA.set({ anonymizeIp: true });
+}
 
 function App(props) {
   const [navOpen, setNavOpen] = useState(false);
