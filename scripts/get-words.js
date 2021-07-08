@@ -37,11 +37,15 @@ export default nounsAdjs;`;
 });
 
 function getVerbsFromTsS(entries) {
-    return allVerbTsS.map(item => {
+    const missingEc = [];
+    const toReturn = allVerbTsS.map(item => {
         const entry = entries.find(x => item.ts === x.ts);
         if (!entry) {
             console.log("couldn't find ts", ts);
             return undefined;
+        }
+        if (!entry.ec) {
+            missingEc.push(entry.ts);
         }
         if (entry.c && entry.c.includes("comp.")) {
             const complement = entries.find(x => entry.l === x.ts);
@@ -52,6 +56,10 @@ function getVerbsFromTsS(entries) {
         }
         return { entry, def: item.e };
     }).filter(x => x);
+    if (missingEc.length !== 0) {
+        console.log("Verbs missing ec:", missingEc);
+    }
+    return toReturn;
 }
 
 function getNounsAdjsFromTsS(entries) {

@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
-    "@lingdocs/pashto-inflector": "^0.4.0",
+    "@lingdocs/pashto-inflector": "^0.6.9",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -31,7 +31,8 @@
     "start": "react-scripts start",
     "build": "node scripts/get-words.js && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "get-words": "node scripts/get-words.js"
   },
   "eslintConfig": {
     "extends": "react-app"

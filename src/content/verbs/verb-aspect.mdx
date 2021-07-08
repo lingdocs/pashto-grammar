@@ -7,6 +7,7 @@ import {
     Examples,
     InlinePs,
 } from "@lingdocs/pashto-inflector";
+import psmd from "../../lib/psmd";
 import imperfectiveTimeline from "./imperfective-time.svg";
 import perfectiveTimeline from "./perfective-time.svg";
 
@@ -22,9 +23,10 @@ The imperfective aspect is used for looking at the action as a process that's co
 
 For example:
 
-<Examples opts={opts}>{[
-    { p: "ما ډوډۍ خوړله", f: "maa DoDuy khoRúla", e: "I was eating food" },
-]}</Examples>
+<Examples opts={opts}>{psmd([
+    { p: `ما ډوډۍ **خوړله**`, f: `maa DoDuy **khoRúla**`, e: "I was eating food" },
+    { p: `زه په پارک کې **ګرځېدم**`, f: `zu pu paark ke **gurdzedúm**`, e: "I was walking in the park" },
+])}</Examples>
 
 #### 2. <i className="fas fa-camera" /> Perfective Aspect
 
@@ -36,9 +38,10 @@ The perfective aspect is used for looking at the action as a complete whole, wit
 
 For example:
 
-<Examples opts={opts}>{[
-    { p: "ما ډوډۍ وخوړله", f: "maa DoDuy óokhoRula", e: "I ate food" },
-]}</Examples>
+<Examples opts={opts}>{psmd([
+    { p: `ما ډوډۍ **وخوړله**`, f: `maa DoDuy **óokhoRula**`, e: "I ate food" },
+    { p: `زه په پارک کې **وګرځېدم**`, f: `zu pu paark ke **óogurdzedum**`, e: "I took a walk in the park" },
+])}</Examples>
 
 As we saw in the examples above, in English we are used to using these two different aspects with the past tense. But **Pashto uses these two aspects for almost *everything!*** This is very import to remember and it takes a while for learners to get used to.
 
@@ -54,14 +57,14 @@ For example, when making commands in Pashto we have to choose which aspect we ar
   <tbody>
     <tr>
         <td>
-            <Examples opts={opts}>{[
-                { p: "خبله کوټه صفا کوه!", f: "khpula koTa safaa kawa!", e: "Clean your room!" },
-            ]}</Examples>
+            <Examples opts={opts}>{psmd([
+                { p: `خبله کوټه **صفا کوه**!`, f: `khpula koTa **safaa kawa**`, e: "Clean your room!" },
+            ])}</Examples>
         </td>
         <td>
-            <Examples opts={opts}>{[
-                { p: "خبله کوټه صفا کړه!", f: "khpula koTa safaa kRa!", e: "Clean your room!" },
-            ]}</Examples>
+            <Examples opts={opts}>{psmd([
+                { p: `خبله کوټه **صفا کړه**!`, f: `khpula koTa **safaa kRa**!`, e: "Clean your room!" },
+            ])}</Examples>
         </td>
     </tr>
     <tr>
@@ -83,14 +86,14 @@ Or when talking about things in the future tense, we face the same choice of asp
   <tbody>
     <tr>
         <td>
-            <Examples opts={opts}>{[
-                { p: "مونږ به کېنو او خبرې کوو", f: "moonG ba keenóo aw khabure kawoo", e: "We'll sit and talk" },
-            ]}</Examples>
+            <Examples opts={opts}>{psmd([
+                { p: `مونږ به **کېنو** او **خبرې کوو**`, f: `moonG ba **keenóo** aw **khabure kawoo**`, e: "We'll sit and talk" },
+            ])}</Examples>
         </td>
         <td>
-            <Examples opts={opts}>{[
-                { p: "مونږ به کېنو او خبرې وکړو", f: "moonG ba kéenoo aw khabure ookRoo", e: "We'll sit and talk" },
-            ]}</Examples>
+            <Examples opts={opts}>{psmd([
+                { p: `مونږ به **کېنو** او **خبرې وکړو**`, f: `moonG ba **kéenoo** aw **khabure ookRoo**`, e: "We'll sit and talk" },
+            ])}</Examples>
         </td>
     </tr>
     <tr>
@@ -100,4 +103,35 @@ Or when talking about things in the future tense, we face the same choice of asp
   </tbody>
 </table>
 
-In the next chapters (coming soon) we'll learn how to actually make verbs with these two different aspects. For now, it's just important to **be aware that they exist**. It takes a long time for learners to get used to the idea that they have to use the right aspect for almost everything. Otherwise, we tend to pick an aspect without thinking and sound completely wrong or confusing 50% of the time. 🤦‍♂️
+Even when talking about ability in the past tense, you still have to choose an aspect!
+
+<table class="table" style={{ tableLayout: "fixed" }}>
+  <thead>
+    <tr>
+      <th scope="col"><i className="fas fa-video fa-lg" /> Imperfective</th>
+      <th scope="col"><i className="fas fa-camera fa-lg" /> Perfective</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>
+            <Examples opts={opts}>{psmd([
+                { p: `هغه له کوره **وتلی شوه**`, f: `haghá la kora **watuley shwa**`, e: "She was able to leave the house." },
+            ])}</Examples>
+        </td>
+        <td>
+            <Examples opts={opts}>{psmd([
+                { p: `هغه له کوره **ووتلی شوه**`, f: `haghá la kora **óowatuley shwa**`, e: "She was able to leave the house." },
+            ])}</Examples>
+        </td>
+    </tr>
+    <tr>
+      <td>She had permission to go and could go whenever she wanted, repeatedly or in general.</td>
+      <td>In one particular instance, she was able to get out of the house.</td>
+    </tr>
+  </tbody>
+</table>
+
+See what a big difference the aspect (<i className="fas fa-video" /> / <i className="fas fa-camera" /> ) makes? Poor English verbs don't have these aspects in a lot of situations, and so when we speak English we just have to make do with more ambiguity. But in Pashto we can (and must!) be precise.
+
+In the next chapters (coming soon) we'll learn how to actually make verbs with these two different aspects. For now, it's just important to **be aware that they exist**. It takes a long time for learners to get used to the idea that they have to use the right aspect for almost everything. Otherwise, we tend to pick an aspect at random and then sound completely wrong or confusing 50% of the time. 🤦‍♂️

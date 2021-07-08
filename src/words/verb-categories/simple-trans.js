@@ -7,18 +7,18 @@
  */
 
 module.exports = [
-	{ ts: 1527814617, e: "to take" }, // نیول - to take
-	{ ts: 1527811872, e: "to put on" }, // اچول - to put, pour, drop, throw, put on
-	{ ts: 1527817298, e: "to take" }, // اخیستل - to take, buy, purchase, receive; to shave, cut with scissors
+	{ ts: 1527814617, e: "to take", ec: ["take", "takes", "taking", "took", "taken"] }, // نیول - to take
+	{ ts: 1527811872, e: "to put on", ec: ["put", "puts", "putting", "put", "put"] }, // اچول - to put, pour, drop, throw, put on
+	{ ts: 1527817298, e: "to take", ec: ["take", "takes", "taking", "took", "taken"] }, // اخیستل - to take, buy, purchase, receive; to shave, cut with scissors
 	{ ts: 1527816127, e: "to turn over" }, // اړول - to turn over, flip over; convert, change; to move over to, establish oneself in a new spot; divert, turn away, hijack
-	{ ts: 1527811605, e: "to test" }, // ازمویل - to attempt, try; to experiment, test
-	{ ts: 1527812458, e: "to send"  },// استول - to send
-	{ ts: 1527811397, e: "to wear"  },// اغوستل - to wear, to put on (clothes)
+	{ ts: 1527811605, e: "to test", ec: ["test", "tests", "testing", "tested", "tested"] }, // ازمویل - to attempt, try; to experiment, test
+	{ ts: 1527812458, e: "to send", ec: ["send", "sends", "sending", "sent", "sent"] },// استول - to send
+	{ ts: 1527811397, e: "to wear", ec: ["wear", "wears", "wearing", "worn", "worn"]  },// اغوستل - to wear, to put on (clothes)
 	{ ts: 1527816125, e: "to make fly"  },// الوزول - to make fly, to toss, to release (birds); to blow up
 	{ ts: 1527816146, e: "to take out"  },// ایستل - to throw out, discard, chuck, toss; to extract, to take out
-	{ ts: 1527817786, e: "to forgive"  },// بخښل - to forgive, to pardon
-	{ ts: 1527816092, e: "to call, deem"  },// بلل - to call, invite; to consider, deem
-	{ ts: 1577389204616, e: "to open"  },// پرانیستل - to open; to undo; to initiate
+	{ ts: 1527817786, e: "to forgive", ec: ["forgive", "forgives", "forgiving", "forgave", "forgiven"]  },// بخښل - to forgive, to pardon
+	{ ts: 1527816092, e: "to call, deem, consider", ec: ["deem", "deems", "deeming", "deemed", "deemed"] },// بلل - to call, invite; to consider, deem
+	{ ts: 1577389204616, e: "to open", ec: ["open", "opens", "opening", "opened", "opened" ] }, // پرانیستل - to open; to undo; to initiate
 	{ ts: 1527816874, e: "to sell"  },// پلورل - to sell
 	{ ts: 1527815190, e: "to quit"  },// پرېښودل - to quit
 	{ ts: 1527815216, e: "to come"  },// راتلل - to come
