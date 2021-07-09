@@ -41,7 +41,7 @@ export default function(props) {
     }
     return (
         <div className="mb-3" {...swipeHandlers}>
-            <div className={props.stickyTitle ? "position-sticky" : ""} style={props.stickyTitle ? { top: 0, background: "white", zIndex: 1000 } : {}}>
+            <div className={props.stickyTitle ? "position-sticky" : ""} style={props.stickyTitle ? { top: 0, background: "white", zIndex: 2000 } : {}}>
                 <div className="d-flex flex-row justify-content-between align-items-center">
                     <img 
                         src={leftChevron}
