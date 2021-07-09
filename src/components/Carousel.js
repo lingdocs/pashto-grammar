@@ -41,26 +41,28 @@ export default function(props) {
     }
     return (
         <div className="mb-3" {...swipeHandlers}>
-            <div className="d-flex flex-row justify-content-between align-items-center">
-                <img 
-                    src={leftChevron}
-                    className="clickable ml-lg-3"
-                    style={chevStyle}
-                    alt={"previous"}
-                    onClick={back}
-                />
-                    {title ?
-                        <div className="h5">{title}</div>
-                        :
-                        <div>{body}</div>
-                    }
-                <img 
-                    src={rightChevron}
-                    className="clickable mr-lg-3"
-                    style={chevStyle}
-                    onClick={forward}
-                    alt={"next"}
-                /> 
+            <div className={props.stickyTitle ? "position-sticky" : ""} style={props.stickyTitle ? { top: 0, background: "white", zIndex: 1000 } : {}}>
+                <div className="d-flex flex-row justify-content-between align-items-center">
+                    <img 
+                        src={leftChevron}
+                        className="clickable ml-lg-3"
+                        style={chevStyle}
+                        alt={"previous"}
+                        onClick={back}
+                    />
+                        {title ?
+                            <div className="h5">{title}</div>
+                            :
+                            <div>{body}</div>
+                        }
+                    <img 
+                        src={rightChevron}
+                        className="clickable mr-lg-3"
+                        style={chevStyle}
+                        onClick={forward}
+                        alt={"next"}
+                    /> 
+                </div>
             </div>
             {title && <div className="text-center">
                 {body}
