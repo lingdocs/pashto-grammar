@@ -33,6 +33,7 @@ import * as inflectionPatterns from "!babel-loader!mdx-loader!./inflection/infle
 import * as feminineInflection from "!babel-loader!mdx-loader!./inflection/feminine-inflection.mdx";
 
 import * as theFiveYeys from "!babel-loader!mdx-loader!./writing/the-five-yeys.mdx";
+import * as typingIssues from "!babel-loader!mdx-loader!./writing/typing-issues.mdx";
 
 const contentTree = [
     {
@@ -148,6 +149,10 @@ const contentTree = [
             {
                 import: theFiveYeys,
                 slug: "the-five-yeys",
+            },
+            {
+                import: typingIssues,
+                slug: "typing-issues",
             },
         ],
     },

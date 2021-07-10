@@ -16,7 +16,7 @@ The five ی letters (<InlinePs opts={opts} ps={{ p: "پینځه یېګانې", f
 
 Below are the five ی's as they are used in most dictionaries, written material, and in education and official language in Afghanistan. Click to hear the sound of each letter.
 
-<table class="table">
+<table class="table table-bordered my-3 text-center" style={{ margin: "0 auto", maxWidth: "400px" }}>
   <thead>
     <tr>
       <th scope="col">Letter</th>
@@ -27,27 +27,27 @@ Below are the five ی's as they are used in most dictionaries, written material,
   <tbody>
     <tr className="clickable" onClick={() => document.getElementById("ey").play()}>
       <td className="h4">ی</td>
-      <td>ey</td>
+      <td className="h5">ey</td>
       <td>ai</td>
     </tr>
     <tr className="clickable" onClick={() => document.getElementById("e").play()}>
       <td className="h4">ې</td>
-      <td>e</td>
+      <td className="h5">e</td>
       <td>e</td>
     </tr>
     <tr className="clickable" onClick={() => document.getElementById("ee").play()}>
       <td className="h4">ي</td>
-      <td>ee</td>
+      <td className="h5">ee</td>
       <td>i</td>
     </tr>
     <tr className="clickable" onClick={() => document.getElementById("uy").play()}>
       <td className="h4">ۍ</td>
-      <td>uy</td>
+      <td className="h5">uy</td>
       <td>əj</td>
     </tr>
     <tr className="clickable" onClick={() => document.getElementById("eyy").play()}>
       <td className="h4">ئ</td>
-      <td>eyy</td>
+      <td className="h5">eyy</td>
       <td>ɛ̝j</td>
     </tr>
   </tbody>
@@ -185,49 +185,25 @@ You will also see the ئ letter *in the middle* of some loan words where it indi
   - <InlinePs opts={opts} ps={{ p: "جائز", f: "jaa'iz", e: "permitted" }} />
   - <InlinePs opts={opts} ps={{ p: "رئس", f: "ra'ees", e: "chief" }} />
 
-#### The ـیـ in the middle of words
-
-When you write a ی or a ي, they both appear as a ـیـ in the middle of words. So when you see a ـیـ it can be either:
-
-- a "ey" sound 
-- a "ee" sound
-- a "y" sound
-
-This can lead to confusion when typing or searching for things online. For example when typing the word <InlinePs opts={opts} ps={{ p: "مینه", f: "meena" }} /> should you use a ی or a ي in the middle of the word? 🤷‍♂️ Does it matter? Both look exactly the same, but when you type <kbd>ctrl</kbd> + <kbd>f</kbd> and try to search for it, it makes a big difference! Try it on these words: 
-
-- مینه (spelled with ی)
-- مينه (spelled with ي)
-
-It seems most common to always **use ی when typing in the middle of words**, to avoid confusion. This seems to be the most common practice, but it's not always the case. If you use [qamosona.com](https://qamosona.com/), for example, you will find that the middle of words are often spelled with a ي and so you will need to keep that in mind and use ي in the middle when searching. 
-
-#### ی vs. ى 
-
-Depending on the keyboard used, you might get one of two basically identical looking versions of ی. This can cause massive confusion when search for words. 😖
-
-- ی Farsi Yeh ([unicode 06CC](https://unicode-table.com/en/06CC/)) 👍 ✔
-- ى Alef Maksura ([unicode 0649](https://unicode-table.com/en/0649/)) 👎 ❌
-
-Make sure you don't have a bad keyboard ⌨🙅‍♂️ that uses the Alef Maksura ى! To check, you can go to [this site](https://unicode-table.com/en/) and type a ی to see which one you're using.
-
 ## Writing Systems in Pakistan
 
 export const highlight = { background: "rgba(255, 255, 0, 0.3)" };
 
-In Pakistan there have been a number of different systems used for writing the Pashto ی's. Unfortunately, there has been a lot of changing and mixing between these various systems. This, along with a lack of Pashto literacy has led to massive confusion and inconsitencies in Pashto spelling in Pakistan.
+In Pakistan there have been a number of different systems used for writing the Pashto ی's.
 
 Here's a chart of 3 different systems used in Pakistan, with the differences from Standard Afghan spelling <span style={highlight}>highlighted</span>.
 
 ### Comparison Chart
 
-<div style={{ overflowX: "auto", margin: "0 auto" }}>
-  <table class="table table-bordered text-center" style={{ maxWidth: "500px" }}>
+<div className="my-3" style={{ overflowX: "auto" }}>
+  <table class="table table-bordered text-center" style={{ maxWidth: "500px", tableLayout: "fixed", margin: "0 auto" }}>
     <thead>
       <tr>
-        <th scope="col">Standard</th>
-        <th scope="col">Phonetics</th>
-        <th scope="col">Pakistani w ي</th>
-        <th scope="col">Pakistani w ی</th>
-        <th scope="col">Old Pakistani</th>
+        <th scope="col">AF</th>
+        <th scope="col">Sound</th>
+        <th scope="col">PK ي</th>
+        <th scope="col">PK ی</th>
+        <th scope="col">Old PK</th>
       </tr>
     </thead>
     <tbody>
@@ -329,3 +305,72 @@ Instead of the ی at the end of long-vowel dipthongs, the letter ئ is used in P
     </tr>
   </tbody>
 </table>
+
+### Difficulties with Spelling in Pakistan
+
+In Pakistan, Pashto is more of a spoken language than a written one. Because of a lack of Pashto literacy and a lack of clarity in the writing standards, Pashto written material in Pakistan is often full of errors and inconsistencies. Written material may contain a mixture of the three systems outlined above, so the learner will need to be careful when reading texts from that area.
+
+#### ے vs ې
+
+One very common mistake in Pakistan is the use of ے instead of ې. This might be because in the old writing system the letter ے was used for both <InlinePs opts={opts} ps={{ p: "ے", f: "ey" }} /> and <InlinePs opts={opts} ps={{ p: "ې", f: "e" }} />, but it is probably also due to a habit of <strong>inflecting words with ے as they are in Urdu</strong>.
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Correct PK w/ ي ✔</th>
+      <th scope="col">Incorrect ❌</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <Examples opts={opts}>{[
+          { p: "د زپې او لهجې په حواله به خبرې کېږي", f: "du jzube aw lahje pu hawaala ba khabure keGee", e: "There will be talk about language and dialect" }
+        ]}</Examples>
+      </td>
+      <td>
+      <Examples opts={opts}>{[
+        { p: "د زپې او لهجے په حواله به خبرے کېږي", f: "du jzube aw lahje pu hawaala ba khabure keGee", e: "There will be talk about language and dialect" }
+      ]}</Examples>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Examples of Different Spelling Systems
+
+##### Standard Afghan
+
+<Examples opts={opts}>{[
+  { p: "دانه دانه چې یو ځای شي، غر ترې جوړ شي", f: "daana daana che yo dzaay shee, ghur tre joR shee" },
+  { p: "په پوښتنه پوښتنه سړی کابل ته رسېدی شي", f: "pu poxtuna poxtuna, saRey kaabul ta rasedey shee" },
+  { p: `د کوچي ښځه وايي، زما خاوند کوچی دی، او زه هم کوچۍ یم `, f: `du kochee xudza waayee, zmaa khaawund kochéy dey, aw zu hum kochúy yum.` },
+  { p: `تاسو کرسۍ کې کېنئ`, f: `taaso kUrsúy ke keneyy` },
+]}</Examples>
+
+##### Pakistani with ي
+
+<Examples opts={opts}>{[
+  { p: "دانه دانه چې یو ځائ شي، غر ترې جوړ شي", f: "daana daana che yo dzaay shee, ghur tre joR shee" },
+  { p: "په پوښتنه پوښتنه سړے کابل ته رسېدے شي", f: "pu poxtuna poxtuna, saRey kaabul ta rasedey shee" },
+  { p: `د کوچي ښځه وائي، زما خاوند کوچے دے، او زه هم کوچۍ یم `, f: `du kochee xudza waayee, zmaa khaawund kochéy dey, aw zu hum kochúy yum.` },
+  { p: `تاسو کرسۍ کې کېنئ`, f: `taaso kUrsúy ke keneyy` },
+]}</Examples>
+
+##### Pakistani with ی 
+
+<Examples opts={opts}>{[
+  { p: "دانه دانه چې یو ځائ شی، غر ترې جوړ شی", f: "daana daana che yo dzaay shee, ghur tre joR shee" },
+  { p: "په پوښتنه پوښتنه سړے کابل ته رسېدے شی", f: "pu poxtuna poxtuna, saRey kaabul ta rasedey shee" },
+  { p: `د کوچی ښځه وائی، زما خاوند کوچے دے، او زه هم کوچۍ یم `, f: `du kochee xudza waayee, zmaa khaawund kochéy dey, aw zu hum kochúy yum.` },
+  { p: `تاسو کرسۍ کې کېنئ`, f: `taaso kUrsúy ke keneyy` },
+]}</Examples>
+
+##### Old Pakistani
+
+<Examples opts={opts}>{[
+  { p: "دانه دانه چه یو ځائ شی، غر ترے جوړ شی", f: "daana daana che yo dzaay shee, ghur tre joR shee" },
+  { p: "په پوښتنه پوښتنه سړے کابل ته رسېدے شی", f: "pu poxtuna poxtuna, saRey kaabul ta rasedey shee" },
+  { p: `د کوچی ښځه وائی، زما خاوند کوچے دے، او زه هم کوچئ یم `, f: `du kochee xudza waayee, zmaa khaawund kochéy dey, aw zu hum kochúy yum.` },
+  { p: `تاسو کرسئ کې کېنئ`, f: `taaso kUrsúy ke keneyy` },
+]}</Examples>
