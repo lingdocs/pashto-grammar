@@ -5,10 +5,10 @@ import React from "react";
 function Formula(props) {
     return (
         <div className="text-center my-4" style={{ fontSize: "larger" }}>
-            <div className="mb-2"><span role="img" aria-label="">🧪</span> Formula:</div>
-            <pre>
-                <code>{props.children}</code>
-            </pre>
+            <div className="mb-2">
+                <span role="img" aria-label="">🧪</span> Formula:
+            </div>
+            <samp>{props.children}</samp>
         </div>
     )
     // return (

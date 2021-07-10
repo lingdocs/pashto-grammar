@@ -32,6 +32,8 @@ import * as inflectionIntro from "!babel-loader!mdx-loader!./inflection/inflecti
 import * as inflectionPatterns from "!babel-loader!mdx-loader!./inflection/inflection-patterns.mdx";
 import * as feminineInflection from "!babel-loader!mdx-loader!./inflection/feminine-inflection.mdx";
 
+import * as theFiveYeys from "!babel-loader!mdx-loader!./writing/the-five-yeys.mdx";
+
 const contentTree = [
     {
         import: intro,
@@ -136,6 +138,16 @@ const contentTree = [
             {
                 import: feminineInflection,
                 slug: "feminine-inflection",
+            },
+        ],
+    },
+    {
+        heading: "Writing",
+        subdirectory: "writing",
+        chapters: [
+            {
+                import: theFiveYeys,
+                slug: "the-five-yeys",
             },
         ],
     },

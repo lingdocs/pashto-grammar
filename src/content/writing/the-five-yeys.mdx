@@ -1,0 +1,331 @@
+---
+title: The Five ی's
+---
+
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+} from "@lingdocs/pashto-inflector";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+
+The five ی letters (<InlinePs opts={opts} ps={{ p: "پینځه یېګانې", f: "peendzu yegaane" }} />) are a very important part of Pashto spelling. Unfortunately, because they are often misused, there can be a lot of confusion for readers and learners of the Pashto language.
+
+## Standard Afghan Pashto Spelling
+
+Below are the five ی's as they are used in most dictionaries, written material, and in education and official language in Afghanistan. Click to hear the sound of each letter.
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Letter</th>
+      <th scope="col">Phonetics</th>
+      <th scope="col">IPA Approx.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="clickable" onClick={() => document.getElementById("ey").play()}>
+      <td className="h4">ی</td>
+      <td>ey</td>
+      <td>ai</td>
+    </tr>
+    <tr className="clickable" onClick={() => document.getElementById("e").play()}>
+      <td className="h4">ې</td>
+      <td>e</td>
+      <td>e</td>
+    </tr>
+    <tr className="clickable" onClick={() => document.getElementById("ee").play()}>
+      <td className="h4">ي</td>
+      <td>ee</td>
+      <td>i</td>
+    </tr>
+    <tr className="clickable" onClick={() => document.getElementById("uy").play()}>
+      <td className="h4">ۍ</td>
+      <td>uy</td>
+      <td>əj</td>
+    </tr>
+    <tr className="clickable" onClick={() => document.getElementById("eyy").play()}>
+      <td className="h4">ئ</td>
+      <td>eyy</td>
+      <td>ɛ̝j</td>
+    </tr>
+  </tbody>
+</table>
+
+<audio id="ey" preload="auto"><source src="/audio/ey.m4a" /></audio>
+<audio id="e" preload="auto"><source src="/audio/e.m4a" /></audio>
+<audio id="ee" preload="auto"><source src="/audio/ee.m4a" /></audio>
+<audio id="uy" preload="auto"><source src="/audio/uy.m4a" /></audio>
+<audio id="eyy" preload="auto"><source src="/audio/eyy.m4a" /></audio>
+
+Now let's take a look at each letter, and where it's used:
+
+### ی - ey
+
+#### Names:
+
+ - <InlinePs opts={opts} ps={{ p: "نارینه یې", f: "naareená ye" }} />
+ - <InlinePs opts={opts} ps={{ p: "بې ټکو یې", f: "be Túko ye" }} />
+ - <InlinePs opts={opts} ps={{ p: "نرمه یې", f: "narma ye" }} />
+
+#### Used in:
+
+- the end of *masculine singular* nouns, adjectives, and participles
+  - <InlinePs opts={opts} ps={{ p: "سړی", f: "saRéy", e: "man" }} />
+  - <InlinePs opts={opts} ps={{ p: "ستړی", f: "stúRey", e: "tired" }} />
+  - <InlinePs opts={opts} ps={{ p: "ما ته لیدلی", f: "maa tu leedúley", e: "I've seen you (masc.)" }} />
+  - <InlinePs opts={opts} ps={psmd({ p: "هغه هلته دی", f: "hagha halta dey", e: "He is there" })} />
+- the middle of words
+  - <InlinePs opts={opts} ps={{ p: "خیر", f: "kheyr" }} />
+  - <InlinePs opts={opts} ps={{ p: "پیل", f: "peyl" }} />
+- the non-inflecting tail in modal verbs
+  - <InlinePs opts={opts} ps={psmd({ p: "زه تل**ی** شم", f: "zu tl**éy** shum", e: "I can go" })} />
+  - <InlinePs opts={opts} ps={psmd({ p: "زه تل**ی** شي", f: "zu tl**éy** shee", e: "She can go" })} />
+
+**Note:** This letter is also used as "y" sound (second part of a dipthong) after long vowels at the end of words. For example:
+
+  - <InlinePs opts={opts} ps={{ p: "چای", f: "chaay", e: "tea" }} />
+  - <InlinePs opts={opts} ps={{ p: "زوی", f: "zooy", e: "son" }} />
+
+### ې - e
+
+#### Names:
+
+- <InlinePs opts={opts} ps={{ p: "اوږده یې", f: "ooGda ye" }} />
+
+#### Used in: 
+
+- the end of feminine nouns, adjectives, and participles
+  - <InlinePs opts={opts} ps={{ p: "ملګرې", f: "malgúre", e: "female friend" }} />
+  - <InlinePs opts={opts} ps={{ p: "ښځې", f: "xúdze", e: "women" }} />
+  - <InlinePs opts={opts} ps={{ p: "ستړې", f: "stúRe", e: "tired" }} />
+  - <InlinePs opts={opts} ps={{ p: "ما ته لیدلې", f: "maa tu leedúle", e: "I've seen you (fem.)" }} />
+- the end of the second person singular verbs and equatives
+  - <InlinePs opts={opts} ps={{ p: "چېرته ځې؟", f: "cherta dze?", e: "Where are you going?" }} />
+  - <InlinePs opts={opts} ps={{ p: "ته چېرته یې؟", f: "tu cherta ye?", e: "Where are you?" }} />
+  - <InlinePs opts={opts} ps={{ p: "ته چېرته وې؟", f: "tu cherta we?", e: "Where were you?" }} />
+- the end of third person feminine plural past-tense verbs
+  - <InlinePs opts={opts} ps={{ p: "انجونې کېناستې", f: "injóone kénaaste", e: "The girls sat down." }} />
+- the end of particles, mini-pronouns, and sandwiches
+  - <InlinePs opts={opts} ps={{ p: "بې", f: "be", e: "without-" }} />
+  - <InlinePs opts={opts} ps={{ p: "مې", f: "me", e: "1st Pers. Sing. Mini-Pronoun" }} />
+  - <InlinePs opts={opts} ps={{ p: "په ... کې", f: "pu ... ke", e: "in ..." }} />
+- the middle of words
+  - <InlinePs opts={opts} ps={{ p: "وېره", f: "wéra", e: "fear" }} />
+  - <InlinePs opts={opts} ps={{ p: "تېر", f: "ter", e: "last" }} />
+
+### ي - ee  
+
+#### Names:
+
+  - <InlinePs opts={opts} ps={{ p: "څرګنده یې", f: "tsargúnda ye" }} />
+  - <InlinePs opts={opts} ps={{ p: "لنډه یې", f: "lúnDa ye" }} />
+
+#### Used in:
+
+- the end of feminine words or non-inflecting adjectives
+  - <InlinePs opts={opts} ps={{ p: "دوستي", f: "dostee", e: "friendship" }} />
+  - <InlinePs opts={opts} ps={{ p: "قانوني", f: "qaanóonee", e: "legal" }} />
+- the end of third person verbs
+  - <InlinePs opts={opts} ps={{ p: "هغه ځي", f: "hagha dzee", e: "He is going" }} />
+  - <InlinePs opts={opts} ps={{ p: "هغوي څه وکړي؟", f: "haghwee tsu óokRee?", e: "What should they do?" }} />
+- the end of inflected masculine nouns, adjectives, and participles
+  - <InlinePs opts={opts} ps={{ p: "د سړي نوم", f: "du saRee noom", e: "the man's name" }} />
+  - <InlinePs opts={opts} ps={{ p: "مونږ تللي یو", f: "moonG tlúlee yoo", e: "We've gone" }} />
+- the middle of words
+  - <InlinePs opts={opts} ps={{ p: "ویده", f: "weedú", e: "asleep" }} />
+  - <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedúl", e: "to see" }} />
+
+### ۍ - uy
+
+#### Names:
+
+  - <InlinePs opts={opts} ps={{ p: "ښځینه یې", f: "xudzeená ye" }} />
+  - <InlinePs opts={opts} ps={{ p: "لکۍ لرونکې یې", f: "lakúy laróonke ye" }} />
+  - <InlinePs opts={opts} ps={{ p: "تانیڅه یې", f: "taaneesa ye" }} />
+
+#### Used in:
+
+- the end of feminine nouns and adjectives
+  - <InlinePs opts={opts} ps={{ p: "انجلۍ", f: "injulúy", e: "girl" }} />
+  - <InlinePs opts={opts} ps={{ p: "افغانۍ", f: "afghaanúy", e: "A female Afghan" }} />
+  - <InlinePs opts={opts} ps={{ p: "لومرۍ برخه", f: "loomRúy barkha", e: "The first section" }} />
+
+**Note**: This is only used in nouns and adjectives when the accent is on the last syllable.
+
+### ئ - eyy
+
+#### Names:
+
+  - <InlinePs opts={opts} ps={{ p: "فعلي", f: "fi'lee ye" }} />
+  - <InlinePs opts={opts} ps={{ p: "امریه یې", f: "amriya ye" }} />
+
+#### Used in:
+
+- the end of second person plural verbs and equatives
+  - <InlinePs opts={opts} ps={{ p: "تاسو چېرته یئ؟", f: "taaso cherta yeyy?", e: "Where are you (pl.)?" }} />
+  - <InlinePs opts={opts} ps={{ p: "تاسو چېرته وئ؟", f: "taaso cherta weyy?", e: "Where were you (pl.)?" }} />
+  - <InlinePs opts={opts} ps={{ p: "تاسو چېرته ځئ؟", f: "taaso chetra dzeyy?", e: "Where are you going?" }} />
+  - <InlinePs opts={opts} ps={{ p: "جګ شئ!", f: "jig sheyy!", e: "Get up!" }} />
+
+## Some Important Notes
+
+#### The ۍ vs. ئ confusion
+
+Because the <InlinePs opts={opts} ps={{ p: "ۍ", f: "uy" }} /> and <InlinePs opts={opts} ps={{ p: "ئ", f: "eyy" }} /> sound so similar (and in some dialects may be identical in pronunciation) people often confuse them in writing. To avoid this confustion it's important to remember this *very simple rule*: ⚖
+
+ - <InlinePs opts={opts} ps={{ p: "ئ", f: "eyy" }} /> is only used for 2nd person plural verb endings
+ - <InlinePs opts={opts} ps={{ p: "ۍ", f: "uy" }} /> is only used at the end of feminine nouns and adjectives
+
+#### The ـئـ in loan-words
+
+You will also see the ئ letter *in the middle* of some loan words where it indicates a glottal stop or "y" connecting sound, for example: 
+
+  - <InlinePs opts={opts} ps={{ p: "جائز", f: "jaa'iz", e: "permitted" }} />
+  - <InlinePs opts={opts} ps={{ p: "رئس", f: "ra'ees", e: "chief" }} />
+
+#### The ـیـ in the middle of words
+
+When you write a ی or a ي, they both appear as a ـیـ in the middle of words. So when you see a ـیـ it can be either:
+
+- a "ey" sound 
+- a "ee" sound
+- a "y" sound
+
+This can lead to confusion when typing or searching for things online. For example when typing the word <InlinePs opts={opts} ps={{ p: "مینه", f: "meena" }} /> should you use a ی or a ي in the middle of the word? 🤷‍♂️ Does it matter? Both look exactly the same, but when you type <kbd>ctrl</kbd> + <kbd>f</kbd> and try to search for it, it makes a big difference! Try it on these words: 
+
+- مینه (spelled with ی)
+- مينه (spelled with ي)
+
+It seems most common to always **use ی when typing in the middle of words**, to avoid confusion. This seems to be the most common practice, but it's not always the case. If you use [qamosona.com](https://qamosona.com/), for example, you will find that the middle of words are often spelled with a ي and so you will need to keep that in mind and use ي in the middle when searching. 
+
+#### ی vs. ى 
+
+Depending on the keyboard used, you might get one of two basically identical looking versions of ی. This can cause massive confusion when search for words. 😖
+
+- ی Farsi Yeh ([unicode 06CC](https://unicode-table.com/en/06CC/)) 👍 ✔
+- ى Alef Maksura ([unicode 0649](https://unicode-table.com/en/0649/)) 👎 ❌
+
+Make sure you don't have a bad keyboard ⌨🙅‍♂️ that uses the Alef Maksura ى! To check, you can go to [this site](https://unicode-table.com/en/) and type a ی to see which one you're using.
+
+## Writing Systems in Pakistan
+
+export const highlight = { background: "rgba(255, 255, 0, 0.3)" };
+
+In Pakistan there have been a number of different systems used for writing the Pashto ی's. Unfortunately, there has been a lot of changing and mixing between these various systems. This, along with a lack of Pashto literacy has led to massive confusion and inconsitencies in Pashto spelling in Pakistan.
+
+Here's a chart of 3 different systems used in Pakistan, with the differences from Standard Afghan spelling <span style={highlight}>highlighted</span>.
+
+### Comparison Chart
+
+<div style={{ overflowX: "auto", margin: "0 auto" }}>
+  <table class="table table-bordered text-center" style={{ maxWidth: "500px" }}>
+    <thead>
+      <tr>
+        <th scope="col">Standard</th>
+        <th scope="col">Phonetics</th>
+        <th scope="col">Pakistani w ي</th>
+        <th scope="col">Pakistani w ی</th>
+        <th scope="col">Old Pakistani</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="clickable" onClick={() => document.getElementById("ey").play()}>
+        <td className="h5">ی</td>
+        <td className="h5">ey</td>
+        <td className="h5" style={highlight}>ے</td>
+        <td className="h5" style={highlight}>ے</td>
+        <td className="h5" style={highlight}>ے</td>
+      </tr>
+      <tr className="clickable" onClick={() => document.getElementById("e").play()}>
+        <td className="h5">ې</td>
+        <td className="h5">e</td>
+        <td className="h5">ې</td>
+        <td className="h5">ې</td>
+        <td className="h5" style={highlight}>ے</td>
+      </tr>
+      <tr className="clickable" onClick={() => document.getElementById("ee").play()}>
+        <td className="h5">ي</td>
+        <td className="h5">ee</td>
+        <td className="h5">ي</td>
+        <td className="h5" style={highlight}>ی</td>
+        <td className="h5" style={highlight}>ی</td>
+      </tr>
+      <tr className="clickable" onClick={() => document.getElementById("uy").play()}>
+        <td className="h5">ۍ</td>
+        <td className="h5">uy</td>
+        <td className="h5">ۍ</td>
+        <td className="h5">ۍ</td>
+        <td className="h5" style={highlight}>ئ</td>
+      </tr>
+      <tr className="clickable" onClick={() => document.getElementById("eyy").play()}>
+        <td className="h5">ئ</td>
+        <td className="h5">eyy</td>
+        <td className="h5">ئ</td>
+        <td className="h5">ئ</td>
+        <td className="h5">ئ</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+##### Pakistani with ي
+
+This is used by the [Pashto Academy of Peshawer University](http://khyber.org/pacademy/#) and in many current publications. The only big difference from standard Afghan spelling is that for the "ey" sound the Urdu ے letter is used instead of ی. 
+
+##### Pakistani with ی 
+
+This is used in [Speaking Pakistani Pukhto](https://www.speakingpashto.com) and in much written material in Pakistan. This system differs more from standard Afghan spelling because in addition to the Urdu ے being used, the ی is used for "ee" instead.
+
+##### Old Pakistani
+
+This system was used in older writings and only uses three ی letters (ے، ی، ئ) which are used for different sounds.
+
+### The use of ئ in Pakistan
+
+#### In the middle of words
+
+Earlier we noted that ـئـ shows up in the middle of loan words, but in Pakistan they often use it as a "y" transition before a long "ee" sound in other Pashto words as well. For example:
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Afghanistan</th>
+      <th scope="col">Pakistan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><InlinePs opts={opts} ps={{ p: "هغه وایي", f: "haghá waayee" }} /></td>
+      <td><InlinePs opts={opts} ps={{ p: "هغه وائي", f: "haghá waayee" }} /></td>
+    </tr>
+  </tbody>
+</table>
+
+#### At the end of words/dipthongs
+
+Instead of the ی at the end of long-vowel dipthongs, the letter ئ is used in Pakistan.
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Afghanistan</th>
+      <th scope="col">Pakistan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><InlinePs opts={opts} ps={{ p: "چای", f: "chaay" }} /></td>
+      <td><InlinePs opts={opts} ps={{ p: "چائ", f: "chaay" }} /></td>
+    </tr>
+    <tr>
+      <td><InlinePs opts={opts} ps={{ p: "زوی", f: "zooy" }} /></td>
+      <td><InlinePs opts={opts} ps={{ p: "زوئ", f: "zooy" }} /></td>
+    </tr>
+    <tr>
+      <td><InlinePs opts={opts} ps={{ p: "خدای", f: "khUdaay" }} /></td>
+      <td><InlinePs opts={opts} ps={{ p: "خدائ", f: "khUdaay" }} /></td>
+    </tr>
+  </tbody>
+</table>
