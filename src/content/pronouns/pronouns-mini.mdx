@@ -18,7 +18,9 @@ import {
     grammarUnits,
     VerbTable,
     Examples,
+    InlinePs,
 } from "@lingdocs/pashto-inflector";
+import psmd from "../../lib/psmd";
 import bigAndLittleBrother from "../../images/big-and-little-brother.jpg";
 import Chart from "../../components/Chart";
 
@@ -26,11 +28,7 @@ Mini pronouns are **enclitic prounouns** that hang on to the back of words. They
 
 <img className="rounded mx-auto d-block my-3" style={{ maxWidth: "100%"}} src={bigAndLittleBrother} />
 
-Mini pronouns can only be used as one of three things:
-
-1. The object of a present/future verb
-2. The subject of a past tense transitive verb
-3. A possesive pronoun
+## Mini (Enlitic) Pronoun Chart
 
 <VerbTable
     block={grammarUnits.pronouns.mini}
@@ -45,7 +43,13 @@ Mini pronouns can only be used as one of three things:
     ]}
 />
 
-## Examples
+## Where they are used
+
+Mini pronouns can only be used as one of three things:
+
+1. The object of a present/future verb
+2. The subject of a past tense transitive verb
+3. A possesive pronoun
 
 Below are some examples of how mini pronouns can be used in the place of regular pronouns. The mini pronouns are used when you don't need a strong emphasis on the pronoun.
 
@@ -100,11 +104,33 @@ Below are some examples of how mini pronouns can be used in the place of regular
     ],
 ]}</Chart>
 
-## Notes
+## Other Notes
 
-Mini prounouns **can't go inside sandwiches**.
+### Mini-pronouns are used an order
+
+Sometimes **you might see two mini pronouns right next to each other** because one is being used as a possesive and the other is being used for a subject or object. When this happens, the pronouns are used in this order:
+
+1. <InlinePs opts={opts} ps={{ p: "مو", f: "mU" }} />
+2. <InlinePs opts={opts} ps={{ p: "مې", f: "me" }} />
+3. <InlinePs opts={opts} ps={{ p: "دې", f: "de" }} />
+4. <InlinePs opts={opts} ps={{ p: "یې", f: "ye" }} />
+
+For example:
 
 <Examples opts={opts}>{[
-    { p: "❌ زه دفتر یې ته ځم", f: "❌ zu dăftar ye ta dzum", e: "I'm going to his office" },
-    { p: "زه دفتر ته یې ځم", f: "zu dăftar ta ye dzum", e: "I'm going to his office" },
+    { p: "پیغام مې دې واورېده", f: "peyghaam me de wáawredu", e: "I heard your message" },
+    { p: "پیغام دې مې واورېده❌ ", f: "peyghaam de me wáawredu ❌", e: "I heard your message" },
 ]}</Examples>
+
+With this sentence there's some ambiguity as to which pronoun is used for what. Is the <InlinePs opts={opts} ps={{ p: "مې", f: "me" }} /> the subject? Or the possesive pronoun? It could be both, and the sentence could mean "I heard your message" *or* "You heard my message." But usually when people make sentences like this, it will be obvious from context.
+
+### Mini-pronouns go outside of sandwiches
+
+Mini prounouns **can't go inside sandwiches**. They can only go *after* the end of a sandwich.
+
+<Examples opts={opts}>{psmd([
+    { p: "❌ زه **دفتر *یې* ته** ځم", f: "❌ zu **dăftar *ye* ta** dzum", e: "I'm going **to *his* office**" },
+    { p: "زه **دفتر ته *یې*** ځم", f: "zu **dăftar ta *ye*** dzum", e: "I'm going **to *his* office**" },
+    { p: "**له پلار *مې* سره** خبرې کوي❌ ", f: "**la plaar *me* sara** khabure kawee ❌", e: "He is talking **with *my* father**" },
+    { p: "**له پلار سره *مې*** خبرې کوي", f: "**la plaar sara *me*** khabure kawee", e: "He is talking **with *my* father**" },
+])}</Examples>
