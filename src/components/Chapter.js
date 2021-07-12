@@ -11,11 +11,29 @@ import TableOfContents from "./TableOfContents";
 import Footer from "./Footer";
 
 const Chapter = ({ children: chapter }) => {
+  console.log(chapter)
   const Content = chapter.content;
+  function handleShare() {
+    if (!navigator.share) {
+      // should be impossible
+      alert("Sorry, Sharing links are not supported on your device.", chapter.path);
+      return;
+    }
+    navigator.share && navigator.share({
+      title: chapter.frontMatter.title +  " | LingDocs Pashto Grammar",
+      url: "https://grammar.lingdocs.com" + chapter.path,
+    });
+  }
   return <>
     <main className="col bg-faded py-3 d-flex flex-column">
       <div className="flex-shrink-0">
-        <h1>{chapter.frontMatter.title}</h1>
+        <div className="mb-2" style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+          <h1>{chapter.frontMatter.title}</h1>
+            {navigator.share && <div onClick={handleShare} className="clickable">
+              <i className="fas fa-share-alt" style={{ fontSize: "1.8rem" }} />
+            </div>}
+        </div>
+        
         <Content />
       </div>
       <Footer chapter={chapter} />

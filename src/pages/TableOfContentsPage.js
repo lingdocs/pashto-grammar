@@ -12,10 +12,26 @@ import Footer from "../components/Footer";
 import { content } from "../content/index";
 
 const TableOfContentsPage = () => {
+  function handleShare() {
+    if (!navigator.share) {
+      // should be impossible
+      alert("Sorry, Sharing links are not supported on your device.");
+      return;
+    }
+    navigator.share && navigator.share({
+      title: "LingDocs Pashto Grammar",
+      url: "https://grammar.lingdocs.com",
+    });
+  }
   return <>
     <main className="col bg-faded py-3 d-flex flex-column">
       <div className="flex-shrink-0">
-        <h2 className="mb-3">Table of Contents</h2>
+        <div className="mb-2" style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", maxWidth: "700px" }}>
+          <h1>Table of Contents</h1>
+          {navigator.share && <div onClick={handleShare} className="clickable">
+            <i className="fas fa-share-alt" style={{ fontSize: "1.8rem" }} />
+          </div>}
+        </div>
         {content.map((section) => (
           section.path ?
             <Link to={section.path} className="plain-link">
