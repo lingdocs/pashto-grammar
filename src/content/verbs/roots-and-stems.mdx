@@ -91,7 +91,10 @@ export const regularTrans = regularVerbs.filter((verb) => verb.entry.c && verb.e
 
 <InfoCarousel items={regularTrans} />
 
-It's important to remember that **in the perfective <i class="fas fa-camera" /> forms the accent is always on the first syllable**. With Pashto verbs, the accent is extremely important to the meaning of the verb.
+**Two important things to remember about the <i class="fas fa-camera" /> perfective side:**
+
+1. The accent is always on the first syllable
+2. There is always a split after the first syllable 
 
 ## Regular Intransitive Verbs
 
@@ -104,9 +107,9 @@ export const regularIntrans = regularVerbs.filter((verb) => verb.entry.c && verb
 
 <InfoCarousel items={regularIntrans} />
 
-## Verbs with irregular present forms
+## Verbs with irregular stems
 
-There are many verbs that use an irregular present form. With these verbs the stems are totally different from the roots.
+There are many verbs where the top half (the stems/present form) is totally different from the bottom half (the roots/past form).
 
 export const irregularPresentFormVerbs = verbs.filter((verb) => (
     verb.entry.psp && !verb.entry.ssp && !verb.entry.prp && !verb.entry.pprtp && !verb.entry.noOo && !verb.entry.sepO
@@ -114,9 +117,9 @@ export const irregularPresentFormVerbs = verbs.filter((verb) => (
 
 <InfoCarousel items={irregularPresentFormVerbs} />
 
-## Seperable Verbs
+## Verbs with no <InlinePs opts={opts} ps={{ p: "و", f: "óo" }} /> prefix
 
-Some verbs don't take an <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix because they have little particles in the front like <InlinePs opts={opts} ps={{ p: "کې", f: "ke" }} />, <InlinePs opts={opts} ps={{ p: "پرې", f: "pre" }} />, <InlinePs opts={opts} ps={{ p: "بو", f: "bo" }} />, or <InlinePs opts={opts} ps={{ p: "څم", f: "tsam" }} />. These little particles split away from the verb in the perfective aspect just like the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> would.
+Some verbs don't take an <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix because they have little particles in the front like <InlinePs opts={opts} ps={{ p: "کې", f: "ke" }} />, <InlinePs opts={opts} ps={{ p: "پرې", f: "pre" }} />, <InlinePs opts={opts} ps={{ p: "بو", f: "bo" }} />, or <InlinePs opts={opts} ps={{ p: "څم", f: "tsam" }} />. These little particles split away from the verb in the perfective aspect just like the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> would in other verbs.
 
 Even though we can't add a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix, we still have to shift the accent to the front of the root/stem in the perfective aspect.
 
@@ -153,9 +156,9 @@ export const irregularVerbs = verbs.filter((verb) => {
 
 <InfoCarousel items={irregularVerbs} />
 
-## About the split in the perfective forms
+## About the split in the perfective side
 
-Most of the perfective roots and stems have a spot where the verb can be broken apart. You can shove the following particles in this opening:
+In the perfective roots and stems there is always a spot where the verb can be broken apart. You can crack this split open and shove the following particles in-between the first syllable and the rest of the stem/root:
 
 - <InlinePs opts={opts} ps={{ p: "نه", f: "nu", e: "negative marker" }} /> 
 - <InlinePs opts={opts} ps={grammarUnits.baParticle} />
