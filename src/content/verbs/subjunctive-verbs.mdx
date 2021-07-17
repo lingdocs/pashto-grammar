@@ -1,0 +1,125 @@
+---
+title: 📷 Subjunctive
+---
+
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+    removeFVariants,
+    ConjugationViewer,
+} from "@lingdocs/pashto-inflector";
+import cousins from "./cousins.png";
+import psmd from "../../lib/psmd";
+import Carousel from "../../components/Carousel";
+import Link from "../../components/Link";
+import Formula from "../../components/formula/Formula";
+import verbs from "../../words/verbs";
+import shuffleArray from "../../lib/shuffle-array";
+import presentInReality from "./present-in-reality.svg";
+import subjunctiveAboveReality from "./subjunctive-above-reality.svg";
+
+export const basicVerbs = verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
+
+The **subjunctive** is a very important verb form in Pashto, but it's often ignored by English-speaking learners because we don't really have anything like it in English. So, we need to understand what it is, and then train our brains to reach for it and use it in the right situations!
+
+## Introducing the Subjunctive
+
+The subjunctive is like the <i class="fas fa-camera" /> perfective cousin of the <Link to="/verbs/present-verbs">present</Link> form.
+
+<div className="text-center">
+    <img src={cousins} alt="" className="img-fluid" />
+</div>
+
+We said we use the <Link to="/verbs/present-verbs">present</Link> form to talk about things that are happening, or generally happen in reality. Naturally this was <i class="fas fa-video" /> imperfective because the event is either ongoing or reccuring.
+
+<div className="text-center">
+    <img src={presentInReality} alt="" className="img-fluid" />
+</div>
+
+But the subjunctive is <i class="fas fa-camera" /> perfective because instead of talking about something happening in reality, we're talking **about the idea of something happening or not**. We're looking about the action or event *from the outside as a whole*.
+
+<div className="text-center">
+    <img src={subjunctiveAboveReality} alt="" className="img-fluid" />
+</div>
+
+As we read on [wikipedia](https://en.wikipedia.org/wiki/Subjunctive_mood):
+
+> “Subjunctive forms of verbs are typically used to express various states of unreality such as wish, emotion, possibility, judgement, opinion, obligation, or action that have not yet occurred.”
+
+## How to make it
+
+The subjunctive is made the same way as its cousin the <Link to="/verbs/present-verbs">present</Link>, except this time we use the *perfective* stem.
+
+<Formula>
+    Perfective Stem + <Link to="/verbs/verb-endings/">Present Ending</Link>
+</Formula>
+
+<Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
+    return {
+        title: <InlinePs opts={opts} ps={{
+            ...removeFVariants(item.entry),
+            e: item.def,
+        }} />,
+        body: <ConjugationViewer
+            entry={item.entry}
+            textOptions={opts}
+            highlightInRootsAndStems={["perfective stem"]}
+            showOnly="Subjunctive"
+            hidePastParticiple
+            sentenceLevel="easy"
+        />,
+    };
+}}/>
+
+## Examples
+
+### Should or shouldn't
+
+<Examples opts={opts}>{psmd([
+    { p: "زه یې واخلم؟", f: "zu ye **waakhlum?**", e: "Should I take it?" },
+    { p: "هغه دې **راشي**.", f: "haghá de **ráashee**.", e: "He should come." },
+    { p: "ډوډۍ **وخورو**؟", f: "DoDuy **óokhoroo**?", e: "Should we eat food?" },
+    { p: "په کار دی چې مونږ انګیلسي **زده کړو**.", f: "pu kaar dey che moonG ingleesee **zda kRoo**.", e: "We need to learn English." },
+    { p: "چې ورسره خبرې **و**نه **کړې**!", f: "che wăr-sara khabure **oo**-nu-**kRe**!", e: "You'd better not talk to him!" },
+])}</Examples>
+
+**Note**: the subjunctive can be used almost like an imperative in situations like this.
+
+### Possibility
+
+<Examples opts={opts}>{psmd([
+    { p: "امکان شته چې **لاړ شي**.", f: "imkaan shta che **láaR shee**.", e: "There's a possibility that he'll go." },
+    { p: "شاید هغه نن **ووینم**.", f: "shaayid haghá nun **óoweenum**." },
+    { p: "کېدی شي چې پولیس یې **ونیسي**.", f: "kedey shee che polees ye **óoneesee**", e: "The police could catch him." },
+])}</Examples>
+
+### Purpose
+
+<Examples opts={opts}>{psmd([
+    { p: "هغه ورو ورو خبرې کوي، چې **پوه شي**.", f: "haghá wro wro khabure kawee, che **poh shee**.", e: "She speaks slowly so that she'll understand." },
+    { p: "زه ورته کتابونه ورکوم، چې **و**یې **لولي**.", f: "zu wăr-ta kitaaboona wăr-kawum, che **oo**-ye-**lwulee**.", e: "I'm giving him books so that he'll read them." },
+])}</Examples>
+
+**Note**: Because the subjunctive is made from the perfect stem, the front part of it (usually <InlinePs opts={opts} ps={{ p: "و", f: "óo" }} />) can be split off and you can put little particles like <InlinePs opts={opts} ps={{ p: "نه", f: "nú" }} />, <InlinePs opts={opts} ps={{ p: "هم", f: "hum" }} />, and <Link to="/pronouns/pronouns-mini/">mini-pronouns</Link> in between it and the rest of the verb. See the verb trees 🌳 and click on the split button to see where this split happens.
+
+When you use the negative <InlinePs opts={opts} ps={{ p: "نه", f: "nú" }} /> particle, it <strong>always</strong> has to go in this split. (And <InlinePs opts={opts} ps={{ p: "نه", f: "nú" }} /> always takes over the emphasis/accent on the word.)
+
+<Examples opts={opts}>{psmd([
+    { p: "هغه وتړه چې **و**نه **تښتي**.", f: "hagha óotaRa che **oo**-nú-**tuxtee**.", e: "Tie him up so that he doesn't escape." },
+    { p: "کړګۍ بنده کړه چې هوا دننه **را**نه **شي**", f: "kiRkúy banda kRa che hawaa dununa **raa**-nú-**shee**", e: "Close the windon so the air doesn't come inside." },
+])}</Examples>
+
+## With Subordinate Clauses
+
+As you can see, the subjunctive is often used in [subordinate clauses](https://en.wikipedia.org/wiki/Dependent_clause) that come after phrases like: 
+
+- <InlinePs opts={opts} ps={{ p: "چې ...", f: "che ...", e: "so that/if..." }} />
+- <InlinePs opts={opts} ps={{ p: "کېدی شي چې...", f: "kedey shee che...", e: "it could be that..." }} />
+- <InlinePs opts={opts} ps={{ p: "هسې نه چې...", f: "hase na che...", e: "lest..." }} />
+- <InlinePs opts={opts} ps={{ p: "امید لرم چې...", f: "Umeed larum che...", e: "I hope that..." }} />
+- <InlinePs opts={opts} ps={{ p: "زه غواړم چې...", f: "zu ghwaaRum che...", e: "I want to..." }} />
+- <InlinePs opts={opts} ps={{ p: "ته باید ...", f: "tu baayad ...", e: "You have to ..." }} />
+- <InlinePs opts={opts} ps={{ p: "په کار دی چې ...", f: "pu kaar dey che ...", e: "It's necessary that ..." }} />
+
+...etc.

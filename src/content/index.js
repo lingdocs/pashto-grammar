@@ -21,6 +21,7 @@ import * as bundledPlurals from "!babel-loader!mdx-loader!./nouns/bundled-plural
 import * as verbAspect from "!babel-loader!mdx-loader!./verbs/verb-aspect.mdx";
 import * as verbsIntro from "!babel-loader!mdx-loader!./verbs/verbs-intro.mdx";
 import * as presentVerbs from "!babel-loader!mdx-loader!./verbs/present-verbs.mdx";
+import * as subjunctiveVerbs from "!babel-loader!mdx-loader!./verbs/subjunctive-verbs.mdx";
 import * as verbEndings from "!babel-loader!mdx-loader!./verbs/verb-endings.mdx";
 import * as rootsAndStems from "!babel-loader!mdx-loader!./verbs/roots-and-stems.mdx";
 import * as sentenceStructure from "!babel-loader!mdx-loader!./verbs/sentence-structure.mdx";
@@ -95,6 +96,10 @@ const contentTree = [
             {
                 import: presentVerbs,
                 slug: "present-verbs",
+            },
+            {
+                import: subjunctiveVerbs,
+                slug: "subjunctive-verbs",
             },
             {
                 import: verbEndings,
