@@ -41,14 +41,16 @@ The <Link to="/verbs/verb-endings/">present ending</Link> will change according 
             ...removeFVariants(item.entry),
             e: item.def,
         }} />,
-        body: <ConjugationViewer
-            entry={item.entry}
-            textOptions={opts}
-            highlightInRootsAndStems={["imperfective stem"]}
-            showOnly="Present"
-            hidePastParticiple
-            sentenceLevel="easy"
-        />,
+        body: <div className="text-left">
+            <ConjugationViewer
+                entry={item.entry}
+                textOptions={opts}
+                highlightInRootsAndStems={["imperfective stem"]}
+                showOnly="Present"
+                hidePastParticiple
+                sentenceLevel="easy"
+            />
+        </div>,
     };
 }}/>
 

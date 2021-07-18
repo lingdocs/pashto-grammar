@@ -1,0 +1,91 @@
+---
+title: Future
+---
+
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+    removeFVariants,
+    ConjugationViewer,
+} from "@lingdocs/pashto-inflector";
+import cousins from "./cousins.png";
+import psmd from "../../lib/psmd";
+import Carousel from "../../components/Carousel";
+import Link from "../../components/Link";
+import Formula from "../../components/formula/Formula";
+import verbs from "../../words/verbs";
+import shuffleArray from "../../lib/shuffle-array";
+import imperfectiveFuture from "./imperfective-future-graph.svg";
+import perfectiveFuture from "./perfective-future-graph.svg";
+
+export const basicVerbs = verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
+
+There are two kinds of future forms in Pashto:
+
+2. <i class="fas fa-video" /> Imperfective Future
+1. <i class="fas fa-camera" /> Perfective Future
+
+## Imperfective Future
+
+This is used to talk about something happening in the future, while thinking of the event as an ongoing or recurring event. It can also be used to stress the certainty of the event happening. 
+
+<div className="text-center">
+    <img src={imperfectiveFuture} alt="" className="img-fluid" />
+</div>
+
+<Formula>
+    <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> +{` `}
+    <Link to="/verbs/present-verbs/">Present</Link>
+</Formula>
+
+<Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
+    return {
+        title: <InlinePs opts={opts} ps={{
+            ...removeFVariants(item.entry),
+            e: item.def,
+        }} />,
+        body: <div style={{ textAlign: "left" }}>
+            <ConjugationViewer
+                entry={item.entry}
+                textOptions={opts}
+                highlightInRootsAndStems={["imperfective stem"]}
+                showOnly={["Present", "Imperfective Future"]}
+                hidePastParticiple
+                sentenceLevel="easy"
+            />
+        </div>,
+    };
+}}/>
+
+## Perfective Future
+
+This is used to talk about something happening in the future, while thinking of the event *as a whole* or as a one time event. It can also be used when there is a little less certainty that the event will happen.
+
+<div className="text-center">
+    <img src={perfectiveFuture} alt="" className="img-fluid" />
+</div>
+
+<Formula>
+    <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> +{` `}
+    <Link to="/verbs/subjunctive-verbs/">Subjunctive</Link>
+</Formula>
+
+<Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
+    return {
+        title: <InlinePs opts={opts} ps={{
+            ...removeFVariants(item.entry),
+            e: item.def,
+        }} />,
+        body: <div style={{ textAlign: "left" }}>
+            <ConjugationViewer
+                entry={item.entry}
+                textOptions={opts}
+                highlightInRootsAndStems={["Perfective stem"]}
+                showOnly={["Subjunctive", "Perfective Future"]}
+                hidePastParticiple
+                sentenceLevel="easy"
+            />
+        </div>,
+    };
+}}/>
