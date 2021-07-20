@@ -6,7 +6,7 @@ function Formula(props) {
     return (
         <div className="text-center my-4" style={{ fontSize: "larger" }}>
             <div className="mb-2">
-                <span role="img" aria-label="">🧪</span> Formula:
+                <span role="img" aria-label="">🧪</span> {props.name ? props.name : ""} Formula:
             </div>
             <samp>{props.children}</samp>
         </div>

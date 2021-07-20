@@ -23,6 +23,7 @@ import * as verbsIntro from "!babel-loader!mdx-loader!./verbs/verbs-intro.mdx";
 import * as presentVerbs from "!babel-loader!mdx-loader!./verbs/present-verbs.mdx";
 import * as subjunctiveVerbs from "!babel-loader!mdx-loader!./verbs/subjunctive-verbs.mdx";
 import * as futureVerbs from "!babel-loader!mdx-loader!./verbs/future-verbs.mdx";
+import * as imperativeVerbs from "!babel-loader!mdx-loader!./verbs/imperative-verbs.mdx";
 import * as verbEndings from "!babel-loader!mdx-loader!./verbs/verb-endings.mdx";
 import * as rootsAndStems from "!babel-loader!mdx-loader!./verbs/roots-and-stems.mdx";
 import * as sentenceStructure from "!babel-loader!mdx-loader!./verbs/sentence-structure.mdx";
@@ -105,6 +106,10 @@ const contentTree = [
             {
                 import: futureVerbs,
                 slug: "future-verbs",
+            },
+            {
+                import: imperativeVerbs,
+                slug: "imperative-verbs",
             },
             {
                 import: verbEndings,
