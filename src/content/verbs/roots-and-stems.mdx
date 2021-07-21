@@ -33,7 +33,7 @@ import verbTreeImperfectivePerfective from "./verb-tree-imperfective-perfective.
 
 export const opts = defaultTextOptions;
 
-export function InfoCarousel({ items, highlighted }) {
+export function InfoCarousel({ items, highlighted, hidePastParticiple }) {
     return (
         <Carousel items={shuffle(items)} render={(item) => {
             let inf = getVerbInfo(item.entry);
@@ -51,6 +51,7 @@ export function InfoCarousel({ items, highlighted }) {
                     info={info}
                     textOptions={opts}
                     highlighted={highlighted}
+                    hidePastParticiple={hidePastParticiple}
                 />,
             };
         }}/>
@@ -99,7 +100,7 @@ With regular verbs, knowing all the roots and stems is simple:
     - **shifting the accent to the front**.
 - The stems are just the **shorter version** of the roots.
 
-Flip through all these regular verbs and notice the pattern of how they're all built. Notice how the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> behaves a little differently when it's added on to a word starting with a vowel. 
+Flip through all these regular verbs and notice the pattern of how they're all built.
 
 export const regularVerbs = verbs.filter((verb) => (
     !verb.entry.psp && !verb.entry.ssp && !verb.entry.prp && !verb.entry.pprtp && !verb.entry.noOo && !verb.entry.sepOo
@@ -107,9 +108,9 @@ export const regularVerbs = verbs.filter((verb) => (
 
 export const regularTrans = regularVerbs.filter((verb) => verb.entry.c && verb.entry.c.includes("v. trans."));
 
-<InfoCarousel items={regularTrans} />
+<InfoCarousel items={regularTrans} hidePastParticiple />
 
-You'll notice that on the bottom, in the middle of the trees below you'll also see a **past participle**. This is a bit different because it doesn't fit into the imperfective/perfective aspect divide. Except for a tiny few extremely irregular verbs below, it's always based on the *imperfective root*. 
+Notice how the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> behaves a little differently when it's added on to a word starting with a vowel. In these cases, it behaves like a <<InlinePs opts={opts} ps={{ p: "و", f: "w" }} /> and the vowel behind is kept long.
 
 ### Regular Intransitive Verbs
 
@@ -120,7 +121,7 @@ Regular intransitive verb work the same except that:
 
 export const regularIntrans = regularVerbs.filter((verb) => verb.entry.c && verb.entry.c.includes("v. intrans."));
 
-<InfoCarousel items={regularIntrans} />
+<InfoCarousel items={regularIntrans} hidePastParticiple />
 
 ### Verbs with irregular stems
 
@@ -130,16 +131,13 @@ export const irregularPresentFormVerbs = verbs.filter((verb) => (
     verb.entry.psp && !verb.entry.ssp && !verb.entry.prp && !verb.entry.pprtp && !verb.entry.noOo && !verb.entry.sepO
 ));
 
-<InfoCarousel items={irregularPresentFormVerbs} />
+<InfoCarousel items={irregularPresentFormVerbs} highlighted={["imperfective stem", "perfective stem"]} hidePastParticiple />
 
 ### Verbs with no <InlinePs opts={opts} ps={{ p: "و", f: "óo" }} /> prefix
 
-Some verbs don't take an <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix because they have little particles in the front like <InlinePs opts={opts} ps={{ p: "کې", f: "ke" }} />, <InlinePs opts={opts} ps={{ p: "پرې", f: "pre" }} />, <InlinePs opts={opts} ps={{ p: "بو", f: "bo" }} />, or <InlinePs opts={opts} ps={{ p: "څم", f: "tsam" }} />. These little particles split away from the verb in the perfective aspect just like the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> would in other verbs.
+Some verbs don't take an <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix. Instead, on the perfective side they just shift the accent up to the first syllable. The first syllable also splits off the front, just like the <InlinePs opts={opts} ps={{ p: "و", f: "óo" }} /> would.
 
-Even though we can't add a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix, we still have to shift the accent to the front of the root/stem in the perfective aspect.
-
-  1. <s>Add a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix</s>
-  2. shift the accent up to the front
+It's super important to remember that even though we can't add a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix, we still have to shift the accent to the front of the root/stem in the perfective aspect.
 
 Notice how the only difference between the imperfective and perfective aspects is where the emphasis falls. The accent totally changes the meaning of the verb form! 🤯
 
@@ -154,7 +152,7 @@ export const separableVerbs = verbs.filter((verb) => (
     !verb.entry.ssp
 ));
 
-<InfoCarousel items={separableVerbs} />
+<InfoCarousel items={separableVerbs} hidePastParticiple />
 
 ### Totally Irregular Verbs
 
@@ -169,7 +167,15 @@ export const irregularVerbs = verbs.filter((verb) => {
     return score > 1 && !verb.entry.l;
 });
 
-<InfoCarousel items={irregularVerbs} />
+<InfoCarousel items={irregularVerbs} hidePastParticiple highlighted={["imperfective stem", "perfective stem", "perfective root"]} />
+
+## The past participle
+
+There's one more element we need to add to the verb tree: **the past participle**. The past particple is used for making perfect verb forms, adjectival verbs etc. We put this at the bottom in the middle because **it doesn't fit into either aspect** and is seperate from the perfective/imperfective divide.
+
+In almost all verbs, the past participle is just the imperfective root plus a <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} /> tail that inflects. The <InlinePs opts={opts} ps={{ p: "کول", f: "kawul" }} /> and <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedul" }} /> verbs are the only ones that have irregular past participles.
+
+<InfoCarousel items={verbs} />
 
 ## About the split in the perfective side
 
