@@ -96,6 +96,10 @@ const contentTree = [
                 slug: "verb-aspect",
             },
             {
+                import: rootsAndStems,
+                slug: "roots-and-stems",
+            },
+            {
                 import: presentVerbs,
                 slug: "present-verbs",
             },
@@ -114,10 +118,6 @@ const contentTree = [
             {
                 import: verbEndings,
                 slug: "verb-endings",
-            },
-            {
-                import: rootsAndStems,
-                slug: "roots-and-stems",
             },
             {
                 import: sentenceStructure,

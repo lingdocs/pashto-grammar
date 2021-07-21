@@ -1,5 +1,5 @@
 ---
-title: Roots and Stems
+title: 🌳 Roots and Stems
 ---
 
 <!-- 
@@ -27,10 +27,13 @@ import shuffle from "../../lib/shuffle-array";
 import Carousel from "../../components/Carousel";
 import verbs from "../../words/verbs";
 import Link from "../../components/Link";
+import verbTreeBase from "./verb-tree-base.svg";
+import verbTreePastPresent from "./verb-tree-past-present.svg";
+import verbTreeImperfectivePerfective from "./verb-tree-imperfective-perfective.svg";
 
 export const opts = defaultTextOptions;
 
-export function InfoCarousel({ items }) {
+export function InfoCarousel({ items, highlighted }) {
     return (
         <Carousel items={shuffle(items)} render={(item) => {
             let inf = getVerbInfo(item.entry);
@@ -47,41 +50,56 @@ export function InfoCarousel({ items }) {
                 body: <RootsAndStems
                     info={info}
                     textOptions={opts}
+                    highlighted={highlighted}
                 />,
             };
         }}/>
     );
 } 
 
-All verbs have **a set of two roots and two stems**.
+All verbs have **a set of two roots and two stems**, and these roots and stems are the building blocks that we use to make all the different verb forms.
 
-These are divided between two aspects:
+## Introducing the Verb Tree
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col"><i class="fas fa-camera" /> Imperfective</th>
-      <th scope="col"><i class="fas fa-video" /> Perfective</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>An ongoing or repeated event - think of a video</td>
-      <td>A single, whole event - think of a photo</td>
-    </tr>
-  </tbody>
-</table>
+<div style={{ maxWidth: "350px", margin: "0 auto" }}>
+    <img src={verbTreeBase} alt="" className="img-fluid" />
+</div>
 
-## Regular Verbs
+You can think of the roots and stems as a tree that exists for every verb form. There are two stems (like branches) on the top, and two roots on the bottom. The root on the bottom left is the *dictionary form* or the *infinitive* of the verb, which is how you'd find it in a dictionary.
+
+These four items are the basic building blocks for making different verb forms. Whenever we make a verb form, we just have to take the right root or stem, and attach some endings to it. This means **Pashto verbs are extremely simple, regular, and predictable**, really! 👍
+
+The tree is divided from top to bottom. On the top are the *stems*, which are used for present and future tense verb forms, and on the bottom are the *roots* which are used for past tense verb forms.
+
+<div className="mb-4" style={{ maxWidth: "500px", margin: "0 auto" }}>
+    <img src={verbTreePastPresent} alt="" className="img-fluid" />
+</div>
+
+The tree is also divided from left to right. On the left we have the [*imperfective* aspect](/verbs/verb-aspect/#i-classnamefas-fa-video--imperfective-aspect), and on the right we have the [*perfective* aspect](/verbs/verb-aspect/#i-classnamefas-fa-camera--perfective-aspect). Remember, the [aspect](/verbs/verb-aspect/) is like the perspective we take in looking at the action. 
+
+<div className="mb-4" style={{ maxWidth: "400px", margin: "0 auto" }}>
+    <img src={verbTreeImperfectivePerfective} alt="" className="img-fluid" />
+</div>
+
+On the <i className="fas fa-camera" /> **perfective** side of the tree:
+
+ - The accent/emphasis **always** goes on the first syllable
+ - The <InlinePs opts={opts} ps={{ p: "و", f: "óo" }} /> prefix goes on this side (for the verbs that can take it)
+ - The first syllable can split off from the rest of the verb
+
+## Making the Verb Tree
+
+Many verbs follow a very clear pattern of how the roots and stems grow out from the dictionary form. But there are some verbs that have irregular roots and stems. If you're new to verbs, don't worry about reading or understanding everything all the way to the bottom.
+### Regular Verbs
 
 With regular verbs, knowing all the roots and stems is simple:
 
-- The stems are just the short version of the roots
-- The perfective root/stem is made by:
-  1. Adding a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix 
-  2. shifting the accent up to the front
+- The perfective root is made by:
+    - **adding the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix** and
+    - **shifting the accent to the front**.
+- The stems are just the **shorter version** of the roots.
 
-Flip through all these regular verbs and notice the pattern of how they're all built. Notice how the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> behaves differently when it's added on to a word starting with a vowel. 
+Flip through all these regular verbs and notice the pattern of how they're all built. Notice how the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> behaves a little differently when it's added on to a word starting with a vowel. 
 
 export const regularVerbs = verbs.filter((verb) => (
     !verb.entry.psp && !verb.entry.ssp && !verb.entry.prp && !verb.entry.pprtp && !verb.entry.noOo && !verb.entry.sepOo
@@ -91,12 +109,9 @@ export const regularTrans = regularVerbs.filter((verb) => verb.entry.c && verb.e
 
 <InfoCarousel items={regularTrans} />
 
-**Two important things to remember about the <i class="fas fa-camera" /> perfective side:**
+You'll notice that on the bottom, in the middle of the trees below you'll also see a **past participle**. This is a bit different because it doesn't fit into the imperfective/perfective aspect divide. Except for a tiny few extremely irregular verbs below, it's always based on the *imperfective root*. 
 
-1. The accent is always on the first syllable
-2. There is always a split after the first syllable 
-
-## Regular Intransitive Verbs
+### Regular Intransitive Verbs
 
 Regular intransitive verb work the same except that:
 
@@ -107,7 +122,7 @@ export const regularIntrans = regularVerbs.filter((verb) => verb.entry.c && verb
 
 <InfoCarousel items={regularIntrans} />
 
-## Verbs with irregular stems
+### Verbs with irregular stems
 
 There are many verbs where the top half (the stems/present form) is totally different from the bottom half (the roots/past form).
 
@@ -117,7 +132,7 @@ export const irregularPresentFormVerbs = verbs.filter((verb) => (
 
 <InfoCarousel items={irregularPresentFormVerbs} />
 
-## Verbs with no <InlinePs opts={opts} ps={{ p: "و", f: "óo" }} /> prefix
+### Verbs with no <InlinePs opts={opts} ps={{ p: "و", f: "óo" }} /> prefix
 
 Some verbs don't take an <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix because they have little particles in the front like <InlinePs opts={opts} ps={{ p: "کې", f: "ke" }} />, <InlinePs opts={opts} ps={{ p: "پرې", f: "pre" }} />, <InlinePs opts={opts} ps={{ p: "بو", f: "bo" }} />, or <InlinePs opts={opts} ps={{ p: "څم", f: "tsam" }} />. These little particles split away from the verb in the perfective aspect just like the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> would in other verbs.
 
@@ -141,7 +156,7 @@ export const separableVerbs = verbs.filter((verb) => (
 
 <InfoCarousel items={separableVerbs} />
 
-## Totally Irregular Verbs
+### Totally Irregular Verbs
 
 There are a few more verbs which are even more irregular, and these just have to be memorized. Here are some of them.
 
@@ -165,7 +180,7 @@ In the perfective roots and stems there is always a spot where the verb can be b
 - <InlinePs opts={opts} ps={{ p: "هم", f: "hum" }} />
 - <Link to="/pronouns/pronouns-mini/">mini-pronouns</Link>
 
-### About inserting <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> 
+## About inserting <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> 
 
 If the verb takes a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix and you want to use a <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> to make it negative, you always have to insert the <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> into the split in the perfective form.
 
@@ -189,6 +204,6 @@ But if the verb is a one of the <Link to="/verbs/roots-and-stems/#seperable-verb
     { p: "زه ورسره نه کېناستم", f: "zu wăr-sara nú kenaastum", e: "I didn't sit with him" },
 ]}</Examples>
 
-#### <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> always takes over the accent
+### <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> always takes over the accent
 
 Whenever a <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> is inserted in a split or in front of a verb, it takes over the accent and receives the emphasis for a verb. It's like a mean, negative bully.
