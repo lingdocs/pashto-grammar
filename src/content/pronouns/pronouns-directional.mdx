@@ -1,0 +1,187 @@
+---
+title: Directional Pronouns
+---
+
+<!-- 
+
+Copyright (c) 2021 lingdocs.com 
+
+The content of the chapters/book is licensed by a
+Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+    
+-->
+
+import {
+    defaultTextOptions as opts,
+    grammarUnits,
+    VerbTable,
+    Examples,
+    InlinePs,
+} from "@lingdocs/pashto-inflector";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+
+Pashto has 3 **directional pronouns** that indicate the direction that a word is focussed towards.
+
+<table className="table">
+    <thead>
+        <tr>
+            <th scope="col">Person</th>
+            <th scope="col">Directional Pronoun</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1st</td>
+            <td>
+                <Examples opts={opts}>{[
+                    { p: "را", f: "raa", e: "me, we" },
+                ]}</Examples>
+            </td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            <td>
+                <Examples opts={opts}>{[
+                    { p: "در", f: "dăr", e: "you, you (pl.)" },
+                ]}</Examples>
+            </td>
+        </tr>
+        <tr>
+            <td>3rd</td>
+            <td>
+                <Examples opts={opts}>{[
+                    { p: "ور", f: "wăr", e: "him, her, it, them" },
+                ]}</Examples>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+## With the Verb "to give"
+
+There are different verbs used for "to give" depending on which direction the giving is happening.
+
+<table className="table">
+    <thead>
+        <tr>
+            <th scope="col">Person Receiving</th>
+            <th scope="col">Verb</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1st</td>
+            <td>
+                <InlinePs opts={opts} ps={{ p: "راکول", f: "raakawúl", e: "to give to me/us" }} />
+            </td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            <td>
+                <InlinePs opts={opts} ps={{ p: "درکول", f: "dărkawúl", e: "to give to you/you pl." }} />
+            </td>
+        </tr>
+        <tr>
+            <td>3rd</td>
+            <td>
+                <InlinePs opts={opts} ps={{ p: "ورکول", f: "wărkawul", e: "to give to him/her/it/them" }} />
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+The choice of <InlinePs opts={opts} ps={{ p: "را، در، ور", f: "raa, dăr, wăr" }} /> depends on **who is on the receiving end of the giving**.
+
+<Examples opts={opts}>{psmd([
+    { p: "ما ته کتاب **راکړه**", f: "maa ta kitáab **ráakRa**", e: "**Give** me the book." },
+    { p: "مونږ ته پیسې **راکوي**", f: "moonG ta peysé **raakawee**", e: "He **gives** us money." },
+    { p: "چای **درکړم**؟", f: "chaay **dărkRum**?", e: "Should I **give** you tea?" },
+    { p: "تاسو ته پیسې **درکوي**.", f: "taaso ta peysé **dărkawee**.", e: "He **gives** you money." },
+    { p: "دا کتاب ده ته **ورکړه**", f: "daa kitaab du ta **wărkRa**", e: "**Give** this book to him." },
+    { p: "مونږ هغوي ته پیسې **ورکوو**", f: "moonG haghwee ta peyse **wărkawoo**.", e: "We **give** them money." },
+])}</Examples>
+
+## With "to go"
+
+It's very common to add the directional pronouns in front of the verbs "to go" to indication which direction someone is going.
+
+<table className="table">
+    <thead>
+        <tr>
+            <th scope="col">Direction</th>
+            <th scope="col">Verb</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td>
+                <InlinePs opts={opts} ps={{ p: "تلل", f: "tlúl", e: "to go" }} />
+            </td>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td>
+                <InlinePs opts={opts} ps={{ p: "راتلل", f: "raatlúl", e: "to come - here, to me/us" }} />
+            </td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            <td>
+                <InlinePs opts={opts} ps={{ p: "درتلل", f: "dărtlúl", e: "to go - to you)" }} />
+            </td>
+        </tr>
+        <tr>
+            <td>3rd</td>
+            <td>
+                <InlinePs opts={opts} ps={{ p: "ورتلل", f: "wărtlúl", e: "to go - there, to him/her/them" }} />
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<Examples opts={opts}>{psmd([
+    { p: "هغه اوس **راځي**", f: "haghá oos **raadzée**", e: "He's **coming** now" },
+    { p: "دلته **راشه**!", f: "dălta **ráasha**!", e: "**Come** here!" },
+    { p: "هلته **ورشه**!", f: "hălta **wărsha**!", e: "**Go** there!" },
+    { p: "زه **درځم**.", f: "zu **dărdzúm**", e: "I'm **coming** to you." },
+])}</Examples>
+
+These directional verbs are really common when talking about someone knowing a language, because in Pashto we can say that a language "goes to" someone if they know it.
+
+<Examples opts={opts}>{psmd([
+    { p: "پښتو **راځي**.", f: "puxto **raadzée**.", e: "I know Pashto. (lit. Pashto comes to me.)" },
+    { p: "پښتو **درځي**؟", f: "puxto **dărdzée**?", e: "Do you know Pashto? (lit. Does Pashto come to you?)" },
+    { p: "پښتو **ورځي**.", f: "puxto **wărdzée**.", e: "She knows Pashto. (lit. Pashto comes to her.)" },
+])}</Examples>
+
+## With other verbs
+
+👷‍♂️ Coming Soon ✍
+
+## In Some Sandwiches
+
+These directional pronouns can be used instead of <Link to="/pronouns/pronouns-basic/">regular pronouns</Link> in the following sandwiches:
+
+- *"to"* <InlinePs opts={opts} ps={{ p: "... ته", f: "... ta" }} /> etc.
+- *"from"* <InlinePs opts={opts} ps={{ p: "له ... نه", f: "la ... na" }} />, <InlinePs opts={opts} ps={{ p: "له ... څخه", f: "la ... tsukha" }} /> etc.
+- *"with"* <InlinePs opts={opts} ps={{ p: "له ... سره", f: "la ... sara" }} />, etc.
+
+When you put these directional pronouns in these sandwiches, the first part (<InlinePs opts={opts} ps={{ p: "له", f: "la" }} />, <InlinePs opts={opts} ps={{ p: "د", f: "du" }} />) is always left out.
+
+<Examples opts={opts}>{psmd([
+    { p: "ولې **را**ته ګورې؟", f: "wăle **raa**-ta góre?", e: "Why are you looking at **me/us**?" },
+    { p: "**را**ته ووایه!", f: "**raa**-ta óowaaya!", e: "Tell **me/us**!" },
+    { p: "**در**سره چای شته؟", f: "**dăr**-sara chaay shta?", e: "Is there tea with **you**? Do you have tea?" },
+    { p: "اوبه **ور**څخه راځي.", f: "oobu **wăr**-tsukha wărdzee.", e: "Water comes from **it**." },
+])}</Examples>
+
+## As Prefixes on Adjectives
+
+👷‍♂️ Coming Soon ✍
+
+
+

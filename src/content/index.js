@@ -30,6 +30,7 @@ import * as sentenceStructure from "!babel-loader!mdx-loader!./verbs/sentence-st
 
 import * as pronounsBasic from "!babel-loader!mdx-loader!./pronouns/pronouns-basic.mdx";
 import * as pronounsMini from "!babel-loader!mdx-loader!./pronouns/pronouns-mini.mdx";
+import * as directionalPronouns from "!babel-loader!mdx-loader!./pronouns/pronouns-directional.mdx"; 
 
 import * as inflectionIntro from "!babel-loader!mdx-loader!./inflection/inflection-intro.mdx";
 import * as inflectionPatterns from "!babel-loader!mdx-loader!./inflection/inflection-patterns.mdx";
@@ -136,6 +137,10 @@ const contentTree = [
             {
                 import: pronounsMini,
                 slug: "pronouns-mini",
+            },
+            {
+                import: directionalPronouns,
+                slug: "pronouns-directional",
             },
         ],
     },
