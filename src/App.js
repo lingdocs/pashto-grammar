@@ -34,7 +34,13 @@ if (prod) {
 function App(props) {
   const [navOpen, setNavOpen] = useState(false);
   useEffect(() => {
+    ReactGA.pageview(window.location.pathname);
+  }, []);
+  useEffect(() => {
     window.scroll(0, 0);
+    if (prod) {
+      ReactGA.pageview(window.location.pathname);
+    }
   }, [props.location.pathname]);
   return (
     <>
