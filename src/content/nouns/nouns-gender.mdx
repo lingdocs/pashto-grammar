@@ -7,8 +7,10 @@ import {
     InlinePs,
     Examples,
 } from "@lingdocs/pashto-inflector";
-export const femColor = "#FFECEF"
-export const mascColor = "#C1D5F4";
+import genderColors from "../../lib/gender-colors";
+import GenderGame from "../../components/GenderGame";
+export const femColor = genderColors.f;
+export const mascColor = genderColors.m;
 
 export const Masc = () => (
     <span style={{ backgroundColor: mascColor }}>masculine</span>
@@ -24,8 +26,8 @@ All nouns in Pashto are either <Masc /> or <Fem />. Thankfully, you can pretty m
 
 Basically:
 
- - if a noun ends in a *consonant* (including ی - y at the end), it's <Masc />
- - if a noun ends in a *vowel*, it's <Fem />
+ - if a noun ends in a *consonant* (including ی - y at the end) or a shwa sound <InlinePs opts={opts} ps={{ p: "ـه", f: "u" }} /> it's <Masc />
+ - if a noun ends in a different *vowel*, it's <Fem />
 
 Well... almost. 😉 There are a few exceptions and it's a little more complicated than that. 
 
@@ -124,6 +126,10 @@ export function GenderTable({ rows }) {
 Words ending in <InlinePs opts={opts} ps={{p:"و", f:"oo"}} /> can be either <Masc /> or <Fem />.
 
 Words ending in <InlinePs opts={opts} ps={{ p: "ه", f: "u" }} /> can also be <Fem /> plural, as in <InlinePs opts={opts} ps={{ p: "اوبه", f: "oobu", e: "water" }} />
+
+**Here's a little game to practice identifying the genders of words:**
+
+<GenderGame />
 
 ## Exceptions
 

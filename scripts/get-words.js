@@ -31,9 +31,10 @@ export default verbs;`;
 
   // MAKE NOUN-ADJ FILE
   const allNounsAdjs = getNounsAdjsFromTsS(entries);
-  const content1 = `const nounsAdjs = ${JSON.stringify(allNounsAdjs)};
+  const content1 = `import { Types as T } from "@lingdocs/pashto-inflector";
+const nounsAdjs: { entry: T.DictionaryEntry, def: string, category: string }[] = ${JSON.stringify(allNounsAdjs)};
 export default nounsAdjs;`;
-  fs.writeFileSync(path.join(verbsPath, "nouns-adjs.js"), content1);
+  fs.writeFileSync(path.join(verbsPath, "nouns-adjs.ts"), content1);
 });
 
 function getVerbsFromTsS(entries) {
@@ -66,7 +67,7 @@ function getNounsAdjsFromTsS(entries) {
     return allNounAdjTsS.map(item => {
         const entry = entries.find(x => item.ts === x.ts);
         if (!entry) {
-            console.log("couldn't find ts", ts);
+            console.log("couldn't find ts", item);
             return undefined;
         }
         return { entry, def: item.e, category: item.category };
