@@ -11,7 +11,6 @@ import TableOfContents from "./TableOfContents";
 import Footer from "./Footer";
 
 const Chapter = ({ children: chapter }) => {
-  console.log(chapter)
   const Content = chapter.content;
   function handleShare() {
     if (!navigator.share) {

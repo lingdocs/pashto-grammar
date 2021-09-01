@@ -9,8 +9,14 @@ import {
 } from "@lingdocs/pashto-inflector";
 import genderColors from "../../lib/gender-colors";
 import GenderGame from "../../components/GenderGame";
+import { firstVariation } from "../../lib/text-tools";
+import GenderTable from "../../components/GenderTable";
+import Link from "../../components/Link";
+import words from "../../words/nouns-adjs";
 export const femColor = genderColors.f;
 export const mascColor = genderColors.m;
+
+export const femEndingWConsonant = words.filter((w) => w.category === "consonant-fem");
 
 export const Masc = () => (
     <span style={{ backgroundColor: mascColor }}>masculine</span>
@@ -24,41 +30,16 @@ All nouns in Pashto are either <Masc /> or <Fem />. Thankfully, you can pretty m
 
 ## Gender by Ending
 
-Basically:
+**<span style={{ backgroundColor: mascColor }}>Masculine</span> words end in:**
 
- - if a noun ends in a *consonant* (including ی - y at the end) or a shwa sound <InlinePs opts={opts} ps={{ p: "ـه", f: "u" }} /> it's <Masc />
- - if a noun ends in a different *vowel*, it's <Fem />
+ - a consonant
+ - <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} />
+ - <InlinePs opts={opts} ps={{ p: "ـه", f: "u" }} />
+ - <InlinePs opts={opts} ps={{ p: "وی", f: "ooy" }} /> or <InlinePs opts={opts} ps={{ p: "ای", f: "aay" }} />
 
-Well... almost. 😉 There are a few exceptions and it's a little more complicated than that. 
+**<span style={{ backgroundColor: femColor }}>Feminine</span> words end in:**
 
-export function GenderTable({ rows }) {
-    return <table className="table" style={{ tableLayout: "fixed" }}>
-        <thead>
-            <tr>
-                <th scope="col">Masculine</th>
-                <th scope="col">Feminine</th>
-            </tr>
-        </thead>
-        <tbody>
-            {rows.map((row, i) => (
-                <tr key={`gender-row${i}`}>
-                    {["masc", "fem"].map((gender) => {
-                        const item = row[gender];
-                        return <td key={`row-${i}-${gender}`} style={{ background: gender === "masc" ? mascColor : femColor }}>
-                            {item.ending && <div>
-                                {typeof item.ending === "string" ? item.ending
-                                : <InlinePs opts={opts}>{item.ending}</InlinePs>}
-                            </div>}
-                            <div>
-                                {item.ending ? "eg. " : ""}<InlinePs opts={opts}>{item.ex}</InlinePs>
-                            </div>
-                        </td>
-                    })}
-                </tr>
-            ))}
-        </tbody>
-    </table>;
-} 
+ - all the other vowels (<InlinePs opts={opts} ps={{ p: "ا", f: "aa" }} />, <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} />, <InlinePs opts={opts} ps={{ p: "ي", f: "ee" }} />, <InlinePs opts={opts} ps={{ p: "ۍ", f: "uy" }} />, etc.)
 
 <GenderTable rows={[
     {
@@ -123,27 +104,36 @@ export function GenderTable({ rows }) {
     },
 ]} />
 
-Words ending in <InlinePs opts={opts} ps={{p:"و", f:"oo"}} /> can be either <Masc /> or <Fem />.
+**A couple of other things to watch out for:**
 
-Words ending in <InlinePs opts={opts} ps={{ p: "ه", f: "u" }} /> can also be <Fem /> plural, as in <InlinePs opts={opts} ps={{ p: "اوبه", f: "oobu", e: "water" }} />
+- Words ending in <InlinePs opts={opts} ps={{p:"و", f:"oo"}} /> can be either <Masc /> or <Fem />.
+- Words ending in <InlinePs opts={opts} ps={{ p: "ـه", f: "u" }} /> can also be <Fem /> plural, as in <InlinePs opts={opts} ps={{ p: "اوبه", f: "oobu", e: "water" }} />
 
-**Here's a little game to practice identifying the genders of words:**
+**🕹 Here's a little game to practice identifying the genders of words:**
 
-<GenderGame />
+<GenderGame level={1} />
 
 ## Exceptions
 
-### Feminine words that lost their <InlinePs opts={opts} ps={{ p: "ه", f: "a" }} />
+### Feminine words that lost their <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} />
 
-Some <Fem /> words have had their <InlinePs opts={opts} ps={{p:"ه", f:"a"}} />'s on the end chopped off. This makes them look like masculine nouns, but actually the do behave (and get inflected) just like other feminine nouns.
+Some <Fem /> words have had their <InlinePs opts={opts} ps={{p:"ـه", f:"a"}} />'s on the end chopped off. This makes them look like masculine nouns, but actually they do behave (and get inflected) just like other feminine nouns. For example, the word <InlinePs opts={opts} ps={{p:"ورځ", f:"wradz", e:"day"}} /> ends in a consanant, but it is <Fem />, and it <Link to="/inflection/inflection-intro">inflects</Link> just like any other feminine word ending with an <InlinePs opts={opts} ps={{p:"ـه", f:"a"}} />, ie. <InlinePs opts={opts} ps={{p:"ورځې", f:"wradze", e: "days - plural" }} />.
 
-For example, the word <InlinePs opts={opts} ps={{p:"لار", f:"laar", e:"road/way"}} /> ends in a consanant, but it's feminine. 🤔 Why? It's just that the <InlinePs opts={opts} ps={{p:"ه", f:"a"}} /> on the end is usually left out. For the singular/plain form the word, you will hear people say either <InlinePs opts={opts} ps={{p:"لار", f:"laar" }} /> or <InlinePs opts={opts} ps={{p:"لاره", f:"laara" }} />, sometimes with or without the <InlinePs opts={opts} ps={{p:"ه", f:"a"}} /> on the end. But regardless, the word is always considered <Fem />, and it inflects just like any other feminine word ending with an <InlinePs opts={opts} ps={{p:"ه", f:"a"}} />. (eg. <InlinePs opts={opts} ps={{p:"لارې", f:"laare", e: "roads" }} />)
+Here are some other <Fem /> words that have lost their <InlinePs opts={opts} ps={{p:"ـه", f:"a"}} /> ending:
 
-Here are a few other <Fem /> words that have lost their <InlinePs opts={opts} ps={{p:"ه", f:"a"}} /> ending:
+export function IrregularFem() {
+    return <ul>
+        {femEndingWConsonant.map(({ entry }) => (
+            <li key={entry.ts}>
+                <InlinePs opts={opts} ps={{ p: entry.p, f: firstVariation(entry.f), e: firstVariation(entry.e) }} />
+            </li>
+        ))}
+    </ul>;
+}
 
-- <InlinePs opts={opts} ps={{p:"څنګل", f:"tsangúl", e: "elbow" }} />
-- <InlinePs opts={opts} ps={{p:"غېږ", f:"gheG", e:"bosom"}} />
-- <InlinePs opts={opts} ps={{p:"میاشت", f:"miyaasht", e:"month"}} /> 
+<IrregularFem />
+
+Note that some words can be said with or without an <InlinePs opts={opts} ps={{p:"ـه", f:"a"}} /> on the end. For instance for the word "road/way" you will hear people saying both <InlinePs opts={opts} ps={{ p: "لار", f: "laar" }} /> and <InlinePs opts={opts} ps={{ p: "لاره", f: "laara" }} />.
 
 ### Words for people
 
@@ -174,49 +164,8 @@ Some words are used to describe people who obviously have a gender and they *tot
             ex: { p: "خور", f: "khor", e: "sister" },
         },
     },
-    {
-        masc: {
-            ex: {p: "بوډا", f: "booDáa", e: "old man" },
-        },
-        fem: {
-            ex: {p: "بوډۍ", f: "booDúy", e: "old woman" },
-        },
-    }
 ]} />
 
-But many other words for people will change and follow the rules for their masculine and feminine forms...
+**🕹 Let's try the game again, this time with the exceptions included:**
 
-<GenderTable rows={[
-    {
-        masc: {
-            ex: { p: "ډاکټر", f: "DakTár", e: "male doctor 👨‍⚕️" },
-        },
-        fem: {
-            ex: { p: "ډاکټره", f: "DakTára", e: "female doctor 👩‍⚕️" },
-        },
-    },
-    {
-        masc: {
-            ex: {p:"نرس", f:"nurs", e:"male nurse"},
-        },  
-        fem: {
-            ex: {p: "نرسه", f:"nursa", e: "female nurse" },
-        },
-    },
-    {
-        masc: {
-            ex: {p: "ښووونکی", f:"xowóonkey", e: "male teacher 👨‍🏫" },
-        },
-        fem: {
-            ex: { p: "ښووونکې", f: "xowóonke", e: "female teacher 👩‍🏫" },
-        },
-    },
-    {
-        masc: {
-            ex: {p: "لمسی", f: "lmaséy", e: "grandson 👦"},
-        },
-        fem: {
-            ex: {p: "لمسۍ", f: "lmasúy", e: "granddaughter 👧"},
-        },
-    },
-]} />
+<GenderGame level={2} />

@@ -14,6 +14,7 @@ import * as subjunctiveHabitualEquative from "!babel-loader!mdx-loader!./equativ
 import * as otherEquatives from "!babel-loader!mdx-loader!./equatives/other-equatives.mdx";
 
 import * as nounsGender from "!babel-loader!mdx-loader!./nouns/nouns-gender.mdx";
+import * as nounsUnisex from "!babel-loader!mdx-loader!./nouns/nouns-unisex.mdx";
 import * as nounsPlural from "!babel-loader!mdx-loader!./nouns/nouns-plural.mdx";
 import * as arabicPlurals from "!babel-loader!mdx-loader!./nouns/arabic-plurals.mdx";
 import * as bundledPlurals from "!babel-loader!mdx-loader!./nouns/bundled-plurals.mdx";
@@ -69,6 +70,10 @@ const contentTree = [
             {
                 import: nounsGender,
                 slug: "nouns-gender",
+            },
+            {
+                import: nounsUnisex,
+                slug: "nouns-unisex",
             },
             {
                 import: nounsPlural,

@@ -16,14 +16,14 @@ const pConsonants = ["ب", "پ", "ت", "ټ", "ث", "ج", "چ", "ح", "خ", "څ",
 fetch(process.env.LINGDOCS_DICTIONARY_URL).then(res => res.arrayBuffer()).then(data => {
   const { entries } = readDictionary(data);
   const filtered = entries.filter(e => (
-    e.c?.startsWith("n. f.") && pConsonants.includes(e.p.slice(-1))
+    e.c === "n. m." && ["ا", "ه", "ي"].includes(e.p.slice(-1)) && (!["u", "h"].includes(e.g.slice(-1)))
   ));
   const content = `module.exports = [
 ${filtered.reduce((text, entry) => (
     text + `{ ts: ${entry.ts}, e: \`${entry.e.replace(/"/g, '\\"')}\` }, // ${entry.p} - ${entry.f}
 `), "")}
 ];`;
-  fs.writeFileSync(path.join(verbsPath, "my-words.js"), content);
+  fs.writeFileSync(path.join(verbsPath, "query-results.js"), content);
 });
 
 // function getFromTsS(entries) {

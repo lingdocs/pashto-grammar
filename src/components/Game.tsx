@@ -32,6 +32,11 @@ function Game<T>({ questions, Display, timeLimit, Instructions }: GameInput<T>) 
         // post results
         setFinish("pass");
         rewardRef.current?.rewardMe();
+        setCurrent(undefined);
+    }
+    function handleQuit() {
+        setFinish(null);
+        setCurrent(undefined);
     }
     function handleRestart() {
         const newQuestionBox = questions();
@@ -64,8 +69,8 @@ function Game<T>({ questions, Display, timeLimit, Instructions }: GameInput<T>) 
         <div className="progress" style={{ height: "5px" }}>
             <div className={`progress-bar bg-${progressColor}`} role="progressbar" style={{ width: getProgressWidth() }} />
         </div>
-        <div className="d-flex flex-row-reverse mt-2">
-            {current && <CountdownCircleTimer
+        {current && <div className="d-flex flex-row-reverse mt-2">
+            <CountdownCircleTimer
                 key={timerKey}
                 isPlaying={!!current && !finish}
                 size={30}
@@ -74,20 +79,23 @@ function Game<T>({ questions, Display, timeLimit, Instructions }: GameInput<T>) 
                 duration={timeLimit}
                 colors="#555555"
                 onComplete={handleTimeOut}
-            />}
-        </div>
+            />
+            {!finish && <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>}
+        </div>}
         <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 125 }} type="confetti">
             <div className="py-3">
                 {finish === null &&
                     (current 
-                        ? <Display question={current.question} callback={handleCallback} />
+                        ? <div>
+                            <Display question={current.question} callback={handleCallback} />
+                        </div>
                         : <div>
-                            <div>
+                            <div className="pt-3">
                                 {/* TODO: ADD IN TEXT DISPLAY OPTIONS HERE TOO - WHEN WE START USING THEM*/}
                                 <Instructions />
                             </div>
                             <div>
-                                <button className="btn btn-primary mt-4" onClick={handleAdvance}>Start</button>
+                                <button className="btn btn-primary mt-4" onClick={handleRestart}>Start</button>
                             </div>
                         </div>)
                 }
@@ -115,7 +123,7 @@ function failMessage(progress: Progress | undefined, finish: "time out" | "fail"
         : pDone < 55
         ? { message: "Fail", face: "😕" }
         : pDone < 78
-        ? { message: "You've almost got it!", face: "😩" }
+        ? { message: "You almost got it!", face: "😩" }
         : { message: "Nooo! So close!", face: "😭" };
     return finish === "fail"
         ? `${message} ${face}`

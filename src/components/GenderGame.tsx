@@ -9,9 +9,11 @@ import {
     Types as T,
     Examples,
     defaultTextOptions as opts,
-    removeFVariants,
 } from "@lingdocs/pashto-inflector";
 import words from "../words/nouns-adjs";
+import {
+    firstVariation,
+} from "../lib/text-tools";
 
 // const masc = words.filter((w) => w.entry.c === "n. m.");
 // const fem = words.filter((w) => w.entry.c === "n. f.");
@@ -32,47 +34,70 @@ const types: Record<string, CategorySet> = {
     },
     // TODO add ې fem words and balance gender
 };
+
+const exceptions: Record<string, CategorySet> = {
+    masc: {
+        exceptionPeopleMasc: words.filter((w) => w.category === "exception-people-masc"),
+    },
+    fem: {
+        consonantFem: words.filter((w) => w.category === "consonant-fem"),
+        exceptionPeopleFem: words.filter((w) => w.category === "exception-people-fem"),
+    },
+}
 // consonantFem: words.filter((w) => w.category === "consonant-fem"),
 
 const amount = 40; 
 
-function* questions () {
-    const wordPool = {...types};
-    for (let i = 0; i < amount; i++) {
-        const gender = getRandomFromList(Object.keys(wordPool));
-        const typeToUse = getRandomFromList(Object.keys(wordPool[gender]));
-        const question = getRandomFromList(wordPool[gender][typeToUse]).entry;
-        wordPool[gender][typeToUse] = wordPool[gender][typeToUse].filter(({ entry }) => entry.ts !== question.ts);
-        yield {
-            progress: makeProgress(i, amount),
-            question,
-        };
+export default function({level}: { level: 1 | 2 }) {
+    function* questions () {
+        const wordPool = {...types};
+        for (let i = 0; i < amount; i++) {
+            const base = level === 1
+                ? wordPool
+                : getRandomFromList([wordPool, exceptions]);
+            const gender = getRandomFromList(Object.keys(base));
+            const typeToUse = getRandomFromList(Object.keys(base[gender]));
+            const question = getRandomFromList(base[gender][typeToUse]).entry;
+            base[gender][typeToUse] = base[gender][typeToUse].filter(({ entry }) => entry.ts !== question.ts);
+            yield {
+                progress: makeProgress(i, amount),
+                question,
+            };
+        }
     }
-}
-
-function Display({ question, callback }: QuestionDisplayProps<T.DictionaryEntry>) {
-    function check(gender: "m" | "f") {
-        callback(!!question.c?.includes(gender));
+    
+    function Display({ question, callback }: QuestionDisplayProps<T.DictionaryEntry>) {
+        function check(gender: "m" | "f") {
+            callback(!!question.c?.includes(gender));
+        }
+        return <div>
+            <div className="mb-4" style={{ fontSize: "larger" }}>
+                <Examples opts={opts}>{[
+                    {
+                        p: firstVariation(question.p),
+                        f: firstVariation(question.f),
+                        e: level === 2 ? firstVariation(question.e) : undefined,
+                    }
+                ]}</Examples>
+            </div>
+            <div className="mt-4">
+                <button style={{ background: genderColors.f, color: "black" }} className="btn btn-lg mr-3" onClick={() => check("f")}>Feminine</button>
+                <button style={{ background: genderColors.m, color: "black" }} className="btn btn-lg ml-3" onClick={() => check("m")}>Masculine</button>
+            </div>
+        </div>
     }
-    return <div>
-        <div className="mb-4">
-            <Examples opts={opts}>{[
-                removeFVariants({ p: question.p, f: question.f })
-            ]}</Examples>
+    
+    function Instructions() {
+        return <div>
+            <h4>Choose the right gender for each word</h4>
+            {level === 2 && <div>⚠ Exceptions included...</div>}
         </div>
-        <div className="mt-4">
-            <button style={{ background: genderColors.f, color: "black" }} className="btn btn-lg mr-3" onClick={() => check("f")}>Feminine</button>
-            <button style={{ background: genderColors.m, color: "black" }} className="btn btn-lg ml-3" onClick={() => check("m")}>Masculine</button>
-        </div>
-    </div>
-}
+    }
 
-function Instructions() {
-    return <h4>
-       Choose the right gender for each word 
-    </h4>;
-}
-
-export default function() {
-    return <Game questions={questions} Display={Display} timeLimit={65} Instructions={Instructions} />
+    return <Game
+        questions={questions}
+        Display={Display}
+        timeLimit={level === 1 ? 65 : 85}
+        Instructions={Instructions}
+    />
 };
