@@ -26,7 +26,6 @@ module.exports = [
     // { ts: 1527815845, e: "life" }, // ژوندون
     { ts: 1527815300, e: "rider, mounted" }, // سپور
     { ts: 1527819505, e: "being (in a place after returning, coming back etc.)" }, // ستون
-    { ts: 1527813293, e: "red; hot" }, // سور
     { ts: 1600080053835, e: "riding, mounted" }, // سور
     { ts: 1527813068, e: "cold" }, // سوړ
     { ts: 1575924767041, e: "shepherd" }, // شپون

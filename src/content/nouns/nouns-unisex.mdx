@@ -10,6 +10,7 @@ import {
 import Table from "../../components/Table";
 import Link from "../../components/Link";
 import GenderTable from "../../components/GenderTable";
+import UnisexNounGame from "../../components/UnisexNounGame";
 
 There are many words for people and animals in Pashto that can be used in both masculine and feminine forms.
 
@@ -104,8 +105,6 @@ If the accent comes on the end of the word, the femine form is a little differen
 
 ### 4. Words with the "Pashtun" pattern
 
-Well...
-
 <GenderTable rows={[
     {
         masc: {
@@ -173,9 +172,7 @@ Well...
     }
 ]} />
 
-### 5. Shorter irregular words
-
-You get the idea...
+### 5. Shorter words that take <InlinePs opts={opts} ps={{ p: "ـه", f: "-u" }} />
 
 <GenderTable rows={[
     {
@@ -211,6 +208,10 @@ You get the idea...
         }
     }
 ]} />
+
+**🕹 Here's a game to practice changing the genders of nouns**
+
+<UnisexNounGame />
 
 <!--
     {

@@ -56,7 +56,10 @@ export default function({level}: { level: 1 | 2 }) {
                 ? wordPool
                 : getRandomFromList([wordPool, exceptions]);
             const gender = getRandomFromList(Object.keys(base));
-            const typeToUse = getRandomFromList(Object.keys(base[gender]));
+            let typeToUse: string;
+            do {
+                typeToUse = getRandomFromList(Object.keys(base[gender]));
+            } while (!base[gender].length);
             const question = getRandomFromList(base[gender][typeToUse]).entry;
             base[gender][typeToUse] = base[gender][typeToUse].filter(({ entry }) => entry.ts !== question.ts);
             yield {

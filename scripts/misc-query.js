@@ -16,7 +16,7 @@ const pConsonants = ["ب", "پ", "ت", "ټ", "ث", "ج", "چ", "ح", "خ", "څ",
 fetch(process.env.LINGDOCS_DICTIONARY_URL).then(res => res.arrayBuffer()).then(data => {
   const { entries } = readDictionary(data);
   const filtered = entries.filter(e => (
-    e.c === "n. m." && ["ا", "ه", "ي"].includes(e.p.slice(-1)) && (!["u", "h"].includes(e.g.slice(-1)))
+    e.c?.includes("n. m. unisex")
   ));
   const content = `module.exports = [
 ${filtered.reduce((text, entry) => (

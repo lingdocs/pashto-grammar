@@ -73,15 +73,24 @@ Notice how it does not use the first feminine inflection <InlinePs opts={opts} p
 
 ## 3. Words ending in a stressed <InlinePs opts={opts} ps={{ p: "ی", f: "éy" }} />
 
+This is very similar to pattern #2, but with the stress on the last syllable the feminine inflection changes.
+
 <InflectionCarousel items={startingWord(words, "ey-stressed-unisex", "لومړی")} />  
 
 ## 4. Words with the "Pashtun" pattern
+
+These words are a little irregular but you can see a common patten based around:
+
+- lengthening the 1st masculine inflection with <InlinePs opts={opts} ps={{ p: "ا ـ ـه", f: "aa _ u" }} />
+- shortening the other forms and adding the <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} />, <InlinePs opts={opts} ps={{ p: "ـې", f: "-e" }} />, <InlinePs opts={opts} ps={{ p: "ـو", f: "-o" }} /> endings
 
 <InflectionCarousel items={startingWord(words, "aanu-unisex", "پښتون")} />
 
 **Note**: Nouns in this pattern will often only use the first inflection for the plural. Adjectives will use the 1st inflection for all 3 reasons.
 
-## 5. Shorter irregular words
+## 5. Shorter words that take <InlinePs opts={opts} ps={{ p: "ـه", f: "-u" }} />
+
+These are also a little irregular but instead of lengthening the 1st masculine inflection they compress it as well and take just an <InlinePs opts={opts} ps={{ p: "ـه", f: "-u" }} /> on the end.
 
 <InflectionCarousel items={startingWord(words, "short-irreg-unisex", "غل")} />  
 
