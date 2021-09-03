@@ -1,3 +1,8 @@
+import {
+    removeAccents,
+    hasAccents,
+} from "@lingdocs/pashto-inflector";
+
 export function makeRandomQs<Q>(
     amount: number,
     makeQuestion: () => Q
@@ -27,4 +32,16 @@ export function getRandomFromList<T>(list: T[]): T {
 
 export function makeProgress(i: number, total: number): Progress {
     return { current: i + 1, total };
+}
+
+/**
+ * Says if an input written in phonetics by the user is correct/the same as a given answer 
+ * 
+ * The user is allowed to leave out the accents, but if they include them they must be the same as the answer 
+ * 
+ * @param input - the answer given by the user in phonetics
+ * @param answer - the correct answer in phonetics
+ */
+export function compareF(input: string, answer: string): boolean {
+    return input === (hasAccents(input) ? answer : removeAccents(answer));
 }

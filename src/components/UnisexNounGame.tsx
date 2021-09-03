@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
     getRandomFromList,
     makeProgress,
+    compareF,
 } from "../lib/game-utils";
 import genderColors from "../lib/gender-colors";
 import Game from "./Game";
@@ -11,7 +12,6 @@ import {
     defaultTextOptions as opts,
     inflectWord,
     standardizePashto,
-    removeAccents,
     // pashtoConsonants,
 } from "@lingdocs/pashto-inflector";
 import words from "../words/nouns-adjs";
@@ -74,7 +74,7 @@ export default function() {
             e.preventDefault();
             const given = standardizePashto(answer.trim());
             const correct = inflected[flipGender(question.gender)][0].some((ps) => (
-                (given === ps.p) || (removeAccents(given) === removeAccents(ps.f))
+                (given === ps.p) || compareF(given, ps.f)
             ));
             if (correct) {
                 setAnswer("");
