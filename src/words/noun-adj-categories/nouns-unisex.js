@@ -40,7 +40,7 @@ module.exports = [
     { ts: 1575924767041, e: `shepherd` }, // شپون - shpoon
     { ts: 1527815279, e: `shepherd` }, // شپونکی - shpoonkey
     { ts: 1527819173, e: `analyst, examiner` }, // شنونکی - shanóonkey
-    { ts: 1612614411126, e: `teacher` }, // ښووونکی - xowóonkey
+    { ts: 1527812806, e: `teacher` }, // ښووونکی - xowóonkey
     { ts: 1527815436, e: `tyrant, oppressor, cruel person` }, // ظالم - zaalim
     { ts: 1527818632, e: `twin` }, // غبرګونی - ghbargoney
     { ts: 1527812624, e: `thief` }, // غل - ghul

@@ -15,6 +15,8 @@ import {
     firstVariation,
 } from "../lib/text-tools";
 
+const genders: T.Gender[] = ["masc", "fem"];
+
 // const masc = words.filter((w) => w.entry.c === "n. m.");
 // const fem = words.filter((w) => w.entry.c === "n. f.");
 type CategorySet = Record<string, { category: string, def: string, entry: T.DictionaryEntry }[]>;
@@ -51,15 +53,16 @@ const amount = 40;
 export default function({level}: { level: 1 | 2 }) {
     function* questions () {
         const wordPool = {...types};
+        const exceptionsPool = {...exceptions};
         for (let i = 0; i < amount; i++) {
             const base = level === 1
                 ? wordPool
-                : getRandomFromList([wordPool, exceptions]);
-            const gender = getRandomFromList(Object.keys(base));
+                : getRandomFromList([wordPool, exceptionsPool]);
+            const gender = getRandomFromList(genders);
             let typeToUse: string;
             do {
                 typeToUse = getRandomFromList(Object.keys(base[gender]));
-            } while (!base[gender].length);
+            } while (!base[gender][typeToUse].length);
             const question = getRandomFromList(base[gender][typeToUse]).entry;
             base[gender][typeToUse] = base[gender][typeToUse].filter(({ entry }) => entry.ts !== question.ts);
             yield {

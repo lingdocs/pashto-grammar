@@ -104,9 +104,9 @@ export default function() {
                         value={answer}
                         onChange={handleInput}
                     />
-                </div>
-                <div>
-                    <button type="submit" className="btn btn-primary">Check</button>
+                    <div className="text-muted small mt-3">
+                        Type <kbd>Enter</kbd> to check
+                    </div>
                 </div>
             </form>
 
