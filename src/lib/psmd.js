@@ -3,7 +3,7 @@ import Markdown from "markdown-to-jsx";
 
 export default function mdps(input) {
     if (Array.isArray(input)) {
-        return input.map((x) => mdps(x));
+        return input.map(mdps);
     }
     return {
         ...input,

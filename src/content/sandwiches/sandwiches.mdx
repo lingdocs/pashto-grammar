@@ -1,0 +1,104 @@
+---
+title: Sandwiches 🥪
+---
+
+import Link from "../../components/Link";
+import {
+    Examples,
+    defaultTextOptions as opts,
+} from "@lingdocs/pashto-inflector";
+import sandwiches from "./sandwiches";
+
+## What are Sandwiches?
+
+In Pashto there are **little particles that get attached to the front, back, or both sides of a word.**
+
+We will call these *sandwiches*, but in fancy grammer terms these are called [adpositions](https://en.wikipedia.org/wiki/Preposition_and_postposition). 
+
+In English we have just one kind of these sandwiches, the [preposition](https://en.wikipedia.org/wiki/Preposition_and_postposition), which is something that is stuck in front of a noun/pronoun. For example: I am going <u><strong>to</strong> school</u>. I'm making supper <u><strong>for</strong> you</u>.
+
+But in Pashto there are actually three kinds of these sandwiches:
+
+- Preposition - sticks to the beginning of the word 🍞🥓 (like we've seen already in English)
+- Postposition - sticks to the end of the word 🥓🍞 (...interesting)
+- Circumposition - surrounds the word on both sides! 🍞🥓🍞 (... 🤯)
+
+This last kind is probably the newest and most surprising to language learners. Not many languages do this where they have particles that surround a word on both sides.
+
+## Sandwiches and Examples
+
+export function SandwichTable() {
+    return (
+        <table class="table table-bordered my-3">
+            <thead>
+                <tr>
+                <th scope="col">Sandwich</th>
+                <th scope="col">Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                {sandwiches.map((s) => {
+                    const pre = s.pre || { p: "", f: "" };
+                    const post = s.post || { p: "", f: "" };
+                    return <tr>
+                        <td>
+                            <Examples opts={opts}>{{
+                                p: `${pre.p} ... ${post.p}`,
+                                f: `${pre.f} ... ${post.f}`,
+                                e: s.e,
+                            }}</Examples>
+                        </td>
+                        <td>
+                            <Examples opts={opts}>
+                                {s.examples}
+                            </Examples>
+                        </td>
+                    </tr>
+                })}
+            </tbody>
+        </table>
+    );
+}
+
+<SandwichTable />
+
+More coming soon... In progress... 👷‍♂️
+
+<!-- 
+
+<Table size="medium" 
+    titleRow={[{e: "sandwich" }, {e: "example"}]}
+    rows={
+    [
+        ...sandwiches.reduce((accumulator, s) => {
+            const rowsForOneSandwich = [];
+            const leftSide = {p:`${s.pre.p} ... ${s.post.p}`, f:`${s.pre.f} ... ${s.post.f}`, e: s.e};
+            s.examples.forEach((ex, i) => {
+                // If first row or sandwich, show the sandwich and an example
+                // Otherwise just have an empty left hand side with an example on the right
+                rowsForOneSandwich.push([i === 0 ? leftSide : {}, {
+                    p:<>{ex.p.before.p} <span className="underline"><strong>{s.pre.p}{s.pre.p && ' '}</strong> {ex.p.mid.p} <strong>{s.post.p && ' '}{s.post.p}</strong></span> {ex.p.after.p}</>,
+                    f:<>{ex.p.before.f} <span className="underline"><strong>{s.pre.f}{s.pre.f && ' '}</strong>{ex.p.mid.f}<strong>{s.post.f && ' '}{s.post.f}</strong></span> {ex.p.after.f}</>,
+                    e:<>{ex.e.before}<span className="underline"><strong>{ex.e.pre}</strong>{ex.e.mid}<strong>{ex.e.post}</strong></span>{ex.e.after}</> 
+                }]); 
+            })
+            return [...accumulator, ...rowsForOneSandwich];
+        }, [])
+    ]
+} /> 
+
+And many more!
+
+**Note:** Often you will see slightly different variations on these sandwiches interchanging <Multi t={{p:"د", f:"du"}} /> and <Multi t={{p:"له", f:"la"}} />. Also, sometimes people will leave out one side of the sandwich.
+
+<!-- ### Some take mayo
+
+You will notice that some sandwiches also take <Link to="/inflection/mayonnaise/">mayonnaise</Link>. -->
+
+<!-- ### Exceptional Sandwiches
+
+Usually, words in sandwiches get <Link to="inflection/inflection-intro/">inflected</Link>. However, words inside the following sandwiches are often not inflected for the first inflection: 
+
+ - <Multi t={{p:"په ... ګې", f:"pu ... ke"}} /> 
+ - <Multi t={{p:"په ... باندې", f:"pu ... baande"}} /> 
+ - <Multi t={{p:"په ...", f:"pu ..."}} />    -->

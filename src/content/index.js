@@ -37,6 +37,8 @@ import * as inflectionIntro from "!babel-loader!mdx-loader!./inflection/inflecti
 import * as inflectionPatterns from "!babel-loader!mdx-loader!./inflection/inflection-patterns.mdx";
 import * as feminineInflection from "!babel-loader!mdx-loader!./inflection/feminine-inflection.mdx";
 
+import * as sandwiches from "!babel-loader!mdx-loader!./sandwiches/sandwiches.mdx";
+
 import * as theFiveYeys from "!babel-loader!mdx-loader!./writing/the-five-yeys.mdx";
 import * as typingIssues from "!babel-loader!mdx-loader!./writing/typing-issues.mdx";
 
@@ -150,7 +152,7 @@ const contentTree = [
         ],
     },
     {
-        heading: "Inflection",
+        heading: "Inflection 🔘",
         subdirectory: "inflection",
         chapters: [
             {
@@ -168,7 +170,17 @@ const contentTree = [
         ],
     },
     {
-        heading: "Writing",
+        heading: "Sandwiches 🥪",
+        subdirectory: "sandwiches",
+        chapters: [
+            {
+                import: sandwiches,
+                slug: "sandwiches",
+            },
+        ],
+    },
+    {
+        heading: "Writing 🖊",
         subdirectory: "writing",
         chapters: [
             {

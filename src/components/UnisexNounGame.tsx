@@ -122,7 +122,7 @@ export default function() {
     return <Game
         questions={questions}
         Display={Display}
-        timeLimit={150}
+        timeLimit={130}
         Instructions={Instructions}
     />
 };

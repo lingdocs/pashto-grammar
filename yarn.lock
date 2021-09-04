@@ -1567,9 +1567,9 @@
     chalk "^4.0.0"
 
 "@lingdocs/pashto-inflector@^0.9.3":
-  version "0.9.5"
-  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-0.9.5.tgz#fc2cba942932a5870bdbbb326c9e1112560f8028"
-  integrity sha512-dMT8C16umXz9A6Sxo7H9QP5FI/EkazxFiMPZCymetK++o3JbGJZe1ffLl3TZphl1odpE/NzXgtKdd2paAwmEuQ==
+  version "0.9.6"
+  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-0.9.6.tgz#c7b5fe2d0c253cdae48151f667b0248600603819"
+  integrity sha512-/fLCHUdRqCLO9bDDve59yQlRXNd+7gXOeD6aO+IKOBz2KhIzSk7KRctSdM1jfv2E356QU/JmVL/+o0EfdWI33Q==
   dependencies:
     classnames "^2.2.6"
     pbf "^3.2.1"
