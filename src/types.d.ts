@@ -16,6 +16,8 @@ type QuestionDisplayProps<T> = {
 };
 
 type GameInput<T> = {
+    label: string,
+    studyLink: string,
     Instructions: (props: { opts?: import("@lingdocs/pashto-inflector").Types.TextOptions }) => JSX.Element,
     questions: () => QuestionGenerator<T>,
     Display: (props: QuestionDisplayProps<T>) => JSX.Element,

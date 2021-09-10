@@ -101,6 +101,8 @@ export default function({level}: { level: 1 | 2 }) {
     }
 
     return <Game
+        label={level === 1 ? "Choose the right gender - Level 1" : "Choose the right gender - Level 2"}
+        studyLink={level === 1 ? "/nouns/nouns-gender#gender-by-ending" : "/nouns/nouns-gender#exceptions"}
         questions={questions}
         Display={Display}
         timeLimit={level === 1 ? 65 : 85}

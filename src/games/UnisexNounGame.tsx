@@ -120,6 +120,8 @@ export default function() {
     }
 
     return <Game
+        label="Changing genders on unisex nouns"
+        studyLink="/nouns/nouns-unisex#"
         questions={questions}
         Display={Display}
         timeLimit={130}

@@ -10,7 +10,7 @@ import {
 import Table from "../../components/Table";
 import Link from "../../components/Link";
 import GenderTable from "../../components/GenderTable";
-import UnisexNounGame from "../../components/UnisexNounGame";
+import UnisexNounGame from "../../games/UnisexNounGame";
 
 There are many words for people and animals in Pashto that can be used in both masculine and feminine forms.
 
@@ -64,10 +64,10 @@ With the feminine form the <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} /> on
     },
     {
         masc: {
-            ex: {p: "ښووونکی", f:"xowóonkey", e: "male teacher 👨‍🏫" },
+            ex: {p: "ښوونکی", f:"xUwóonkey", e: "male teacher 👨‍🏫" },
         },
         fem: {
-            ex: { p: "ښووونکې", f: "xowóonke", e: "female teacher 👩‍🏫" },
+            ex: { p: "ښوونکې", f: "xUwóonke", e: "female teacher 👩‍🏫" },
         },
     },
 ]} />
@@ -208,8 +208,6 @@ If the accent comes on the end of the word, the femine form is a little differen
         }
     }
 ]} />
-
-**🕹 Here's a game to practice changing the genders of nouns**
 
 <UnisexNounGame />
 
