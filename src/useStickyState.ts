@@ -7,9 +7,13 @@ export default function useStickyState<T>(defaultValue: T, key: string): {
 
   const [value, setValue] = useState<T>(() => {
     const stickyValue = window.localStorage.getItem(key);
-    return stickyValue !== null
-      ? JSON.parse(stickyValue) as T
-      : defaultValue;
+    if (stickyValue === null) return defaultValue;
+    try {
+      return JSON.parse(stickyValue) as T;
+    } catch(e) {
+      console.error(e);
+      return defaultValue;
+    }
   });
 
   useEffect(() => {
