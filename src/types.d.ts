@@ -15,11 +15,8 @@ type QuestionDisplayProps<T> = {
     callback: (correct: boolean) => void,
 };
 
-type GameInput<T> = {
-    label: string,
-    studyLink: string,
-    Instructions: (props: { opts?: import("@lingdocs/pashto-inflector").Types.TextOptions }) => JSX.Element,
-    questions: () => QuestionGenerator<T>,
-    Display: (props: QuestionDisplayProps<T>) => JSX.Element,
-    timeLimit: number;
-}
+type GameRecord = {
+    title: string,
+    id: string,
+    Game: () => JSX.Element,
+};

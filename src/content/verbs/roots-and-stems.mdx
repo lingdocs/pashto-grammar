@@ -21,7 +21,7 @@ import {
     grammarUnits,
     RootsAndStems,
     getVerbInfo,
-    removeFVariants,
+    removeFVarients,
 } from "@lingdocs/pashto-inflector";
 import shuffle from "../../lib/shuffle-array";
 import Carousel from "../../components/Carousel";
@@ -44,7 +44,7 @@ export function InfoCarousel({ items, highlighted, hidePastParticiple }) {
                 : inf;
             return {
                 title: <InlinePs opts={opts} ps={{
-                    ...removeFVariants(item.entry),
+                    ...removeFVarients(item.entry),
                     e: item.def,
                 }} />,
                 body: <RootsAndStems

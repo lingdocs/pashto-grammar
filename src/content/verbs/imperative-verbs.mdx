@@ -6,7 +6,7 @@ import {
     defaultTextOptions as opts,
     Examples,
     InlinePs,
-    removeFVariants,
+    removeFVarients,
     ConjugationViewer,
 } from "@lingdocs/pashto-inflector";
 import psmd from "../../lib/psmd";
@@ -54,7 +54,7 @@ The <i class="fas fa-camera" /> **perfective imperative** is used when you want 
 <Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
     return {
         title: <InlinePs opts={opts} ps={{
-            ...removeFVariants(item.entry),
+            ...removeFVarients(item.entry),
             e: item.def,
         }} />,
         body: <div className="text-left">

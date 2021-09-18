@@ -6,7 +6,7 @@ import {
     defaultTextOptions as opts,
     Examples,
     InlinePs,
-    removeFVariants,
+    removeFVarients,
     ConjugationViewer,
 } from "@lingdocs/pashto-inflector";
 import cousins from "./cousins.png";
@@ -42,7 +42,7 @@ This is used to talk about something happening in the future, while thinking of 
 <Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
     return {
         title: <InlinePs opts={opts} ps={{
-            ...removeFVariants(item.entry),
+            ...removeFVarients(item.entry),
             e: item.def,
         }} />,
         body: <div style={{ textAlign: "left" }}>
@@ -74,7 +74,7 @@ This is used to talk about something happening in the future, while thinking of 
 <Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
     return {
         title: <InlinePs opts={opts} ps={{
-            ...removeFVariants(item.entry),
+            ...removeFVarients(item.entry),
             e: item.def,
         }} />,
         body: <div style={{ textAlign: "left" }}>

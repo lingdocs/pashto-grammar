@@ -2,14 +2,27 @@ import React, { useState, useRef } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import Reward, { RewardElement } from 'react-rewards';
 import Link from "../components/Link";
+import { useUser } from "../user-context";
 import "./timer.css";
 import {
     getPercentageDone,
 } from "../lib/game-utils";
+import {
+    Types as T,
+} from "@lingdocs/pashto-inflector";
 const errorVibration = 200;
 
-function Game<T>({ questions, Display, timeLimit, Instructions, studyLink, label }: GameInput<T>) {
+function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, id }:{
+    id: string,
+    studyLink: string,
+    Instructions: (props: { opts?: T.TextOptions }) => JSX.Element,
+    questions: () => QuestionGenerator<T>,
+    Display: (props: QuestionDisplayProps<T>) => JSX.Element,
+    timeLimit: number;
+}) {
+    // TODO: report pass with id to user info
     const rewardRef = useRef<RewardElement | null>(null);
+    const { user } = useUser();
     const [finish, setFinish] = useState<null | "pass" | "fail" | "time out">(null);
     const [current, setCurrent] = useState<Current<T> | undefined>(undefined);
     const [questionBox, setQuestionBox] = useState<QuestionGenerator<T>>(questions());
@@ -30,10 +43,17 @@ function Game<T>({ questions, Display, timeLimit, Instructions, studyLink, label
         else setCurrent(next.value);
     }
     function handleFinish() {
-        // post results
+        if (user) {
+            // TODO: post results
+            console.log(
+                "will post results for",
+                user.userId,
+                "results id",
+                id,
+            );
+        }
         setFinish("pass");
         rewardRef.current?.rewardMe();
-        setCurrent(undefined);
     }
     function handleQuit() {
         setFinish(null);
@@ -66,8 +86,8 @@ function Game<T>({ questions, Display, timeLimit, Instructions, studyLink, label
         : finish === "fail"
         ? "danger"
         : "primary";
+    console.log("user is", user)
     return <div>
-            <h4 className="my-4"><span role="img" aria-label="">🎮</span> {label}</h4>
             <div className="text-center" style={{ minHeight: "200px" }}>
             <div className="progress" style={{ height: "5px" }}>
                 <div className={`progress-bar bg-${progressColor}`} role="progressbar" style={{ width: getProgressWidth() }} />
@@ -141,4 +161,4 @@ function failMessage(progress: Progress | undefined, finish: "time out" | "fail"
         : `⏳ Time's Up ${face}`;
 }
 
-export default Game;
+export default GameCore;

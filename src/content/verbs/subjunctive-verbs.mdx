@@ -6,7 +6,7 @@ import {
     defaultTextOptions as opts,
     Examples,
     InlinePs,
-    removeFVariants,
+    removeFVarients,
     ConjugationViewer,
 } from "@lingdocs/pashto-inflector";
 import cousins from "./cousins.png";
@@ -58,7 +58,7 @@ The subjunctive is made the same way as its cousin the <Link to="/verbs/present-
 <Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
     return {
         title: <InlinePs opts={opts} ps={{
-            ...removeFVariants(item.entry),
+            ...removeFVarients(item.entry),
             e: item.def,
         }} />,
         body: <div className="text-left">

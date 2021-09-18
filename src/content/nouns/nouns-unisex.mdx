@@ -10,7 +10,8 @@ import {
 import Table from "../../components/Table";
 import Link from "../../components/Link";
 import GenderTable from "../../components/GenderTable";
-import UnisexNounGame from "../../games/UnisexNounGame";
+import { unisexNounGame } from "../../games/games";
+import GameDisplay from "../../games/GameDisplay";
 
 There are many words for people and animals in Pashto that can be used in both masculine and feminine forms.
 
@@ -209,7 +210,7 @@ If the accent comes on the end of the word, the femine form is a little differen
     }
 ]} />
 
-<UnisexNounGame />
+<GameDisplay record={unisexNounGame} />
 
 <!--
     {

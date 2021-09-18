@@ -8,7 +8,7 @@
 
 import React, { useState } from "react";
 // eslint-disable-next-line
-import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, withRouter, Switch, RouteComponentProps } from "react-router-dom";
 import "./App.css";
 import Page404 from "./pages/404";
 import Chapter from "./components/Chapter";
@@ -17,6 +17,8 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import TableOfContentsPage from "./pages/TableOfContentsPage";
 import { useEffect } from "react";
+import { useUser } from "./user-context";
+import { AT } from "@lingdocs/lingdocs-main";
 import ReactGA from "react-ga";
 const chapters = content.reduce((chapters, item) => (
   item.content
@@ -31,10 +33,21 @@ if (prod) {
   ReactGA.set({ anonymizeIp: true });
 }
 
-function App(props) {
+function App(props: RouteComponentProps) {
   const [navOpen, setNavOpen] = useState(false);
+  const { setUser } = useUser();
   useEffect(() => {
     ReactGA.pageview(window.location.pathname);
+    fetch("https://account.lingdocs.com/api/user").then((res) => res.json()).then((res) => {
+      console.log("fetched user info");
+      if (res.user) {
+        const user = res.user as AT.LingdocsUser
+        setUser(user);
+      } else {
+        setUser(undefined);
+      }
+    }).catch(console.error);
+    // eslint-disable-next-line 
   }, []);
   useEffect(() => {
     window.scroll(0, 0);
@@ -57,7 +70,7 @@ function App(props) {
             <Route path="/" exact>
               <TableOfContentsPage />
             </Route>
-            {chapters.map((chapter) => (
+            {chapters.map((chapter: any) => (
               <Route key={chapter.path} path={chapter.path}>
                 <Chapter>{chapter}</Chapter>
               </Route>

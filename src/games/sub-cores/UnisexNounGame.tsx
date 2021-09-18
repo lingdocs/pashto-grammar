@@ -3,9 +3,9 @@ import {
     getRandomFromList,
     makeProgress,
     compareF,
-} from "../lib/game-utils";
-import genderColors from "../lib/gender-colors";
-import Game from "./Game";
+} from "../../lib/game-utils";
+import genderColors from "../../lib/gender-colors";
+import GameCore from "../GameCore";
 import {
     Types as T,
     Examples,
@@ -14,10 +14,10 @@ import {
     standardizePashto,
     // pashtoConsonants,
 } from "@lingdocs/pashto-inflector";
-import words from "../words/nouns-adjs";
+import words from "../../words/nouns-adjs";
 import {
     firstVariation,
-} from "../lib/text-tools";
+} from "../../lib/text-tools";
 
 const nouns = words.filter((w) => w.category === "nouns-unisex").map(x => x.entry);
 // type NType = "consonant" | "eyUnstressed" | "eyStressed" | "pashtun" | "withu"
@@ -34,7 +34,7 @@ const amount = 20;
 
 type Question = { entry: T.DictionaryEntry, gender: T.Gender };
 
-export default function() {
+export default function({ id }: { id: string }) {
     function* questions (): Generator<Current<Question>> {
         let pool = [...nouns];
         for (let i = 0; i < amount; i++) {
@@ -61,19 +61,26 @@ export default function() {
             return g === "masc" ? "fem" : "masc";
         }
         const [answer, setAnswer] = useState<string>("");
-        const inflected = inflectWord(question.entry) as T.UnisexInflections;
+        const infOut = inflectWord(question.entry);
+        if (!infOut) return <div>WORD ERROR</div>;
+        const { inflections } = infOut;
+        if (!inflections) return <div>WORD ERROR</div>;
         const givenGender = question.gender === "masc" ? "masculine" : "feminine";
         const requiredGender = question.gender === "fem" ? "masculine" : "feminine";
-        if (!inflected || !inflected.masc || !inflected.fem) {
+        if (!("masc" in inflections ) || !("fem" in inflections)) {
             return <div>WORD ERROR</div>;
         }
-        function handleInput({ target: { value }}: React.ChangeEvent<HTMLInputElement>) {
+        if (!inflections.masc || !inflections.fem) {
+            return <div>WORD ERROR</div>;
+        }
+        const handleInput = ({ target: { value }}: React.ChangeEvent<HTMLInputElement>) => {
             setAnswer(value);
         }
-        function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             const given = standardizePashto(answer.trim());
-            const correct = inflected[flipGender(question.gender)][0].some((ps) => (
+            // @ts-ignore
+            const correct = inflections[flipGender(question.gender)][0].some((ps: T.PsString) => (
                 (given === ps.p) || compareF(given, ps.f)
             ));
             if (correct) {
@@ -86,7 +93,7 @@ export default function() {
             <div className="pt-2 pb-1 mb-2" style={{ maxWidth: "300px", margin: "0 auto", backgroundColor: genderColors[question.gender === "masc" ? "m" : "f"]}}>
                 <Examples opts={opts}>{[
                     {
-                        ...inflected[question.gender][0][0],
+                        ...inflections[question.gender][0][0],
                         e: firstVariation(question.entry.e),
                     }
                 ]}</Examples>
@@ -119,10 +126,10 @@ export default function() {
         </div>
     }
 
-    return <Game
-        label="Changing genders on unisex nouns"
+    return <GameCore
         studyLink="/nouns/nouns-unisex#"
         questions={questions}
+        id={id}
         Display={Display}
         timeLimit={130}
         Instructions={Instructions}

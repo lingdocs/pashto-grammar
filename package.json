@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
-    "@lingdocs/pashto-inflector": "^0.9.3",
+    "@lingdocs/lingdocs-main": "^0.0.4",
+    "@lingdocs/pashto-inflector": "^1.0.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -12,6 +13,7 @@
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.2",
+    "@types/react-router-dom": "^5.1.9",
     "bootstrap": "4.5.3",
     "classnames": "^2.2.6",
     "markdown-to-jsx": "^7.1.3",

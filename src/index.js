@@ -10,6 +10,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter as Router } from "react-router-dom";
+import { UserProvider} from "./user-context";
 import * as serviceWorker from './serviceWorker';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.css";
@@ -17,7 +18,9 @@ import "@fortawesome/fontawesome-free/css/all.css";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <UserProvider>
+        <App />
+      </UserProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

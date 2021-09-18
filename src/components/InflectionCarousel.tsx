@@ -2,29 +2,31 @@ import React from "react";
 import Carousel from "./Carousel";
 import {
     InlinePs,
-    removeFVariants,
+    removeFVarients,
     InflectionsTable,
     inflectWord,
     defaultTextOptions as opts,
 } from "@lingdocs/pashto-inflector";
 
-function InflectionCarousel({ items }) {
+function InflectionCarousel({ items }: any) {
     return (
         <div className="mt-3">
-            <Carousel items={items} render={(item) => {
-                const inf = inflectWord(item.entry);
-                if (!inf) {
+            <Carousel items={items} render={(item: any) => {
+                const infOut = inflectWord(item.entry);
+                if (!infOut || !infOut.inflections) {
                     return (
-                        <div>Oops! No inflections for <InlinePs opts={opts} ps={item.entry} /></div>
+                        // @ts-ignore
+                        <div>Oops! No inflections for <InlinePs opts={opts} />{item.entry}</div>
                     );
                 }
                 return {
+                    // @ts-ignore
                     title: <InlinePs opts={opts} ps={{
-                        ...removeFVariants(item.entry),
+                        ...removeFVarients(item.entry),
                         e: item.def,
                     }} />,
                     body: <InflectionsTable
-                        inf={inf}
+                        inf={infOut.inflections}
                         textOptions={opts}
                     />,
                 };

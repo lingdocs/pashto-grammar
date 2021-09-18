@@ -2,18 +2,18 @@ import React from "react";
 import {
     getRandomFromList,
     makeProgress,
-} from "../lib/game-utils";
-import genderColors from "../lib/gender-colors";
-import Game from "./Game";
+} from "../../lib/game-utils";
+import genderColors from "../../lib/gender-colors";
+import GameCore from "../GameCore";
 import {
     Types as T,
     Examples,
     defaultTextOptions as opts,
 } from "@lingdocs/pashto-inflector";
-import words from "../words/nouns-adjs";
+import words from "../../words/nouns-adjs";
 import {
     firstVariation,
-} from "../lib/text-tools";
+} from "../../lib/text-tools";
 
 const genders: T.Gender[] = ["masc", "fem"];
 
@@ -50,7 +50,7 @@ const exceptions: Record<string, CategorySet> = {
 
 const amount = 40; 
 
-export default function({level}: { level: 1 | 2 }) {
+export default function({level, id}: { level: 1 | 2, id: string}) {
     function* questions () {
         const wordPool = {...types};
         const exceptionsPool = {...exceptions};
@@ -100,10 +100,10 @@ export default function({level}: { level: 1 | 2 }) {
         </div>
     }
 
-    return <Game
-        label={level === 1 ? "Choose the right gender - Level 1" : "Choose the right gender - Level 2"}
+    return <GameCore
         studyLink={level === 1 ? "/nouns/nouns-gender#gender-by-ending" : "/nouns/nouns-gender#exceptions"}
         questions={questions}
+        id={id}
         Display={Display}
         timeLimit={level === 1 ? 65 : 85}
         Instructions={Instructions}

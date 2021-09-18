@@ -6,7 +6,7 @@ import {
     defaultTextOptions as opts,
     Examples,
     InlinePs,
-    removeFVariants,
+    removeFVarients,
     ConjugationViewer,
 } from "@lingdocs/pashto-inflector";
 import psmd from "../../lib/psmd";
@@ -38,7 +38,7 @@ The <Link to="/verbs/verb-endings/">present ending</Link> will change according 
 <Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
     return {
         title: <InlinePs opts={opts} ps={{
-            ...removeFVariants(item.entry),
+            ...removeFVarients(item.entry),
             e: item.def,
         }} />,
         body: <div className="text-left">

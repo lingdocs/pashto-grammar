@@ -8,13 +8,15 @@ import {
     Examples,
 } from "@lingdocs/pashto-inflector";
 import genderColors from "../../lib/gender-colors";
-import GenderGame from "../../games/GenderGame";
 import { firstVariation } from "../../lib/text-tools";
 import GenderTable from "../../components/GenderTable";
 import Link from "../../components/Link";
 import words from "../../words/nouns-adjs";
 export const femColor = genderColors.f;
 export const mascColor = genderColors.m;
+import nounGenderGame1 from "../../games/games";
+import nounGenderGame2 from "../../games/games";
+import GameDisplay from "../../games/GameDisplay";
 
 export const femEndingWConsonant = words.filter((w) => w.category === "consonant-fem");
 
@@ -109,7 +111,7 @@ All nouns in Pashto are either <Masc /> or <Fem />. Thankfully, you can pretty m
 - Words ending in <InlinePs opts={opts} ps={{p:"و", f:"oo"}} /> can be either <Masc /> or <Fem />.
 - Words ending in <InlinePs opts={opts} ps={{ p: "ـه", f: "u" }} /> can also be <Fem /> plural, as in <InlinePs opts={opts} ps={{ p: "اوبه", f: "oobu", e: "water" }} />
 
-<GenderGame level={1} />
+<GameDisplay record={nounGenderGame1} />
 
 ## Exceptions
 
@@ -164,4 +166,4 @@ Some words are used to describe people who obviously have a gender and they *tot
     },
 ]} />
 
-<GenderGame level={2} />
+<GameDisplay record={nounGenderGame2} />

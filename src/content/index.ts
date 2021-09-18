@@ -7,39 +7,66 @@
  */
 
 /* eslint-disable import/no-webpack-loader-syntax */
+// @ts-ignore
 import * as intro from "!babel-loader!mdx-loader!./intro.mdx";
 
+// @ts-ignore
 import * as presentEquative from "!babel-loader!mdx-loader!./equatives/present-equative.mdx"
+// @ts-ignore
 import * as subjunctiveHabitualEquative from "!babel-loader!mdx-loader!./equatives/subjunctive-habitual-equative.mdx";
+// @ts-ignore
 import * as otherEquatives from "!babel-loader!mdx-loader!./equatives/other-equatives.mdx";
 
+// @ts-ignore
 import * as nounsGender from "!babel-loader!mdx-loader!./nouns/nouns-gender.mdx";
+// @ts-ignore
 import * as nounsUnisex from "!babel-loader!mdx-loader!./nouns/nouns-unisex.mdx";
+// @ts-ignore
 import * as nounsPlural from "!babel-loader!mdx-loader!./nouns/nouns-plural.mdx";
+// @ts-ignore
 import * as arabicPlurals from "!babel-loader!mdx-loader!./nouns/arabic-plurals.mdx";
+// @ts-ignore
 import * as bundledPlurals from "!babel-loader!mdx-loader!./nouns/bundled-plurals.mdx";
 
+// @ts-ignore
 import * as verbAspect from "!babel-loader!mdx-loader!./verbs/verb-aspect.mdx";
+// @ts-ignore
 import * as verbsIntro from "!babel-loader!mdx-loader!./verbs/verbs-intro.mdx";
+// @ts-ignore
 import * as presentVerbs from "!babel-loader!mdx-loader!./verbs/present-verbs.mdx";
+// @ts-ignore
 import * as subjunctiveVerbs from "!babel-loader!mdx-loader!./verbs/subjunctive-verbs.mdx";
+// @ts-ignore
 import * as futureVerbs from "!babel-loader!mdx-loader!./verbs/future-verbs.mdx";
+// @ts-ignore
 import * as imperativeVerbs from "!babel-loader!mdx-loader!./verbs/imperative-verbs.mdx";
+// @ts-ignore
 import * as verbEndings from "!babel-loader!mdx-loader!./verbs/verb-endings.mdx";
+// @ts-ignore
 import * as rootsAndStems from "!babel-loader!mdx-loader!./verbs/roots-and-stems.mdx";
+// @ts-ignore
 import * as sentenceStructure from "!babel-loader!mdx-loader!./verbs/sentence-structure.mdx";
 
+// @ts-ignore
 import * as pronounsBasic from "!babel-loader!mdx-loader!./pronouns/pronouns-basic.mdx";
+// @ts-ignore
 import * as pronounsMini from "!babel-loader!mdx-loader!./pronouns/pronouns-mini.mdx";
+// @ts-ignore
 import * as directionalPronouns from "!babel-loader!mdx-loader!./pronouns/pronouns-directional.mdx"; 
 
+// @ts-ignore
 import * as inflectionIntro from "!babel-loader!mdx-loader!./inflection/inflection-intro.mdx";
+// @ts-ignore
 import * as inflectionPatterns from "!babel-loader!mdx-loader!./inflection/inflection-patterns.mdx";
+// @ts-ignore
 import * as feminineInflection from "!babel-loader!mdx-loader!./inflection/feminine-inflection.mdx";
 
+// @ts-ignore
 import * as sandwiches from "!babel-loader!mdx-loader!./sandwiches/sandwiches.mdx";
 
+// @ts-ignore
 import * as theFiveYeys from "!babel-loader!mdx-loader!./writing/the-five-yeys.mdx";
+// @ts-ignore
 import * as typingIssues from "!babel-loader!mdx-loader!./writing/typing-issues.mdx";
 
 const contentTree = [
@@ -196,7 +223,7 @@ const contentTree = [
 ];
 
 export const content = contentTree.map((item) => {
-    function prepareChapter(chp, subdir) {
+    function prepareChapter(chp: any, subdir?: any) {
         return {
             path: subdir ? `/${subdir}/${chp.slug}/` : `/${chp.slug}/`,
             slug: chp.slug,
@@ -209,30 +236,34 @@ export const content = contentTree.map((item) => {
         ? prepareChapter(item)
         : {
             ...item,
-            chapters: item.chapters.map((c) => {
+            chapters: item.chapters?.map((c) => {
                 return prepareChapter(c, item.subdirectory);
             }),
         };
 }).map((item, i, items) => {
     // make the next and previous page information for each chapter
-    function withNextPrev(current, index, arr) {
-        function getInfo(x) {
+    function withNextPrev(current: any, index: any, arr: any) {
+        function getInfo(x: any) {
             return x.content
                 ? { frontMatter: x.frontMatter, path: x.path }
                 : { frontMatter: x.chapters[0].frontMatter, path: x.chapters[0].path }; // TODO: KILL THIS?
         }
         function getNextOutsideItem() {
+            // @ts-ignore
             return items[i+1].content
                 // if it's a single chapter section, get that chapter
                 ? items[i+1]
                 // if it's a section with multiple chapters, get the first chapter
+                // @ts-ignore
                 : items[i+1].chapters[0];
         }
         function getPrevOutsideItem() {
+            // @ts-ignore
             return items[i-1].content
                 // if it's a single chapter section, get that chapter
                 ? items[i-1]
                 // if it's a section with multiple chapters, get the last chapter
+                // @ts-ignore
                 : items[i-1].chapters[items[i-1].chapters.length - 1];
         }
         const next = index < arr.length - 1
@@ -259,11 +290,13 @@ export const content = contentTree.map((item) => {
             } : {},
         };
     }
+    // @ts-ignore
     if (item.content) {
         return withNextPrev(item, i, items);
     }
     return {
         ...item,
+        // @ts-ignore
         chapters: item.chapters.map((chapter, j, chapters) => (
             withNextPrev(chapter, j, chapters)
         )),
