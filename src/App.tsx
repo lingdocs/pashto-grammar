@@ -38,15 +38,17 @@ function App(props: RouteComponentProps) {
   const { setUser } = useUser();
   useEffect(() => {
     ReactGA.pageview(window.location.pathname);
-    fetch("https://account.lingdocs.com/api/user").then((res) => res.json()).then((res) => {
-      console.log("fetched user info");
-      if (res.user) {
-        const user = res.user as AT.LingdocsUser
-        setUser(user);
-      } else {
-        setUser(undefined);
-      }
-    }).catch(console.error);
+    fetch("https://account.lingdocs.com/api/user", { credentials: "include" })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("fetched user info");
+        if (res.user) {
+          const user = res.user as AT.LingdocsUser
+          setUser(user);
+        } else {
+          setUser(undefined);
+        }
+      }).catch(console.error);
     // eslint-disable-next-line 
   }, []);
   useEffect(() => {
