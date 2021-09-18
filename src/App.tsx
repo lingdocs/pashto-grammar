@@ -17,8 +17,7 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import TableOfContentsPage from "./pages/TableOfContentsPage";
 import { useEffect } from "react";
-import { useUser } from "./user-context";
-import { AT } from "@lingdocs/lingdocs-main";
+
 import ReactGA from "react-ga";
 const chapters = content.reduce((chapters, item) => (
   item.content
@@ -37,20 +36,8 @@ function App(props: RouteComponentProps) {
   const [navOpen, setNavOpen] = useState(false);
   // TODO: seperate function for getUserInfo with useUser and fetch
   // then set cronjob to call that - also do signin flox
-  const { setUser } = useUser();
   useEffect(() => {
     ReactGA.pageview(window.location.pathname);
-    fetch("https://account.lingdocs.com/api/user", { credentials: "include" })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.user) {
-          const user = res.user as AT.LingdocsUser
-          setUser(user);
-        } else {
-          setUser(undefined);
-        }
-      }).catch(console.error);
-    // eslint-disable-next-line 
   }, []);
   useEffect(() => {
     window.scroll(0, 0);

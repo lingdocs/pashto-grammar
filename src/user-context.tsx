@@ -1,14 +1,29 @@
-import React, { useState, createContext } from "react"
-import { AT } from "@lingdocs/lingdocs-main";
+import React, { useState, createContext, useEffect } from "react"
+import { AT, getUser } from "@lingdocs/lingdocs-main";
 
 const UserContext = createContext<
-  { user: AT.LingdocsUser | undefined, setUser: React.Dispatch<React.SetStateAction<AT.LingdocsUser | undefined>> }
+  {
+    user: AT.LingdocsUser | undefined,
+    setUser: React.Dispatch<React.SetStateAction<AT.LingdocsUser | undefined>>,
+    pullUser: () => void,
+  }
   | undefined
 >(undefined);
 
 function UserProvider({ children }: any) {
   const [user, setUser] = useState<AT.LingdocsUser | undefined>(undefined);
-  return <UserContext.Provider value={{ user, setUser }}>
+
+  function pullUser() {
+    getUser().then((user) => {
+      setUser(user === "offline" ? undefined : user);
+    }).catch(console.error);
+  }
+
+  useEffect(() => {
+    pullUser();
+  }, []);
+
+  return <UserContext.Provider value={{ user, setUser, pullUser }}>
     {children}
   </UserContext.Provider>;
 }
