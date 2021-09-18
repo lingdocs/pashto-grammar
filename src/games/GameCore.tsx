@@ -86,7 +86,6 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         : finish === "fail"
         ? "danger"
         : "primary";
-    console.log("user is", user)
     return <div>
             <div className="text-center" style={{ minHeight: "200px" }}>
             <div className="progress" style={{ height: "5px" }}>
