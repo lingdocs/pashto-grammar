@@ -14,7 +14,10 @@ const UserContext = createContext<
 
 // TODO: persisting user in local state
 function UserProvider({ children }: any) {
-  const [value, setValue] = useStickyState<AT.LingdocsUser | undefined>(undefined, "saved-user");
+  const {value, setValue} = useStickyState<AT.LingdocsUser | undefined>(
+    undefined,
+    "saved-user",
+  );
 
   function pullUser() {
     getUser().then((user) => {
