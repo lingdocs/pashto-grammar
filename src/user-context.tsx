@@ -1,5 +1,6 @@
 import React, { useState, createContext, useEffect } from "react"
 import { AT, getUser } from "@lingdocs/lingdocs-main";
+import { CronJob } from "cron";
 
 const UserContext = createContext<
   {
@@ -10,17 +11,28 @@ const UserContext = createContext<
   | undefined
 >(undefined);
 
+// TODO: persisting user in local state
 function UserProvider({ children }: any) {
   const [user, setUser] = useState<AT.LingdocsUser | undefined>(undefined);
 
   function pullUser() {
+    console.log("pulling user...");
     getUser().then((user) => {
       setUser(user === "offline" ? undefined : user);
     }).catch(console.error);
   }
 
+  const checkUserCronJob = new CronJob("1/30 * * * * *", () => {
+    pullUser();
+  });
+
   useEffect(() => {
     pullUser();
+    checkUserCronJob.start();
+    return () => {
+      checkUserCronJob.stop();
+    }
+    // eslint-disable-next-line
   }, []);
 
   return <UserContext.Provider value={{ user, setUser, pullUser }}>
