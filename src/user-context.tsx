@@ -1,4 +1,5 @@
-import React, { useState, createContext, useEffect } from "react"
+import React, { createContext, useEffect } from "react"
+import useStickyState from "./useStickyState";
 import { AT, getUser } from "@lingdocs/lingdocs-main";
 import { CronJob } from "cron";
 
@@ -13,12 +14,11 @@ const UserContext = createContext<
 
 // TODO: persisting user in local state
 function UserProvider({ children }: any) {
-  const [user, setUser] = useState<AT.LingdocsUser | undefined>(undefined);
+  const [value, setValue] = useStickyState<AT.LingdocsUser | undefined>(undefined, "saved-user");
 
   function pullUser() {
-    console.log("pulling user...");
     getUser().then((user) => {
-      setUser(user === "offline" ? undefined : user);
+      setValue(user === "offline" ? undefined : user);
     }).catch(console.error);
   }
 
@@ -35,7 +35,7 @@ function UserProvider({ children }: any) {
     // eslint-disable-next-line
   }, []);
 
-  return <UserContext.Provider value={{ user, setUser, pullUser }}>
+  return <UserContext.Provider value={{ user: value, setUser: setValue, pullUser }}>
     {children}
   </UserContext.Provider>;
 }
@@ -43,7 +43,7 @@ function UserProvider({ children }: any) {
 function useUser() {
   const context = React.useContext(UserContext)
   if (context === undefined) {
-    throw new Error('useCount must be used within a CountProvider')
+    throw new Error('useUser must be used within a UserProvider')
   }
   return context;
 }
