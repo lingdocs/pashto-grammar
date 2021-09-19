@@ -1,6 +1,10 @@
 import React, { createContext, useEffect } from "react"
 import useStickyState from "./useStickyState";
-import { AT, getUser } from "@lingdocs/lingdocs-main";
+import {
+  AT,
+  getUser,
+  userObjIsEqual,
+} from "@lingdocs/lingdocs-main";
 import { CronJob } from "cron";
 
 const UserContext = createContext<
@@ -21,7 +25,11 @@ function UserProvider({ children }: any) {
 
   function pullUser() {
     getUser().then((user) => {
-      setValue(user === "offline" ? undefined : user);
+      if (user === "offline") return;
+      // don't update if there's nothing new - to avoid re-renders erasing game input etc
+      if (!userObjIsEqual(user, value)) {
+        setValue(user);
+      }
     }).catch(console.error);
   }
 
