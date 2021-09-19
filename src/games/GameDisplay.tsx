@@ -4,6 +4,7 @@ import { useUser } from "../user-context";
 function GameDisplay({ record: { title, Game, id } }: { record: GameRecord }) {
     const { user } = useUser();
     const completed = user?.tests.some((t) => (
+        // TODO: Or if it's in the locally stored (unposted test results)
         (t.done === true) && (t.id === id)
     ));
     return <div>
