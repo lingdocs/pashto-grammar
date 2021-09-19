@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
-    "@lingdocs/lingdocs-main": "^0.1.1",
+    "@lingdocs/lingdocs-main": "^0.1.2",
     "@lingdocs/pashto-inflector": "^1.0.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

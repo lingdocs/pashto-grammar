@@ -10,6 +10,7 @@ import {
 import {
     AT,
     getTimestamp,
+    postTestResults,
 } from "@lingdocs/lingdocs-main";
 import {
     Types as T,
@@ -55,8 +56,10 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                 time: getTimestamp(),
                 id,
             };
-            // TODO: post results
             console.log("will post result", JSON.stringify(result));
+            postTestResults([result])
+                .then(console.log)
+                .catch(console.error);
         }
     }
     function handleQuit() {
