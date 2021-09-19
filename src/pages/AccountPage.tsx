@@ -33,7 +33,7 @@ function AccountPage() {
                 <div className="text-center mt-3">
                     <h2 className="my-4">Sign in to LingDocs</h2>
                     <p className="lead mb-4">When you sign in or make a LingDocs account you can:</p>
-                    <div className="mb-3"><i className="fas fa-graduation-cap mr-2" /> Save your progress on quizzes (<span role="img" aria-label="">🚧</span> not working yet <span role="img" aria-label="">👷‍♂️</span>)</div>
+                    <div className="mb-3"><i className="fas fa-graduation-cap mr-2" /> Save your progress on quizzes</div>
                     <button className="btn btn-lg btn-primary my-4" onClick={handleOpenSignup}><i className="fas fa-sign-in-alt mr-2" /> Sign In</button>
                 </div>
             :
