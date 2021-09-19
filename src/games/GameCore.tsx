@@ -27,7 +27,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
 }) {
     // TODO: report pass with id to user info
     const rewardRef = useRef<RewardElement | null>(null);
-    const { user } = useUser();
+    const { user, pullUser } = useUser();
     const [finish, setFinish] = useState<null | "pass" | "fail" | "time out">(null);
     const [current, setCurrent] = useState<Current<T> | undefined>(undefined);
     const [questionBox, setQuestionBox] = useState<QuestionGenerator<T>>(questions());
@@ -50,17 +50,19 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
     function handleFinish() {
         setFinish("pass");
         rewardRef.current?.rewardMe();
-        if (user) {
-            const result: AT.TestResult = {
-                done: true,
-                time: getTimestamp(),
-                id,
-            };
-            console.log("will post result", JSON.stringify(result));
-            postTestResults([result])
-                .then(console.log)
-                .catch(console.error);
-        }
+        if (!user) return;
+        const result: AT.TestResult = {
+            done: true,
+            time: getTimestamp(),
+            id,
+        };
+        console.log("will post result", JSON.stringify(result));
+        postTestResults([result])
+            .then((res) => {
+                if (res.ok) {
+                    pullUser();
+                }
+            }).catch(console.error);
     }
     function handleQuit() {
         setFinish(null);

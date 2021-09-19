@@ -7,7 +7,12 @@ function GameDisplay({ record: { title, Game, id } }: { record: GameRecord }) {
         (t.done === true) && (t.id === id)
     ));
     return <div>
-        <h4 className="my-4"><span role="img" aria-label="">🎮</span> {title} {completed ? "✅" : ""}</h4>
+        <div className="d-flex flex-row justify-content-between">
+            <div>
+                <h4 className="my-4"><span role="img" aria-label="">🎮</span> {title}</h4>
+            </div>
+            <div>{completed ? "✅" : ""}</div>
+        </div>
         <Game />
     </div>
 }
