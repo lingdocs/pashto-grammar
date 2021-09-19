@@ -8,6 +8,10 @@ import {
     getPercentageDone,
 } from "../lib/game-utils";
 import {
+    AT,
+    getTimestamp,
+} from "@lingdocs/lingdocs-main";
+import {
     Types as T,
 } from "@lingdocs/pashto-inflector";
 const errorVibration = 200;
@@ -43,17 +47,17 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         else setCurrent(next.value);
     }
     function handleFinish() {
-        if (user) {
-            // TODO: post results
-            console.log(
-                "will post results for",
-                user.userId,
-                "results id",
-                id,
-            );
-        }
         setFinish("pass");
         rewardRef.current?.rewardMe();
+        if (user) {
+            const result: AT.TestResult = {
+                done: true,
+                time: getTimestamp(),
+                id,
+            };
+            // TODO: post results
+            console.log("will post result", JSON.stringify(result));
+        }
     }
     function handleQuit() {
         setFinish(null);
