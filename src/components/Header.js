@@ -19,7 +19,16 @@ function Header({ setNavOpen }) {
                     {hamburger}
                 </button>
             </div>
-            <h4 className="header-title link-unstyled mt-2"><Link to="/">Pashto Grammar</Link></h4>
+            <div className="d-flex flex-row justify-content-between align-items-center" style={{ width: "100%" }}>
+                <div>
+                    <h4 className="header-title link-unstyled mt-2"><Link to="/">Pashto Grammar</Link></h4>
+                </div>
+                <div className="mr-3 link-unstyled">
+                    <Link to="/account">
+                        <i className="fas fa-user fa-lg clickable"></i>
+                    </Link>
+                </div>
+            </div>
         </header>
     );
 }

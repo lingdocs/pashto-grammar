@@ -14,8 +14,10 @@ import Link from "../../components/Link";
 import words from "../../words/nouns-adjs";
 export const femColor = genderColors.f;
 export const mascColor = genderColors.m;
-import nounGenderGame1 from "../../games/games";
-import nounGenderGame2 from "../../games/games";
+import {
+    nounGenderGame1,
+    nounGenderGame2,
+} from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
 
 export const femEndingWConsonant = words.filter((w) => w.category === "consonant-fem");
@@ -166,4 +168,4 @@ Some words are used to describe people who obviously have a gender and they *tot
     },
 ]} />
 
-<GameDisplay record={nounGenderGame2} />
+<!-- <GameDisplay record={nounGenderGame2} /> -->

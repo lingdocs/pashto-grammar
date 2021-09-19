@@ -26,7 +26,7 @@ function Table({ headRow, children, opts, wide }) {
                             {row.map((cell, j) => (
                                 <td key={`row ${i}, cell ${j}`} style={(cell && cell.gender) ? { backgroundColor: cell.gender === "m" ? mascColor : femColor } : {}}>
                                     {isObject(cell)
-                                        ? (console.log(cell), <Examples opts={opts}>{[cell]}</Examples>)
+                                        ? <Examples opts={opts}>{[cell]}</Examples>
                                         : cell
                                     }
                                 </td>

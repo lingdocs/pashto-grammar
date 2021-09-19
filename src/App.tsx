@@ -16,6 +16,7 @@ import { content } from "./content/index";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import TableOfContentsPage from "./pages/TableOfContentsPage";
+import AccountPage from "./pages/AccountPage";
 import { useEffect } from "react";
 
 import ReactGA from "react-ga";
@@ -65,6 +66,9 @@ function App(props: RouteComponentProps) {
                 <Chapter>{chapter}</Chapter>
               </Route>
             ))}
+            <Route path="/account" exact>
+              <AccountPage />
+            </Route>
             <Route component={Page404} />
           </Switch>
         </div>
