@@ -48,7 +48,7 @@ const exceptions: Record<string, CategorySet> = {
 }
 // consonantFem: words.filter((w) => w.category === "consonant-fem"),
 
-const amount = 40; 
+const amount = 35;
 
 export default function({level, id}: { level: 1 | 2, id: string}) {
     function* questions () {
@@ -105,7 +105,7 @@ export default function({level, id}: { level: 1 | 2, id: string}) {
         questions={questions}
         id={id}
         Display={Display}
-        timeLimit={level === 1 ? 65 : 85}
+        timeLimit={level === 1 ? 50 : 70}
         Instructions={Instructions}
     />
 };

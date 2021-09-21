@@ -6,6 +6,7 @@ import {
   userObjIsEqual,
 } from "@lingdocs/lingdocs-main";
 import { CronJob } from "cron";
+import { postSavedResults } from "./lib/game-results";
 
 const UserContext = createContext<
   {
@@ -35,6 +36,9 @@ function UserProvider({ children }: any) {
 
   const checkUserCronJob = new CronJob("1/30 * * * * *", () => {
     pullUser();
+    if (value) {
+      postSavedResults(value.userId);
+    }
   });
 
   useEffect(() => {

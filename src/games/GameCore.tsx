@@ -8,9 +8,12 @@ import {
     getPercentageDone,
 } from "../lib/game-utils";
 import {
+    saveResult,
+    postSavedResults,
+} from "../lib/game-results";
+import {
     AT,
     getTimestamp,
-    postTestResults,
 } from "@lingdocs/lingdocs-main";
 import {
     Types as T,
@@ -27,7 +30,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
 }) {
     // TODO: report pass with id to user info
     const rewardRef = useRef<RewardElement | null>(null);
-    const { user, pullUser } = useUser();
+    const { user, pullUser, setUser } = useUser();
     const [finish, setFinish] = useState<null | "pass" | "fail" | "time out">(null);
     const [current, setCurrent] = useState<Current<T> | undefined>(undefined);
     const [questionBox, setQuestionBox] = useState<QuestionGenerator<T>>(questions());
@@ -47,6 +50,24 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         if (next.done) handleFinish();
         else setCurrent(next.value);
     }
+    function handleResult(result: AT.TestResult) {
+        // add the test to the user object
+        if (!user) return;
+        setUser((u) => {
+            // pure type safety with the prevUser
+            if (!u) return u;
+            return {
+                ...u,
+                tests: [...u.tests, result],
+            };
+        });
+        // save the test result in local storage
+        saveResult(result, user.userId);
+        // try to post the result
+        postSavedResults(user.userId).then((r) => {
+            if (r === "sent") pullUser();
+        }).catch(console.error);
+    }
     function handleFinish() {
         setFinish("pass");
         rewardRef.current?.rewardMe();
@@ -56,14 +77,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
             time: getTimestamp(),
             id,
         };
-        console.log("will post result", JSON.stringify(result));
-        // TODO: Check not showing up - should show up immediately whether online or not
-        postTestResults([result])
-            .then((res) => {
-                if (res.ok) {
-                    pullUser();
-                }
-            }).catch(console.error);
+        handleResult(result);
     }
     function handleQuit() {
         setFinish(null);
