@@ -9,9 +9,15 @@
 import React from "react";
 // eslint-disable-next-line
 import { BrowserRouter as Router, Link } from "react-router-dom";
-const hamburger = <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+import { useUser } from "../user-context";
+
+const hamburger = <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+</svg>;
 
 function Header({ setNavOpen }) {
+    const { user } = useUser();
     return (
         <header className="d-flex flex-row align-items-center p-2 bg-white border-bottom shadow-sm">
             <div className="side-nav-btn">
@@ -25,7 +31,7 @@ function Header({ setNavOpen }) {
                 </div>
                 <div className="mr-3 link-unstyled">
                     <Link to="/account">
-                        <i className="fas fa-user fa-lg clickable"></i>
+                        <i className={`fas ${user ? "fa-user" : "fa-sign-in-alt"} fa-lg clickable`}></i>
                     </Link>
                 </div>
             </div>
