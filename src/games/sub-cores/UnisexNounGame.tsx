@@ -122,7 +122,7 @@ export default function({ id }: { id: string }) {
     
     function Instructions() {
         return <div>
-            Change the gender of a given word
+            <h4>Change the gender of a given noun</h4>
         </div>
     }
 

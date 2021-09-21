@@ -69,6 +69,9 @@ import * as theFiveYeys from "!babel-loader!mdx-loader!./writing/the-five-yeys.m
 // @ts-ignore
 import * as typingIssues from "!babel-loader!mdx-loader!./writing/typing-issues.mdx";
 
+// @ts-ignore
+import * as games from "!babel-loader!mdx-loader!./games.mdx";
+
 const contentTree = [
     {
         import: intro,
@@ -219,6 +222,10 @@ const contentTree = [
                 slug: "typing-issues",
             },
         ],
+    },
+    {
+        import: games,
+        slug: "games",
     },
 ];
 

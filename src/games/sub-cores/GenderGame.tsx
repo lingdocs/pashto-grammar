@@ -105,7 +105,7 @@ export default function({level, id}: { level: 1 | 2, id: string}) {
         questions={questions}
         id={id}
         Display={Display}
-        timeLimit={level === 1 ? 50 : 70}
+        timeLimit={level === 1 ? 55 : 70}
         Instructions={Instructions}
     />
 };

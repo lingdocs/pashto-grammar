@@ -26,10 +26,15 @@ export const unisexNounGame = makeGameRecord(
     (id) => () => <UnisexNounGame id={id} />,
 );
 
-const games: GameRecord[] = [
-    nounGenderGame1,
-    nounGenderGame2,
-    unisexNounGame,
+const games: { chapter: string, items: GameRecord[] }[] = [
+    {
+        chapter: "Nouns",
+        items: [
+            nounGenderGame1,
+            nounGenderGame2,
+            unisexNounGame,
+        ],
+    },
 ];
 
 export default games;
