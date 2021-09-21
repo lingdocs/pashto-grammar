@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import games from "./games";
 import { useUser } from "../user-context";
+import SmoothCollapse from "react-smooth-collapse";
 
 function GamesBrowser() {
     const { user } = useUser();
@@ -21,14 +22,16 @@ function GamesBrowser() {
                         <div className="d-flex flex-row justify-content-between align-items-center">
                             <div>
                                 <h4 className="my-4 clickable" onClick={() => handleTitleClick(id)}>
-                                    {open ? "🞃" : "🞂"} {title}
+                                    <i className={`fas fa-caret-${open ? "down" : "right"}`}></i> {title}
                                 </h4>
                             </div>
                             <div>
                                 <h4>{done ? "✅" : ""}</h4>
                             </div>
                         </div>
-                        {open && <Game />}
+                        <SmoothCollapse expanded={open}>
+                            <Game />
+                        </SmoothCollapse>
                     </div>
                 })}
             </>
