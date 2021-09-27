@@ -20,6 +20,7 @@ import AccountPage from "./pages/AccountPage";
 import { useEffect } from "react";
 
 import ReactGA from "react-ga";
+import { useUser } from "./user-context";
 const chapters = content.reduce((chapters, item) => (
   item.content
     ? [...chapters, item]
@@ -35,6 +36,7 @@ if (prod) {
 
 function App(props: RouteComponentProps) {
   const [navOpen, setNavOpen] = useState(false);
+  const { user } = useUser();
   // TODO: seperate function for getUserInfo with useUser and fetch
   // then set cronjob to call that - also do signin flox
   useEffect(() => {
@@ -42,7 +44,7 @@ function App(props: RouteComponentProps) {
   }, []);
   useEffect(() => {
     window.scroll(0, 0);
-    if (prod) {
+    if (prod && !(user?.admin)) {
       ReactGA.pageview(window.location.pathname);
     }
   }, [props.location.pathname]);
