@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import games from "./games";
 import { useUser } from "../user-context";
+import Link from "../components/Link";
 import SmoothCollapse from "react-smooth-collapse";
 
 function GamesBrowser() {
@@ -15,7 +16,7 @@ function GamesBrowser() {
         {games.map((chapter) => (
             <>
                 <h3 key={chapter.chapter}>{chapter.chapter}</h3>
-                {chapter.items.map(({ id, title, Game }) => {
+                {chapter.items.map(({ id, title, Game, studyLink }) => {
                     const done = user && user.tests.some(t => t.id === id);
                     const open = opened === id;
                     return <div key={id}>
@@ -23,10 +24,16 @@ function GamesBrowser() {
                             <div>
                                 <h4 className="my-4 clickable" onClick={() => handleTitleClick(id)}>
                                     <i className={`fas fa-caret-${open ? "down" : "right"}`}></i> {title}
+                                    {` `}
                                 </h4>
                             </div>
                             <div>
-                                <h4>{done ? "✅" : ""}</h4>
+                                <h4>
+                                    {done ? "✅"
+                                    :
+                                        <Link to={studyLink}>{"📚"}</Link>
+                                    }
+                                </h4>
                             </div>
                         </div>
                         <SmoothCollapse expanded={open}>

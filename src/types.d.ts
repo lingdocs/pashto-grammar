@@ -18,5 +18,6 @@ type QuestionDisplayProps<T> = {
 type GameRecord = {
     title: string,
     id: string,
+    studyLink: string,
     Game: () => JSX.Element,
 };

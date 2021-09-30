@@ -34,7 +34,7 @@ const amount = 20;
 
 type Question = { entry: T.DictionaryEntry, gender: T.Gender };
 
-export default function({ id }: { id: string }) {
+export default function({ id, link }: { id: string, link: string }) {
     function* questions (): Generator<Current<Question>> {
         let pool = [...nouns];
         for (let i = 0; i < amount; i++) {
@@ -127,7 +127,7 @@ export default function({ id }: { id: string }) {
     }
 
     return <GameCore
-        studyLink="/nouns/nouns-unisex#"
+        studyLink={link}
         questions={questions}
         id={id}
         Display={Display}

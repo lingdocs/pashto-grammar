@@ -37,8 +37,6 @@ if (prod) {
 function App(props: RouteComponentProps) {
   const [navOpen, setNavOpen] = useState(false);
   const { user } = useUser();
-  // TODO: seperate function for getUserInfo with useUser and fetch
-  // then set cronjob to call that - also do signin flox
   useEffect(() => {
     ReactGA.pageview(window.location.pathname);
   }, []);

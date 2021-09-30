@@ -50,7 +50,7 @@ const exceptions: Record<string, CategorySet> = {
 
 const amount = 35;
 
-export default function({level, id}: { level: 1 | 2, id: string}) {
+export default function({level, id, link}: { level: 1 | 2, id: string, link: string }) {
     function* questions () {
         const wordPool = {...types};
         const exceptionsPool = {...exceptions};
@@ -101,7 +101,7 @@ export default function({level, id}: { level: 1 | 2, id: string}) {
     }
 
     return <GameCore
-        studyLink={level === 1 ? "/nouns/nouns-gender#gender-by-ending" : "/nouns/nouns-gender#exceptions"}
+        studyLink={link}
         questions={questions}
         id={id}
         Display={Display}

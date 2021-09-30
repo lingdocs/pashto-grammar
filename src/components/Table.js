@@ -12,7 +12,7 @@ const isObject = x => (
 function Table({ headRow, children, opts, wide }) {
     return (
         <div style={{ overflowX: "auto", marginBottom: "1em" }}>
-            <table class="table" style={wide ? { minWidth: "635px" } : {}}>
+            <table className="table" style={wide ? { minWidth: "635px" } : {}}>
                 {headRow && <thead>
                     <tr>
                         {headRow.map((h, i) => (
