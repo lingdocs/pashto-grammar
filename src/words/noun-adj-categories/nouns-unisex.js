@@ -76,4 +76,5 @@ module.exports = [
     { ts: 1527813585, e: `person, human being, creature` }, // وګړی - wagúRey
     { ts: 1527814672, e: `spokesperson, spokesman, newcaster` }, // ویاند - wayaand
     { ts: 1586454081484, e: `orphan` }, // یتیم - yateem
+    { ts: 1527812461, e: "hero" }, // اتل - atal
 ];

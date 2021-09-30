@@ -35,9 +35,14 @@ Below are the **5 basic patterns for inflecting** nouns and adjectives. Notice h
 
 Don't worry about memorizing them all perfectly to start. Instead keep looking back and use them as guides to help you as you get familiar with the inflections over time.
 
-## 1. Words ending in a consonant / <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} />
+## 1. Basic
 
-<InflectionCarousel items={startingWord(words, "consonant-unisex", "غټ")} />
+These words always end in:
+
+- **Masculine:** - consonant or a shwa (<InlinePs opts={opts} ps={{ p: "ـه", f: "-u" }} /> vowel)
+- **Feminine:** - <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} />
+
+<InflectionCarousel items={startingWord(words, "basic-unisex", "غټ")} />
 
 <details>
 
@@ -77,7 +82,7 @@ This is very similar to pattern #2, but with the stress on the last syllable the
 
 <InflectionCarousel items={startingWord(words, "ey-stressed-unisex", "لومړی")} />  
 
-## 4. Words with the "Pashtun" pattern
+## 4. Words with the "Pashtoon" pattern
 
 These words are a little irregular but you can see a common patten based around:
 
@@ -94,3 +99,10 @@ These are also a little irregular but instead of lengthening the 1st masculine i
 
 <InflectionCarousel items={startingWord(words, "short-irreg-unisex", "غل")} />  
 
+## Not all words inflect
+
+It's important to know that *not all words can be inflected*. If a word doesn't fit into one of these 5 patterns, you can't inflect it. For example, if an adjective ends in an <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> in the masculine form, you can't inflect it because it doesn't fit any of the patterns above. 🙅‍♂️
+
+<Examples opts={opts}>{[
+    { p: "خفه", f: "khufa", e: "sad", sub: "...is also sad because it can't inflect like all the other words 😢" },
+]}</Examples>

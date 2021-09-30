@@ -27,6 +27,8 @@ function Table({ headRow, children, opts, wide }) {
                                 <td key={`row ${i}, cell ${j}`} style={(cell && cell.gender) ? { backgroundColor: cell.gender === "m" ? mascColor : femColor } : {}}>
                                     {isObject(cell)
                                         ? <Examples opts={opts}>{[cell]}</Examples>
+                                        : (!cell)
+                                        ? ""
                                         : cell
                                     }
                                 </td>

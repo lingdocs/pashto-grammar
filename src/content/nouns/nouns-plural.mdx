@@ -29,39 +29,47 @@ export function PluralTable({ children, inflection }) {
 
 In Pashto **there are many, many ways that nouns become plural**. It may seem overwhelming at first to learn *all* these different ways of nouns becoming plural. In the beginning, just look at a few. Then keep coming back and see if you're getting familiar with all the different ways that nouns become plural.
 
+Basically, to make a noun plural you have the following options:
+
+1. <Link to="/inflection/inflection-intro">Inflect</Link> it.
+2. If the word isn't inflectable you add a <Link to="/nouns/nouns-plural/#plural-endings">plural ending</Link>, or
+3. If the word has an <Link to="/nouns/nouns-plural/#irregular-plurals">irregular plural</Link> use that.
+
 ## Plural by Inflection
 
-The first way is <Link to="/inflection/inflection-intro">inflect</Link> a word if possible. Not all words inflect, but if they do, you can use the first inflection to make them plural.
+To understand how to inflect words, have a look at the <Link to="/inflection/inflection-patterns/">5 inflection patterns</Link>. Here are some examples of words made plural using inflection.
 
 ### With masculine nouns
 
 <PluralTable inflection>{[
-    [{ p: "سړی", f: "saRey", e: "man" }, { p: "سړي", f: "saRee", e: "men" }],
-    [{ p: "سپی", f: "spey", e: "dog" }, { p: "سپي", f: "spee", e: "dog" }],
-    [{ p: "پښتون", f: "puxtóon", e: "Pashtun" }, { p: "پښتانه", f: "puxtaanu", e: "Pashtuns" }],
-    [{ p: "غل", f: "ghul", e: "thief" }, { p: "غله", f: "ghlu", e: "thieves" }],
+    [{p: "سړی", f: "saRéy", e: "man", sub: <Link to="/inflection/inflection-patterns/#3-words-ending-in-a-stressed-inlineps-optsopts-ps-p-ی-f-éy--">pattern #3</Link> }, { p: "سړي", f: "saRée", e: "men" }],
+    [{ p: "سپی", f: "spey", e: "dog", sub: <Link to="/inflection/inflection-patterns/#3-words-ending-in-a-stressed-inlineps-optsopts-ps-p-ی-f-éy--">pattern #3</Link> }, { p: "سپي", f: "spee", e: "dog" }],
+    [{ p: "پښتون", f: "puxtóon", e: "Pashtun", sub: <Link to="/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern">pattern #4</Link> }, { p: "پښتانه", f: "puxtaanu", e: "Pashtuns" }],
+    [{ p: "غل", f: "ghul", e: "thief", sub: <Link to="">pattern #5</Link> }, { p: "غله", f: "ghlu", e: "thieves" }],
 ]}</PluralTable>
 
 ### With feminine nouns
 
 <PluralTable inflection>{[
-    [{ p: "ښڅه", f: "xudza", e: "woman" }, { p: "ښځې", f: "xudze", e: "women" }],
-    [{ p: "پښتنه", f: "puxtana", e: "Pashtun (f.)" }, { p: "پښتنې", f: "puxtane", e: "Pashtuns (f.)" }],
-    [{ p: "لار", f: "laar", e: "road" }, { p: "لارې", f: "laare", e: "roads" }],
-    [{ p: "سختي", f: "sakhtée", e: "difficulty" }, { p: "سختۍ", f: "sakhtúy", e: "difficulties" }],
-    [{ p: "ناجوړتیا", f: "naajoRtyaa", e: "sickness" }, { p: "ناجوړتیاوې", f: "naajoRtyaawe", e: "sicknesses" }],
+    [{ p: "ښڅه", f: "xudza", e: "woman", sub: <Link to="/inflection/inflection-patterns/#1-basic">pattern #1</Link> }, { p: "ښځې", f: "xudze", e: "women" }],
+    [{ p: "پښتنه", f: "puxtana", e: "Pashtun (f.)", sub: <Link to="/inflection/inflection-patterns/#5-shorter-words-that-squish">pattern #5</Link> }, { p: "پښتنې", f: "puxtane", e: "Pashtuns (f.)" }],
+    [{ p: "سختي", f: "sakhtée", e: "difficulty", sub: <Link to="inflection/feminine-inflection/#feminine-nouns-ending-in-inlineps-optsopts-ps-p-ي-f-ee--">ending in <InlinePs opts={opts}>{{ p: "ي", f: "ee" }}</InlinePs></Link> }, { p: "سختۍ", f: "sakhtúy", e: "difficulties" }],
 ]}</PluralTable>
 
 Note that in some forms of inflection with feminine nouns the word does not change at all in the first inflection. In these cases the singular and plural are just the same.
 
 <PluralTable inflection>{[
-    [{ p: "ملګرې", f: "malgúre", e: "friend (f.)" }, { p: "ملګرې", f: "malgúre", e: "friends (f.)" }],
-    [{ p: "کړکۍ", f: "kuRkúy", e: "window" }, { p: "کړکۍ", f: "kuRkúy", e: "windows" }]
+    [{ p: "ملګرې", f: "malgúre", e: "friend (f.)", sub: <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ey--">pattern #2</Link> }, { p: "ملګرې", f: "malgúre", e: "friends (f.)" }],
+    [{ p: "کړکۍ", f: "kuRkúy", e: "window", sub: <Link to="/inflection/feminine-inflection/#feminine-nouns-ending-in-inlineps-optsopts-ps-p-ۍ-f-uy--">ending in <InlinePs opts={opts}>{{ p: "ۍ", f: "uy" }}</InlinePs></Link> }, { p: "کړکۍ", f: "kuRkúy", e: "windows" }]
 ]}</PluralTable>
 
-## Inanimate Plural Ending <InlinePs opts={opts} ps={{ p: "ونه", f: "óona" }} />
+## Plural Endings
 
-For masculine inanimate words that end in a consonant (and some others) you can add the **<InlinePs opts={opts} ps={{ p: "ـونه", f: "-óona" }} /> ending** to make the noun plural.
+### Masculine Plural Endings
+
+#### Inanimate Plural Ending <InlinePs opts={opts} ps={{ p: "ونه", f: "óona" }} />
+
+This only works with **masculine nouns** that fit into the <Link to="/nouns/nouns-unisex/#1-basic">basic pattern</Link>. It's *usually* only used with inanimate things (not with people or animals). But there are exceptions...
 
 <PluralTable>{[
     [{ p: "کور", f: "kor", e: "house" }, { p: "کورونه", f: "koróona", e: "houses" }],
@@ -69,11 +77,9 @@ For masculine inanimate words that end in a consonant (and some others) you can 
     [{ p: "کتاب", f: "kitáab", e: "book" }, { p: "کتابونه", f: "kitaabóona", e: "books" }],
 ]}</PluralTable>
 
-## Animate Plural Ending <InlinePs opts={opts} ps={{ p: "ان", f: "áan" }} />
+#### Animate Plural Ending <InlinePs opts={opts} ps={{ p: "ان", f: "aan" }} />
 
-For many animate nouns (and some others), you can add a <InlinePs opts={opts} ps={{ p: "ان", f: "áan" }} /> ending to make it plural. If the noun ends in a vowel, you will often need to add a <InlinePs opts={opts} ps={{ p: "ګ", f: "g" }} /> before the ending.
-
-### With masculine nouns
+This is *usually* only used with animate things (people or animals), but there are exceptions...
 
 <PluralTable>{[
     [{ p: "دوست", f: "dost", e: "friend" }, { p: "دوستان", f: "dostáan", e: "friends" }],
@@ -81,20 +87,33 @@ For many animate nouns (and some others), you can add a <InlinePs opts={opts} ps
     [{ p: "ماما", f: "maamáa", e: "uncle" }, { p: "ماماګان", f: "maamaagáan", e: "uncles" }],
 ]}</PluralTable>
 
-### With feminine nouns
-
-When we use this with feminine nouns, we need to add an <InlinePs opts={opts} ps={{ p: "ې", f: "e" }} /> on the end.
-
-<PluralTable>{[
-    [{ p: "بيشو", f: "peeshó", e: "cat 🐱" }, { p: "پیشوګانې", f: "peeshogáane", e: "cats 🐱🐱" }],
-    [{ p: "استاذ", f: "Ustáaza", e: "teacher (f.) 👩‍🏫" }, { p: "استاذانې", f: "Ustaazáane", e: "teachers (f.) 👩‍🏫👩‍🏫" }],
-    [{ p: "ډاکټره", f: "DakTára", e: "doctor (f.) 👩‍⚕️"}, { p: "ډاکټرانې", f: "DakTaráane", e: "doctors (f.) 👩‍⚕️👩‍⚕️" }],
-]}</PluralTable>
+**Note**: If the word ends with a non-shwa vowel, (ie. not 'u') a <InlinePs opts={opts} ps={{ p: "ګ", f: "g" }} /> can be added to seperate the ending and the vowel. 
 
 **Note:** Sometimes the <InlinePs opts={opts} ps={{ p: "ونه", f: "óona" }} /> ending is used with animate nouns, and somethimes the <InlinePs opts={opts} ps={{ p: "ان", f: "áan" }} /> ending is used with inanimate nouns as well. For example:
 
 <PluralTable>{[
     [{ p: "شی", f: "shey", e: "thing" }, { p: "شیان", f: "sheyáan", e: "things" }],
+]}</PluralTable>
+
+
+### Feminine Plural Endings
+
+Depending on the dialect, you can either add <InlinePs opts={opts} ps={{ p: "وې", f: "we" }} />, or <InlinePs opts={opts} ps={{ p: "ګانې", f: "gáane" }} /> to the end of the word to make it plural.
+
+<PluralTable>{[
+    [{ p: "دعا", f: "dUáa", e: "prayer" }, { p: "دعاوې", f: "dUáawe", e: "prayers" }],
+    [null, { p: "دعاګانې", f: "dUaagáane", e: "prayers" }],
+    [{ p: "بيشو", f: "peeshó", e: "cat 🐱" }, { p: "پیشووې", f: "peeshówe", e: "cats 🐱🐱" }],
+    [null, { p: "پیشوګانې", f: "peeshogáane", e: "cats 🐱🐱" }],
+]}</PluralTable>
+
+#### With unisex animate nouns
+
+When a noun is a <Link to="/nouns/nouns-unisex/">unisex noun</Link>, you often add an <InlinePs opts={opts} ps={{ p: "ې", f: "e" }} /> on the end of the <Link to="/nouns/nouns-plural/#animate-plural-ending-inlineps-optsopts-ps-p-ان-f-aan--">animate <InlinePs opts={opts} ps={{ p: "ان", f: "aan" }} /> ending</Link> instead of using the <Link to="/nouns/nouns-plural/#with-feminine-nouns">regular inflection</Link>.
+
+<PluralTable>{[
+    [{ p: "استاذ", f: "Ustáaza", e: "teacher (f.) 👩‍🏫" }, { p: "استاذانې", f: "Ustaazáane", e: "teachers (f.) 👩‍🏫👩‍🏫" }],
+    [{ p: "ډاکټره", f: "DakTára", e: "doctor (f.) 👩‍⚕️"}, { p: "ډاکټرانې", f: "DakTaráane", e: "doctors (f.) 👩‍⚕️👩‍⚕️" }],
 ]}</PluralTable>
 
 ## Irregular Plurals

@@ -12,7 +12,6 @@ module.exports = [
     { ts: 1527812802, e: "donkey" }, // خر - khur
     { ts: 1527813293, e: "red, hot" }, // سور - soor
     { ts: 1527815265, e: "green, blue" }, // شین - sheen
-    { ts: 1527812796, e: "good" }, // ښه - xu
     { ts: 1527812624, e: "thief" }, // غل - ghul
     { ts: 1527815087, e: "dead" }, // مړ - muR
     { ts: 1527814151, e: "companion, friend" }, // مل - mal

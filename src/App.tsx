@@ -47,7 +47,7 @@ function App(props: RouteComponentProps) {
     if (prod && !(user?.admin)) {
       ReactGA.pageview(window.location.pathname);
     }
-  }, [props.location.pathname]);
+  }, [props.location.pathname, user]);
   return (
     <>
       <Header setNavOpen={setNavOpen} />

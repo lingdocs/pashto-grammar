@@ -7,6 +7,8 @@
  */
 
 module.exports = [
+    { ts: 1527815408, e: "asleep" }, // ویده - weedú
+    { ts: 1527812796, e: "good" }, // ښه - xu
     { ts: 1527821744, e: "cook, chef" }, // آشپز - aashpáz
     { ts: 1527812461, e: "hero, brave" }, // اتل - atul
     { ts: 1527821649, e: "impressive, effective, influencing" }, // اثرناک - asarnáak
