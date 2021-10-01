@@ -1,0 +1,73 @@
+---
+title: Diacritics
+---
+
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+} from "@lingdocs/pashto-inflector";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+
+You've probably noticed that there are some ambiguities when reading and writing with the Pashto script.
+
+- When the short vowels (a, i, u, U) come in the middle if the word, they're not written.
+- They are written with a "ا" at the beginning or a "ـه" at the end of a word, but we still have no idea which of the 4 short vowels it is!
+- The letter "و" can make a "w", "o", or "oo" sound.
+- The letter "ـیـ" in the middle of a word can be either a "ee", "ey", or "ee" sound.
+
+For example, if we see the word کوم written out, we literally don't know if it's pronounced *koom*, *kom*, *kwam*, *kwim*, *kwum*, *kwUm*, *kawam*, *kiwm*, *kuwm*, *kUwm*, *kawam*, *kawim*, *kawum*, *kawUm*, *kiwam*, *kiwim*, *kiwum*, *kiwUm*, *kuwam*, *kuwim*, *kuwum*, *kuwUm*, *kUwam*, *kUwim*, *kUwum*, *kUwUm*, *kawwam*, *kawwim*, *kawwum*, *kawwUm*, *kiwwam*, *kiwwim*, *kiwwum*, *kiwwUm*, *kuwwam*, *kuwwim*, *kuwwum*, *kuwwUm*, *kUwwam*, *kUwwim*, *kUwwum*, or *kUwwUm*. 😫
+
+In order to deal with these ambiguities in the Arabic script, little **optional** markings called [diacritics](https://en.wikipedia.org/wiki/Diacritic) can be used above the letters to help the reader and show which vowels are being used.
+
+## ـهٔ on the end
+
+The most common diacritic marking you will see is a little ◌ٔ (hamza) above the ـه on the end of the word. This is because the ـه at the end of a word can represent any short vowel (a, i, u, U), but most Pashto words will either end with "a" or "u" on the end. When written with an (optional) little hamza on the end (ـهٔ), it indicates that **the shwa sound "u" is being used, not "a."**
+
+<Examples opts={opts}>{[
+    { p: "ته", f: "ta", e: "to" },
+    { p: "تهٔ", f: "tu", e: "you" },
+    { p: "کارګهٔ", f: "kaargu", e: "crow" },
+    { p: "ویدهٔ", f: "weedu", e: "asleep (masc.)" },
+    { p: "ویده", f: "weeda", e: "asleep (fem.)" },
+]}</Examples>
+
+It's more common to see this being used in Pakistan. You don't need to use it, but if you do, the word *must* end with a "u" sound.
+
+- **correct** ✅ <InlinePs opts={opts} ps={{ p: "زه", f: "zu" }} />, <InlinePs opts={opts} ps={{ p: "زهٔ", f: "zu" }} />, <InlinePs opts={opts} ps={{ p: "اته", f: "atu" }} />, <InlinePs opts={opts} ps={{ p: "اتهٔ", f: "atu" }} />, <InlinePs opts={opts} ps={{ p: "پورته", f: "porta" }} />
+- **incorrect** ❌ <InlinePs opts={opts} ps={{ p: "پورتهٔ", f: "porta" }} />
+
+THE REST OF THIS PAGE IS INCOMPLETE, MORE COMING SOON 👷‍♂️
+
+## The four main diacritics
+
+export const diacritics = [
+    { diacritic: "َ", name: "zwar", sound: "a" },
+    { diacritic: "ٙ", name: "zwarakey", sound: "u" },
+    { diacritic: "ِ", name: "zer", sound: "i" },
+    { diacritic: "ُ", name: "pesh", sound: "U" },
+]
+
+<table className="table">
+    <thead>
+        <tr>
+            <th scope="col">Diacritic</th>
+            <th scope="col">Name</th>
+            <th scope="col">Sound</th>
+        </tr>
+    </thead>
+    <tbody>
+        {diacritics.map((d) => (
+            <tr key={d.diacritic}>
+                <td>
+                    <div className="h2">◌{d.diacritic}</div>
+                </td>
+                <td>{d.name}</td>
+                <td>{d.sound}</td>
+            </tr>
+        ))}
+    </tbody>
+</table>
+
+## Other diacritics

@@ -67,6 +67,8 @@ import * as sandwiches from "!babel-loader!mdx-loader!./sandwiches/sandwiches.md
 // @ts-ignore
 import * as phonetics from "!babel-loader!mdx-loader!./writing/phonetics.mdx";
 // @ts-ignore
+import * as diacritics from "!babel-loader!mdx-loader!./writing/diacritics.mdx";
+// @ts-ignore
 import * as theFiveYeys from "!babel-loader!mdx-loader!./writing/the-five-yeys.mdx";
 // @ts-ignore
 import * as typingIssues from "!babel-loader!mdx-loader!./writing/typing-issues.mdx";
@@ -218,6 +220,10 @@ const contentTree = [
             {
                 import: phonetics,
                 slug: "phonetics",
+            },
+            {
+                import: diacritics,
+                slug: "diacritics",
             },
             {
                 import: theFiveYeys,
