@@ -64,12 +64,13 @@ const sandwiches: SandwichInfo[] = [
                 e: <>We are <u><strong>of</strong> Peshawer</u> (ie. We are from Peshawer)</>,
             },
             {
-                p: <>د خبره <u><strong>د</strong> منلو</u> نه ده</>,
+                p: <>دا خوراک <u><strong>د</strong> خوړلو</u> نه دی</>,
                 f: <>daa khoraak <u><strong>du</strong> khoRulo</u> nu dey</>,
                 e: <>That food is not <u>of eating</u> (ie. It's unfit for eating)</>,
             },
         ],
     },
+    // TODO: ADD په سره
     {
         pre: { p: "له", f: "la" },
         post: { p: "سره", f: "sara" },
