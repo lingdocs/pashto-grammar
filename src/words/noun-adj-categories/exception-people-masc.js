@@ -20,7 +20,6 @@ module.exports = [
     { ts: 1527818084, e: `drinker, drunkard, alcoholic, wine-bibber` }, // شرابي - sharaabee
     { ts: 1527821950, e: `prince` }, // شهزاده - shahzaadá
     { ts: 1588158828142, e: `hunter` }, // ښکاري - xkaaree
-    { ts: 1527811789, e: `religious warrior for the faith (in Islam)` }, // غازي - ghaazee
     { ts: 1527815206, e: `judge, religious authority/judge` }, // قاضي - qaazee
     { ts: 1527818500, e: `contractor, supplier` }, // قراردادي - qaraardaadee
     { ts: 1527816446, e: `paternal uncle, term of address for elderly man` }, // کاکا - kaakaa

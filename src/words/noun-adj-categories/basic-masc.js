@@ -6,7 +6,6 @@ module.exports = [
     { ts: 1527811859, e: `union, alliance` }, // اتحاد - itihaad
     { ts: 1527822033, e: `joining, connection, contiguity, junction` }, // اتصال - ittisáal
     { ts: 1527811858, e: `unity, alliance, agreement, understanding, consent; coincidence` }, // اتفاق - itifaaq
-    { ts: 1527820147, e: `the Atan, the Pashtun/Afghan national dance` }, // اتڼ - atáN
     { ts: 1527813560, e: `accusation, charge, indictment` }, // اتهام - itihaam
     { ts: 1527812105, e: `respect, honor, esteem, deference` }, // احترام - ihtiraam
     { ts: 1527819653, e: `possibility, probability, likelihood` }, // احتمال - ihtimaal
@@ -86,7 +85,6 @@ module.exports = [
     { ts: 1527812176, e: `evening` }, // ماښام - maaxaam
     { ts: 1527813601, e: `death` }, // مرګ - marg
     { ts: 1527817691, e: `future` }, // مستقبل - mUstaqbil
-    { ts: 1527817963, e: `victim-hood, oppression` }, // مظلومیت - mazloomiyát
     { ts: 1527811866, e: `damage, defect, loss` }, // نقصان - nUqsaan
     { ts: 1527815122, e: `name` }, // نوم - noom
     { ts: 1527812661, e: `boy, young lad` }, // هلک - halík, halúk

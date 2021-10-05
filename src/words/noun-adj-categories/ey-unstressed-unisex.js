@@ -25,7 +25,6 @@ module.exports = [
     { ts: 1591871233587, e: "well-spoken" }, // خوږژبی
     { ts: 1527814118, e: "painful, agonizing" }, // دردوونکی
     { ts: 1527820657, e: "mediator, arbitrator" }, // درېیمګړی
-    { ts: 1527818179, e: "cross-eyed, blind in one eye, one eyed" }, // دوه ګوری
     { ts: 1527815713, e: "coming, future" }, // راتلونکی
     { ts: 1527812142, e: "true, truthful" }, // رښتنی
     { ts: 1527812161, e: "true, truthful" }, // رښتونی

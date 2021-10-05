@@ -24,7 +24,6 @@ module.exports = [
 { ts: 1578009902092, e: `veil, burka` }, // برقه - bUrqá
 { ts: 1527816994, e: `program` }, // برنامه - barnaama
 { ts: 1579294091093, e: `balcony, veranda, porch` }, // برنډه - baranDá
-{ ts: 1527817837, e: `whorehouse, brothel` }, // بړوا خانه - baRwaakhaana
 { ts: 1527823617, e: `crime, offense, sin, guilt, fault` }, // بزه - bazá
 { ts: 1527823619, e: `moth` }, // بزه - bUzá
 { ts: 1527823620, e: `patch (in a garment)` }, // بزه - bza
@@ -85,7 +84,6 @@ module.exports = [
 { ts: 1527823717, e: `cloth, fabric, material, clothing, garment` }, // کپړه - kapRá
 { ts: 1527816257, e: `notebook, little book` }, // کتابچه - kitaabcha
 { ts: 1527820050, e: `bag, purse` }, // کڅوړه - katsóRa
-{ ts: 1594834749012, e: `flirting, wink, flirtatious wink` }, // کرشمه - karishmá, karashmá
 { ts: 1527813252, e: `line, trace` }, // کرښه - kurxa
 { ts: 1527823590, e: `sphere, globe` }, // کره - kará
 { ts: 1527823591, e: `shovel, scraper, scoop` }, // کره - kára
@@ -99,5 +97,4 @@ module.exports = [
 { ts: 1591034128816, e: `mistake, error, blunder, fault` }, // سهوه - sáhwa
 { ts: 1527814370, e: `nostril` }, // سوږمه - soGma
 { ts: 1527817498, e: `famine, starvation, serious hunger/lack of food, drought, crop failure` }, // سوکړه - sookRá
-{ ts: 1527814144, e: `charred log` }, // سوکه - swaka
 ];

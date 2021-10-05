@@ -61,7 +61,6 @@ module.exports = [
     { ts: 1527819672, e: "crafty" }, // چالاک - chaaláak
     { ts: 1527811230, e: "quick, fast" }, // چټک - chaTak
     { ts: 1527812524, e: "started, in motion" }, // چلان - chalaan
-    { ts: 1527822858, e: "curly, wavy" }, // څپول - tsapól
     { ts: 1527815370, e: "clear, apparent" }, // څرګند - tsărgund
     { ts: 1576366107077, e: "straight, upright" }, // څک - tsak
     { ts: 1527812113, e: "present, on hand, ready" }, // حاضر - haazir, haazur
@@ -73,13 +72,11 @@ module.exports = [
     { ts: 1527814219, e: "relative, one's own" }, // خپل - khpul
     { ts: 1527812795, e: "relative" }, // خپلوان - khpulwaan
     { ts: 1527812808, e: "poor, miserable" }, // خوار - khwaar
-    { ts: 1611065752352, e: "moldy" }, // دربجن - drabjan
     { ts: 1527814880, e: "tall" }, // دنګ - dung
     { ts: 1527812537, e: "assured" }, // ډاډمن - DaaDmun
     { ts: 1527812583, e: "full" }, // ډک - Duk
     { ts: 1527822674, e: "gaunt" }, // ډنګر - Dungár, Dangár
     { ts: 1527817256, e: "sunk" }, // ډوب - Doob
-    { ts: 1527812559, e: "very, lots" }, // ډېر - Der
     { ts: 1527814277, e: "healthy" }, // روغ - rogh
     { ts: 1609780006604, e: "fruitful" }, // زرخېز - zarkhéz
     { ts: 1527817116, e: "green, flourishing" }, // زرغون - zarghoon

@@ -45,7 +45,6 @@ module.exports = [
     { ts: 1527818632, e: `twin` }, // غبرګونی - ghbargoney
     { ts: 1527812624, e: `thief` }, // غل - ghul
     { ts: 1613561408232, e: `guilty, at fault` }, // قصوروار - qUsoorwáar
-    { ts: 1527812724, e: `of Kabul (a person)` }, // کابلی - kaabuley
     { ts: 1527814715, e: `user` }, // کاروونکی - kaarawoonkey
     { ts: 1527816256, e: `great-grandson` }, // کړوسی - kaRwaséy
     { ts: 1594906790729, e: `child` }, // ککی - kakéy

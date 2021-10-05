@@ -77,7 +77,6 @@ module.exports = [
 { ts: 1588161660483, e: `crutch, walking-stick, cane` }, // ډانګوری - Daangooréy
 { ts: 1527813493, e: `majority; heap, pile` }, // ډېری - Derey
 { ts: 1527823700, e: `avalanche, flood, shower` }, // راشی - raashey
-{ ts: 1527819525, e: `diminutive form of زړه - little heart; precious, dear` }, // زړګی - zuRgéy
 { ts: 1527819732, e: `young, youth, young lad` }, // زلمی - zalméy
 { ts: 1527813708, e: `good news, gospel` }, // زېری - zerey
 { ts: 1588758498458, e: `jaundice` }, // زېړی - zeRéy
@@ -110,7 +109,6 @@ module.exports = [
 { ts: 1527818483, e: `plate` }, // غوری - ghorey
 { ts: 1527816181, e: `vomit, nausea (Arabic)` }, // قی - qey
 { ts: 1527814715, e: `user` }, // کاروونکی - kaarawoonkey
-{ ts: 1578706351012, e: `dress, clothing, underwear, ornament (usually plural)` }, // کالی - kaaley
 { ts: 1527823295, e: `stone, rock` }, // کاڼی - káaNey
 { ts: 1527818563, e: `muscle` }, // کبوړی - kabóoRey
 { ts: 1527822824, e: `booklet, notebook` }, // کتاب ګوټی - kitaabgóTey
@@ -130,7 +128,6 @@ module.exports = [
 { ts: 1527812416, e: `brook, rivulet, small irrigation` }, // لښتی - laxtey
 { ts: 1527814401, e: `toy` }, // لوبونی - lobawuney
 { ts: 1527814519, e: `side, direction` }, // لوری - lorey
-{ ts: 1527813846, e: `smoke` }, // لوګی - loogéy
 { ts: 1527823103, e: `perspective, viewpoint` }, // لیدلوری - leedlorey
 { ts: 1527819920, e: `mosquito, midge` }, // ماشی - maashey
 { ts: 1527820224, e: `fly swatter` }, // مچوژی - muchwajzéy
@@ -144,7 +141,6 @@ module.exports = [
 { ts: 1527823577, e: `sapling, seedling, sprout, young tree` }, // نیالګی - niyaalgey
 { ts: 1527812073, e: `bone` }, // هډوکی - haDookey
 { ts: 1527812668, e: `welcome` }, // هرکلی - hărkáley
-{ ts: 1527820928, e: `awkward/silly laugh, unmotivated laugh` }, // هرکی - hurkéy
 { ts: 1588153218244, e: `height, elevation, tallness` }, // هسکوالی - haskwáaley
 { ts: 1585309922022, e: `flu, respiratory illness, influenza, cold` }, // والګی - waalgéy
 { ts: 1527813014, e: `vein, nerve` }, // وژی - wajzey
