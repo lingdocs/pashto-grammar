@@ -16,6 +16,8 @@ import * as presentEquative from "!babel-loader!mdx-loader!./equatives/present-e
 import * as subjunctiveHabitualEquative from "!babel-loader!mdx-loader!./equatives/subjunctive-habitual-equative.mdx";
 // @ts-ignore
 import * as otherEquatives from "!babel-loader!mdx-loader!./equatives/other-equatives.mdx";
+// @ts-ignore
+import * as equativeExplorer from "!babel-loader!mdx-loader!./equatives/equative-explorer.mdx";
 
 // @ts-ignore
 import * as nounsGender from "!babel-loader!mdx-loader!./nouns/nouns-gender.mdx";
@@ -96,6 +98,10 @@ const contentTree = [
             {
                 import: otherEquatives,
                 slug: "other-equatives",
+            },
+            {
+                import: equativeExplorer,
+                slug: "equative-explorer",
             },
         ],
     },

@@ -131,7 +131,8 @@ function makePronoun(sub: T.Person): T.PsString[] {
 function makeUnisexNoun(e: UnisexNounInput, subjPerson: T.Person | undefined): T.PsString[] {
     // reuse english from make noun - do the a / an sensitivity
     // if it's the predicate - get the inflection according to the subjPerson
-    const isPredicate = !!subjPerson;
+    const isPredicate = subjPerson !== undefined;
+    console.log("making", e, "isPredicate", isPredicate);
     if (isPredicate) {
         const inf = inflectWord(e);
         // TODO: Use if no inflections // FIX THIS
@@ -141,12 +142,13 @@ function makeUnisexNoun(e: UnisexNounInput, subjPerson: T.Person | undefined): T
             throw Error("improper unisex noun");
         }
         // if plural // anim // chose that
-        // otherwise just chose inflection (or add both)
-        const pashto = ("plural" in inf && personIsPlural(subjPerson))
+        // otherwise just chose inflection (or add both)                              // needed for older version of typescript
+        const pashto = ("plural" in inf && inf.plural !== undefined && personIsPlural(subjPerson || 0))
             // @ts-ignore
             ? inf.plural[personGender(subjPerson)][0] as T.ArrayOneOrMore<T.PsString>
-            : chooseInflection(inf.inflections, subjPerson);
-        const english = getEnglishFromNoun(e, personIsPlural(subjPerson), "predicate");
+                                                // needed for older version of typescript
+            : chooseInflection(inf.inflections, subjPerson || 0);
+        const english = getEnglishFromNoun(e, personIsPlural(subjPerson || 0), "predicate");
         return addEnglish(english, pashto);
     }
     // if it's the subject - TO BE IMPLEMENTED
@@ -263,11 +265,11 @@ function getEnglishParticiple(entry: T.DictionaryEntry): string {
         : participle;
 }
 
-function isPersonInput(e: EntityInput): e is PersonInput {
+export function isPersonInput(e: EntityInput): e is PersonInput {
     return typeof e === "number";
 }
 
-function isNounInput(e: EntityInput): e is NounInput {
+export function isNounInput(e: EntityInput): e is NounInput {
     if (isPersonInput(e)) return false;
     if ("entry" in e && !("gender" in e)) {
         // e
@@ -276,13 +278,13 @@ function isNounInput(e: EntityInput): e is NounInput {
     return false;
 }
 
-function isParticipleInput(e: EntityInput): e is ParticipleInput {
+export function isParticipleInput(e: EntityInput): e is ParticipleInput {
     if (isPersonInput(e)) return false;
     if ("entry" in e) return false;
     return !!e.c?.startsWith("v.");
 }
 
-function isSpecifiedUnisexNounInput(e: EntityInput): e is SpecifiedUnisexNounInput {
+export function isSpecifiedUnisexNounInput(e: EntityInput): e is SpecifiedUnisexNounInput {
     if (isPersonInput(e)) return false;
     if ("entry" in e && "gender" in e) {
         // e
@@ -291,13 +293,13 @@ function isSpecifiedUnisexNounInput(e: EntityInput): e is SpecifiedUnisexNounInp
     return false;
 }
 
-function isUnisexNounInput(e: EntityInput): e is UnisexNounInput {
+export function isUnisexNounInput(e: EntityInput): e is UnisexNounInput {
     if (isPersonInput(e)) return false;
     if ("entry" in e) return false;
     return !!e.c?.includes("unisex");
 }
 
-function isAdjectiveInput(e: EntityInput): e is AdjectiveInput {
+export function isAdjectiveInput(e: EntityInput): e is AdjectiveInput {
     if (isPersonInput(e)) return false;
     if ("entry" in e) return false;
     if (isNounInput(e)) return false;
