@@ -1573,20 +1573,20 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@lingdocs/lingdocs-main@^0.1.7":
-  version "0.1.7"
-  resolved "https://npm.lingdocs.com/@lingdocs%2flingdocs-main/-/lingdocs-main-0.1.7.tgz#9b94c8b2b43c73f989b9a551c7544554bc0a74a5"
-  integrity sha512-+7Snx3jDj8Jekh69UO+n8+5B+yMuMg6HcEcZReW9e0Sam07i57u/g8+tlpu2ET5lblPF0KGs783EXX+UWFhzWw==
+"@lingdocs/lingdocs-main@^0.1.8":
+  version "0.1.9"
+  resolved "https://npm.lingdocs.com/@lingdocs%2flingdocs-main/-/lingdocs-main-0.1.9.tgz#55221e486aa042958cd3062c0b8b5f6b8cbe9a21"
+  integrity sha512-PjEwyEDxZzoqUABy14pbj1vAnhu9eIFEccYAuN7a/0a91+IOy2TbrfOqmHR1h5b1Fd1j0keXNN7MXvIymIy+dQ==
   dependencies:
     nano "^9.0.5"
     passport-github2 "^0.1.12"
     passport-google-oauth "^2.0.0"
     passport-twitter "^1.0.4"
 
-"@lingdocs/pashto-inflector@^1.1.4":
-  version "1.1.4"
-  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-1.1.4.tgz#1c1373fca53ef27705366663eb4519d51009dbe9"
-  integrity sha512-2TWXBV/Xnlot0kVz9016TiXMe/liRfghrZDJBdOSq29VMI//23UEuOWpxlkeIyw9XVY+MsYYC2k6dHsRoak7NQ==
+"@lingdocs/pashto-inflector@^1.1.9":
+  version "1.1.9"
+  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-1.1.9.tgz#19ef2788223d8383b3922c4c760b0c9ee7c4b705"
+  integrity sha512-Rp4BWRR2Rf1HjBn4ZMlf12MIsEGLOd5GIKE2/OXaGVZAKdT6DSf0NqtMGw99nLSbxIvTPWrg0XpEYlPqstb7/w==
   dependencies:
     classnames "^2.2.6"
     pbf "^3.2.1"
