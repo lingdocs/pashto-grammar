@@ -70,8 +70,8 @@ function getNounsAdjsFromTsS(entries) {
             console.log("couldn't find ts", item);
             return undefined;
         }
-        const firstWord = entry.e.split(",")[0].split(";")[0].split("(")[0].trim();
-        console.log(firstWord, entry.f, entry.ts);
+        // const firstWord = entry.e.split(",")[0].split(";")[0].split("(")[0].trim();
+        // console.log(firstWord, entry.f, entry.ts);
         // if (firstWord.contains(" ")) console.log("SPACE PRESENT");
         return { entry, def: item.e, category: item.category };
     }).filter(x => x);

@@ -42,8 +42,9 @@ function makeBlock(e: PredicateInput): T.VerbBlock {
 type PredicateType = "adjectives" | "unisexNouns";
 
 function EquativeExplorer() {
+    // TODO: Use sticky state
     const predicateTypes: PredicateType[] = ["adjectives", "unisexNouns"]; 
-    const [predicate, setPredicate] = useState<number>(inputs.adjectives[0].ts);
+    const [predicate, setPredicate] = useState<number>(1527815306);
     const [predicateType, setPredicateType] = useState<PredicateType>("adjectives");
     function handlePredicateSelect(e: React.ChangeEvent<HTMLSelectElement>) {
         setPredicate(parseInt(e.target.value));
@@ -97,8 +98,8 @@ function EquativeExplorer() {
                 value={predicate}
                 onChange={handlePredicateSelect}
             >
-                {inputs[predicateType].map((adj: AdjectiveInput | UnisexNounInput) => (
-                    <option key={adj.ts} value={adj.ts+"s"}>{adj.p} - {removeFVarients(adj.f)}</option>
+                {inputs[predicateType].map((e: AdjectiveInput | UnisexNounInput) => (
+                    <option key={e.ts+"s"} value={e.ts}>{e.p} - {removeFVarients(e.f)}</option>
                 ))}
             </select>
         </div>
