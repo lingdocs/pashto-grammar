@@ -122,7 +122,6 @@ module.exports = [
     { ts: 1527814373, e: "lost" }, // ورک - wruk
     { ts: 1527822838, e: "decayed, spoiled, rotten" }, // وروست - wrost
     { ts: 1609949334478, e: "roasted" }, // وریت - wreet
-    { ts: 1527823106, e: "cheerful" }, // ورین - wreen
     { ts: 1527811544, e: "standing" }, // ولاړ - waláaR, wuláaR
     { ts: 1527815498, e: "aforementioned" }, // یاد - yaad
     { ts: 1527815434, e: "cold" }, // یخ - yakh, yukh
