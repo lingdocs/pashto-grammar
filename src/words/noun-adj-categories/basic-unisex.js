@@ -84,7 +84,6 @@ module.exports = [
     { ts: 1567594312839, e: "brave" }, // زړه ور - zuRawár
     { ts: 1527815848, e: "committed" }, // ژمن - jzman
     { ts: 1527813498, e: "light" }, // سپک - spuk
-    { ts: 1610447888169, e: "stale, dry (bread/crust); offensive, unpleasant (word)" }, // سپور - spor
     { ts: 1578329248464, e: "white" }, // سپین - speen
     { ts: 1527811860, e: "great" }, // ستر - stur
     { ts: 1527820178, e: "problematic" }, // ستونزمن - stoonzmán

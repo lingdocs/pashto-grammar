@@ -19,9 +19,9 @@ import words from "../words/nouns-adjs";
 
 const inputs = {
     adjectives: words.filter((w) => isAdjectiveInput(w.entry as EntityInput))
-        .map((w) => w.entry as AdjectiveInput),
+        .map((w) => w.entry as AdjectiveInput).sort((a, b) => a.p.localeCompare(b.p)),
     unisexNouns: words.filter((w) => isUnisexNounInput(w.entry as EntityInput))
-        .map((w) => w.entry as UnisexNounInput),
+        .map((w) => w.entry as UnisexNounInput).sort((a, b) => a.p.localeCompare(b.p)),
 };
 
 function makeBlock(e: PredicateInput): T.VerbBlock {
