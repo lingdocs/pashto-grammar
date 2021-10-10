@@ -132,23 +132,34 @@ function makeUnisexNoun(e: UnisexNounInput, subjPerson: T.Person | undefined): T
     // reuse english from make noun - do the a / an sensitivity
     // if it's the predicate - get the inflection according to the subjPerson
     const isPredicate = subjPerson !== undefined;
-    console.log("making", e, "isPredicate", isPredicate);
     if (isPredicate) {
         const inf = inflectWord(e);
-        // TODO: Use if no inflections // FIX THIS
-        // BETTER CHECKING / GUARDING HERE
-        // @ts-ignore - TODO: REMOVE THIS
-        if (!inf || (!inf.inflections && !("plural" in inf)) || !isUnisexSet(inf.inflections)) {
+        const english = getEnglishFromNoun(e, personIsPlural(subjPerson || 0), "predicate");
+        if (!inf) {
+            return [psStringFromEntry(e, english)];
+        }
+        if (!inf.inflections && (!("plural" in inf) || (!inf.inflections || !isUnisexSet(inf.inflections)))) {
             throw Error("improper unisex noun");
         }
         // if plural // anim // chose that
-        // otherwise just chose inflection (or add both)                              // needed for older version of typescript
-        const pashto = ("plural" in inf && inf.plural !== undefined && personIsPlural(subjPerson || 0))
-            // @ts-ignore
-            ? inf.plural[personGender(subjPerson)][0] as T.ArrayOneOrMore<T.PsString>
-                                                // needed for older version of typescript
-            : chooseInflection(inf.inflections, subjPerson || 0);
-        const english = getEnglishFromNoun(e, personIsPlural(subjPerson || 0), "predicate");
+        // otherwise just chose inflection (or add both)                              
+        const pashto = ((): T.ArrayOneOrMore<T.PsString> => {                 // needed for older version of typescript
+            if ("plural" in inf && inf.plural !== undefined && personIsPlural(subjPerson || 0)) {
+                const gender = personGender(subjPerson || 0);
+                if (gender === "masc" && "masc" in inf.plural) {
+                    return inf.plural.masc[0];
+                }
+                if (gender === "fem" && "fem" in inf.plural) {
+                    return inf.plural.fem[0];
+                }
+                throw new Error("gender not available for plural");
+            }
+            if (isUnisexSet(inf.inflections)) {
+                return chooseInflection(inf.inflections, subjPerson || 0);
+            } else {
+                return [psStringFromEntry(e, english)];
+            }
+        })();
         return addEnglish(english, pashto);
     }
     // if it's the subject - TO BE IMPLEMENTED
@@ -305,6 +316,6 @@ export function isAdjectiveInput(e: EntityInput): e is AdjectiveInput {
     if (isNounInput(e)) return false;
     if (isUnisexNounInput(e)) return false;
     if (isSpecifiedUnisexNounInput(e)) return false;
-    return !!e.c?.includes("adj.");
+    return !!(e.c?.includes("adj.") && !(e.c.includes("n. m.") || e.c.includes("n. f.")));
 }
 

@@ -1573,10 +1573,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@lingdocs/lingdocs-main@^0.1.4":
-  version "0.1.6"
-  resolved "https://npm.lingdocs.com/@lingdocs%2flingdocs-main/-/lingdocs-main-0.1.6.tgz#b79c95d68e200eb7f323e8144fd3a3cea0ceb805"
-  integrity sha512-xVwBg01eJng9d+LMvaNtAjUGJhUt3yRmKAsCGlvJPQp8Ud4zpmJ5gotOTLUOEWTsjXzW0H/PjQXG767reuX3aA==
+"@lingdocs/lingdocs-main@^0.1.7":
+  version "0.1.7"
+  resolved "https://npm.lingdocs.com/@lingdocs%2flingdocs-main/-/lingdocs-main-0.1.7.tgz#9b94c8b2b43c73f989b9a551c7544554bc0a74a5"
+  integrity sha512-+7Snx3jDj8Jekh69UO+n8+5B+yMuMg6HcEcZReW9e0Sam07i57u/g8+tlpu2ET5lblPF0KGs783EXX+UWFhzWw==
   dependencies:
     nano "^9.0.5"
     passport-github2 "^0.1.12"

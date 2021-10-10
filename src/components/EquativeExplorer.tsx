@@ -22,7 +22,19 @@ function uniqueSort(arr: AdjectiveInput[]): AdjectiveInput[];
 function uniqueSort(arr: UnisexNounInput[]): UnisexNounInput[];
 function uniqueSort(arr: (AdjectiveInput | UnisexNounInput)[]): (AdjectiveInput | UnisexNounInput)[] {
     return arr
-        .filter((v, i, a) => a.findIndex((e) => e.ts === v.ts) === i) 
+        .filter((v, i, a) => a.findIndex((e) => e.ts === v.ts) === i)
+        .filter((e) => {
+            try {
+                for (let p = 0; p < 12; p++) {
+                    equativeMachine(p, e);
+                }
+            } catch (err) {
+                console.error("equative generation failed", e);
+                console.error(err);
+                return false;
+            }
+            return true;
+        })
         .sort((a, b) => a.p.localeCompare(b.p));
 }
 const inputs = {
@@ -65,7 +77,7 @@ function EquativeExplorer() {
     function makeOptionLabel(e: T.DictionaryEntry): string {
         const eng = getEnglishWord(e);
         // @ts-ignore - with dumb old typescript
-        const english = typeof eng === "string" ? eng : eng.plural; 
+        const english = typeof eng === "string" ? eng : eng?.singular; 
         return `${e.p} - ${removeFVarients(e.f)} (${english})`;
     }
     function handlePredicateSelect(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -128,7 +140,7 @@ function EquativeExplorer() {
                     </label>
                 </div>
                 {/* hiding this because it's a bit buggy still */}
-                <div className="form-check mb-2" style={{ display: "none" }}>
+                <div className="form-check mb-2">
                     <input
                         className="form-check-input"
                         type="radio"
@@ -154,6 +166,9 @@ function EquativeExplorer() {
                 </select>
             </div>
         </div>
+        {/* 
+        // @ts-ignore */}
+        {pe.ts}
         <VerbTable textOptions={opts} block={block} />
     </>;
 }
