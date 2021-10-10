@@ -131,10 +131,9 @@ function makePronoun(sub: T.Person): T.PsString[] {
 function makeUnisexNoun(e: UnisexNounInput, subjPerson: T.Person | undefined): T.PsString[] {
     // reuse english from make noun - do the a / an sensitivity
     // if it's the predicate - get the inflection according to the subjPerson
-    const isPredicate = subjPerson !== undefined;
-    if (isPredicate) {
+    if (subjPerson !== undefined) {
         const inf = inflectWord(e);
-        const english = getEnglishFromNoun(e, personIsPlural(subjPerson || 0), "predicate");
+        const english = getEnglishFromNoun(e, personIsPlural(subjPerson), "predicate");
         if (!inf) {
             return [psStringFromEntry(e, english)];
         }
@@ -143,9 +142,9 @@ function makeUnisexNoun(e: UnisexNounInput, subjPerson: T.Person | undefined): T
         }
         // if plural // anim // chose that
         // otherwise just chose inflection (or add both)                              
-        const pashto = ((): T.ArrayOneOrMore<T.PsString> => {                 // needed for older version of typescript
-            if ("plural" in inf && inf.plural !== undefined && personIsPlural(subjPerson || 0)) {
-                const gender = personGender(subjPerson || 0);
+        const pashto = ((): T.ArrayOneOrMore<T.PsString> => {                 
+            if ("plural" in inf && inf.plural !== undefined && personIsPlural(subjPerson)) {
+                const gender = personGender(subjPerson);
                 if (gender === "masc" && "masc" in inf.plural) {
                     return inf.plural.masc[0];
                 }
@@ -155,7 +154,7 @@ function makeUnisexNoun(e: UnisexNounInput, subjPerson: T.Person | undefined): T
                 throw new Error("gender not available for plural");
             }
             if (isUnisexSet(inf.inflections)) {
-                return chooseInflection(inf.inflections, subjPerson || 0);
+                return chooseInflection(inf.inflections, subjPerson);
             } else {
                 return [psStringFromEntry(e, english)];
             }
