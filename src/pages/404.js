@@ -6,9 +6,7 @@
  *
  */
 
-import React from "react";
-
-export default function() {
+export default function FourOFour() {
     return <main className="col bg-faded py-3">
         <h1>404 PAGE NOT FOUND</h1>
     </main>;

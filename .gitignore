@@ -1,9 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dictionary entries fetched during build
-/src/words/**/verbs.js
-/src/words/**/nouns-adjs.js
-
 # dependencies
 /node_modules
 /.pnp

@@ -50,7 +50,7 @@ const exceptions: Record<string, CategorySet> = {
 
 const amount = 35;
 
-export default function({level, id, link}: { level: 1 | 2, id: string, link: string }) {
+export default function GenderGame({level, id, link}: { level: 1 | 2, id: string, link: string }) {
     function* questions () {
         const wordPool = {...types};
         const exceptionsPool = {...exceptions};

@@ -6,12 +6,11 @@
  *
  */
 
-import React from "react";
 import { HashLink } from 'react-router-hash-link';
 import { Link } from "react-router-dom";
 // import scrollWithOffset from "../../lib/scroll-with-offset.js";
 
-export default function(props) {
+export default function L(props) {
     const { to } = props || "";
     if (to.includes("#")) {
         // If it's a hash link return the special hash link

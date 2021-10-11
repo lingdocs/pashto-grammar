@@ -1,51 +1,45 @@
 {
-  "name": "lingdocs-pashto-grammar",
+  "name": "lingdocs-grammar",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.2",
-    "@lingdocs/lingdocs-main": "^0.1.8",
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@lingdocs/lingdocs-main": "^0.2.0",
     "@lingdocs/pashto-inflector": "^1.1.9",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^27.0.2",
-    "@types/node": "^14.14.35",
-    "@types/react": "^17.0.3",
-    "@types/react-dom": "^17.0.2",
-    "@types/react-router-dom": "^5.1.9",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/cron": "^1.7.3",
+    "@types/react-router-dom": "^5.3.1",
     "bootstrap": "4.5.3",
-    "classnames": "^2.2.6",
     "cron": "^1.8.2",
     "markdown-to-jsx": "^7.1.3",
-    "react": "^17.0.1",
-    "react-bootstrap": "^1.5.2",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.4",
     "react-countdown-circle-timer": "^2.5.4",
-    "react-dom": "^17.0.1",
+    "react-dom": "^17.0.2",
     "react-ga": "^3.3.0",
     "react-media": "^1.10.0",
     "react-rewards": "^1.1.2",
-    "react-router-dom": "^5.2.0",
-    "react-router-hash-link": "^2.3.1",
-    "react-scripts": "3.4.3",
+    "react-router-dom": "^5.3.0",
+    "react-router-hash-link": "^2.4.3",
+    "react-scripts": "4.0.3",
     "react-scrollspy": "^3.4.3",
     "react-smooth-collapse": "^2.1.0",
-    "react-swipeable": "^6.1.0",
-    "typescript": "^4.2.3"
+    "react-swipeable": "^6.2.0",
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-w-user": "REACT_APP_ENV=dev react-scripts start",
-    "build": "node scripts/get-words.js && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "get-words": "node scripts/get-words.js"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "jsx-a11y/accessible-emoji": "off"
-    }
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -60,9 +54,13 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-jsx": "^7.14.5",
-    "@types/cron": "^1.7.3",
-    "mdx-loader": "^3.0.2",
-    "node-fetch": "^2.6.1"
+    "@lingdocs/mdx-loader": "^0.0.8",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.10.3",
+    "@types/react": "^17.0.27",
+    "@types/react-dom": "^17.0.9",
+    "babel-loader": "8.1.0",
+    "node-fetch": "^3.0.0",
+    "typescript": "^4.4.3"
   }
 }

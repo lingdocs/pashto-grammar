@@ -6,7 +6,7 @@
  *
  */
 
-import React, { useState } from "react";
+import { useState } from "react";
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route, withRouter, Switch, RouteComponentProps } from "react-router-dom";
 import "./App.css";

@@ -8,75 +8,75 @@
 
 /* eslint-disable import/no-webpack-loader-syntax */
 // @ts-ignore
-import * as intro from "!babel-loader!mdx-loader!./intro.mdx";
+import * as intro from "!babel-loader!@lingdocs/mdx-loader!./intro.mdx";
 
 // @ts-ignore
-import * as presentEquative from "!babel-loader!mdx-loader!./equatives/present-equative.mdx"
+import * as presentEquative from "!babel-loader!@lingdocs/mdx-loader!./equatives/present-equative.mdx"
 // @ts-ignore
-import * as subjunctiveHabitualEquative from "!babel-loader!mdx-loader!./equatives/subjunctive-habitual-equative.mdx";
+import * as subjunctiveHabitualEquative from "!babel-loader!@lingdocs/mdx-loader!./equatives/subjunctive-habitual-equative.mdx";
 // @ts-ignore
-import * as otherEquatives from "!babel-loader!mdx-loader!./equatives/other-equatives.mdx";
+import * as otherEquatives from "!babel-loader!@lingdocs/mdx-loader!./equatives/other-equatives.mdx";
 // @ts-ignore
-import * as equativeExplorer from "!babel-loader!mdx-loader!./equatives/equative-explorer.mdx";
+import * as equativeExplorer from "!babel-loader!@lingdocs/mdx-loader!./equatives/equative-explorer.mdx";
 
 // @ts-ignore
-import * as nounsGender from "!babel-loader!mdx-loader!./nouns/nouns-gender.mdx";
+import * as nounsGender from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-gender.mdx";
 // @ts-ignore
-import * as nounsUnisex from "!babel-loader!mdx-loader!./nouns/nouns-unisex.mdx";
+import * as nounsUnisex from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-unisex.mdx";
 // @ts-ignore
-import * as nounsPlural from "!babel-loader!mdx-loader!./nouns/nouns-plural.mdx";
+import * as nounsPlural from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-plural.mdx";
 // @ts-ignore
-import * as arabicPlurals from "!babel-loader!mdx-loader!./nouns/arabic-plurals.mdx";
+import * as arabicPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/arabic-plurals.mdx";
 // @ts-ignore
-import * as bundledPlurals from "!babel-loader!mdx-loader!./nouns/bundled-plurals.mdx";
+import * as bundledPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/bundled-plurals.mdx";
 
 // @ts-ignore
-import * as verbAspect from "!babel-loader!mdx-loader!./verbs/verb-aspect.mdx";
+import * as verbAspect from "!babel-loader!@lingdocs/mdx-loader!./verbs/verb-aspect.mdx";
 // @ts-ignore
-import * as verbsIntro from "!babel-loader!mdx-loader!./verbs/verbs-intro.mdx";
+import * as verbsIntro from "!babel-loader!@lingdocs/mdx-loader!./verbs/verbs-intro.mdx";
 // @ts-ignore
-import * as presentVerbs from "!babel-loader!mdx-loader!./verbs/present-verbs.mdx";
+import * as presentVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/present-verbs.mdx";
 // @ts-ignore
-import * as subjunctiveVerbs from "!babel-loader!mdx-loader!./verbs/subjunctive-verbs.mdx";
+import * as subjunctiveVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/subjunctive-verbs.mdx";
 // @ts-ignore
-import * as futureVerbs from "!babel-loader!mdx-loader!./verbs/future-verbs.mdx";
+import * as futureVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/future-verbs.mdx";
 // @ts-ignore
-import * as imperativeVerbs from "!babel-loader!mdx-loader!./verbs/imperative-verbs.mdx";
+import * as imperativeVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/imperative-verbs.mdx";
 // @ts-ignore
-import * as verbEndings from "!babel-loader!mdx-loader!./verbs/verb-endings.mdx";
+import * as verbEndings from "!babel-loader!@lingdocs/mdx-loader!./verbs/verb-endings.mdx";
 // @ts-ignore
-import * as rootsAndStems from "!babel-loader!mdx-loader!./verbs/roots-and-stems.mdx";
+import * as rootsAndStems from "!babel-loader!@lingdocs/mdx-loader!./verbs/roots-and-stems.mdx";
 // @ts-ignore
-import * as sentenceStructure from "!babel-loader!mdx-loader!./verbs/sentence-structure.mdx";
+import * as sentenceStructure from "!babel-loader!@lingdocs/mdx-loader!./verbs/sentence-structure.mdx";
 
 // @ts-ignore
-import * as pronounsBasic from "!babel-loader!mdx-loader!./pronouns/pronouns-basic.mdx";
+import * as pronounsBasic from "!babel-loader!@lingdocs/mdx-loader!./pronouns/pronouns-basic.mdx";
 // @ts-ignore
-import * as pronounsMini from "!babel-loader!mdx-loader!./pronouns/pronouns-mini.mdx";
+import * as pronounsMini from "!babel-loader!@lingdocs/mdx-loader!./pronouns/pronouns-mini.mdx";
 // @ts-ignore
-import * as directionalPronouns from "!babel-loader!mdx-loader!./pronouns/pronouns-directional.mdx"; 
+import * as directionalPronouns from "!babel-loader!@lingdocs/mdx-loader!./pronouns/pronouns-directional.mdx"; 
 
 // @ts-ignore
-import * as inflectionIntro from "!babel-loader!mdx-loader!./inflection/inflection-intro.mdx";
+import * as inflectionIntro from "!babel-loader!@lingdocs/mdx-loader!./inflection/inflection-intro.mdx";
 // @ts-ignore
-import * as inflectionPatterns from "!babel-loader!mdx-loader!./inflection/inflection-patterns.mdx";
+import * as inflectionPatterns from "!babel-loader!@lingdocs/mdx-loader!./inflection/inflection-patterns.mdx";
 // @ts-ignore
-import * as feminineInflection from "!babel-loader!mdx-loader!./inflection/feminine-inflection.mdx";
+import * as feminineInflection from "!babel-loader!@lingdocs/mdx-loader!./inflection/feminine-inflection.mdx";
 
 // @ts-ignore
-import * as sandwiches from "!babel-loader!mdx-loader!./sandwiches/sandwiches.mdx";
+import * as sandwiches from "!babel-loader!@lingdocs/mdx-loader!./sandwiches/sandwiches.mdx";
 
 // @ts-ignore
-import * as phonetics from "!babel-loader!mdx-loader!./writing/phonetics.mdx";
+import * as phonetics from "!babel-loader!@lingdocs/mdx-loader!./writing/phonetics.mdx";
 // @ts-ignore
-import * as diacritics from "!babel-loader!mdx-loader!./writing/diacritics.mdx";
+import * as diacritics from "!babel-loader!@lingdocs/mdx-loader!./writing/diacritics.mdx";
 // @ts-ignore
-import * as theFiveYeys from "!babel-loader!mdx-loader!./writing/the-five-yeys.mdx";
+import * as theFiveYeys from "!babel-loader!@lingdocs/mdx-loader!./writing/the-five-yeys.mdx";
 // @ts-ignore
-import * as typingIssues from "!babel-loader!mdx-loader!./writing/typing-issues.mdx";
+import * as typingIssues from "!babel-loader!@lingdocs/mdx-loader!./writing/typing-issues.mdx";
 
 // @ts-ignore
-import * as games from "!babel-loader!mdx-loader!./games.mdx";
+import * as games from "!babel-loader!@lingdocs/mdx-loader!./games.mdx";
 
 const contentTree = [
     {
@@ -327,29 +327,3 @@ export const content = contentTree.map((item) => {
         )),
     }
 });
-
-
-// // Now that the paths are made, go through and make the next and previous page information for each chapter
-// // STEP #2
-// content.sections.forEach((section, i) => {
-//     section.chapters.forEach((chapter, j) => {
-//         // See if there's a next chapter
-//         let nextChapter = j === section.chapters.length - 1 ? null : section.chapters[j + 1];
-//         if (!nextChapter) {
-//             // No? maybe there's something a section ahead (if that exists) 
-//             nextChapter = i === content.sections.length - 1 ? null : content.sections[i + 1].chapters[0];
-//         }
-//         if (nextChapter) {
-//             chapter.next = { frontMatter: nextChapter, path: nextChapter.path };
-//         }
-//         // See if there's a previous chapter
-//         let prevChapter = j === 0 ? null : section.chapters[j - 1];
-//         if (!prevChapter) {
-//             // No? maybe there's something a section behind (if that exists) 
-//             prevChapter = i === 0 ? null : content.sections[i - 1].chapters[content.sections[i - 1].chapters.length - 1];
-//         }
-//         if (prevChapter) {
-//             chapter.previous = { frontMatter: prevChapter, path: prevChapter.path };
-//         }
-//     });
-// });

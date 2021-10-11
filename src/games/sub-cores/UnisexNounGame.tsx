@@ -34,7 +34,7 @@ const amount = 20;
 
 type Question = { entry: T.DictionaryEntry, gender: T.Gender };
 
-export default function({ id, link }: { id: string, link: string }) {
+export default function UnisexNounGame({ id, link }: { id: string, link: string }) {
     function* questions (): Generator<Current<Question>> {
         let pool = [...nouns];
         for (let i = 0; i < amount; i++) {

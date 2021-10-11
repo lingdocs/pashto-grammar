@@ -6,7 +6,7 @@
  *
  */
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import leftChevron from "./chevron_left-24px.svg";
 import rightChevron from "./chevron_right-24px.svg";
@@ -16,7 +16,7 @@ const chevStyle = {
     width: "3.5rem",
 };
 
-export default function(props) {
+export default function Carousel(props) {
     // console.log("pppp");
     // console.log(props.items);
     const [current, setCurrent] = useState(0);

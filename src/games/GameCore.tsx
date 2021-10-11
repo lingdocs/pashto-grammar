@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import Reward, { RewardElement } from 'react-rewards';
 import Link from "../components/Link";
@@ -16,14 +16,14 @@ import {
     getTimestamp,
 } from "@lingdocs/lingdocs-main";
 import {
-    Types as T,
+    Types,
 } from "@lingdocs/pashto-inflector";
 const errorVibration = 200;
 
 function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, id }:{
     id: string,
     studyLink: string,
-    Instructions: (props: { opts?: T.TextOptions }) => JSX.Element,
+    Instructions: (props: { opts?: Types.TextOptions }) => JSX.Element,
     questions: () => QuestionGenerator<T>,
     Display: (props: QuestionDisplayProps<T>) => JSX.Element,
     timeLimit: number;
