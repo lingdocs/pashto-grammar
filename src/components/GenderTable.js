@@ -1,4 +1,3 @@
-import React from "react";
 import {
     InlinePs,
     defaultTextOptions as opts,

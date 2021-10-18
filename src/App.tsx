@@ -7,8 +7,7 @@
  */
 
 import { useState } from "react";
-// eslint-disable-next-line
-import { BrowserRouter as Router, Route, withRouter, Switch, RouteComponentProps } from "react-router-dom";
+import { Route, withRouter, Switch, RouteComponentProps } from "react-router-dom";
 import "./App.css";
 import Page404 from "./pages/404";
 import Chapter from "./components/Chapter";
@@ -44,10 +43,12 @@ function App(props: RouteComponentProps) {
   }
   useEffect(() => {
     logAnalytics();
+    // eslint-disable-next-line
   }, []);
   useEffect(() => {
     window.scroll(0, 0);
     logAnalytics();
+    // eslint-disable-next-line
   }, [props.location.pathname, user]);
   return (
     <>

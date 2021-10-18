@@ -1,4 +1,3 @@
-import React from "react";
 import { Types as T } from "@lingdocs/pashto-inflector";
 
 interface ILetter {

@@ -1,4 +1,4 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -9,13 +9,13 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <Router>
       <UserProvider>
         <App />
       </UserProvider>
     </Router>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('root')
 );
 

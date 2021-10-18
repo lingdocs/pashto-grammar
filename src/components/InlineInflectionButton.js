@@ -1,4 +1,3 @@
-import React from "react";
 import buttonUnpressed from "../images/button-unpressed.png";
 import buttonHalfPressed from "../images/button-half-pressed.png";
 import buttonFullyPressed from "../images/button-fully-pressed.png";

@@ -1,4 +1,4 @@
-import React from "react";
+import { Component } from "react";
 import classNames from "classnames";
 import highlightExample from "./highlight-example";
 import {
@@ -16,7 +16,7 @@ interface IAppState {
   view: ViewOptions;
 }
 
-class PhoneticsViewer extends React.Component<any, IAppState> {
+class PhoneticsViewer extends Component<any, IAppState> {
   constructor(props: any) {
     super(props);
     this.state = {

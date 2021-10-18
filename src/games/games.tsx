@@ -1,4 +1,3 @@
-import React from "react";
 import GenderGame from "./sub-cores/GenderGame";
 import UnisexNounGame from "./sub-cores/UnisexNounGame";
 

@@ -6,7 +6,6 @@
  *
  */
 
-import React from 'react';
 import { NavHashLink } from 'react-router-hash-link';
 import Scrollspy from 'react-scrollspy';
 

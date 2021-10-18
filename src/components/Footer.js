@@ -6,9 +6,7 @@
  *
  */
 
-import React from "react";
-// eslint-disable-next-line
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import leftChevron from "./chevron_left-24px.svg";
 import rightChevron from "./chevron_right-24px.svg";
 

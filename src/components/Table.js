@@ -1,4 +1,3 @@
-import React from "react";
 import {
     Examples,
 } from "@lingdocs/pashto-inflector";

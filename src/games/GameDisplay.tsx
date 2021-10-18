@@ -1,4 +1,3 @@
-import React from "react";
 import { useUser } from "../user-context";
 
 function GameDisplay({ record: { title, Game, id } }: { record: GameRecord }) {

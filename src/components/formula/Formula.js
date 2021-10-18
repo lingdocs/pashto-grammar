@@ -1,4 +1,3 @@
-import React from "react";
 // import "./formula.css";
 // import teacher from "./teacher-small.png";
 

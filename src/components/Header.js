@@ -6,9 +6,7 @@
  *
  */
 
-import React from "react";
-// eslint-disable-next-line
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useUser } from "../user-context";
 
 const hamburger = <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">

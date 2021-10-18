@@ -6,7 +6,6 @@
  *
  */
 
-import React from "react";
 import TableOfContents from "./TableOfContents";
 import Footer from "./Footer";
 

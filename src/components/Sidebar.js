@@ -6,9 +6,8 @@
  *
  */
 
-import React, { useState } from "react";
-// eslint-disable-next-line
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
 import SmoothCollapse from "react-smooth-collapse";
 

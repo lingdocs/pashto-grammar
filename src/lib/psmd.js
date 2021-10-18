@@ -1,4 +1,3 @@
-import React from "react";
 import Markdown from "markdown-to-jsx";
 
 export default function mdps(input) {
