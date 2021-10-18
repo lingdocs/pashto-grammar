@@ -37,14 +37,17 @@ if (prod) {
 function App(props: RouteComponentProps) {
   const [navOpen, setNavOpen] = useState(false);
   const { user } = useUser();
+  function logAnalytics() {
+    if (prod && !(user?.admin)) {
+      ReactGA.pageview(window.location.pathname);
+    };
+  }
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname);
+    logAnalytics();
   }, []);
   useEffect(() => {
     window.scroll(0, 0);
-    if (prod && !(user?.admin)) {
-      ReactGA.pageview(window.location.pathname);
-    }
+    logAnalytics();
   }, [props.location.pathname, user]);
   return (
     <>
