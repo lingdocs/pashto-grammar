@@ -2,20 +2,23 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 const { readDictionary } = require("@lingdocs/pashto-inflector");
 const path = require("path");
-const verbsPath = path.join(".", "src", "words");
-const verbCollectionPath = path.join(verbsPath, "verb-categories");
-const nounAdjCollectionPath = path.join(verbsPath, "noun-adj-categories");
+const wordsPath = path.join(".", "src", "words");
+const wordsFile = "raw-words.ts";
+const verbCollectionPath = path.join(wordsPath, "verb-categories");
+const nounAdjCollectionPath = path.join(wordsPath, "noun-adj-categories");
 const verbTsFiles = fs.readdirSync(verbCollectionPath);
 const nounAdjTsFiles = fs.readdirSync(nounAdjCollectionPath);
 
 const allVerbTsS = [...new Set(verbTsFiles.reduce((arr, fileName) => {
-    const TsS = require(path.join("..", verbCollectionPath, fileName));
+    const TsS = require(path.join("..", verbCollectionPath, fileName))
+        .filter((v, i, a) => a.findIndex(x => x.ts === v.ts) === i);
     return [...arr, ...TsS];
 }, []))];
 
 const allNounAdjTsS = [...new Set(nounAdjTsFiles.reduce((arr, fileName) => {
-    const TsS = require(path.join("..", nounAdjCollectionPath, fileName));
-    return [...arr, ...TsS.map(x => ({ ...x, category: path.parse(fileName).name }))];
+    const TsS = require(path.join("..", nounAdjCollectionPath, fileName))
+        .filter((v, i, a) => a.findIndex(x => x.ts === v.ts) === i);
+    return [...arr, ...TsS];
 }, []))];
 
 console.log("getting words from dictionary...");
@@ -24,17 +27,15 @@ fetch(process.env.LINGDOCS_DICTIONARY_URL).then(res => res.arrayBuffer()).then(b
   const dictionary = readDictionary(buffer);
   const entries = dictionary.entries;
   // MAKE VERBS FILE
-  const allVerbs = getVerbsFromTsS(entries);
-  const content = `const verbs = ${JSON.stringify(allVerbs)};
-export default verbs;`;
-  fs.writeFileSync(path.join(verbsPath, "verbs.js"), content);
-
-  // MAKE NOUN-ADJ FILE
-  const allNounsAdjs = getNounsAdjsFromTsS(entries);
-  const content1 = `import { Types as T } from "@lingdocs/pashto-inflector";
-const nounsAdjs: { entry: T.DictionaryEntry, def: string, category: string }[] = ${JSON.stringify(allNounsAdjs)};
-export default nounsAdjs;`;
-  fs.writeFileSync(path.join(verbsPath, "nouns-adjs.ts"), content1);
+  const allWords = [
+      ...getVerbsFromTsS(entries),
+      ...getNounsAdjsFromTsS(entries),
+    ];
+  const content = `
+// @ts-ignore
+const words: Word[] = ${JSON.stringify(allWords)};
+export default words;`;
+  fs.writeFileSync(path.join(wordsPath, wordsFile), content);
 });
 
 function getVerbsFromTsS(entries) {
@@ -55,7 +56,7 @@ function getVerbsFromTsS(entries) {
                 complement,
             };
         }
-        return { entry, def: item.e };
+        return { entry };
     }).filter(x => x);
     if (missingEc.length !== 0) {
         console.log("Verbs missing ec:", missingEc);
@@ -73,7 +74,7 @@ function getNounsAdjsFromTsS(entries) {
         // const firstWord = entry.e.split(",")[0].split(";")[0].split("(")[0].trim();
         // console.log(firstWord, entry.f, entry.ts);
         // if (firstWord.contains(" ")) console.log("SPACE PRESENT");
-        return { entry, def: item.e, category: item.category };
+        return entry;
     }).filter(x => x);
     return b;
     // console.log(b.length, "number of nouns/adjs");

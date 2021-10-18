@@ -1,11 +1,9 @@
 // https://stackoverflow.com/a/2450976
 
-function shuffleArray(array) {
-    // for (let i = array.length - 1; i > 0; i--) {
-    //     const j = Math.floor(Math.random() * (i + 1));
-    //     [array[i], array[j]] = [array[j], array[i]];
-    // }
-    let currentIndex = array.length, temporaryValue, randomIndex;
+function shuffleArray<T>(arr: Readonly<Array<T>>): Array<T> {
+    let currentIndex = arr.length, temporaryValue, randomIndex;
+
+    const array = [...arr];
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {

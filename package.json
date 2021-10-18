@@ -5,7 +5,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@lingdocs/lingdocs-main": "^0.2.0",
-    "@lingdocs/pashto-inflector": "^1.1.9",
+    "@lingdocs/pashto-inflector": "^1.2.7",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -31,9 +31,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-w-user": "REACT_APP_ENV=dev react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "get-words": "node scripts/get-words.js"
   },
   "eslintConfig": {
     "extends": [

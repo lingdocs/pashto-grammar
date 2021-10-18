@@ -13,10 +13,12 @@ import psmd from "../../lib/psmd";
 import Carousel from "../../components/Carousel";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
-import verbs from "../../words/verbs";
+import { words } from "../../words/words";
 import shuffleArray from "../../lib/shuffle-array";
 import realityGraph from "./reality-graph.svg";
 import presentTime from "./present-time.svg";
+
+export const verbs = words.verbs;
 
 export const basicVerbs = verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
 

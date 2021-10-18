@@ -1,4 +1,3 @@
-import React from "react";
 import {
     getRandomFromList,
     makeProgress,
@@ -9,44 +8,87 @@ import {
     Types as T,
     Examples,
     defaultTextOptions as opts,
+    endsWith,
+    pashtoConsonants,
+    inflectWord,
+    isUnisexSet,
 } from "@lingdocs/pashto-inflector";
-import words from "../../words/nouns-adjs";
+import { words } from "../../words/words";
 import {
     firstVariation,
 } from "../../lib/text-tools";
+import {
+    isMascNoun,
+    isFemNoun,
+    isUnisexNoun,
+} from "../../lib/type-predicates";
+import { categorize } from "../../lib/categorize";
 
 const genders: T.Gender[] = ["masc", "fem"];
 
-// const masc = words.filter((w) => w.entry.c === "n. m.");
-// const fem = words.filter((w) => w.entry.c === "n. f.");
-type CategorySet = Record<string, { category: string, def: string, entry: T.DictionaryEntry }[]>;
-const types: Record<string, CategorySet> = {
-    masc: {
-        consonantMasc: words.filter((w) => w.category === "consonant-masc"),
-        eyMasc: words.filter((w) => w.category === "ey-masc"),
-        uMasc: words.filter((w) => w.category === "u-masc"),
-        yMasc: words.filter((w) => w.category === "y-masc"),
-    },
-    fem: {
-        aaFem: words.filter((w) => w.category === "aa-fem"),
-        eeFem: words.filter((w) => w.category === "ee-fem"),
-        uyFem: words.filter((w) => w.category === "uy-fem"),
-        aFem: words.filter((w) => w.category === "a-fem"),
-        eFem: words.filter((w) => w.category === "e-fem"),  
-    },
-    // TODO add ې fem words and balance gender
+const mascNouns = words.nouns.filter(isMascNoun);
+const femNouns = [
+    ...words.nouns.filter(isFemNoun),
+    ...getFemVersions(mascNouns.filter(isUnisexNoun)),
+];
+
+const types = {
+    masc: categorize<MascNoun, {
+        consonantMasc: MascNoun[],
+        eyMasc: MascNoun[],
+        uMasc: MascNoun[],
+        yMasc: MascNoun[],
+    }>(mascNouns, {
+        consonantMasc: endsWith([{ p: pashtoConsonants }, { p: "و", f: "w" }]),
+        eyMasc: endsWith({ p: "ی", f: "ey" }),
+        uMasc: endsWith({ p: "ه", f: "u" }),
+        yMasc: endsWith([{ p: "ای", f: "aay" }, { p: "وی", f: "ooy" }]),
+    }),
+    fem: categorize<FemNoun, {
+        aaFem: FemNoun[],
+        eeFem: FemNoun[],
+        uyFem: FemNoun[], 
+        aFem: FemNoun[],
+        eFem: FemNoun[],  
+    }>(femNouns, {
+        aaFem: endsWith({ p: "ا", f: "aa" }),
+        eeFem: endsWith({ p: "ي", f: "ee" }),
+        uyFem: endsWith({ p: "ۍ" }),
+        aFem: endsWith([{ p: "ه", f: "a" }, { p: "ح", f: "a" }]),
+        eFem: endsWith({ p: "ې" }),
+    }),
 };
 
+function getFemVersions(uns: UnisexNoun[]): FemNoun[] {
+    return uns.map((n) => {
+        const infs = inflectWord(n);
+        if (!infs || !infs.inflections) return undefined;
+        if (!isUnisexSet(infs.inflections)) return undefined;
+        return {
+            e: n.e,
+            ...infs.inflections.fem[0][0],
+        } as T.DictionaryEntry;
+    }).filter(n => !!n) as FemNoun[];
+}
+
+function flatten<T>(o: Record<string, T[]>): T[] {
+    return Object.values(o).flat();
+}
+
+function nounNotIn(st: Noun[]): (n: Noun | T.DictionaryEntry) => boolean {
+    return (n: T.DictionaryEntry) => !st.find(x => x.ts === n.ts);
+}
+
+type CategorySet = Record<string, Noun[]>;
+// for some reason we need to use this CategorySet type here... 🤷‍♂️
 const exceptions: Record<string, CategorySet> = {
     masc: {
-        exceptionPeopleMasc: words.filter((w) => w.category === "exception-people-masc"),
+        exceptionMasc: mascNouns.filter(nounNotIn(flatten(types.masc))),
     },
     fem: {
-        consonantFem: words.filter((w) => w.category === "consonant-fem"),
-        exceptionPeopleFem: words.filter((w) => w.category === "exception-people-fem"),
+        exceptionFem: femNouns.filter(nounNotIn(flatten(types.fem))),
     },
-}
-// consonantFem: words.filter((w) => w.category === "consonant-fem"),
+};
 
 const amount = 35;
 
@@ -63,8 +105,8 @@ export default function GenderGame({level, id, link}: { level: 1 | 2, id: string
             do {
                 typeToUse = getRandomFromList(Object.keys(base[gender]));
             } while (!base[gender][typeToUse].length);
-            const question = getRandomFromList(base[gender][typeToUse]).entry;
-            base[gender][typeToUse] = base[gender][typeToUse].filter(({ entry }) => entry.ts !== question.ts);
+            const question = getRandomFromList(base[gender][typeToUse]);
+            base[gender][typeToUse] = base[gender][typeToUse].filter((entry) => entry.ts !== question.ts);
             yield {
                 progress: makeProgress(i, amount),
                 question,
@@ -74,7 +116,7 @@ export default function GenderGame({level, id, link}: { level: 1 | 2, id: string
     
     function Display({ question, callback }: QuestionDisplayProps<T.DictionaryEntry>) {
         function check(gender: "m" | "f") {
-            callback(!!question.c?.includes(gender));
+            callback(!nounNotIn(gender === "m" ? mascNouns : femNouns)(question));
         }
         return <div>
             <div className="mb-4" style={{ fontSize: "larger" }}>
@@ -105,7 +147,7 @@ export default function GenderGame({level, id, link}: { level: 1 | 2, id: string
         questions={questions}
         id={id}
         Display={Display}
-        timeLimit={level === 1 ? 55 : 70}
+        timeLimit={level === 1 ? 70 : 80}
         Instructions={Instructions}
     />
 };

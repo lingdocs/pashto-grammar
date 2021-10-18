@@ -1619,6 +1619,15 @@
     pbf "^3.2.1"
     rambda "^6.7.0"
 
+"@lingdocs/pashto-inflector@^1.2.6":
+  version "1.2.6"
+  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-1.2.6.tgz#41c3d8e663d4b4c1ef37bd49d7de536e05776a4d"
+  integrity sha512-7FiMasn312whe9izP+E/b2Img4pUf2wzPv8Y+ZHMqtG9AhAatlKYC/IiS8PoG+EPXJ1BoSQ8UmUMao5qmu0G+w==
+  dependencies:
+    classnames "^2.2.6"
+    pbf "^3.2.1"
+    rambda "^6.7.0"
+
 "@mdx-js/mdx@^0.15.5":
   version "0.15.7"
   resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-0.15.7.tgz#5fde5841d7b6f4c78f80c19fff559532af5ce5ad"

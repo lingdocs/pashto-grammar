@@ -1,4 +1,3 @@
-import React from "react";
 import Carousel from "./Carousel";
 import {
     InlinePs,
@@ -6,24 +5,37 @@ import {
     InflectionsTable,
     inflectWord,
     defaultTextOptions as opts,
+    getEnglishWord,
 } from "@lingdocs/pashto-inflector";
 
-function InflectionCarousel({ items }: any) {
+function InflectionCarousel({ items }: { items: (Noun | Adjective)[] }) {
+    if (!items.length) {
+        return "no items for carousel";
+    }
     return (
         <div className="mt-3">
-            <Carousel items={items} render={(item: any) => {
-                const infOut = inflectWord(item.entry);
+            <Carousel items={items} render={item => {
+                const e = getEnglishWord(item);
+                const english = e === undefined
+                    ? item.e
+                    : typeof e === "string"
+                    ? e
+                    : e.singular !== undefined
+                    ? e.singular
+                    : item.e;
+                const infOut = inflectWord(item);
                 if (!infOut || !infOut.inflections) {
-                    return (
+                    return {
+                        title: "Oops! 🤷‍♂️",
                         // @ts-ignore
-                        <div>Oops! No inflections for <InlinePs opts={opts} />{item.entry}</div>
-                    );
+                        body: <div>Oops! No inflections for <InlinePs opts={opts}>{item}</InlinePs></div>,
+                    };
                 }
                 return {
                     // @ts-ignore
                     title: <InlinePs opts={opts} ps={{
-                        ...removeFVarients(item.entry),
-                        e: item.def,
+                        ...removeFVarients(item),
+                        e: english,
                     }} />,
                     body: <InflectionsTable
                         inf={infOut.inflections}

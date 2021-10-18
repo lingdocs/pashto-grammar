@@ -21,3 +21,36 @@ type GameRecord = {
     studyLink: string,
     Game: () => JSX.Element,
 };
+
+type Noun = import("@lingdocs/pashto-inflector").Types.DictionaryEntry & { c: string } & { __brand: "a noun entry" };
+type MascNoun = Noun & { __brand2: "a masc noun entry" };
+type FemNoun = Noun & { __brand2: "a fem noun entry" };
+type UnisexNoun = MascNoun & { __brand3: "a unisex noun entry" };
+type Adjective = import("@lingdocs/pashto-inflector").Types.DictionaryEntry & { c: string } & { __brand: "an adjective entry" };
+type Verb = {
+    entry: import("@lingdocs/pashto-inflector").Types.DictionaryEntry & { __brand: "a verb entry" },
+    complement?: import("@lingdocs/pashto-inflector").Types.DictionaryEntry,
+};
+
+type RawWord = T.DictionaryEntry | {
+    entry: T.DictionaryEntry,
+    complement?: T.DictionaryEntry,
+};
+
+// TODO: Write type predicates for these
+type Pattern1Word = (Noun | Adjective) & { __brand3: "basic inflection pattern" };
+type Pattern2Word = (Noun | Adjective) & { __brand3: "ending in unstressed ی pattern" };
+type Pattern3Word = (Noun | Adjective) & { __brand3: "ending in stressed ی pattern" };
+type Pattern4Word = (Noun | Adjective) & { __brand3: "Pashtoon pattern" };
+type Pattern5Word = (Noun | Adjective) & { __brand3: "short squish pattern" };
+type Pattern6FemNoun = FemNoun & { __brand3: "non anim. ending in ي" };
+type NonInflecting = (Noun | Adjective) & { __brand3: "non-inflecting" };
+// PLUS FEM INFLECTING
+
+type Word = Noun | Adjective | Verb;
+
+type Words = {
+    nouns: Noun[],
+    adjectives: Adjective[],
+    verbs: Verb[],
+}

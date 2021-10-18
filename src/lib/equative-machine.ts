@@ -26,15 +26,13 @@ export type NounInput = {
     plural: boolean,
 };
 
-export type AdjectiveInput = T.DictionaryEntry & { __brand: "an adjective" };
 export type ParticipleInput = T.DictionaryEntry & { __brand: "a participle" };
-export type UnisexNounInput = T.DictionaryEntry & { __brand: "a unisex noun" };
 export type SpecifiedUnisexNounInput = NounInput & { gender: T.Gender };
 export type PersonInput = T.Person;
 
 export type EntityInput = SubjectInput | PredicateInput;
 export type SubjectInput = PersonInput | NounInput | ParticipleInput | SpecifiedUnisexNounInput;
-export type PredicateInput = PersonInput | NounInput | AdjectiveInput | SpecifiedUnisexNounInput | UnisexNounInput | ParticipleInput;
+export type PredicateInput = PersonInput | NounInput | Adjective | SpecifiedUnisexNounInput | UnisexNoun | ParticipleInput;
 
 export function equativeMachine(sub: SubjectInput, pred: PredicateInput): EquativeMachineOutput {
     // - english equative always agrees with subject
@@ -128,7 +126,7 @@ function makePronoun(sub: T.Person): T.PsString[] {
     );
 }
 
-function makeUnisexNoun(e: UnisexNounInput, subjPerson: T.Person | undefined): T.PsString[] {
+function makeUnisexNoun(e: UnisexNoun, subjPerson: T.Person | undefined): T.PsString[] {
     // reuse english from make noun - do the a / an sensitivity
     // if it's the predicate - get the inflection according to the subjPerson
     if (subjPerson !== undefined) {
@@ -199,7 +197,7 @@ function makeNoun(n: NounInput | SpecifiedUnisexNounInput, entity: "subject" | "
     return addEnglish(english, pashto);
 }
 
-function makeAdjective(e: AdjectiveInput, pers: T.Person): T.PsString[] {
+function makeAdjective(e: Adjective, pers: T.Person): T.PsString[] {
     const inf = inflectWord(e);
     const english = getEnglishWord(e);
     if (!english) throw new Error("no english available for adjective");
@@ -303,13 +301,13 @@ export function isSpecifiedUnisexNounInput(e: EntityInput): e is SpecifiedUnisex
     return false;
 }
 
-export function isUnisexNounInput(e: EntityInput): e is UnisexNounInput {
+export function isUnisexNounInput(e: EntityInput): e is UnisexNoun {
     if (isPersonInput(e)) return false;
     if ("entry" in e) return false;
     return !!e.c?.includes("unisex");
 }
 
-export function isAdjectiveInput(e: EntityInput): e is AdjectiveInput {
+export function isAdjectiveInput(e: EntityInput): e is Adjective {
     if (isPersonInput(e)) return false;
     if ("entry" in e) return false;
     if (isNounInput(e)) return false;

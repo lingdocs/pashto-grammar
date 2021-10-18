@@ -7,20 +7,18 @@ import {
     getEnglishWord,
 } from "@lingdocs/pashto-inflector";
 import {
+    isUnisexNoun,
+} from "../lib/type-predicates";
+import {
     equativeMachine,
     assembleEquativeOutput,
-    AdjectiveInput,
     PredicateInput,
-    isAdjectiveInput,
-    EntityInput,
-    isUnisexNounInput,
-    UnisexNounInput,
 } from "../lib/equative-machine";
-import words from "../words/nouns-adjs";
+import { words } from "../words/words";
 
-function uniqueSort(arr: AdjectiveInput[]): AdjectiveInput[];
-function uniqueSort(arr: UnisexNounInput[]): UnisexNounInput[];
-function uniqueSort(arr: (AdjectiveInput | UnisexNounInput)[]): (AdjectiveInput | UnisexNounInput)[] {
+function uniqueSort(arr: Adjective[]): Adjective[];
+function uniqueSort(arr: UnisexNoun[]): UnisexNoun[];
+function uniqueSort(arr: (Adjective | UnisexNoun)[]): (Adjective | UnisexNoun)[] {
     return arr
         .filter((v, i, a) => a.findIndex((e) => e.ts === v.ts) === i)
         .filter((e) => {
@@ -37,11 +35,11 @@ function uniqueSort(arr: (AdjectiveInput | UnisexNounInput)[]): (AdjectiveInput 
         })
         .sort((a, b) => a.p.localeCompare(b.p));
 }
+
 const inputs = {
-    adjectives: uniqueSort(words.filter((w) => isAdjectiveInput(w.entry as EntityInput))
-        .map((w) => w.entry as AdjectiveInput)),
-    unisexNouns: uniqueSort(words.filter((w) => isUnisexNounInput(w.entry as EntityInput))
-        .map((w) => w.entry as UnisexNounInput)),
+    // TODO: instead - have them unique and sorted in the words.ts file
+    adjectives: uniqueSort(words.adjectives),
+    unisexNouns: uniqueSort(words.nouns.filter(x => isUnisexNoun(x)) as UnisexNoun[]),
 };
 
 function makeBlock(e: PredicateInput): T.VerbBlock {
@@ -60,18 +58,18 @@ function makeBlock(e: PredicateInput): T.VerbBlock {
 }
 
 type PredicateType = "adjectives" | "unisexNouns";
-// type SubjectType = "pronouns" | "nouns";
+type SubjectType = "pronouns" | "nouns";
 
 // TODO: Plural nouns like shoode
 const defaultTs = 1527815306;
-const defaultPe = inputs.adjectives.find(a => a.ts === defaultTs) as AdjectiveInput;
+const defaultPe = inputs.adjectives.find(a => a.ts === defaultTs) || inputs.adjectives[0];
 
 function EquativeExplorer() {
     // TODO: Use sticky state
     const predicateTypes: PredicateType[] = ["adjectives", "unisexNouns"];
-    // const subjectTypes: SubjectType[] = ["pronouns", "nouns"];
+    const subjectTypes: SubjectType[] = ["pronouns", "nouns"];
     const [predicate, setPredicate] = useState<number>(defaultTs);
-    // const [subjectType, setSubjectType] = useState<SubjectType>("pronouns");
+    const [subjectType, setSubjectType] = useState<SubjectType>("pronouns");
     const [predicateType, setPredicateType] = useState<PredicateType>("adjectives");
     
     function makeOptionLabel(e: T.DictionaryEntry): string {
@@ -87,6 +85,11 @@ function EquativeExplorer() {
         const pt = e.target.value as PredicateType;
         setPredicateType(pt);
         setPredicate(inputs[pt][0].ts);
+    }
+    function handleSubjectTypeSelect(e: React.ChangeEvent<HTMLInputElement>) {
+        const st = e.target.value as SubjectType;
+        setSubjectType(st);
+        // setPredicate(inputs[pt][0].ts);
     }
     // @ts-ignore
     const pe = (inputs[predicateType].find((a: AdjectiveInput | UnisexNounInput) => (
@@ -106,7 +109,7 @@ function EquativeExplorer() {
 
     return <>
         <div className="d-flex flex-row">
-            {/* <div className="form-group">
+            <div className="form-group">
                 <label htmlFor="subject-select"><strong>Subject:</strong></label>
                 <div className="form-check">
                     <input
@@ -116,13 +119,27 @@ function EquativeExplorer() {
                         id="pronounsSubjectRadio"
                         value={subjectTypes[0]}
                         checked={subjectType === "pronouns"}
-                        onChange={handlePredicateTypeSelect}
+                        onChange={handleSubjectTypeSelect}
                     />
-                    <label className="form-check-label" htmlFor="adjectivesPredicateRadio">
+                    <label className="form-check-label" htmlFor="pronounsSubjectRadio">
                         Pronouns
                     </label>
                 </div>
-            </div> */}
+                <div className="form-check">
+                    <input
+                        className="form-check-input"
+                        type="radio"
+                        name="nounsSubjectRadio"
+                        id="nounsSubjectRadio"
+                        value={subjectTypes[0]}
+                        checked={subjectType === "nouns"}
+                        onChange={handleSubjectTypeSelect}
+                    />
+                    <label className="form-check-label" htmlFor="nounsSubjectRadio">
+                        Nouns
+                    </label>
+                </div>
+            </div>
             <div className="form-group">
                 <label htmlFor="predicate-select"><strong>Predicate:</strong></label>
                 <div className="form-check">
@@ -160,7 +177,7 @@ function EquativeExplorer() {
                     value={predicate}
                     onChange={handlePredicateSelect}
                 >
-                    {inputs[predicateType].map((e: AdjectiveInput | UnisexNounInput) => (
+                    {inputs[predicateType].map((e: Adjective | UnisexNoun) => (
                         <option key={e.ts+"s"} value={e.ts}>{makeOptionLabel(e)}</option>
                     ))}
                 </select>

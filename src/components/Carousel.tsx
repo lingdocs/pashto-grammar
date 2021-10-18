@@ -16,7 +16,11 @@ const chevStyle = {
     width: "3.5rem",
 };
 
-export default function Carousel(props) {
+export default function Carousel<T>(props: {
+    items: Array<T>,
+    render: (item: T) => { title: JSX.Element | string, body: JSX.Element | string },
+    stickyTitle?: boolean,
+}): JSX.Element {
     // console.log("pppp");
     // console.log(props.items);
     const [current, setCurrent] = useState(0);
@@ -50,11 +54,11 @@ export default function Carousel(props) {
                         alt={"previous"}
                         onClick={back}
                     />
-                        {title ?
-                            <div className="h5">{title}</div>
-                            :
-                            <div>{body}</div>
-                        }
+                    {title ?
+                        <div className="h5">{title}</div>
+                        :
+                        <div>{body}</div>
+                    }
                     <img 
                         src={rightChevron}
                         className="clickable mr-lg-3"

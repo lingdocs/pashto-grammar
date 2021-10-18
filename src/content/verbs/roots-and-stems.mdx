@@ -25,11 +25,13 @@ import {
 } from "@lingdocs/pashto-inflector";
 import shuffle from "../../lib/shuffle-array";
 import Carousel from "../../components/Carousel";
-import verbs from "../../words/verbs";
+import { words } from "../../words/words";
 import Link from "../../components/Link";
 import verbTreeBase from "./verb-tree-base.svg";
 import verbTreePastPresent from "./verb-tree-past-present.svg";
 import verbTreeImperfectivePerfective from "./verb-tree-imperfective-perfective.svg";
+
+export const verbs = words.verbs;
 
 export const opts = defaultTextOptions;
 

@@ -14,17 +14,17 @@ import psmd from "../../lib/psmd";
 import Carousel from "../../components/Carousel";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
-import verbs from "../../words/verbs";
+import { words } from "../../words/words";
 import shuffleArray from "../../lib/shuffle-array";
 import imperfectiveFuture from "./imperfective-future-graph.svg";
 import perfectiveFuture from "./perfective-future-graph.svg";
 
-export const basicVerbs = verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
+export const basicVerbs = words.verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
 
 There are two kinds of future forms in Pashto:
 
-2. <i class="fas fa-video" /> Imperfective Future
-1. <i class="fas fa-camera" /> Perfective Future
+2. <i className="fas fa-video" /> Imperfective Future
+1. <i className="fas fa-camera" /> Perfective Future
 
 ## Imperfective Future
 

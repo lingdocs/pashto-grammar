@@ -10,7 +10,6 @@ function Chart({ titleRow, children, opts }: {
     children: T.PsString[][],
     opts: T.TextOptions,
 }) {
-    console.log(children)
     return <table className="table">
         <thead>
             {titleRow && <tr>

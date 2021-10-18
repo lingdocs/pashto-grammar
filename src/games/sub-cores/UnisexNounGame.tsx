@@ -14,12 +14,15 @@ import {
     standardizePashto,
     // pashtoConsonants,
 } from "@lingdocs/pashto-inflector";
-import words from "../../words/nouns-adjs";
+import { words } from "../../words/words";
 import {
     firstVariation,
 } from "../../lib/text-tools";
+import {
+    isUnisexNoun,
+} from "../../lib/type-predicates";
 
-const nouns = words.filter((w) => w.category === "nouns-unisex").map(x => x.entry);
+const nouns = words.nouns.filter(isUnisexNoun);
 // type NType = "consonant" | "eyUnstressed" | "eyStressed" | "pashtun" | "withu"
 // const types: Record<NType, T.DictionaryEntry[]>  = {
 //     consonant: nouns.filter((w) => pashtoConsonants.includes(w.p.slice(-1))),
