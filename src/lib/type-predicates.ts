@@ -2,7 +2,6 @@ import {
     pashtoConsonants,
     endsWith,
     countSyllables,
-    removeAccents,
 } from "@lingdocs/pashto-inflector";
 
 export function isNoun(e: Word): e is Noun {
@@ -47,11 +46,14 @@ export function isAdjOrUnisexNoun(e: Word): e is (Adjective | UnisexNoun) {
  * @param e 
  * @returns 
  */
-export function isPattern1Word(e: Noun | Adjective): e is Pattern1Word {
+export function isPattern1Word<T extends (Noun | Adjective)>(e: T): e is Pattern1Word<T> {
     if (e.noInf) return false;
     if (e.infap) return false;
     if (isFemNoun(e)) {
-        return endsWith({ p: "ه", f: "a" }, e) && (endsWith({ p: pashtoConsonants }, e) && e.c.includes("anim."));
+        return (
+            endsWith([{ p: "ه", f: "a" }, { p: "ح", f: "a" }], e) ||
+            (endsWith({ p: pashtoConsonants }, e) && !e.c.includes("anim."))
+        );
     }
     return (
         endsWith([{ p: pashtoConsonants }], e) ||
@@ -66,14 +68,14 @@ export function isPattern1Word(e: Noun | Adjective): e is Pattern1Word {
  * @param e 
  * @returns 
  */
-export function isPattern2Word(e: Noun | Adjective): e is Pattern2Word {
+export function isPattern2Word<T extends (Noun | Adjective)>(e: T): e is Pattern2Word<T> {
     if (e.noInf) return false;
     if (e.infap) return false;
     if (isFemNoun(e)) {
         return !e.c.includes("pl.") && endsWith({ p: "ې", f: "e" }, e, true);
     }
     // TODO: check if it's a single syllable word, in which case it would be pattern 1
-    return endsWith({ p: "ی", f: "ey" }, e, true)//  && (countSyllables(e.f) > 1);
+    return endsWith({ p: "ی", f: "ey" }, e, true) && (countSyllables(e.f) > 1);
 }
 
 /**
@@ -82,13 +84,13 @@ export function isPattern2Word(e: Noun | Adjective): e is Pattern2Word {
  * @param e 
  * @returns 
  */
-export function isPattern3Word(e: Noun | Adjective): e is Pattern3Word {
+export function isPattern3Word<T extends (Noun | Adjective)>(e: T): e is Pattern3Word<T> {
     if (e.noInf) return false;
     if (e.infap) return false;
     if (isFemNoun(e)) {
         return endsWith({ p: "ۍ" }, e);
     }
-    return (countSyllables(removeAccents(e.f)) > 1)
+    return (countSyllables(e.f) > 1)
         ? endsWith({ p: "ی", f: "éy" }, e, true)
         : endsWith({ p: "ی", f: "ey" }, e)
 }
@@ -99,7 +101,7 @@ export function isPattern3Word(e: Noun | Adjective): e is Pattern3Word {
  * @param e 
  * @returns 
  */
-export function isPattern4Word(e: Noun | Adjective): e is Pattern4Word {
+export function isPattern4Word<T extends (Noun | Adjective)>(e: T): e is Pattern4Word<T> {
     if (e.noInf) return false;
     return (
         !!(e.infap && e.infaf && e.infbp && e.infbf)
@@ -114,7 +116,7 @@ export function isPattern4Word(e: Noun | Adjective): e is Pattern4Word {
  * @param e 
  * @returns 
  */
-export function isPattern5Word(e: Noun | Adjective): e is Pattern5Word {
+export function isPattern5Word<T extends (Noun | Adjective)>(e: T): e is Pattern5Word<T> {
     if (e.noInf) return false;
     return (
         !!(e.infap && e.infaf && e.infbp && e.infbf)
@@ -125,7 +127,7 @@ export function isPattern5Word(e: Noun | Adjective): e is Pattern5Word {
     );
 }
 
-export function isPattern6FemNoun(e: Noun): e is Pattern6FemNoun {
+export function isPattern6FemNoun(e: FemNoun): e is Pattern6FemNoun<FemNoun> {
     if (!isFemNoun(e)) return false;
     if (e.c.includes("anim.")) return false;
     return e.p.slice(-1) === "ي";

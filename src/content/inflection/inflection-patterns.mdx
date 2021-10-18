@@ -32,13 +32,13 @@ import {
     isUnisexNoun,
 } from "../../lib/type-predicates";
 import InflectionCarousel from "../../components/InflectionCarousel";
-import { words as w } from "../../words/words";
+import { nouns, adjectives } from "../../words/words";
 import { startingWord } from "../../lib/starting-word";
 import Link from "../../components/Link";
 
 export const words = [
-    ...w.nouns.filter(isUnisexNoun),
-    ...w.adjectives,
+    ...nouns.filter(isUnisexNoun),
+    ...adjectives,
 ];
 
 In the <Link to="/inflection/inflection-intro/">previous chapter</Link> we talked about **why** words inflect. Now we will explain **how** words inflect. What actualy happens to them? How do they change?

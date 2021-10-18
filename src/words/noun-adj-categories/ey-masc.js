@@ -1,6 +1,5 @@
 module.exports = [
-    { ts: 1527818948, e: `sneezing, sneeze` }, // اټسکی - aTúskey
-{ ts: 1527816481, e: `brother in law; sister's husband` }, // اخښی - akhxey
+{ ts: 1527818948, e: `sneezing, sneeze` }, // اټسکی - aTúskey
 { ts: 1573681135691, e: `tribal constable, tribal offical with police powers` }, // اربکی - arbakéy
 { ts: 1573659054031, e: `width, spaciousness` }, // ارتوالی - artwaaley, aratwaaley
 { ts: 1527811890, e: `thorn, prickle` }, // ازغی - azghey
@@ -13,8 +12,6 @@ module.exports = [
 { ts: 1527821545, e: `volcano` }, // اورشیندی - orsheendéy
 { ts: 1527819192, e: `train` }, // اورګاډی - orgáaDey
 { ts: 1527815585, e: `summer` }, // اوړی - oRey
-{ ts: 1527815132, e: `giraffe` }, // اوښ غویی - oox ghwayey
-{ ts: 1527816488, e: `brother in law, wife's brother` }, // اوښی - awxey
 { ts: 1623044357441, e: `tuft, clump, shock of hair` }, // ببوتنکی - bubootúnkey
 { ts: 1527821668, e: `spark, speck, flicker` }, // بڅری - batsúrey
 { ts: 1527821239, e: `kidney` }, // بډوری - baDóorey
@@ -69,14 +66,10 @@ module.exports = [
 { ts: 1527819046, e: `drop` }, // څاڅکی - tsáatskey
 { ts: 1527817874, e: `quality, nature` }, // څرنګوالی - tsurangwaaley
 { ts: 1527814041, e: `spring (season)` }, // څړمنی - tsaRmuney
-{ ts: 1527813361, e: `column, pilliar, pyramid` }, // څلی - tsaley
-{ ts: 1527819027, e: `ladle, dipper` }, // څمڅی - tsamtsey
 { ts: 1573055311846, e: `warning, notice, alarm` }, // خبرداری - khabardaarey
 { ts: 1527820324, e: `melon` }, // خټکی - khaTakéy
 { ts: 1527819828, e: `weight; respect, honour` }, // درناوی - dranaawey
 { ts: 1588161660483, e: `crutch, walking-stick, cane` }, // ډانګوری - Daangooréy
-{ ts: 1527813493, e: `majority; heap, pile` }, // ډېری - Derey
-{ ts: 1527823700, e: `avalanche, flood, shower` }, // راشی - raashey
 { ts: 1527819732, e: `young, youth, young lad` }, // زلمی - zalméy
 { ts: 1527813708, e: `good news, gospel` }, // زېری - zerey
 { ts: 1588758498458, e: `jaundice` }, // زېړی - zeRéy
@@ -105,8 +98,6 @@ module.exports = [
 { ts: 1527814569, e: `member` }, // غړی - ghuRey
 { ts: 1527817627, e: `arrow` }, // غشی - ghúshey
 { ts: 1527822913, e: `precious stone, precious stone in a signet ring` }, // غمی - ghaméy
-{ ts: 1527823466, e: `ear lobe` }, // غنګوری - ghangóorey
-{ ts: 1527818483, e: `plate` }, // غوری - ghorey
 { ts: 1527816181, e: `vomit, nausea (Arabic)` }, // قی - qey
 { ts: 1527814715, e: `user` }, // کاروونکی - kaarawoonkey
 { ts: 1527823295, e: `stone, rock` }, // کاڼی - káaNey
@@ -115,7 +106,6 @@ module.exports = [
 { ts: 1582388629980, e: `pupil (of an eye)` }, // کسی - kúsey
 { ts: 1594906790729, e: `boy` }, // ککی - kakéy
 { ts: 1527812836, e: `village` }, // کلی - kuley, kiley
-{ ts: 1527816880, e: `shortage, lack, deficiency` }, // کمی - kamey
 { ts: 1610616852625, e: `echo` }, // کنګرېزی - kangrezéy
 { ts: 1527819196, e: `car, train` }, // ګاډی - gaaDey
 { ts: 1579016593220, e: `beehive; wasps' nest` }, // ګنی - ganéy
@@ -125,17 +115,13 @@ module.exports = [
 { ts: 1573149568665, e: `access, availability` }, // لاسرسی - laasraséy
 { ts: 1527817464, e: `wood, timber` }, // لرګی - largey
 { ts: 1527822801, e: `sleeve` }, // لستوڼی - lastóNey
-{ ts: 1527812416, e: `brook, rivulet, small irrigation` }, // لښتی - laxtey
 { ts: 1527814401, e: `toy` }, // لوبونی - lobawuney
 { ts: 1527814519, e: `side, direction` }, // لوری - lorey
 { ts: 1527823103, e: `perspective, viewpoint` }, // لیدلوری - leedlorey
 { ts: 1527819920, e: `mosquito, midge` }, // ماشی - maashey
 { ts: 1527820224, e: `fly swatter` }, // مچوژی - muchwajzéy
-{ ts: 1591871316865, e: `prefix (grammar)` }, // مختاړی - mukhtaaRey
-{ ts: 1527817105, e: `smile, smiling` }, // مړخندی - muRkhandey
 { ts: 1527817770, e: `dead body, corpse` }, // مړی - múRey
 { ts: 1527813189, e: `fall, autumn` }, // منی - máney
-{ ts: 1527812925, e: `peanut` }, // مومپلی - mompaley
 { ts: 1527812421, e: `ant` }, // مېږی - meGey
 { ts: 1527819227, e: `lack` }, // نشتوالی - nashtwaaley
 { ts: 1527823577, e: `sapling, seedling, sprout, young tree` }, // نیالګی - niyaalgey
@@ -143,7 +129,5 @@ module.exports = [
 { ts: 1527812668, e: `welcome` }, // هرکلی - hărkáley
 { ts: 1588153218244, e: `height, elevation, tallness` }, // هسکوالی - haskwáaley
 { ts: 1585309922022, e: `flu, respiratory illness, influenza, cold` }, // والګی - waalgéy
-{ ts: 1527813014, e: `vein, nerve` }, // وژی - wajzey
 { ts: 1527821465, e: `shoulder` }, // ولی - wuléy
-{ ts: 1527814004, e: `summer` }, // ووړی - woRey
 ]

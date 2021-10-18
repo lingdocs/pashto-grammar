@@ -38,13 +38,13 @@ type RawWord = T.DictionaryEntry | {
 };
 
 // TODO: Write type predicates for these
-type Pattern1Word = (Noun | Adjective) & { __brand3: "basic inflection pattern" };
-type Pattern2Word = (Noun | Adjective) & { __brand3: "ending in unstressed ی pattern" };
-type Pattern3Word = (Noun | Adjective) & { __brand3: "ending in stressed ی pattern" };
-type Pattern4Word = (Noun | Adjective) & { __brand3: "Pashtoon pattern" };
-type Pattern5Word = (Noun | Adjective) & { __brand3: "short squish pattern" };
-type Pattern6FemNoun = FemNoun & { __brand3: "non anim. ending in ي" };
-type NonInflecting = (Noun | Adjective) & { __brand3: "non-inflecting" };
+type Pattern1Word<T> = T & { __brand3: "basic inflection pattern" };
+type Pattern2Word<T> = T & { __brand3: "ending in unstressed ی pattern" };
+type Pattern3Word<T> = T & { __brand3: "ending in stressed ی pattern" };
+type Pattern4Word<T> = T & { __brand3: "Pashtoon pattern" };
+type Pattern5Word<T> = T & { __brand3: "short squish pattern" };
+type Pattern6FemNoun<T extends FemNoun> = FemNoun & { __brand3: "non anim. ending in ي" };
+type NonInflecting<T> = T & { __brand3: "non-inflecting" };
 // PLUS FEM INFLECTING
 
 type Word = Noun | Adjective | Verb;

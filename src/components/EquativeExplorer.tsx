@@ -14,7 +14,7 @@ import {
     assembleEquativeOutput,
     PredicateInput,
 } from "../lib/equative-machine";
-import { words } from "../words/words";
+import words from "../words/words";
 
 function uniqueSort(arr: Adjective[]): Adjective[];
 function uniqueSort(arr: UnisexNoun[]): UnisexNoun[];
@@ -58,7 +58,7 @@ function makeBlock(e: PredicateInput): T.VerbBlock {
 }
 
 type PredicateType = "adjectives" | "unisexNouns";
-type SubjectType = "pronouns" | "nouns";
+// type SubjectType = "pronouns" | "nouns";
 
 // TODO: Plural nouns like shoode
 const defaultTs = 1527815306;
@@ -67,9 +67,9 @@ const defaultPe = inputs.adjectives.find(a => a.ts === defaultTs) || inputs.adje
 function EquativeExplorer() {
     // TODO: Use sticky state
     const predicateTypes: PredicateType[] = ["adjectives", "unisexNouns"];
-    const subjectTypes: SubjectType[] = ["pronouns", "nouns"];
+    // const subjectTypes: SubjectType[] = ["pronouns", "nouns"];
     const [predicate, setPredicate] = useState<number>(defaultTs);
-    const [subjectType, setSubjectType] = useState<SubjectType>("pronouns");
+    // const [subjectType, setSubjectType] = useState<SubjectType>("pronouns");
     const [predicateType, setPredicateType] = useState<PredicateType>("adjectives");
     
     function makeOptionLabel(e: T.DictionaryEntry): string {
@@ -86,11 +86,11 @@ function EquativeExplorer() {
         setPredicateType(pt);
         setPredicate(inputs[pt][0].ts);
     }
-    function handleSubjectTypeSelect(e: React.ChangeEvent<HTMLInputElement>) {
-        const st = e.target.value as SubjectType;
-        setSubjectType(st);
-        // setPredicate(inputs[pt][0].ts);
-    }
+    // function handleSubjectTypeSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    //     const st = e.target.value as SubjectType;
+    //     setSubjectType(st);
+    //     // setPredicate(inputs[pt][0].ts);
+    // }
     // @ts-ignore
     const pe = (inputs[predicateType].find((a: AdjectiveInput | UnisexNounInput) => (
         a.ts === predicate
@@ -109,7 +109,7 @@ function EquativeExplorer() {
 
     return <>
         <div className="d-flex flex-row">
-            <div className="form-group">
+            {/* <div className="form-group">
                 <label htmlFor="subject-select"><strong>Subject:</strong></label>
                 <div className="form-check">
                     <input
@@ -139,7 +139,7 @@ function EquativeExplorer() {
                         Nouns
                     </label>
                 </div>
-            </div>
+            </div> */}
             <div className="form-group">
                 <label htmlFor="predicate-select"><strong>Predicate:</strong></label>
                 <div className="form-check">

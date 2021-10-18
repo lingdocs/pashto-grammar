@@ -25,7 +25,7 @@ import {
 } from "@lingdocs/pashto-inflector";
 import shuffle from "../../lib/shuffle-array";
 import InflectionCarousel from "../../components/InflectionCarousel";
-import { words } from "../../words/words";
+import { nouns } from "../../words/words";
 import Link from "../../components/Link";
 import Table from "../../components/Table";
 import { startingWord } from "../../lib/starting-word";
@@ -35,7 +35,7 @@ import {
     isPattern7FemNoun,
 } from "../../lib/type-predicates";
 
-export const femNouns = words.nouns.filter(w => isFemNoun(w));
+export const femNouns = nouns.filter(isFemNoun);
 
 The <Link to="/inflection/inflection-patterns/">5 basic patterns in the last chapter</Link> work with both masculine and feminine words (nouns and adjectives).
 

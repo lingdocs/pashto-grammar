@@ -1,11 +1,9 @@
 import {
-  isNoun,
   isPattern1Word,
   isPattern2Word,
   isPattern3Word,
   isPattern4Word,
   isPattern5Word,
-  isPattern6FemNoun,
 } from "./type-predicates";
 
 /**
@@ -75,23 +73,25 @@ export function categorize<I, X extends Record<string, I[]>>(
   return o;
 }
 
-export function intoPatterns(words: (Noun | Adjective)[]): {
-  "pattern1": Pattern1Word[],
-  "pattern2": Pattern2Word[],
-  "pattern3": Pattern3Word[],
-  "pattern4": Pattern4Word[],
-  "pattern5": Pattern5Word[],
-  "non-inflecting": NonInflecting[],
-  "pattern6fem": Pattern6FemNoun[],
+// TODO: uncategorizable words like ایرې - n. f. pl. -- could be pattern 1 or 2 🤷‍♂️
+
+export function intoPatterns<T extends (Noun | Adjective)>(words: T[]): {
+  "pattern1": Pattern1Word<T>[],
+  "pattern2": Pattern2Word<T>[],
+  "pattern3": Pattern3Word<T>[],
+  "pattern4": Pattern4Word<T>[],
+  "pattern5": Pattern5Word<T>[],
+  "other": NonInflecting<T>[],
+//   "pattern6fem": Pattern6FemNoun<T>[],
 } {
   return categorize<(Noun | Adjective), {
-    "pattern1": Pattern1Word[],
-    "pattern2": Pattern2Word[],
-    "pattern3": Pattern3Word[],
-    "pattern4": Pattern4Word[],
-    "pattern5": Pattern5Word[],
-    "non-inflecting": NonInflecting[],
-    "pattern6fem": Pattern6FemNoun[],
+    "pattern1": Pattern1Word<T>[],
+    "pattern2": Pattern2Word<T>[],
+    "pattern3": Pattern3Word<T>[],
+    "pattern4": Pattern4Word<T>[],
+    "pattern5": Pattern5Word<T>[],
+    "other": NonInflecting<T>[],
+  //  "pattern6fem": Pattern6FemNoun<T>[],
   }>(
     words,
     {
@@ -100,8 +100,8 @@ export function intoPatterns(words: (Noun | Adjective)[]): {
       "pattern3": isPattern3Word,
       "pattern4": isPattern4Word,
       "pattern5": isPattern5Word,
-      "pattern6fem": (n) => (isNoun(n) && isPattern6FemNoun(n)),
-      "non-inflecting": "leftovers",
+    //  "pattern6fem": (n) => (isNoun(n) && isPattern6FemNoun(n)),
+      "other": "leftovers",
     },
   );
 }

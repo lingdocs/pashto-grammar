@@ -13,7 +13,7 @@ import psmd from "../../lib/psmd";
 import Carousel from "../../components/Carousel";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
-import { words } from "../../words/words";
+import { verbs } from "../../words/words";
 import shuffleArray from "../../lib/shuffle-array";
 import imperfectiveImperative from "./imperfective-imperative.svg";
 import perfectiveImperative from "./perfective-imperative.svg";
@@ -25,7 +25,7 @@ There are two forms of the imperative:
 1. <i className="fas fa-video" /> Imperfective Imperative
 2. <i className="fas fa-camera" /> Perfective Imperative
 
-export const basicVerbs = words.verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
+export const basicVerbs = verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
 
 ## Imperfective Imperative
 

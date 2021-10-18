@@ -14,12 +14,12 @@ import psmd from "../../lib/psmd";
 import Carousel from "../../components/Carousel";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
-import { words } from "../../words/words";
+import { verbs } from "../../words/words";
 import shuffleArray from "../../lib/shuffle-array";
 import imperfectiveFuture from "./imperfective-future-graph.svg";
 import perfectiveFuture from "./perfective-future-graph.svg";
 
-export const basicVerbs = words.verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
+export const basicVerbs = verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
 
 There are two kinds of future forms in Pashto:
 

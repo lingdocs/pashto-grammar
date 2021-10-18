@@ -13,7 +13,7 @@ import {
     inflectWord,
     isUnisexSet,
 } from "@lingdocs/pashto-inflector";
-import { words } from "../../words/words";
+import { nouns } from "../../words/words";
 import {
     firstVariation,
 } from "../../lib/text-tools";
@@ -26,9 +26,9 @@ import { categorize } from "../../lib/categorize";
 
 const genders: T.Gender[] = ["masc", "fem"];
 
-const mascNouns = words.nouns.filter(isMascNoun);
+const mascNouns = nouns.filter(isMascNoun);
 const femNouns = [
-    ...words.nouns.filter(isFemNoun),
+    ...nouns.filter(isFemNoun),
     ...getFemVersions(mascNouns.filter(isUnisexNoun)),
 ];
 

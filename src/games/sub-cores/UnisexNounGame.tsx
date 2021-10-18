@@ -12,9 +12,9 @@ import {
     defaultTextOptions as opts,
     inflectWord,
     standardizePashto,
-    // pashtoConsonants,
 } from "@lingdocs/pashto-inflector";
-import { words } from "../../words/words";
+import { nouns } from "../../words/words";
+import { intoPatterns } from "../../lib/categorize";
 import {
     firstVariation,
 } from "../../lib/text-tools";
@@ -22,15 +22,10 @@ import {
     isUnisexNoun,
 } from "../../lib/type-predicates";
 
-const nouns = words.nouns.filter(isUnisexNoun);
-// type NType = "consonant" | "eyUnstressed" | "eyStressed" | "pashtun" | "withu"
-// const types: Record<NType, T.DictionaryEntry[]>  = {
-//     consonant: nouns.filter((w) => pashtoConsonants.includes(w.p.slice(-1))),
-//     eyUnstressed: nouns.filter((w) => w.f.slice(-2) === "ey"),
-//     eyStressed: nouns.filter((w) => w.f.slice(-2) === "éy"),
-//     pashtun: nouns.filter((w) => w.infaf?.includes("aa")),
-//     withu: nouns.filter((w) => w.infaf?.slice(-1) === "u" && !!w.infaf?.includes("aa")),
-// }
+const unisexNouns = nouns.filter(isUnisexNoun);
+type NType = "pattern1" | "pattern2" | "pattern3" | "pattern4" | "pattern5" | "other";
+// TODO: make pattern types as overlay types
+const types = intoPatterns(unisexNouns);
 const genders: T.Gender[] = ["masc", "fem"];
 
 const amount = 20; 
@@ -39,16 +34,20 @@ type Question = { entry: T.DictionaryEntry, gender: T.Gender };
 
 export default function UnisexNounGame({ id, link }: { id: string, link: string }) {
     function* questions (): Generator<Current<Question>> {
-        let pool = [...nouns];
+        let pool = { ...types };
         for (let i = 0; i < amount; i++) {
-            // const keys = Object.keys(types) as NType[];
-            // let type: NType
-            // do {
-            //     type = getRandomFromList(keys);
-            // } while (!pool[type].length);
-            const entry = getRandomFromList(pool);
+            const keys = Object.keys(types) as NType[];
+            let type: NType
+            do {
+               type = getRandomFromList(keys);
+            } while (!pool[type].length);
+            const entry = getRandomFromList<UnisexNoun>(
+                // @ts-ignore
+                pool[type]
+            );
             const gender = getRandomFromList(genders) as T.Gender;
-            pool = pool.filter((x) => x.ts !== entry.ts);
+            // @ts-ignore
+            pool[type] = pool[type].filter((x) => x.ts !== entry.ts);
             yield {
                 progress: makeProgress(i, amount),
                 question: {
