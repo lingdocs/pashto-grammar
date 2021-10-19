@@ -14,7 +14,7 @@ export function sort(arr: (Adjective | UnisexNoun)[]): (Adjective | UnisexNoun)[
     return arr.sort((a, b) => a.p.localeCompare(b.p));
 }
 
-export function makeBlock(e: Adjective | UnisexNoun): T.VerbBlock {
+export function makeBlockWPronouns(e: Adjective | UnisexNoun): T.VerbBlock {
     const makeP = (p: T.Person): T.ArrayOneOrMore<T.PsString> => {
         const b = assembleEquativeOutput(equativeMachine(p, e));
         return ("long" in b ? b.long : b) as T.ArrayOneOrMore<T.PsString>;

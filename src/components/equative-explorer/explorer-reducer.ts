@@ -1,11 +1,5 @@
 import inputs from "./explorer-inputs";
-import { PredicateType, ExplorerState } from "./EquativeExplorer";
-
-export type ExplorerReducerAction = {
-    type: "setPredicateType", payload: PredicateType,
-} | {
-    type: "setPredicate", payload: number,
-};
+import { ExplorerState, ExplorerReducerAction } from "./explorer-types";
 
 export function reducer(state: ExplorerState, action: ExplorerReducerAction): ExplorerState {
     if (action.type === "setPredicate") {
@@ -13,13 +7,15 @@ export function reducer(state: ExplorerState, action: ExplorerReducerAction): Ex
         const predicate = (pile.find(p => p.ts === action.payload) || pile[0]);
         return {
             ...state,
-            predicate,
+            predicatesSelected: {
+                ...state.predicatesSelected,
+                [state.predicateType]: predicate,
+            },
         };
     }
     // if (action.type === "setPredicateType") {
-        const predicate = inputs[action.payload][0];
         return {
-            predicate,
+            ...state,
             predicateType: action.payload,
         };
     // }
