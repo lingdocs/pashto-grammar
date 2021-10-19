@@ -2,6 +2,7 @@ import {
     pashtoConsonants,
     endsWith,
     countSyllables,
+    Types as T,
 } from "@lingdocs/pashto-inflector";
 
 export function isNoun(e: Word): e is Noun {
@@ -131,4 +132,8 @@ export function isPattern6FemNoun(e: FemNoun): e is Pattern6FemNoun<FemNoun> {
     if (!isFemNoun(e)) return false;
     if (e.c.includes("anim.")) return false;
     return e.p.slice(-1) === "ي";
+}
+
+export function isArrayOneOrMore<U>(a: U[]): a is T.ArrayOneOrMore<U> {
+    return a.length > 0;
 }

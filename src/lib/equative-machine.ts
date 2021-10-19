@@ -13,7 +13,9 @@ import {
     parseEc,
     concatPsString,
 } from "@lingdocs/pashto-inflector";
-import { SingleOrLengthOpts } from "@lingdocs/pashto-inflector/dist/types";
+import {
+    isArrayOneOrMore,
+} from "./type-predicates";
 
 export type EquativeMachineOutput = {
     subject: T.PsString[],
@@ -50,17 +52,26 @@ export function equativeMachine(sub: SubjectInput, pred: PredicateInput): Equati
     };
 }
 
-export function assembleEquativeOutput(o: EquativeMachineOutput): SingleOrLengthOpts<T.PsString[]> {
+export function assembleEquativeOutput(o: EquativeMachineOutput): T.SingleOrLengthOpts<T.PsString[]> {
     if ("long" in o.equative) {
         return {
             long: assembleEquativeOutput({ ...o, equative: o.equative.long }) as T.PsString[],
             short: assembleEquativeOutput({ ...o, equative: o.equative.short }) as T.PsString[],
         }
     }
-    // TODO: make it use all the variations
-    const ps = concatPsString(o.subject[0], " ", o.predicate[0], " ", o.equative[0]);
+    // get all possible combinations of subject, predicate, and equative
+    // soooo cool how this works 🤓
+    const equatives = o.equative;
+    const predicates = o.predicate;
+    const ps = o.subject.flatMap(subj => (
+        predicates.flatMap(pred => (
+            equatives.map(eq => (
+                concatPsString(subj, " ", pred, " ", eq))
+            )
+        ))
+    ));
     const e = `${o.subject[0].e} ${o.equative[0].e} ${o.predicate[0].e}`;
-    return [{ ...ps, e }];
+    return ps.map(x => ({ ...x, e }));
 }
 
 // LEVEL 2 FUNCTIONS
@@ -97,6 +108,7 @@ function makeEntity(e: EntityInput, subjPerson?: T.Person): T.PsString[] {
         return makeAdjective(e, subjPerson);
     }
     if (isUnisexNounInput(e)) {
+        if (subjPerson === undefined) throw new Error("unspecified unisex noun must be in the predicate");
         return makeUnisexNoun(e, subjPerson);
     }
     if (isParticipleInput(e)) {
@@ -126,41 +138,52 @@ function makePronoun(sub: T.Person): T.PsString[] {
     );
 }
 
-function makeUnisexNoun(e: UnisexNoun, subjPerson: T.Person | undefined): T.PsString[] {
+function makeUnisexNoun(e: UnisexNoun, subjPerson: T.Person): T.PsString[] {
     // reuse english from make noun - do the a / an sensitivity
     // if it's the predicate - get the inflection according to the subjPerson
-    if (subjPerson !== undefined) {
-        const inf = inflectWord(e);
-        const english = getEnglishFromNoun(e, personIsPlural(subjPerson), "predicate");
-        if (!inf) {
-            return [psStringFromEntry(e, english)];
-        }
-        if (!inf.inflections && (!("plural" in inf) || (!inf.inflections || !isUnisexSet(inf.inflections)))) {
-            throw Error("improper unisex noun");
-        }
-        // if plural // anim // chose that
-        // otherwise just chose inflection (or add both)                              
-        const pashto = ((): T.ArrayOneOrMore<T.PsString> => {                 
-            if ("plural" in inf && inf.plural !== undefined && personIsPlural(subjPerson)) {
-                const gender = personGender(subjPerson);
-                if (gender === "masc" && "masc" in inf.plural) {
-                    return inf.plural.masc[0];
-                }
-                if (gender === "fem" && "fem" in inf.plural) {
-                    return inf.plural.fem[0];
-                }
-                throw new Error("gender not available for plural");
-            }
-            if (isUnisexSet(inf.inflections)) {
-                return chooseInflection(inf.inflections, subjPerson);
-            } else {
-                return [psStringFromEntry(e, english)];
-            }
-        })();
-        return addEnglish(english, pashto);
+    const inf = inflectWord(e);
+    const english = getEnglishFromNoun(e, personIsPlural(subjPerson), "predicate");
+    const gender = personGender(subjPerson);
+    if (!inf) {
+        return [psStringFromEntry(e, english)];
     }
-    // if it's the subject - TO BE IMPLEMENTED
-    throw new Error("unisex noun as subject not implemented yet");
+    // if (!inf.inflections && (!("plural" in inf) || (!inf.inflections || !isUnisexSet(inf.inflections)))) {
+    //     throw Error("improper unisex noun");
+    // }
+    // if plural // anim // chose that
+    // otherwise just chose inflection (or add both)                              
+    const pashto = ((): T.ArrayOneOrMore<T.PsString> => {
+        const plural = personIsPlural(subjPerson);             
+        function getPlural() {
+            const plural = getInf(inf, "plural", gender, true);
+            const arabicPlural = getInf(inf, "arabicPlural", gender, true);
+            const inflections = getInf(inf, "inflections", gender, true)
+            return [
+                ...plural,
+                ...arabicPlural,
+                // avoid useless non-inflecting masculine inflection "plural"
+                ...(plural.length && inflections[0].p === e.p) ? [] : inflections,
+            ];
+        }
+        const ps = plural
+            ? getPlural()
+            : getInf(inf, "inflections", gender, plural);
+        return isArrayOneOrMore(ps)
+            ? ps
+            : [psStringFromEntry(e, english)];
+    })();
+    return addEnglish(english, pashto);
+}
+
+function getInf(infs: T.InflectorOutput, t: "plural" | "arabicPlural" | "inflections", gender: T.Gender, plural: boolean): T.PsString[] {
+    // @ts-ignore
+    if (infs && t in infs && infs[t] !== undefined && gender in infs[t] && infs[t][gender] !== undefined) {
+        // @ts-ignore
+        const iset = infs[t][gender] as T.InflectionSet;
+        const ipick = iset[(t === "inflections" && plural) ? 1 : 0];
+        return ipick;
+    }
+    return [];
 }
 
 function makeNoun(n: NounInput | SpecifiedUnisexNounInput, entity: "subject" | "predicate"): T.PsString[] {
@@ -171,28 +194,16 @@ function makeNoun(n: NounInput | SpecifiedUnisexNounInput, entity: "subject" | "
         const gender = "gender" in n
             ? n.gender
             : n.entry.c?.includes("n. f.") ? "fem" : "masc";
-        try {
-            if (n.plural && infs) {
-                if ("plural" in infs && infs.plural !== undefined) {
-                    // ts-ignore used here because we know we can trust the gender to work
-                    // @ts-ignore
-                    return infs.plural[gender][0] as T.ArrayOneOrMore<T.PsString>;
-                }
-                // TODO: Add arabic plural?
-                if ("inflections" in infs && infs.inflections !== undefined) {
-                    // @ts-ignore
-                    return infs.inflections[gender][1] as T.ArrayOneOrMore<T.PsString>;
-                }
-                return [psStringFromEntry(n.entry, english)];
-            } else if (!n.plural && infs && "inflections" in infs && infs.inflections !== undefined) {
-                // @ts-ignore
-                return infs.inflections[gender][0] as T.ArrayOneOrMore<T.PsString>;
-            }
-            return [psStringFromEntry(n.entry, english)];
-        } catch(e) {
-            console.error(e);
-            throw new Error("error making noun " + n.entry.ts);
-        }
+        const ps = !n.plural
+            ? getInf(infs, "inflections", gender, false)
+            : [
+                ...getInf(infs, "plural", gender, true),
+                ...getInf(infs, "arabicPlural", gender, true),
+                ...getInf(infs, "inflections", gender, true),
+            ];
+        return isArrayOneOrMore(ps)
+            ? ps
+            : [psStringFromEntry(n.entry, english)];
     })();
     return addEnglish(english, pashto);
 }

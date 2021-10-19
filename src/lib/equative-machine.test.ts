@@ -3,8 +3,6 @@ import {
     EquativeMachineOutput,
     SubjectInput,
     PredicateInput,
-    AdjectiveInput,
-    UnisexNounInput,
     ParticipleInput,
     assembleEquativeOutput,
 } from "./equative-machine";
@@ -57,7 +55,7 @@ const abilities: {
             {
                 in: {
                     subject: T.Person.FirstSingMale,
-                    predicate: {"ts":1527815306,"i":7530,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."} as AdjectiveInput,
+                    predicate: {"ts":1527815306,"i":7530,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."} as Adjective,
                 },
                 out: {
                     subject: [{ p: "زه", f: "zu", e: "I (m.)" }],
@@ -68,7 +66,7 @@ const abilities: {
             {
                 in: {
                     subject: T.Person.SecondPlurFemale,
-                    predicate: {"ts":1527815306,"i":7530,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."} as AdjectiveInput,
+                    predicate: {"ts":1527815306,"i":7530,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."} as Adjective,
                 },
                 out: {
                     subject: [{ p: "تاسو", f: "táaso", e: "You (f. pl.)" }, { p: "تاسې", f: "táase", e: "You (f. pl.)"}],
@@ -80,7 +78,7 @@ const abilities: {
             {
                 in: {
                     subject: T.Person.ThirdSingFemale,
-                    predicate: {"ts":1527812798,"i":5595,"p":"خفه","f":"khufa","g":"khufa","e":"sad, upset, angry; choked, suffocated","c":"adj."} as AdjectiveInput,
+                    predicate: {"ts":1527812798,"i":5595,"p":"خفه","f":"khufa","g":"khufa","e":"sad, upset, angry; choked, suffocated","c":"adj."} as Adjective,
                 },
                 out: {
                     subject: [{ p: "هغه", f: "haghá", e: "She/it (f.)" }],
@@ -96,7 +94,7 @@ const abilities: {
             {
                 in: {
                     subject: T.Person.FirstSingFemale,
-                    predicate: {"ts":1591872915426,"i":696,"p":"افغانی","f":"afghaanéy","g":"afghaaney","e":"Afghan (person)","c":"n. m. unisex"} as UnisexNounInput,
+                    predicate: {"ts":1591872915426,"i":696,"p":"افغانی","f":"afghaanéy","g":"afghaaney","e":"Afghan (person)","c":"n. m. anim. unisex"} as UnisexNoun,
                 },
                 out: {
                     subject: [{ p: "زه", f: "zu", e: "I (f.)" }],
@@ -107,18 +105,32 @@ const abilities: {
             {
                 in: {
                     subject: T.Person.FirstPlurFemale,
-                    predicate: {"ts":1527814779,"i":935,"p":"انسان","f":"insaan","g":"insaan","e":"human, person","c":"n. m. anim. unisex"} as UnisexNounInput,
+                    predicate: {"ts":1591872915426,"i":696,"p":"افغانی","f":"afghaanéy","g":"afghaaney","e":"Afghan (person)","c":"n. m. anim. unisex"} as UnisexNoun,
                 },
                 out: {
                     subject: [{ p: "مونږ", f: "moonG", e: "We (f. pl.)" }, { p: "موږ", f: "mooG", e: "We (f. pl.)" }],
-                    predicate: [{ p: "انسانانې", f: "insaanáane", e: "(the) humans" }],
+                    predicate: [
+                        { p: "افغانیانې", f: "afghaaniyáane", e: "(the) Afghans" },
+                        { p: "افغانۍ", f: "afghaanúy", e: "(the) Afghans" },
+                    ],
+                    equative: [{ p: "یو", f: "yoo", e: "are" }],
+                },
+            },
+            {
+                in: {
+                    subject: T.Person.FirstPlurFemale,
+                    predicate: {"ts":1527814779,"i":935,"p":"انسان","f":"insaan","g":"insaan","e":"human, person","c":"n. m. anim. unisex"} as UnisexNoun,
+                },
+                out: {
+                    subject: [{ p: "مونږ", f: "moonG", e: "We (f. pl.)" }, { p: "موږ", f: "mooG", e: "We (f. pl.)" }],
+                    predicate: [{ p: "انسانانې", f: "insaanáane", e: "(the) humans" }, { p: "انسانې", f: "insaane", e: "(the) humans" }],
                     equative: [{ p: "یو", f: "yoo", e: "are" }],
                 },
             },
             {
                 in: {
                     subject: T.Person.SecondSingFemale,
-                    predicate: {"ts":1527814779,"i":935,"p":"انسان","f":"insaan","g":"insaan","e":"human, person","c":"n. m. anim. unisex"} as UnisexNounInput,
+                    predicate: {"ts":1527814779,"i":935,"p":"انسان","f":"insaan","g":"insaan","e":"human, person","c":"n. m. anim. unisex"} as UnisexNoun,
                 },
                 out: {
                     subject: [{ p: "ته", f: "tu", e: "You (f.)" }],
@@ -137,7 +149,7 @@ const abilities: {
                         entry: { "ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m." },
                         plural: false,
                     },
-                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as AdjectiveInput,
+                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
                 },
                 out: {
                     subject: [{ p: "کتاب", f: "kitáab", e: "(A/The) book" }],
@@ -151,7 +163,7 @@ const abilities: {
                         entry: { "ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m." },
                         plural: true,
                     },
-                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as AdjectiveInput,
+                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
                 },
                 out: {
                     subject: [{ p: "کتابونه", f: "kitaabóona", e: "(The) books" }],
@@ -165,7 +177,7 @@ const abilities: {
                         entry: {"ts":1527812797,"i":8542,"p":"ښځه","f":"xúdza","g":"xudza","e":"woman, wife","c":"n. f. anim.","ec":"woman","ep":"women"},
                         plural: false,
                     },
-                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as AdjectiveInput,
+                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
                 },
                 out: {
                     subject: [{ p: "ښځه", f: "xúdza", e: "(A/The) woman" }],
@@ -179,7 +191,7 @@ const abilities: {
                         entry: {"ts":1527812797,"i":8542,"p":"ښځه","f":"xúdza","g":"xudza","e":"woman, wife","c":"n. f. anim.","ec":"woman","ep":"women"},
                         plural: true,
                     },
-                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as AdjectiveInput,
+                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
                 },
                 out: {
                     subject: [{ p: "ښځې", f: "xúdze", e: "(The) women" }],
@@ -194,7 +206,7 @@ const abilities: {
                         entry: {"ts":1527812797,"i":8542,"p":"ښځه","f":"xúdza","g":"xudza","e":"woman, wife","c":"n. f. anim.","ec":"woman","ep":"women"},
                         plural: true,
                     },
-                    predicate: {"ts":1527812798,"i":5595,"p":"خفه","f":"khufa","g":"khufa","e":"sad, upset, angry; choked, suffocated","c":"adj."} as AdjectiveInput,
+                    predicate: {"ts":1527812798,"i":5595,"p":"خفه","f":"khufa","g":"khufa","e":"sad, upset, angry; choked, suffocated","c":"adj."} as Adjective,
                 },
                 out: {
                     subject: [{ p: "ښځې", f: "xúdze", e: "(The) women" }],
@@ -210,7 +222,7 @@ const abilities: {
             {
                 in: {
                     subject: {"ts":1527812790,"i":5747,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat"} as ParticipleInput,
-                    predicate: {"ts":1527812796,"i":8578,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."} as AdjectiveInput,
+                    predicate: {"ts":1527812796,"i":8578,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."} as Adjective,
                 },
                 out: {
                     subject: [{ p: "خوړل", f: "khoRul", e: "eating" }],
@@ -221,7 +233,7 @@ const abilities: {
             {
                 in: {
                     subject: {"ts":1527817298,"i":310,"p":"اخیستل","f":"akheestul","g":"akheestul","e":"to take, buy, purchase, receive; to shave, cut with scissors","c":"v. trans.","psp":"اخل","psf":"akhl","ec":"take,takes,taking,took,taken"} as ParticipleInput,
-                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as AdjectiveInput,
+                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
                 },
                 out: {
                     subject: [{ p: "اخیستل", f: "akheestul", e: "taking" }],
@@ -232,7 +244,7 @@ const abilities: {
             {
                 in: {
                     subject: {"ts":1527816854,"i":4365,"p":"جګېدل","f":"jugedul, jigedul","g":"jugedul,jigedul","e":"to get up, be raised up","c":"v. stat. comp. intrans.","l":1527812707,"ec":"get, gets, getting, got, gotten","ep":"up"} as ParticipleInput,
-                    predicate: {"ts":1527815246,"i":7591,"p":"سخت","f":"sakht","g":"sakht","e":"hard, difficult","c":"adj."} as AdjectiveInput,
+                    predicate: {"ts":1527815246,"i":7591,"p":"سخت","f":"sakht","g":"sakht","e":"hard, difficult","c":"adj."} as Adjective,
                 },
                 out: {
                     subject: [{ p: "جګېدل", f: "jugedul", e: "getting up" }],
@@ -367,11 +379,13 @@ const abilities: {
                         plural: true,
                         gender: "fem",
                     },
-                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as AdjectiveInput,
+                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
                 },
                 out: {
-                    // TODO: should also use نرسې ?
-                    subject: [{ p: "نرسانې", f: "narsáane", e: "(The) nurses" }],
+                    subject: [
+                        { p: "نرسانې", f: "narsáane", e: "(The) nurses" },
+                        { p: "نرسې", f: "narse", e: "(The) nurses" },
+                    ],
                     predicate: [{ p: "زړې", f: "zaRe", e: "old" }],
                     equative: [{ p: "دي", f: "dee", e: "are" }],
                 },
@@ -459,4 +473,17 @@ test("assembleEquativeOutput", () => {
         predicate: [{ p: "زاړه", f: "zaaRu", e: "old" }],
         equative: [{ p: "دي", f: "dee", e: "are" }],
     })).toEqual([{ p: "کتابونه زاړه دي", f: "kitaabóona zaaRu dee", e: "(The) books are old" }]);
+    expect(assembleEquativeOutput({
+        subject: [{ p: "مونږ", f: "moonG", e: "We (f. pl.)" }, { p: "موږ", f: "mooG", e: "We (f. pl.)" }],
+        predicate: [
+            { p: "افغانیانې", f: "afghaaniyáane", e: "(the) Afghans" },
+            { p: "افغانۍ", f: "afghaanúy", e: "(the) Afghans" },
+        ],
+        equative: [{ p: "یو", f: "yoo", e: "are" }],
+    })).toEqual([
+        { p: "مونږ افغانیانې یو", f: "moonG afghaaniyáane yoo", e: "We (f. pl.) are (the) Afghans" },
+        { p: "مونږ افغانۍ یو", f: "moonG afghaanúy yoo", e: "We (f. pl.) are (the) Afghans" },
+        { p: "موږ افغانیانې یو", f: "mooG afghaaniyáane yoo", e: "We (f. pl.) are (the) Afghans" },
+        { p: "موږ افغانۍ یو", f: "mooG afghaanúy yoo", e: "We (f. pl.) are (the) Afghans" },
+    ]);
 });

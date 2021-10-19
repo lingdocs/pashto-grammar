@@ -12,15 +12,13 @@ import {
 import {
     equativeMachine,
     assembleEquativeOutput,
-    PredicateInput,
 } from "../lib/equative-machine";
-import words from "../words/words";
+import { nouns, adjectives } from "../words/words";
 
 function uniqueSort(arr: Adjective[]): Adjective[];
 function uniqueSort(arr: UnisexNoun[]): UnisexNoun[];
 function uniqueSort(arr: (Adjective | UnisexNoun)[]): (Adjective | UnisexNoun)[] {
     return arr
-        .filter((v, i, a) => a.findIndex((e) => e.ts === v.ts) === i)
         .filter((e) => {
             try {
                 for (let p = 0; p < 12; p++) {
@@ -36,13 +34,15 @@ function uniqueSort(arr: (Adjective | UnisexNoun)[]): (Adjective | UnisexNoun)[]
         .sort((a, b) => a.p.localeCompare(b.p));
 }
 
+const unisexNouns = nouns.filter(x => isUnisexNoun(x)) as UnisexNoun[];
+
 const inputs = {
     // TODO: instead - have them unique and sorted in the words.ts file
-    adjectives: uniqueSort(words.adjectives),
-    unisexNouns: uniqueSort(words.nouns.filter(x => isUnisexNoun(x)) as UnisexNoun[]),
+    adjectives: uniqueSort(adjectives),
+    unisexNouns: unisexNouns.sort((a, b) => a.p.localeCompare(b.p)),
 };
 
-function makeBlock(e: PredicateInput): T.VerbBlock {
+function makeBlock(e: Adjective | UnisexNoun): T.VerbBlock {
     const makeP = (p: T.Person): T.ArrayOneOrMore<T.PsString> => {
         const b = assembleEquativeOutput(equativeMachine(p, e));
         return ("long" in b ? b.long : b) as T.ArrayOneOrMore<T.PsString>;
@@ -62,7 +62,7 @@ type PredicateType = "adjectives" | "unisexNouns";
 
 // TODO: Plural nouns like shoode
 const defaultTs = 1527815306;
-const defaultPe = inputs.adjectives.find(a => a.ts === defaultTs) || inputs.adjectives[0];
+// const defaultPe = inputs.adjectives.find(a => a.ts === defaultTs) || inputs.adjectives[0];
 
 function EquativeExplorer() {
     // TODO: Use sticky state
@@ -74,7 +74,6 @@ function EquativeExplorer() {
     
     function makeOptionLabel(e: T.DictionaryEntry): string {
         const eng = getEnglishWord(e);
-        // @ts-ignore - with dumb old typescript
         const english = typeof eng === "string" ? eng : eng?.singular; 
         return `${e.p} - ${removeFVarients(e.f)} (${english})`;
     }
@@ -91,22 +90,12 @@ function EquativeExplorer() {
     //     setSubjectType(st);
     //     // setPredicate(inputs[pt][0].ts);
     // }
-    // @ts-ignore
-    const pe = (inputs[predicateType].find((a: AdjectiveInput | UnisexNounInput) => (
-        a.ts === predicate
-    ))) as PredicateInput;
-    const block = (() => {
-        try {
-            return makeBlock(pe);
-        } catch (e) {
-            console.error("error making equative");
-            console.error(e);
-            setPredicate(defaultTs);
-            setPredicateType("adjectives");
-            return makeBlock(defaultPe);
-        }
-    })();
-
+    const predicatePile = inputs[predicateType] as T.DictionaryEntry[];
+    const pe = predicatePile.find(p => p.ts === predicate) as UnisexNoun | Adjective;
+    if (!pe) return <>
+        ERROR!
+    </>
+    console.log("predicate in use", pe);
     return <>
         <div className="d-flex flex-row">
             {/* <div className="form-group">
@@ -183,10 +172,7 @@ function EquativeExplorer() {
                 </select>
             </div>
         </div>
-        {/* 
-        // @ts-ignore */}
-        {pe.ts}
-        <VerbTable textOptions={opts} block={block} />
+        <VerbTable textOptions={opts} block={makeBlock(pe)} />
     </>;
 }
 
