@@ -9,17 +9,13 @@ const nounAdjCollectionPath = path.join(wordsPath, "noun-adj-categories");
 const verbTsFiles = fs.readdirSync(verbCollectionPath);
 const nounAdjTsFiles = fs.readdirSync(nounAdjCollectionPath);
 
-const allVerbTsS = [...new Set(verbTsFiles.reduce((arr, fileName) => {
-    const TsS = require(path.join("..", verbCollectionPath, fileName))
-        .filter((v, i, a) => a.findIndex(x => x.ts === v.ts) === i);
-    return [...arr, ...TsS];
-}, []))];
+const allVerbTsS = verbTsFiles.flatMap(fileName => [
+    ...require(path.join("..", verbCollectionPath, fileName)).map(x => x.ts)
+]).filter((v, i, a) => a.findIndex(x => x === v) === i);
 
-const allNounAdjTsS = [...new Set(nounAdjTsFiles.reduce((arr, fileName) => {
-    const TsS = require(path.join("..", nounAdjCollectionPath, fileName))
-        .filter((v, i, a) => a.findIndex(x => x.ts === v.ts) === i);
-    return [...arr, ...TsS];
-}, []))];
+const allNounAdjTsS = nounAdjTsFiles.flatMap(fileName => [
+    ...require(path.join("..", nounAdjCollectionPath, fileName)).map(x => x.ts)
+]).filter((v, i, a) => a.findIndex(x => x === v) === i);
 
 console.log("getting words from dictionary...");
 
@@ -40,8 +36,8 @@ export default words;`;
 
 function getVerbsFromTsS(entries) {
     const missingEc = [];
-    const toReturn = allVerbTsS.map(item => {
-        const entry = entries.find(x => item.ts === x.ts);
+    const toReturn = allVerbTsS.map(ts => {
+        const entry = entries.find(x => ts === x.ts);
         if (!entry) {
             console.log("couldn't find ts", ts);
             return undefined;
@@ -65,10 +61,10 @@ function getVerbsFromTsS(entries) {
 }
 
 function getNounsAdjsFromTsS(entries) {
-    const b = allNounAdjTsS.map(item => {
-        const entry = entries.find(x => item.ts === x.ts);
+    const b = allNounAdjTsS.map(ts => {
+        const entry = entries.find(x => ts === x.ts);
         if (!entry) {
-            console.log("couldn't find ts", item);
+            console.log("couldn't find ts", ts);
             return undefined;
         }
         // const firstWord = entry.e.split(",")[0].split(";")[0].split("(")[0].trim();
