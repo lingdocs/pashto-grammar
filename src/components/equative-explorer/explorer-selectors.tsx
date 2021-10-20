@@ -10,6 +10,7 @@ import {
     ButtonSelect,
 } from "@lingdocs/pashto-inflector";
 import { isPluralEntry } from "../../lib/type-predicates";
+import Select from "react-select";
 
 export function PredicateSelector({ state, dispatch }: {
     state: ExplorerState,
@@ -19,11 +20,15 @@ export function PredicateSelector({ state, dispatch }: {
         const t = e.target.value as PredicateType;
         dispatch({ type: "setPredicateType", payload: t });
     }
-    function onPredicateSelect(e: React.ChangeEvent<HTMLSelectElement>) {
-        const ts = parseInt(e.target.value);
-        dispatch({ type: "setPredicate", payload: ts });
+    function onPredicateSelect({ value }: any) {
+        dispatch({ type: "setPredicate", payload: parseInt(value) });
     }
-    return <div className="form-group ml-2">
+    const options = inputs[state.predicateType].map(e => ({
+        value: `${e.ts}`,
+        label: makeOptionLabel(e),
+    }));
+    const predicate = state.predicatesSelected[state.predicateType];
+    return <div className="form-group ml-2 flex-fill" style={{ maxWidth: "50%" }}>
         <label htmlFor="predicate-select"><strong>Predicate:</strong></label>
         <div className="form-check">
             <input
@@ -54,16 +59,15 @@ export function PredicateSelector({ state, dispatch }: {
                 Unisex Nouns
             </label>
         </div>
-        <select
-            className="form-control"
-            id="predicate-select"
-            value={state.predicatesSelected[state.predicateType].ts}
+        <Select
+            value={predicate.ts.toString()}
             onChange={onPredicateSelect}
-        >
-            {inputs[state.predicateType].map(e => (
-                <option key={e.ts+"s"} value={e.ts}>{makeOptionLabel(e)}</option>
-            ))}
-        </select>
+            className="mb-2"
+            // @ts-ignore
+            options={options}
+            isSearchable
+            placeholder={options.find(o => o.value === predicate.ts.toString())?.label}
+        />
     </div>;
 }
 
@@ -75,14 +79,22 @@ export function SubjectSelector({ state, dispatch }: {
         const t = e.target.value as SubjectType;
         dispatch({ type: "setSubjectType", payload: t });
     }
-    function onSubjectSelect(e: React.ChangeEvent<HTMLSelectElement>) {
-        const ts = parseInt(e.target.value);
-        dispatch({ type: "setSubject", payload: ts });
+    function onSubjectSelect({ value }: any) {
+        dispatch({ type: "setSubject", payload: parseInt(value) });
     }
     const pluralNounSelected = (
         state.subjectType === "noun" && isPluralEntry(state.subjectsSelected.noun)
-    )
-    return <div className="form-group mr-2">
+    );
+    const options = state.subjectType === "pronouns"
+        ? []
+        : inputs[state.subjectType].map(e => ({
+            value: e.ts.toString(),
+            label: makeOptionLabel(e),
+        }));
+    const subject = state.subjectType === "pronouns"
+        ? undefined
+        : state.subjectsSelected[state.subjectType]
+    return <div className="form-group mr-2 flex-fill">
         <label htmlFor="predicate-select"><strong>Subject:</strong></label>
         <div className="form-check">
             <input
@@ -114,16 +126,15 @@ export function SubjectSelector({ state, dispatch }: {
         </div>
         {state.subjectType !== "pronouns" && 
             <>
-                <select
-                    className="form-control mb-3"
-                    id="subject-select"
-                    value={state.subjectsSelected[state.subjectType].ts}
+                <Select
+                    value={subject?.ts.toString()}
                     onChange={onSubjectSelect}
-                >
-                    {inputs[state.subjectType].map(e => (
-                        <option key={e.ts+"s"} value={e.ts}>{makeOptionLabel(e)}</option>
-                    ))}
-                </select>
+                    className="mb-2"
+                    // @ts-ignore
+                    options={options}
+                    isSearchable
+                    placeholder={options.find(o => o.value === subject?.ts.toString())?.label}
+                />
                 <ButtonSelect
                     small
                     options={[
