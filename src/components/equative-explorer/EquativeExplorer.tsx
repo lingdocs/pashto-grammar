@@ -14,6 +14,7 @@ import {
     defaultUnisexNoun,
     defaultAdjective,
     defaultNoun,
+    defaultParticiple,
 } from "./explorer-inputs";
 import EquativeDisplay from "./EquativeDisplay";
 
@@ -26,6 +27,7 @@ const defaultState: ExplorerState = {
     },
     subjectsSelected: {
         noun: defaultNoun,
+        participle: defaultParticiple,
         info: {
             plural: false,
             gender: "masc",

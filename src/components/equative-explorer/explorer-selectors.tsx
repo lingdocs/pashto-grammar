@@ -12,6 +12,98 @@ import {
 import { isPluralEntry } from "../../lib/type-predicates";
 import Select from "react-select";
 
+export function SubjectSelector({ state, dispatch }: {
+    state: ExplorerState,
+    dispatch: (action: ExplorerReducerAction) => void,
+}) {
+    function onTypeSelect(e: React.ChangeEvent<HTMLInputElement>) {
+        const t = e.target.value as SubjectType;
+        dispatch({ type: "setSubjectType", payload: t });
+    }
+    function onSubjectSelect({ value }: any) {
+        dispatch({ type: "setSubject", payload: parseInt(value) });
+    }
+    const pluralNounSelected = (
+        state.subjectType === "noun" && isPluralEntry(state.subjectsSelected.noun)
+    );
+    const options = state.subjectType === "pronouns"
+        ? []
+        : inputs[state.subjectType].map(e => ({
+            value: e.ts.toString(),
+            label: makeOptionLabel(e),
+        }));
+    const subject = state.subjectType === "pronouns"
+        ? undefined
+        : state.subjectsSelected[state.subjectType];
+    return <div className="form-group mr-2 flex-fill">
+        <label htmlFor="predicate-select"><strong>Subject:</strong></label>
+        <div className="form-check">
+            <input
+                className="form-check-input"
+                type="radio"
+                name="pronounsSubjectRadio"
+                id="pronounsSubjectRadio"
+                value="pronouns"
+                checked={state.subjectType === "pronouns"}
+                onChange={onTypeSelect}
+            />
+            <label className="form-check-label" htmlFor="adjectivesPredicateRadio">
+                Pronouns
+            </label>
+        </div>
+        <div className="form-check">
+            <input
+                className="form-check-input"
+                type="radio"
+                name="nounsSubjectRadio"
+                id="nounsSubjectRadio"
+                value="noun"
+                checked={state.subjectType === "noun"}
+                onChange={onTypeSelect}
+            />
+            <label className="form-check-label" htmlFor="unisexNounsPredicateRadio">
+                Nouns
+            </label>
+        </div>
+        <div className="form-check mb-2">
+            <input
+                className="form-check-input"
+                type="radio"
+                name="participlesSubjectRadio"
+                id="participlesSubjectRadio"
+                value="participle"
+                checked={state.subjectType === "participle"}
+                onChange={onTypeSelect}
+            />
+            <label className="form-check-label" htmlFor="unisexNounsPredicateRadio">
+                Participles
+            </label>
+        </div>
+        {state.subjectType !== "pronouns" && 
+            <>
+                <Select
+                    value={subject?.ts.toString()}
+                    onChange={onSubjectSelect}
+                    className="mb-2"
+                    // @ts-ignore
+                    options={options}
+                    isSearchable
+                    placeholder={options.find(o => o.value === subject?.ts.toString())?.label}
+                />
+                {state.subjectType === "noun" && <ButtonSelect
+                    small
+                    options={[
+                        ...!pluralNounSelected ? [{ label: "Singular", value: "singular" }] : [],
+                        { label: "Plural", value: "plural" },
+                    ]}
+                    value={(state.subjectsSelected.info.plural || pluralNounSelected) ? "plural" : "singular"}
+                    handleChange={(p) => dispatch({ type: "setSubjectPlural", payload: p === "plural" ? true : false })}
+                />}
+            </>
+        }
+    </div>;
+}
+
 export function PredicateSelector({ state, dispatch }: {
     state: ExplorerState,
     dispatch: (action: ExplorerReducerAction) => void,
@@ -71,80 +163,3 @@ export function PredicateSelector({ state, dispatch }: {
     </div>;
 }
 
-export function SubjectSelector({ state, dispatch }: {
-    state: ExplorerState,
-    dispatch: (action: ExplorerReducerAction) => void,
-}) {
-    function onTypeSelect(e: React.ChangeEvent<HTMLInputElement>) {
-        const t = e.target.value as SubjectType;
-        dispatch({ type: "setSubjectType", payload: t });
-    }
-    function onSubjectSelect({ value }: any) {
-        dispatch({ type: "setSubject", payload: parseInt(value) });
-    }
-    const pluralNounSelected = (
-        state.subjectType === "noun" && isPluralEntry(state.subjectsSelected.noun)
-    );
-    const options = state.subjectType === "pronouns"
-        ? []
-        : inputs[state.subjectType].map(e => ({
-            value: e.ts.toString(),
-            label: makeOptionLabel(e),
-        }));
-    const subject = state.subjectType === "pronouns"
-        ? undefined
-        : state.subjectsSelected[state.subjectType]
-    return <div className="form-group mr-2 flex-fill">
-        <label htmlFor="predicate-select"><strong>Subject:</strong></label>
-        <div className="form-check">
-            <input
-                className="form-check-input"
-                type="radio"
-                name="pronounsSubjectRadio"
-                id="pronounsSubjectRadio"
-                value="pronouns"
-                checked={state.subjectType === "pronouns"}
-                onChange={onTypeSelect}
-            />
-            <label className="form-check-label" htmlFor="adjectivesPredicateRadio">
-                Pronouns
-            </label>
-        </div>
-        <div className="form-check mb-2">
-            <input
-                className="form-check-input"
-                type="radio"
-                name="nounsSubjectRadio"
-                id="nounsSubjectRadio"
-                value="noun"
-                checked={state.subjectType === "noun"}
-                onChange={onTypeSelect}
-            />
-            <label className="form-check-label" htmlFor="unisexNounsPredicateRadio">
-                Nouns
-            </label>
-        </div>
-        {state.subjectType !== "pronouns" && 
-            <>
-                <Select
-                    value={subject?.ts.toString()}
-                    onChange={onSubjectSelect}
-                    className="mb-2"
-                    // @ts-ignore
-                    options={options}
-                    isSearchable
-                    placeholder={options.find(o => o.value === subject?.ts.toString())?.label}
-                />
-                <ButtonSelect
-                    small
-                    options={[
-                        ...!pluralNounSelected ? [{ label: "Singular", value: "singular" }] : [],
-                        { label: "Plural", value: "plural" },
-                    ]}
-                    value={(state.subjectsSelected.info.plural || pluralNounSelected) ? "plural" : "singular"}
-                    handleChange={(p) => dispatch({ type: "setSubjectPlural", payload: p === "plural" ? true : false })}
-                />
-            </>
-        }
-    </div>;
-}

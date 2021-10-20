@@ -31,6 +31,7 @@ export function reducer(state: ExplorerState, action: ExplorerReducerAction): Ex
     if (action.type === "setSubject") {
         if (state.subjectType === "pronouns") return state;
         const pile = inputs[state.subjectType];
+        // @ts-ignore
         const subject = (pile.find(p => p.ts === action.payload) || pile[0]);
         return {
             ...state,

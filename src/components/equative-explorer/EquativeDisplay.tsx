@@ -11,9 +11,9 @@ import {
 import {
     equativeMachine,
     assembleEquativeOutput,
-    NounInput,
+    SubjectInput,
 } from "../../lib/equative-machine";
-import { isPluralEntry, isSingularEntry } from "../../lib/type-predicates";
+import { isNoun, isPluralEntry } from "../../lib/type-predicates";
 
 function EquativeDisplay({ state }: { state: ExplorerState }) {
     if (state.subjectType === "pronouns") {
@@ -23,18 +23,14 @@ function EquativeDisplay({ state }: { state: ExplorerState }) {
         />
     }
     const entry = state.subjectsSelected[state.subjectType];
-    const nounInput: NounInput = isSingularEntry(entry) ? {
+    // @ts-ignore - TODO: safer and for use with unisex nouns
+    const subjInput: SubjectInput = isNoun(entry) ? {
         entry,
-        plural: state.subjectsSelected.info.plural,
-    } : isPluralEntry(entry) ? {
-        entry,
-        plural: true,
-    } : {
-        entry: entry as SingularEntry<Noun>,
-        plural: state.subjectsSelected.info.plural,
-    };
+        plural: isPluralEntry(entry) ? true : state.subjectsSelected.info.plural,
+    } : entry;
+
     const eq = assembleEquativeOutput(
-        equativeMachine(nounInput, state.predicatesSelected[state.predicateType])
+        equativeMachine(subjInput, state.predicatesSelected[state.predicateType])
     );
     if ("short" in eq) return <div>length options not supported yet</div>;
     return <div>

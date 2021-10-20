@@ -1,7 +1,8 @@
 import { Types as T } from "@lingdocs/pashto-inflector";
+import { ParticipleInput } from "../../lib/equative-machine";
 
 export type PredicateType = keyof PredicatesSelected;
-export type SubjectType = "noun" | "pronouns";
+export type SubjectType = "noun" | "pronouns" | "participle";
 
 export type ExplorerState = {
     subjectType: SubjectType,
@@ -15,6 +16,7 @@ type PredicatesSelected = {
 };
 type SubjectSelected = {
     noun: Noun,
+    participle: ParticipleInput,
     info: {
         plural: boolean,
         gender: T.Gender,

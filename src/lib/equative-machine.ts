@@ -282,7 +282,7 @@ function psStringFromEntry(entry: T.DictionaryEntry, e: string): T.PsString {
     };
 }
 
-function getEnglishParticiple(entry: T.DictionaryEntry): string {
+export function getEnglishParticiple(entry: T.DictionaryEntry): string {
     if (!entry.ec) throw new Error("no english information for participle");
     const ec = parseEc(entry.ec);
     const participle = ec[2];
@@ -291,11 +291,11 @@ function getEnglishParticiple(entry: T.DictionaryEntry): string {
         : participle;
 }
 
-export function isPersonInput(e: EntityInput): e is PersonInput {
+export function isPersonInput(e: EntityInput | T.DictionaryEntry): e is PersonInput {
     return typeof e === "number";
 }
 
-export function isNounInput(e: EntityInput): e is NounInput {
+export function isNounInput(e: EntityInput | T.DictionaryEntry): e is NounInput {
     if (isPersonInput(e)) return false;
     if ("entry" in e && !("gender" in e)) {
         // e
@@ -304,7 +304,7 @@ export function isNounInput(e: EntityInput): e is NounInput {
     return false;
 }
 
-export function isParticipleInput(e: EntityInput): e is ParticipleInput {
+export function isParticipleInput(e: EntityInput | T.DictionaryEntry): e is ParticipleInput {
     if (isPersonInput(e)) return false;
     if ("entry" in e) return false;
     return !!e.c?.startsWith("v.");

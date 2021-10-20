@@ -6,10 +6,13 @@ import {
 import {
     equativeMachine,
     assembleEquativeOutput,
+    ParticipleInput,
+    isParticipleInput,
+    getEnglishParticiple,
 } from "../../lib/equative-machine";
 
-export function sort<T extends (Adjective | Noun)>(arr: T[]): T[] {
-    return arr.sort((a, b) => a.p.localeCompare(b.p));
+export function sort<T extends (Adjective | Noun | ParticipleInput)>(arr: Readonly<T[]>): T[] {
+    return [...arr].sort((a, b) => a.p.localeCompare(b.p));
 }
 
 export function makeBlockWPronouns(e: Adjective | UnisexNoun): T.VerbBlock {
@@ -28,7 +31,7 @@ export function makeBlockWPronouns(e: Adjective | UnisexNoun): T.VerbBlock {
 }
 
 export function makeOptionLabel(e: T.DictionaryEntry): string {
-    const eng = getEnglishWord(e);
+    const eng = (isParticipleInput(e)) ? getEnglishParticiple(e) : getEnglishWord(e);
     const english = typeof eng === "string"
         ? eng
         : !eng
