@@ -26,6 +26,7 @@ import {
 // Person                  | Participle             ✔
 // Noun                    | Noun                   ✔
 // Noun                    | Adjective              ✔
+// Plural Noun             | Adjective              ✔  
 // Noun                    | Participle             ✔
 // Noun                    | Specified Unisex Noun  ✔
 // Specified Unisex Noun   | Noun                   ✔
@@ -146,7 +147,7 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: { "ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m." },
+                        entry: { "ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m." } as SingularEntry<Noun>,
                         plural: false,
                     },
                     predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
@@ -160,7 +161,7 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: { "ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m." },
+                        entry: { "ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m." } as SingularEntry<Noun>,
                         plural: true,
                     },
                     predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
@@ -174,7 +175,7 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: {"ts":1527812797,"i":8542,"p":"ښځه","f":"xúdza","g":"xudza","e":"woman, wife","c":"n. f. anim.","ec":"woman","ep":"women"},
+                        entry: {"ts":1527812797,"i":8542,"p":"ښځه","f":"xúdza","g":"xudza","e":"woman, wife","c":"n. f. anim.","ec":"woman","ep":"women"} as SingularEntry<Noun>,
                         plural: false,
                     },
                     predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
@@ -188,7 +189,7 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: {"ts":1527812797,"i":8542,"p":"ښځه","f":"xúdza","g":"xudza","e":"woman, wife","c":"n. f. anim.","ec":"woman","ep":"women"},
+                        entry: {"ts":1527812797,"i":8542,"p":"ښځه","f":"xúdza","g":"xudza","e":"woman, wife","c":"n. f. anim.","ec":"woman","ep":"women"} as SingularEntry<Noun>,
                         plural: true,
                     },
                     predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
@@ -203,7 +204,7 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: {"ts":1527812797,"i":8542,"p":"ښځه","f":"xúdza","g":"xudza","e":"woman, wife","c":"n. f. anim.","ec":"woman","ep":"women"},
+                        entry: {"ts":1527812797,"i":8542,"p":"ښځه","f":"xúdza","g":"xudza","e":"woman, wife","c":"n. f. anim.","ec":"woman","ep":"women"} as SingularEntry<Noun>,
                         plural: true,
                     },
                     predicate: {"ts":1527812798,"i":5595,"p":"خفه","f":"khufa","g":"khufa","e":"sad, upset, angry; choked, suffocated","c":"adj."} as Adjective,
@@ -212,6 +213,39 @@ const abilities: {
                     subject: [{ p: "ښځې", f: "xúdze", e: "(The) women" }],
                     predicate: [{ p: "خفه", f: "khufa", e: "sad" }],
                     equative: [{ p: "دي", f: "dee", e: "are" }],
+                },
+            },
+        ],
+    },
+    {
+        label: "SUBJECT: Plural Noun Predicate: Adjective",
+        tests: [
+            {
+                in: {
+                    subject: {
+                        entry: {"ts":1527815008,"i":8433,"p":"شودې","f":"shoodé","g":"shoode","e":"milk","c":"n. f. pl."} as PluralEntry<Noun>,
+                        plural: true,
+                    },
+                    predicate: {"ts":1527812796,"i":8578,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."} as Adjective,
+                },
+                out: {
+                    subject: [{ p: "شودې", f: "shoodé", e: "(The) milk" }],
+                    predicate: [{ p: "ښې", f: "xe", e: "good" }],
+                    equative: [{ p: "دي", f: "dee", e: "is" }],
+                },
+            },
+            {
+                in: {
+                    subject: {
+                        entry: {"ts":1527817330,"i":9204,"p":"غنم","f":"ghanúm","g":"ghanum","e":"wheat","c":"n. m. pl."} as PluralEntry<Noun>,
+                        plural: true,
+                    },
+                    predicate: {"ts":1527815451,"i":7192,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
+                },
+                out: {
+                    subject: [{ p: "غنم", f: "ghanúm", e: "(The) wheat" }],
+                    predicate: [{ p: "زاړه", f: "zaaRu", e: "old" }],
+                    equative: [{ p: "دي", f: "dee", e: "is" }],
                 },
             },
         ],
@@ -276,11 +310,11 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: {"ts":1527813477,"i":5790,"p":"خوشحالي","f":"khosh`haalee","g":"khoshhaalee","e":"happiness, joy","c":"n. f."},
+                        entry: {"ts":1527813477,"i":5790,"p":"خوشحالي","f":"khosh`haalee","g":"khoshhaalee","e":"happiness, joy","c":"n. f."} as SingularEntry<Noun>,
                         plural: false,
                     },
                     predicate: {
-                        entry: {"ts":1527812788,"i":5729,"p":"خوراک","f":"khoráak, khwaráak","g":"khoraak,khwaraak","e":"food","c":"n. m."},
+                        entry: {"ts":1527812788,"i":5729,"p":"خوراک","f":"khoráak, khwaráak","g":"khoraak,khwaraak","e":"food","c":"n. m."} as SingularEntry<Noun>,
                         plural: false,
                     },
                 },
@@ -298,7 +332,7 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: {"ts":1527822878,"i":14157,"p":"وروروالی","f":"wrorwaaley","g":"wrorwaaley","e":"brotherhood, comradery, tight and good friendship","c":"n. m."},
+                        entry: {"ts":1527822878,"i":14157,"p":"وروروالی","f":"wrorwaaley","g":"wrorwaaley","e":"brotherhood, comradery, tight and good friendship","c":"n. m."} as SingularEntry<Noun>,
                         plural: false,
                     },
                     predicate: {"ts":1527816064,"i":7097,"p":"زغمل","f":"zghamul","g":"zghamul","e":"to endure, bear, tolerate, take on, digest","c":"v. trans.","tppp":"زغامه","tppf":"zghaamu","ec":"endure"} as ParticipleInput,
@@ -318,7 +352,7 @@ const abilities: {
                 in: {
                     subject: {"ts":1527812856,"i":11521,"p":"لیکل","f":"leekul","g":"leekul","e":"to write","c":"v. trans.","ec":"write,writes,writing,wrote,wrote"} as ParticipleInput,
                     predicate: {
-                        entry: {"ts":1527813477,"i":5790,"p":"خوشحالي","f":"khosh`haalee","g":"khoshhaalee","e":"happiness, joy","c":"n. f."},
+                        entry: {"ts":1527813477,"i":5790,"p":"خوشحالي","f":"khosh`haalee","g":"khoshhaalee","e":"happiness, joy","c":"n. f."} as SingularEntry<Noun>,
                         plural: false,
                     },
                 },
@@ -352,11 +386,11 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: {"ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+                        entry: {"ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."} as SingularEntry<Noun>,
                         plural: true,
                     },
                     predicate: {
-                        entry: {"ts":1527815127,"i":13259,"p":"نرس","f":"nars, nursa","g":"nars,nursa","e":"nurse","c":"n. m. anim. unisex"},
+                        entry: {"ts":1527815127,"i":13259,"p":"نرس","f":"nars, nursa","g":"nars,nursa","e":"nurse","c":"n. m. anim. unisex"} as SingularEntry<Noun>,
                         plural: false,
                         gender: "fem",
                     },
@@ -375,7 +409,7 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: {"ts":1527815127,"i":13259,"p":"نرس","f":"nars, nursa","g":"nars,nursa","e":"nurse","c":"n. m. anim. unisex"},
+                        entry: {"ts":1527815127,"i":13259,"p":"نرس","f":"nars, nursa","g":"nars,nursa","e":"nurse","c":"n. m. anim. unisex"} as SingularEntry<Noun>,
                         plural: true,
                         gender: "fem",
                     },
@@ -398,12 +432,12 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: {"ts":1527815127,"i":13259,"p":"نرس","f":"nars, nursa","g":"nars,nursa","e":"nurse","c":"n. m. anim. unisex"},
+                        entry: {"ts":1527815127,"i":13259,"p":"نرس","f":"nars, nursa","g":"nars,nursa","e":"nurse","c":"n. m. anim. unisex"} as SingularEntry<Noun>,
                         plural: false,
                         gender: "fem",
                     },
                     predicate: {
-                        entry: {"ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+                        entry: {"ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."} as SingularEntry<Noun>,
                         plural: true,
                     },
                 },
@@ -421,7 +455,7 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: {"ts":1527815127,"i":13259,"p":"نرس","f":"nars, nursa","g":"nars,nursa","e":"nurse","c":"n. m. anim. unisex"},
+                        entry: {"ts":1527815127,"i":13259,"p":"نرس","f":"nars, nursa","g":"nars,nursa","e":"nurse","c":"n. m. anim. unisex"} as SingularEntry<Noun>,
                         plural: false,
                         gender: "fem",
                     },
@@ -442,7 +476,7 @@ const abilities: {
                 in: {
                     subject: {"ts":1527812856,"i":11521,"p":"لیکل","f":"leekul","g":"leekul","e":"to write","c":"v. trans.","ec":"write,writes,writing,wrote,wrote"} as ParticipleInput,
                     predicate: {
-                        entry: {"ts":1527815127,"i":13259,"p":"نرس","f":"nars, nursa","g":"nars,nursa","e":"nurse","c":"n. m. anim. unisex"},
+                        entry: {"ts":1527815127,"i":13259,"p":"نرس","f":"nars, nursa","g":"nars,nursa","e":"nurse","c":"n. m. anim. unisex"} as SingularEntry<Noun>,
                         plural: false,
                         gender: "fem",
                     },

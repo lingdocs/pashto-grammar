@@ -32,6 +32,9 @@ type Verb = {
     complement?: import("@lingdocs/pashto-inflector").Types.DictionaryEntry,
 };
 
+type SingularEntry<T extends Noun> = T & { __brand7: "a singular noun - as opposed to an always plural noun" };
+type PluralEntry<T extends Noun> = T & { __brand7: "a noun that is always plural" };
+
 type RawWord = T.DictionaryEntry | {
     entry: T.DictionaryEntry,
     complement?: T.DictionaryEntry,

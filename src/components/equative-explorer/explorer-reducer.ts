@@ -13,10 +13,41 @@ export function reducer(state: ExplorerState, action: ExplorerReducerAction): Ex
             },
         };
     }
-    // if (action.type === "setPredicateType") {
+    if (action.type === "setPredicateType") {
+        const predicateType = action.payload;
         return {
             ...state,
-            predicateType: action.payload,
+            predicateType: (predicateType === "unisexNoun" && state.subjectType === "noun") ? "adjective" : predicateType, 
         };
-    // }
+    }
+    if (action.type === "setSubjectType") {
+        const subjectType = action.payload;
+        return {
+            ...state,
+            predicateType: state.predicateType === "unisexNoun" ? "adjective" : state.predicateType,
+            subjectType,
+        };
+    }
+    if (action.type === "setSubject") {
+        if (state.subjectType === "pronouns") return state;
+        const pile = inputs[state.subjectType];
+        const subject = (pile.find(p => p.ts === action.payload) || pile[0]);
+        return {
+            ...state,
+            subjectsSelected: {
+                ...state.subjectsSelected,
+                [state.subjectType]: subject,
+            },
+        };
+    }
+    return {
+        ...state,
+        subjectsSelected: {
+            ...state.subjectsSelected,
+            info: {
+                ...state.subjectsSelected.info,
+                plural: action.payload,
+            },
+        },
+    };
 }

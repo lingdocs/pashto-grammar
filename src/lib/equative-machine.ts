@@ -14,7 +14,7 @@ import {
     concatPsString,
 } from "@lingdocs/pashto-inflector";
 import {
-    isArrayOneOrMore,
+    isArrayOneOrMore, isPluralEntry,
 } from "./type-predicates";
 
 export type EquativeMachineOutput = {
@@ -24,8 +24,11 @@ export type EquativeMachineOutput = {
 };
 
 export type NounInput = {
-    entry: T.DictionaryEntry,
+    entry: SingularEntry<Noun>,
     plural: boolean,
+} | {
+    entry: PluralEntry<Noun>,
+    plural: true,
 };
 
 export type ParticipleInput = T.DictionaryEntry & { __brand: "a participle" };
@@ -44,7 +47,7 @@ export function equativeMachine(sub: SubjectInput, pred: PredicateInput): Equati
     const predPerson = getInputPerson(pred, "predicate") || subjPerson;
     const subject = makeEntity(sub);
     const predicate = makeEntity(pred, subjPerson);
-    const equative = makeEquative(subjPerson, predPerson, isParticipleInput(sub));
+    const equative = makeEquative(subjPerson, predPerson, sub);
     return {
         subject,
         predicate,
@@ -52,11 +55,11 @@ export function equativeMachine(sub: SubjectInput, pred: PredicateInput): Equati
     };
 }
 
-export function assembleEquativeOutput(o: EquativeMachineOutput): T.SingleOrLengthOpts<T.PsString[]> {
+export function assembleEquativeOutput(o: EquativeMachineOutput): T.SingleOrLengthOpts<T.ArrayOneOrMore<T.PsString>> {
     if ("long" in o.equative) {
         return {
-            long: assembleEquativeOutput({ ...o, equative: o.equative.long }) as T.PsString[],
-            short: assembleEquativeOutput({ ...o, equative: o.equative.short }) as T.PsString[],
+            long: assembleEquativeOutput({ ...o, equative: o.equative.long }) as T.ArrayOneOrMore<T.PsString>,
+            short: assembleEquativeOutput({ ...o, equative: o.equative.short }) as T.ArrayOneOrMore<T.PsString>,
         }
     }
     // get all possible combinations of subject, predicate, and equative
@@ -71,7 +74,7 @@ export function assembleEquativeOutput(o: EquativeMachineOutput): T.SingleOrLeng
         ))
     ));
     const e = `${o.subject[0].e} ${o.equative[0].e} ${o.predicate[0].e}`;
-    return ps.map(x => ({ ...x, e }));
+    return ps.map(x => ({ ...x, e })) as T.ArrayOneOrMore<T.PsString>;
 }
 
 // LEVEL 2 FUNCTIONS
@@ -117,12 +120,16 @@ function makeEntity(e: EntityInput, subjPerson?: T.Person): T.PsString[] {
     throw new Error(`invalid entity in ${subjPerson ? "predicate" : "subject"}`);
 }
 
-function makeEquative(subj: T.Person, pred: T.Person, subjIsParticipleInput: boolean): T.SentenceForm {
+function makeEquative(subj: T.Person, pred: T.Person, subjectInput: SubjectInput): T.SentenceForm {
+    const isPluralNoun = isNounInput(subjectInput) && isPluralEntry(subjectInput.entry);
     // The subject's person information, for the English equative
-    const [sRow, sCol] = getVerbBlockPosFromPerson(subjIsParticipleInput ? T.Person.ThirdSingMale : subj);
+    const [eeRow, eeCol] = getVerbBlockPosFromPerson(
+        (isParticipleInput(subjectInput) || isPluralNoun)
+            ? T.Person.ThirdSingMale
+            : subj
+        );
     return addEnglish(
-        // english agrees with subject
-        grammarUnits.englishEquative.present[sRow][sCol],
+        grammarUnits.englishEquative.present[eeRow][eeCol],
         // pashto agrees with predicate (if possible)
         getPersonFromVerbForm(grammarUnits.equativeEndings.present, pred),
     );

@@ -134,6 +134,14 @@ export function isPattern6FemNoun(e: FemNoun): e is Pattern6FemNoun<FemNoun> {
     return e.p.slice(-1) === "ي";
 }
 
+export function isPluralEntry<U extends Noun>(e: U): e is PluralEntry<U> {
+    return e.c.includes("pl.");
+}
+
+export function isSingularEntry<U extends Noun>(e: U): e is SingularEntry<U> {
+    return !isPluralEntry(e);
+}
+
 export function isArrayOneOrMore<U>(a: U[]): a is T.ArrayOneOrMore<U> {
     return a.length > 0;
 }

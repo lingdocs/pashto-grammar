@@ -1,16 +1,10 @@
 import { useState } from "react";
 import {
-    defaultTextOptions as opts,
-    VerbTable,
-} from "@lingdocs/pashto-inflector";
-import {
-    makeBlockWPronouns,
-} from "./explorer-helpers";
-import {
     reducer,
 } from "./explorer-reducer";
 import {
     PredicateSelector,
+    SubjectSelector,
 } from "./explorer-selectors";
 import {
     ExplorerState,
@@ -19,7 +13,9 @@ import {
 import {
     defaultUnisexNoun,
     defaultAdjective,
+    defaultNoun,
 } from "./explorer-inputs";
+import EquativeDisplay from "./EquativeDisplay";
 
 // TODO: Plural nouns like shoode
 
@@ -28,7 +24,15 @@ const defaultState: ExplorerState = {
         adjective: defaultAdjective,
         unisexNoun: defaultUnisexNoun,
     },
+    subjectsSelected: {
+        noun: defaultNoun,
+        info: {
+            plural: false,
+            gender: "masc",
+        },
+    },
     predicateType: "adjective",
+    subjectType: "pronouns",
 };
 
 function EquativeExplorer() {
@@ -38,16 +42,11 @@ function EquativeExplorer() {
         unsafeSetState(newState);
     }
     return <>
-        <div className="d-flex flex-row">
-            <PredicateSelector
-                state={state}
-                dispatch={dispatch}
-            />
+        <div className="d-flex flex-row justify-content-between">
+            <SubjectSelector state={state} dispatch={dispatch} />
+            <PredicateSelector state={state} dispatch={dispatch} />
         </div>
-        <VerbTable
-            textOptions={opts}
-            block={makeBlockWPronouns(state.predicatesSelected[state.predicateType])}
-        />
+        <EquativeDisplay state={state} />
     </>;
 }
 
