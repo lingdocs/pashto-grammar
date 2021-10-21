@@ -10,7 +10,7 @@ import {
     ButtonSelect,
     Types as T,
 } from "@lingdocs/pashto-inflector";
-import { isPluralEntry } from "../../lib/type-predicates";
+import { isFemNoun, isMascNoun, isPluralEntry } from "../../lib/type-predicates";
 import Select from "react-select";
 
 const zIndexProps = {
@@ -111,29 +111,33 @@ export function SubjectSelector({ state, dispatch }: {
                     placeholder={options.find(o => o.value === subject?.ts.toString())?.label}
                     {...zIndexProps}
                 />
-                <div className="d-flex flex-row justify-content-center">
-                    {state.subjectType !== "participle" && <div className={state.subjectType === "unisexNoun" ? "mr-2" : ""}>
-                        <ButtonSelect
-                            small
-                            options={[
-                                ...!pluralNounSelected ? [{ label: "Singular", value: "singular" }] : [],
-                                { label: "Plural", value: "plural" },
-                            ]}
-                            value={(state.subjectsSelected.info.plural || pluralNounSelected) ? "plural" : "singular"}
-                            handleChange={(p) => dispatch({ type: "setSubjectPlural", payload: p === "plural" ? true : false })}
-                        />
-                    </div>}
-                    {state.subjectType === "unisexNoun" && <div className="ml-2">
-                        <ButtonSelect
-                        small
-                        options={[
-                            { label: "Masc.", value: "masc" },
-                            { label: "Fem.", value: "fem" },
-                        ]}
-                        value={state.subjectsSelected.info.gender}
-                        handleChange={(p) => dispatch({ type: "setSubjectGender", payload: p as T.Gender })}
-                        />
-                    </div>}
+                <div className="d-flex flex-row justify-content-center mt-3">
+                    {state.subjectType !== "participle" && <>
+                        <div className="mr-2">
+                            <ButtonSelect
+                                small
+                                options={[
+                                    ...(state.subjectType === "unisexNoun" || ("noun" && isMascNoun(state.subjectsSelected[state.subjectType])))
+                                        ? [{ label: "Masc.", value: "masc" }] : [],
+                                    ...(state.subjectType === "unisexNoun" || ("noun" && isFemNoun(state.subjectsSelected[state.subjectType])))
+                                        ? [{ label: "Fem.", value: "fem" }] : [],
+                                ]}
+                                value={state.subjectType === "noun" ? (isMascNoun(state.subjectsSelected[state.subjectType]) ? "masc" : "fem") : state.subjectsSelected.info.gender}
+                                handleChange={state.subjectType === "noun" ? p => null : (p) => dispatch({ type: "setSubjectGender", payload: p as T.Gender })}
+                            />
+                        </div>
+                        <div className="ml-2">
+                            <ButtonSelect
+                                small
+                                options={[
+                                    ...!pluralNounSelected ? [{ label: "Singular", value: "singular" }] : [],
+                                    { label: "Plural", value: "plural" },
+                                ]}
+                                value={(state.subjectsSelected.info.plural || pluralNounSelected) ? "plural" : "singular"}
+                                handleChange={(p) => dispatch({ type: "setSubjectPlural", payload: p === "plural" ? true : false })}
+                            />
+                        </div>
+                    </>}
                 </div>
             </>
         }
