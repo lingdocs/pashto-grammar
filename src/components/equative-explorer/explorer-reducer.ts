@@ -41,13 +41,25 @@ export function reducer(state: ExplorerState, action: ExplorerReducerAction): Ex
             },
         };
     }
+    if (action.type === "setSubjectPlural") {
+        return {
+            ...state,
+            subjectsSelected: {
+                ...state.subjectsSelected,
+                info: {
+                    ...state.subjectsSelected.info,
+                    plural: action.payload,
+                },
+            },
+        };
+    }
     return {
         ...state,
         subjectsSelected: {
             ...state.subjectsSelected,
             info: {
                 ...state.subjectsSelected.info,
-                plural: action.payload,
+                gender: action.payload,
             },
         },
     };

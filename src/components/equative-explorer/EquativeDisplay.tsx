@@ -13,7 +13,7 @@ import {
     assembleEquativeOutput,
     SubjectInput,
 } from "../../lib/equative-machine";
-import { isNoun, isPluralEntry } from "../../lib/type-predicates";
+import { isNoun, isPluralEntry, isUnisexNoun } from "../../lib/type-predicates";
 
 function EquativeDisplay({ state }: { state: ExplorerState }) {
     if (state.subjectType === "pronouns") {
@@ -27,6 +27,9 @@ function EquativeDisplay({ state }: { state: ExplorerState }) {
     const subjInput: SubjectInput = isNoun(entry) ? {
         entry,
         plural: isPluralEntry(entry) ? true : state.subjectsSelected.info.plural,
+        ...isUnisexNoun(entry) ? {
+            gender: state.subjectsSelected.info.gender,
+        } : {},
     } : entry;
 
     const eq = assembleEquativeOutput(

@@ -28,6 +28,7 @@ const defaultState: ExplorerState = {
     subjectsSelected: {
         noun: defaultNoun,
         participle: defaultParticiple,
+        unisexNoun: defaultUnisexNoun,
         info: {
             plural: false,
             gender: "masc",
@@ -44,7 +45,7 @@ function EquativeExplorer() {
         unsafeSetState(newState);
     }
     return <>
-        <div className="d-flex flex-row justify-content-between">
+        <div className="d-flex flex-row justify-content-between align-items-center">
             <SubjectSelector state={state} dispatch={dispatch} />
             <PredicateSelector state={state} dispatch={dispatch} />
         </div>

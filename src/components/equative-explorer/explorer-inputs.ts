@@ -7,14 +7,14 @@ import {
     ParticipleInput,
 } from "../../lib/equative-machine";
 
-const unisexNouns = nouns.filter(x => isUnisexNoun(x)) as UnisexNoun[];
-const nonUnisexNouns = nouns.filter(x => !isUnisexNoun(x)) as (MascNoun | FemNoun)[];
+const unisexNouns = sort(nouns.filter(x => isUnisexNoun(x)) as UnisexNoun[]);
+const nonUnisexNouns = sort(nouns.filter(x => !isUnisexNoun(x)) as (MascNoun | FemNoun)[]);
 
 
 const inputs = {
     adjective: sort(adjectives),
-    unisexNoun: sort(unisexNouns),
-    noun: sort(nonUnisexNouns),
+    unisexNoun: unisexNouns,
+    noun: nonUnisexNouns,
     // @ts-ignore
     participle: sort(verbs.map(e => e.entry) as ParticipleInput[]),
 };
