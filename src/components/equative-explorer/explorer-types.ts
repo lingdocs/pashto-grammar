@@ -1,10 +1,12 @@
 import { Types as T } from "@lingdocs/pashto-inflector";
-import { ParticipleInput } from "../../lib/equative-machine";
+import { ParticipleInput, TenseInput } from "../../lib/equative-machine";
 
 export type PredicateType = keyof PredicatesSelected;
 export type SubjectType = "noun" | "pronouns" | "participle" | "unisexNoun";
 
 export type ExplorerState = {
+    tense: TenseInput,
+    length: "short" | "long",
     subjectType: SubjectType,
     subjectsSelected: SubjectSelected,
     predicateType: PredicateType,
@@ -36,4 +38,8 @@ export type ExplorerReducerAction = {
     type: "setSubjectPlural", payload: boolean,
 } | {
     type: "setSubjectGender", payload: T.Gender,
+} | {
+    type: "setTense", payload: TenseInput,
+} | {
+    type: "setLength", payload: "short" | "long",
 };

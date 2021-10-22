@@ -5,6 +5,7 @@ import {
 import {
     PredicateSelector,
     SubjectSelector,
+    TenseSelector,
 } from "./explorer-selectors";
 import {
     ExplorerState,
@@ -18,9 +19,9 @@ import {
 } from "./explorer-inputs";
 import EquativeDisplay from "./EquativeDisplay";
 
-// TODO: Plural nouns like shoode
-
 const defaultState: ExplorerState = {
+    tense: "present",
+    length: "short",
     predicatesSelected: {
         adjective: defaultAdjective,
         unisexNoun: defaultUnisexNoun,
@@ -45,11 +46,12 @@ function EquativeExplorer() {
         unsafeSetState(newState);
     }
     return <>
-        <div className="d-flex flex-row justify-content-between align-items-center">
+        <TenseSelector state={state} dispatch={dispatch} />
+        <div className="d-flex flex-row justify-content-between align-items-center mt-2">
             <SubjectSelector state={state} dispatch={dispatch} />
             <PredicateSelector state={state} dispatch={dispatch} />
         </div>
-        <EquativeDisplay state={state} />
+        <EquativeDisplay state={state} dispatch={dispatch} />
     </>;
 }
 

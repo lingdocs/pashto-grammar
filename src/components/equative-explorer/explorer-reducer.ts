@@ -53,14 +53,26 @@ export function reducer(state: ExplorerState, action: ExplorerReducerAction): Ex
             },
         };
     }
+    if (action.type === "setSubjectGender") {
+        return {
+            ...state,
+            subjectsSelected: {
+                ...state.subjectsSelected,
+                info: {
+                    ...state.subjectsSelected.info,
+                    gender: action.payload,
+                },
+            },
+        };
+    }
+    if (action.type === "setTense") {
+        return {
+            ...state,
+            tense: action.payload,
+        };
+    }
     return {
         ...state,
-        subjectsSelected: {
-            ...state.subjectsSelected,
-            info: {
-                ...state.subjectsSelected.info,
-                gender: action.payload,
-            },
-        },
+        length: action.payload,
     };
 }

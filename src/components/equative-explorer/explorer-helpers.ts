@@ -9,16 +9,27 @@ import {
     ParticipleInput,
     isParticipleInput,
     getEnglishParticiple,
+    TenseInput,
 } from "../../lib/equative-machine";
 
 export function sort<T extends (Adjective | Noun | ParticipleInput)>(arr: Readonly<T[]>): T[] {
     return [...arr].sort((a, b) => a.p.localeCompare(b.p));
 }
 
-export function makeBlockWPronouns(e: Adjective | UnisexNoun): T.VerbBlock {
+export function makeBlockWPronouns(e: Adjective | UnisexNoun, tense: TenseInput, length?: "short" | "long"): T.SingleOrLengthOpts<T.VerbBlock> {
+    if (tense === "past" && !length) {
+        return {
+            short: makeBlockWPronouns(e, tense, "short") as T.VerbBlock,
+            long: makeBlockWPronouns(e, tense, "long") as T.VerbBlock,
+        };
+    }
     const makeP = (p: T.Person): T.ArrayOneOrMore<T.PsString> => {
-        const b = assembleEquativeOutput(equativeMachine(p, e));
-        return ("long" in b ? b.long : b) as T.ArrayOneOrMore<T.PsString>;
+        const b = assembleEquativeOutput(equativeMachine(p, e, tense));
+        if ("long" in b) {
+            if (!length) throw new Error("bad length processing");
+            return b[length];
+        }    
+        return b;
     };
     return [
         [makeP(0), makeP(6)],

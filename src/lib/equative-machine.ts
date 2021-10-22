@@ -38,8 +38,9 @@ export type PersonInput = T.Person;
 export type EntityInput = SubjectInput | PredicateInput;
 export type SubjectInput = PersonInput | NounInput | ParticipleInput | SpecifiedUnisexNounInput;
 export type PredicateInput = PersonInput | NounInput | Adjective | SpecifiedUnisexNounInput | UnisexNoun | ParticipleInput;
+export type TenseInput = "present" | "past";
 
-export function equativeMachine(sub: SubjectInput, pred: PredicateInput): EquativeMachineOutput {
+export function equativeMachine(sub: SubjectInput, pred: PredicateInput, tense: TenseInput = "present"): EquativeMachineOutput {
     // - english equative always agrees with subject
     // - pashto equative agrees with predicate, unless it's an adjective, in which case the
     // agreement reverts to the subject
@@ -47,7 +48,7 @@ export function equativeMachine(sub: SubjectInput, pred: PredicateInput): Equati
     const predPerson = getInputPerson(pred, "predicate") || subjPerson;
     const subject = makeEntity(sub);
     const predicate = makeEntity(pred, subjPerson);
-    const equative = makeEquative(subjPerson, predPerson, sub);
+    const equative = makeEquative(subjPerson, predPerson, sub, tense);
     return {
         subject,
         predicate,
@@ -120,7 +121,7 @@ function makeEntity(e: EntityInput, subjPerson?: T.Person): T.PsString[] {
     throw new Error(`invalid entity in ${subjPerson ? "predicate" : "subject"}`);
 }
 
-function makeEquative(subj: T.Person, pred: T.Person, subjectInput: SubjectInput): T.SentenceForm {
+function makeEquative(subj: T.Person, pred: T.Person, subjectInput: SubjectInput, tense: TenseInput): T.SentenceForm {
     const isPluralNoun = isNounInput(subjectInput) && isPluralEntry(subjectInput.entry);
     // The subject's person information, for the English equative
     const [eeRow, eeCol] = getVerbBlockPosFromPerson(
@@ -129,9 +130,9 @@ function makeEquative(subj: T.Person, pred: T.Person, subjectInput: SubjectInput
             : subj
         );
     return addEnglish(
-        grammarUnits.englishEquative.present[eeRow][eeCol],
+        grammarUnits.englishEquative[tense][eeRow][eeCol],
         // pashto agrees with predicate (if possible)
-        getPersonFromVerbForm(grammarUnits.equativeEndings.present, pred),
+        getPersonFromVerbForm(grammarUnits.equativeEndings[tense], pred),
     );
 }
 

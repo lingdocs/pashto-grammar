@@ -204,3 +204,27 @@ export function PredicateSelector({ state, dispatch }: {
     </div>;
 }
 
+export function TenseSelector({ state, dispatch }: {
+    state: ExplorerState,
+    dispatch: (action: ExplorerReducerAction) => void,
+}) {
+    const options = [
+        { value: "present", label: "Present" },
+        { value: "past", label: "Past" },
+    ];
+    function onTenseSelect({ value }: any) {
+        dispatch({ type: "setTense", payload: value });
+    }
+    return <div>
+        <h5>Tense:</h5>
+        <Select
+            value={state.tense}
+            onChange={onTenseSelect}
+            className="mb-2"
+            // @ts-ignore
+            options={options}
+            placeholder={options.find(o => o.value === state.tense)?.label}
+            {...zIndexProps}
+        />
+    </div>
+}
