@@ -41,8 +41,8 @@ export function SubjectSelector({ state, dispatch }: {
     const subject = state.subjectType === "pronouns"
         ? undefined
         : state.subjectsSelected[state.subjectType];
-    return <div className="form-group mr-2 flex-fill">
-        <label htmlFor="predicate-select"><h5>Subject:</h5></label>
+    return <div className="form-group">
+        <label htmlFor="predicate-select"><h5 className="mb-0">Subject:</h5></label>
         <div className="form-check">
             <input
                 className="form-check-input"
@@ -160,8 +160,8 @@ export function PredicateSelector({ state, dispatch }: {
         label: makeOptionLabel(e),
     }));
     const predicate = state.predicatesSelected[state.predicateType];
-    return <div className="form-group ml-2 flex-fill" style={{ maxWidth: "50%" }}>
-        <label htmlFor="predicate-select"><h5>Predicate:</h5></label>
+    return <div>
+        <label htmlFor="predicate-select"><h5 className="mb-0">Predicate:</h5></label>
         <div className="form-check">
             <input
                 className="form-check-input"

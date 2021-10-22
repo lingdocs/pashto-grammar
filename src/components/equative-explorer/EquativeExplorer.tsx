@@ -47,9 +47,13 @@ function EquativeExplorer() {
     }
     return <>
         <TenseSelector state={state} dispatch={dispatch} />
-        <div className="d-flex flex-row justify-content-between align-items-center mt-2">
-            <SubjectSelector state={state} dispatch={dispatch} />
-            <PredicateSelector state={state} dispatch={dispatch} />
+        <div className="row">
+            <div className="col">
+                <SubjectSelector state={state} dispatch={dispatch} />
+            </div>
+            <div className="col">
+                <PredicateSelector state={state} dispatch={dispatch} />
+            </div>
         </div>
         <EquativeDisplay state={state} dispatch={dispatch} />
     </>;
