@@ -21,6 +21,7 @@ export type EquativeMachineOutput = {
     subject: T.PsString[],
     predicate: T.PsString[],
     equative: T.SingleOrLengthOpts<T.ArrayOneOrMore<T.PsString>>,
+    ba: boolean,
 };
 
 export type NounInput = {
@@ -38,9 +39,8 @@ export type PersonInput = T.Person;
 export type EntityInput = SubjectInput | PredicateInput;
 export type SubjectInput = PersonInput | NounInput | ParticipleInput | SpecifiedUnisexNounInput;
 export type PredicateInput = PersonInput | NounInput | Adjective | SpecifiedUnisexNounInput | UnisexNoun | ParticipleInput;
-export type TenseInput = "present" | "past";
 
-export function equativeMachine(sub: SubjectInput, pred: PredicateInput, tense: TenseInput = "present"): EquativeMachineOutput {
+export function equativeMachine(sub: SubjectInput, pred: PredicateInput, tense: EquativeTense): EquativeMachineOutput {
     // - english equative always agrees with subject
     // - pashto equative agrees with predicate, unless it's an adjective, in which case the
     // agreement reverts to the subject
@@ -49,10 +49,12 @@ export function equativeMachine(sub: SubjectInput, pred: PredicateInput, tense: 
     const subject = makeEntity(sub);
     const predicate = makeEntity(pred, subjPerson);
     const equative = makeEquative(subjPerson, predPerson, sub, tense);
+    const ba = determineBa(tense);
     return {
         subject,
         predicate,
         equative,
+        ba,
     };
 }
 
@@ -67,10 +69,11 @@ export function assembleEquativeOutput(o: EquativeMachineOutput): T.SingleOrLeng
     // soooo cool how this works 🤓
     const equatives = o.equative;
     const predicates = o.predicate;
+    const ba = o.ba ? { p: " به", f: " ba" } : "";
     const ps = o.subject.flatMap(subj => (
         predicates.flatMap(pred => (
             equatives.map(eq => (
-                concatPsString(subj, " ", pred, " ", eq))
+                concatPsString(subj, ba, " ", pred, " ", eq))
             )
         ))
     ));
@@ -79,6 +82,10 @@ export function assembleEquativeOutput(o: EquativeMachineOutput): T.SingleOrLeng
 }
 
 // LEVEL 2 FUNCTIONS
+
+function determineBa(tense: EquativeTense): boolean {
+    return (tense === "future" || tense === "wouldBe");
+}
 
 function getInputPerson(e: SubjectInput, part: "subject"): T.Person;
 function getInputPerson(e: PredicateInput, part: "predicate"): T.Person | undefined;
@@ -121,7 +128,14 @@ function makeEntity(e: EntityInput, subjPerson?: T.Person): T.PsString[] {
     throw new Error(`invalid entity in ${subjPerson ? "predicate" : "subject"}`);
 }
 
-function makeEquative(subj: T.Person, pred: T.Person, subjectInput: SubjectInput, tense: TenseInput): T.SentenceForm {
+function makeEquative(subj: T.Person, pred: T.Person, subjectInput: SubjectInput, tense: EquativeTense): T.SentenceForm {
+    function getEngEq(row: number, col: number): string {
+        const t = grammarUnits.englishEquative[tense === "subjunctive" ? "present" : tense];
+        return typeof t === "string"
+            ? t
+            : t[row][col];
+    }
+    
     const isPluralNoun = isNounInput(subjectInput) && isPluralEntry(subjectInput.entry);
     // The subject's person information, for the English equative
     const [eeRow, eeCol] = getVerbBlockPosFromPerson(
@@ -129,10 +143,15 @@ function makeEquative(subj: T.Person, pred: T.Person, subjectInput: SubjectInput
             ? T.Person.ThirdSingMale
             : subj
         );
+    const baseTense = (tense === "future")
+        ? "subjunctive"
+        : tense === "wouldBe"
+        ? "past"
+        : tense;
     return addEnglish(
-        grammarUnits.englishEquative[tense][eeRow][eeCol],
+        getEngEq(eeRow, eeCol),
         // pashto agrees with predicate (if possible)
-        getPersonFromVerbForm(grammarUnits.equativeEndings[tense], pred),
+        getPersonFromVerbForm(grammarUnits.equativeEndings[baseTense], pred),
     );
 }
 

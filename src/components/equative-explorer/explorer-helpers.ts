@@ -9,15 +9,15 @@ import {
     ParticipleInput,
     isParticipleInput,
     getEnglishParticiple,
-    TenseInput,
 } from "../../lib/equative-machine";
 
 export function sort<T extends (Adjective | Noun | ParticipleInput)>(arr: Readonly<T[]>): T[] {
     return [...arr].sort((a, b) => a.p.localeCompare(b.p));
 }
 
-export function makeBlockWPronouns(e: Adjective | UnisexNoun, tense: TenseInput, length?: "short" | "long"): T.SingleOrLengthOpts<T.VerbBlock> {
-    if (tense === "past" && !length) {
+export function makeBlockWPronouns(e: Adjective | UnisexNoun, tense: EquativeTense, length?: "short" | "long"): T.SingleOrLengthOpts<T.VerbBlock> {
+    // if the output's gonna have long / short forms (if it's past or wouldBe) then recursive call to make the long and short versions
+    if (!length && "long" in assembleEquativeOutput(equativeMachine(0, e, tense))) {
         return {
             short: makeBlockWPronouns(e, tense, "short") as T.VerbBlock,
             long: makeBlockWPronouns(e, tense, "long") as T.VerbBlock,

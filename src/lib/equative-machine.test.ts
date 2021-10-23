@@ -5,7 +5,6 @@ import {
     PredicateInput,
     ParticipleInput,
     assembleEquativeOutput,
-    TenseInput,
 } from "./equative-machine";
 import {
     Types as T,
@@ -46,7 +45,7 @@ const abilities: {
         in: {
             subject: SubjectInput,
             predicate: PredicateInput,
-            tense: TenseInput,
+            tense: EquativeTense,
         },
         out: EquativeMachineOutput,
     }[],
@@ -62,6 +61,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "زه", f: "zu", e: "I (m.)" }],
                     predicate: [{ p: "ستړی", f: "stúRey", e: "tired" }],
                     equative: [{ p: "یم", f: "yum", e: "am" }],
@@ -74,6 +74,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "تاسو", f: "táaso", e: "You (f. pl.)" }, { p: "تاسې", f: "táase", e: "You (f. pl.)"}],
                     predicate: [{ p: "ستړې", f: "stúRe", e: "tired" }],
                     equative: [{ p: "یئ", f: "yeyy", e: "are" }],
@@ -87,6 +88,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "هغه", f: "haghá", e: "She/it (f.)" }],
                     predicate: [{ p: "خفه", f: "khufa", e: "sad" }],
                     equative: [{ p: "ده", f: "da", e: "is" }],
@@ -104,6 +106,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "زه", f: "zu", e: "I (f.)" }],
                     predicate: [{ p: "افغانۍ", f: "afghaanúy", e: "(a/the) Afghan" }],
                     equative: [{ p: "یم", f: "yum", e: "am" }],
@@ -116,6 +119,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "مونږ", f: "moonG", e: "We (f. pl.)" }, { p: "موږ", f: "mooG", e: "We (f. pl.)" }],
                     predicate: [
                         { p: "افغانیانې", f: "afghaaniyáane", e: "(the) Afghans" },
@@ -131,6 +135,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "مونږ", f: "moonG", e: "We (f. pl.)" }, { p: "موږ", f: "mooG", e: "We (f. pl.)" }],
                     predicate: [{ p: "انسانانې", f: "insaanáane", e: "(the) humans" }, { p: "انسانې", f: "insaane", e: "(the) humans" }],
                     equative: [{ p: "یو", f: "yoo", e: "are" }],
@@ -143,6 +148,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "ته", f: "tu", e: "You (f.)" }],
                     predicate: [{ p: "انسانه", f: "insaana", e: "(a/the) human" }],
                     equative: [{ p: "یې", f: "ye", e: "are" }],
@@ -163,6 +169,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "کتاب", f: "kitáab", e: "(A/The) book" }],
                     predicate: [{ p: "زوړ", f: "zoR", e: "old" }],
                     equative: [{ p: "دی", f: "dey", e: "is" }],
@@ -178,6 +185,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "کتابونه", f: "kitaabóona", e: "(The) books" }],
                     predicate: [{ p: "زاړه", f: "zaaRu", e: "old" }],
                     equative: [{ p: "دي", f: "dee", e: "are" }],
@@ -193,6 +201,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "ښځه", f: "xúdza", e: "(A/The) woman" }],
                     predicate: [{ p: "زړه", f: "zaRa", e: "old" }],
                     equative: [{ p: "ده", f: "da", e: "is" }],
@@ -208,6 +217,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "ښځې", f: "xúdze", e: "(The) women" }],
                     predicate: [{ p: "زړې", f: "zaRe", e: "old" }],
                     equative: [{ p: "دي", f: "dee", e: "are" }],
@@ -224,6 +234,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "ښځې", f: "xúdze", e: "(The) women" }],
                     predicate: [{ p: "خفه", f: "khufa", e: "sad" }],
                     equative: [{ p: "دي", f: "dee", e: "are" }],
@@ -244,6 +255,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "شودې", f: "shoodé", e: "(The) milk" }],
                     predicate: [{ p: "ښې", f: "xe", e: "good" }],
                     equative: [{ p: "دي", f: "dee", e: "is" }],
@@ -259,6 +271,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "غنم", f: "ghanúm", e: "(The) wheat" }],
                     predicate: [{ p: "زاړه", f: "zaaRu", e: "old" }],
                     equative: [{ p: "دي", f: "dee", e: "is" }],
@@ -276,6 +289,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "خوړل", f: "khoRul", e: "eating" }],
                     predicate: [{ p: "ښه", f: "xu", e: "good" }],
                     equative: [{ p: "دي", f: "dee", e: "is" }],
@@ -288,6 +302,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "اخیستل", f: "akheestul", e: "taking" }],
                     predicate: [{ p: "زاړه", f: "zaaRu", e: "old" }],
                     equative: [{ p: "دي", f: "dee", e: "is" }],
@@ -300,6 +315,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "جګېدل", f: "jugedul", e: "getting up" }],
                     predicate: [{ p: "سخت", f: "sakht", e: "hard" }],
                     equative: [{ p: "دي", f: "dee", e: "is" }],
@@ -317,6 +333,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "ته", f: "tu", e: "You (m.)" }],
                     predicate: [{ p: "لیکل", f: "leekul", e: "writing" }],
                     equative: [{ p: "دي", f: "dee", e: "are" }],  
@@ -340,6 +357,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "خوشحالي", f: "khosh`haalee", e: "(A/The) happiness" }],
                     predicate: [{ p: "خوراک", f: "khoráak", e: "(a/the) food" }],
                     equative: [{ p: "دی", f: "dey", e: "is" }],
@@ -360,6 +378,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "وروروالی", f: "wrorwaaley", e: "(A/The) brotherhood" }],
                     predicate: [{ p: "زغمل", f: "zghamul", e: "enduring" }],
                     equative: [{ p: "دي", f: "dee", e: "is" }],
@@ -380,6 +399,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "لیکل", f: "leekul", e: "writing" }],
                     predicate: [{ p: "خوشحالي", f: "khosh`haalee", e: "(a/the) happiness" }],
                     equative: [{ p: "ده", f: "da", e: "is" }],
@@ -397,6 +417,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "لیکل", f: "leekul", e: "writing" }],
                     predicate: [{ p: "پوهېدل", f: "pohedul", e: "understanding" }],
                     equative: [{ p: "دي", f: "dee", e: "is" }],
@@ -421,6 +442,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "کتابونه", f: "kitaabóona", e: "(The) books" }],
                     predicate: [{ p: "نرسه", f: "narsa", e: "(a/the) nurse" }],
                     equative: [{ p: "ده", f: "da", e: "are" }],
@@ -442,6 +464,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [
                         { p: "نرسانې", f: "narsáane", e: "(The) nurses" },
                         { p: "نرسې", f: "narse", e: "(The) nurses" },
@@ -469,6 +492,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "نرسه", f: "narsa", e: "(A/The) nurse" }],
                     predicate: [{ p: "کتابونه", f: "kitaabóona", e: "(the) books" }],
                     equative: [{ p: "دي", f: "dee", e: "is" }],
@@ -490,6 +514,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "نرسه", f: "narsa", e: "(A/The) nurse" }],
                     predicate: [{ p: "غږېدل", f: "ghuGedul", e: "speaking" }],
                     equative: [{ p: "دي", f: "dee", e: "is" }],
@@ -511,6 +536,7 @@ const abilities: {
                     tense: "present",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "لیکل", f: "leekul", e: "writing" }],
                     predicate: [{ p: "نرسه", f: "narsa", e: "(a/the) nurse" }],
                     equative: [{ p: "ده", f: "da", e: "is" }],
@@ -531,12 +557,103 @@ const abilities: {
                     tense: "past",
                 },
                 out: {
+                    ba: false,
                     subject: [{ p: "کتاب", f: "kitáab", e: "(A/The) book" }],
                     predicate: [{ p: "زوړ", f: "zoR", e: "old" }],
                     equative: {
                         short: [{ p: "و", f: "wo", e: "was" }],
                         long: [{ p: "ولو", f: "wulo", e: "was" }],
                     },
+                },
+            },
+        ],
+    },
+    {
+        label: '"Would be" tense',
+        tests: [
+            {
+                in: {
+                    subject: {
+                        entry: { "ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m." } as SingularEntry<Noun>,
+                        plural: false,
+                    },
+                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
+                    tense: "wouldBe",
+                },
+                out: {
+                    ba: true,
+                    subject: [{ p: "کتاب", f: "kitáab", e: "(A/The) book" }],
+                    predicate: [{ p: "زوړ", f: "zoR", e: "old" }],
+                    equative: {
+                        short: [{ p: "و", f: "wo", e: "would be" }],
+                        long: [{ p: "ولو", f: "wulo", e: "would be" }],
+                    },
+                },
+            },
+        ],
+    },
+    {
+        label: "Subjunctive tense",
+        tests: [
+            {
+                in: {
+                    subject: {
+                        entry: { "ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m." } as SingularEntry<Noun>,
+                        plural: false,
+                    },
+                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
+                    tense: "subjunctive",
+                },
+                out: {
+                    ba: false,
+                    subject: [{ p: "کتاب", f: "kitáab", e: "(A/The) book" }],
+                    predicate: [{ p: "زوړ", f: "zoR", e: "old" }],
+                    equative: [{ p: "وي", f: "wee", e: "is" }],
+                },
+            },
+        ],
+    },
+    {
+        label: "Future tense",
+        tests: [
+            {
+                in: {
+                    subject: {
+                        entry: { "ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m." } as SingularEntry<Noun>,
+                        plural: false,
+                    },
+                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
+                    tense: "future",
+                },
+                out: {
+                    ba: true,
+                    subject: [{ p: "کتاب", f: "kitáab", e: "(A/The) book" }],
+                    predicate: [{ p: "زوړ", f: "zoR", e: "old" }],
+                    equative: [{ p: "وي", f: "wee", e: "will be" }],
+                },
+            },
+        ],
+    },
+    {
+        label: "Past Subjunctive Tense",
+        tests: [
+            {
+                in: {
+                    subject: {
+                        entry: { "ts":1527812817,"i":9921,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m." } as SingularEntry<Noun>,
+                        plural: false,
+                    },
+                    predicate: {"ts":1527815451,"i":7193,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
+                    tense: "pastSubjunctive",
+                },
+                out: {
+                    ba: false,
+                    subject: [{ p: "کتاب", f: "kitáab", e: "(A/The) book" }],
+                    predicate: [{ p: "زوړ", f: "zoR", e: "old" }],
+                    equative: [
+                        { p: "وای", f: "waay", e: "were" },
+                        { p: "وی", f: "wey", e: "were" },
+                    ],
                 },
             },
         ],
@@ -558,6 +675,7 @@ test("assembleEquativeOutput", () => {
         subject: [{ p: "کتابونه", f: "kitaabóona", e: "(The) books" }],
         predicate: [{ p: "زاړه", f: "zaaRu", e: "old" }],
         equative: [{ p: "دي", f: "dee", e: "are" }],
+        ba: false,
     })).toEqual([{ p: "کتابونه زاړه دي", f: "kitaabóona zaaRu dee", e: "(The) books are old" }]);
     expect(assembleEquativeOutput({
         subject: [{ p: "مونږ", f: "moonG", e: "We (f. pl.)" }, { p: "موږ", f: "mooG", e: "We (f. pl.)" }],
@@ -566,6 +684,7 @@ test("assembleEquativeOutput", () => {
             { p: "افغانۍ", f: "afghaanúy", e: "(the) Afghans" },
         ],
         equative: [{ p: "یو", f: "yoo", e: "are" }],
+        ba: false,
     })).toEqual([
         { p: "مونږ افغانیانې یو", f: "moonG afghaaniyáane yoo", e: "We (f. pl.) are (the) Afghans" },
         { p: "مونږ افغانۍ یو", f: "moonG afghaanúy yoo", e: "We (f. pl.) are (the) Afghans" },
@@ -579,8 +698,21 @@ test("assembleEquativeOutput", () => {
             short: [{ p: "و", f: "wo", e: "was" }],
             long: [{ p: "ولو", f: "wulo", e: "was" }],
         },
+        ba: false,
     })).toEqual({
         short: [{ p: "کتاب زوړ و", f: "kitáab zoR wo", e: "(A/The) book was old" }],
         long: [{ p: "کتاب زوړ ولو", f: "kitáab zoR wulo", e: "(A/The) book was old" }],
+    });
+    expect(assembleEquativeOutput({
+        subject: [{ p: "کتاب", f: "kitáab", e: "(A/The) book" }],
+        predicate: [{ p: "زوړ", f: "zoR", e: "old" }],
+        equative: {
+            short: [{ p: "و", f: "wo", e: "would be" }],
+            long: [{ p: "ولو", f: "wulo", e: "would be" }],
+        },
+        ba: true,
+    })).toEqual({
+        short: [{ p: "کتاب به زوړ و", f: "kitáab ba zoR wo", e: "(A/The) book would be old" }],
+        long: [{ p: "کتاب به زوړ ولو", f: "kitáab ba zoR wulo", e: "(A/The) book would be old" }],
     });
 });

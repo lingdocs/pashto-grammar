@@ -57,3 +57,5 @@ type Words = {
     adjectives: Adjective[],
     verbs: Verb[],
 }
+
+type EquativeTense = "present" | "subjunctive" | "past" | "future" | "wouldBe" | "pastSubjunctive";

@@ -112,32 +112,34 @@ export function SubjectSelector({ state, dispatch }: {
                     {...zIndexProps}
                 />
                 <div className="d-flex flex-row justify-content-center mt-3">
-                    {state.subjectType !== "participle" && <>
-                        <div className="mr-2">
-                            <ButtonSelect
-                                small
-                                options={[
-                                    ...(state.subjectType === "unisexNoun" || ("noun" && isMascNoun(state.subjectsSelected[state.subjectType])))
-                                        ? [{ label: "Masc.", value: "masc" }] : [],
-                                    ...(state.subjectType === "unisexNoun" || ("noun" && isFemNoun(state.subjectsSelected[state.subjectType])))
-                                        ? [{ label: "Fem.", value: "fem" }] : [],
-                                ]}
-                                value={state.subjectType === "noun" ? (isMascNoun(state.subjectsSelected[state.subjectType]) ? "masc" : "fem") : state.subjectsSelected.info.gender}
-                                handleChange={state.subjectType === "noun" ? p => null : (p) => dispatch({ type: "setSubjectGender", payload: p as T.Gender })}
-                            />
-                        </div>
-                        <div className="ml-2">
-                            <ButtonSelect
-                                small
-                                options={[
-                                    ...!pluralNounSelected ? [{ label: "Singular", value: "singular" }] : [],
-                                    { label: "Plural", value: "plural" },
-                                ]}
-                                value={(state.subjectsSelected.info.plural || pluralNounSelected) ? "plural" : "singular"}
-                                handleChange={(p) => dispatch({ type: "setSubjectPlural", payload: p === "plural" ? true : false })}
-                            />
-                        </div>
-                    </>}
+                    <div className="mr-2">
+                        <ButtonSelect
+                            small
+                            options={[
+                                ...(state.subjectType === "unisexNoun" || (state.subjectType === "participle") || (isMascNoun(state.subjectsSelected[state.subjectType])))
+                                    ? [{ label: "Masc.", value: "masc" }] : [],
+                                ...(state.subjectType === "unisexNoun" || ((state.subjectType !== "participle") && isFemNoun(state.subjectsSelected[state.subjectType])))
+                                    ? [{ label: "Fem.", value: "fem" }] : [],
+                            ]}
+                            value={state.subjectType === "noun" 
+                                ? (isMascNoun(state.subjectsSelected[state.subjectType]) ? "masc" : "fem")
+                                : state.subjectType === "participle"
+                                ? "masc"
+                                : state.subjectsSelected.info.gender}
+                            handleChange={state.subjectType === "noun" ? p => null : (p) => dispatch({ type: "setSubjectGender", payload: p as T.Gender })}
+                        />
+                    </div>
+                    <div className="ml-2">
+                        <ButtonSelect
+                            small
+                            options={[
+                                ...(!pluralNounSelected && state.subjectType !== "participle") ? [{ label: "Singular", value: "singular" }] : [],
+                                { label: "Plural", value: "plural" },
+                            ]}
+                            value={(state.subjectsSelected.info.plural || pluralNounSelected || state.subjectType === "participle") ? "plural" : "singular"}
+                            handleChange={(p) => dispatch({ type: "setSubjectPlural", payload: p === "plural" ? true : false })}
+                        />
+                    </div>
                 </div>
             </>
         }
@@ -208,9 +210,13 @@ export function TenseSelector({ state, dispatch }: {
     state: ExplorerState,
     dispatch: (action: ExplorerReducerAction) => void,
 }) {
-    const options = [
+    const options: { value: EquativeTense, label: string }[] = [
         { value: "present", label: "Present" },
+        { value: "subjunctive", label: "Habitual / Subjunctive" },
         { value: "past", label: "Past" },
+        { value: "future", label: "Future" },
+        { value: "wouldBe", label: '"Would Be"' },
+        { value: "pastSubjunctive", label: "Past Subjunctive" },
     ];
     function onTenseSelect({ value }: any) {
         dispatch({ type: "setTense", payload: value });
