@@ -22,11 +22,19 @@ import EquativeDisplay from "./EquativeDisplay";
 const defaultState: ExplorerState = {
     tense: "present",
     length: "short",
-    predicatesSelected: {
+    predicate: {
+        type: "adjective",
         adjective: defaultAdjective,
         unisexNoun: defaultUnisexNoun,
+        participle: defaultParticiple,
+        noun: defaultNoun,
+        info: {
+            plural: false,
+            gender: "masc",
+        },
     },
-    subjectsSelected: {
+    subject: {
+        type: "pronouns",
         noun: defaultNoun,
         participle: defaultParticiple,
         unisexNoun: defaultUnisexNoun,
@@ -35,8 +43,6 @@ const defaultState: ExplorerState = {
             gender: "masc",
         },
     },
-    predicateType: "adjective",
-    subjectType: "pronouns",
 };
 
 function EquativeExplorer() {
@@ -46,8 +52,10 @@ function EquativeExplorer() {
         unsafeSetState(newState);
     }
     return <>
-        <TenseSelector state={state} dispatch={dispatch} />
         <div className="row">
+            <div className="col-sm">
+                <TenseSelector state={state} dispatch={dispatch} />
+            </div>
             <div className="col">
                 <SubjectSelector state={state} dispatch={dispatch} />
             </div>

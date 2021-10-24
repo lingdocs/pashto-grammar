@@ -30,17 +30,17 @@ export function SubjectSelector({ state, dispatch }: {
         dispatch({ type: "setSubject", payload: parseInt(value) });
     }
     const pluralNounSelected = (
-        state.subjectType === "noun" && isPluralEntry(state.subjectsSelected.noun)
+        state.subject.type === "noun" && isPluralEntry(state.subject.noun)
     );
-    const options = state.subjectType === "pronouns"
+    const options = state.subject.type === "pronouns"
         ? []
-        : inputs[state.subjectType].map(e => ({
+        : inputs[state.subject.type].map(e => ({
             value: e.ts.toString(),
             label: makeOptionLabel(e),
         }));
-    const subject = state.subjectType === "pronouns"
+    const subject = state.subject.type === "pronouns"
         ? undefined
-        : state.subjectsSelected[state.subjectType];
+        : state.subject[state.subject.type];
     return <div className="form-group">
         <label htmlFor="predicate-select"><h5 className="mb-0">Subject:</h5></label>
         <div className="form-check">
@@ -50,7 +50,7 @@ export function SubjectSelector({ state, dispatch }: {
                 name="pronounsSubjectRadio"
                 id="pronounsSubjectRadio"
                 value="pronouns"
-                checked={state.subjectType === "pronouns"}
+                checked={state.subject.type === "pronouns"}
                 onChange={onTypeSelect}
             />
             <label className="form-check-label" htmlFor="adjectivesPredicateRadio">
@@ -64,7 +64,7 @@ export function SubjectSelector({ state, dispatch }: {
                 name="nounsSubjectRadio"
                 id="nounsSubjectRadio"
                 value="noun"
-                checked={state.subjectType === "noun"}
+                checked={state.subject.type === "noun"}
                 onChange={onTypeSelect}
             />
             <label className="form-check-label" htmlFor="unisexNounsPredicateRadio">
@@ -78,7 +78,7 @@ export function SubjectSelector({ state, dispatch }: {
                 name="unisexNounsSubjectRadio"
                 id="unisexNounsSubjectRadio"
                 value="unisexNoun"
-                checked={state.subjectType === "unisexNoun"}
+                checked={state.subject.type === "unisexNoun"}
                 onChange={onTypeSelect}
             />
             <label className="form-check-label" htmlFor="unisexNounsPredicateRadio">
@@ -92,14 +92,14 @@ export function SubjectSelector({ state, dispatch }: {
                 name="participlesSubjectRadio"
                 id="participlesSubjectRadio"
                 value="participle"
-                checked={state.subjectType === "participle"}
+                checked={state.subject.type === "participle"}
                 onChange={onTypeSelect}
             />
             <label className="form-check-label" htmlFor="unisexNounsPredicateRadio">
                 Participles
             </label>
         </div>
-        {state.subjectType !== "pronouns" && 
+        {state.subject.type !== "pronouns" && 
             <>
                 <Select
                     value={subject?.ts.toString()}
@@ -116,27 +116,27 @@ export function SubjectSelector({ state, dispatch }: {
                         <ButtonSelect
                             small
                             options={[
-                                ...(state.subjectType === "unisexNoun" || (state.subjectType === "participle") || (isMascNoun(state.subjectsSelected[state.subjectType])))
+                                ...(state.subject.type === "unisexNoun" || (state.subject.type === "participle") || (isMascNoun(state.subject[state.subject.type])))
                                     ? [{ label: "Masc.", value: "masc" }] : [],
-                                ...(state.subjectType === "unisexNoun" || ((state.subjectType !== "participle") && isFemNoun(state.subjectsSelected[state.subjectType])))
+                                ...(state.subject.type === "unisexNoun" || ((state.subject.type !== "participle") && isFemNoun(state.subject[state.subject.type])))
                                     ? [{ label: "Fem.", value: "fem" }] : [],
                             ]}
-                            value={state.subjectType === "noun" 
-                                ? (isMascNoun(state.subjectsSelected[state.subjectType]) ? "masc" : "fem")
-                                : state.subjectType === "participle"
+                            value={state.subject.type === "noun" 
+                                ? (isMascNoun(state.subject[state.subject.type]) ? "masc" : "fem")
+                                : state.subject.type === "participle"
                                 ? "masc"
-                                : state.subjectsSelected.info.gender}
-                            handleChange={state.subjectType === "noun" ? p => null : (p) => dispatch({ type: "setSubjectGender", payload: p as T.Gender })}
+                                : state.subject.info.gender}
+                            handleChange={state.subject.type === "noun" ? p => null : (p) => dispatch({ type: "setSubjectGender", payload: p as T.Gender })}
                         />
                     </div>
                     <div className="ml-2">
                         <ButtonSelect
                             small
                             options={[
-                                ...(!pluralNounSelected && state.subjectType !== "participle") ? [{ label: "Singular", value: "singular" }] : [],
+                                ...(!pluralNounSelected && state.subject.type !== "participle") ? [{ label: "Singular", value: "singular" }] : [],
                                 { label: "Plural", value: "plural" },
                             ]}
-                            value={(state.subjectsSelected.info.plural || pluralNounSelected || state.subjectType === "participle") ? "plural" : "singular"}
+                            value={(state.subject.info.plural || pluralNounSelected || state.subject.type === "participle") ? "plural" : "singular"}
                             handleChange={(p) => dispatch({ type: "setSubjectPlural", payload: p === "plural" ? true : false })}
                         />
                     </div>
@@ -157,11 +157,11 @@ export function PredicateSelector({ state, dispatch }: {
     function onPredicateSelect({ value }: any) {
         dispatch({ type: "setPredicate", payload: parseInt(value) });
     }
-    const options = inputs[state.predicateType].map(e => ({
+    const options = inputs[state.predicate.type].map(e => ({
         value: `${e.ts}`,
         label: makeOptionLabel(e),
     }));
-    const predicate = state.predicatesSelected[state.predicateType];
+    const predicate = state.predicate[state.predicate.type];
     return <div>
         <label htmlFor="predicate-select"><h5 className="mb-0">Predicate:</h5></label>
         <div className="form-check">
@@ -171,7 +171,7 @@ export function PredicateSelector({ state, dispatch }: {
                 name="adjectivesPredicateRadio"
                 id="adjectivesPredicateRadio"
                 value="adjective"
-                checked={state.predicateType === "adjective"}
+                checked={state.predicate.type === "adjective"}
                 onChange={onTypeSelect}
             />
             <label className="form-check-label" htmlFor="adjectivesPredicateRadio">
@@ -185,9 +185,9 @@ export function PredicateSelector({ state, dispatch }: {
                 name="unisexNounsPredicateRadio"
                 id="unisexNounsPredicateRadio"
                 value="unisexNoun"
-                checked={state.predicateType === "unisexNoun"}
+                checked={state.predicate.type === "unisexNoun"}
                 onChange={onTypeSelect}
-                disabled={state.subjectType !== "pronouns"}
+                disabled={state.subject.type !== "pronouns"}
             />
             <label className="form-check-label" htmlFor="unisexNounsPredicateRadio">
                 Unisex Nouns

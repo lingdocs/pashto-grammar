@@ -1,22 +1,21 @@
 import { Types as T } from "@lingdocs/pashto-inflector";
 import { ParticipleInput } from "../../lib/equative-machine";
 
-export type PredicateType = keyof PredicatesSelected;
-export type SubjectType = "noun" | "pronouns" | "participle" | "unisexNoun";
+export type PredicateType = "adjective" | "noun" | "unisexNoun" | "participle";
+export type SubjectType = "pronouns" | "noun" | "unisexNoun" | "participle";
 
 export type ExplorerState = {
     tense: EquativeTense,
     length: "short" | "long",
-    subjectType: SubjectType,
-    subjectsSelected: SubjectSelected,
-    predicateType: PredicateType,
-    predicatesSelected: PredicatesSelected,
+    subject: SubjectEntityInfo,
+    predicate: PredicateEntityInfo,
 };
-type PredicatesSelected = {
-    adjective: Adjective,
-    unisexNoun: UnisexNoun,
-};
-type SubjectSelected = {
+
+export type SubjectEntityInfo = EntitiyInfo & { type: SubjectType };
+
+export type PredicateEntityInfo = EntitiyInfo & { type: PredicateType, adjective: Adjective };
+
+type EntitiyInfo = {
     noun: Noun,
     participle: ParticipleInput,
     unisexNoun: UnisexNoun,

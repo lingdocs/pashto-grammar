@@ -15,41 +15,120 @@ import {
     equativeMachine,
     assembleEquativeOutput,
     SubjectInput,
+    PredicateInput,
+    isParticipleInput,
+    ParticipleInput,
 } from "../../lib/equative-machine";
-import { isNoun, isPluralEntry, isUnisexNoun } from "../../lib/type-predicates";
+import { isPluralEntry, isUnisexNoun, isAdjective, isSingularEntry } from "../../lib/type-predicates";
 
 export function chooseLength<O>(o: T.SingleOrLengthOpts<O>, length: "short" | "long"): O {
     return ("long" in o) ? o[length] : o;
 }
 
 function SingleItemDisplay({ state }: { state: ExplorerState }) {
-    if (state.subjectType === "pronouns") {
+    if (state.subject.type === "pronouns") {
         return <div>ERROR: Wrong display being used</div>;
     }
-    const entry = state.subjectsSelected[state.subjectType];
-    // @ts-ignore - TODO: safer and for use with unisex nouns
-    const subjInput: SubjectInput = isNoun(entry) ? {
-        entry,
-        plural: isPluralEntry(entry) ? true : state.subjectsSelected.info.plural,
-        ...isUnisexNoun(entry) ? {
-            gender: state.subjectsSelected.info.gender,
-        } : {},
-    } : entry;
+    try {
+        const subjInput = makeSubjectInput(state.subject[state.subject.type], state);
+        const predInput = makePredicateInput(state.predicate[state.predicate.type], state);
+        const block = assembleEquativeOutput(
+            equativeMachine(subjInput, predInput, state.tense)
+        );
+        return <div>
+            <VerbTable textOptions={opts} block={chooseLength(block, state.length)} />
+        </div>;
+    } catch (e) {
+        console.error(e);
+        return <div>Error making equative sentence</div>
+    }
+}
 
-    const block = assembleEquativeOutput(
-        equativeMachine(subjInput, state.predicatesSelected[state.predicateType], state.tense)
-    );
-    return <div>
-        <VerbTable textOptions={opts} block={chooseLength(block, state.length)} />
-    </div>;
+function makeSubjectInput(entry: Noun | ParticipleInput | UnisexNoun, state: ExplorerState): SubjectInput {
+    if (isParticipleInput(entry)) {
+        return entry;
+    }
+    const isUnisex = isUnisexNoun(entry);
+    if (isUnisex && isSingularEntry(entry)) {
+        return {
+            ...state.subject.info,
+            entry,
+        };
+    }
+    if (isUnisex && isPluralEntry(entry)) {
+        return {
+            ...state.subject.info,
+            plural: true,
+            entry,
+        };
+    }
+    if (isUnisex) {
+        throw new Error("improper unisex noun");
+    }
+    if (isPluralEntry(entry)) {
+        return {
+            plural: true,
+            entry,
+        }
+    }
+    if (isSingularEntry(entry)) {
+        return {
+            entry,
+            plural: state.subject.info.plural,
+        };
+    }
+    throw new Error("unable to make subject input from entry");
+}
+
+function makePredicateInput(entry: Noun | ParticipleInput | UnisexNoun | Adjective, state: ExplorerState): PredicateInput {
+    if (isParticipleInput(entry) || isAdjective(entry)) {
+        return entry;
+    }
+    const isUnisex = isUnisexNoun(entry);
+    if (isUnisex && state.subject.type === "pronouns") {
+        return entry;
+    }
+    if (isUnisex && isSingularEntry(entry)) {
+        return {
+            ...state.predicate.info,
+            entry,
+        };
+    }
+    if (isUnisex && isPluralEntry(entry)) {
+        return {
+            ...state.predicate.info,
+            plural: true,
+            entry,
+        };
+    }
+    if (isUnisex) {
+        throw new Error("improper unisex noun");
+    }
+    if (isPluralEntry(entry)) {
+        return {
+            plural: true,
+            entry,
+        }
+    }
+    if (isSingularEntry(entry)) {
+        return {
+            entry,
+            plural: state.predicate.info.plural,
+        };
+    }
+    throw new Error("unable to make predicate input from entry");
 }
 
 function PronounBlockDisplay({ state }: { state: ExplorerState }) {
-    const block = makeBlockWPronouns(state.predicatesSelected[state.predicateType], state.tense);
-    return <VerbTable
-        textOptions={opts}
-        block={chooseLength(block, state.length)}
-    />;
+    const pred = state.predicate[state.predicate.type];
+    if (!isParticipleInput(pred) && (isAdjective(pred) || isUnisexNoun(pred))) {
+        const block = makeBlockWPronouns(pred, state.tense);
+        return <VerbTable
+            textOptions={opts}
+            block={chooseLength(block, state.length)}
+        />;
+    }
+    return <div>Invalid combination</div>
 }
 
 function EquativeDisplay({ state, dispatch }: { state: ExplorerState, dispatch: (action: ExplorerReducerAction) => void }) {
@@ -65,7 +144,7 @@ function EquativeDisplay({ state, dispatch }: { state: ExplorerState, dispatch: 
                 handleChange={(p) => dispatch({ type: "setLength", payload: p as "long" | "short" })}
             />
         </div>}
-        {state.subjectType === "pronouns" 
+        {state.subject.type === "pronouns" 
             ? <PronounBlockDisplay state={state} /> 
             : <SingleItemDisplay state={state} />
         }
