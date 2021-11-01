@@ -10,18 +10,13 @@ import {
     ExplorerState,
     ExplorerReducerAction,
 } from "./explorer-types";
-// import {
-//     makeBlockWPronouns,
-// } from "./explorer-helpers";
 import {
     equativeMachine,
     assembleEquativeOutput,
 } from "../../lib/equative-machine";
 import {
-    isPluralNounEntry,
     isUnisexNounEntry,
     isAdjectiveEntry,
-    isSingularEntry,
     isVerbEntry,
     isLocativeAdverbEntry,
     isNounEntry,
@@ -47,6 +42,7 @@ function SingleItemDisplay({ state }: { state: ExplorerState }) {
                 subject,
                 predicate,
                 tense: state.tense,
+                negative: state.negative,
             })
         );
         return <div>
@@ -72,56 +68,27 @@ function makeNounPhrase(entry: NounEntry | UnisexNounEntry | VerbEntry, state: E
             entry,
         };
     }
-    const isUnisex = isUnisexNounEntry(entry);
-    if (isUnisex && isSingularEntry(entry)) {
-        return {
-            type: "unisex noun",
-            number: state[entity].info.number,
-            gender: state[entity].info.gender,
-            entry,
-        };
-    }
-    if (isUnisex && isPluralNounEntry(entry)) {
-        return {
-            type: "unisex noun",
-            number: state[entity].info.number,
-            gender: state[entity].info.gender,
-            entry,
-        };
-    }
-    if (isUnisex) {
-        throw new Error("improper unisex noun");
-    }
-    if (isPluralNounEntry(entry)) {
-        const e = entry as PluralNounEntry<MascNounEntry | FemNounEntry>;
-        return {
-            type: "plural noun",
-            entry: e,
-        };
-    }
-    if (isSingularEntry(entry)) {
-        const e = entry as SingularEntry<MascNounEntry | FemNounEntry>;
-        return {
-            type: "singular noun",
-            entry: e,
-            number: state[entity].info.number,
-        };
-    }
-    throw new Error("unable to make subject input from entry");
+    return {
+        type: "noun",
+        number: state[entity].info.number,
+        gender: state[entity].info.gender,
+        entry,
+    };
 }
 
-export function makeBlockWPronouns(e: AdjectiveEntry | UnisexNounEntry | LocativeAdverbEntry, tense: EquativeTense, length?: "short" | "long"): T.SingleOrLengthOpts<T.VerbBlock> {
+export function makeBlockWPronouns(e: AdjectiveEntry | UnisexNounEntry | LocativeAdverbEntry, tense: EquativeTense, negative: boolean, length?: "short" | "long"): T.SingleOrLengthOpts<T.VerbBlock> {
     // if the output's gonna have long / short forms (if it's past or wouldBe) then recursive call to make the long and short versions
     if (!length && "long" in assembleEquativeOutput(equativeMachine({
         subject: { type: "pronoun", pronounType: "near", person: 0 },
         predicate: (isAdjectiveEntry(e) || isLocativeAdverbEntry(e))
             ? { type: "compliment", entry: e }
-            : { type: "unisex noun", gender: "masc", number: "singular", entry: e },
+            : { type: "noun", gender: "masc", number: "singular", entry: e },
         tense,
+        negative,
     }))) {
         return {
-            short: makeBlockWPronouns(e, tense, "short") as T.VerbBlock,
-            long: makeBlockWPronouns(e, tense, "long") as T.VerbBlock,
+            short: makeBlockWPronouns(e, tense, negative, "short") as T.VerbBlock,
+            long: makeBlockWPronouns(e, tense, negative, "long") as T.VerbBlock,
         };
     }
     const makeP = (p: T.Person): T.ArrayOneOrMore<T.PsString> => {
@@ -129,8 +96,9 @@ export function makeBlockWPronouns(e: AdjectiveEntry | UnisexNounEntry | Locativ
             subject: { type: "pronoun", pronounType: "far", person: p },
             predicate: (isAdjectiveEntry(e) || isLocativeAdverbEntry(e))
                 ? { type: "compliment", entry: e }
-                : { type: "unisex noun", gender: personGender(p), number: personIsPlural(p) ? "plural" : "singular", entry: e },
+                : { type: "noun", gender: personGender(p), number: personIsPlural(p) ? "plural" : "singular", entry: e },
             tense,
+            negative,
         }));
         if ("long" in b) {
             if (!length) throw new Error("bad length processing");
@@ -151,7 +119,7 @@ export function makeBlockWPronouns(e: AdjectiveEntry | UnisexNounEntry | Locativ
 function PronounBlockDisplay({ state }: { state: ExplorerState }) {
     const pred = state.predicate[state.predicate.type];
     if (!isVerbEntry(pred) && (isAdjectiveEntry(pred) || isLocativeAdverbEntry(pred) || (isNounEntry(pred) && isUnisexNounEntry(pred)))) {
-        const block = makeBlockWPronouns(pred, state.tense);
+        const block = makeBlockWPronouns(pred, state.tense, state.negative);
         return <VerbTable
             textOptions={opts}
             block={chooseLength(block, state.length)}

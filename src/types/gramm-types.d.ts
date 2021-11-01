@@ -5,6 +5,7 @@ type EquativeClause = {
     subject: NounPhrase,
     predicate: NounPhrase | Compliment,
     tense: EquativeTense,
+    negative?: boolean,
 };
 
 type EquativeClauseOutput = {
@@ -17,6 +18,7 @@ type EquativeClauseOutput = {
         e: string,
     },
     ba: boolean,
+    negative: boolean,
     equative: {
         ps: import("@lingdocs/pashto-inflector").Types.SentenceForm,
         e: string[],
@@ -25,23 +27,12 @@ type EquativeClauseOutput = {
 
 type NounPhrase = Pronoun | Noun | Participle;
 
-// TODO: better, simpler type here
+// The gender and number can be added, if it conflicts with the noun it will be ignored
 type Noun = {
-    type: "unisex noun",
-    number: NounNumber,
-    gender: import("@lingdocs/pashto-inflector").Types.Gender,
-    entry: UnisexNounEntry,
-    possesor?: Noun,
-    adjectives?: AdjectiveEntry[],
-} | {
-    type: "plural noun",
-    entry: PluralNounEntry<MascNounEntry | FemNounEntry>,
-    possesor?: Noun,
-    adjectives?: AdjectiveEntry[],
-} | {
-    type: "singular noun",
-    number: NounNumber,
-    entry: SingularEntry<MascNounEntry | FemNounEntry>,
+    type: "noun",
+    entry: NounEntry,
+    number?: NounNumber,
+    gender?: import("@lingdocs/pashto-inflector").Types.Gender,
     possesor?: Noun,
     adjectives?: AdjectiveEntry[],
 };

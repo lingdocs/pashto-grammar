@@ -209,5 +209,16 @@ export function TenseSelector({ state, dispatch }: {
             placeholder={options.find(o => o.value === state.tense)?.label}
             {...zIndexProps}
         />
+        <div className="text-center mb-2">
+            <ButtonSelect
+                small
+                options={[
+                    { label: "Pos.", value: "pos" },
+                    { label: "Neg.", value: "neg" },
+                ]}
+                value={state.negative ? "neg" : "pos"}
+                handleChange={(p) => dispatch({ type: "setNegative", payload: p === "neg" })}
+            />
+        </div>
     </div>
 }

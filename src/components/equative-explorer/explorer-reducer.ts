@@ -94,6 +94,12 @@ export function reducer(state: ExplorerState, action: ExplorerReducerAction): Ex
     //         },
     //     };
     // }
+    if (action.type === "setNegative") {
+        return {
+            ...state,
+            negative: action.payload,
+        };
+    }
     return {
         ...state,
         length: action.payload,

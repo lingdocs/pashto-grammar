@@ -22,6 +22,7 @@ import EquativeDisplay from "./EquativeDisplay";
 const defaultState: ExplorerState = {
     tense: "present",
     length: "short",
+    negative: false,
     predicate: {
         type: "adjective",
         adjective: defaultAdjective,

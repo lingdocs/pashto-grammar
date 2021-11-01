@@ -10,6 +10,7 @@ export type ExplorerState = {
     length: "short" | "long",
     subject: SubjectEntityInfo,
     predicate: PredicateEntityInfo,
+    negative: boolean,
 };
 
 export type SubjectEntityInfo = EntitiyInfo & { type: SubjectType };
@@ -46,4 +47,6 @@ export type ExplorerReducerAction = {
     type: "setTense", payload: EquativeTense,
 } | {
     type: "setLength", payload: "short" | "long",
+} | {
+    type: "setNegative", payload: boolean,
 };

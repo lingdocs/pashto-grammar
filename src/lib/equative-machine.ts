@@ -4,6 +4,7 @@ import {
     getVerbBlockPosFromPerson,
     getPersonFromVerbForm,
     concatPsString,
+    removeAccents,
 } from "@lingdocs/pashto-inflector";
 import {
     personFromNP,
@@ -12,6 +13,7 @@ import {
 import {
     evaluateCompliment,
 } from "./compliment-tools";
+import { isPluralNounEntry } from "./type-predicates";
 
 // Equative Rules
 // - An equative equates a SUBJECT: Noun Phrase and a PREDICATE: Noun Phrase | Compliment
@@ -27,11 +29,13 @@ export function equativeMachine(e: EquativeClause): EquativeClauseOutput {
         ? evaluateCompliment(e.predicate, personFromNP(e.subject))
         : evaluateNP(e.predicate);
     const equative = makeEquative(e);
+    const negative = !!e?.negative;
     return {
         ba,
         subject,
         predicate,
         equative,
+        negative,
     };
 }
 
@@ -47,10 +51,19 @@ export function assembleEquativeOutput(o: EquativeClauseOutput): T.SingleOrLengt
     const equatives = o.equative.ps;
     const predicates = o.predicate.ps;
     const ba = o.ba ? { p: " به", f: " ba" } : "";
+    const neg = o.negative ? { p: "نه ", f: "nú " } : "";
     const ps = o.subject.ps.flatMap(subj => (
         predicates.flatMap(pred => (
             equatives.map(eq => (
-                concatPsString(subj, ba, " ", pred, " ", eq))
+                concatPsString(
+                    subj,
+                    ba,
+                    " ",
+                    pred,
+                    " ",
+                    neg,
+                    o.negative ? removeAccents(eq) : eq,
+                ))
             )
         ))
     ));
@@ -71,7 +84,7 @@ function makeEquative(e: EquativeClause) {
         ? "past"
         : e.tense;
     const subjP = personFromNP(e.subject);
-    const englishPerson = (e.subject.type === "plural noun" || e.subject.type === "participle")
+    const englishPerson = (e.subject.type === "participle" || (e.subject.type === "noun" && isPluralNounEntry(e.subject.entry)))
         ? T.Person.ThirdSingMale
         : subjP
     const pashtoPerson = (e.subject.type === "pronoun")
