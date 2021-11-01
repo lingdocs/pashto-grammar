@@ -1,20 +1,22 @@
 import rawWords from "./raw-words";
 import {
-    isAdjective,
-    isNoun,
-    isVerb,
+    isAdjectiveEntry,
+    isNounEntry,
+    isVerbEntry,
+    isAdverbEntry,
 } from "../lib/type-predicates";
 import { categorize } from "../lib/categorize";
 
-const words = categorize<Word, Words>(rawWords, {
-    "nouns": isNoun,
-    "adjectives": isAdjective,
-    "verbs": isVerb,
+const words = categorize<Entry, Words>(rawWords, {
+    "nouns": isNounEntry,
+    "adjectives": isAdjectiveEntry,
+    "verbs": isVerbEntry,
+    "adverbs": isAdverbEntry,
 });
 
 export default words;
 
-export const { nouns, adjectives, verbs } = words;
+export const { nouns, adjectives, verbs, adverbs } = words;
 
 // console.log(
 //     Object.entries(

@@ -1,9 +1,9 @@
 import {
-  isPattern1Word,
-  isPattern2Word,
-  isPattern3Word,
-  isPattern4Word,
-  isPattern5Word,
+  isPattern1Entry,
+  isPattern2Entry,
+  isPattern3Entry,
+  isPattern4Entry,
+  isPattern5Entry,
 } from "./type-predicates";
 
 /**
@@ -75,31 +75,31 @@ export function categorize<I, X extends Record<string, I[]>>(
 
 // TODO: uncategorizable words like ایرې - n. f. pl. -- could be pattern 1 or 2 🤷‍♂️
 
-export function intoPatterns<T extends (Noun | Adjective)>(words: T[]): {
-  "pattern1": Pattern1Word<T>[],
-  "pattern2": Pattern2Word<T>[],
-  "pattern3": Pattern3Word<T>[],
-  "pattern4": Pattern4Word<T>[],
-  "pattern5": Pattern5Word<T>[],
+export function intoPatterns<T extends (NounEntry | AdjectiveEntry)>(words: T[]): {
+  "pattern1": Pattern1Entry<T>[],
+  "pattern2": Pattern2Entry<T>[],
+  "pattern3": Pattern3Entry<T>[],
+  "pattern4": Pattern4Entry<T>[],
+  "pattern5": Pattern5Entry<T>[],
   "other": NonInflecting<T>[],
 //   "pattern6fem": Pattern6FemNoun<T>[],
 } {
-  return categorize<(Noun | Adjective), {
-    "pattern1": Pattern1Word<T>[],
-    "pattern2": Pattern2Word<T>[],
-    "pattern3": Pattern3Word<T>[],
-    "pattern4": Pattern4Word<T>[],
-    "pattern5": Pattern5Word<T>[],
+  return categorize<(NounEntry | AdjectiveEntry), {
+    "pattern1": Pattern1Entry<T>[],
+    "pattern2": Pattern2Entry<T>[],
+    "pattern3": Pattern3Entry<T>[],
+    "pattern4": Pattern4Entry<T>[],
+    "pattern5": Pattern5Entry<T>[],
     "other": NonInflecting<T>[],
   //  "pattern6fem": Pattern6FemNoun<T>[],
   }>(
     words,
     {
-      "pattern1": isPattern1Word,
-      "pattern2": isPattern2Word,
-      "pattern3": isPattern3Word,
-      "pattern4": isPattern4Word,
-      "pattern5": isPattern5Word,
+      "pattern1": isPattern1Entry,
+      "pattern2": isPattern2Entry,
+      "pattern3": isPattern3Entry,
+      "pattern4": isPattern4Entry,
+      "pattern5": isPattern5Entry,
     //  "pattern6fem": (n) => (isNoun(n) && isPattern6FemNoun(n)),
       "other": "leftovers",
     },

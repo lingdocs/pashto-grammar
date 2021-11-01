@@ -5,39 +5,48 @@ import {
     Types as T,
 } from "@lingdocs/pashto-inflector";
 
-export function isNoun(e: Word): e is Noun {
+export function isNounEntry(e: Entry): e is NounEntry {
     if ("entry" in e) return false;
     return !!(e.c && (e.c.includes("n. m.") || e.c.includes("n. f.")));
 }
 
-export function isAdjective(e: Word): e is Adjective {
+export function isAdjectiveEntry(e: Entry): e is AdjectiveEntry {
     if ("entry" in e) return false;
-    return !!e.c?.includes("adj.") && !isNoun(e);
+    return !!e.c?.includes("adj.") && !isNounEntry(e);
 }
 
-export function isNounOrAdj(e: Word): e is (Noun | Adjective) {
-    return isNoun(e) || isAdjective(e);
+export function isAdverbEntry(e: Entry): e is AdverbEntry {
+    if ("entry" in e) return false;
+    return !!e.c?.includes("adv.");
 }
 
-export function isVerb(e: Word): e is Verb {
+export function isLocativeAdverbEntry(e: Entry): e is LocativeAdverbEntry {
+    return isAdverbEntry(e) && e.c.includes("loc. adv.");
+}
+
+export function isNounOrAdjEntry(e: Entry): e is (NounEntry | AdjectiveEntry) {
+    return isNounEntry(e) || isAdjectiveEntry(e);
+}
+
+export function isVerbEntry(e: Entry): e is VerbEntry {
     return "entry" in e && !!e.entry.c?.startsWith("v.");
 }
 
-export function isMascNoun(e: Noun | Adjective): e is MascNoun {
+export function isMascNounEntry(e: NounEntry | AdjectiveEntry): e is MascNounEntry {
     return !!e.c && e.c.includes("n. m.");
 }
 
-export function isFemNoun(e: Noun | Adjective): e is FemNoun {
+export function isFemNounEntry(e: NounEntry | AdjectiveEntry): e is FemNounEntry {
     return !!e.c && e.c.includes("n. f.");
 }
 
-export function isUnisexNoun(e: Noun | Adjective): e is UnisexNoun {
-    return isNoun(e) && e.c.includes("unisex");
+export function isUnisexNounEntry(e: NounEntry | AdjectiveEntry): e is UnisexNounEntry {
+    return isNounEntry(e) && e.c.includes("unisex");
 }
 
-export function isAdjOrUnisexNoun(e: Word): e is (Adjective | UnisexNoun) {
-    return isAdjective(e) || (
-        isNoun(e) && isUnisexNoun(e)
+export function isAdjOrUnisexNounEntry(e: Entry): e is (AdjectiveEntry | UnisexNounEntry) {
+    return isAdjectiveEntry(e) || (
+        isNounEntry(e) && isUnisexNounEntry(e)
     );
 }
 
@@ -47,10 +56,10 @@ export function isAdjOrUnisexNoun(e: Word): e is (Adjective | UnisexNoun) {
  * @param e 
  * @returns 
  */
-export function isPattern1Word<T extends (Noun | Adjective)>(e: T): e is Pattern1Word<T> {
+export function isPattern1Entry<T extends (NounEntry | AdjectiveEntry)>(e: T): e is Pattern1Entry<T> {
     if (e.noInf) return false;
     if (e.infap) return false;
-    if (isFemNoun(e)) {
+    if (isFemNounEntry(e)) {
         return (
             endsWith([{ p: "ه", f: "a" }, { p: "ح", f: "a" }], e) ||
             (endsWith({ p: pashtoConsonants }, e) && !e.c.includes("anim."))
@@ -69,10 +78,10 @@ export function isPattern1Word<T extends (Noun | Adjective)>(e: T): e is Pattern
  * @param e 
  * @returns 
  */
-export function isPattern2Word<T extends (Noun | Adjective)>(e: T): e is Pattern2Word<T> {
+export function isPattern2Entry<T extends (NounEntry | AdjectiveEntry)>(e: T): e is Pattern2Entry<T> {
     if (e.noInf) return false;
     if (e.infap) return false;
-    if (isFemNoun(e)) {
+    if (isFemNounEntry(e)) {
         return !e.c.includes("pl.") && endsWith({ p: "ې", f: "e" }, e, true);
     }
     // TODO: check if it's a single syllable word, in which case it would be pattern 1
@@ -85,10 +94,10 @@ export function isPattern2Word<T extends (Noun | Adjective)>(e: T): e is Pattern
  * @param e 
  * @returns 
  */
-export function isPattern3Word<T extends (Noun | Adjective)>(e: T): e is Pattern3Word<T> {
+export function isPattern3Entry<T extends (NounEntry | AdjectiveEntry)>(e: T): e is Pattern3Entry<T> {
     if (e.noInf) return false;
     if (e.infap) return false;
-    if (isFemNoun(e)) {
+    if (isFemNounEntry(e)) {
         return endsWith({ p: "ۍ" }, e);
     }
     return (countSyllables(e.f) > 1)
@@ -102,7 +111,7 @@ export function isPattern3Word<T extends (Noun | Adjective)>(e: T): e is Pattern
  * @param e 
  * @returns 
  */
-export function isPattern4Word<T extends (Noun | Adjective)>(e: T): e is Pattern4Word<T> {
+export function isPattern4Entry<T extends (NounEntry | AdjectiveEntry)>(e: T): e is Pattern4Entry<T> {
     if (e.noInf) return false;
     return (
         !!(e.infap && e.infaf && e.infbp && e.infbf)
@@ -117,7 +126,7 @@ export function isPattern4Word<T extends (Noun | Adjective)>(e: T): e is Pattern
  * @param e 
  * @returns 
  */
-export function isPattern5Word<T extends (Noun | Adjective)>(e: T): e is Pattern5Word<T> {
+export function isPattern5Entry<T extends (NounEntry | AdjectiveEntry)>(e: T): e is Pattern5Entry<T> {
     if (e.noInf) return false;
     return (
         !!(e.infap && e.infaf && e.infbp && e.infbf)
@@ -128,18 +137,18 @@ export function isPattern5Word<T extends (Noun | Adjective)>(e: T): e is Pattern
     );
 }
 
-export function isPattern6FemNoun(e: FemNoun): e is Pattern6FemNoun<FemNoun> {
-    if (!isFemNoun(e)) return false;
+export function isPattern6FemEntry(e: FemNounEntry): e is Pattern6FemEntry<FemNounEntry> {
+    if (!isFemNounEntry(e)) return false;
     if (e.c.includes("anim.")) return false;
     return e.p.slice(-1) === "ي";
 }
 
-export function isPluralEntry<U extends Noun>(e: U): e is PluralEntry<U> {
+export function isPluralNounEntry<U extends NounEntry>(e: U): e is PluralNounEntry<U> {
     return e.c.includes("pl.");
 }
 
-export function isSingularEntry<U extends Noun>(e: U): e is SingularEntry<U> {
-    return !isPluralEntry(e);
+export function isSingularEntry<U extends NounEntry>(e: U): e is SingularEntry<U> {
+    return !isPluralNounEntry(e);
 }
 
 export function isArrayOneOrMore<U>(a: U[]): a is T.ArrayOneOrMore<U> {

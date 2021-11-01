@@ -18,38 +18,38 @@ import {
     firstVariation,
 } from "../../lib/text-tools";
 import {
-    isMascNoun,
-    isFemNoun,
-    isUnisexNoun,
+    isMascNounEntry,
+    isFemNounEntry,
+    isUnisexNounEntry,
 } from "../../lib/type-predicates";
 import { categorize } from "../../lib/categorize";
 
 const genders: T.Gender[] = ["masc", "fem"];
 
-const mascNouns = nouns.filter(isMascNoun);
+const mascNouns = nouns.filter(isMascNounEntry);
 const femNouns = [
-    ...nouns.filter(isFemNoun),
-    ...getFemVersions(mascNouns.filter(isUnisexNoun)),
+    ...nouns.filter(isFemNounEntry),
+    ...getFemVersions(mascNouns.filter(isUnisexNounEntry)),
 ];
 
 const types = {
-    masc: categorize<MascNoun, {
-        consonantMasc: MascNoun[],
-        eyMasc: MascNoun[],
-        uMasc: MascNoun[],
-        yMasc: MascNoun[],
+    masc: categorize<MascNounEntry, {
+        consonantMasc: MascNounEntry[],
+        eyMasc: MascNounEntry[],
+        uMasc: MascNounEntry[],
+        yMasc: MascNounEntry[],
     }>(mascNouns, {
         consonantMasc: endsWith([{ p: pashtoConsonants }, { p: "و", f: "w" }]),
         eyMasc: endsWith({ p: "ی", f: "ey" }),
         uMasc: endsWith({ p: "ه", f: "u" }),
         yMasc: endsWith([{ p: "ای", f: "aay" }, { p: "وی", f: "ooy" }]),
     }),
-    fem: categorize<FemNoun, {
-        aaFem: FemNoun[],
-        eeFem: FemNoun[],
-        uyFem: FemNoun[], 
-        aFem: FemNoun[],
-        eFem: FemNoun[],  
+    fem: categorize<FemNounEntry, {
+        aaFem: FemNounEntry[],
+        eeFem: FemNounEntry[],
+        uyFem: FemNounEntry[], 
+        aFem: FemNounEntry[],
+        eFem: FemNounEntry[],  
     }>(femNouns, {
         aaFem: endsWith({ p: "ا", f: "aa" }),
         eeFem: endsWith({ p: "ي", f: "ee" }),
@@ -59,7 +59,7 @@ const types = {
     }),
 };
 
-function getFemVersions(uns: UnisexNoun[]): FemNoun[] {
+function getFemVersions(uns: UnisexNounEntry[]): FemNounEntry[] {
     return uns.map((n) => {
         const infs = inflectWord(n);
         if (!infs || !infs.inflections) return undefined;
@@ -68,18 +68,18 @@ function getFemVersions(uns: UnisexNoun[]): FemNoun[] {
             e: n.e,
             ...infs.inflections.fem[0][0],
         } as T.DictionaryEntry;
-    }).filter(n => !!n) as FemNoun[];
+    }).filter(n => !!n) as FemNounEntry[];
 }
 
 function flatten<T>(o: Record<string, T[]>): T[] {
     return Object.values(o).flat();
 }
 
-function nounNotIn(st: Noun[]): (n: Noun | T.DictionaryEntry) => boolean {
+function nounNotIn(st: NounEntry[]): (n: NounEntry | T.DictionaryEntry) => boolean {
     return (n: T.DictionaryEntry) => !st.find(x => x.ts === n.ts);
 }
 
-type CategorySet = Record<string, Noun[]>;
+type CategorySet = Record<string, NounEntry[]>;
 // for some reason we need to use this CategorySet type here... 🤷‍♂️
 const exceptions: Record<string, CategorySet> = {
     masc: {

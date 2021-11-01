@@ -24,12 +24,12 @@ import {
 } from "@lingdocs/pashto-inflector";
 import {
     isNounOrVerb,
-    isPattern1Word,
-    isPattern2Word,
-    isPattern3Word,
-    isPattern4Word,
-    isPattern5Word,
-    isUnisexNoun,
+    isPattern1Entry,
+    isPattern2Entry,
+    isPattern3Entry,
+    isPattern4Entry,
+    isPattern5Entry,
+    isUnisexNounEntry,
 } from "../../lib/type-predicates";
 import InflectionCarousel from "../../components/InflectionCarousel";
 import { nouns, adjectives } from "../../words/words";
@@ -37,7 +37,7 @@ import { startingWord } from "../../lib/starting-word";
 import Link from "../../components/Link";
 
 export const words = [
-    ...nouns.filter(isUnisexNoun),
+    ...nouns.filter(isUnisexNounEntry),
     ...adjectives,
 ];
 
@@ -57,7 +57,7 @@ These words always end in:
 - **Feminine:** - <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} />
 
 <InflectionCarousel items={startingWord(
-    words.filter(isPattern1Word),
+    words.filter(isPattern1Entry),
     "غټ",
 )} />
 
@@ -92,7 +92,7 @@ Notice how it does not use the first feminine inflection <InlinePs opts={opts} p
 ## 2. Words ending in an unstressed <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} />
 
 <InflectionCarousel items={startingWord(
-    words.filter(isPattern2Word),
+    words.filter(isPattern2Entry),
     "ستړی",
 )} />  
 
@@ -101,7 +101,7 @@ Notice how it does not use the first feminine inflection <InlinePs opts={opts} p
 This is very similar to pattern #2, but with the stress on the last syllable the feminine inflection changes.
 
 <InflectionCarousel items={startingWord(
-    words.filter(isPattern3Word),
+    words.filter(isPattern3Entry),
     "لومړی",
 )} />  
 
@@ -113,7 +113,7 @@ These words are a little irregular but you can see a common patten based around:
 - shortening the other forms and adding the <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} />, <InlinePs opts={opts} ps={{ p: "ـې", f: "-e" }} />, <InlinePs opts={opts} ps={{ p: "ـو", f: "-o" }} /> endings
 
 <InflectionCarousel items={startingWord(
-    words.filter(isPattern4Word),
+    words.filter(isPattern4Entry),
     "پښتون",
 )} />
 
@@ -124,7 +124,7 @@ These words are a little irregular but you can see a common patten based around:
 These are also a little irregular but instead of lengthening the 1st masculine inflection they compress it as well and take just an <InlinePs opts={opts} ps={{ p: "ـه", f: "-u" }} /> on the end.
 
 <InflectionCarousel items={startingWord(
-    words.filter(isPattern5Word),
+    words.filter(isPattern5Entry),
     "غل",
 )} />  
 

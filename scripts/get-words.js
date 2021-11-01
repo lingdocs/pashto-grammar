@@ -4,10 +4,14 @@ const { readDictionary } = require("@lingdocs/pashto-inflector");
 const path = require("path");
 const wordsPath = path.join(".", "src", "words");
 const wordsFile = "raw-words.ts";
+
 const verbCollectionPath = path.join(wordsPath, "verb-categories");
 const nounAdjCollectionPath = path.join(wordsPath, "noun-adj-categories");
+const adverbCollectionPath = path.join(wordsPath, "adverbs");
+
 const verbTsFiles = fs.readdirSync(verbCollectionPath);
 const nounAdjTsFiles = fs.readdirSync(nounAdjCollectionPath);
+const adverbTsFiles = fs.readdirSync(adverbCollectionPath);
 
 const allVerbTsS = verbTsFiles.flatMap(fileName => [
     ...require(path.join("..", verbCollectionPath, fileName)).map(x => x.ts)
@@ -15,6 +19,10 @@ const allVerbTsS = verbTsFiles.flatMap(fileName => [
 
 const allNounAdjTsS = nounAdjTsFiles.flatMap(fileName => [
     ...require(path.join("..", nounAdjCollectionPath, fileName)).map(x => x.ts)
+]).filter((v, i, a) => a.findIndex(x => x === v) === i);
+
+const allAdverbTsS = adverbTsFiles.flatMap(fileName => [
+    ...require(path.join("..", adverbCollectionPath, fileName)).map(x => x.ts)
 ]).filter((v, i, a) => a.findIndex(x => x === v) === i);
 
 console.log("getting words from dictionary...");
@@ -61,7 +69,7 @@ function getVerbsFromTsS(entries) {
 }
 
 function getNounsAdjsFromTsS(entries) {
-    const b = allNounAdjTsS.map(ts => {
+    const b = [...allNounAdjTsS, ...allAdverbTsS].map(ts => {
         const entry = entries.find(x => ts === x.ts);
         if (!entry) {
             console.log("couldn't find ts", ts);

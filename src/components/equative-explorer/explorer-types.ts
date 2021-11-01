@@ -1,7 +1,8 @@
 import { Types as T } from "@lingdocs/pashto-inflector";
-import { ParticipleInput } from "../../lib/equative-machine";
 
-export type PredicateType = "adjective" | "noun" | "unisexNoun" | "participle";
+export type PredicateNPType = "noun" | "unisexNoun" | "participle";
+export type PredicateCompType = "adjective" | "adverb";
+export type PredicateType = PredicateNPType | PredicateCompType; 
 export type SubjectType = "pronouns" | "noun" | "unisexNoun" | "participle";
 
 export type ExplorerState = {
@@ -13,14 +14,18 @@ export type ExplorerState = {
 
 export type SubjectEntityInfo = EntitiyInfo & { type: SubjectType };
 
-export type PredicateEntityInfo = EntitiyInfo & { type: PredicateType, adjective: Adjective };
+export type PredicateEntityInfo = EntitiyInfo & {
+    type: PredicateType,
+    adjective: AdjectiveEntry,
+    adverb: LocativeAdverbEntry,
+}
 
 type EntitiyInfo = {
-    noun: Noun,
-    participle: ParticipleInput,
-    unisexNoun: UnisexNoun,
+    noun: NounEntry,
+    participle: VerbEntry,
+    unisexNoun: UnisexNounEntry,
     info: {
-        plural: boolean,
+        number: NounNumber,
         gender: T.Gender,
     },
 };
@@ -34,9 +39,9 @@ export type ExplorerReducerAction = {
 } | {
     type: "setSubject", payload: number,
 } | {
-    type: "setSubjectPlural", payload: boolean,
+    type: "setNumber", payload: { entity: "subject" | "predicate", number: NounNumber },
 } | {
-    type: "setSubjectGender", payload: T.Gender,
+    type: "setGender", payload: { entity: "subject" | "predicate", gender: T.Gender },
 } | {
     type: "setTense", payload: EquativeTense,
 } | {

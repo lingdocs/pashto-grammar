@@ -19,10 +19,10 @@ import {
     firstVariation,
 } from "../../lib/text-tools";
 import {
-    isUnisexNoun,
+    isUnisexNounEntry,
 } from "../../lib/type-predicates";
 
-const unisexNouns = nouns.filter(isUnisexNoun);
+const unisexNouns = nouns.filter(isUnisexNounEntry);
 type NType = "pattern1" | "pattern2" | "pattern3" | "pattern4" | "pattern5" | "other";
 // TODO: make pattern types as overlay types
 const types = intoPatterns(unisexNouns);
@@ -41,7 +41,7 @@ export default function UnisexNounGame({ id, link }: { id: string, link: string 
             do {
                type = getRandomFromList(keys);
             } while (!pool[type].length);
-            const entry = getRandomFromList<UnisexNoun>(
+            const entry = getRandomFromList<UnisexNounEntry>(
                 // @ts-ignore
                 pool[type]
             );

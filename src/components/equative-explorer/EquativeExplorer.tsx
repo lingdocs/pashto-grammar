@@ -3,8 +3,7 @@ import {
     reducer,
 } from "./explorer-reducer";
 import {
-    PredicateSelector,
-    SubjectSelector,
+    InputSelector,
     TenseSelector,
 } from "./explorer-selectors";
 import {
@@ -16,6 +15,7 @@ import {
     defaultAdjective,
     defaultNoun,
     defaultParticiple,
+    defaultAdverb,
 } from "./explorer-inputs";
 import EquativeDisplay from "./EquativeDisplay";
 
@@ -25,11 +25,12 @@ const defaultState: ExplorerState = {
     predicate: {
         type: "adjective",
         adjective: defaultAdjective,
+        adverb: defaultAdverb,
         unisexNoun: defaultUnisexNoun,
         participle: defaultParticiple,
         noun: defaultNoun,
         info: {
-            plural: false,
+            number: "singular",
             gender: "masc",
         },
     },
@@ -39,7 +40,7 @@ const defaultState: ExplorerState = {
         participle: defaultParticiple,
         unisexNoun: defaultUnisexNoun,
         info: {
-            plural: false,
+            number: "singular",
             gender: "masc",
         },
     },
@@ -52,15 +53,13 @@ function EquativeExplorer() {
         unsafeSetState(newState);
     }
     return <>
+        <TenseSelector state={state} dispatch={dispatch} />
         <div className="row">
-            <div className="col-sm">
-                <TenseSelector state={state} dispatch={dispatch} />
+            <div className="col">
+                <InputSelector entity="subject" state={state} dispatch={dispatch} />
             </div>
             <div className="col">
-                <SubjectSelector state={state} dispatch={dispatch} />
-            </div>
-            <div className="col">
-                <PredicateSelector state={state} dispatch={dispatch} />
+                <InputSelector entity="predicate" state={state} dispatch={dispatch} />
             </div>
         </div>
         <EquativeDisplay state={state} dispatch={dispatch} />

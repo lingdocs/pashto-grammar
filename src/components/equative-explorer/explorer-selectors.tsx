@@ -1,16 +1,21 @@
-import { makeOptionLabel } from "./explorer-helpers";
+// import { makeOptionLabel } from "./explorer-helpers";
 import inputs from "./explorer-inputs";
 import {
     ExplorerReducerAction,
     ExplorerState,
-    PredicateType,
     SubjectType,
+    PredicateType,
 } from "./explorer-types";
 import {
+    getEnglishParticiple,
+} from "../../lib/np-tools";
+import {
     ButtonSelect,
+    getEnglishWord,
     Types as T,
+    removeFVarients,
 } from "@lingdocs/pashto-inflector";
-import { isFemNoun, isMascNoun, isPluralEntry } from "../../lib/type-predicates";
+import { isAdjectiveEntry, isAdverbEntry, isFemNounEntry, isMascNounEntry, isNounEntry, isPluralNounEntry } from "../../lib/type-predicates";
 import Select from "react-select";
 
 const zIndexProps = {
@@ -18,192 +23,164 @@ const zIndexProps = {
     styles: { menuPortal: (base: any) => ({ ...base, zIndex: 9999 }) },
 };
 
-export function SubjectSelector({ state, dispatch }: {
+const npTypeOptions: { type: SubjectType, label: string }[] = [
+    { type: "unisexNoun", label: "Unisex Noun"},
+    { type: "noun", label: "Noun" },
+    { type: "participle", label: "Participle" },
+];
+const subjectTypeOptions: { type: SubjectType, label: string }[] = [
+    { type: "pronouns" as SubjectType, label: "Pronouns" }
+];
+const compTypeOptions: { type: PredicateType, label: string }[] = [
+    { type: "adjective", label: "Adjective" },
+    { type: "adverb", label: "Loc. Adverb" },
+];
+
+export function InputSelector({ state, dispatch, entity }: {
     state: ExplorerState,
     dispatch: (action: ExplorerReducerAction) => void,
+    entity: "subject" | "predicate",
 }) {
+    const typeOptions = [
+        ...entity === "subject"
+            ? subjectTypeOptions
+            : compTypeOptions,
+        ...npTypeOptions.filter(o => !(entity === "predicate" && (
+            (state.subject.type === "pronouns" && ["noun", "participle"].includes(o.type))
+            // || (state.subject.type === "unisexNoun" && o.type === "unisexNoun")
+        ))),
+    ];
+    
     function onTypeSelect(e: React.ChangeEvent<HTMLInputElement>) {
-        const t = e.target.value as SubjectType;
-        dispatch({ type: "setSubjectType", payload: t });
-    }
-    function onSubjectSelect({ value }: any) {
-        dispatch({ type: "setSubject", payload: parseInt(value) });
-    }
-    const pluralNounSelected = (
-        state.subject.type === "noun" && isPluralEntry(state.subject.noun)
-    );
-    const options = state.subject.type === "pronouns"
-        ? []
-        : inputs[state.subject.type].map(e => ({
-            value: e.ts.toString(),
-            label: makeOptionLabel(e),
-        }));
-    const subject = state.subject.type === "pronouns"
-        ? undefined
-        : state.subject[state.subject.type];
-    return <div className="form-group">
-        <label htmlFor="predicate-select"><h5 className="mb-0">Subject:</h5></label>
-        <div className="form-check">
-            <input
-                className="form-check-input"
-                type="radio"
-                name="pronounsSubjectRadio"
-                id="pronounsSubjectRadio"
-                value="pronouns"
-                checked={state.subject.type === "pronouns"}
-                onChange={onTypeSelect}
-            />
-            <label className="form-check-label" htmlFor="adjectivesPredicateRadio">
-                Pronouns
-            </label>
-        </div>
-        <div className="form-check">
-            <input
-                className="form-check-input"
-                type="radio"
-                name="nounsSubjectRadio"
-                id="nounsSubjectRadio"
-                value="noun"
-                checked={state.subject.type === "noun"}
-                onChange={onTypeSelect}
-            />
-            <label className="form-check-label" htmlFor="unisexNounsPredicateRadio">
-                Nouns
-            </label>
-        </div>
-        <div className="form-check">
-            <input
-                className="form-check-input"
-                type="radio"
-                name="unisexNounsSubjectRadio"
-                id="unisexNounsSubjectRadio"
-                value="unisexNoun"
-                checked={state.subject.type === "unisexNoun"}
-                onChange={onTypeSelect}
-            />
-            <label className="form-check-label" htmlFor="unisexNounsPredicateRadio">
-                Unisex Nouns
-            </label>
-        </div>
-        <div className="form-check mb-2">
-            <input
-                className="form-check-input"
-                type="radio"
-                name="participlesSubjectRadio"
-                id="participlesSubjectRadio"
-                value="participle"
-                checked={state.subject.type === "participle"}
-                onChange={onTypeSelect}
-            />
-            <label className="form-check-label" htmlFor="unisexNounsPredicateRadio">
-                Participles
-            </label>
-        </div>
-        {state.subject.type !== "pronouns" && 
-            <>
-                <Select
-                    value={subject?.ts.toString()}
-                    onChange={onSubjectSelect}
-                    className="mb-2"
-                    // @ts-ignore
-                    options={options}
-                    isSearchable
-                    placeholder={options.find(o => o.value === subject?.ts.toString())?.label}
-                    {...zIndexProps}
-                />
-                <div className="d-flex flex-row justify-content-center mt-3">
-                    <div className="mr-2">
-                        <ButtonSelect
-                            small
-                            options={[
-                                ...(state.subject.type === "unisexNoun" || (state.subject.type === "participle") || (isMascNoun(state.subject[state.subject.type])))
-                                    ? [{ label: "Masc.", value: "masc" }] : [],
-                                ...(state.subject.type === "unisexNoun" || ((state.subject.type !== "participle") && isFemNoun(state.subject[state.subject.type])))
-                                    ? [{ label: "Fem.", value: "fem" }] : [],
-                            ]}
-                            value={state.subject.type === "noun" 
-                                ? (isMascNoun(state.subject[state.subject.type]) ? "masc" : "fem")
-                                : state.subject.type === "participle"
-                                ? "masc"
-                                : state.subject.info.gender}
-                            handleChange={state.subject.type === "noun" ? p => null : (p) => dispatch({ type: "setSubjectGender", payload: p as T.Gender })}
-                        />
-                    </div>
-                    <div className="ml-2">
-                        <ButtonSelect
-                            small
-                            options={[
-                                ...(!pluralNounSelected && state.subject.type !== "participle") ? [{ label: "Singular", value: "singular" }] : [],
-                                { label: "Plural", value: "plural" },
-                            ]}
-                            value={(state.subject.info.plural || pluralNounSelected || state.subject.type === "participle") ? "plural" : "singular"}
-                            handleChange={(p) => dispatch({ type: "setSubjectPlural", payload: p === "plural" ? true : false })}
-                        />
-                    </div>
-                </div>
-            </>
+        if (entity === "subject") {
+            const t = e.target.value as SubjectType;
+            dispatch({ type: "setSubjectType", payload: t });
+        } else {
+            const t = e.target.value as PredicateType;
+            dispatch({ type: "setPredicateType", payload: t });
         }
+    }
+
+    function onEntrySelect({ value }: any) {
+        dispatch({ type: entity === "subject" ? "setSubject" : "setPredicate", payload: parseInt(value) });
+    }
+
+    function CheckboxItem({ type, label }: { type: string, label: string }) {
+        const id = `${entity}-${type}-radio`;
+        return <div className="form-check">
+            <input
+                className="form-check-input"
+                type="radio"
+                id={id}
+                value={type}
+                checked={state[entity].type === type}
+                onChange={onTypeSelect}
+            />
+            <label className="form-check-label" htmlFor={id}>
+                {label}
+            </label>
+        </div>
+    }
+
+    const type = state[entity].type;
+    const entry: NounEntry | VerbEntry | AdjectiveEntry | LocativeAdverbEntry | undefined = type === "pronouns"
+        ? undefined
+        // @ts-ignore
+        : state[entity][type];
+    const options = type === "pronouns"
+        ? []
+        : inputs[type].map(makeOption);
+
+    return <div className="form-group">
+        <h5 className="mb-2">{entity === "subject" ? "Subject:" : "Predicate:"}</h5>
+        <div className="mb-2">
+            {typeOptions.map(({ type, label }) => (
+                <CheckboxItem type={type} label={label} key={`${entity}-${type}-radio`} />
+            ))}
+        </div>
+        {type !== "pronouns" && <>
+            <Select
+                value={entry && ("entry" in entry ? entry.entry : entry).ts.toString()}
+                onChange={onEntrySelect}
+                className="mb-2"
+                // @ts-ignore
+                options={options}
+                isSearchable
+                // @ts-ignore
+                placeholder={options.find(o => o.value === ("entry" in entry ? entry.entry : entry).ts.toString())?.label}
+                {...zIndexProps}
+            />
+            {!["adjective", "adverb"].includes(type) && !(state.subject.type === "pronouns" && state.predicate.type === "unisexNoun") &&
+                <GenderAndNumberSelect state={state} dispatch={dispatch} entity={entity} />
+            }
+        </>}
     </div>;
 }
 
-export function PredicateSelector({ state, dispatch }: {
+function GenderAndNumberSelect({ state, dispatch, entity }: {
     state: ExplorerState,
     dispatch: (action: ExplorerReducerAction) => void,
+    entity: "subject" | "predicate",
 }) {
-    function onTypeSelect(e: React.ChangeEvent<HTMLInputElement>) {
-        const t = e.target.value as PredicateType;
-        dispatch({ type: "setPredicateType", payload: t });
+    const type = state[entity].type;
+    if (type === "pronouns") {
+        return <div>ERROR: Should not display with pronouns</div>;
     }
-    function onPredicateSelect({ value }: any) {
-        dispatch({ type: "setPredicate", payload: parseInt(value) });
-    }
-    const options = inputs[state.predicate.type].map(e => ({
-        value: `${e.ts}`,
-        label: makeOptionLabel(e),
-    }));
-    const predicate = state.predicate[state.predicate.type];
-    return <div>
-        <label htmlFor="predicate-select"><h5 className="mb-0">Predicate:</h5></label>
-        <div className="form-check">
-            <input
-                className="form-check-input"
-                type="radio"
-                name="adjectivesPredicateRadio"
-                id="adjectivesPredicateRadio"
-                value="adjective"
-                checked={state.predicate.type === "adjective"}
-                onChange={onTypeSelect}
+    // @ts-ignore
+    const entry: NounEntry | VerbEntry | AdverbEntry | AdjectiveEntry = state[entity][type];
+    const gender = type === "noun" 
+        ? (isNounEntry(entry) && isMascNounEntry(entry) ? "masc" : "fem")
+        : type === "participle"
+        ? "masc"
+        : state[entity].info.gender;
+    const pluralNounSelected = (
+        type === "noun" && isPluralNounEntry(state[entity][type])
+    );
+    return <div className="d-flex flex-row justify-content-center mt-3">
+        <div className="mr-2">
+            <ButtonSelect
+                small
+                options={[
+                    ...(type === "unisexNoun" || (type === "participle") || (isNounEntry(entry) && isMascNounEntry(entry)))
+                        ? [{ label: "Masc.", value: "masc" }] : [],
+                    ...(type === "unisexNoun" || ((type !== "participle") && (isNounEntry(entry) && isFemNounEntry(entry))))
+                        ? [{ label: "Fem.", value: "fem" }] : [],
+                ]}
+                value={gender}
+                handleChange={type === "noun" ? p => null : (p) => dispatch({ type: "setGender", payload: { gender: p as T.Gender, entity }})}
             />
-            <label className="form-check-label" htmlFor="adjectivesPredicateRadio">
-                Adjectives
-            </label>
         </div>
-        <div className="form-check mb-2">
-            <input
-                className="form-check-input"
-                type="radio"
-                name="unisexNounsPredicateRadio"
-                id="unisexNounsPredicateRadio"
-                value="unisexNoun"
-                checked={state.predicate.type === "unisexNoun"}
-                onChange={onTypeSelect}
-                disabled={state.subject.type !== "pronouns"}
+        <div className="ml-2">
+            <ButtonSelect
+                small
+                options={[
+                    ...(!pluralNounSelected && type !== "participle") ? [{ label: "Singular", value: "singular" }] : [],
+                    { label: "Plural", value: "plural" },
+                ]}
+                value={(state[entity].info.number === "plural" || pluralNounSelected || type === "participle") ? "plural" : "singular"}
+                handleChange={(p) => dispatch({ type: "setNumber", payload: { number: p as NounNumber, entity }})}
             />
-            <label className="form-check-label" htmlFor="unisexNounsPredicateRadio">
-                Unisex Nouns
-            </label>
         </div>
-        <Select
-            value={predicate.ts.toString()}
-            onChange={onPredicateSelect}
-            className="mb-2"
-            // @ts-ignore
-            options={options}
-            isSearchable
-            placeholder={options.find(o => o.value === predicate.ts.toString())?.label}
-            {...zIndexProps}
-        />
     </div>;
+}
+
+function makeOption(e: VerbEntry | NounEntry | AdjectiveEntry | LocativeAdverbEntry): { value: string, label: string } {
+    const entry = "entry" in e ? e.entry : e;
+    // TODO: THIS IS SUUUPER SKETCH
+    const eng = (isNounEntry(e) || isAdjectiveEntry(e) || isAdverbEntry(e))
+        ? getEnglishWord(e)
+        : getEnglishParticiple(entry);
+    const english = typeof eng === "string"
+        ? eng
+        : !eng
+        ? ""
+        : ("singular" in eng && eng.singular !== undefined)
+        ? eng.singular
+        : eng.plural;
+    return {
+        label: `${entry.p} - ${removeFVarients(entry.f)} (${english})`,
+        value: entry.ts.toString(),
+    };
 }
 
 export function TenseSelector({ state, dispatch }: {
@@ -222,7 +199,7 @@ export function TenseSelector({ state, dispatch }: {
         dispatch({ type: "setTense", payload: value });
     }
     return <div>
-        <h5>Tense:</h5>
+        <h5>Equative:</h5>
         <Select
             value={state.tense}
             onChange={onTenseSelect}

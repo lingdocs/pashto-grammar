@@ -3,7 +3,7 @@ import { ExplorerState, ExplorerReducerAction } from "./explorer-types";
 
 export function reducer(state: ExplorerState, action: ExplorerReducerAction): ExplorerState {
     if (action.type === "setPredicate") {
-        const pile = inputs[state.predicate.type] as (UnisexNoun | Adjective)[];
+        const pile = inputs[state.predicate.type] as (UnisexNounEntry | AdjectiveEntry)[];
         const predicate = (pile.find(p => p.ts === action.payload) || pile[0]);
         return {
             ...state,
@@ -19,7 +19,7 @@ export function reducer(state: ExplorerState, action: ExplorerReducerAction): Ex
             ...state,
             predicate: {
                 ...state.predicate,
-                type: (predicateType === "unisexNoun" && state.subject.type === "noun") ? "adjective" : predicateType,
+                type: predicateType,
             },
         };
     }
@@ -27,14 +27,17 @@ export function reducer(state: ExplorerState, action: ExplorerReducerAction): Ex
         const subjectType = action.payload;
         return {
             ...state,
-            predicate: {
-                ...state.predicate,
-                type: state.predicate.type === "unisexNoun" ? "adjective" : state.predicate.type,
-            },
             subject: {
                 ...state.subject,
                 type: subjectType,
-            }
+            },
+            predicate: {
+                ...state.predicate,
+                type: (
+                    subjectType === "pronouns" &&
+                    !["adjective", "adverb", "unisexNoun"].includes(state.predicate.type)
+                ) ? "adjective" : state.predicate.type,
+            },
         };
     }
     if (action.type === "setSubject") {
@@ -50,26 +53,28 @@ export function reducer(state: ExplorerState, action: ExplorerReducerAction): Ex
             },
         };
     }
-    if (action.type === "setSubjectPlural") {
+    if (action.type === "setNumber") {
+        const entity = action.payload.entity;
         return {
             ...state,
-            subject: {
-                ...state.subject,
+            [entity]: {
+                ...state[entity],
                 info: {
-                    ...state.subject.info,
-                    plural: action.payload,
+                    ...state[entity].info,
+                    number: action.payload.number,
                 },
             },
         };
     }
-    if (action.type === "setSubjectGender") {
+    if (action.type === "setGender") {
+        const entity = action.payload.entity;
         return {
             ...state,
-            subject: {
-                ...state.subject,
+            [entity]: {
+                ...state[entity],
                 info: {
-                    ...state.subject.info,
-                    gender: action.payload,
+                    ...state[entity].info,
+                    gender: action.payload.gender,
                 },
             },
         };
@@ -80,6 +85,15 @@ export function reducer(state: ExplorerState, action: ExplorerReducerAction): Ex
             tense: action.payload,
         };
     }
+    // if (action.type === "setPredicateEntity") {
+    //     return {
+    //         ...state,
+    //         predicate: {
+    //             ...state.predicate,
+    //             entity: action.payload,
+    //         },
+    //     };
+    // }
     return {
         ...state,
         length: action.payload,

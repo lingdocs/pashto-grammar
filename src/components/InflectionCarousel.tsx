@@ -8,7 +8,7 @@ import {
     getEnglishWord,
 } from "@lingdocs/pashto-inflector";
 
-function InflectionCarousel({ items }: { items: (Noun | Adjective)[] }) {
+function InflectionCarousel({ items }: { items: (NounEntry | AdjectiveEntry)[] }) {
     if (!items.length) {
         return "no items for carousel";
     }

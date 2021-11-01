@@ -248,7 +248,7 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: {"ts":1527815008,"i":8433,"p":"شودې","f":"shoodé","g":"shoode","e":"milk","c":"n. f. pl."} as PluralEntry<Noun>,
+                        entry: {"ts":1527815008,"i":8433,"p":"شودې","f":"shoodé","g":"shoode","e":"milk","c":"n. f. pl."} as PluralNounEntry<Noun>,
                         plural: true,
                     },
                     predicate: {"ts":1527812796,"i":8578,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."} as Adjective,
@@ -264,7 +264,7 @@ const abilities: {
             {
                 in: {
                     subject: {
-                        entry: {"ts":1527817330,"i":9204,"p":"غنم","f":"ghanúm","g":"ghanum","e":"wheat","c":"n. m. pl."} as PluralEntry<Noun>,
+                        entry: {"ts":1527817330,"i":9204,"p":"غنم","f":"ghanúm","g":"ghanum","e":"wheat","c":"n. m. pl."} as PluralNounEntry<Noun>,
                         plural: true,
                     },
                     predicate: {"ts":1527815451,"i":7192,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"} as Adjective,
