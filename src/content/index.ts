@@ -78,6 +78,9 @@ import * as typingIssues from "!babel-loader!@lingdocs/mdx-loader!./writing/typi
 // @ts-ignore
 import * as games from "!babel-loader!@lingdocs/mdx-loader!./games.mdx";
 
+// @ts-ignore
+import * as pronounPicker from "!babel-loader!@lingdocs/mdx-loader!./practice-tools/pronoun-picker.mdx";
+
 const contentTree = [
     {
         import: intro,
@@ -244,6 +247,16 @@ const contentTree = [
     {
         import: games,
         slug: "games",
+    },
+    {
+        heading: "Practice Tools 🔧",
+        subdirectory: "practice-tools",
+        chapters: [
+            {
+                import: pronounPicker,
+                slug: "pronoun-picker",
+            },
+        ],
     },
 ];
 

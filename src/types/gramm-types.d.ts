@@ -45,6 +45,7 @@ type Compliment = {
 type Participle = {
     type: "participle",
     entry: VerbEntry,
+    np?: NounPhrase,
 }
 
 type Pronoun = {

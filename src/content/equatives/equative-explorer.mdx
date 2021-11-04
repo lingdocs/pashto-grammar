@@ -3,6 +3,18 @@ title: Equative Explorer 🌎
 ---
 
 import EquativeExplorer from "../../components/equative-explorer/EquativeExplorer";
+import PronounPicker from "../../components/np-picker/PronounPicker";
+import { useState } from "react";
+
+export function PDem() {
+    const [pronoun, setPronoun] = useState({ type: "pronoun", pronounType: "far", person: 11 });
+    return <div style={{ maxWidth: "200px" }}>
+        <PronounPicker pronoun={pronoun} onChange={setPronoun} />
+        <pre>{JSON.stringify(pronoun, null, "  ")}</pre>
+    </div>
+}
+
+<PDem />
 
 You can use this tool to explore how to make different equative sentences. Everything that comes out of this will be **gramatically correct**, but the sentences might not always make sense! 🤪
 
