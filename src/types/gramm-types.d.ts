@@ -33,7 +33,7 @@ type Noun = {
     entry: NounEntry,
     number?: NounNumber,
     gender?: import("@lingdocs/pashto-inflector").Types.Gender,
-    possesor?: Noun,
+    possesor?: NounPhrase,
     adjectives?: AdjectiveEntry[],
 };
 
