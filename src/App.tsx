@@ -49,7 +49,7 @@ function App(props: RouteComponentProps) {
     window.scroll(0, 0);
     logAnalytics();
     // eslint-disable-next-line
-  }, [props.location.pathname, user]);
+  }, [props.location.pathname]);
   return (
     <>
       <Header setNavOpen={setNavOpen} />
