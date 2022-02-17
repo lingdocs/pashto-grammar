@@ -1,5 +1,5 @@
 ---
-title: Subjunctive / Habitual Equative
+title: Habitual Equative
 ---
 
 import {
@@ -17,16 +17,16 @@ import Link from "../../components/Link";
 export const opts = defaultTextOptions;
 import grassBeWet from "../../images/grass-be-wet.jpg";
 
-In the last section we looked at the present equative, which we use to say something *is* something currently. But **we can only use the present equative for something is something *right now, at this moment***. What if we want to say that something *generally is something* or if we *hope something is something*? For that **we need to use a different form**.
+In the last section we looked at the <Link to="/equatives/present-equative/">present equative</Link>, which we use to say something *is* something currently. But **we can only use the <Link to="/equatives/present-equative/">present equative</Link> for something is something *right now, at this moment***. What if we want to say that something *generally is something*?
 
-## Subjunctive / Habitual Equative Form
+## Habitual Equative Form
 
 <EquativeFormChoice 
     forms={{
         sentence: {
             displayForm: addToForm(
                 [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
-                grammarUnits.equativeEndings.subjunctive,
+                grammarUnits.equativeEndings.habitual,
             ),
             english: [
                 ["I am ...", "We are ..."],
@@ -38,90 +38,20 @@ In the last section we looked at the present equative, which we use to say somet
             ],
         },
         pure: {
-            displayForm: grammarUnits.equativeEndings.subjunctive,
+            displayForm: grammarUnits.equativeEndings.habitual,
         },
     }}
     opts={opts}
 />
 
-This form is used with two different meanings:
-
-1. **Subjunctive** - to talk about something being something when the statement involves a hypothetical condition, a wish, desire, hope, or statement of whether it should or shouldn't be, as in:
-
-    <Examples opts={opts}>{[
-        psmd({
-            p: "امید لرم چې خوشحاله **وي**",
-            f: "Umeed larum che khosháala **wee**",
-            e: "I hope he **is** happy",
-        }),
-    ]}</Examples>
-
-2. **Habitual** - to say that something is generally or repeatedly something, as in:
-
-    <Examples opts={opts}>{[
-        psmd({
-            p: "سحار کې چمن لوند **وي**",
-            f: "saháar ke chaman loond **wee**",
-            e: "The grass **is** wet in the morning. (generally, habitually)",
-        }),
-    ]}</Examples>
-
-### With a Subjunctive Meaning
-
-#### Judgement/obligation
-
-The subjunctive form can be used to talk about it being being good or bad, necessary, or required that something is something.
+This form is used to say that something is something (A = B) **generally, habitually, or repeatedly**.
 
 <Examples opts={opts}>{psmd([
     {
-        p: "ښه ده چې دلته **یې**",
-        f: "xa da che dălta **ye**.",
-        e: "It's good that you're here.",
+        p: "سحار کې چمن لوند **وي**",
+        f: "saháar ke chaman loond **wee**",
+        e: "The grass **is** wet in the morning. (generally, habitually)",
     },
-    {
-        p: "هغوي باید په ښووونځي کې **وي**",
-        f: "hagwee baayad pu xowoondzee ke **wee**.",
-        e: "They have to be in school.",
-    },
-])}</Examples>
-
-#### Desire
-
-<Examples opts={opts}>{psmd([
-    {
-        p: "امید لرم چې هلته **وي**",
-        f: "Umeed larum che halta **wee**.",
-        e: "I hope they're there.",
-    },
-    {
-        p: "هغه غواړي چې مونږ په کور کې **یو**",
-        f: "haghá ghwaaRee che moonG pu kor ke **yoo**.",
-        e: "He wants us to be home.",
-    },
-])}</Examples>
-
-#### Conditions
-
-The subjunctive form is also used to talk about conditions or possibilities. *If A = B, then...* or *It could be that A = B ...*
-
-<Examples opts={opts}>{psmd([
-    {
-        p: "که دوکان کې وریژې **وي** نو وایې خله",
-        f: "ku dokaan ke wrejze **wee**, no waa-ye-khla",
-        e: "If there's rice in the store, buy it",
-    },
-    {
-        p: "کېدی شي چې ډوډۍ تیاره **وي**",
-        f: "kedey shee che DoDúy tayaara **wee**",
-        e: "The food could be ready",
-    },
-])}</Examples>
-
-### With a Habitual Meaning
-
-This same form is used when you are saying that **A = B generally, habitually, or repeatedly**. For example:
-
-<Examples opts={opts}>{psmd([
     {
         p: "هغه تر ماښامه پورې په دوکان کې **وي**",
         f: "haghá tur maaxaama pore pu dookáan ke **wee**",

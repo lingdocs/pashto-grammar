@@ -11,9 +11,9 @@
 import * as intro from "!babel-loader!@lingdocs/mdx-loader!./intro.mdx";
 
 // @ts-ignore
-import * as presentEquative from "!babel-loader!@lingdocs/mdx-loader!./equatives/present-equative.mdx"
+import * as presentEquative from "!babel-loader!@lingdocs/mdx-loader!./equatives/present-equative.mdx";
 // @ts-ignore
-import * as subjunctiveHabitualEquative from "!babel-loader!@lingdocs/mdx-loader!./equatives/subjunctive-habitual-equative.mdx";
+import * as habitualEquative from "!babel-loader!@lingdocs/mdx-loader!./equatives/habitual-equative.mdx";
 // @ts-ignore
 import * as otherEquatives from "!babel-loader!@lingdocs/mdx-loader!./equatives/other-equatives.mdx";
 // @ts-ignore
@@ -95,8 +95,8 @@ const contentTree = [
                 slug: "present-equative",
             },
             {
-                import: subjunctiveHabitualEquative,
-                slug: "subjunctive-habitual-equative",
+                import: habitualEquative,
+                slug: "habitual-equative",
             },
             {
                 import: otherEquatives,

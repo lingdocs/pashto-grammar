@@ -28,6 +28,116 @@ import EquativeFormChoice from "../../components/EquativeFormChoice";
 import Formula from "../../components/formula/Formula";
 import Link from "../../components/Link";
 
+## Subjunctive Equative
+
+The subjunctive equative is used to talk about something being something when the statement involves a hypothetical condition, a wish, desire, hope, or statement of whether it should or shouldn't be, as in:
+
+<Examples opts={opts}>{[
+    psmd({
+        p: "امید لرم چې خوشحاله **وي**",
+        f: "Umeed larum che khosháala **wee**",
+        e: "I hope he **is** happy",
+    }),
+]}</Examples>
+
+<EquativeFormChoice 
+    forms={{
+        sentence: {
+            displayForm: addToForm(
+                [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
+                grammarUnits.equativeEndings.subjunctive,
+            ),
+            english: [
+                ["I am ...", "We are ..."],
+                ["I am ...", "We are ..."],
+                ["You are ...", "You are ..."],
+                ["You are ...", "You are ..."],
+                ["He/she/it is ...", "They are ..."],
+                ["He/she/it is ...", "They are ..."],
+            ],
+        },
+        pure: {
+            displayForm: grammarUnits.equativeEndings.subjunctive,
+        },
+    }}
+    opts={opts}
+/>
+
+#### Purpose
+
+The subjunctive is used in clauses that express a purpose or an aim of something being something.
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "زه به درته سندره وایم، چې ته خوشحاله **وې**",
+        f: "zu ba taa ta sandura waayum, che tu khoshaala **we**.",
+        e: "I'll sing to you, so that you'll **be** happy.",
+    },
+])}</Examples>
+
+#### Judgement/obligation
+
+The subjunctive form can be used to talk about it being being good or bad, necessary, or required that something is something.
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "هغوي باید په ښووونځي کې **وي**",
+        f: "hagwee baayad pu xowoondzee ke **wee**.",
+        e: "They have to be in school.",
+    },
+])}</Examples>
+
+#### Desire
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "امید لرم چې هلته **وي**",
+        f: "Umeed larum che halta **wee**.",
+        e: "I hope they're there.",
+    },
+    {
+        p: "هغه غواړي چې مونږ په کور کې **وو**",
+        f: "haghá ghwaaRee che moonG pu kor ke **woo**.",
+        e: "He wants us to be home.",
+    },
+])}</Examples>
+
+#### Conditions
+
+The subjunctive form is also used to talk about conditions or possibilities. *If A = B, then...* or *It could be that A = B ...*
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "که دوکان کې وریژې **وي** نو وایې خله",
+        f: "ku dokaan ke wrejze **wee**, no waa-ye-khla",
+        e: "If there's rice in the store, buy it",
+    },
+    {
+        p: "کېدی شي چې ډوډۍ تیاره **وي**",
+        f: "kedey shee che DoDúy tayaara **wee**",
+        e: "The food could be ready",
+    },
+])}</Examples>
+
+#### Important Note on Common Use:
+
+This is the standard/written form of the subjunctive equative. However in many dialects you will find that people use the same forms as the <Link to="/equative/habitual-equative">habitual equative</Link> when speaking. For example:
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "هغه غواړي چې مونږ په کور کې **وو**",
+        f: "haghá ghwaaRee che moonG pu kor ke **woo**.",
+        e: "He wants us to be home.",
+        sub: "proper / standard",
+    },
+    {
+        p: "هغه غواړي چې مونږ په کور کې **یو**",
+        f: "haghá ghwaaRee che moonG pu kor ke **yoo**.",
+        e: "He wants us to be home.",
+        sub: "often spoken / colloquial",
+    },
+])}</Examples>
+
 ## Future Equative
 
 This is used for:
@@ -36,7 +146,7 @@ This is used for:
 2. To guess or surmise about something being something (now or in the future). ("I'll be...")
 
 <Formula>
-    <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="/equatives/subjunctive-habitual-equative/">subjunctive/habitual equative</Link>
+    <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="/equatives/habitual-equative/">habitual equative</Link>
 </Formula>
 
 <EquativeFormChoice
