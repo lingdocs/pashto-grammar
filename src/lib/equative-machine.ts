@@ -73,7 +73,7 @@ export function assembleEquativeOutput(o: EquativeClauseOutput): T.SingleOrLengt
 
 function makeEquative(e: EquativeClause) {
     function getEngEq(row: number, col: number): string[] {
-        const t = grammarUnits.englishEquative[e.tense === "subjunctive" ? "present" : e.tense];
+        const t = grammarUnits.englishEquative[(e.tense === "subjunctive" || e.tense === "habitual") ? "present" : e.tense];
         return typeof t === "string"
             ? [t]
             : [t[row][col]];

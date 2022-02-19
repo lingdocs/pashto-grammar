@@ -1,4 +1,4 @@
-type EquativeTense = "present" | "subjunctive" | "past" | "future" | "wouldBe" | "pastSubjunctive";
+type EquativeTense = "present" | "subjunctive" | "habitual" | "past" | "future" | "wouldBe" | "pastSubjunctive";
 type NounNumber = "singular" | "plural";
 
 type EquativeClause = {

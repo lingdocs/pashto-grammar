@@ -189,7 +189,8 @@ export function TenseSelector({ state, dispatch }: {
 }) {
     const options: { value: EquativeTense, label: string }[] = [
         { value: "present", label: "Present" },
-        { value: "subjunctive", label: "Habitual / Subjunctive" },
+        { value: "habitual", label: "Habitual" },
+        { value: "subjunctive", label: "Subjunctive" },
         { value: "past", label: "Past" },
         { value: "future", label: "Future" },
         { value: "wouldBe", label: '"Would Be"' },
