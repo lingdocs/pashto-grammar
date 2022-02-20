@@ -6,10 +6,13 @@
 
 type NPSelection = NounSelection | PronounSelection | ParticipleSelection;
 
+type NPType = "noun" | "pronoun" | "participle";
+
 // TODO require/import Person and PsString
 type NounSelection = {
     type: "noun",
-    ps: string,
+    ps: import("@lingdocs/pashto-inflector").Types.PsString,
+    entry: import("@lingdocs/pashto-inflector").Types.DictionaryEntry,
     // BETTER TO USE (or keep handy) FULL ENTRY FOR USE WITH INFLECTING
     e: {
         sing: string,
@@ -22,23 +25,22 @@ type NounSelection = {
     // TODO: Implement
     // possesor: NPSelection | undefined,
     /* method only present if it's possible to change gender */
-    changeGender?: (gender: "masc" | "fem") => NounWord, 
+    changeGender?: (gender: "masc" | "fem") => NounSelection, 
     /* method only present if it's possible to change number */
-    changeNumber?: (number: "sing" | "plur") => NounWord,
+    changeNumber?: (number: "sing" | "plur") => NounSelection,
 };
 
 // take an argument for subject/object in rendering English
 type PronounSelection = {
     type: "pronoun",
     e: string,
-    person: Person,
+    person: import("@lingdocs/pashto-inflector").Types.Person,
     distance: "near" | "far",
-    changeDistance: (distance: "near" | "far") => PronounSelection,
 };
 
 type ParticipleSelection = {
     type: "participle",
-    ps: string,
+    ps: import("@lingdocs/pashto-inflector").Types.PsString,
     e: string | undefined,
     // entry in here
 }
@@ -52,7 +54,7 @@ type ReplaceKey<T, K extends string, R> = T extends Record<K, unknown> ? (Omit<T
 type Rendered<T extends NPSelection> = ReplaceKey<
     Omit<T, "changeGender" | "changeNumber" | "changeDistance">,
     "e",
-    string,
+    string
 > & { inflected: boolean };
 // TODO: recursive changing this down into the possesor etc.
 

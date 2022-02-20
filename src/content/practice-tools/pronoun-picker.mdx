@@ -8,19 +8,14 @@ import {
     InlinePs,
 } from "@lingdocs/pashto-inflector";
 import { useState } from "react";
-
-export function randomP(p) {
-    let newP = 0;
-    do {
-        newP = Math.floor(Math.random() * 12);
-    } while (newP === p);
-    return newP;
-}
+import {
+    randomPerson,
+} from "../../lib/np-tools";
 
 export function RPicker() {
-    const [pronoun, setPronoun] = useState({ type: "pronoun", pronounType: "far", person: randomP() });
+    const [pronoun, setPronoun] = useState({ type: "pronoun", pronounType: "far", person: randomPerson() });
     function handleRandom() {
-        const person = randomP(pronoun.person);
+        const person = randomPerson(pronoun.person);
         setPronoun({
             ...pronoun,
             person,

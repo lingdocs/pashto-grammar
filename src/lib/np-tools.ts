@@ -11,6 +11,14 @@ import {
     psStringFromEntry,
 } from "./text-tools";
 
+export function randomPerson(p?: T.Person) {
+    let newP = 0;
+    do {
+        newP = Math.floor(Math.random() * 12);
+    } while (newP === p);
+    return newP;
+}
+
 export function personFromNP(np: NounPhrase): T.Person {
     if (np.type === "participle") {
         return T.Person.ThirdPlurMale;
