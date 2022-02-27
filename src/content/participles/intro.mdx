@@ -1,0 +1,246 @@
+---
+title: Intro to Participles
+---
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+} from "@lingdocs/pashto-inflector";
+import Link from "../../components/Link";
+import participleMeme from "./participle-meme.jpg";
+import psmd from "../../lib/psmd";
+
+Participles words that are **made from verbs** but **act as a noun or adjective**.
+
+<div className="text-center">
+    <img className="img-fluid mb-4" src={participleMeme} alt="participle meme" style={{ margin: "0 auto" }} />
+</div>
+
+There are 3 types of participles.
+
+1. Root/Infinitive  
+2. <InlinePs opts={opts} ps={{ p: "-ونکی", f: "-oonkey" }} /> suffix   
+3. Past Participle
+
+## Root/Infinitive
+
+This is the easiest to make. It's just the <Link to="/verbs/roots-and-stems/">imperfective root</Link>, which is the infinitive or "dictionary form" of a verb. For example, for the verb <InlinePs opts={opts} ps={{ p: "لیکل", f: "leekúl", e: "to write" }} />, it's... <InlinePs opts={opts} ps={{ p: "لیکل", f: "leekúl" }} />. That's right, it looks exactly the same, but when it's a participle it functions as a **3rd person plural noun** in the sentence.
+
+Here's an example where we use <InlinePs opts={opts} ps={{ p: "لیکل", f: "leekúl" }} /> to describe *the activity or action* of writing. And, as with all these kind of participles, it functions as a **3rd person plural noun**.
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "**لیکل** ښه دي",
+        f: "**leekul** xu dee",
+        e: "**Writing** is good",
+    },
+])}</Examples>
+
+These kinds of participles are used like the "-ing" present particple in English, or like the "to be" infinitives in English.
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "زه **لیکل** غواړم",
+        f: "zu **leekul** ghwaaRum",
+        e: "I want **to write**",
+    },
+])}</Examples>
+
+### Inflecting the Root/Infinitive Participle
+
+Just like with other nouns, these participles will <Link to="/inflection/inflection-intro/">inflect</Link> when:
+
+1. They're in a <Link to="/sandwiches/sandwiches/">sandwich</Link>
+2. They're the subject of a past tense transitive verb
+
+And just like with other plural nouns, they are inflected by adding an <InlinePs opts={opts} ps={{ p: "و", f: "o" }} /> on the end.
+
+#### 1. Inflecting in a sandwich
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "**د لیکلو لپاره** څه نشته",
+        f: "**du leekulo lapaara** tsu nushta",
+        e: "There's nothing to write",
+    },
+    {
+        p: "زه **د پاڅېدلو** توان نه لرم",
+        f: "zu **du patsedulo** twaan nu larum", 
+        e: "I don't have the strength to get up",
+    }
+])}</Examples>
+
+#### 2. Inflecting as a subject of a past tense transitive verb
+
+Since these particples are nouns, they can also be the subject of a sentance. For example:
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "**لیکل** ما ستړی کوي",
+        f: "**leekul** maa stuRey kawee.",
+        e: "Writing makes me tired",
+        sub: "subject of a present tense transitive verb (not inflected)"
+    },
+    {
+        p: "**لیکلو** زه ستړی کړم",
+        f: "**leekulo** zu stuRey kRum",
+        e: "**Writing** made me tired",
+        sub: "subject of a past tense transitive verb (inflected)"
+    },
+])}</Examples>
+
+## <InlinePs opts={opts} ps={{ p: "ونکی", f: "oonkey" }} /> suffix
+
+This type of participle is formed by adding <InlinePs opts={opts} ps={{ p: "ونکی", f: "oonkey" }} /> to the end of the short version of the <Link to="/verbs/roots-and-stems/">imperfective root</Link> of a verb.
+
+### As an adjective
+
+This form can be used to transform verbs into adjectives. For example, from the verb <InlinePs opts={opts} ps={{ p: "دردول", f: "dardawul", e: "to hurt, cause pain/sadness" }} />, we can add the <InlinePs opts={opts} ps={{ p: "ونکی", f: "óonkey" }} /> suffix and get the adjective <InlinePs opts={opts} ps={{ p: "دردونکی", f: "dardawóonkey", e: "sad/painful" }} />. 
+
+These "adjectives" will <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ey--">inflect just like any other adjectives ending with an unstressed <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} /></Link>.
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "دا یوه **دردونکې** کیسه ده",
+        f: "daa yawa **dardawóonke** keesa da",
+        e: "That's a sad story",
+        sub: "(fem. sing.)"
+    },
+    {
+        p: "دا یو **دردونکی** ناول دی",
+        f: "daa yo **dardawóonkey** naawul dey",
+        e: "That's a sad novel",
+        sub: "(masc. sing.)"
+    },
+    {
+        p: "دا **دردونکي** ناولونه دي",
+        f: "daa **dardawóonkee** naawuloona dee",
+        e: "Those are sad novels",
+        sub: "(masc. plural.)"
+    },
+])}</Examples>
+
+### As an agent noun
+
+This suffix can also be used to make verbs into <a href="https://en.wikipedia.org/wiki/Agent_noun#:~:text=In%20linguistics%2C%20an%20agent%20noun,from%20the%20verb%20%22drive%22.">agent nouns</a>. This is like how in English we use "-er" or "-or" suffixes to make nouns like "worker", "player", "cutter", "gamer". 
+
+export const agentNounExamples = [
+    [
+        {
+            p: "زده کول",
+            f: "zda kawul",
+            e: "to learn",
+        },
+        {
+            p: "زده کوونکی",
+            f: "zda kawóonkey",
+            e: "student/learner",
+        },
+    ],
+    [
+        {
+            p: "ښوول",
+            f: "xowul",
+            e: "to teach",
+        },
+        {
+            p: "ښووونکی",
+            f: "xowóonkey",
+            e: "teacher",
+        },
+    ],
+    [
+        {
+            p: "لیدل",
+            f: "leedul",
+            e: "to see",
+        },
+        {
+            p: "لیدونکی",
+            f: "leedóonkey",
+            e: "viewer",
+        },
+    ],
+    [
+        {
+            p: "اورېدل",
+            f: "awredul",
+            e: "to hear",
+        },
+        {
+            p: "اورېدونکی",
+            f: "awredoonkey",
+            e: "listener",
+        },
+    ],
+];
+
+<table className="table table-bordered my-3">
+    <thead>
+        <tr>
+            <th scope="col">Verb</th>
+            <th scope="col">Agent Noun</th>
+        </tr>
+    </thead>
+    <tbody>
+        {agentNounExamples.map(a => (
+            <tr>
+                <td>
+                    <Examples opts={opts}>{a[0]}</Examples>
+                </td>
+                <td>
+                    <Examples opts={opts}>{a[1]}</Examples>
+                </td>
+            </tr>
+        ))}
+    </tbody>
+</table>
+
+Of course, these nouns will <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ey--">inflect just like any other nounse ending with an unstressed <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} /></Link>.
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "**زده کوونکي** مکتب ته ځي",
+        f: "**zda kawoonkee** maktab to dzee",
+        e: "The **students (male)** are going to school",
+    },
+    {
+        p: "**زده کوونکې** مکتب ته ځي",
+        f: "**zda kawoonke** maktab to dzee",
+        e: "The **students (female)** are going to school",
+    },
+    {
+        p: "ګرانو **لیدونکو**، ستړي مه شئ",
+        f: "graano **leedóonko**, stuRee ma sheyy",
+        e: "Hello dear viewers",
+    },
+])}</Examples>
+
+## Past Participle
+
+<!-- These are formed by adding a <InlinePs opts={opts} ps={{ p: "ونکی", f: "oonkey" }} /> to the end of the <Link to="/verbs/roots-and-stems/">imperfective root</Link> of a verb. -->
+
+They work as an adjective... EXPLANATION COMING SOON.
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "د موټړو په ښیښو **لیکې** خبرې",
+        f: "du moTur pu xeexo **leekúle** khabure",
+        e: "Words **written** on car windows",
+    },
+    {
+        p: "کلاس په **ټاکلي** وخت کې پیل شو",
+        f: "klaas pu **Takúlee** wakht peyl sho",
+        e: "Class started at the **appointed** time",
+    },
+    {
+        p: "**راغلي** خلک هلته ناست دي",
+        f: "**raaghúlee** khalk halta naast dee",
+        e: "The people **that came** are sitting there",
+    },
+    {
+        p: "هغوي له **راغلو** خلکو سره مرسته کوي",
+        f: "haghwee la **raaghúlo** khalko sara mrasta kawee",
+        e: "They are helping the people that came.",
+    }
+])}</Examples>

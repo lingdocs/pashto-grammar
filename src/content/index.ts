@@ -50,6 +50,9 @@ import * as rootsAndStems from "!babel-loader!@lingdocs/mdx-loader!./verbs/roots
 import * as sentenceStructure from "!babel-loader!@lingdocs/mdx-loader!./verbs/sentence-structure.mdx";
 
 // @ts-ignore
+import * as introToParticiples from "!babel-loader!@lingdocs/mdx-loader!./participles/intro.mdx";
+
+// @ts-ignore
 import * as pronounsBasic from "!babel-loader!@lingdocs/mdx-loader!./pronouns/pronouns-basic.mdx";
 // @ts-ignore
 import * as pronounsMini from "!babel-loader!@lingdocs/mdx-loader!./pronouns/pronouns-mini.mdx";
@@ -110,32 +113,6 @@ const contentTree = [
             },
         ],
     },
-    // {
-    //     heading: "Nouns",
-    //     subdirectory: "nouns",
-    //     chapters: [
-    //         {
-    //             import: nounsGender,
-    //             slug: "nouns-gender",
-    //         },
-    //         {
-    //             import: nounsUnisex,
-    //             slug: "nouns-unisex",
-    //         },
-    //         {
-    //             import: nounsPlural,
-    //             slug: "nouns-plural",
-    //         },
-    //         {
-    //             import: arabicPlurals,
-    //             slug: "arabic-plurals",
-    //         },
-    //         {
-    //             import: bundledPlurals,
-    //             sluge: "bundled-plurals",
-    //         },
-    //     ],
-    // },
     {
         heading: "Verbs",
         subdirectory: "verbs",
@@ -175,6 +152,16 @@ const contentTree = [
             {
                 import: sentenceStructure,
                 slug: "sentence-structure",
+            },
+        ],
+    },
+    {
+        heading: "Participles",
+        subdirectory: "participles",
+        chapters: [
+            {
+                import: introToParticiples,
+                slug: "intro",
             },
         ],
     },
