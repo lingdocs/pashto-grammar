@@ -13,3 +13,7 @@ export function psStringFromEntry(entry: T.PsString): T.PsString {
         f: removeFVarients(entry.f),
     };
 }
+
+export function capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}

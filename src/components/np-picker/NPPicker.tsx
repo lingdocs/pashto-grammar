@@ -1,7 +1,9 @@
 import PronounPicker from "./NPPronounPicker";
+import { getEnglishPronoun } from "../../lib/english-pronoun-tools";
 // import { ButtonSelect } from "@lingdocs/pashto-inflector";
 import { randomPerson } from "../../lib/np-tools";
 import { useState } from "react";
+import { capitalizeFirstLetter } from "../../lib/text-tools";
 
 const npTypes: NPType[] = ["noun", "pronoun", "participle"];
 
@@ -14,10 +16,11 @@ function NPPicker({ np, onChange }: { onChange: (nps: NPSelection | undefined) =
     }
     function handleNPTypeChange(ntp: NPType) {
         if (ntp === "pronoun") {
+            const person = randomPerson();
             const pronoun: PronounSelection = {
                 type: "pronoun",
-                e: "not done",
-                person: randomPerson(),
+                e: capitalizeFirstLetter(getEnglishPronoun(person, "subject")),
+                person,
                 distance: "far",
             };
             onChange(pronoun);

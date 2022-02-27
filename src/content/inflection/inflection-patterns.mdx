@@ -35,6 +35,7 @@ import InflectionCarousel from "../../components/InflectionCarousel";
 import { nouns, adjectives } from "../../words/words";
 import { startingWord } from "../../lib/starting-word";
 import Link from "../../components/Link";
+import psmd from "../../lib/psmd";
 
 export const words = [
     ...nouns.filter(isUnisexNounEntry),
@@ -64,28 +65,28 @@ These words always end in:
 <details>
 
 <summary>
-<strong>Note</strong>: In sandwiches staring with <InlinePs opts={opts} ps={{ p: "په", f: "pu" }} /> the first inflection is normally not used. But it may be used in some dialects/colloquial speech.
+<strong>Note</strong>: In sandwiches like <InlinePs opts={opts} ps={{ p: "په ... کې", f: "pu ... ke" }} /> describing <strong>location</strong> the first inflection of nouns in this pattern is not used.
 </summary>
     
 For example using the word <InlinePs opts={opts} ps={{ p: "کوټه", f: "koTá", e: "room" }} />:
 
-<Examples opts={opts}>{[
+<Examples opts={opts}>{psmd([
     {
-        p: "زه په کوټه کې ناست یم",
-        f: "zu pu koTá ke naast yum",
-        e: "I am sitting in the room",
+        p: "زه **په کوټه کې** ناست یم",
+        f: "zu **pu koTá ke** naast yum",
+        e: "I am sitting **in the room**.",
     }
-]}</Examples>
+])}</Examples>
 
-Notice how it does not use the first feminine inflection <InlinePs opts={opts} ps={{ p: "کوټې", f: "koTe" }} />, as it does with a different sandwich:
+In any other kind of sandwich the first inflection would be used.
 
-<Examples opts={opts}>{[
+<Examples opts={opts}>{psmd([
     {
-        p: "زه کوټې ته ځم",
-        f: "zu koTé ta dzum",
+        p: "زه **کوټې ته** ځم",
+        f: "zu **koTé ta** dzum",
         e: "I'm going to the room",
     },
-]}</Examples>
+])}</Examples>
 
 </details>
 
@@ -117,7 +118,39 @@ These words are a little irregular but you can see a common patten based around:
     "پښتون",
 )} />
 
-**Note**: Nouns in this pattern will often only use the first inflection for the plural. Adjectives will use the 1st inflection for all 3 reasons.
+**Note**: 
+
+<details>
+<summary>
+<strong>Note</strong>: <strong>Animate nouns</strong> in this pattern will often only use the first inflection for the plural.
+</summary>
+
+For example, if we put a singular (animate) word <InlinePs opts={opts} ps={{ p: "پښټون", f: "puxtoon" }} /> in a sandwich, most of the time people will not inflect it.
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "**د پښتون** نوم څه دی؟",
+        f: "**du puxtoon** noom tsu dey?",
+        e: "What is the **Pashtun's** name",
+    }
+])}</Examples>
+
+But it will of course inflect for the plural.
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "دلته **پښتانه** اوسېږي",
+        f: "dalta **puxtaanu** oseGee",
+        e: "**Pashtuns** live here",
+    },
+    {
+        p: "دا **د پښتنو** رواج دی",
+        f: "daa **du puxtano** rawaaj dey",
+        e: "This is **the Pashtuns'** custom"
+    },
+])}</Examples>
+
+</details>
 
 ## 5. Shorter words that squish
 

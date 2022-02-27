@@ -2,6 +2,8 @@ import {
     Types as T,
     ButtonSelect,
 } from "@lingdocs/pashto-inflector";
+import { getEnglishPronoun } from "../../lib/english-pronoun-tools";
+import { capitalizeFirstLetter } from "../../lib/text-tools";
 import useStickyState from "../../useStickyState";
 
 const gColors = {
@@ -50,27 +52,24 @@ function pickerStateToPerson(s: PickerState): T.Person {
         + (6 * s.col);
 }
 
-function PronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onChange: (p: PronounSelection) => void }) {
+function NPPronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onChange: (p: PronounSelection) => void }) {
     const [display, setDisplay] = useStickyState<"persons" | "p" | "e">("persons", "prounoun-picker-display"); 
 
     const p = personToPickerState(pronoun.person);
     function handleClick(row: number, col: number) {
+        const person = pickerStateToPerson({ ...p, row, col });
         onChange({
             ...pronoun,
-            person: pickerStateToPerson({
-                ...p,
-                row,
-                col,
-            }),
+            e: capitalizeFirstLetter(getEnglishPronoun(person, "subject")),
+            person,
         });
     }
     function handleGenderChange(gender: T.Gender) {
+        const person = pickerStateToPerson({ ...p, gender });
         onChange({
             ...pronoun,
-            person: pickerStateToPerson({
-                ...p,
-                gender,
-            }),
+            e: capitalizeFirstLetter(getEnglishPronoun(person, "subject")),
+            person,
         });
     }
     function handlePronounTypeChange(distance: "far" | "near") {
@@ -89,7 +88,7 @@ function PronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onCha
     }
     const prs = labels[display];
     const pSpec = "near" in prs ? prs[pronoun.distance] : prs;
-    return <div>
+    return <div style={{ maxWidth: "225px" }}>
         <div className="d-flex flex-row justify-content-around mb-3">
             <ButtonSelect
                 xSmall
@@ -133,4 +132,4 @@ function PronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onCha
    </div>;
 };
 
-export default PronounPicker;
+export default NPPronounPicker;
