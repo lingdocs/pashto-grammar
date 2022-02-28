@@ -96,6 +96,7 @@ export default function GenderGame({level, id, link}: { level: 1 | 2, id: string
     function* questions () {
         const wordPool = {...types};
         const exceptionsPool = {...exceptions};
+        console.log(exceptionsPool);
         for (let i = 0; i < amount; i++) {
             const base = level === 1
                 ? wordPool

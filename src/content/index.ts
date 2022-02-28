@@ -19,16 +19,16 @@ import * as otherEquatives from "!babel-loader!@lingdocs/mdx-loader!./equatives/
 // @ts-ignore
 import * as equativeExplorer from "!babel-loader!@lingdocs/mdx-loader!./equatives/equative-explorer.mdx";
 
-// // @ts-ignore
-// import * as nounsGender from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-gender.mdx";
-// // @ts-ignore
-// import * as nounsUnisex from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-unisex.mdx";
-// // @ts-ignore
-// import * as nounsPlural from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-plural.mdx";
-// // @ts-ignore
-// import * as arabicPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/arabic-plurals.mdx";
-// // @ts-ignore
-// import * as bundledPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/bundled-plurals.mdx";
+// @ts-ignore
+import * as nounsGender from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-gender.mdx";
+// @ts-ignore
+import * as nounsUnisex from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-unisex.mdx";
+// @ts-ignore
+import * as nounsPlural from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-plural.mdx";
+// @ts-ignore
+import * as arabicPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/arabic-plurals.mdx";
+// @ts-ignore
+import * as bundledPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/bundled-plurals.mdx";
 
 // @ts-ignore
 import * as verbAspect from "!babel-loader!@lingdocs/mdx-loader!./verbs/verb-aspect.mdx";
@@ -110,6 +110,32 @@ const contentTree = [
             {
                 import: equativeExplorer,
                 slug: "equative-explorer",
+            },
+        ],
+    },
+    {
+        heading: "Nouns",
+        subdirectory: "nouns",
+        chapters: [
+            {
+                import: nounsGender,
+                slug: "nouns-gender",
+            },
+            {
+                import: nounsUnisex,
+                slug: "nouns-unisex",
+            },
+            {
+                import: nounsPlural,
+                slug: "nouns-plural",
+            },
+            {
+                import: arabicPlurals,
+                slug: "arabic-plurals",
+            },
+            {
+                import: bundledPlurals,
+                sluge: "bundled-plurals",
             },
         ],
     },
