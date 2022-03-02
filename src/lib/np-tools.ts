@@ -24,15 +24,23 @@ export function randomPerson(p?: T.Person) {
 }
 
 function isInvalidSubjObjCombo(subj: T.Person, obj: T.Person): boolean {
-    // subject is first person
-    if ([0, 1, 6, 7].includes(subj)) {
-        return [0, 1, 6, 7].includes(obj);
-    }
-    // subject is second person
-    if ([2, 3, 8, 9].includes(subj)) {
-        return [2, 3, 8, 9].includes(obj);
-    }
-    return false;
+    const firstPeople = [
+        T.Person.FirstSingMale,
+        T.Person.FirstSingFemale,
+        T.Person.FirstPlurMale,
+        T.Person.FirstPlurFemale,
+    ];
+    const secondPeople = [
+        T.Person.SecondSingMale,
+        T.Person.SecondSingFemale,
+        T.Person.SecondPlurMale,
+        T.Person.SecondPlurFemale,
+    ];
+    return (
+        (firstPeople.includes(subj) && firstPeople.includes(obj))
+        ||
+        (secondPeople.includes(subj) && secondPeople.includes(obj))
+    );
 }
 
 export function randomSubjObj(old?: { subj: T.Person, obj: T.Person }): { subj: T.Person, obj: T.Person } {

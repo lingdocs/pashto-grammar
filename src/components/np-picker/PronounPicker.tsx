@@ -21,9 +21,9 @@ const labels = {
         [{ masc: "He/It", fem: "She/It"}, "They"],
     ],
     eObject: [
-        ["I", "Us"],
-        ["You", "You pl."],
-        [{ masc: "Him/It", fem: "Her/It"}, "Them"],
+        ["I", "us"],
+        ["you", "you (pl.)"],
+        [{ masc: "him/it", fem: "her/it"}, "them"],
     ],
     p: {
         far: [

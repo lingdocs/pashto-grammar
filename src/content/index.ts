@@ -84,7 +84,7 @@ import * as games from "!babel-loader!@lingdocs/mdx-loader!./games.mdx";
 // @ts-ignore
 import * as pronounPicker from "!babel-loader!@lingdocs/mdx-loader!./practice-tools/pronoun-picker.mdx";
 // @ts-ignore
-import * as phraseBuilder from "!babel-loader!@lingdocs/mdx-loader!./practice-tools/phrase-builder.mdx";
+// import * as phraseBuilder from "!babel-loader!@lingdocs/mdx-loader!./practice-tools/phrase-builder.mdx";
 
 const contentTree = [
     {
@@ -271,10 +271,10 @@ const contentTree = [
                 import: pronounPicker,
                 slug: "pronoun-picker",
             },
-            {
-                import: phraseBuilder,
-                slug: "phrase-builder",
-            },
+            // {
+            //     import: phraseBuilder,
+            //     slug: "phrase-builder",
+            // },
         ],
     },
 ];
