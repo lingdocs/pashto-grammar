@@ -20,6 +20,11 @@ const labels = {
         ["You", "You pl."],
         [{ masc: "He/It", fem: "She/It"}, "They"],
     ],
+    eObject: [
+        ["I", "Us"],
+        ["You", "You pl."],
+        [{ masc: "Him/It", fem: "Her/It"}, "Them"],
+    ],
     p: {
         far: [
             ["زه", "مونږ"],
@@ -50,7 +55,11 @@ function pickerStateToPerson(s: PickerState): T.Person {
         + (6 * s.col);
 }
 
-function PronounPicker({ onChange, pronoun }: { pronoun: Pronoun, onChange: (p: Pronoun) => void }) {
+function PronounPicker({ onChange, pronoun, isObject }: {
+    pronoun: Pronoun,
+    onChange: (p: Pronoun) => void,
+    isObject?: boolean,
+}) {
     const [display, setDisplay] = useStickyState<"persons" | "p" | "e">("persons", "prounoun-picker-display"); 
 
     const p = personToPickerState(pronoun.person);
@@ -87,7 +96,7 @@ function PronounPicker({ onChange, pronoun }: { pronoun: Pronoun, onChange: (p: 
             : "persons";
         setDisplay(newPerson);
     }
-    const prs = labels[display];
+    const prs = labels[(display === "e" && isObject) ? "eObject" : display];
     const pSpec = "near" in prs ? prs[pronoun.pronounType] : prs;
     return <div>
         <div className="d-flex flex-row justify-content-around mb-3">
@@ -100,7 +109,7 @@ function PronounPicker({ onChange, pronoun }: { pronoun: Pronoun, onChange: (p: 
                 value={pronoun.pronounType}
                 handleChange={(g) => handlePronounTypeChange(g as "far" | "near")}
             />
-            <button className="btn btn-sm btn-outline" onClick={handleDisplayChange}>{display === "persons" ? "#" : display === "p" ? "PS" : "EN"}</button>
+            <button className="btn btn-sm btn-outline-secondary" onClick={handleDisplayChange}>{display === "persons" ? "#" : display === "p" ? "PS" : "EN"}</button>
         </div>
         <table className="table table-bordered" style={{ textAlign: "center", minWidth: "200px", tableLayout: "fixed" }}>
             <tbody>

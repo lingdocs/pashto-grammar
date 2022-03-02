@@ -11,12 +11,42 @@ import {
     psStringFromEntry,
 } from "./text-tools";
 
+function getRandPers(): T.Person {
+    return Math.floor(Math.random() * 12);
+}
+
 export function randomPerson(p?: T.Person) {
     let newP = 0;
     do {
-        newP = Math.floor(Math.random() * 12);
+        newP = getRandPers();
     } while (newP === p);
     return newP;
+}
+
+function isInvalidSubjObjCombo(subj: T.Person, obj: T.Person): boolean {
+    // subject is first person
+    if ([0, 1, 6, 7].includes(subj)) {
+        return [0, 1, 6, 7].includes(obj);
+    }
+    // subject is second person
+    if ([2, 3, 8, 9].includes(subj)) {
+        return [2, 3, 8, 9].includes(obj);
+    }
+    return false;
+}
+
+export function randomSubjObj(old?: { subj: T.Person, obj: T.Person }): { subj: T.Person, obj: T.Person } {
+    let subj = 0;
+    let obj = 0;
+    do {
+        subj = getRandPers();
+        obj = getRandPers();
+    } while (
+        (old && ((old.subj === subj) || (old.obj === obj)))
+        ||
+        isInvalidSubjObjCombo(subj, obj)
+    );
+    return { subj, obj };
 }
 
 export function personFromNP(np: NounPhrase): T.Person {
