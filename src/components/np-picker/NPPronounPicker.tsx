@@ -2,8 +2,6 @@ import {
     Types as T,
     ButtonSelect,
 } from "@lingdocs/pashto-inflector";
-import { getEnglishPronoun } from "../../lib/english-pronoun-tools";
-import { capitalizeFirstLetter } from "../../lib/text-tools";
 import useStickyState from "../../useStickyState";
 
 const gColors = {
@@ -60,7 +58,6 @@ function NPPronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onC
         const person = pickerStateToPerson({ ...p, row, col });
         onChange({
             ...pronoun,
-            e: capitalizeFirstLetter(getEnglishPronoun(person, "subject")),
             person,
         });
     }
@@ -68,7 +65,6 @@ function NPPronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onC
         const person = pickerStateToPerson({ ...p, gender });
         onChange({
             ...pronoun,
-            e: capitalizeFirstLetter(getEnglishPronoun(person, "subject")),
             person,
         });
     }

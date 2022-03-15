@@ -1,9 +1,12 @@
 import PronounPicker from "./NPPronounPicker";
-import { getEnglishPronoun } from "../../lib/english-pronoun-tools";
+import NounPicker from "./NPNounPicker";
+import ParticiplePicker from "./NPParticiplePicker";
+// import { getEnglishPronoun } from "../../lib/english-pronoun-tools";
 // import { ButtonSelect } from "@lingdocs/pashto-inflector";
 import { randomPerson } from "../../lib/np-tools";
 import { useState } from "react";
-import { capitalizeFirstLetter } from "../../lib/text-tools";
+import { nouns, verbs } from "../../words/words";
+// import { capitalizeFirstLetter } from "../../lib/text-tools";
 
 const npTypes: NPType[] = ["noun", "pronoun", "participle"];
 
@@ -19,17 +22,18 @@ function NPPicker({ np, onChange }: { onChange: (nps: NPSelection | undefined) =
             const person = randomPerson();
             const pronoun: PronounSelection = {
                 type: "pronoun",
-                e: capitalizeFirstLetter(getEnglishPronoun(person, "subject")),
                 person,
                 distance: "far",
             };
+            setNpType(ntp);
             onChange(pronoun);
         } else {
+            onChange(undefined);
             setNpType(ntp);
         }
     }
-    return <div>
-        {!np ?
+    return <div style={{ maxWidth: "300px"}}>
+        {!npType ?
             <div>
                 {npTypes.map((npt) => (
                     <button
@@ -42,12 +46,18 @@ function NPPicker({ np, onChange }: { onChange: (nps: NPSelection | undefined) =
                     </button>
                 ))}
             </div>
-        : <div onClick={handleClear}>X</div>}
-        {np &&
-            (np.type === "pronoun"
+        : <button className="btn btn-sm btn-light mb-2" onClick={handleClear}>X</button>}
+        {np ?
+            ((np.type === "pronoun"
                 ? <PronounPicker pronoun={np} onChange={onChange} />
-                : <div>Not Implemented</div>)
-        }
+                : np.type === "noun"
+                ? <NounPicker nouns={nouns} noun={np} onChange={onChange} />
+                : <ParticiplePicker verbs={verbs} participle={np} onChange={onChange} />))
+        : (npType === "noun")
+        ? <NounPicker nouns={nouns} noun={np} onChange={onChange} />
+        : (npType === "participle")
+        ? <ParticiplePicker verbs={verbs} participle={np} onChange={onChange} />
+        : null}
     </div>;
 }
 

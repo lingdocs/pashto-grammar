@@ -4,6 +4,28 @@
 // type FemPlurNounEntry = ""; // can change nothing
 // type UnisexNounEntry = ""; // can change number or gender
 
+type VP = {
+    subject: NPSelection,
+    object: NPSelection,
+    verb: VerbSelection,
+};
+
+type VerbSelection = {
+    type: "verb",
+    verb: VerbEntry,
+    tense: "present" | "subjunctive",
+    object: VerbObject,
+};
+
+type VerbObject = // intransitive verb
+    "none" |
+    // transitive verb - object not selected yet
+    undefined |
+    // transitive verb - obect selected
+    NPSelection |
+    // grammatically transitive verb with unspoken 3rd pers masc plur entity
+    import("@lingdocs/pashto-inflector").Types.Person.ThirdPlurMale;
+
 type NPSelection = NounSelection | PronounSelection | ParticipleSelection;
 
 type NPType = "noun" | "pronoun" | "participle";
@@ -11,13 +33,7 @@ type NPType = "noun" | "pronoun" | "participle";
 // TODO require/import Person and PsString
 type NounSelection = {
     type: "noun",
-    ps: import("@lingdocs/pashto-inflector").Types.PsString,
-    entry: import("@lingdocs/pashto-inflector").Types.DictionaryEntry,
-    // BETTER TO USE (or keep handy) FULL ENTRY FOR USE WITH INFLECTING
-    e: {
-        sing: string,
-        plur: string,
-    } | undefined,
+    entry: NounEntry,
     gender: "masc" | "fem",
     number: "sing" | "plur",
     // TODO: Implement
@@ -33,17 +49,14 @@ type NounSelection = {
 // take an argument for subject/object in rendering English
 type PronounSelection = {
     type: "pronoun",
-    e: string,
     person: import("@lingdocs/pashto-inflector").Types.Person,
     distance: "near" | "far",
 };
 
 type ParticipleSelection = {
     type: "participle",
-    ps: import("@lingdocs/pashto-inflector").Types.PsString,
-    e: string | undefined,
-    // entry in here
-}
+    verb: VerbEntry,
+};
 
 // not object
 // type Primitive = string | Function | number | boolean | Symbol | undefined | null;

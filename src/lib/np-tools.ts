@@ -145,6 +145,20 @@ function getInf(infs: T.InflectorOutput, t: "plural" | "arabicPlural" | "inflect
     return [];
 }
 
+export function getEnglishVerb(entry: T.DictionaryEntry): string {
+    if (!entry.ec) {
+        console.log("errored verb");
+        console.log(entry);
+        throw new Error("no english information for verb");
+    }
+    if (entry.ep) {
+        const ec = entry.ec.includes(",") ? parseEc(entry.ec) : entry.ec;
+        return `to ${ec} ${entry.ep}`;
+    }
+    const ec = parseEc(entry.ec);
+    return `to ${ec[0]}`;
+}
+
 export function getEnglishParticiple(entry: T.DictionaryEntry): string {
     if (!entry.ec) {
         console.log("errored participle");

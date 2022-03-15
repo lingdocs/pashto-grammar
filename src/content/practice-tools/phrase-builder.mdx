@@ -2,17 +2,8 @@
 title: Phrase Builder
 ---
 
-import NPPicker from "../../components/np-picker/NPPicker";
-import { useState } from "react";
+import PhraseBuilder from "../../components/phrase-builder/PhraseBuilder";
 
-export function Display() {
-    const [np, setNp] = useState(undefined);
-    return <div>
-        <NPPicker np={np} onChange={setNp} />
-        <pre>
-            {JSON.stringify(np, null, "  ")}
-        </pre>
-    </div>
-}
+This is under construction... It's not quite working yet. 👷🚧
 
-<Display />
+<PhraseBuilder />
