@@ -10,7 +10,7 @@ import { nouns, verbs } from "../../words/words";
 
 const npTypes: NPType[] = ["noun", "pronoun", "participle"];
 
-function NPPicker({ np, onChange }: { onChange: (nps: NPSelection | undefined) => void, np: NPSelection | undefined }) {
+function NPPicker({ np, onChange, counterPart }: { onChange: (nps: NPSelection | undefined) => void, np: NPSelection | undefined, counterPart: NPSelection | VerbObject | undefined }) {
     // eslint-disable-next-line
     const [npType, setNpType] = useState<NPType | undefined>(np ? np.type : undefined);
     function handleClear() {
@@ -19,7 +19,9 @@ function NPPicker({ np, onChange }: { onChange: (nps: NPSelection | undefined) =
     }
     function handleNPTypeChange(ntp: NPType) {
         if (ntp === "pronoun") {
-            const person = randomPerson();
+            const person = ((typeof counterPart === "object") && (counterPart.type === "pronoun"))
+                ? randomPerson({ counterPart: counterPart.person })
+                : randomPerson();
             const pronoun: PronounSelection = {
                 type: "pronoun",
                 person,

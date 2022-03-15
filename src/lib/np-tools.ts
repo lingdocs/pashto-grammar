@@ -15,11 +15,25 @@ function getRandPers(): T.Person {
     return Math.floor(Math.random() * 12);
 }
 
-export function randomPerson(p?: T.Person) {
+export function randomPerson(a?: { old?: T.Person, counterPart?: T.Person | VerbObject }) {
     let newP = 0;
     do {
         newP = getRandPers();
-    } while (newP === p);
+    } while (
+        a &&
+        (
+            ((a.old !== undefined) && newP === a.old) ||
+            (a.counterPart && (
+                (
+                    (typeof a.counterPart === "object")
+                    && a.counterPart.type === "pronoun"
+                    && isInvalidSubjObjCombo(a.counterPart.person, newP)
+                )
+                ||
+                ((typeof a?.counterPart === "number") && isInvalidSubjObjCombo(a.counterPart, newP))
+            ))
+        )
+    );
     return newP;
 }
 
