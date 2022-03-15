@@ -52,15 +52,15 @@ function NPNounPicker({ onChange, noun, nouns }: { nouns: NounEntry[], noun: Nou
                 {noun.changeNumber ? <ButtonSelect
                     small
                     options={[
-                        { label: "Sing.", value: "sing" },
-                        { label: "Plur.", value: "plur" },
+                        { label: "Sing.", value: "singular" },
+                        { label: "Plur.", value: "plural" },
                     ]}
                     value={noun.number}
                     handleChange={(n) => {
                         if (!noun.changeNumber) return;
                         onChange(noun.changeNumber(n));
                     }}
-                /> : noun.number === "sing" ? "Sing." : "Plur."}
+                /> : noun.number === "singular" ? "Sing." : "Plur."}
             </div>
         </div>}
     </div>;

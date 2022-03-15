@@ -1,7 +1,4 @@
 import {
-    isNounEntry,
-    isAdjectiveEntry,
-    isAdverbEntry,
     isPluralNounEntry,
     isMascNounEntry,
     isUnisexNounEntry,
@@ -14,6 +11,7 @@ import {
 import {
     getEnglishWord,
     removeFVarients,
+    Types as T,
 } from "@lingdocs/pashto-inflector";
 
 export const zIndexProps = {
@@ -48,22 +46,22 @@ export function makeSelectOption(e: VerbEntry | NounEntry | AdjectiveEntry | Loc
 }
 
 export function makeNounSelection(entry: NounEntry): NounSelection {
-    const number = isPluralNounEntry(entry) ? "plur" : "sing";
+    const number = isPluralNounEntry(entry) ? "plural" : "singular";
     return {
         type: "noun",
         entry,
         gender: isMascNounEntry(entry) ? "masc" : "fem",
         number,
         ...isUnisexNounEntry(entry) ? {
-            changeGender: function(gender: "masc" | "fem"): NounSelection {
+            changeGender: function(gender: T.Gender): NounSelection {
                 return {
                     ...this,
                     gender,
                 };
             },
         } : {},
-        ...number === "sing" ? {
-            changeNumber: function(number: "plur" | "sing"): NounSelection {
+        ...number === "singular" ? {
+            changeNumber: function(number: NounNumber): NounSelection {
                 return {
                     ...this,
                     number,

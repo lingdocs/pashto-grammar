@@ -4,17 +4,35 @@
 // type FemPlurNounEntry = ""; // can change nothing
 // type UnisexNounEntry = ""; // can change number or gender
 
-type VP = {
+
+type VPSelection = {
+    type: "VPSelection",
     subject: NPSelection,
-    object: NPSelection,
-    verb: VerbSelection,
+    object: Exclude<VerbObject, undefined>,
+    verb: Exclude<VerbSelection, "object">,
 };
+
+// TODO: make this Rendered<VPSelection> with recursive Rendered<>
+type VPRendered = {
+    type: "VPRendered",
+    subject: Rendered<NPSelection>,
+    object: "none" | Rendered<NPSelection> | import("@lingdocs/pashto-inflector").Types.Person.ThirdPlurMale,
+    verb: VerbRendered, 
+}
 
 type VerbSelection = {
     type: "verb",
     verb: VerbEntry,
     tense: "present" | "subjunctive",
     object: VerbObject,
+};
+
+type VerbRendered = Omit<VerbSelection, "object"> & {
+    ps: import("@lingdocs/pashto-inflector").Types.SingleOrLengthOpts<
+        import("@lingdocs/pashto-inflector").Types.PsString[]
+    >,
+    person: import("@lingdocs/pashto-inflector").Types.Person,
+    e?: string[],
 };
 
 type VerbObject = // intransitive verb
@@ -34,16 +52,16 @@ type NPType = "noun" | "pronoun" | "participle";
 type NounSelection = {
     type: "noun",
     entry: NounEntry,
-    gender: "masc" | "fem",
-    number: "sing" | "plur",
+    gender: import("@lingdocs/pashto-inflector").Types.Gender,
+    number: NounNumber,
     // TODO: Implement
     // adjectives: [],
     // TODO: Implement
     // possesor: NPSelection | undefined,
     /* method only present if it's possible to change gender */
-    changeGender?: (gender: "masc" | "fem") => NounSelection, 
+    changeGender?: (gender: import("@lingdocs/pashto-inflector").Types.Gender) => NounSelection, 
     /* method only present if it's possible to change number */
-    changeNumber?: (number: "sing" | "plur") => NounSelection,
+    changeNumber?: (number: NounNumber) => NounSelection,
 };
 
 // take an argument for subject/object in rendering English
@@ -68,7 +86,11 @@ type Rendered<T extends NPSelection> = ReplaceKey<
     Omit<T, "changeGender" | "changeNumber" | "changeDistance">,
     "e",
     string
-> & { inflected: boolean };
+> & {
+    ps: import("@lingdocs/pashto-inflector").Types.PsString[],
+    e?: string,
+    inflected: boolean,
+};
 // TODO: recursive changing this down into the possesor etc.
 
 

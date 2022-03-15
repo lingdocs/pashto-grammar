@@ -31,7 +31,6 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         : verbType === "trans"
         ? getTransObjFromOldVerbSelection()
         : "none";
-    console.log({ verbType, object });
     return {
         type: "verb",
         verb,
@@ -52,7 +51,6 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
     }
     function onTenseSelect({ value }: { label: string, value: "present" | "subjunctive" }) {
         if (verb) {
-            console.log("changing to", value)
             onChange({
                 ...verb,
                 tense: value,

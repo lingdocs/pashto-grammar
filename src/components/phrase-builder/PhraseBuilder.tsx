@@ -1,8 +1,21 @@
 import { useState } from "react";
 import NPPicker from "../np-picker/NPPicker";
 import VerbPicker from "../VerbPicker";
+import VPDisplay from "./VPDisplay";
 import ObjectDisplay from "./ObjectDisplay";
 import { verbs } from "../../words/words";
+
+function verbPhraseComplete({ subject, verb }: { subject: NPSelection | undefined, verb: VerbSelection | undefined }): VPSelection | undefined {
+    if (!subject) return undefined;
+    if (!verb) return undefined;
+    if (verb.object === undefined) return undefined;
+    return {
+        type: "VPSelection",
+        subject,
+        object: verb.object,
+        verb,
+    };
+}
 
 export function PhraseBuilder() {
     const [subject, setSubject] = useState<NPSelection | undefined>(undefined);
@@ -15,7 +28,7 @@ export function PhraseBuilder() {
             object,
         });
     }
-    console.log({ subject, verb });
+    const verbPhrase: VPSelection | undefined = verbPhraseComplete({ subject, verb });
     return <div>
         <div className="d-flex flex-row justify-content-between">
             <div className="mr-2">
@@ -31,6 +44,9 @@ export function PhraseBuilder() {
                 <VerbPicker verbs={verbs} verb={verb} onChange={setVerb} />
             </div>
         </div>
+        {verbPhrase && <div>
+            <VPDisplay VP={verbPhrase} />
+        </div>}
     </div>
 }
 
