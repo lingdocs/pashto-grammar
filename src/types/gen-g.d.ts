@@ -20,10 +20,12 @@ type VPRendered = {
     verb: VerbRendered, 
 }
 
+type VerbTense = "present" | "subjunctive" | "perfectivePast" | "imperfectivePast";
+
 type VerbSelection = {
     type: "verb",
     verb: VerbEntry,
-    tense: "present" | "subjunctive",
+    tense: VerbTense,
     object: VerbObject,
 };
 

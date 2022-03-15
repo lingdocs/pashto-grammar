@@ -23,7 +23,7 @@ export function randomPerson(p?: T.Person) {
     return newP;
 }
 
-function isInvalidSubjObjCombo(subj: T.Person, obj: T.Person): boolean {
+export function isInvalidSubjObjCombo(subj: T.Person, obj: T.Person): boolean {
     const firstPeople = [
         T.Person.FirstSingMale,
         T.Person.FirstSingFemale,

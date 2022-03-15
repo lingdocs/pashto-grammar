@@ -12,13 +12,39 @@ import { useState } from "react";
 import {
     randomPerson,
     randomSubjObj,
+    isInvalidSubjObjCombo,
 } from "../../lib/np-tools";
 
 export function RPicker() {
+    // TODO: Pull this into a type safe file
     const startSubjObj = randomSubjObj();
     const [subject, setSubject] = useState({ type: "pronoun", pronounType: "far", person: startSubjObj.subj });
     const [object, setObject] = useState({ type: "pronoun", pronounType: "far", person: startSubjObj.obj });
     const [mode, setMode] = useState("single");
+    function handleSetSubject(incoming) {
+        if (mode !== "single" && isInvalidSubjObjCombo(incoming.person, object.person)) {
+            alert("That combination of pronouns is not allowed");
+            return;
+            // let newP = 0;
+            // do {
+            //     newP = randomPerson();
+            // } while (isInvalidSubjObjCombo(newP, object.person));
+            // return setSubject({ ...incoming, person: newP });
+        }
+        return setSubject(incoming);
+    }
+    function handleSetObject(incoming) {
+        if (isInvalidSubjObjCombo(subject.person, incoming.person)) {
+            alert("That combination of pronouns is not allowed");
+            return;
+            // let newP = 0;
+            // do {
+            //     newP = randomPerson();
+            // } while (isInvalidSubjObjCombo(newP, subject.person));
+            // return setObject({ ...incoming, person: newP });
+        }
+        return setObject(incoming);
+    }
     function setRandomSubjObj() {
         const { subj, obj } = randomSubjObj();
         setSubject(s => ({
@@ -64,12 +90,12 @@ export function RPicker() {
         <div className="row">
             <div className="col my-2" style={{ maxWidth: "375px", margin: "0 auto" }}>
                 {mode === "subjObj" && <h5>Subject</h5>}
-                <PronounPicker pronoun={subject} onChange={setSubject} />
+                <PronounPicker pronoun={subject} onChange={handleSetSubject} />
             </div>
             {mode === "subjObj" && 
                 <div className="col my-2" style={{ maxWidth: "375px", margin: "0 auto" }}>
                     <h5>Object</h5>
-                    <PronounPicker pronoun={object} onChange={setObject} isObject />
+                    <PronounPicker pronoun={object} onChange={handleSetObject} isObject />
                 </div>
             }
         </div>

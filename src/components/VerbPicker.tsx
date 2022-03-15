@@ -7,12 +7,18 @@ import {
     Types as T,
 } from "@lingdocs/pashto-inflector";
 
-const tenseOptions = [{
+const tenseOptions: { label: string, value: VerbTense }[] = [{
     label: "present",
     value: "present",
 }, {
     label: "subjunctive",
     value: "subjunctive",
+}, {
+    label: "simple past",
+    value: "perfectivePast",
+}, {
+    label: "continuous past",
+    value: "imperfectivePast",
 }];
 
 function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): VerbSelection {
@@ -49,7 +55,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
         }
         onChange(makeVerbSelection(v, verb));
     }
-    function onTenseSelect({ value }: { label: string, value: "present" | "subjunctive" }) {
+    function onTenseSelect({ value }: { label: string, value: VerbTense }) {
         if (verb) {
             onChange({
                 ...verb,
@@ -80,7 +86,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             // @ts-ignore
             options={tenseOptions}
             isSearchable
-            placeholder={verb ? tenseOptions.find(o => o.value === verb.tense)?.value : "Select Tense..."}
+            placeholder={verb ? tenseOptions.find(o => o.value === verb.tense)?.label : "Select Tense..."}
             {...zIndexProps}
         />
     </div>;

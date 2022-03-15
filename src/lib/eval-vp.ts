@@ -14,22 +14,25 @@ import {
 
 export function renderVP(VP: VPSelection): VPRendered {
     // TODO: Will be based on past tense etc
-    const king = "subject";
-    // const servant = VP.object ? "object" : undefined;
+    const isPast = isPastTense(VP.verb.tense);
+    const isTransitive = VP.object !== "none";
+    const { king, /* servant */ } = getKingAndServant(isPast, isTransitive);
+    console.log({ king, isPast, isTransitive });
     const verbPerson = getPersonFromNP(VP[king]);
     const subjectPerson = getPersonFromNP(VP.subject);
+    // TODO: also don't inflect if it's a pattern one animate noun
+    const inflectSubject = isPast && isTransitive; 
+    console.log({ inflectSubject });
     const subject: Rendered<NPSelection> = {
         ...VP.subject,
-        inflected: false,
-        // TODO: possibility for inflecting
-        ...textOfNP(VP.subject, false, false),
+        inflected: inflectSubject,
+        ...textOfNP(VP.subject, inflectSubject, false),
     };
-    const inflectObject = isFirstOrSecondPersPronoun(VP.object);
+    const inflectObject = !isPast && isFirstOrSecondPersPronoun(VP.object);
     const object: "none" | Rendered<NPSelection> | T.Person.ThirdPlurMale = typeof VP.object === "object"
         ? {
             ...VP.subject,
             inflected: inflectObject,
-            // TODO: possibility for inflecting
             ...textOfNP(VP.object, inflectObject, true),
         } : VP.object;
     // TODO: error handle this?
@@ -64,11 +67,20 @@ export function compileVP(VP: VPRendered | VPSelection): { ps: T.SingleOrLengthO
     if (VP.type === "VPSelection") {
         return compileVP(renderVP(VP));
     }
+    function insertEWords(e: string, { subject, object }: { subject: string, object?: string }): string {
+        return e.replace("$SUBJ", subject).replace("$OBJ", object || "");
+    }
+    // TODO: display of short and long options etc.
     const vPs = "long" in VP.verb.ps ? VP.verb.ps.long : VP.verb.ps;
-    // const vE = VP.verb.e;
+    const engSubj = VP.subject.e || undefined;
+    const engObj = (typeof VP.object === "object" && VP.object.e) ? VP.object.e : undefined;
+    // require all English parts for making the English phrase
+    const e = (VP.verb.e && engSubj && engObj) ? VP.verb.e.map(e => insertEWords(e, {
+        subject: engSubj,
+        object: engObj,
+    })) : undefined;
     const obj = typeof VP.object === "object" ? VP.object : undefined;
     const ps = VP.subject.ps.flatMap(s => (
-        // TODO: fix double space thing
         obj ? obj.ps.flatMap(o => (
             vPs.flatMap(v => (
                 concatPsString(s, " ", o, " ", v)
@@ -77,7 +89,27 @@ export function compileVP(VP: VPRendered | VPSelection): { ps: T.SingleOrLengthO
             concatPsString(s, " ", v)
         ))
     ));
-    return { ps };
+    return { ps, e };
+}
+
+function isPastTense(tense: VerbTense): boolean {
+    return tense.toLowerCase().includes("past");
+}
+
+function getKingAndServant(isPast: boolean, isTransitive: boolean): 
+    { king: "subject", servant: "object" } |
+    { king: "object", servant: "subject" } |
+    { king: "subject", servant: undefined } {
+    if (!isTransitive) {
+        return { king: "subject", servant: undefined };
+    }
+    return isPast ? {
+        king: "object",
+        servant: "subject",
+    } : {
+        king: "subject",
+        servant: "object",
+    };
 }
 
 function isFirstOrSecondPersPronoun(o: "none" | NPSelection | T.Person.ThirdPlurMale): boolean {
@@ -86,8 +118,8 @@ function isFirstOrSecondPersPronoun(o: "none" | NPSelection | T.Person.ThirdPlur
     return [0,1,2,3,6,7,8,9].includes(o.person);
 }
 
-function getPsVerbConjugation(conj: T.VerbConjugation, tense: "present" | "subjunctive", person: T.Person): T.SingleOrLengthOpts<T.PsString[]> {
-    const f = conj[tense === "present" ? "imperfective" : "perfective"].nonImperative;
+function getPsVerbConjugation(conj: T.VerbConjugation, tense: VerbTense, person: T.Person): T.SingleOrLengthOpts<T.PsString[]> {
+    const f = getTenseVerbForm(conj, tense);
     // TODO: ability to grab the correct part of matrix
     const block = "mascSing" in f
         ? f.mascSing
@@ -108,12 +140,28 @@ function getPsVerbConjugation(conj: T.VerbConjugation, tense: "present" | "subju
     return grabFromBlock(block, pos);
 }
 
+function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense): T.VerbForm {
+    if (tense === "present") {
+        return conj.imperfective.nonImperative;
+    }
+    if (tense === "subjunctive") {
+        return conj.perfective.nonImperative;
+    }
+    if (tense === "imperfectivePast") {
+        return conj.imperfective.past;
+    }
+    if (tense === "perfectivePast") {
+        return conj.perfective.past;
+    }
+    throw new Error("unknown tense");
+}
+
 function getEnglishVerbConjugation({ subjectPerson, object, ep, v, tense, n }: {
     subjectPerson: T.Person,
     object: "none" | NPSelection | T.Person.ThirdPlurMale,
     v: T.EnglishVerbConjugationEc,
     ep: string | undefined,
-    tense: "present" | "subjunctive",
+    tense: VerbTense,
     n: boolean,
 }): string[] {
     function engEquative(tense: "past" | "present", s: T.Person): string {
@@ -133,7 +181,7 @@ function getEnglishVerbConjugation({ subjectPerson, object, ep, v, tense, n }: {
         return (v[2] === "being");
     }
     const builders: Record<
-        string,
+        VerbTense,
         (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => string[]
     > = {
         present: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
@@ -146,12 +194,28 @@ function getEnglishVerbConjugation({ subjectPerson, object, ep, v, tense, n }: {
             `that $SUBJ ${n ? " won't" : " will"} ${isToBe(v) ? "be" : v[0]}`,
             `should $SUBJ ${n ? " not" : ""} ${isToBe(v) ? "be" : v[0]}`,
         ]),
+        imperfectivePast: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            //  - subj pastEquative (N && "not") v.2 obj
+            `$SUBJ ${engEquative("past", s)}${n ? " not" : ""} ${v[2]}`,
+            //  - subj "would" (N && "not") v.0 obj
+            `$SUBJ would${n ? " not" : ""} ${isToBe(v) ? "be" : v[0]}`,
+            //  - subj pastEquative (N && "not") going to" v.0 obj
+            `$SUBJ ${engEquative("past", s)}${n ? " not" : ""} going to ${isToBe(v) ? "be" : v[0]}`,
+        ]),
+        perfectivePast: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ${isToBe(v)
+                ? ` ${engEquative("past", s)}${n ? " not" : ""}`
+                : `${n ? " did not" : ""} ${v[3]}`}`,
+        ]),
     };
     const base = builders[tense](subjectPerson, v, n);
     return base.map(b => `${b}${typeof object === "object" ? " $OBJ" : ""}${ep ? ` ${ep}` : ""}`);
 }
 
-function getPersonFromNP(np: NPSelection | T.Person.ThirdPlurMale): T.Person {
+function getPersonFromNP(np: NPSelection | T.Person.ThirdPlurMale | "none"): T.Person {
+    if (np === "none") {
+        throw new Error("empty entity");
+    }
     if (typeof np === "number") return np;
     if (np.type === "participle") {
         return T.Person.ThirdPlurMale;
@@ -166,20 +230,19 @@ function getPersonFromNP(np: NPSelection | T.Person.ThirdPlurMale): T.Person {
 
 function textOfNP(np: NPSelection, inflected: boolean, englishInflected: boolean): { ps: T.PsString[], e: string } {
     if (np.type === "participle") {
-        // TODO: Implement ability to inflect participles
         return textOfParticiple(np, inflected);
     }
     if (np.type === "pronoun") {
         return textOfPronoun(np, inflected, englishInflected);
     }
-    // TODO: Implement ability to inflect nouns
     return textOfNoun(np, inflected);
 }
 
 function textOfParticiple({ verb: { entry }}: ParticipleSelection, inflected: boolean): { ps: T.PsString[], e: string } {
     // TODO: ability to inflect participles
     return {
-        ps: [psStringFromEntry(entry)],
+        // TODO: More robust inflection of inflecting pariticiples - get from the conjugation engine 
+        ps: [psStringFromEntry(entry)].map(ps => inflected ? concatPsString(ps, { p: "و", f: "o" }) : ps),
         e: getEnglishParticiple(entry),
     };
 }
@@ -218,11 +281,11 @@ function textOfNoun(n: NounSelection, inflected: boolean): { ps: T.PsString[], e
     const pashto = ((): T.PsString[] => {
         const infs = inflectWord(n.entry);
         const ps = n.number === "singular"
-            ? getInf(infs, "inflections", n.gender, false)
+            ? getInf(infs, "inflections", n.gender, false, inflected)
             : [
-                ...getInf(infs, "plural", n.gender, true),
-                ...getInf(infs, "arabicPlural", n.gender, true),
-                ...getInf(infs, "inflections", n.gender, true),
+                ...getInf(infs, "plural", n.gender, true, inflected),
+                ...getInf(infs, "arabicPlural", n.gender, true, inflected),
+                ...getInf(infs, "inflections", n.gender, true, inflected),
             ];
         return ps.length > 0
             ? ps
@@ -231,13 +294,14 @@ function textOfNoun(n: NounSelection, inflected: boolean): { ps: T.PsString[], e
     return { ps: pashto, e: english };
 }
 
-function getInf(infs: T.InflectorOutput, t: "plural" | "arabicPlural" | "inflections", gender: T.Gender, plural: boolean): T.PsString[] {
+function getInf(infs: T.InflectorOutput, t: "plural" | "arabicPlural" | "inflections", gender: T.Gender, plural: boolean, inflected: boolean): T.PsString[] {
     // @ts-ignore
     if (infs && t in infs && infs[t] !== undefined && gender in infs[t] && infs[t][gender] !== undefined) {
         // @ts-ignore
         const iset = infs[t][gender] as T.InflectionSet;
-        const ipick = iset[(t === "inflections" && plural) ? 1 : 0];
-        return ipick;
+        const inflectionNumber = (inflected ? 1 : 0) + ((t === "inflections" && plural) ? 1 : 0);
+        console.log({ t, plural, inflectionNumber });
+        return iset[inflectionNumber];
     }
     return [];
 }
