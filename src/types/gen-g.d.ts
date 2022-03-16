@@ -16,8 +16,9 @@ type VPSelection = {
 type VPRendered = {
     type: "VPRendered",
     subject: Rendered<NPSelection>,
-    object: "none" | Rendered<NPSelection> | import("@lingdocs/pashto-inflector").Types.Person.ThirdPlurMale,
-    verb: VerbRendered, 
+    object: Rendered<NPSelection> | ObjectNP,
+    verb: VerbRendered,
+    englishBase?: string[],
 }
 
 type VerbTense = "present" | "subjunctive" | "perfectivePast" | "imperfectivePast";
@@ -27,6 +28,7 @@ type VerbSelection = {
     verb: VerbEntry,
     tense: VerbTense,
     object: VerbObject,
+    negative: boolean,
 };
 
 type VerbRendered = Omit<VerbSelection, "object"> & {
@@ -34,21 +36,22 @@ type VerbRendered = Omit<VerbSelection, "object"> & {
         import("@lingdocs/pashto-inflector").Types.PsString[]
     >,
     person: import("@lingdocs/pashto-inflector").Types.Person,
-    e?: string[],
 };
 
-type VerbObject = // intransitive verb
-    "none" |
+type VerbObject = 
     // transitive verb - object not selected yet
     undefined |
     // transitive verb - obect selected
     NPSelection |
     // grammatically transitive verb with unspoken 3rd pers masc plur entity
-    import("@lingdocs/pashto-inflector").Types.Person.ThirdPlurMale;
+    // or intransitive "none"
+    ObjectNP
 
 type NPSelection = NounSelection | PronounSelection | ParticipleSelection;
 
 type NPType = "noun" | "pronoun" | "participle";
+
+type ObjectNP = "none" | import("@lingdocs/pashto-inflector").Types.Person.ThirdPlurMale;
 
 // TODO require/import Person and PsString
 type NounSelection = {

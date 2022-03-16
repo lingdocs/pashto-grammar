@@ -1,4 +1,4 @@
-import { renderVP, compileVP } from "../../lib/eval-vp";
+import { renderVP, compileVP } from "../../lib/phrase-building";
 import {
     InlinePs,
     defaultTextOptions as opts,

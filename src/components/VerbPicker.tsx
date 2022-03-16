@@ -5,6 +5,7 @@ import {
 } from "./np-picker/picker-tools";
 import {
     Types as T,
+    // ButtonSelect,
 } from "@lingdocs/pashto-inflector";
 
 const tenseOptions: { label: string, value: VerbTense }[] = [{
@@ -42,6 +43,7 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         verb,
         tense: oldVerbSelection ? oldVerbSelection.tense : "present",
         object,
+        negative: oldVerbSelection ? oldVerbSelection.negative : false,
     };
 }
 
@@ -63,6 +65,14 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             });
         }
     }
+    // function onPosNegSelect(value: string) {
+    //     if (verb) {
+    //         onChange({
+    //             ...verb,
+    //             negative: value === "true", 
+    //         });
+    //     }
+    // }
     return <div style={{ maxWidth: "225px" }}>
         <div>Verb:</div>
         <Select
@@ -89,6 +99,21 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             placeholder={verb ? tenseOptions.find(o => o.value === verb.tense)?.label : "Select Tense..."}
             {...zIndexProps}
         />
+        {/* The negative is not ready yet for people to use */}
+        {/* {verb && <div className="text-center my-3">
+            <ButtonSelect
+                small
+                value={verb.negative.toString()}
+                options={[{
+                    label: "Pos.",
+                    value: "false",
+                }, {
+                    label: "Neg.",
+                    value: "true",
+                }]}
+                handleChange={onPosNegSelect}
+            />
+        </div>} */}
     </div>;
 }
 
