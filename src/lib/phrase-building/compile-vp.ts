@@ -75,7 +75,7 @@ function shrinkEntitiesAndGatherKids(VP: VPRendered): { kids: ListOfEntities, NP
     }
     return {
         kids: [shrink(toShrink)],
-        NPs: [],
+        NPs: [king],
     }
 }
 
