@@ -28,13 +28,17 @@ type VerbSelection = {
     verb: VerbEntry,
     tense: VerbTense,
     object: VerbObject,
+    // TODO: add in perfective element here??
     negative: boolean,
 };
 
 type VerbRendered = Omit<VerbSelection, "object"> & {
-    ps: import("@lingdocs/pashto-inflector").Types.SingleOrLengthOpts<
-        import("@lingdocs/pashto-inflector").Types.PsString[]
-    >,
+    ps: { 
+        head: import("@lingdocs/pashto-inflector").Types.PsString | undefined,
+        rest: import("@lingdocs/pashto-inflector").Types.SingleOrLengthOpts<
+            import("@lingdocs/pashto-inflector").Types.PsString[]
+        >,
+    },
     person: import("@lingdocs/pashto-inflector").Types.Person,
 };
 

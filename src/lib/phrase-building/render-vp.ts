@@ -7,6 +7,7 @@ import {
     parseEc,
     conjugateVerb,
     concatPsString,
+    removeAccents,
 } from "@lingdocs/pashto-inflector";
 import {
     psStringFromEntry,
@@ -18,8 +19,12 @@ export function renderVP(VP: VPSelection): VPRendered {
     const isTransitive = VP.object !== "none";
     const { king, /* servant */ } = getKingAndServant(isPast, isTransitive);
     const kingPerson = getPersonFromNP(VP[king]);
+    // TODO: more elegant way of handling this type safety
+    if (kingPerson === undefined) {
+        throw new Error("king of sentance does not exist");
+    }
     const subjectPerson = getPersonFromNP(VP.subject);
-    // const objectPerson = getPersonFromNP(VP.object);
+    const objectPerson = getPersonFromNP(VP.object);
     // TODO: also don't inflect if it's a pattern one animate noun
     const inflectSubject = isPast && isTransitive;
     const inflectObject = !isPast && isFirstOrSecondPersPronoun(VP.object);
@@ -28,7 +33,7 @@ export function renderVP(VP: VPSelection): VPRendered {
         type: "VPRendered",
         subject: renderNPSelection(VP.subject, inflectSubject, false, "subject"),
         object: renderNPSelection(VP.object, inflectObject, true, "object"),
-        verb: renderVerbSelection(VP.verb, kingPerson),
+        verb: renderVerbSelection(VP.verb, kingPerson, objectPerson),
         englishBase: renderEnglishVPBase({
             subjectPerson,
             object: VP.object,
@@ -46,14 +51,62 @@ function renderNPSelection(NP: NPSelection | ObjectNP, inflected: boolean, infle
         }
         return NP;
     }
-    return {
-        ...NP,
-        inflected,
-        ...textOfNP(NP, inflected, inflectEnglish),
-    };
+    if (NP.type === "noun") {
+        return renderNounSelection(NP, inflected);
+    }
+    if (NP.type === "pronoun") {
+        return renderPronounSelection(NP, inflected, inflectEnglish);
+    }
+    if (NP.type === "participle") {
+        return renderParticipleSelection(NP, inflected)
+    }
+    throw new Error("unknown NP type");
 };
 
-function renderVerbSelection(vs: VerbSelection, person: T.Person): VerbRendered {
+function renderNounSelection(n: NounSelection, inflected: boolean): Rendered<NounSelection> {
+    const english = getEnglishFromNoun(n.entry, n.number);
+    const pashto = ((): T.PsString[] => {
+        const infs = inflectWord(n.entry);
+        const ps = n.number === "singular"
+            ? getInf(infs, "inflections", n.gender, false, inflected)
+            : [
+                ...getInf(infs, "plural", n.gender, true, inflected),
+                ...getInf(infs, "arabicPlural", n.gender, true, inflected),
+                ...getInf(infs, "inflections", n.gender, true, inflected),
+            ];
+        return ps.length > 0
+            ? ps
+            : [psStringFromEntry(n.entry)];
+    })();
+    return {
+        ...n,
+        inflected,
+        ps: pashto,
+        e: english,
+    };
+}
+
+function renderPronounSelection(p: PronounSelection, inflected: boolean, englishInflected: boolean): Rendered<PronounSelection> {
+    const [row, col] = getVerbBlockPosFromPerson(p.person);
+    return {
+        ...p,
+        inflected,
+        ps: grammarUnits.pronouns[p.distance][inflected ? "inflected" : "plain"][row][col],
+        e: grammarUnits.persons[p.person].label[englishInflected ? "object" : "subject"],
+    };
+}
+
+function renderParticipleSelection(p: ParticipleSelection, inflected: boolean): Rendered<ParticipleSelection> {
+    return {
+        ...p,
+        inflected,
+        // TODO: More robust inflection of inflecting pariticiples - get from the conjugation engine 
+        ps: [psStringFromEntry(p.verb.entry)].map(ps => inflected ? concatPsString(ps, { p: "و", f: "o" }) : ps),
+        e: getEnglishParticiple(p.verb.entry),
+    };
+}
+
+function renderVerbSelection(vs: VerbSelection, person: T.Person, objectPerson: T.Person | undefined): VerbRendered {
     const conjugations = conjugateVerb(vs.verb.entry, vs.verb.complement);
     // TODO: error handle this?
     // TODO: option to manually select these
@@ -62,11 +115,11 @@ function renderVerbSelection(vs: VerbSelection, person: T.Person): VerbRendered 
         : "stative" in conjugations
         ? conjugations.stative
         : conjugations;
-    // TODO: get the object person from the matrix on stative compounds
+    // TODO: deliver the perfective split! 
     return {
         ...vs,
         person,
-        ps: getPsVerbConjugation(conj, vs.tense, person),
+        ps: getPsVerbConjugation(conj, vs.tense, person, objectPerson),
     }
 }
 
@@ -126,12 +179,30 @@ function renderEnglishVPBase({ subjectPerson, object, vs }: {
     return base.map(b => `${b}${typeof object === "object" ? " $OBJ" : ""}${ep ? ` ${ep}` : ""}`);
 }
 
-function getPsVerbConjugation(conj: T.VerbConjugation, tense: VerbTense, person: T.Person): T.SingleOrLengthOpts<T.PsString[]> {
+function getPsVerbConjugation(conj: T.VerbConjugation, tense: VerbTense, person: T.Person, objectPerson: T.Person | undefined): {
+    head: T.PsString | undefined,
+    rest: T.SingleOrLengthOpts<T.PsString[]>,
+} { 
     const f = getTenseVerbForm(conj, tense);
-    // TODO: ability to grab the correct part of matrix
-    const block = "mascSing" in f
-        ? f.mascSing
-        : f;
+    const block = getMatrixBlock(f, objectPerson, person);
+    const perfective = isPerfective(tense);
+    const verbForm = getVerbFromBlock(block, person);
+    if (perfective) {
+        const past = isPastTense(tense);
+        const splitInfo = conj.info[past ? "root" : "stem"].perfectiveSplit;
+        if (!splitInfo) return { head: undefined, rest: verbForm };
+        // TODO: Either solve this in the inflector or here, it seems silly (or redundant)
+        // to have a length option in the perfective split stem??
+        const [splitHead] = getLong(getMatrixBlock(splitInfo, objectPerson, person));
+        return {
+            head: splitHead,
+            rest: removeHead(splitHead, verbForm),
+        };
+    }
+    return { head: undefined, rest: verbForm };
+}
+
+function getVerbFromBlock(block: T.SingleOrLengthOpts<T.VerbBlock>, person: T.Person): T.SingleOrLengthOpts<T.PsString[]> {
     function grabFromBlock(b: T.VerbBlock, [row, col]: [ row: number, col: number ]): T.PsString[] {
         return b[row][col];
     }
@@ -146,6 +217,63 @@ function getPsVerbConjugation(conj: T.VerbConjugation, tense: VerbTense, person:
         };
     }
     return grabFromBlock(block, pos);
+}
+
+function removeHead(head: T.PsString, rest: T.PsString[]): T.PsString[];
+function removeHead(head: T.PsString, rest: T.SingleOrLengthOpts<T.PsString[]>): T.SingleOrLengthOpts<T.PsString[]>;
+function removeHead(head: T.PsString, rest: T.SingleOrLengthOpts<T.PsString[]>): T.SingleOrLengthOpts<T.PsString[]> {
+    if ("long" in rest) {
+        return {
+            long: removeHead(head, rest.long),
+            short: removeHead(head, rest.short),
+            ...rest.mini ? {
+                mini: removeHead(head, rest.mini),
+            } : {},
+        }
+    }
+    return rest.map((ps) => {
+        const pMatches = removeAccents(ps.p.slice(0, head.p.length)) === removeAccents(head.p);
+        const fMatches = removeAccents(ps.f.slice(0, head.f.length)) === removeAccents(head.f);
+        if (!(pMatches && fMatches)) {
+            throw new Error(`split head does not match - ${JSON.stringify(ps)} ${JSON.stringify(head)}`);
+        }
+        return {
+            p: ps.p.slice(head.p.length), 
+            f: ps.f.slice(head.f.length),
+        }
+    });
+}
+
+function getLong<U>(x: T.SingleOrLengthOpts<U>): U {
+    if ("long" in x) {
+        return x.long;
+    }
+    return x;
+}
+function getMatrixBlock<U>(f: {
+    mascSing: T.SingleOrLengthOpts<U>;
+    mascPlur: T.SingleOrLengthOpts<U>;
+    femSing: T.SingleOrLengthOpts<U>;
+    femPlur: T.SingleOrLengthOpts<U>;
+} | T.SingleOrLengthOpts<U>, objectPerson: T.Person | undefined, kingPerson: T.Person): T.SingleOrLengthOpts<U> {
+    if (!("mascSing" in f)) {
+        return f;
+    }
+    function personToLabel(p: T.Person): "mascSing" | "mascPlur" | "femSing" | "femPlur" {
+        if (p === T.Person.FirstSingMale || p === T.Person.SecondSingMale || p === T.Person.ThirdSingMale) {
+            return "mascSing";
+        }
+        if (p === T.Person.FirstSingFemale || p === T.Person.SecondSingFemale || p === T.Person.ThirdSingFemale) {
+            return "femSing";
+        }
+        if (p === T.Person.FirstPlurMale || p === T.Person.SecondPlurMale || p === T.Person.ThirdPlurMale) {
+            return "mascPlur";
+        }
+        return "femPlur";
+    }
+    // if there's an object the matrix will agree with that, otherwise with the kingPerson (subject for intransitive)
+    const person = (objectPerson === undefined) ? kingPerson : objectPerson;
+    return f[personToLabel(person)];
 }
 
 function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense): T.VerbForm {
@@ -164,9 +292,11 @@ function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense): T.VerbForm
     throw new Error("unknown tense");
 }
 
-function getPersonFromNP(np: NPSelection | ObjectNP): T.Person {
+function getPersonFromNP(np: NPSelection): T.Person;
+function getPersonFromNP(np: NPSelection | ObjectNP): T.Person | undefined;
+function getPersonFromNP(np: NPSelection | ObjectNP): T.Person | undefined {
     if (np === "none") {
-        throw new Error("empty entity");
+        return undefined;
     }
     if (typeof np === "number") return np;
     if (np.type === "participle") {
@@ -180,25 +310,6 @@ function getPersonFromNP(np: NPSelection | ObjectNP): T.Person {
         : (np.gender === "masc" ? T.Person.ThirdSingMale : T.Person.ThirdSingFemale);
 }
 
-function textOfNP(np: NPSelection, inflected: boolean, englishInflected: boolean): { ps: T.PsString[], e: string } {
-    if (np.type === "participle") {
-        return textOfParticiple(np, inflected);
-    }
-    if (np.type === "pronoun") {
-        return textOfPronoun(np, inflected, englishInflected);
-    }
-    return textOfNoun(np, inflected);
-}
-
-function textOfParticiple({ verb: { entry }}: ParticipleSelection, inflected: boolean): { ps: T.PsString[], e: string } {
-    // TODO: ability to inflect participles
-    return {
-        // TODO: More robust inflection of inflecting pariticiples - get from the conjugation engine 
-        ps: [psStringFromEntry(entry)].map(ps => inflected ? concatPsString(ps, { p: "و", f: "o" }) : ps),
-        e: getEnglishParticiple(entry),
-    };
-}
-
 function getEnglishParticiple(entry: T.DictionaryEntry): string {
     if (!entry.ec) {
         console.log("errored participle");
@@ -210,33 +321,6 @@ function getEnglishParticiple(entry: T.DictionaryEntry): string {
     return (entry.ep)
         ? `${participle} ${entry.ep}`
         : participle;
-}
-
-function textOfPronoun(p: PronounSelection, inflected: boolean, englishInflected: boolean): { ps: T.PsString[], e: string } {
-    // TODO: Will need to handle inflecting and inflecting english pronouns etc.
-    const [row, col] = getVerbBlockPosFromPerson(p.person);
-    return {
-        ps: grammarUnits.pronouns[p.distance][inflected ? "inflected" : "plain"][row][col],
-        e: grammarUnits.persons[p.person].label[englishInflected ? "object" : "subject"],
-    };
-}
-
-function textOfNoun(n: NounSelection, inflected: boolean): { ps: T.PsString[], e: string } {
-    const english = getEnglishFromNoun(n.entry, n.number);
-    const pashto = ((): T.PsString[] => {
-        const infs = inflectWord(n.entry);
-        const ps = n.number === "singular"
-            ? getInf(infs, "inflections", n.gender, false, inflected)
-            : [
-                ...getInf(infs, "plural", n.gender, true, inflected),
-                ...getInf(infs, "arabicPlural", n.gender, true, inflected),
-                ...getInf(infs, "inflections", n.gender, true, inflected),
-            ];
-        return ps.length > 0
-            ? ps
-            : [psStringFromEntry(n.entry)];
-    })();
-    return { ps: pashto, e: english };
 }
 
 function getEnglishFromNoun(entry: T.DictionaryEntry, number: NounNumber): string {
@@ -295,4 +379,14 @@ function isFirstOrSecondPersPronoun(o: "none" | NPSelection | T.Person.ThirdPlur
     if (typeof o !== "object") return false;
     if (o.type !== "pronoun") return false;
     return [0,1,2,3,6,7,8,9].includes(o.person);
+}
+
+function isPerfective(t: VerbTense): boolean {
+    if (t === "present" || t === "imperfectivePast") {
+        return false;
+    }
+    if (t === "perfectivePast" || t === "subjunctive") {
+        return true;
+    }
+    throw new Error("tense not implemented yet");
 }

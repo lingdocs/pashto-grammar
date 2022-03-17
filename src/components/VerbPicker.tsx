@@ -5,7 +5,7 @@ import {
 } from "./np-picker/picker-tools";
 import {
     Types as T,
-    // ButtonSelect,
+    ButtonSelect,
 } from "@lingdocs/pashto-inflector";
 
 const tenseOptions: { label: string, value: VerbTense }[] = [{
@@ -65,14 +65,14 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             });
         }
     }
-    // function onPosNegSelect(value: string) {
-    //     if (verb) {
-    //         onChange({
-    //             ...verb,
-    //             negative: value === "true", 
-    //         });
-    //     }
-    // }
+    function onPosNegSelect(value: string) {
+        if (verb) {
+            onChange({
+                ...verb,
+                negative: value === "true", 
+            });
+        }
+    }
     return <div style={{ maxWidth: "225px" }}>
         <div>Verb:</div>
         <Select
@@ -99,8 +99,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             placeholder={verb ? tenseOptions.find(o => o.value === verb.tense)?.label : "Select Tense..."}
             {...zIndexProps}
         />
-        {/* The negative is not ready yet for people to use */}
-        {/* {verb && <div className="text-center my-3">
+        {verb && <div className="text-center my-3">
             <ButtonSelect
                 small
                 value={verb.negative.toString()}
@@ -113,7 +112,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                 }]}
                 handleChange={onPosNegSelect}
             />
-        </div>} */}
+        </div>}
     </div>;
 }
 
