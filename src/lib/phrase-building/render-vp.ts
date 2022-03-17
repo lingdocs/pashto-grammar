@@ -12,12 +12,16 @@ import {
 import {
     psStringFromEntry,
 } from "../text-tools";
+import {
+    getPersonFromNP,
+} from "./vp-tools";
+import { isPattern4Entry } from "../type-predicates";
 
 export function renderVP(VP: VPSelection): VPRendered {
     // Sentence Rules Logic
     const isPast = isPastTense(VP.verb.tense);
     const isTransitive = VP.object !== "none";
-    const { king, /* servant */ } = getKingAndServant(isPast, isTransitive);
+    const { king, servant } = getKingAndServant(isPast, isTransitive);
     const kingPerson = getPersonFromNP(VP[king]);
     // TODO: more elegant way of handling this type safety
     if (kingPerson === undefined) {
@@ -26,11 +30,16 @@ export function renderVP(VP: VPSelection): VPRendered {
     const subjectPerson = getPersonFromNP(VP.subject);
     const objectPerson = getPersonFromNP(VP.object);
     // TODO: also don't inflect if it's a pattern one animate noun
-    const inflectSubject = isPast && isTransitive;
+    const inflectSubject = isPast && isTransitive && !isSingularAnimatePattern4(VP.subject);
     const inflectObject = !isPast && isFirstOrSecondPersPronoun(VP.object);
     // Render Elements
     return {
         type: "VPRendered",
+        king,
+        servant,
+        isPast,
+        isTransitive,
+        shrinkServant: VP.shrinkServant,
         subject: renderNPSelection(VP.subject, inflectSubject, false, "subject"),
         object: renderNPSelection(VP.object, inflectObject, true, "object"),
         verb: renderVerbSelection(VP.verb, kingPerson, objectPerson),
@@ -292,24 +301,6 @@ function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense): T.VerbForm
     throw new Error("unknown tense");
 }
 
-function getPersonFromNP(np: NPSelection): T.Person;
-function getPersonFromNP(np: NPSelection | ObjectNP): T.Person | undefined;
-function getPersonFromNP(np: NPSelection | ObjectNP): T.Person | undefined {
-    if (np === "none") {
-        return undefined;
-    }
-    if (typeof np === "number") return np;
-    if (np.type === "participle") {
-        return T.Person.ThirdPlurMale;
-    }
-    if (np.type === "pronoun") {
-        return np.person;
-    }
-    return np.number === "plural"
-        ? (np.gender === "masc" ? T.Person.ThirdPlurMale : T.Person.ThirdPlurFemale)
-        : (np.gender === "masc" ? T.Person.ThirdSingMale : T.Person.ThirdSingFemale);
-}
-
 function getEnglishParticiple(entry: T.DictionaryEntry): string {
     if (!entry.ec) {
         console.log("errored participle");
@@ -349,7 +340,6 @@ function getInf(infs: T.InflectorOutput, t: "plural" | "arabicPlural" | "inflect
         // @ts-ignore
         const iset = infs[t][gender] as T.InflectionSet;
         const inflectionNumber = (inflected ? 1 : 0) + ((t === "inflections" && plural) ? 1 : 0);
-        console.log({ t, plural, inflectionNumber });
         return iset[inflectionNumber];
     }
     return [];
@@ -389,4 +379,11 @@ function isPerfective(t: VerbTense): boolean {
         return true;
     }
     throw new Error("tense not implemented yet");
+}
+
+function isSingularAnimatePattern4(np: NPSelection): boolean {
+    if (np.type !== "noun") {
+        return false;
+    }
+    return isPattern4Entry(np.entry) && np.entry.c.includes("anim.") && (np.number === "singular");
 }

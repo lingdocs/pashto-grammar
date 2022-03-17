@@ -2,97 +2,136 @@ import {
     Types as T,
     concatPsString,
     removeAccents,
+    grammarUnits,
+    getVerbBlockPosFromPerson,
 } from "@lingdocs/pashto-inflector";
 
+type ListOfEntities = T.PsString[][];
+
 export function compileVP(VP: VPRendered): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] } {
-    console.log(VP);
     const { head, rest } = VP.verb.ps;
-    const subj = VP.subject.ps;
-    const obj = typeof VP.object === "object" ? VP.object.ps : undefined;
-    // better: feed in array of NPs [subj, obj, etc...]
+    const { kids, NPs } = shrinkEntitiesAndGatherKids(VP);
     return {
-        ps: arrangePs(subj, obj, head, rest, VP.verb.negative),
+        ps: compilePs(NPs, head, rest, VP.verb.negative, kids),
         e: compileEnglish(VP),
     };
 }
 
-function arrangePs(
-    subj: T.PsString[],
-    obj: T.PsString[] | undefined,
+function compilePs(
+    nps: ListOfEntities,
     head: T.PsString | undefined,
     rest: T.PsString[],
     negative: boolean,
+    kids: ListOfEntities,
 ): T.PsString[];
-function arrangePs(
-    subj: T.PsString[],
-    obj: T.PsString[] | undefined,
+function compilePs(
+    nps: ListOfEntities,
     head: T.PsString | undefined,
     rest: T.SingleOrLengthOpts<T.PsString[]>,
     negative: boolean,
+    kids: ListOfEntities,
 ): T.SingleOrLengthOpts<T.PsString[]>;
-function arrangePs(
-    subj: T.PsString[],
-    obj: T.PsString[] | undefined,
+function compilePs(
+    nps: ListOfEntities,
     head: T.PsString | undefined,
     rest: T.SingleOrLengthOpts<T.PsString[]>,
     negative: boolean,
+    kids: ListOfEntities,
 ): T.SingleOrLengthOpts<T.PsString[]> {
     if ("long" in rest) {
         return {
-            long: arrangePs(subj, obj, head, rest.long, negative),
-            short: arrangePs(subj, obj, head, rest.short, negative),
+            long: compilePs(nps, head, rest.long, negative, kids),
+            short: compilePs(nps, head, rest.short, negative, kids),
             ...rest.mini ? {
-                mini: arrangePs(subj, obj, head, rest.mini, negative),
+                mini: compilePs(nps, head, rest.mini, negative, kids),
             } : {},
         };
     }
-    const verbWNeg = arrangeVerbWNeg(head, rest, negative);
-    if (obj) {
-        return subj.flatMap(s => (
-            obj.flatMap(o => 
-                verbWNeg.flatMap(v => (
-                    concatPsString(s, " ", o, " ", v)
-                    // concatPsString(o, " ", s, " ", v),
-                ))
-            ))
-        );
+    const entities: ListOfEntities = [
+        ...nps,
+        ...compileVerbWNegative(head, rest, negative)
+    ];
+    const entitiesWKids = putKidsInKidsSection(entities, kids);
+    return combineEntities(entitiesWKids);
+}
+
+function shrinkEntitiesAndGatherKids(VP: VPRendered): { kids: ListOfEntities, NPs: ListOfEntities } {
+    const main = {
+        subject: VP.subject.ps,
+        object: typeof VP.object === "object" ? VP.object.ps : undefined,
     }
-    return subj.flatMap(s => (
-        verbWNeg.flatMap(v => (
-            concatPsString(s, " ", v)
+    const toShrink = (VP.shrinkServant && VP.servant)
+        ? VP[VP.servant]
+        : undefined;
+    if (!toShrink || typeof toShrink !== "object") {
+        return {
+            kids: [],
+            NPs: [main.subject, ...main.object ? [main.object] : []]
+        };
+    }
+    const king = main[VP.king];
+    if (!king) {
+        throw new Error("lost the king in the shrinking process");
+    }
+    return {
+        kids: [shrink(toShrink)],
+        NPs: [],
+    }
+}
+
+function shrink(np: Rendered<NPSelection>): T.PsString[] {
+    const person: T.Person = np.type === "participle"
+        ? T.Person.ThirdPlurMale
+        // @ts-ignore
+        : np.person;
+    const [row, col] = getVerbBlockPosFromPerson(person);
+    return grammarUnits.pronouns.mini[row][col];
+}
+
+function putKidsInKidsSection(entities: ListOfEntities, kids: ListOfEntities): ListOfEntities {
+    const first = entities[0];
+    const rest = entities.slice(1);
+    return [
+        first,
+        ...kids,
+        ...rest,
+    ];
+}
+
+function combineEntities(loe: ListOfEntities): T.PsString[] {
+    const first = loe[0];
+    const rest = loe.slice(1);
+    if (!rest.length) return first;
+    return combineEntities(rest).flatMap(r => (
+        first.map(ps => concatPsString(
+            ps,
+            ps.p === "و" ? { p: "", f: "-" } : " ",
+            r,
         ))
     ));
 }
 
-function arrangeVerbWNeg(head: T.PsString | undefined, rest: T.PsString[], negative: boolean): T.PsString[] {
-    if (!negative) {
-        return rest.map(ps => concatPsString(head || "", ps));
-    }
 
+function compileVerbWNegative(head: T.PsString | undefined, rest: T.PsString[], negative: boolean): ListOfEntities {
+    if (!negative) {
+        return [
+            ...head ? [[head]] : [],
+            rest,
+        ];
+    }
     const nu: T.PsString = { p: "نه", f: "nú" };
     if (!head) {
-        return rest.map(r => concatPsString(nu, " ", removeAccents(r)));
+        return [
+            [nu],
+            rest.map(r => removeAccents(r)),
+        ];
     }
-    const regularPrefix = head.p === "و" || head.p === "وا";
-    const withNuAfterHead = rest.map(r => concatPsString(
-        removeAccents(head),
-        { p: "", f: "-" },
-        nu,
-        " ",
-        removeAccents(r),
-    ));
-    if (regularPrefix) {
-        return withNuAfterHead;
-    }
-    const withNuBeforeHead = rest.map(r => concatPsString(
-        nu,
-        " ",
-        removeAccents(head),
-        removeAccents(r),
-    ));
+    // const regularPrefix = head.p === "و" || head.p === "وا";
+    // if (regularPrefix) {
+    // dashes for oo-nu etc
     return [
-        ...withNuAfterHead,
-        ...withNuBeforeHead,
+        [removeAccents(head)],
+        rest.map(r => concatPsString(nu, " ", removeAccents(r)))
     ];
 }
 

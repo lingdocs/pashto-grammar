@@ -10,11 +10,17 @@ type VPSelection = {
     subject: NPSelection,
     object: Exclude<VerbObject, undefined>,
     verb: Exclude<VerbSelection, "object">,
+    shrinkServant: boolean,
 };
 
 // TODO: make this Rendered<VPSelection> with recursive Rendered<>
 type VPRendered = {
     type: "VPRendered",
+    king: "subject" | "object",
+    servant: "subject" | "object" | undefined,
+    shrinkServant: boolean,
+    isPast: boolean,
+    isTransitive: boolean,
     subject: Rendered<NPSelection>,
     object: Rendered<NPSelection> | ObjectNP,
     verb: VerbRendered,

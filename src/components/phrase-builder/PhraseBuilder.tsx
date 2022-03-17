@@ -8,12 +8,13 @@ import {
     isInvalidSubjObjCombo,
 } from "../../lib/np-tools";
 
-function verbPhraseComplete({ subject, verb }: { subject: NPSelection | undefined, verb: VerbSelection | undefined }): VPSelection | undefined {
+function verbPhraseComplete({ subject, verb, shrinkServant }: { subject: NPSelection | undefined, verb: VerbSelection | undefined, shrinkServant: boolean }): VPSelection | undefined {
     if (!subject) return undefined;
     if (!verb) return undefined;
     if (verb.object === undefined) return undefined;
     return {
         type: "VPSelection",
+        shrinkServant,
         subject,
         object: verb.object,
         verb,
@@ -23,6 +24,7 @@ function verbPhraseComplete({ subject, verb }: { subject: NPSelection | undefine
 export function PhraseBuilder() {
     const [subject, setSubject] = useState<NPSelection | undefined>(undefined);
     const [verb, setVerb] = useState<VerbSelection | undefined>(undefined);
+    const [shrinkServant, setShrinkServant] = useState<boolean>(false);
     function handleSubjectChange(subject: NPSelection | undefined) {
         const objPronoun = (typeof verb?.object === "object" && verb.object.type === "pronoun")
             ? verb.object.person
@@ -55,7 +57,10 @@ export function PhraseBuilder() {
             object,
         });
     }
-    const verbPhrase: VPSelection | undefined = verbPhraseComplete({ subject, verb });
+    function handleShrinkServantChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setShrinkServant(e.target.checked);
+    }
+    const verbPhrase: VPSelection | undefined = verbPhraseComplete({ subject, verb, shrinkServant });
     return <div>
         <div className="d-flex flex-row justify-content-between">
             <div className="mr-2">
@@ -75,6 +80,17 @@ export function PhraseBuilder() {
                 <VerbPicker verbs={verbs} verb={verb} onChange={setVerb} />
             </div>
         </div>
+        {/* TODO: make this appear conditionally */}
+        {(verbPhrase?.object && typeof verbPhrase.object === "object") && <div className="form-group form-check">
+            <input
+                className="form-check-input"
+                name="shrinkServant"
+                type="checkbox"
+                checked={shrinkServant}
+                onChange={handleShrinkServantChange}
+            />
+            <label className="form-check-label">Shrink servant</label>
+        </div>}
         {verbPhrase && <div>
             <VPDisplay VP={verbPhrase} />
         </div>}
