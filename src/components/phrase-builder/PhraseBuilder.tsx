@@ -3,28 +3,30 @@ import NPPicker from "../np-picker/NPPicker";
 import VerbPicker from "../VerbPicker";
 import VPDisplay from "./VPDisplay";
 import ObjectDisplay from "./ObjectDisplay";
-import { verbs } from "../../words/words";
+import { verbs as verbsRaw } from "../../words/words";
 import {
     isInvalidSubjObjCombo,
 } from "../../lib/np-tools";
 
-function verbPhraseComplete({ subject, verb, shrinkServant }: { subject: NPSelection | undefined, verb: VerbSelection | undefined, shrinkServant: boolean }): VPSelection | undefined {
+const verbs = verbsRaw.filter(v => !v.entry.c?.includes("gramm."))
+
+function verbPhraseComplete({ subject, verb }: { subject: NPSelection | undefined, verb: VerbSelection | undefined }): VPSelection | undefined {
     if (!subject) return undefined;
     if (!verb) return undefined;
     if (verb.object === undefined) return undefined;
     return {
         type: "VPSelection",
-        shrinkServant,
         subject,
         object: verb.object,
         verb,
     };
 }
 
+// TODO: BIG ISSUE, IF YOU OPEN THE OBJECT PRONOUN BOX AND IT CONFLICTS WITH THE SUBJECT
+// IT CAN SAY THE COMBO IS NOT ALLOWED AND SHOW SOMETHING BLANK
 export function PhraseBuilder() {
     const [subject, setSubject] = useState<NPSelection | undefined>(undefined);
     const [verb, setVerb] = useState<VerbSelection | undefined>(undefined);
-    const [shrinkServant, setShrinkServant] = useState<boolean>(false);
     function handleSubjectChange(subject: NPSelection | undefined) {
         const objPronoun = (typeof verb?.object === "object" && verb.object.type === "pronoun")
             ? verb.object.person
@@ -57,40 +59,26 @@ export function PhraseBuilder() {
             object,
         });
     }
-    function handleShrinkServantChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setShrinkServant(e.target.checked);
-    }
-    const verbPhrase: VPSelection | undefined = verbPhraseComplete({ subject, verb, shrinkServant });
-    return <div>
-        <div className="d-flex flex-row justify-content-between">
-            <div className="mr-2">
-                <div className="h5">Subject</div>
+    const verbPhrase: VPSelection | undefined = verbPhraseComplete({ subject, verb });
+    return <div className="mt-3">
+        <div className="row">
+            <div className="col mb-2">
+                <div className="h4">Subject</div>
                 <NPPicker
                     np={subject}
                     counterPart={verb ? verb.object : undefined}
                     onChange={handleSubjectChange}
                 />
             </div>
-            {verb && (verb.object !== "none") && <div className="mr-2">
-                <div className="h5">Object</div>
+            {verb && (verb.object !== "none") && <div className="col mb-2">
+                <div className="h4">Object</div>
                 <ObjectDisplay object={verb.object} counterPart={subject} onChange={handleObjectChange} />
             </div>}
-            <div>
-                <div className="h5">Verb</div>
+            <div className="col mb-2">
+                <div className="h4">Verb</div>
                 <VerbPicker verbs={verbs} verb={verb} onChange={setVerb} />
             </div>
         </div>
-        {/* TODO: make this appear conditionally */}
-        {(verbPhrase?.object && typeof verbPhrase.object === "object") && <div className="form-group form-check">
-            <input
-                className="form-check-input"
-                name="shrinkServant"
-                type="checkbox"
-                checked={shrinkServant}
-                onChange={handleShrinkServantChange}
-            />
-            <label className="form-check-label">Shrink servant</label>
-        </div>}
         {verbPhrase && <div>
             <VPDisplay VP={verbPhrase} />
         </div>}

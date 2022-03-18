@@ -10,7 +10,6 @@ type VPSelection = {
     subject: NPSelection,
     object: Exclude<VerbObject, undefined>,
     verb: Exclude<VerbSelection, "object">,
-    shrinkServant: boolean,
 };
 
 // TODO: make this Rendered<VPSelection> with recursive Rendered<>
@@ -18,7 +17,6 @@ type VPRendered = {
     type: "VPRendered",
     king: "subject" | "object",
     servant: "subject" | "object" | undefined,
-    shrinkServant: boolean,
     isPast: boolean,
     isTransitive: boolean,
     subject: Rendered<NPSelection>,
@@ -96,6 +94,7 @@ type ParticipleSelection = {
 // If T has key K ("user"), replace it
 type ReplaceKey<T, K extends string, R> = T extends Record<K, unknown> ? (Omit<T, K> & Record<K, R>) : T;
 
+type FormVersion = "full" | "no king" | "mini servant" | "shortest"; // TODO: "all";
 
 type Rendered<T extends NPSelection> = ReplaceKey<
     Omit<T, "changeGender" | "changeNumber" | "changeDistance">,

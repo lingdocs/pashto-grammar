@@ -39,7 +39,6 @@ export function renderVP(VP: VPSelection): VPRendered {
         servant,
         isPast,
         isTransitive,
-        shrinkServant: VP.shrinkServant,
         subject: renderNPSelection(VP.subject, inflectSubject, false, "subject"),
         object: renderNPSelection(VP.object, inflectObject, true, "object"),
         verb: renderVerbSelection(VP.verb, kingPerson, objectPerson),

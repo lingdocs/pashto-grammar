@@ -6,16 +6,18 @@ import {
     getVerbBlockPosFromPerson,
 } from "@lingdocs/pashto-inflector";
 
-type ListOfEntities = T.PsString[][];
+type ListOfEntities = (T.PsString & { isVerbPrefix?: boolean, prefixFollowedByParticle?: boolean })[][];
 
-export function compileVP(VP: VPRendered): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] } {
+export function compileVP(VP: VPRendered, form: FormVersion): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] } {
     const { head, rest } = VP.verb.ps;
-    const { kids, NPs } = shrinkEntitiesAndGatherKids(VP);
+    const { kids, NPs } = shrinkEntitiesAndGatherKids(VP, form);
     return {
         ps: compilePs(NPs, head, rest, VP.verb.negative, kids),
         e: compileEnglish(VP),
     };
 }
+
+// TODO: ISSUE off prefix-nu in the phonetics
 
 function compilePs(
     nps: ListOfEntities,
@@ -49,33 +51,37 @@ function compilePs(
     }
     const entities: ListOfEntities = [
         ...nps,
-        ...compileVerbWNegative(head, rest, negative)
+        ...compileVerbWNegative(head, rest, negative),
     ];
     const entitiesWKids = putKidsInKidsSection(entities, kids);
     return combineEntities(entitiesWKids);
 }
 
-function shrinkEntitiesAndGatherKids(VP: VPRendered): { kids: ListOfEntities, NPs: ListOfEntities } {
+function shrinkEntitiesAndGatherKids(VP: VPRendered, form: FormVersion): { kids: ListOfEntities, NPs: ListOfEntities } {
     const main = {
         subject: VP.subject.ps,
         object: typeof VP.object === "object" ? VP.object.ps : undefined,
     }
-    const toShrink = (VP.shrinkServant && VP.servant)
+    const removeKing = form === "no king" || form === "shortest";
+    const shrinkServant = form === "mini servant" || form === "shortest";
+    const shrinkCanditate = ((form === "mini servant" || form === "shortest") && VP.servant)
         ? VP[VP.servant]
         : undefined;
-    if (!toShrink || typeof toShrink !== "object") {
-        return {
-            kids: [],
-            NPs: [main.subject, ...main.object ? [main.object] : []]
-        };
-    }
+    const toShrink = (!shrinkCanditate || typeof shrinkCanditate !== "object")
+        ? undefined
+        : shrinkCanditate;
+    // TODO: big problem, the king removal doesn't work with grammatically transitive things
     const king = main[VP.king];
-    if (!king) {
-        throw new Error("lost the king in the shrinking process");
-    }
+    const showSubject = (VP.king === "subject" && !removeKing && king) || (VP.servant === "subject" && !shrinkServant);
+    const showObject = (
+        (VP.king === "object" && !removeKing && king) || (VP.servant === "object" && !shrinkServant)
+    );
     return {
-        kids: [shrink(toShrink)],
-        NPs: [king],
+        kids: [...toShrink ? [shrink(toShrink)] : []],
+        NPs: [
+            ...showSubject ? [main.subject] : [],
+            ...(showObject && main.object) ? [main.object] : [],
+        ],
     }
 }
 
@@ -92,7 +98,11 @@ function putKidsInKidsSection(entities: ListOfEntities, kids: ListOfEntities): L
     const first = entities[0];
     const rest = entities.slice(1);
     return [
-        first,
+        first.map(x => (
+            x.isVerbPrefix &&
+            // TODO: This isn't quite working
+            (kids.length)
+        ) ? { ...x, prefixFollowedByParticle: true } : x),
         ...kids,
         ...rest,
     ];
@@ -105,7 +115,9 @@ function combineEntities(loe: ListOfEntities): T.PsString[] {
     return combineEntities(rest).flatMap(r => (
         first.map(ps => concatPsString(
             ps,
-            ps.p === "و" ? { p: "", f: "-" } : " ",
+            (ps.prefixFollowedByParticle
+                ? { p: "", f: "-" }
+                : ps.isVerbPrefix ? "" : " "),
             r,
         ))
     ));
@@ -115,7 +127,7 @@ function combineEntities(loe: ListOfEntities): T.PsString[] {
 function compileVerbWNegative(head: T.PsString | undefined, rest: T.PsString[], negative: boolean): ListOfEntities {
     if (!negative) {
         return [
-            ...head ? [[head]] : [],
+            ...head ? [[{...head, isVerbPrefix: true}]] : [],
             rest,
         ];
     }
@@ -130,7 +142,7 @@ function compileVerbWNegative(head: T.PsString | undefined, rest: T.PsString[], 
     // if (regularPrefix) {
     // dashes for oo-nu etc
     return [
-        [removeAccents(head)],
+        [{ ...removeAccents(head), isVerbPrefix: true }],
         rest.map(r => concatPsString(nu, " ", removeAccents(r)))
     ];
 }
