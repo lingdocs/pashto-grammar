@@ -154,8 +154,10 @@ function compileEnglish(VP: VPRendered): string[] | undefined {
     const engSubj = VP.subject.e || undefined;
     const engObj = (typeof VP.object === "object" && VP.object.e) ? VP.object.e : undefined;
     // require all English parts for making the English phrase
-    return (VP.englishBase && engSubj && engObj) ? VP.englishBase.map(e => insertEWords(e, {
-        subject: engSubj,
-        object: engObj,
-    })) : undefined;
+    return (VP.englishBase && engSubj && (engObj || typeof VP.object !== "object"))
+        ? VP.englishBase.map(e => insertEWords(e, {
+            subject: engSubj,
+            object: engObj,
+        }))
+        : undefined;
 }
