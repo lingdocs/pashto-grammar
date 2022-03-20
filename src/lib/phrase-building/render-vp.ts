@@ -8,9 +8,11 @@ import {
     conjugateVerb,
     concatPsString,
     removeAccents,
+    getPersonNumber,
 } from "@lingdocs/pashto-inflector";
 import {
     psStringFromEntry,
+    getLong,
 } from "../text-tools";
 import {
     getPersonFromNP,
@@ -30,7 +32,7 @@ export function renderVP(VP: VPSelection): VPRendered {
     const subjectPerson = getPersonFromNP(VP.subject);
     const objectPerson = getPersonFromNP(VP.object);
     // TODO: also don't inflect if it's a pattern one animate noun
-    const inflectSubject = isPast && isTransitive && !isSingularAnimatePattern4(VP.subject);
+    const inflectSubject = isPast && isTransitive && !isMascSingAnimatePattern4(VP.subject);
     const inflectObject = !isPast && isFirstOrSecondPersPronoun(VP.object);
     // Render Elements
     return {
@@ -88,6 +90,7 @@ function renderNounSelection(n: NounSelection, inflected: boolean): Rendered<Nou
     })();
     return {
         ...n,
+        person: getPersonNumber(n.gender, n.number),
         inflected,
         ps: pashto,
         e: english,
@@ -108,6 +111,7 @@ function renderParticipleSelection(p: ParticipleSelection, inflected: boolean): 
     return {
         ...p,
         inflected,
+        person: T.Person.ThirdPlurMale,
         // TODO: More robust inflection of inflecting pariticiples - get from the conjugation engine 
         ps: [psStringFromEntry(p.verb.entry)].map(ps => inflected ? concatPsString(ps, { p: "و", f: "o" }) : ps),
         e: getEnglishParticiple(p.verb.entry),
@@ -155,6 +159,9 @@ function renderEnglishVPBase({ subjectPerson, object, vs }: {
     function isToBe(v: T.EnglishVerbConjugationEc): boolean {
         return (v[2] === "being");
     }
+    const futureEngBuilder: T.EnglishBuilder = (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
+        `$SUBJ will${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
+    ]);
     const builders: Record<
         VerbTense,
         (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => string[]
@@ -169,6 +176,8 @@ function renderEnglishVPBase({ subjectPerson, object, vs }: {
             `that $SUBJ ${n ? " won't" : " will"} ${isToBe(ec) ? "be" : ec[0]}`,
             `should $SUBJ ${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
         ]),
+        imperfectiveFuture: futureEngBuilder,
+        perfectiveFuture: futureEngBuilder,
         imperfectivePast: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
             //  - subj pastEquative (N && "not") ec.2 obj
             `$SUBJ ${engEquative("past", s)}${n ? " not" : ""} ${ec[2]}`,
@@ -180,7 +189,8 @@ function renderEnglishVPBase({ subjectPerson, object, vs }: {
         perfectivePast: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
             `$SUBJ${isToBe(ec)
                 ? ` ${engEquative("past", s)}${n ? " not" : ""}`
-                : `${n ? " did not" : ""} ${ec[3]}`}`,
+                : (n ? ` did not ${ec[0]}` : ` ${ec[3]}`)
+            }`
         ]),
     };
     const base = builders[tense](subjectPerson, ec, vs.negative);
@@ -252,12 +262,6 @@ function removeHead(head: T.PsString, rest: T.SingleOrLengthOpts<T.PsString[]>):
     });
 }
 
-function getLong<U>(x: T.SingleOrLengthOpts<U>): U {
-    if ("long" in x) {
-        return x.long;
-    }
-    return x;
-}
 function getMatrixBlock<U>(f: {
     mascSing: T.SingleOrLengthOpts<U>;
     mascPlur: T.SingleOrLengthOpts<U>;
@@ -290,6 +294,12 @@ function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense): T.VerbForm
     }
     if (tense === "subjunctive") {
         return conj.perfective.nonImperative;
+    }
+    if (tense === "imperfectiveFuture") {
+        return conj.imperfective.future;
+    }
+    if (tense === "perfectiveFuture") {
+        return conj.perfective.future;
     }
     if (tense === "imperfectivePast") {
         return conj.imperfective.past;
@@ -371,18 +381,21 @@ function isFirstOrSecondPersPronoun(o: "none" | NPSelection | T.Person.ThirdPlur
 }
 
 function isPerfective(t: VerbTense): boolean {
-    if (t === "present" || t === "imperfectivePast") {
+    if (t === "present" || t === "imperfectiveFuture" || t === "imperfectivePast") {
         return false;
     }
-    if (t === "perfectivePast" || t === "subjunctive") {
+    if (t === "perfectiveFuture" || t === "subjunctive" || t === "perfectivePast") {
         return true;
     }
     throw new Error("tense not implemented yet");
 }
 
-function isSingularAnimatePattern4(np: NPSelection): boolean {
+function isMascSingAnimatePattern4(np: NPSelection): boolean {
     if (np.type !== "noun") {
         return false;
     }
-    return isPattern4Entry(np.entry) && np.entry.c.includes("anim.") && (np.number === "singular");
+    return isPattern4Entry(np.entry)
+        && np.entry.c.includes("anim.")
+        && (np.number === "singular")
+        && (np.gender === "masc");
 }

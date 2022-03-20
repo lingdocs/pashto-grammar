@@ -15,6 +15,12 @@ const tenseOptions: { label: string, value: VerbTense }[] = [{
     label: "subjunctive",
     value: "subjunctive",
 }, {
+    label: "imperf. future",
+    value: "imperfectiveFuture",
+}, {
+    label: "perf. future",
+    value: "perfectiveFuture",
+}, {
     label: "simple past",
     value: "perfectivePast",
 }, {
@@ -73,7 +79,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             });
         }
     }
-    return <div style={{ maxWidth: "225px" }}>
+    return <div style={{ maxWidth: "225px", minWidth: "10px" }}>
         <div>Verb:</div>
         <Select
             value={verb && verb.verb.entry.ts.toString()}

@@ -5,6 +5,7 @@ import {
     grammarUnits,
     getVerbBlockPosFromPerson,
 } from "@lingdocs/pashto-inflector";
+import { hasBaParticle, psRemove } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
 
 type ListOfEntities = (T.PsString & { isVerbPrefix?: boolean, prefixFollowedByParticle?: boolean })[][];
 
@@ -49,11 +50,15 @@ function compilePs(
             } : {},
         };
     }
+    const { hasBa, verbEntities } = compileVerbWNegative(head, rest, negative)
     const entities: ListOfEntities = [
         ...nps,
-        ...compileVerbWNegative(head, rest, negative),
+        ...verbEntities,
     ];
-    const entitiesWKids = putKidsInKidsSection(entities, kids);
+    const entitiesWKids = putKidsInKidsSection(
+        entities,
+        hasBa ? [[grammarUnits.baParticle], ...kids] : kids,
+    );
     return combineEntities(entitiesWKids);
 }
 
@@ -77,7 +82,10 @@ function shrinkEntitiesAndGatherKids(VP: VPRendered, form: FormVersion): { kids:
         (VP.king === "object" && !removeKing && king) || (VP.servant === "object" && !shrinkServant)
     );
     return {
-        kids: [...toShrink ? [shrink(toShrink)] : []],
+        kids: [
+            ...toShrink
+                ? [shrink(toShrink)] : [],
+        ],
         NPs: [
             ...showSubject ? [main.subject] : [],
             ...(showObject && main.object) ? [main.object] : [],
@@ -86,11 +94,7 @@ function shrinkEntitiesAndGatherKids(VP: VPRendered, form: FormVersion): { kids:
 }
 
 function shrink(np: Rendered<NPSelection>): T.PsString[] {
-    const person: T.Person = np.type === "participle"
-        ? T.Person.ThirdPlurMale
-        // @ts-ignore
-        : np.person;
-    const [row, col] = getVerbBlockPosFromPerson(person);
+    const [row, col] = getVerbBlockPosFromPerson(np.person);
     return grammarUnits.pronouns.mini[row][col];
 }
 
@@ -124,27 +128,43 @@ function combineEntities(loe: ListOfEntities): T.PsString[] {
 }
 
 
-function compileVerbWNegative(head: T.PsString | undefined, rest: T.PsString[], negative: boolean): ListOfEntities {
+function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): {
+    hasBa: boolean,
+    verbEntities: ListOfEntities,
+} {
+    const hasBa = hasBaParticle(restRaw[0]);
+    const rest = hasBa
+        ? restRaw.map(ps => psRemove(ps, concatPsString(grammarUnits.baParticle, " ")))
+        : restRaw;
     if (!negative) {
-        return [
-            ...head ? [[{...head, isVerbPrefix: true}]] : [],
-            rest,
-        ];
+        return {
+            hasBa,
+            verbEntities: [
+                ...head ? [[{...head, isVerbPrefix: true}]] : [],
+                rest,
+            ],
+        };
     }
     const nu: T.PsString = { p: "نه", f: "nú" };
     if (!head) {
-        return [
-            [nu],
-            rest.map(r => removeAccents(r)),
-        ];
+        return {
+            hasBa,
+            verbEntities: [
+                [nu],
+                rest.map(r => removeAccents(r)),
+            ],
+        };
     }
     // const regularPrefix = head.p === "و" || head.p === "وا";
     // if (regularPrefix) {
     // dashes for oo-nu etc
-    return [
-        [{ ...removeAccents(head), isVerbPrefix: true }],
-        rest.map(r => concatPsString(nu, " ", removeAccents(r)))
-    ];
+    return {
+        hasBa,
+        verbEntities: [
+            [{ ...removeAccents(head), isVerbPrefix: true }],
+            rest.map(r => concatPsString(nu, " ", removeAccents(r))),
+        ],
+    };
 }
 
 function compileEnglish(VP: VPRendered): string[] | undefined {

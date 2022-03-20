@@ -25,7 +25,7 @@ type VPRendered = {
     englishBase?: string[],
 }
 
-type VerbTense = "present" | "subjunctive" | "perfectivePast" | "imperfectivePast";
+type VerbTense = "present" | "subjunctive" | "perfectiveFuture" | "imperfectiveFuture" | "perfectivePast" | "imperfectivePast";
 
 type VerbSelection = {
     type: "verb",
@@ -104,6 +104,7 @@ type Rendered<T extends NPSelection> = ReplaceKey<
     ps: import("@lingdocs/pashto-inflector").Types.PsString[],
     e?: string,
     inflected: boolean,
+    person: T.Person,
 };
 // TODO: recursive changing this down into the possesor etc.
 

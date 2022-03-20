@@ -14,6 +14,13 @@ export function psStringFromEntry(entry: T.PsString): T.PsString {
     };
 }
 
+export function getLong<U>(x: T.SingleOrLengthOpts<U>): U {
+    if ("long" in x) {
+        return x.long;
+    }
+    return x;
+}
+
 export function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }

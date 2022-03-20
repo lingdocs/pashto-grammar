@@ -8,7 +8,7 @@ import { useState } from "react";
 import { nouns, verbs } from "../../words/words";
 // import { capitalizeFirstLetter } from "../../lib/text-tools";
 
-const npTypes: NPType[] = ["noun", "pronoun", "participle"];
+const npTypes: NPType[] = ["pronoun", "noun", "participle"];
 
 function NPPicker({ np, onChange, counterPart }: { onChange: (nps: NPSelection | undefined) => void, np: NPSelection | undefined, counterPart: NPSelection | VerbObject | undefined }) {
     // eslint-disable-next-line
@@ -35,19 +35,18 @@ function NPPicker({ np, onChange, counterPart }: { onChange: (nps: NPSelection |
         }
     }
     return <div style={{ maxWidth: "300px"}}>
-        {!npType ?
-            <div>
-                {npTypes.map((npt) => (
-                    <button
-                        key={npt}
-                        type="button"
-                        className="mr-2 btn btn-sm btn-outline-secondary"
-                        onClick={() => handleNPTypeChange(npt)}
-                    >
-                        {npt}
-                    </button>
-                ))}
-            </div>
+        {!npType ? <div className="text-center mt-3">
+            {npTypes.map((npt) => <div className="mb-2">
+                <button
+                    key={npt}
+                    type="button"
+                    className="mr-2 btn btn-sm btn-outline-secondary"
+                    onClick={() => handleNPTypeChange(npt)}
+                >
+                    {npt}
+                </button>
+            </div>)}
+        </div>
         : <button className="btn btn-sm btn-light mb-2" onClick={handleClear}>X</button>}
         {np ?
             ((np.type === "pronoun"
