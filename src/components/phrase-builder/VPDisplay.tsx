@@ -40,12 +40,12 @@ function VPDisplay({ VP }: { VP: VPSelection }) {
         </div>
         {"long" in result.ps ?
             <div>
-                <div className="h6">Long Verb:</div>
+                {/* <div className="h6">Long Verb:</div> */}
                 <VariationLayer vs={result.ps.long} />
-                <div className="h6">Short Verb:</div>
+                {/* <div className="h6">Short Verb:</div> */}
                 <VariationLayer vs={result.ps.short} />
                 {result.ps.mini && <>
-                    <div className="h6">Mini Verb:</div>
+                    {/* <div className="h6">Mini Verb:</div> */}
                     <VariationLayer vs={result.ps.mini} />
                 </>}
             </div>
