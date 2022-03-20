@@ -3,6 +3,7 @@ import {
     ButtonSelect,
 } from "@lingdocs/pashto-inflector";
 import useStickyState from "../../useStickyState";
+import classNames from "classnames";
 
 const gColors = {
     masc: "LightSkyBlue",
@@ -84,7 +85,7 @@ function NPPronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onC
     }
     const prs = labels[display];
     const pSpec = "near" in prs ? prs[pronoun.distance] : prs;
-    return <div style={{ maxWidth: "225px" }}>
+    return <div style={{ maxWidth: "225px", padding: 0 }}>
         <div className="d-flex flex-row justify-content-around mb-3">
             <ButtonSelect
                 xSmall
@@ -97,7 +98,7 @@ function NPPronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onC
             />
             <button className="btn btn-sm btn-outline" onClick={handleDisplayChange}>{display === "persons" ? "#" : display === "p" ? "PS" : "EN"}</button>
         </div>
-        <table className="table table-bordered" style={{ textAlign: "center", minWidth: "200px", tableLayout: "fixed" }}>
+        <table className="table table-bordered table-sm" style={{ textAlign: "center", minWidth: "200px", tableLayout: "fixed" }}>
             <tbody>
                 {pSpec.map((rw, i) => (
                     <tr>
@@ -105,10 +106,12 @@ function NPPronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onC
                             const active = (p.row === i && p.col === j)
                             return <td
                                 onClick={() => handleClick(i, j)}
-                                className={active ? "table-active" : ""}
+                                className={classNames({ "table-active": active })}
                                 style={active ? { backgroundColor: gColors[p.gender] } : {}}
                             >
-                                {typeof r === "string" ? r : r[p.gender]}
+                                <div className="my-1">
+                                    {typeof r === "string" ? r : r[p.gender]}
+                                </div>
                             </td>;
                         })}
                     </tr>
@@ -117,9 +120,10 @@ function NPPronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onC
         </table>
         <div className="text-center">
             <ButtonSelect
+                small
                 options={[
-                    { label: "Masc.", value: "masc", color: gColors.masc },
-                    { label: "Fem.", value: "fem", color: gColors.fem },
+                    { label: <div style={{ margin: "0.15rem"}}>Masc.</div>, value: "masc", color: gColors.masc },
+                    { label: <div style={{ margin: "0.15rem"}}>Fem.</div>, value: "fem", color: gColors.fem },
                 ]}
                 value={p.gender}
                 handleChange={(g) => handleGenderChange(g as T.Gender)}

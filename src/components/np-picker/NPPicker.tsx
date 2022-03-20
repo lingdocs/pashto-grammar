@@ -34,7 +34,7 @@ function NPPicker({ np, onChange, counterPart }: { onChange: (nps: NPSelection |
             setNpType(ntp);
         }
     }
-    return <div style={{ maxWidth: "300px"}}>
+    return <div>
         {!npType ? <div className="text-center mt-3">
             {npTypes.map((npt) => <div className="mb-2">
                 <button

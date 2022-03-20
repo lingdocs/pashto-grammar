@@ -79,7 +79,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             });
         }
     }
-    return <div style={{ maxWidth: "225px", minWidth: "10px" }}>
+    return <div style={{ maxWidth: "225px", minWidth: "150px" }}>
         <div>Verb:</div>
         <Select
             value={verb && verb.verb.entry.ts.toString()}

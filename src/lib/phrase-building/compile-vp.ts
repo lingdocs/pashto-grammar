@@ -5,7 +5,8 @@ import {
     grammarUnits,
     getVerbBlockPosFromPerson,
 } from "@lingdocs/pashto-inflector";
-import { hasBaParticle, psRemove } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
+import { hasBaParticle } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
+import { removeBa } from "./vp-tools";
 
 type ListOfEntities = (T.PsString & { isVerbPrefix?: boolean, prefixFollowedByParticle?: boolean })[][];
 
@@ -134,7 +135,7 @@ function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
 } {
     const hasBa = hasBaParticle(restRaw[0]);
     const rest = hasBa
-        ? restRaw.map(ps => psRemove(ps, concatPsString(grammarUnits.baParticle, " ")))
+        ? restRaw.map(removeBa)
         : restRaw;
     if (!negative) {
         return {

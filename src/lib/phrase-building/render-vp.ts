@@ -15,9 +15,11 @@ import {
     getLong,
 } from "../text-tools";
 import {
-    getPersonFromNP,
+    getPersonFromNP, removeBa,
 } from "./vp-tools";
 import { isPattern4Entry } from "../type-predicates";
+
+// TODO: ISSUE GETTING SPLIT HEAD NOT MATCHING WITH FUTURE VERBS
 
 export function renderVP(VP: VPSelection): VPRendered {
     // Sentence Rules Logic
@@ -249,8 +251,9 @@ function removeHead(head: T.PsString, rest: T.SingleOrLengthOpts<T.PsString[]>):
             } : {},
         }
     }
-    return rest.map((ps) => {
-        const pMatches = removeAccents(ps.p.slice(0, head.p.length)) === removeAccents(head.p);
+    return rest.map((psRaw) => {
+        const ps = removeBa(psRaw);
+        const pMatches = removeAccents(ps.p.slice(0, head.p.length)) === head.p
         const fMatches = removeAccents(ps.f.slice(0, head.f.length)) === removeAccents(head.f);
         if (!(pMatches && fMatches)) {
             throw new Error(`split head does not match - ${JSON.stringify(ps)} ${JSON.stringify(head)}`);

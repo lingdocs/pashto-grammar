@@ -4,6 +4,7 @@ import VerbPicker from "../VerbPicker";
 import VPDisplay from "./VPDisplay";
 import ObjectDisplay from "./ObjectDisplay";
 import { verbs as verbsRaw } from "../../words/words";
+import { renderVP } from "../../lib/phrase-building";
 import {
     isInvalidSubjObjCombo,
 } from "../../lib/np-tools";
@@ -24,6 +25,7 @@ function verbPhraseComplete({ subject, verb }: { subject: NPSelection | undefine
 
 // TODO: BIG ISSUE, IF YOU OPEN THE OBJECT PRONOUN BOX AND IT CONFLICTS WITH THE SUBJECT
 // IT CAN SAY THE COMBO IS NOT ALLOWED AND SHOW SOMETHING BLANK
+// TODO: error handling on error with rendering etc
 export function PhraseBuilder() {
     const [subject, setSubject] = useState<NPSelection | undefined>(undefined);
     const [verb, setVerb] = useState<VerbSelection | undefined>(undefined);
@@ -60,21 +62,22 @@ export function PhraseBuilder() {
         });
     }
     const verbPhrase: VPSelection | undefined = verbPhraseComplete({ subject, verb });
+    const VPRendered = verbPhrase && renderVP(verbPhrase);
     return <div className="mt-3">
-        <div className="row">
-            <div className="col mb-2">
-                <div className="h4">Subject</div>
+        <div className="d-flex flex-row justify-content-around flex-wrap">
+            <div className="mb-2">
+                <div className="h4">Subject {(VPRendered && VPRendered.king === "subject") ? "👑" : ""}</div>
                 <NPPicker
                     np={subject}
                     counterPart={verb ? verb.object : undefined}
                     onChange={handleSubjectChange}
                 />
             </div>
-            {verb && (verb.object !== "none") && <div className="col mb-2">
-                <div className="h4">Object</div>
+            {verb && (verb.object !== "none") && <div className="mb-2">
+                <div className="h4">Object {(VPRendered && VPRendered.king === "object") ? "👑" : ""}</div>
                 <ObjectDisplay object={verb.object} counterPart={subject} onChange={handleObjectChange} />
             </div>}
-            <div className="col mb-2">
+            <div className="mb-2">
                 <div className="h4">Verb</div>
                 <VerbPicker verbs={verbs} verb={verb} onChange={setVerb} />
             </div>
