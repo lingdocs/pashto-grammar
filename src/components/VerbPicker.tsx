@@ -101,7 +101,6 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             className="mb-2"
             // @ts-ignore
             options={tenseOptions}
-            isSearchable
             placeholder={verb ? tenseOptions.find(o => o.value === verb.tense)?.label : "Select Tense..."}
             {...zIndexProps}
         />

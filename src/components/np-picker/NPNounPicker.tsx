@@ -19,7 +19,7 @@ function NPNounPicker({ onChange, noun, nouns }: { nouns: NounEntry[], noun: Nou
         }
         onChange(makeNounSelection(entry));
     }
-    return <div style={{ maxWidth: "225px" }}>
+    return <div style={{ maxWidth: "225px", minWidth: "150px" }}>
         <Select
             value={noun && noun.entry.ts.toString()}
             // @ts-ignore
