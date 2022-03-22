@@ -5,7 +5,6 @@ import {
     grammarUnits,
     getVerbBlockPosFromPerson,
 } from "@lingdocs/pashto-inflector";
-import { hasBaParticle } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
 import { removeBa } from "./vp-tools";
 
 type ListOfEntities = (T.PsString & { isVerbPrefix?: boolean, prefixFollowedByParticle?: boolean })[][];
@@ -51,14 +50,14 @@ function compilePs(
             } : {},
         };
     }
-    const { hasBa, verbEntities } = compileVerbWNegative(head, rest, negative)
+    const verbEntities = compileVerbWNegative(head, rest, negative)
     const entities: ListOfEntities = [
         ...nps,
         ...verbEntities,
     ];
     const entitiesWKids = putKidsInKidsSection(
         entities,
-        hasBa ? [[grammarUnits.baParticle], ...kids] : kids,
+        kids,
     );
     return combineEntities(entitiesWKids);
 }
@@ -84,6 +83,8 @@ function shrinkEntitiesAndGatherKids(VP: VPRendered, form: FormVersion): { kids:
     );
     return {
         kids: [
+            ...VP.verb.hasBa
+                ? [[grammarUnits.baParticle]] : [],
             ...toShrink
                 ? [shrink(toShrink)] : [],
         ],
@@ -129,43 +130,29 @@ function combineEntities(loe: ListOfEntities): T.PsString[] {
 }
 
 
-function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): {
-    hasBa: boolean,
-    verbEntities: ListOfEntities,
-} {
-    const hasBa = hasBaParticle(restRaw[0]);
-    const rest = hasBa
-        ? restRaw.map(removeBa)
-        : restRaw;
+function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): ListOfEntities {
+    console.log({ head, restRaw });
+    const rest = restRaw.map(removeBa);
     if (!negative) {
-        return {
-            hasBa,
-            verbEntities: [
-                ...head ? [[{...head, isVerbPrefix: true}]] : [],
-                rest,
-            ],
-        };
+        return [
+            ...head ? [[{...head, isVerbPrefix: true}]] : [],
+            rest,
+        ];
     }
     const nu: T.PsString = { p: "نه", f: "nú" };
     if (!head) {
-        return {
-            hasBa,
-            verbEntities: [
-                [nu],
-                rest.map(r => removeAccents(r)),
-            ],
-        };
+        return [
+            [nu],
+            rest.map(r => removeAccents(r)),
+        ];
     }
     // const regularPrefix = head.p === "و" || head.p === "وا";
     // if (regularPrefix) {
     // dashes for oo-nu etc
-    return {
-        hasBa,
-        verbEntities: [
-            [{ ...removeAccents(head), isVerbPrefix: true }],
-            rest.map(r => concatPsString(nu, " ", removeAccents(r))),
-        ],
-    };
+    return [
+        [{ ...removeAccents(head), isVerbPrefix: true }],
+        rest.map(r => concatPsString(nu, " ", removeAccents(r))),
+    ];
 }
 
 function compileEnglish(VP: VPRendered): string[] | undefined {

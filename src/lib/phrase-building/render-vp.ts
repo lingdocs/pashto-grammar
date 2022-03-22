@@ -18,6 +18,7 @@ import {
     getPersonFromNP, removeBa,
 } from "./vp-tools";
 import { isPattern4Entry } from "../type-predicates";
+import { hasBaParticle } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
 
 // TODO: ISSUE GETTING SPLIT HEAD NOT MATCHING WITH FUTURE VERBS
 
@@ -133,7 +134,7 @@ function renderVerbSelection(vs: VerbSelection, person: T.Person, objectPerson: 
     return {
         ...vs,
         person,
-        ps: getPsVerbConjugation(conj, vs.tense, person, objectPerson),
+        ...getPsVerbConjugation(conj, vs.tense, person, objectPerson),
     }
 }
 
@@ -200,26 +201,35 @@ function renderEnglishVPBase({ subjectPerson, object, vs }: {
 }
 
 function getPsVerbConjugation(conj: T.VerbConjugation, tense: VerbTense, person: T.Person, objectPerson: T.Person | undefined): {
-    head: T.PsString | undefined,
-    rest: T.SingleOrLengthOpts<T.PsString[]>,
+    ps: {
+        head: T.PsString | undefined,
+        rest: T.SingleOrLengthOpts<T.PsString[]>,
+    },
+    hasBa: boolean,
 } { 
     const f = getTenseVerbForm(conj, tense);
     const block = getMatrixBlock(f, objectPerson, person);
     const perfective = isPerfective(tense);
     const verbForm = getVerbFromBlock(block, person);
+    const hasBa = hasBaParticle(getLong(verbForm)[0]);
     if (perfective) {
         const past = isPastTense(tense);
         const splitInfo = conj.info[past ? "root" : "stem"].perfectiveSplit;
-        if (!splitInfo) return { head: undefined, rest: verbForm };
+        if (!splitInfo) return { ps: { head: undefined, rest: verbForm }, hasBa };
         // TODO: Either solve this in the inflector or here, it seems silly (or redundant)
         // to have a length option in the perfective split stem??
         const [splitHead] = getLong(getMatrixBlock(splitInfo, objectPerson, person));
+        console.log("removing from verb form", { splitHead, verbForm });
+        console.log(removeHead(splitHead, verbForm));
         return {
-            head: splitHead,
-            rest: removeHead(splitHead, verbForm),
+            hasBa,
+            ps: {
+                head: splitHead,
+                rest: removeHead(splitHead, verbForm),
+            },
         };
     }
-    return { head: undefined, rest: verbForm };
+    return { hasBa, ps: { head: undefined, rest: verbForm }};
 }
 
 function getVerbFromBlock(block: T.SingleOrLengthOpts<T.VerbBlock>, person: T.Person): T.SingleOrLengthOpts<T.PsString[]> {

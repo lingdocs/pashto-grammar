@@ -43,6 +43,7 @@ type VerbRendered = Omit<VerbSelection, "object"> & {
             import("@lingdocs/pashto-inflector").Types.PsString[]
         >,
     },
+    hasBa: boolean,
     person: import("@lingdocs/pashto-inflector").Types.Person,
 };
 
