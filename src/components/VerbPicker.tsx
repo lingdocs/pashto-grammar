@@ -54,7 +54,7 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
 }
 
 function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbSelection | undefined, onChange: (p: VerbSelection) => void }) {
-    const options = verbs.map(makeVerbSelectOption)
+    const options = verbs.sort((a, b) => (a.entry.p.localeCompare(b.entry.p, "af-PS"))).map(makeVerbSelectOption);
     function onEntrySelect({ value }: { label: string, value: string }) {
         const v = verbs.find(v => v.entry.ts.toString() === value);
         if (!v) {
@@ -79,7 +79,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             });
         }
     }
-    return <div style={{ maxWidth: "225px", minWidth: "150px" }}>
+    return <div style={{ maxWidth: "225px", minWidth: "125px" }}>
         <div>Verb:</div>
         <Select
             value={verb && verb.verb.entry.ts.toString()}

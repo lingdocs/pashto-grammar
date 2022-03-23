@@ -10,7 +10,7 @@ import {
 
 
 function NPNounPicker({ onChange, noun, nouns }: { nouns: NounEntry[], noun: NounSelection | undefined, onChange: (p: NounSelection) => void }) {
-    const options = nouns.map(makeSelectOption)
+    const options = nouns.sort((a, b) => (a.p.localeCompare(b.p, "af-PS"))).map(makeSelectOption)
     function onEntrySelect({ value }: { label: string, value: string }) {
         const entry = nouns.find(n => n.ts.toString() === value);
         if (!entry) {
@@ -19,7 +19,7 @@ function NPNounPicker({ onChange, noun, nouns }: { nouns: NounEntry[], noun: Nou
         }
         onChange(makeNounSelection(entry));
     }
-    return <div style={{ maxWidth: "225px", minWidth: "150px" }}>
+    return <div style={{ maxWidth: "225px", minWidth: "125px" }}>
         <Select
             value={noun && noun.entry.ts.toString()}
             // @ts-ignore

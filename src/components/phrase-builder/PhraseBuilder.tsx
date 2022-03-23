@@ -9,7 +9,9 @@ import {
     isInvalidSubjObjCombo,
 } from "../../lib/np-tools";
 
-const verbs = verbsRaw.filter(v => !v.entry.c?.includes("gramm."))
+const kingEmoji = "👑";
+const servantEmoji = "🙇‍♂️";
+const verbs = verbsRaw;
 
 function verbPhraseComplete({ subject, verb }: { subject: NPSelection | undefined, verb: VerbSelection | undefined }): VPSelection | undefined {
     if (!subject) return undefined;
@@ -21,6 +23,14 @@ function verbPhraseComplete({ subject, verb }: { subject: NPSelection | undefine
         object: verb.object,
         verb,
     };
+}
+
+function showRole(VP: VPRendered | undefined, member: "subject" | "object") {
+    return VP 
+        ? <span className="ml-2">
+            {(VP.king === member ? kingEmoji : VP.servant === member ? servantEmoji : "")}
+        </span>
+        : "";
 }
 
 // TODO: BIG ISSUE, IF YOU OPEN THE OBJECT PRONOUN BOX AND IT CONFLICTS WITH THE SUBJECT
@@ -64,9 +74,13 @@ export function PhraseBuilder() {
     const verbPhrase: VPSelection | undefined = verbPhraseComplete({ subject, verb });
     const VPRendered = verbPhrase && renderVP(verbPhrase);
     return <div className="mt-3">
+        <div className="mb-3">
+            <div>{kingEmoji} = <abbr title="controls the verb conjugation, can be removed">king</abbr> of phrase</div>
+            <div>{servantEmoji} = <abbr title="can be shrunken into a mini-pronoun">servant</abbr> of phrase</div>
+        </div>
         <div className="d-flex flex-row justify-content-around flex-wrap">
             <div className="mb-2">
-                <div className="h4">Subject {(VPRendered && VPRendered.king === "subject") ? "👑" : ""}</div>
+                <div className="h4">Subject {showRole(VPRendered, "subject")}</div>
                 <NPPicker
                     np={subject}
                     counterPart={verb ? verb.object : undefined}
@@ -74,7 +88,7 @@ export function PhraseBuilder() {
                 />
             </div>
             {verb && (verb.object !== "none") && <div className="mb-2">
-                <div className="h4">Object {(VPRendered && VPRendered.king === "object") ? "👑" : ""}</div>
+                <div className="h4">Object {showRole(VPRendered, "object")}</div>
                 <ObjectDisplay object={verb.object} counterPart={subject} onChange={handleObjectChange} />
             </div>}
             <div className="mb-2">

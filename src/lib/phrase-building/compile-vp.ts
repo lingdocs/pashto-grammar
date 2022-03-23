@@ -131,7 +131,6 @@ function combineEntities(loe: ListOfEntities): T.PsString[] {
 
 
 function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): ListOfEntities {
-    console.log({ head, restRaw });
     const rest = restRaw.map(removeBa);
     if (!negative) {
         return [

@@ -22,7 +22,7 @@ function VPDisplay({ VP }: { VP: VPSelection }) {
     const [form, setForm] = useState<FormVersion>("full");
     // TODO: Possibly put the servant shrinking in here after the render
     const result = compileVP(renderVP(VP), form);
-    const servantShrinkable = VP.object && typeof VP.object === "object";
+    const servantShrinkable = VP.object && VP.object !== "none";
     return <div className="text-center mt-2">
         <div className="my-3">
             <ButtonSelect

@@ -111,7 +111,7 @@ function PronounPicker({ onChange, pronoun, isObject }: {
             />
             <button className="btn btn-sm btn-outline-secondary" onClick={handleDisplayChange}>{display === "persons" ? "#" : display === "p" ? "PS" : "EN"}</button>
         </div>
-        <table className="table table-bordered" style={{ textAlign: "center", minWidth: "160px", tableLayout: "fixed" }}>
+        <table className="table table-bordered" style={{ textAlign: "center", minWidth: "125px", tableLayout: "fixed" }}>
             <tbody>
                 {pSpec.map((rw, i) => (
                     <tr>

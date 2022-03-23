@@ -10,13 +10,17 @@ const gColors = {
     fem: "pink",
 };
 
-const labels = {
+const labels = (asObject: boolean) => ({
     persons: [
         ["1st", "1st pl."],
         ["2nd", "2nd pl."],
         ["3rd", "3rd pl."],
     ],
-    e: [
+    e: asObject ? [
+        ["me", "us"],
+        ["you", "you pl."],
+        [{ masc: "him/it", fem: "her/it"}, "them"],
+    ] : [
         ["I", "We"],
         ["You", "You pl."],
         [{ masc: "He/It", fem: "She/It"}, "They"],
@@ -33,7 +37,7 @@ const labels = {
             [{ masc: "دی", fem: "دا" }, "دوي"],
         ],
     },
-};
+});
 
 
 type PickerState = { row: number, col: number, gender: T.Gender };
@@ -51,7 +55,7 @@ function pickerStateToPerson(s: PickerState): T.Person {
         + (6 * s.col);
 }
 
-function NPPronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onChange: (p: PronounSelection) => void }) {
+function NPPronounPicker({ onChange, pronoun, asObject }: { pronoun: PronounSelection, onChange: (p: PronounSelection) => void , asObject?: boolean }) {
     const [display, setDisplay] = useStickyState<"persons" | "p" | "e">("persons", "prounoun-picker-display"); 
 
     const p = personToPickerState(pronoun.person);
@@ -83,9 +87,9 @@ function NPPronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onC
             : "persons";
         setDisplay(newPerson);
     }
-    const prs = labels[display];
+    const prs = labels(!!asObject)[display];
     const pSpec = "near" in prs ? prs[pronoun.distance] : prs;
-    return <div style={{ maxWidth: "225px", padding: 0 }}>
+    return <div style={{ maxWidth: "225px", minWidth: "125px", padding: 0 }}>
         <div className="d-flex flex-row justify-content-around mb-3">
             <ButtonSelect
                 xSmall
@@ -98,7 +102,7 @@ function NPPronounPicker({ onChange, pronoun }: { pronoun: PronounSelection, onC
             />
             <button className="btn btn-sm btn-outline" onClick={handleDisplayChange}>{display === "persons" ? "#" : display === "p" ? "PS" : "EN"}</button>
         </div>
-        <table className="table table-bordered table-sm" style={{ textAlign: "center", minWidth: "200px", tableLayout: "fixed" }}>
+        <table className="table table-bordered table-sm" style={{ textAlign: "center", minWidth: "125px", tableLayout: "fixed" }}>
             <tbody>
                 {pSpec.map((rw, i) => (
                     <tr>

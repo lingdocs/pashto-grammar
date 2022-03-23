@@ -126,7 +126,8 @@ function renderVerbSelection(vs: VerbSelection, person: T.Person, objectPerson: 
     // TODO: error handle this?
     // TODO: option to manually select these
     const conj = "grammaticallyTransitive" in conjugations
-        ? conjugations.grammaticallyTransitive
+        // BIG TODO: allow for choice of grmatically transitive over transitive if there's both
+        ? conjugations.transitive
         : "stative" in conjugations
         ? conjugations.stative
         : conjugations;
@@ -219,8 +220,6 @@ function getPsVerbConjugation(conj: T.VerbConjugation, tense: VerbTense, person:
         // TODO: Either solve this in the inflector or here, it seems silly (or redundant)
         // to have a length option in the perfective split stem??
         const [splitHead] = getLong(getMatrixBlock(splitInfo, objectPerson, person));
-        console.log("removing from verb form", { splitHead, verbForm });
-        console.log(removeHead(splitHead, verbForm));
         return {
             hasBa,
             ps: {

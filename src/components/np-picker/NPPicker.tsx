@@ -10,7 +10,7 @@ import { nouns, verbs } from "../../words/words";
 
 const npTypes: NPType[] = ["pronoun", "noun", "participle"];
 
-function NPPicker({ np, onChange, counterPart }: { onChange: (nps: NPSelection | undefined) => void, np: NPSelection | undefined, counterPart: NPSelection | VerbObject | undefined }) {
+function NPPicker({ np, onChange, counterPart, asObject }: { onChange: (nps: NPSelection | undefined) => void, np: NPSelection | undefined, counterPart: NPSelection | VerbObject | undefined, asObject?: boolean }) {
     // eslint-disable-next-line
     const [npType, setNpType] = useState<NPType | undefined>(np ? np.type : undefined);
     function handleClear() {
@@ -50,7 +50,7 @@ function NPPicker({ np, onChange, counterPart }: { onChange: (nps: NPSelection |
         : <button className="btn btn-sm btn-light mb-2" onClick={handleClear}>X</button>}
         {np ?
             ((np.type === "pronoun"
-                ? <PronounPicker pronoun={np} onChange={onChange} />
+                ? <PronounPicker asObject={asObject} pronoun={np} onChange={onChange} />
                 : np.type === "noun"
                 ? <NounPicker nouns={nouns} noun={np} onChange={onChange} />
                 : <ParticiplePicker verbs={verbs} participle={np} onChange={onChange} />))
