@@ -67,9 +67,8 @@ function shrinkEntitiesAndGatherKids(VP: VPRendered, form: FormVersion): { kids:
         subject: VP.subject.ps,
         object: typeof VP.object === "object" ? VP.object.ps : undefined,
     }
-    const removeKing = form === "no king" || form === "shortest";
-    const shrinkServant = form === "mini servant" || form === "shortest";
-    const shrinkCanditate = ((form === "mini servant" || form === "shortest") && VP.servant)
+    const { removeKing, shrinkServant } = form;
+    const shrinkCanditate = (shrinkServant && VP.servant)
         ? VP[VP.servant]
         : undefined;
     const toShrink = (!shrinkCanditate || typeof shrinkCanditate !== "object")

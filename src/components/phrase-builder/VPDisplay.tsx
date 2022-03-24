@@ -3,40 +3,44 @@ import { renderVP, compileVP } from "../../lib/phrase-building";
 import {
     InlinePs,
     defaultTextOptions as opts,
-    ButtonSelect,
     Types as T,
 } from "@lingdocs/pashto-inflector";
+import classNames from "classnames";
 
-function adjustForm(form: FormVersion, servantShrinkable: boolean): FormVersion {
-    if (!servantShrinkable) {
-        return form === "shortest"
-            ? "no king"
-            : form === "mini servant"
-            ? "full"
-            : form;
-    }
-    return form;
+function buttonClass(active: boolean, side: "l" | "r") {
+    return classNames(
+        "btn btn-sm btn-outline-secondary",
+        { active },
+        { "mr-1": side === "l" },
+        { "ml-1": side === "r" },
+    );
 }
 
 function VPDisplay({ VP }: { VP: VPSelection }) {
-    const [form, setForm] = useState<FormVersion>("full");
+    const [form, setForm] = useState<FormVersion>({ removeKing: false, shrinkServant: false });
     // TODO: Possibly put the servant shrinking in here after the render
     const result = compileVP(renderVP(VP), form);
     const servantShrinkable = VP.object && VP.object !== "none";
+    const toggleForm = (f: "removeKing" | "shrinkServant") => () => {
+        setForm(oForm => ({
+            ...oForm,
+            [f]: !oForm[f],
+        }));
+    }
     return <div className="text-center mt-2">
         <div className="my-3">
-            <ButtonSelect
-                small
-                options={[
-                    { value: "full", label: "Full" },
-                    { value: "no king", label: "No King" },
-                    ...servantShrinkable ? [{ value: "mini servant", label: "Mini Servant" }] : [],
-                    ...servantShrinkable ? [{ value: "shortest", label: "Shortest" }] : [],
-                ]}
-                value={adjustForm(form, servantShrinkable)}
-                // @ts-ignore
-                handleChange={setForm}
-            />
+            <button
+                onClick={toggleForm("removeKing")}
+                className={buttonClass(form.removeKing, "l")}
+            >
+                🚫 King
+            </button>
+            {servantShrinkable && <button
+                onClick={toggleForm("shrinkServant")}
+                className={buttonClass(form.shrinkServant, "r")}
+            >
+                👶 Servant
+            </button>}
         </div>
         {"long" in result.ps ?
             <div>

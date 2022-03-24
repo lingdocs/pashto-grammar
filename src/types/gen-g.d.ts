@@ -97,7 +97,7 @@ type ParticipleSelection = {
 // If T has key K ("user"), replace it
 type ReplaceKey<T, K extends string, R> = T extends Record<K, unknown> ? (Omit<T, K> & Record<K, R>) : T;
 
-type FormVersion = "full" | "no king" | "mini servant" | "shortest"; // TODO: "all";
+type FormVersion = { removeKing: boolean, shrinkServant: boolean };
 
 type Rendered<T extends NPSelection> = ReplaceKey<
     Omit<T, "changeGender" | "changeNumber" | "changeDistance">,

@@ -98,7 +98,10 @@ export function PhraseBuilder() {
             <div>{servantEmoji} = <abbr title="can be shrunken into a mini-pronoun">servant</abbr> of phrase</div>
         </div>
         {verb && (typeof verb.object === "object") && <div className="d-flex flex-row justify-content-around flex-wrap mb-2">
-            <button onClick={handleSubjObjSwap} className="btn btn-sm btn-light">swap subj/obj</button>
+            <button onClick={handleSubjObjSwap} className="btn btn-sm btn-light">
+                <i className="fas fa-exchange-alt mr-2" /> subj/obj
+            </button>
+            <div>{` `}</div>
         </div>}
         <div className="d-flex flex-row justify-content-around flex-wrap">
             <div className="mb-2">
