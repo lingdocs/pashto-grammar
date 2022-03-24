@@ -34,14 +34,14 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         return oldVerbSelection.object;
     }
     // TODO: more complex types and unchangeable dynamic compound objects
-    const verbType: "intrans" | "trans" | "gramm trans" = verb.entry.c?.includes("v. intrans.")
-        ? "intrans"
+    const transitivity: "intransitive" | "transitive" | "grammaticallyTransitive" = verb.entry.c?.includes("v. intrans.")
+        ? "intransitive"
         : verb.entry.c?.includes("v. gramm. trans.")
-        ? "gramm trans"
-        : "trans";
-    const object = verbType === "gramm trans"
+        ? "grammaticallyTransitive"
+        : "transitive";
+    const object = (transitivity === "grammaticallyTransitive")
         ? T.Person.ThirdPlurMale
-        : verbType === "trans"
+        : transitivity === "transitive"
         ? getTransObjFromOldVerbSelection()
         : "none";
     return {
@@ -49,7 +49,17 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         verb,
         tense: oldVerbSelection ? oldVerbSelection.tense : "present",
         object,
+        transitivity,
         negative: oldVerbSelection ? oldVerbSelection.negative : false,
+        ...verb.entry.c?.includes("v. trans./gramm. trans") ? {
+            changeTransitivity: function (t) {
+                return {
+                    ...this,
+                    transitivity: t,
+                    object: t === "grammaticallyTransitive" ? T.Person.ThirdPlurMale : undefined,
+                };
+            },
+        } : {},
     };
 }
 
@@ -79,6 +89,14 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             });
         }
     }
+    function notInstransitive(t: "transitive" | "intransitive" | "grammaticallyTransitive"): "transitive" | "grammaticallyTransitive" {
+        return t === "intransitive" ? "transitive" : t;
+    }
+    function handleChangeTransitivity(t: "transitive" | "grammaticallyTransitive") {
+        if (verb && verb.changeTransitivity) {
+            onChange(verb.changeTransitivity(t));
+        }
+    } 
     return <div style={{ maxWidth: "225px", minWidth: "125px" }}>
         <div>Verb:</div>
         <Select
@@ -116,6 +134,20 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                     value: "true",
                 }]}
                 handleChange={onPosNegSelect}
+            />
+        </div>}
+        {verb && verb.changeTransitivity && <div className="text-center">
+            <ButtonSelect
+                small
+                options={[{
+                    label: "gramm. trans.",
+                    value: "grammaticallyTransitive",
+                }, {
+                    label: "trans.",
+                    value: "transitive",
+                }]}
+                value={notInstransitive(verb.transitivity)}
+                handleChange={handleChangeTransitivity}
             />
         </div>}
     </div>;

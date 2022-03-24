@@ -32,6 +32,8 @@ type VerbSelection = {
     verb: VerbEntry,
     tense: VerbTense,
     object: VerbObject,
+    transitivity: "transitive" | "intransitive" | "grammaticallyTransitive",
+    changeTransitivity?: (t: "transitive" | "grammaticallyTransitive") => VerbSelection,
     // TODO: add in perfective element here??
     negative: boolean,
 };
@@ -54,7 +56,7 @@ type VerbObject =
     NPSelection |
     // grammatically transitive verb with unspoken 3rd pers masc plur entity
     // or intransitive "none"
-    ObjectNP
+    ObjectNP;
 
 type NPSelection = NounSelection | PronounSelection | ParticipleSelection;
 

@@ -36,7 +36,7 @@ const Chapter = ({ children: chapter }) => {
       </div>
       <Footer chapter={chapter} />
     </main>
-    <TableOfContents tableOfContents={chapter.tableOfContents} />
+    {!chapter.frontMatter.fullWidth && <TableOfContents tableOfContents={chapter.tableOfContents} />}
   </>;
 };
 

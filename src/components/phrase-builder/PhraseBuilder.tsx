@@ -92,7 +92,7 @@ export function PhraseBuilder() {
     }
     const verbPhrase: VPSelection | undefined = verbPhraseComplete({ subject, verb });
     const VPRendered = verbPhrase && renderVP(verbPhrase);
-    return <div className="mt-3">
+    return <div className="mt-3" style={{ maxWidth: "950px"}}>
         <div className="mb-3">
             <div>{kingEmoji} = <abbr title="controls the verb conjugation, can be removed">king</abbr> of phrase</div>
             <div>{servantEmoji} = <abbr title="can be shrunken into a mini-pronoun">servant</abbr> of phrase</div>
