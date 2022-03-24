@@ -5,13 +5,13 @@ import {
     grammarUnits,
     getVerbBlockPosFromPerson,
 } from "@lingdocs/pashto-inflector";
-import { removeBa } from "./vp-tools";
+import { isMiniPronoun, removeBa } from "./vp-tools";
 
-type ListOfEntities = (T.PsString & { isVerbPrefix?: boolean, prefixFollowedByParticle?: boolean })[][];
+type ListOfSegments = (T.PsString & { isVerbPrefix?: boolean, prefixFollowedByMiniPronoun?: boolean })[][];
 
 export function compileVP(VP: VPRendered, form: FormVersion): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] } {
     const { head, rest } = VP.verb.ps;
-    const { kids, NPs } = shrinkEntitiesAndGatherKids(VP, form);
+    const { kids, NPs } = shrinkSegmentsAndGatherKids(VP, form);
     return {
         ps: compilePs(NPs, head, rest, VP.verb.negative, kids),
         e: compileEnglish(VP),
@@ -21,25 +21,25 @@ export function compileVP(VP: VPRendered, form: FormVersion): { ps: T.SingleOrLe
 // TODO: ISSUE off prefix-nu in the phonetics
 
 function compilePs(
-    nps: ListOfEntities,
+    nps: ListOfSegments,
     head: T.PsString | undefined,
     rest: T.PsString[],
     negative: boolean,
-    kids: ListOfEntities,
+    kids: ListOfSegments,
 ): T.PsString[];
 function compilePs(
-    nps: ListOfEntities,
+    nps: ListOfSegments,
     head: T.PsString | undefined,
     rest: T.SingleOrLengthOpts<T.PsString[]>,
     negative: boolean,
-    kids: ListOfEntities,
+    kids: ListOfSegments,
 ): T.SingleOrLengthOpts<T.PsString[]>;
 function compilePs(
-    nps: ListOfEntities,
+    nps: ListOfSegments,
     head: T.PsString | undefined,
     rest: T.SingleOrLengthOpts<T.PsString[]>,
     negative: boolean,
-    kids: ListOfEntities,
+    kids: ListOfSegments,
 ): T.SingleOrLengthOpts<T.PsString[]> {
     if ("long" in rest) {
         return {
@@ -50,19 +50,19 @@ function compilePs(
             } : {},
         };
     }
-    const verbEntities = compileVerbWNegative(head, rest, negative)
-    const entities: ListOfEntities = [
+    const verbSegments = compileVerbWNegative(head, rest, negative)
+    const segments: ListOfSegments = [
         ...nps,
-        ...verbEntities,
+        ...verbSegments,
     ];
-    const entitiesWKids = putKidsInKidsSection(
-        entities,
+    const segmentsWKids = putKidsInKidsSection(
+        segments,
         kids,
     );
-    return combineEntities(entitiesWKids);
+    return combineSegments(segmentsWKids);
 }
 
-function shrinkEntitiesAndGatherKids(VP: VPRendered, form: FormVersion): { kids: ListOfEntities, NPs: ListOfEntities } {
+function shrinkSegmentsAndGatherKids(VP: VPRendered, form: FormVersion): { kids: ListOfSegments, NPs: ListOfSegments } {
     const main = {
         subject: VP.subject.ps,
         object: typeof VP.object === "object" ? VP.object.ps : undefined,
@@ -99,37 +99,44 @@ function shrink(np: Rendered<NPSelection>): T.PsString[] {
     return grammarUnits.pronouns.mini[row][col];
 }
 
-function putKidsInKidsSection(entities: ListOfEntities, kids: ListOfEntities): ListOfEntities {
-    const first = entities[0];
-    const rest = entities.slice(1);
+function putKidsInKidsSection(segments: ListOfSegments, kids: ListOfSegments): ListOfSegments {
+    const first = segments[0];
+    const rest = segments.slice(1);
+    console.log({ kids }, kids.length);
     return [
         first.map(x => (
-            x.isVerbPrefix &&
-            // TODO: This isn't quite working
-            (kids.length)
-        ) ? { ...x, prefixFollowedByParticle: true } : x),
+            (x.isVerbPrefix && isMiniPronoun(kids[0][0]))
+                ? { ...x, prefixFollowedByMiniPronoun: true }
+                : x
+        )),
         ...kids,
         ...rest,
     ];
 }
 
-function combineEntities(loe: ListOfEntities): T.PsString[] {
+function combineSegments(loe: ListOfSegments): T.PsString[] {
+    function isLast(index: number, arr: any[]): boolean {
+        return index === (arr.length - 1);
+    }
     const first = loe[0];
     const rest = loe.slice(1);
     if (!rest.length) return first;
-    return combineEntities(rest).flatMap(r => (
+    console.log({ loe });
+    return combineSegments(rest).flatMap((r, restIndex, arr) => (
         first.map(ps => concatPsString(
             ps,
-            (ps.prefixFollowedByParticle
+            (ps.isVerbPrefix && isLast(restIndex, arr)
+                ? ""
+                : ps.prefixFollowedByMiniPronoun
                 ? { p: "", f: "-" }
-                : ps.isVerbPrefix ? "" : " "),
+                : ps.isVerbPrefix ? " " : " "),
             r,
         ))
     ));
 }
 
 
-function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): ListOfEntities {
+function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): ListOfSegments {
     const rest = restRaw.map(removeBa);
     if (!negative) {
         return [
