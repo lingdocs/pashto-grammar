@@ -121,7 +121,6 @@ function combineSegments(loe: ListOfSegments): T.PsString[] {
     const first = loe[0];
     const rest = loe.slice(1);
     if (!rest.length) return first;
-    console.log({ loe });
     return combineSegments(rest).flatMap((r, restIndex, arr) => (
         first.map(ps => concatPsString(
             ps,
