@@ -33,6 +33,20 @@ function showRole(VP: VPRendered | undefined, member: "subject" | "object") {
         : "";
 }
 
+type soClump = { subject: NPSelection | undefined, verb: VerbSelection | undefined };
+function switchSubjObj({ subject, verb }: soClump): soClump {
+    if (!subject|| !verb || !verb.object || !(typeof verb.object === "object")) {
+        return { subject, verb };
+    }
+    return {
+        subject: verb.object,
+        verb: {
+            ...verb,
+            object: subject,
+        }
+    };
+}
+
 // TODO: BIG ISSUE, IF YOU OPEN THE OBJECT PRONOUN BOX AND IT CONFLICTS WITH THE SUBJECT
 // IT CAN SAY THE COMBO IS NOT ALLOWED AND SHOW SOMETHING BLANK
 // TODO: error handling on error with rendering etc
@@ -71,6 +85,11 @@ export function PhraseBuilder() {
             object,
         });
     }
+    function handleSubjObjSwap() {
+        const output = switchSubjObj({ subject, verb });
+        setSubject(output.subject);
+        setVerb(output.verb);
+    }
     const verbPhrase: VPSelection | undefined = verbPhraseComplete({ subject, verb });
     const VPRendered = verbPhrase && renderVP(verbPhrase);
     return <div className="mt-3">
@@ -78,6 +97,9 @@ export function PhraseBuilder() {
             <div>{kingEmoji} = <abbr title="controls the verb conjugation, can be removed">king</abbr> of phrase</div>
             <div>{servantEmoji} = <abbr title="can be shrunken into a mini-pronoun">servant</abbr> of phrase</div>
         </div>
+        {verb && (typeof verb.object === "object") && <div className="d-flex flex-row justify-content-around flex-wrap mb-2">
+            <button onClick={handleSubjObjSwap} className="btn btn-sm btn-light">swap subj/obj</button>
+        </div>}
         <div className="d-flex flex-row justify-content-around flex-wrap">
             <div className="mb-2">
                 <div className="h4">Subject {showRole(VPRendered, "subject")}</div>
