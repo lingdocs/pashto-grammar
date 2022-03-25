@@ -9,7 +9,7 @@ import { removeBa } from "./vp-tools";
 
 type Segment = {
     isVerbHead?: boolean,
-    isOoHead?: boolean,
+    isOoOrWaaHead?: boolean,
     isVerbRest?: boolean,
     isMiniPronoun?: boolean,
     isKid?: boolean,
@@ -19,15 +19,16 @@ type Segment = {
     ps: T.PsString[],
 };
 
+// TODO: make it an option to include O S V order
+
 export function compileVP(VP: VPRendered, form: FormVersion): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] } {
-    const { head, rest } = VP.verb.ps;
-    const { kids, NPs } = shrinkSegmentsAndGatherKids(VP, form);
+    const verb = VP.verb.ps;
+    const { kids, NPs } = getSegmentsAndKids(VP, form);
     return {
         ps: compilePs({
             NPs,
             kids,
-            head,
-            rest,
+            verb,
             negative: VP.verb.negative,
         }),
         e: compileEnglish(VP),
@@ -35,35 +36,32 @@ export function compileVP(VP: VPRendered, form: FormVersion): { ps: T.SingleOrLe
 }
 
 type CompilePsInput = {
-    NPs: Segment[],
+    NPs: Segment[][],
     kids: Segment[],
-    head: T.PsString | undefined,
-    rest: T.SingleOrLengthOpts<T.PsString[]>,
+    verb: {
+        head: T.PsString | undefined,
+        rest: T.SingleOrLengthOpts<T.PsString[]>,
+    },
     negative: boolean,
 }
-function compilePs({ NPs, kids, head, rest, negative }: CompilePsInput): T.SingleOrLengthOpts<T.PsString[]> {
+function compilePs({ NPs, kids, verb: { head, rest }, negative }: CompilePsInput): T.SingleOrLengthOpts<T.PsString[]> {
     if ("long" in rest) {
         return {
-            long: compilePs({ NPs, head, rest: rest.long, negative, kids }) as T.PsString[],
-            short: compilePs({ NPs, head, rest: rest.short, negative, kids }) as T.PsString[],
+            long: compilePs({ NPs, verb: { head, rest: rest.long }, negative, kids }) as T.PsString[],
+            short: compilePs({ NPs, verb: { head, rest: rest.short }, negative, kids }) as T.PsString[],
             ...rest.mini ? {
-                mini: compilePs({ NPs, head, rest: rest.mini, negative, kids }) as T.PsString[],
+                mini: compilePs({ NPs, verb: { head, rest: rest.mini }, negative, kids }) as T.PsString[],
             } : {},
         };
     }
-    const verbSegments = compileVerbWNegative(head, rest, negative)
-    const segments: Segment[] = [
-        ...NPs,
-        ...verbSegments,
-    ];
-    const segmentsWKids = putKidsInKidsSection(
-        segments,
-        kids,
-    );
-    // have all these pieces labelled
-    // add spaces
-    const segmentsWithSpaces = addSpacesBetweenSegments(segmentsWKids);
-    return combineSegments(segmentsWithSpaces);
+    const verbWNegativeVersions = compileVerbWNegative(head, rest, negative);
+    return verbWNegativeVersions.flatMap((verbSegments) => (
+        NPs.flatMap(NP => {
+            const segments = putKidsInKidsSection([...NP, ...verbSegments], kids);
+            const withProperSpaces = addSpacesBetweenSegments(segments);
+            return combineSegments(withProperSpaces);
+        })
+    ));
 }
 
 function addSpacesBetweenSegments(segments: Segment[]): (Segment | " " | "" | T.PsString)[] {
@@ -73,11 +71,11 @@ function addSpacesBetweenSegments(segments: Segment[]): (Segment | " " | "" | T.
         const next = segments[i+1];
         o.push(current);
         if (!next) break;
-        if (next.isKidBetweenHeadAndRest || (next.isVerbRest && current.isKidBetweenHeadAndRest)) {
+        if ((next.isKidBetweenHeadAndRest || next.isNu) || (next.isVerbRest && current.isKidBetweenHeadAndRest)) {
             o.push({
                 f: "-",
-                p: ((current.isVerbHead && next.isMiniPronoun)
-                || (current.isOoHead && next.isBa)) ? "" : " ", // or if its waa head
+                p: ((current.isVerbHead && (next.isMiniPronoun || next.isNu))
+                || (current.isOoOrWaaHead && next.isBa )) ? "" : " ", // or if its waa head
             });
         } else if (current.isVerbHead && next.isVerbRest) {
             o.push("");
@@ -88,7 +86,7 @@ function addSpacesBetweenSegments(segments: Segment[]): (Segment | " " | "" | T.
     return o;
 }
 
-function shrinkSegmentsAndGatherKids(VP: VPRendered, form: FormVersion): { kids: Segment[], NPs: Segment[] } {
+function getSegmentsAndKids(VP: VPRendered, form: FormVersion): { kids: Segment[], NPs: Segment[][] } {
     const main = {
         subject: VP.subject.ps,
         object: typeof VP.object === "object" ? VP.object.ps : undefined,
@@ -100,7 +98,6 @@ function shrinkSegmentsAndGatherKids(VP: VPRendered, form: FormVersion): { kids:
     const toShrink = (!shrinkCanditate || typeof shrinkCanditate !== "object")
         ? undefined
         : shrinkCanditate;
-    // TODO: big problem, the king removal doesn't work with grammatically transitive things
     const king = main[VP.king];
     const showSubject = (VP.king === "subject" && !removeKing && king) || (VP.servant === "subject" && !shrinkServant);
     const showObject = (
@@ -111,18 +108,30 @@ function shrinkSegmentsAndGatherKids(VP: VPRendered, form: FormVersion): { kids:
             ...VP.verb.hasBa
                 ? [{ isBa: true, ps: [grammarUnits.baParticle] }] : [],
             ...toShrink
-                ? [{ isMiniPronoun: true, ps: shrink(toShrink) }] : [],
+                ? [shrink(toShrink)] : [],
         ].map(k => ({...k, isKid: true })),
         NPs: [
-            ...showSubject ? [{ ps: main.subject }] : [],
-            ...(showObject && main.object) ? [{ ps: main.object }] : [],
+            [
+                ...showSubject ? [{ ps: main.subject }] : [],
+                ...(showObject && main.object) ? [{ ps: main.object }] : [],
+            ],
+            // TODO: make this an option to also include O S V order
+            // also show O S V if both are showing
+            // TODO: is in only in the past that you can do O S V?
+            ...(VP.isPast && main.object && showObject && showSubject) ? [[
+                { ps: main.object },
+                { ps: main.subject },
+            ]] : [],
         ],
     }
 }
 
-function shrink(np: Rendered<NPSelection>): T.PsString[] {
+function shrink(np: Rendered<NPSelection>): Segment {
     const [row, col] = getVerbBlockPosFromPerson(np.person);
-    return grammarUnits.pronouns.mini[row][col];
+    return {
+        isMiniPronoun: true,
+        ps: grammarUnits.pronouns.mini[row][col],
+    };
 }
 
 function putKidsInKidsSection(segments: Segment[], kids: Segment[]): Segment[] {
@@ -137,7 +146,7 @@ function putKidsInKidsSection(segments: Segment[], kids: Segment[]): Segment[] {
     ];
 }
 
-function compileVerbWNegative(headRaw: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): Segment[] {
+function compileVerbWNegative(headRaw: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): Segment[][] {
     const rest: Segment = {
         isVerbRest: true,
         ps: restRaw.map(removeBa),
@@ -147,31 +156,43 @@ function compileVerbWNegative(headRaw: T.PsString | undefined, restRaw: T.PsStri
         : {
             ps: [headRaw],
             isVerbHead: true,
-            isOoHead: headRaw.p === "و"
+            isOoOrWaaHead: (headRaw.p === "و" || headRaw.p === "وا"),
         };
     if (!negative) {
         return [
-            ...head ? [head] : [],
-            rest,
+            [
+                ...head ? [head] : [],
+                rest,
+            ],
         ];
     }
     const nu: T.PsString = { p: "نه", f: "nú" };
     if (!head) {
-        return [
+        return [[
             { ps: [nu], isNu: true },
             {
                 ...rest,
                 ps: rest.ps.map(p => removeAccents(p)),
             },
-        ];
+        ]];
     }
     return [
-        ...head ? [{ ...head, ps: head.ps.map(h =>removeAccents(h)) }] : [],
-        {
-            ...rest,
-            isNu: true,
-            ps: rest.ps.map(r => concatPsString(nu, " ", removeAccents(r))),
-        },
+        [
+            ...head ? [{ ...head, ps: head.ps.map(h =>removeAccents(h)) }] : [],
+            {
+                ...rest,
+                isNu: true,
+                ps: rest.ps.map(r => concatPsString(nu, " ", removeAccents(r))),
+            },
+        ],
+        ...!head.isOoOrWaaHead ? [[
+            { ps: [nu], isNu: true },
+            { ...head, ps: head.ps.map(h =>removeAccents(h)) },
+            {
+                ...rest,
+                ps: rest.ps.map(p => removeAccents(p)),
+            },
+        ]] : [],
     ];
 }
 
