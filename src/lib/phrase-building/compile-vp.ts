@@ -18,12 +18,8 @@ type SegmentDescriptions = {
     isBa?: boolean,
 }
 
-type SDT = keyof SegmentDescriptions; 
-type Segment = { ps: T.PsString[] } & SegmentDescriptions & {
-    adjust: (o: { ps?: T.PsString | T.PsString[], desc?: SDT[] }) => Segment,
-};
-
 // TODO: make it an option to include O S V order
+// TODO: tu ba laaR nu she hyphens all messed up
 
 export function compileVP(VP: VPRendered, form: FormVersion): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] } {
     const verb = VP.verb.ps;
@@ -59,10 +55,15 @@ function compilePs({ NPs, kids, verb: { head, rest }, negative }: CompilePsInput
         };
     }
     const verbWNegativeVersions = compileVerbWNegative(head, rest, negative);
+    // potential different versions of where the nu goes
     return verbWNegativeVersions.flatMap((verbSegments) => (
+        // potential reordering of NPs
         NPs.flatMap(NP => {
+            // put in kids
             const segments = putKidsInKidsSection([...NP, ...verbSegments], kids);
+            // space out the words properly
             const withProperSpaces = addSpacesBetweenSegments(segments);
+            // throw it all together into a PsString
             return combineSegments(withProperSpaces);
         })
     ));
@@ -110,10 +111,10 @@ function getSegmentsAndKids(VP: VPRendered, form: FormVersion): { kids: Segment[
     return {
         kids: [
             ...VP.verb.hasBa
-                ? [makeSegment(grammarUnits.baParticle, ["isBa"])] : [],
+                ? [makeSegment(grammarUnits.baParticle, ["isBa", "isKid"])] : [],
             ...toShrink
                 ? [shrink(toShrink)] : [],
-        ].map(k => ({...k, isKid: true })),
+        ],
         NPs: [
             [
                 ...showSubject ? [makeSegment(main.subject)] : [],
@@ -132,7 +133,7 @@ function getSegmentsAndKids(VP: VPRendered, form: FormVersion): { kids: Segment[
 
 function shrink(np: Rendered<NPSelection>): Segment {
     const [row, col] = getVerbBlockPosFromPerson(np.person);
-    return makeSegment(grammarUnits.pronouns.mini[row][col], ["isMiniPronoun"]);
+    return makeSegment(grammarUnits.pronouns.mini[row][col], ["isKid", "isMiniPronoun"]);
 }
 
 function putKidsInKidsSection(segments: Segment[], kids: Segment[]): Segment[] {
@@ -141,33 +142,10 @@ function putKidsInKidsSection(segments: Segment[], kids: Segment[]): Segment[] {
     return [
         first,
         ...(first.isVerbHead && rest[0] && rest[0].isVerbRest)
-            ? kids.map(k => ({ ...k, isKidBetweenHeadAndRest: true }))
+            ? kids.map(k => k.adjust({ desc: ["isKidBetweenHeadAndRest"] }))
             : kids,
         ...rest,
     ];
-}
-
-function makeSegment(
-    ps: T.PsString | T.PsString[],
-    options?: (keyof SegmentDescriptions)[],     
-): Segment {
-    return {
-        ps: Array.isArray(ps) ? ps : [ps],
-        ...options && options.reduce((all, curr) => ({
-            ...all,
-            [curr]: true,
-        }), {}),
-        adjust: function(o: { ps?: T.PsString | T.PsString[], desc?: SDT[] }): Segment {
-            return {
-                ...this,
-                ...o.ps ? { ps: Array.isArray(o.ps) ? o.ps : [o.ps] } : {},
-                ...o.desc && o.desc.reduce((all, curr) => ({
-                    ...all,
-                    [curr]: true,
-                }), {}),
-            };
-        },
-    }
 }
 
 function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): Segment[][] {
@@ -182,33 +160,79 @@ function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
         );
     if (!negative) {
         return [
-            [
-                ...headSegment ? [headSegment] : [],
-                rest,
-            ],
+            headSegment ? [headSegment, rest] : [rest],
         ];
     }
     const nu: T.PsString = { p: "نه", f: "nú" };
     if (!headSegment) {
         return [[
             makeSegment(nu, ["isNu"]),
-            rest.adjust({ ps: rest.ps.map(p => removeAccents(p)) }),
+            rest.adjust({ ps: removeAccents }),
         ]];
     }
     return [
         [
-            ...headSegment ? [headSegment.adjust({ ps: headSegment.ps.map(h =>removeAccents(h)) })] : [],
+            ...headSegment ? [headSegment.adjust({ ps: removeAccents })] : [],
             rest.adjust({
-                ps: rest.ps.map(r => concatPsString(nu, " ", removeAccents(r))),
+                ps: r => concatPsString(nu, " ", removeAccents(r)),
                 desc: ["isNu"],
             }),
         ],
         ...!headSegment.isOoOrWaaHead ? [[
             makeSegment(nu, ["isNu"]),
-            headSegment.adjust({ ps: headSegment.ps.map(h =>removeAccents(h)) }),
-            rest.adjust({ ps: rest.ps.map(p => removeAccents(p)) }),
+            headSegment.adjust({ ps: removeAccents }),
+            rest.adjust({ ps: removeAccents }),
         ]] : [],
     ];
+}
+
+function compileEnglish(VP: VPRendered): string[] | undefined {
+    function insertEWords(e: string, { subject, object }: { subject: string, object?: string }): string {
+        return e.replace("$SUBJ", subject).replace("$OBJ", object || "");
+    }
+    const engSubj = VP.subject.e || undefined;
+    const engObj = (typeof VP.object === "object" && VP.object.e) ? VP.object.e : undefined;
+    // require all English parts for making the English phrase
+    return (VP.englishBase && engSubj && (engObj || typeof VP.object !== "object"))
+        ? VP.englishBase.map(e => insertEWords(e, {
+            subject: engSubj,
+            object: engObj,
+        }))
+        : undefined;
+}
+
+type SDT = keyof SegmentDescriptions; 
+type Segment = { ps: T.PsString[] } & SegmentDescriptions & {
+    adjust: (o: { ps?: T.PsString | T.PsString[] | ((ps: T.PsString) => T.PsString), desc?: SDT[] }) => Segment,
+};
+
+function makeSegment(
+    ps: T.PsString | T.PsString[],
+    options?: (keyof SegmentDescriptions)[],     
+): Segment {
+    return {
+        ps: Array.isArray(ps) ? ps : [ps],
+        ...options && options.reduce((all, curr) => ({
+            ...all,
+            [curr]: true,
+        }), {}),
+        adjust: function(o: { ps?: T.PsString | T.PsString[] | ((ps: T.PsString) => T.PsString), desc?: SDT[] }): Segment {
+            return {
+                ...this,
+                ...o.ps ? {
+                    ps: Array.isArray(o.ps)
+                        ? o.ps
+                        : "p" in o.ps
+                        ? [o.ps]
+                        : this.ps.map(o.ps)
+                    } : {},
+                ...o.desc && o.desc.reduce((all, curr) => ({
+                    ...all,
+                    [curr]: true,
+                }), {}),
+            };
+        },
+    }
 }
 
 function combineSegments(loe: (Segment | " " | "" | T.PsString)[]): T.PsString[] {
@@ -226,19 +250,4 @@ function combineSegments(loe: (Segment | " " | "" | T.PsString)[]): T.PsString[]
             : [concatPsString(first, r)]
         )
     );
-}
-
-function compileEnglish(VP: VPRendered): string[] | undefined {
-    function insertEWords(e: string, { subject, object }: { subject: string, object?: string }): string {
-        return e.replace("$SUBJ", subject).replace("$OBJ", object || "");
-    }
-    const engSubj = VP.subject.e || undefined;
-    const engObj = (typeof VP.object === "object" && VP.object.e) ? VP.object.e : undefined;
-    // require all English parts for making the English phrase
-    return (VP.englishBase && engSubj && (engObj || typeof VP.object !== "object"))
-        ? VP.englishBase.map(e => insertEWords(e, {
-            subject: engSubj,
-            object: engObj,
-        }))
-        : undefined;
 }
