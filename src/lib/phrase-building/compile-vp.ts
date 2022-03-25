@@ -7,30 +7,21 @@ import {
 } from "@lingdocs/pashto-inflector";
 import { removeBa } from "./vp-tools";
 
-type SegmentDescriptions = {
-    isVerbHead?: boolean,
-    isOoOrWaaHead?: boolean,
-    isVerbRest?: boolean,
-    isMiniPronoun?: boolean,
-    isKid?: boolean,
-    isKidBetweenHeadAndRest?: boolean,
-    isNu?: boolean,
-    isBa?: boolean,
-}
-
-// TODO: make it an option to include O S V order
+// TODO: make it an option to include O S V order ?? or is that just always in past tense
 // TODO: tu ba laaR nu she hyphens all messed up
-
-export function compileVP(VP: VPRendered, form: FormVersion): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] } {
+export function compileVP(VP: VPRendered, form: FormVersion): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] };
+export function compileVP(VP: VPRendered, form: FormVersion, combineLengths: true): { ps: T.PsString[], e?: string [] };
+export function compileVP(VP: VPRendered, form: FormVersion, combineLengths?: true): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] } {
     const verb = VP.verb.ps;
     const { kids, NPs } = getSegmentsAndKids(VP, form);
+    const psResult = compilePs({
+        NPs,
+        kids,
+        verb,
+        negative: VP.verb.negative,
+    });
     return {
-        ps: compilePs({
-            NPs,
-            kids,
-            verb,
-            negative: VP.verb.negative,
-        }),
+        ps: combineLengths ? flattenLengths(psResult) : psResult,
         e: compileEnglish(VP),
     };
 }
@@ -55,40 +46,21 @@ function compilePs({ NPs, kids, verb: { head, rest }, negative }: CompilePsInput
         };
     }
     const verbWNegativeVersions = compileVerbWNegative(head, rest, negative);
+
+    // put together all the different possible permutations based on:
     // potential different versions of where the nu goes
     return verbWNegativeVersions.flatMap((verbSegments) => (
-        // potential reordering of NPs
+    // potential reordering of NPs
         NPs.flatMap(NP => {
-            // put in kids
+            // for each permutation of the possible ordering of NPs and Verb + nu
+            // 1. put in kids in the kids section
             const segments = putKidsInKidsSection([...NP, ...verbSegments], kids);
-            // space out the words properly
+            // 2. space out the words properly
             const withProperSpaces = addSpacesBetweenSegments(segments);
-            // throw it all together into a PsString
+            // 3. throw it all together into a PsString for each permutation
             return combineSegments(withProperSpaces);
         })
     ));
-}
-
-function addSpacesBetweenSegments(segments: Segment[]): (Segment | " " | "" | T.PsString)[] {
-    const o: (Segment | " " | "" | T.PsString)[] = [];
-    for (let i = 0; i < segments.length; i++) {
-        const current = segments[i];
-        const next = segments[i+1];
-        o.push(current);
-        if (!next) break;
-        if ((next.isKidBetweenHeadAndRest || next.isNu) || (next.isVerbRest && current.isKidBetweenHeadAndRest)) {
-            o.push({
-                f: "-",
-                p: ((current.isVerbHead && (next.isMiniPronoun || next.isNu))
-                || (current.isOoOrWaaHead && next.isBa )) ? "" : " ", // or if its waa head
-            });
-        } else if (current.isVerbHead && next.isVerbRest) {
-            o.push("");
-        } else {
-            o.push(" ");
-        }
-    }
-    return o;
 }
 
 function getSegmentsAndKids(VP: VPRendered, form: FormVersion): { kids: Segment[], NPs: Segment[][] } {
@@ -113,7 +85,7 @@ function getSegmentsAndKids(VP: VPRendered, form: FormVersion): { kids: Segment[
             ...VP.verb.hasBa
                 ? [makeSegment(grammarUnits.baParticle, ["isBa", "isKid"])] : [],
             ...toShrink
-                ? [shrink(toShrink)] : [],
+                ? [shrinkNP(toShrink)] : [],
         ],
         NPs: [
             [
@@ -129,11 +101,6 @@ function getSegmentsAndKids(VP: VPRendered, form: FormVersion): { kids: Segment[
             ]] : [],
         ],
     }
-}
-
-function shrink(np: Rendered<NPSelection>): Segment {
-    const [row, col] = getVerbBlockPosFromPerson(np.person);
-    return makeSegment(grammarUnits.pronouns.mini[row][col], ["isKid", "isMiniPronoun"]);
 }
 
 function putKidsInKidsSection(segments: Segment[], kids: Segment[]): Segment[] {
@@ -186,6 +153,33 @@ function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
     ];
 }
 
+function shrinkNP(np: Rendered<NPSelection>): Segment {
+    const [row, col] = getVerbBlockPosFromPerson(np.person);
+    return makeSegment(grammarUnits.pronouns.mini[row][col], ["isKid", "isMiniPronoun"]);
+}
+
+function addSpacesBetweenSegments(segments: Segment[]): (Segment | " " | "" | T.PsString)[] {
+    const o: (Segment | " " | "" | T.PsString)[] = [];
+    for (let i = 0; i < segments.length; i++) {
+        const current = segments[i];
+        const next = segments[i+1];
+        o.push(current);
+        if (!next) break;
+        if ((next.isKidBetweenHeadAndRest || next.isNu) || (next.isVerbRest && current.isKidBetweenHeadAndRest)) {
+            o.push({
+                f: "-",
+                p: ((current.isVerbHead && (next.isMiniPronoun || next.isNu))
+                || (current.isOoOrWaaHead && next.isBa )) ? "" : " ", // or if its waa head
+            });
+        } else if (current.isVerbHead && next.isVerbRest) {
+            o.push("");
+        } else {
+            o.push(" ");
+        }
+    }
+    return o;
+}
+
 function compileEnglish(VP: VPRendered): string[] | undefined {
     function insertEWords(e: string, { subject, object }: { subject: string, object?: string }): string {
         return e.replace("$SUBJ", subject).replace("$OBJ", object || "");
@@ -199,6 +193,17 @@ function compileEnglish(VP: VPRendered): string[] | undefined {
             object: engObj,
         }))
         : undefined;
+}
+
+type SegmentDescriptions = {
+    isVerbHead?: boolean,
+    isOoOrWaaHead?: boolean,
+    isVerbRest?: boolean,
+    isMiniPronoun?: boolean,
+    isKid?: boolean,
+    isKidBetweenHeadAndRest?: boolean,
+    isNu?: boolean,
+    isBa?: boolean,
 }
 
 type SDT = keyof SegmentDescriptions; 
@@ -216,7 +221,7 @@ function makeSegment(
             ...all,
             [curr]: true,
         }), {}),
-        adjust: function(o: { ps?: T.PsString | T.PsString[] | ((ps: T.PsString) => T.PsString), desc?: SDT[] }): Segment {
+        adjust: function(o): Segment {
             return {
                 ...this,
                 ...o.ps ? {
@@ -232,7 +237,7 @@ function makeSegment(
                 }), {}),
             };
         },
-    }
+    };
 }
 
 function combineSegments(loe: (Segment | " " | "" | T.PsString)[]): T.PsString[] {
@@ -250,4 +255,11 @@ function combineSegments(loe: (Segment | " " | "" | T.PsString)[]): T.PsString[]
             : [concatPsString(first, r)]
         )
     );
+}
+
+function flattenLengths(r: T.SingleOrLengthOpts<T.PsString[]>): T.PsString[] {
+    if ("long" in r) {
+        return Object.values(r).flat();
+    }
+    return r;
 }
