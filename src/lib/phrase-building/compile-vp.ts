@@ -145,6 +145,8 @@ function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
                 desc: ["isNu"],
             }),
         ],
+        // verbs that have a perfective prefix that is not و or وا can put the
+        // nu *before* the prefix as well // TODO: also وي prefixes?
         ...!headSegment.isOoOrWaaHead ? [[
             makeSegment(nu, ["isNu"]),
             headSegment.adjust({ ps: removeAccents }),
