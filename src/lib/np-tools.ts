@@ -166,7 +166,7 @@ export function getEnglishVerb(entry: T.DictionaryEntry): string {
         throw new Error("no english information for verb");
     }
     if (entry.ep) {
-        const ec = entry.ec.includes(",") ? parseEc(entry.ec) : entry.ec;
+        const ec = entry.ec.includes(",") ? parseEc(entry.ec)[0] : entry.ec;
         return `to ${ec} ${entry.ep}`;
     }
     const ec = parseEc(entry.ec);
