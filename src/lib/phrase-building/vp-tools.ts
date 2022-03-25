@@ -26,19 +26,3 @@ export function getPersonFromNP(np: NPSelection | ObjectNP): T.Person | undefine
 export function removeBa(ps: T.PsString): T.PsString {
     return psRemove(ps, concatPsString(grammarUnits.baParticle, " "));
 }
-
-export function isMiniPronoun(ps: T.PsString | undefined): boolean {
-    if (!ps) return false;
-    return isInVerbBlock(ps.p, grammarUnits.pronouns.mini);
-}
-
-/**
- * returns true if the pashto text matches any item in a verb block
- * 
- * @param vb 
- */
-function isInVerbBlock(p: string, vb: T.VerbBlock): boolean {
-    return vb.some((r) => (
-        r.some(x => x.some(y => y.p === p)   
-    )));
-}
