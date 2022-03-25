@@ -12,6 +12,8 @@ type Segment = {
     isOoHead?: boolean,
     isVerbRest?: boolean,
     isMiniPronoun?: boolean,
+    isKid?: boolean,
+    isKidBetweenHeadAndRest?: boolean,
     isNu?: boolean,
     isBa?: boolean,
     ps: T.PsString[],
@@ -64,21 +66,19 @@ function compilePs({ NPs, kids, head, rest, negative }: CompilePsInput): T.Singl
     return combineSegments(segmentsWithSpaces);
 }
 
-function addSpacesBetweenSegments(segments: Segment[]): (Segment | " " | "" | "-")[] {
-    const o: (Segment | " " | "" | "-")[] = [];
+function addSpacesBetweenSegments(segments: Segment[]): (Segment | " " | "" | T.PsString)[] {
+    const o: (Segment | " " | "" | T.PsString)[] = [];
     for (let i = 0; i < segments.length; i++) {
         const current = segments[i];
         const next = segments[i+1];
         o.push(current);
         if (!next) break;
-        if (current.isVerbHead &&
-            (
-                (next.isMiniPronoun || next.isNu)
-                ||
-                (current.isOoHead && next.isBa)
-            )
-        ) {
-            o.push("-");
+        if (next.isKidBetweenHeadAndRest || (next.isVerbRest && current.isKidBetweenHeadAndRest)) {
+            o.push({
+                f: "-",
+                p: ((current.isVerbHead && next.isMiniPronoun)
+                || (current.isOoHead && next.isBa)) ? "" : " ", // or if its waa head
+            });
         } else if (current.isVerbHead && next.isVerbRest) {
             o.push("");
         } else {
@@ -112,7 +112,7 @@ function shrinkSegmentsAndGatherKids(VP: VPRendered, form: FormVersion): { kids:
                 ? [{ isBa: true, ps: [grammarUnits.baParticle] }] : [],
             ...toShrink
                 ? [{ isMiniPronoun: true, ps: shrink(toShrink) }] : [],
-        ],
+        ].map(k => ({...k, isKid: true })),
         NPs: [
             ...showSubject ? [{ ps: main.subject }] : [],
             ...(showObject && main.object) ? [{ ps: main.object }] : [],
@@ -130,7 +130,9 @@ function putKidsInKidsSection(segments: Segment[], kids: Segment[]): Segment[] {
     const rest = segments.slice(1);
     return [
         first,
-        ...kids,
+        ...(first.isVerbHead && rest[0] && rest[0].isVerbRest)
+            ? kids.map(k => ({ ...k, isKidBetweenHeadAndRest: true }))
+            : kids,
         ...rest,
     ];
 }
@@ -173,24 +175,21 @@ function compileVerbWNegative(headRaw: T.PsString | undefined, restRaw: T.PsStri
     ];
 }
 
-function combineSegments(loe: (Segment | " " | "" | "-")[]): T.PsString[] {
+function combineSegments(loe: (Segment | " " | "" | T.PsString)[]): T.PsString[] {
     const first = loe[0];
     const rest = loe.slice(1);
     if (!rest.length) {
-        if (typeof first === "string") {
+        if (typeof first === "string" || !("ps" in first)) {
             throw new Error("can't end with a spacer");
         }
         return first.ps;
     }
-    function spaceOrDash(s: "" | " " | "-"): "" | " " | T.PsString {
-        return s === "-" ? { p: "", f: "-" } : s;
-    }
-    return combineSegments(rest).flatMap((r) => (
-        typeof first === "string"
-            ? [concatPsString(spaceOrDash(first), r)]
-            : first.ps.map(f => concatPsString(f, r)
+    return combineSegments(rest).flatMap(r => (
+        (typeof first === "object" && "ps" in first)
+            ? first.ps.map(f => concatPsString(f, r))
+            : [concatPsString(first, r)]
         )
-    ));
+    );
 }
 
 function compileEnglish(VP: VPRendered): string[] | undefined {
