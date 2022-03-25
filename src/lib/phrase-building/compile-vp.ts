@@ -45,12 +45,12 @@ function compilePs({ NPs, kids, verb: { head, rest }, negative }: CompilePsInput
             } : {},
         };
     }
-    const verbWNegativeVersions = compileVerbWNegative(head, rest, negative);
+    const verbWNegativeVersions = arrangeVerbWNegative(head, rest, negative);
 
     // put together all the different possible permutations based on:
-    // potential different versions of where the nu goes
+    // a. potential different versions of where the nu goes
     return verbWNegativeVersions.flatMap((verbSegments) => (
-    // potential reordering of NPs
+    // b. potential reordering of NPs
         NPs.flatMap(NP => {
             // for each permutation of the possible ordering of NPs and Verb + nu
             // 1. put in kids in the kids section
@@ -68,6 +68,7 @@ function getSegmentsAndKids(VP: VPRendered, form: FormVersion): { kids: Segment[
         subject: VP.subject.ps,
         object: typeof VP.object === "object" ? VP.object.ps : undefined,
     }
+    // TODO: simplify all this logic
     const { removeKing, shrinkServant } = form;
     const shrinkCanditate = (shrinkServant && VP.servant)
         ? VP[VP.servant]
@@ -108,6 +109,7 @@ function putKidsInKidsSection(segments: Segment[], kids: Segment[]): Segment[] {
     const rest = segments.slice(1);
     return [
         first,
+        // TODO: simplify to just isKidAfterHead ??
         ...(first.isVerbHead && rest[0] && rest[0].isVerbRest)
             ? kids.map(k => k.adjust({ desc: ["isKidBetweenHeadAndRest"] }))
             : kids,
@@ -115,7 +117,7 @@ function putKidsInKidsSection(segments: Segment[], kids: Segment[]): Segment[] {
     ];
 }
 
-function compileVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): Segment[][] {
+function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): Segment[][] {
     const rest = makeSegment(restRaw.map(removeBa), ["isVerbRest"]);
     const headSegment: Segment | undefined = !head
         ? head
@@ -170,8 +172,8 @@ function addSpacesBetweenSegments(segments: Segment[]): (Segment | " " | "" | T.
         if ((next.isKidBetweenHeadAndRest || next.isNu) || (next.isVerbRest && current.isKidBetweenHeadAndRest)) {
             o.push({
                 f: "-",
-                p: ((current.isVerbHead && (next.isMiniPronoun || next.isNu))
-                || (current.isOoOrWaaHead && next.isBa )) ? "" : " ", // or if its waa head
+                p: ((current.isVerbHead && next.isMiniPronoun)
+                || (current.isOoOrWaaHead && (next.isBa || next.isNu))) ? "" : " ", // or if its waa head
             });
         } else if (current.isVerbHead && next.isVerbRest) {
             o.push("");
@@ -203,6 +205,7 @@ type SegmentDescriptions = {
     isVerbRest?: boolean,
     isMiniPronoun?: boolean,
     isKid?: boolean,
+    // TODO: Simplify to just isKidAfterHead?
     isKidBetweenHeadAndRest?: boolean,
     isNu?: boolean,
     isBa?: boolean,

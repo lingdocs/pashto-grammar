@@ -126,12 +126,10 @@ function renderVerbSelection(vs: VerbSelection, person: T.Person, objectPerson: 
     // TODO: error handle this?
     // TODO: option to manually select these
     const conj = "grammaticallyTransitive" in conjugations
-        // BIG TODO: allow for choice of grmatically transitive over transitive if there's both
         ? conjugations.transitive
         : "stative" in conjugations
         ? conjugations.stative
-        : conjugations;
-    // TODO: deliver the perfective split! 
+        : conjugations; 
     return {
         ...vs,
         person,
@@ -166,6 +164,7 @@ function renderEnglishVPBase({ subjectPerson, object, vs }: {
     const futureEngBuilder: T.EnglishBuilder = (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
         `$SUBJ will${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
     ]);
+    // TODO: Pull these out to a seperate entity and import it
     const builders: Record<
         VerbTense,
         (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => string[]
@@ -356,6 +355,7 @@ function getEnglishFromNoun(entry: T.DictionaryEntry, number: NounNumber): strin
 }
 
 function getInf(infs: T.InflectorOutput, t: "plural" | "arabicPlural" | "inflections", gender: T.Gender, plural: boolean, inflected: boolean): T.PsString[] {
+    // TODO: make this safe!!
     // @ts-ignore
     if (infs && t in infs && infs[t] !== undefined && gender in infs[t] && infs[t][gender] !== undefined) {
         // @ts-ignore
