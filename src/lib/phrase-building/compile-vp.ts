@@ -7,7 +7,7 @@ import {
 } from "@lingdocs/pashto-inflector";
 import { removeBa } from "./vp-tools";
 
-// TODO: make it an option to include O S V order ?? or is that just always in past tense
+// TODO: make it an option to include O S V order ?
 // TODO: tu ba laaR nu she hyphens all messed up
 export function compileVP(VP: VPRendered, form: FormVersion): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] };
 export function compileVP(VP: VPRendered, form: FormVersion, combineLengths: true): { ps: T.PsString[], e?: string [] };
@@ -93,10 +93,9 @@ function getSegmentsAndKids(VP: VPRendered, form: FormVersion): { kids: Segment[
                 ...showSubject ? [makeSegment(main.subject)] : [],
                 ...(showObject && main.object) ? [makeSegment(main.object)] : [],
             ],
-            // TODO: make this an option to also include O S V order
+            // TODO: make this an option to also include O S V order ??
             // also show O S V if both are showing
-            // TODO: is in only in the past that you can do O S V?
-            ...(VP.isPast && main.object && showObject && showSubject) ? [[
+            ...(main.object && showObject && showSubject) ? [[
                 makeSegment(main.object),
                 makeSegment(main.subject),
             ]] : [],
@@ -198,6 +197,9 @@ function compileEnglish(VP: VPRendered): string[] | undefined {
         }))
         : undefined;
 }
+
+// SEGMENT TOOLS
+// TODO: PULL OUT FOR SHARING ACROSS COMPILE EP ETC?
 
 type SegmentDescriptions = {
     isVerbHead?: boolean,

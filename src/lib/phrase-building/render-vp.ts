@@ -124,10 +124,12 @@ function renderParticipleSelection(p: ParticipleSelection, inflected: boolean): 
 function renderVerbSelection(vs: VerbSelection, person: T.Person, objectPerson: T.Person | undefined): VerbRendered {
     const conjugations = conjugateVerb(vs.verb.entry, vs.verb.complement);
     // TODO: error handle this?
-    // TODO: option to manually select these
     const conj = "grammaticallyTransitive" in conjugations
+        // if there's an option for grammatically transitive or transitive
+        // will default to transitive
         ? conjugations.transitive
         : "stative" in conjugations
+        // TODO: option to manually select stative/dynamic
         ? conjugations.stative
         : conjugations; 
     return {

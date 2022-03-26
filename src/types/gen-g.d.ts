@@ -31,10 +31,11 @@ type VerbSelection = {
     type: "verb",
     verb: VerbEntry,
     tense: VerbTense,
-    object: VerbObject,
+    object: VerbObject, // TODO: should have a locked in (but number changeable noun) here for dynamic compounds
     transitivity: "transitive" | "intransitive" | "grammaticallyTransitive",
     changeTransitivity?: (t: "transitive" | "grammaticallyTransitive") => VerbSelection,
-    // TODO: add in perfective element here??
+    // TODO: changeStativeDynamic
+    // TODO: add in aspect element here??
     negative: boolean,
 };
 
