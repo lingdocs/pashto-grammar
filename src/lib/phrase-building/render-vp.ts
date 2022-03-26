@@ -15,7 +15,9 @@ import {
     getLong,
 } from "../text-tools";
 import {
-    getPersonFromNP, removeBa,
+    getPersonFromNP,
+    removeBa,
+    isPastTense,
 } from "./vp-tools";
 import { isPattern4Entry } from "../type-predicates";
 import { hasBaParticle } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
@@ -366,10 +368,6 @@ function getInf(infs: T.InflectorOutput, t: "plural" | "arabicPlural" | "inflect
         return iset[inflectionNumber];
     }
     return [];
-}
-
-function isPastTense(tense: VerbTense): boolean {
-    return tense.toLowerCase().includes("past");
 }
 
 function getKingAndServant(isPast: boolean, isTransitive: boolean): 

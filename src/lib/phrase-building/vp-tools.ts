@@ -26,3 +26,7 @@ export function getPersonFromNP(np: NPSelection | ObjectNP): T.Person | undefine
 export function removeBa(ps: T.PsString): T.PsString {
     return psRemove(ps, concatPsString(grammarUnits.baParticle, " "));
 }
+
+export function isPastTense(tense: VerbTense): boolean {
+    return tense.toLowerCase().includes("past");
+}

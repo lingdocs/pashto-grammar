@@ -113,6 +113,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
         />
         <div>Tense:</div>
         <Select
+            isSearchable={false}
             value={verb && verb.tense}
             // @ts-ignore
             onChange={onTenseSelect}
