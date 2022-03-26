@@ -79,7 +79,7 @@ function getSegmentsAndKids(VP: VPRendered, form: FormVersion): { kids: Segment[
     const king = main[VP.king];
     const showSubject = (VP.king === "subject" && !removeKing && king) || (VP.servant === "subject" && !shrinkServant);
     const showObject = (
-        (VP.king === "object" && !removeKing && king) || (VP.servant === "object" && !shrinkServant)
+        (king && VP.king === "object" && !removeKing) || (VP.servant === "object" && !shrinkServant)
     );
     return {
         kids: [
