@@ -21,23 +21,12 @@ function VPDisplay({ VP }: { VP: VPSelection }) {
     const [form, setForm] = useState<FormVersion>({ removeKing: false, shrinkServant: false });
     // TODO: Possibly put the servant shrinking in here after the render
     const result = compileVP(renderVP(VP), form);
-    // const servantShrinkable = VP.object && VP.object !== "none";
-    // const toggleForm = (f: "removeKing" | "shrinkServant") => () => {
-    //     setForm(oForm => ({
-    //         ...oForm,
-    //         [f]: !oForm[f],
-    //     }));
-    // }
-    const adjustable = VP.verb.transitivity === "transitive"
-        ? "both"
-        : VP.verb.transitivity === "intransitive"
-        ? "king"
-        // grammTrans
-        : isPastTense(VP.verb.tense)
-        ? "servant"
-        : "king";
     return <div className="text-center mt-2">
-        <AbbreviationFormSelector adjustable={adjustable} form={form} onChange={setForm} />
+        <AbbreviationFormSelector
+            adjustable={whatsAdjustable(VP)}
+            form={form}
+            onChange={setForm}
+        />
             {/* <button
                 onClick={toggleForm("removeKing")}
                 className={buttonClass(form.removeKing, "l")}
@@ -67,6 +56,17 @@ function VPDisplay({ VP }: { VP: VPSelection }) {
             {result.e.map((e, i) => <div key={i}>{e}</div>)}
         </div>}
     </div>
+}
+
+function whatsAdjustable(VP: VPSelection): "both" | "king" | "servant" {
+    return VP.verb.transitivity === "transitive"
+        ? "both"
+        : VP.verb.transitivity === "intransitive"
+        ? "king"
+        // grammTrans
+        : isPastTense(VP.verb.tense)
+        ? "servant"
+        : "king";
 }
 
 function VariationLayer({ vs }: { vs: T.PsString[] }) {

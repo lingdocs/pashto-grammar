@@ -19,9 +19,7 @@ function NPPicker({ np, onChange, counterPart, asObject }: { onChange: (nps: NPS
     }
     function handleNPTypeChange(ntp: NPType) {
         if (ntp === "pronoun") {
-            const person = ((typeof counterPart === "object") && (counterPart.type === "pronoun"))
-                ? randomPerson({ counterPart: counterPart.person })
-                : randomPerson();
+            const person = randomPerson({ counterPart });
             const pronoun: PronounSelection = {
                 type: "pronoun",
                 person,

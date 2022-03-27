@@ -54,6 +54,7 @@ export function PhraseBuilder() {
     const [subject, setSubject] = useState<NPSelection | undefined>(undefined);
     const [verb, setVerb] = useState<VerbSelection | undefined>(undefined);
     function handleSubjectChange(subject: NPSelection | undefined) {
+        // check for pronoun conflict
         const objPronoun = (typeof verb?.object === "object" && verb.object.type === "pronoun")
             ? verb.object.person
             : undefined;
@@ -71,6 +72,7 @@ export function PhraseBuilder() {
     function handleObjectChange(object: NPSelection | undefined) {
         if (!verb) return;
         if ((verb.object === "none") || (typeof verb.object === "number")) return;
+        // check for pronoun conflict
         if (object?.type === "pronoun" && subject?.type === "pronoun" && isInvalidSubjObjCombo(object.person, subject.person)) {
             alert("That combination of pronouns is not allowed");
             return;

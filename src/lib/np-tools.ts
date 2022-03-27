@@ -15,25 +15,28 @@ function getRandPers(): T.Person {
     return Math.floor(Math.random() * 12);
 }
 
-export function randomPerson(a?: { old?: T.Person, counterPart?: T.Person | VerbObject }) {
+export function randomPerson(a?: { prev?: T.Person, counterPart?: VerbObject | NPSelection }) {
+    // no restrictions, just get any person
+    if (!a) {
+        return getRandPers();
+    }
+    if (a.counterPart !== undefined && typeof a.counterPart === "object" && a.counterPart.type === "pronoun") {
+        // with counterpart pronoun
+        let newP = 0;
+        do {
+            newP = getRandPers();
+        } while (
+            isInvalidSubjObjCombo(a.counterPart.person, newP)
+            ||
+            (newP === a.prev)
+        );
+        return newP;
+    }
+    // without counterpart pronoun, just previous
     let newP = 0;
     do {
         newP = getRandPers();
-    } while (
-        a &&
-        (
-            ((a.old !== undefined) && newP === a.old) ||
-            (a.counterPart && (
-                (
-                    (typeof a.counterPart === "object")
-                    && a.counterPart.type === "pronoun"
-                    && isInvalidSubjObjCombo(a.counterPart.person, newP)
-                )
-                ||
-                ((typeof a?.counterPart === "number") && isInvalidSubjObjCombo(a.counterPart, newP))
-            ))
-        )
-    );
+    } while (newP === a.prev);
     return newP;
 }
 
