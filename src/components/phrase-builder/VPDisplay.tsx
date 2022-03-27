@@ -8,18 +8,8 @@ import {
 import AbbreviationFormSelector from "./AbbreviationFormSelector";
 import { isPastTense } from "../../lib/phrase-building/vp-tools";
 
-// function buttonClass(active: boolean, side: "l" | "r") {
-//     return classNames(
-//         "btn btn-sm btn-outline-secondary",
-//         { active },
-//         { "mr-1": side === "l" },
-//         { "ml-1": side === "r" },
-//     );
-// }
-
 function VPDisplay({ VP }: { VP: VPSelection }) {
     const [form, setForm] = useState<FormVersion>({ removeKing: false, shrinkServant: false });
-    // TODO: Possibly put the servant shrinking in here after the render
     const result = compileVP(renderVP(VP), form);
     return <div className="text-center mt-2">
         <AbbreviationFormSelector
@@ -27,18 +17,6 @@ function VPDisplay({ VP }: { VP: VPSelection }) {
             form={form}
             onChange={setForm}
         />
-            {/* <button
-                onClick={toggleForm("removeKing")}
-                className={buttonClass(form.removeKing, "l")}
-            >
-                🚫 King
-            </button>
-            {servantShrinkable && <button
-                onClick={toggleForm("shrinkServant")}
-                className={buttonClass(form.shrinkServant, "r")}
-            >
-                👶 Servant
-            </button>} */}
         {"long" in result.ps ?
             <div>
                 {/* <div className="h6">Long Verb:</div> */}

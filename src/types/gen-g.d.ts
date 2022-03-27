@@ -19,6 +19,7 @@ type VPRendered = {
     servant: "subject" | "object" | undefined,
     isPast: boolean,
     isTransitive: boolean,
+    isCompound: "stative" | "dynamic" | false,
     subject: Rendered<NPSelection>,
     object: Rendered<NPSelection> | ObjectNP,
     verb: VerbRendered,
@@ -33,6 +34,7 @@ type VerbSelection = {
     tense: VerbTense,
     object: VerbObject, // TODO: should have a locked in (but number changeable noun) here for dynamic compounds
     transitivity: "transitive" | "intransitive" | "grammaticallyTransitive",
+    isCompound: "stative" | "dynamic" | false,
     changeTransitivity?: (t: "transitive" | "grammaticallyTransitive") => VerbSelection,
     // TODO: changeStativeDynamic
     // TODO: add in aspect element here??

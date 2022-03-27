@@ -13,59 +13,14 @@ const kingEmoji = "👑";
 const servantEmoji = "🙇‍♂️";
 const verbs = verbsRaw;
 
-function verbPhraseComplete({ subject, verb }: { subject: NPSelection | undefined, verb: VerbSelection | undefined }): VPSelection | undefined {
-    if (!subject) return undefined;
-    if (!verb) return undefined;
-    if (verb.object === undefined) return undefined;
-    return {
-        type: "VPSelection",
-        subject,
-        object: verb.object,
-        verb,
-    };
-}
-
-function showRole(VP: VPRendered | undefined, member: "subject" | "object") {
-    return VP 
-        ? <span className="ml-2">
-            {(VP.king === member ? kingEmoji : VP.servant === member ? servantEmoji : "")}
-        </span>
-        : "";
-}
-
-type soClump = { subject: NPSelection | undefined, verb: VerbSelection | undefined };
-function switchSubjObj({ subject, verb }: soClump): soClump {
-    if (!subject|| !verb || !verb.object || !(typeof verb.object === "object")) {
-        return { subject, verb };
-    }
-    return {
-        subject: verb.object,
-        verb: {
-            ...verb,
-            object: subject,
-        }
-    };
-}
-
-// TODO: BIG ISSUE, IF YOU OPEN THE OBJECT PRONOUN BOX AND IT CONFLICTS WITH THE SUBJECT
-// IT CAN SAY THE COMBO IS NOT ALLOWED AND SHOW SOMETHING BLANK
 // TODO: error handling on error with rendering etc
 export function PhraseBuilder() {
     const [subject, setSubject] = useState<NPSelection | undefined>(undefined);
     const [verb, setVerb] = useState<VerbSelection | undefined>(undefined);
     function handleSubjectChange(subject: NPSelection | undefined) {
-        // check for pronoun conflict
-        const objPronoun = (typeof verb?.object === "object" && verb.object.type === "pronoun")
-            ? verb.object.person
-            : undefined;
-        if (subject?.type === "pronoun" && objPronoun && isInvalidSubjObjCombo(subject.person, objPronoun)) {
+        if (hasPronounConflict(subject, verb?.object)) {
             alert("That combination of pronouns is not allowed");
             return;
-            // let newP = 0;
-            // do {
-            //     newP = randomPerson();
-            // } while (isInvalidSubjObjCombo(newP, object.person));
-            // return setSubject({ ...incoming, person: newP });
         }
         setSubject(subject);
     }
@@ -73,19 +28,11 @@ export function PhraseBuilder() {
         if (!verb) return;
         if ((verb.object === "none") || (typeof verb.object === "number")) return;
         // check for pronoun conflict
-        if (object?.type === "pronoun" && subject?.type === "pronoun" && isInvalidSubjObjCombo(object.person, subject.person)) {
+        if (hasPronounConflict(subject, verb.object)) {
             alert("That combination of pronouns is not allowed");
             return;
-            // let newP = 0;
-            // do {
-            //     newP = randomPerson();
-            // } while (isInvalidSubjObjCombo(newP, object.person));
-            // return setSubject({ ...incoming, person: newP });
         }
-        setVerb({
-            ...verb,
-            object,
-        });
+        setVerb({ ...verb, object });
     }
     function handleSubjObjSwap() {
         const output = switchSubjObj({ subject, verb });
@@ -130,3 +77,44 @@ export function PhraseBuilder() {
 }
 
 export default PhraseBuilder;
+
+function hasPronounConflict(subject: NPSelection | undefined, object: undefined | VerbObject): boolean {
+    const subjPronoun = (subject && subject.type === "pronoun") ? subject : undefined;
+    const objPronoun = (object && typeof object === "object" && object.type === "pronoun") ? object : undefined; 
+    if (!subjPronoun || !objPronoun) return false;
+    return isInvalidSubjObjCombo(subjPronoun.person, objPronoun.person);
+}
+
+function verbPhraseComplete({ subject, verb }: { subject: NPSelection | undefined, verb: VerbSelection | undefined }): VPSelection | undefined {
+    if (!subject) return undefined;
+    if (!verb) return undefined;
+    if (verb.object === undefined) return undefined;
+    return {
+        type: "VPSelection",
+        subject,
+        object: verb.object,
+        verb,
+    };
+}
+
+function showRole(VP: VPRendered | undefined, member: "subject" | "object") {
+    return VP 
+        ? <span className="ml-2">
+            {(VP.king === member ? kingEmoji : VP.servant === member ? servantEmoji : "")}
+        </span>
+        : "";
+}
+
+type SOClump = { subject: NPSelection | undefined, verb: VerbSelection | undefined };
+function switchSubjObj({ subject, verb }: SOClump): SOClump {
+    if (!subject|| !verb || !verb.object || !(typeof verb.object === "object")) {
+        return { subject, verb };
+    }
+    return {
+        subject: verb.object,
+        verb: {
+            ...verb,
+            object: subject,
+        }
+    };
+}

@@ -34,7 +34,8 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         return oldVerbSelection.object;
     }
     // TODO: more complex types and unchangeable dynamic compound objects
-    const transitivity: "intransitive" | "transitive" | "grammaticallyTransitive" = verb.entry.c?.includes("v. intrans.")
+    // TODO: use proper type predicates
+    const transitivity: "intransitive" | "transitive" | "grammaticallyTransitive" = verb.entry.c?.includes("intrans.")
         ? "intransitive"
         : verb.entry.c?.includes("v. gramm. trans.")
         ? "grammaticallyTransitive"
@@ -44,12 +45,19 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         : transitivity === "transitive"
         ? getTransObjFromOldVerbSelection()
         : "none";
+    // TODO: better here based on selection of which type
+    const isCompound = verb.entry.c?.includes("stat. comp.")
+        ? "stative"
+        : verb.entry.c?.includes("dyn. comp.")
+        ? "dynamic"
+        : false;
     return {
         type: "verb",
         verb,
         tense: oldVerbSelection ? oldVerbSelection.tense : "present",
         object,
         transitivity,
+        isCompound,
         negative: oldVerbSelection ? oldVerbSelection.negative : false,
         ...verb.entry.c?.includes("v. trans./gramm. trans") ? {
             changeTransitivity: function (t) {

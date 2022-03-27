@@ -19,6 +19,7 @@ export function compileVP(VP: VPRendered, form: FormVersion, combineLengths?: tr
         kids,
         verb,
         negative: VP.verb.negative,
+        isCompound: VP.isCompound,
     });
     return {
         ps: combineLengths ? flattenLengths(psResult) : psResult,
@@ -33,19 +34,20 @@ type CompilePsInput = {
         head: T.PsString | undefined,
         rest: T.SingleOrLengthOpts<T.PsString[]>,
     },
+    isCompound: "stative" | "dynamic" | false,
     negative: boolean,
 }
-function compilePs({ NPs, kids, verb: { head, rest }, negative }: CompilePsInput): T.SingleOrLengthOpts<T.PsString[]> {
+function compilePs({ NPs, kids, verb: { head, rest }, isCompound, negative }: CompilePsInput): T.SingleOrLengthOpts<T.PsString[]> {
     if ("long" in rest) {
         return {
-            long: compilePs({ NPs, verb: { head, rest: rest.long }, negative, kids }) as T.PsString[],
-            short: compilePs({ NPs, verb: { head, rest: rest.short }, negative, kids }) as T.PsString[],
+            long: compilePs({ NPs, verb: { head, rest: rest.long }, negative, isCompound, kids }) as T.PsString[],
+            short: compilePs({ NPs, verb: { head, rest: rest.short }, negative, isCompound, kids }) as T.PsString[],
             ...rest.mini ? {
-                mini: compilePs({ NPs, verb: { head, rest: rest.mini }, negative, kids }) as T.PsString[],
+                mini: compilePs({ NPs, verb: { head, rest: rest.mini }, negative, isCompound, kids }) as T.PsString[],
             } : {},
         };
     }
-    const verbWNegativeVersions = arrangeVerbWNegative(head, rest, negative);
+    const verbWNegativeVersions = arrangeVerbWNegative(head, rest, negative, isCompound);
 
     // put together all the different possible permutations based on:
     // a. potential different versions of where the nu goes
@@ -116,7 +118,7 @@ function putKidsInKidsSection(segments: Segment[], kids: Segment[]): Segment[] {
     ];
 }
 
-function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean): Segment[][] {
+function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean, isCompound: "stative" | "dynamic" | false): Segment[][] {
     const rest = makeSegment(restRaw.map(removeBa), ["isVerbRest"]);
     const headSegment: Segment | undefined = !head
         ? head
@@ -148,7 +150,7 @@ function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
         ],
         // verbs that have a perfective prefix that is not و or وا can put the
         // nu *before* the prefix as well // TODO: also وي prefixes?
-        ...!headSegment.isOoOrWaaHead ? [[
+        ...(!headSegment.isOoOrWaaHead && !isCompound) ? [[
             makeSegment(nu, ["isNu"]),
             headSegment.adjust({ ps: removeAccents }),
             rest.adjust({ ps: removeAccents }),
@@ -168,10 +170,19 @@ function addSpacesBetweenSegments(segments: Segment[]): (Segment | " " | "" | T.
         const next = segments[i+1];
         o.push(current);
         if (!next) break;
-        if ((next.isKidBetweenHeadAndRest || next.isNu) || (next.isVerbRest && current.isKidBetweenHeadAndRest)) {
+        if (
+            // stative compound part
+            !current.ps[0].p.endsWith(" ")
+            &&
+            (
+                (next.isKidBetweenHeadAndRest || next.isNu)
+                ||
+                (next.isVerbRest && current.isKidBetweenHeadAndRest)
+            )
+        ) {
             o.push({
                 f: "-",
-                p: ((current.isVerbHead && next.isMiniPronoun)
+                p: ((current.isVerbHead && (next.isMiniPronoun || next.isNu))
                 || (current.isOoOrWaaHead && (next.isBa || next.isNu))) ? "" : " ", // or if its waa head
             });
         } else if (current.isVerbHead && next.isVerbRest) {

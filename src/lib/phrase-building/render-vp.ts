@@ -9,6 +9,7 @@ import {
     concatPsString,
     removeAccents,
     getPersonNumber,
+    hasBaParticle,
 } from "@lingdocs/pashto-inflector";
 import {
     psStringFromEntry,
@@ -20,7 +21,6 @@ import {
     isPastTense,
 } from "./vp-tools";
 import { isPattern4Entry } from "../type-predicates";
-import { hasBaParticle } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
 
 // TODO: ISSUE GETTING SPLIT HEAD NOT MATCHING WITH FUTURE VERBS
 
@@ -46,6 +46,7 @@ export function renderVP(VP: VPSelection): VPRendered {
         servant,
         isPast,
         isTransitive,
+        isCompound: VP.verb.isCompound,
         subject: renderNPSelection(VP.subject, inflectSubject, false, "subject"),
         object: renderNPSelection(VP.object, inflectObject, true, "object"),
         verb: renderVerbSelection(VP.verb, kingPerson, objectPerson),
