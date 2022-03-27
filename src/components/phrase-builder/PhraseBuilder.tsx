@@ -27,8 +27,9 @@ export function PhraseBuilder() {
     function handleObjectChange(object: NPSelection | undefined) {
         if (!verb) return;
         if ((verb.object === "none") || (typeof verb.object === "number")) return;
+        console.log("handling object change and checking", object);
         // check for pronoun conflict
-        if (hasPronounConflict(subject, verb.object)) {
+        if (hasPronounConflict(subject, object)) {
             alert("That combination of pronouns is not allowed");
             return;
         }
