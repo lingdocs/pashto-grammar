@@ -27,7 +27,6 @@ export function PhraseBuilder() {
     function handleObjectChange(object: NPSelection | undefined) {
         if (!verb) return;
         if ((verb.object === "none") || (typeof verb.object === "number")) return;
-        console.log("handling object change and checking", object);
         // check for pronoun conflict
         if (hasPronounConflict(subject, object)) {
             alert("That combination of pronouns is not allowed");
@@ -36,6 +35,7 @@ export function PhraseBuilder() {
         setVerb({ ...verb, object });
     }
     function handleSubjObjSwap() {
+        if (verb?.isCompound === "dynamic") return;
         const output = switchSubjObj({ subject, verb });
         setSubject(output.subject);
         setVerb(output.verb);
@@ -47,7 +47,8 @@ export function PhraseBuilder() {
             <div>{kingEmoji} = <abbr title="controls the verb conjugation, can be removed">king</abbr> of phrase</div>
             <div>{servantEmoji} = <abbr title="can be shrunken into a mini-pronoun">servant</abbr> of phrase</div>
         </div>
-        {verb && (typeof verb.object === "object") && <div className="d-flex flex-row justify-content-around flex-wrap mb-2">
+        {(verb && (typeof verb.object === "object") && (verb.isCompound !== "dynamic")) &&
+        <div className="d-flex flex-row justify-content-around flex-wrap mb-2">
             <button onClick={handleSubjObjSwap} className="btn btn-sm btn-light">
                 <i className="fas fa-exchange-alt mr-2" /> subj/obj
             </button>
@@ -64,7 +65,11 @@ export function PhraseBuilder() {
             </div>
             {verb && (verb.object !== "none") && <div className="mb-2">
                 <div className="h4">Object {showRole(VPRendered, "object")}</div>
-                <ObjectDisplay object={verb.object} counterPart={subject} onChange={handleObjectChange} />
+                <ObjectDisplay
+                    object={verb.object}
+                    counterPart={subject}
+                    onChange={handleObjectChange}
+                />
             </div>}
             <div className="mb-2">
                 <div className="h4">Verb</div>

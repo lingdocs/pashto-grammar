@@ -31,11 +31,12 @@ type VerbTense = "present" | "subjunctive" | "perfectiveFuture" | "imperfectiveF
 type VerbSelection = {
     type: "verb",
     verb: VerbEntry,
+    dynAuxVerb?: VerbEntry,
     tense: VerbTense,
     object: VerbObject, // TODO: should have a locked in (but number changeable noun) here for dynamic compounds
-    transitivity: "transitive" | "intransitive" | "grammaticallyTransitive",
+    transitivity: import("@lingdocs/pashto-inflector").Types.Transitivity,
     isCompound: "stative" | "dynamic" | false,
-    changeTransitivity?: (t: "transitive" | "grammaticallyTransitive") => VerbSelection,
+    changeTransitivity?: (t: "transitive" | "grammatically transitive") => VerbSelection,
     // TODO: changeStativeDynamic
     // TODO: add in aspect element here??
     negative: boolean,
@@ -73,6 +74,7 @@ type NounSelection = {
     entry: NounEntry,
     gender: import("@lingdocs/pashto-inflector").Types.Gender,
     number: NounNumber,
+    dynamicComplement?: boolean,
     // TODO: Implement
     // adjectives: [],
     // TODO: Implement

@@ -1,11 +1,13 @@
 import Select from "react-select";
 import {
+    makeNounSelection,
     makeVerbSelectOption,
     zIndexProps,
 } from "./np-picker/picker-tools";
 import {
     Types as T,
     ButtonSelect,
+    getVerbInfo,
 } from "@lingdocs/pashto-inflector";
 
 const tenseOptions: { label: string, value: VerbTense }[] = [{
@@ -29,42 +31,54 @@ const tenseOptions: { label: string, value: VerbTense }[] = [{
 }];
 
 function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): VerbSelection {
+    const info = getVerbInfo(verb.entry, verb.complement);
     function getTransObjFromOldVerbSelection() {
-        if (!oldVerbSelection || oldVerbSelection.object === "none" || typeof oldVerbSelection.object === "number") return undefined;
+        if (
+            !oldVerbSelection ||
+            oldVerbSelection.object === "none" ||
+            typeof oldVerbSelection.object === "number" ||
+            oldVerbSelection.isCompound === "dynamic" ||
+            (oldVerbSelection.object?.type === "noun" && oldVerbSelection.object.dynamicComplement)  
+        ) return undefined;
         return oldVerbSelection.object;
     }
-    // TODO: more complex types and unchangeable dynamic compound objects
-    // TODO: use proper type predicates
-    const transitivity: "intransitive" | "transitive" | "grammaticallyTransitive" = verb.entry.c?.includes("intrans.")
-        ? "intransitive"
-        : verb.entry.c?.includes("v. gramm. trans.")
-        ? "grammaticallyTransitive"
-        : "transitive";
-    const object = (transitivity === "grammaticallyTransitive")
+    const transitivity: T.Transitivity = "grammaticallyTransitive" in info
+        ? "grammatically transitive"
+        : info.transitivity;
+    const object = (transitivity === "grammatically transitive")
         ? T.Person.ThirdPlurMale
-        : transitivity === "transitive"
+        : info.type === "dynamic compound"
+        ? makeNounSelection(info.objComplement.entry as NounEntry, true)
+        : (transitivity === "transitive")
         ? getTransObjFromOldVerbSelection()
         : "none";
-    // TODO: better here based on selection of which type
-    const isCompound = verb.entry.c?.includes("stat. comp.")
+    const isCompound = "stative" in info
         ? "stative"
-        : verb.entry.c?.includes("dyn. comp.")
+        : info.type === "dynamic compound"
         ? "dynamic"
         : false;
+    const dynAuxVerb: VerbEntry | undefined = isCompound !== "dynamic"
+        ? undefined
+        : info.type === "dynamic compound"
+        ? { entry: info.auxVerb } as VerbEntry
+        : "dynamic" in info
+        ? { entry: info.dynamic.auxVerb } as VerbEntry
+        : undefined;
     return {
         type: "verb",
-        verb,
+        verb: verb,
+        dynAuxVerb,
         tense: oldVerbSelection ? oldVerbSelection.tense : "present",
         object,
         transitivity,
         isCompound,
         negative: oldVerbSelection ? oldVerbSelection.negative : false,
-        ...verb.entry.c?.includes("v. trans./gramm. trans") ? {
+        ...("grammaticallyTransitive" in info) ? {
             changeTransitivity: function (t) {
                 return {
                     ...this,
                     transitivity: t,
-                    object: t === "grammaticallyTransitive" ? T.Person.ThirdPlurMale : undefined,
+                    object: t === "grammatically transitive" ? T.Person.ThirdPlurMale : undefined,
                 };
             },
         } : {},
@@ -97,10 +111,10 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             });
         }
     }
-    function notInstransitive(t: "transitive" | "intransitive" | "grammaticallyTransitive"): "transitive" | "grammaticallyTransitive" {
+    function notInstransitive(t: "transitive" | "intransitive" | "grammatically transitive"): "transitive" | "grammatically transitive" {
         return t === "intransitive" ? "transitive" : t;
     }
-    function handleChangeTransitivity(t: "transitive" | "grammaticallyTransitive") {
+    function handleChangeTransitivity(t: "transitive" | "grammatically transitive") {
         if (verb && verb.changeTransitivity) {
             onChange(verb.changeTransitivity(t));
         }
@@ -150,7 +164,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                 small
                 options={[{
                     label: "gramm. trans.",
-                    value: "grammaticallyTransitive",
+                    value: "grammatically transitive",
                 }, {
                     label: "trans.",
                     value: "transitive",

@@ -8,10 +8,25 @@ import {
 import AbbreviationFormSelector from "./AbbreviationFormSelector";
 import { isPastTense } from "../../lib/phrase-building/vp-tools";
 
+// TODO: Issue when picking dynamic compound and then going back with the object dissappearing
+
 function VPDisplay({ VP }: { VP: VPSelection }) {
     const [form, setForm] = useState<FormVersion>({ removeKing: false, shrinkServant: false });
-    const result = compileVP(renderVP(VP), form);
+    const [OSV, setOSV] = useState<boolean>(false);
+    const result = compileVP(renderVP(VP), { ...form, OSV });
     return <div className="text-center mt-2">
+        <div className="form-check mb-2">
+            <input
+                className="form-check-input"
+                type="checkbox"
+                checked={OSV}
+                id="OSVCheckbox"
+                onChange={e => setOSV(e.target.checked)}
+            />
+            <label className="form-check-label text-muted" htmlFor="OSVCheckbox">
+                Include O S V
+            </label>
+        </div>
         <AbbreviationFormSelector
             adjustable={whatsAdjustable(VP)}
             form={form}
@@ -37,7 +52,10 @@ function VPDisplay({ VP }: { VP: VPSelection }) {
 }
 
 function whatsAdjustable(VP: VPSelection): "both" | "king" | "servant" {
-    return VP.verb.transitivity === "transitive"
+    // TODO: intransitive dynamic compounds?
+    return (VP.verb.isCompound === "dynamic" && VP.verb.transitivity === "transitive")
+        ? (isPastTense(VP.verb.tense) ? "servant" : "king")
+        : VP.verb.transitivity === "transitive"
         ? "both"
         : VP.verb.transitivity === "intransitive"
         ? "king"

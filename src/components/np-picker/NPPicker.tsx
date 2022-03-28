@@ -4,16 +4,24 @@ import ParticiplePicker from "./NPParticiplePicker";
 // import { getEnglishPronoun } from "../../lib/english-pronoun-tools";
 // import { ButtonSelect } from "@lingdocs/pashto-inflector";
 import { randomPerson } from "../../lib/np-tools";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { nouns, verbs } from "../../words/words";
 // import { capitalizeFirstLetter } from "../../lib/text-tools";
 
 const npTypes: NPType[] = ["pronoun", "noun", "participle"];
 
-function NPPicker({ np, onChange, counterPart, asObject }: { onChange: (nps: NPSelection | undefined) => void, np: NPSelection | undefined, counterPart: NPSelection | VerbObject | undefined, asObject?: boolean }) {
-    // eslint-disable-next-line
+function NPPicker({ np, onChange, counterPart, asObject }: {
+    onChange: (nps: NPSelection | undefined) => void,
+    np: NPSelection | undefined,
+    counterPart: NPSelection | VerbObject | undefined,
+    asObject?: boolean,
+}) {
     const [npType, setNpType] = useState<NPType | undefined>(np ? np.type : undefined);
+    useEffect(() => {
+        setNpType(np ? np.type : undefined);
+    }, [np]);
     function handleClear() {
+        if (np && np.type === "noun" && np.dynamicComplement) return;
         setNpType(undefined);
         onChange(undefined);
     }
@@ -32,8 +40,9 @@ function NPPicker({ np, onChange, counterPart, asObject }: { onChange: (nps: NPS
             setNpType(ntp);
         }
     }
+    const isDynamicComplement = np && np.type === "noun" && np.dynamicComplement;
     return <div>
-        {!npType ? <div className="text-center mt-3">
+        {!npType && <div className="text-center mt-3">
             {npTypes.map((npt) => <div className="mb-2">
                 <button
                     key={npt}
@@ -44,19 +53,16 @@ function NPPicker({ np, onChange, counterPart, asObject }: { onChange: (nps: NPS
                     {npt}
                 </button>
             </div>)}
-        </div>
-        : <button className="btn btn-sm btn-light mb-2" onClick={handleClear}>X</button>}
-        {np ?
-            ((np.type === "pronoun"
-                ? <PronounPicker asObject={asObject} pronoun={np} onChange={onChange} />
-                : np.type === "noun"
-                ? <NounPicker nouns={nouns} noun={np} onChange={onChange} />
-                : <ParticiplePicker verbs={verbs} participle={np} onChange={onChange} />))
-        : (npType === "noun")
-        ? <NounPicker nouns={nouns} noun={np} onChange={onChange} />
-        : (npType === "participle")
-        ? <ParticiplePicker verbs={verbs} participle={np} onChange={onChange} />
-        : null}
+        </div>}
+        {(npType && !isDynamicComplement) && <button className="btn btn-sm btn-light mb-2" onClick={handleClear}>X</button>}
+        {(npType === "pronoun" && np?.type === "pronoun")
+            ? <PronounPicker asObject={asObject} pronoun={np} onChange={onChange} />
+            : npType === "noun"
+            ? <NounPicker nouns={nouns} noun={(np && np.type === "noun") ? np : undefined} onChange={onChange} />
+            : npType === "participle"
+            ? <ParticiplePicker verbs={verbs} participle={(np && np.type === "participle") ? np : undefined} onChange={onChange} />
+            : null
+        }
     </div>;
 }
 

@@ -6,8 +6,9 @@ import {
 } from "./picker-tools";
 import {
     ButtonSelect,
+    InlinePs,
+    defaultTextOptions as opts,
 } from "@lingdocs/pashto-inflector";
-
 
 function NPNounPicker({ onChange, noun, nouns }: { nouns: NounEntry[], noun: NounSelection | undefined, onChange: (p: NounSelection) => void }) {
     const options = nouns.sort((a, b) => (a.p.localeCompare(b.p, "af-PS"))).map(makeSelectOption)
@@ -20,7 +21,7 @@ function NPNounPicker({ onChange, noun, nouns }: { nouns: NounEntry[], noun: Nou
         onChange(makeNounSelection(entry));
     }
     return <div style={{ maxWidth: "225px", minWidth: "125px" }}>
-        <Select
+        {!(noun && noun.dynamicComplement) ? <Select
             value={noun && noun.entry.ts.toString()}
             // @ts-ignore
             onChange={onEntrySelect}
@@ -32,7 +33,17 @@ function NPNounPicker({ onChange, noun, nouns }: { nouns: NounEntry[], noun: Nou
 
             placeholder={noun ? options.find(o => o.value === (noun.entry).ts.toString())?.label : "Select Noun..."}
             {...zIndexProps}
-        />
+        /> : <div>
+            {noun && <div>
+                <div className="mb-2">Included in Dyn. Compound:</div>
+                <div className="mb-3 text-center">
+                    <InlinePs opts={opts}>
+                        {{ p: noun.entry.p, f: noun.entry.f }}
+                    </InlinePs>
+                    <div className="text-muted">{noun.entry.e}</div>
+                </div>
+            </div>}
+        </div>}
         {noun && <div className="my-2 d-flex flex-row justify-content-around align-items-center">
             <div>
                 {noun.changeGender ? <ButtonSelect

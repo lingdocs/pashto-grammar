@@ -85,7 +85,7 @@ function AbbreviationFormSelector({ form, onChange, adjustable }: {
         }
     }
     // TODO: limit display of shrinking options based on the verb type
-    return <div className="my-3">
+    return <div className="mb-3">
         {/* <div className="text-center text-small mb-2">Abbreviation Options</div> */}
         <ButtonSelect
             // @ts-ignore

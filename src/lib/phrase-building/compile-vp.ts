@@ -9,9 +9,10 @@ import { removeBa } from "./vp-tools";
 
 // TODO: make it an option to include O S V order ?
 // TODO: tu ba laaR nu she hyphens all messed up
-export function compileVP(VP: VPRendered, form: FormVersion): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] };
-export function compileVP(VP: VPRendered, form: FormVersion, combineLengths: true): { ps: T.PsString[], e?: string [] };
-export function compileVP(VP: VPRendered, form: FormVersion, combineLengths?: true): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] } {
+type Form = FormVersion & { OSV?: boolean };
+export function compileVP(VP: VPRendered, form: Form): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] };
+export function compileVP(VP: VPRendered, form: Form, combineLengths: true): { ps: T.PsString[], e?: string [] };
+export function compileVP(VP: VPRendered, form: Form, combineLengths?: true): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] } {
     const verb = VP.verb.ps;
     const { kids, NPs } = getSegmentsAndKids(VP, form);
     const psResult = compilePs({
@@ -65,24 +66,33 @@ function compilePs({ NPs, kids, verb: { head, rest }, isCompound, negative }: Co
     ));
 }
 
-function getSegmentsAndKids(VP: VPRendered, form: FormVersion): { kids: Segment[], NPs: Segment[][] } {
-    const main = {
+function getSegmentsAndKids(VP: VPRendered, form: Form): { kids: Segment[], NPs: Segment[][] } {
+    const SO = {
         subject: VP.subject.ps,
         object: typeof VP.object === "object" ? VP.object.ps : undefined,
     }
-    // TODO: simplify all this logic
-    const { removeKing, shrinkServant } = form;
-    const shrinkCanditate = (shrinkServant && VP.servant)
-        ? VP[VP.servant]
-        : undefined;
-    const toShrink = (!shrinkCanditate || typeof shrinkCanditate !== "object")
-        ? undefined
-        : shrinkCanditate;
-    const king = main[VP.king];
-    const showSubject = (VP.king === "subject" && !removeKing && king) || (VP.servant === "subject" && !shrinkServant);
-    const showObject = (
-        (king && VP.king === "object" && !removeKing) || (VP.servant === "object" && !shrinkServant)
-    );
+    const removeKing = form.removeKing && !(VP.isCompound === "dynamic" && VP.isPast);
+    const shrinkServant = form.shrinkServant && !(VP.isCompound === "dynamic" && !VP.isPast);
+
+    const toShrink = (() => {
+        if (!shrinkServant) return undefined;
+        if (!VP.servant) return undefined;
+        const servant = VP[VP.servant];
+        if (typeof servant !== "object") return undefined;
+        return servant;
+    })();
+    function getSegment(t: "subject" | "object"): Segment | undefined {
+        const word = (VP.servant === t)
+            ? (!shrinkServant ? SO[t] : undefined)
+            : (VP.king === t)
+            ? (!removeKing ? SO[t] : undefined)
+            : undefined;
+        if (!word) return undefined;
+        return makeSegment(word);
+    }
+    const subject = getSegment("subject");
+    const object = getSegment("object");
+
     return {
         kids: [
             ...VP.verb.hasBa
@@ -92,17 +102,14 @@ function getSegmentsAndKids(VP: VPRendered, form: FormVersion): { kids: Segment[
         ],
         NPs: [
             [
-                ...showSubject ? [makeSegment(main.subject)] : [],
-                ...(showObject && main.object) ? [makeSegment(main.object)] : [],
+                ...subject ? [subject] : [],
+                ...object ? [object] : [],
             ],
             // TODO: make this an option to also include O S V order ??
             // also show O S V if both are showing
-            ...(main.object && showObject && showSubject) ? [[
-                makeSegment(main.object),
-                makeSegment(main.subject),
-            ]] : [],
+            ...(subject && object && form.OSV) ? [[object, subject]] : [],
         ],
-    }
+    };
 }
 
 function putKidsInKidsSection(segments: Segment[], kids: Segment[]): Segment[] {

@@ -52,15 +52,15 @@ export function renderVP(VP: VPSelection): VPRendered {
         verb: renderVerbSelection(VP.verb, kingPerson, objectPerson),
         englishBase: renderEnglishVPBase({
             subjectPerson,
-            object: VP.object,
+            object: VP.verb.isCompound === "dynamic" ? "none" : VP.object,
             vs: VP.verb,
         }),
     };
 }
 
-function renderNPSelection(NP: NPSelection, inflected: boolean, inflectEnglish: boolean, role: "subject"): Rendered<NPSelection>
-function renderNPSelection(NP: NPSelection | ObjectNP, inflected: boolean, inflectEnglish: boolean, role: "object"): Rendered<NPSelection> | T.Person.ThirdPlurMale | "none";
-function renderNPSelection(NP: NPSelection | ObjectNP, inflected: boolean, inflectEnglish: boolean, role: "subject" | "object"): Rendered<NPSelection> | T.Person.ThirdPlurMale | "none" {
+export function renderNPSelection(NP: NPSelection, inflected: boolean, inflectEnglish: boolean, role: "subject"): Rendered<NPSelection>
+export function renderNPSelection(NP: NPSelection | ObjectNP, inflected: boolean, inflectEnglish: boolean, role: "object"): Rendered<NPSelection> | T.Person.ThirdPlurMale | "none";
+export function renderNPSelection(NP: NPSelection | ObjectNP, inflected: boolean, inflectEnglish: boolean, role: "subject" | "object"): Rendered<NPSelection> | T.Person.ThirdPlurMale | "none" {
     if (typeof NP !== "object") {
         if (role !== "object") {
             throw new Error("ObjectNP only allowed for objects");
@@ -125,7 +125,8 @@ function renderParticipleSelection(p: ParticipleSelection, inflected: boolean): 
 }
 
 function renderVerbSelection(vs: VerbSelection, person: T.Person, objectPerson: T.Person | undefined): VerbRendered {
-    const conjugations = conjugateVerb(vs.verb.entry, vs.verb.complement);
+    const v = vs.dynAuxVerb || vs.verb;
+    const conjugations = conjugateVerb(v.entry, v.complement);
     // TODO: error handle this?
     const conj = "grammaticallyTransitive" in conjugations
         // if there's an option for grammatically transitive or transitive

@@ -45,13 +45,14 @@ export function makeSelectOption(e: VerbEntry | NounEntry | AdjectiveEntry | Loc
     };
 }
 
-export function makeNounSelection(entry: NounEntry): NounSelection {
+export function makeNounSelection(entry: NounEntry, dynamicComplement?: true): NounSelection {
     const number = isPluralNounEntry(entry) ? "plural" : "singular";
     return {
         type: "noun",
         entry,
         gender: isMascNounEntry(entry) ? "masc" : "fem",
         number,
+        dynamicComplement,
         ...isUnisexNounEntry(entry) ? {
             changeGender: function(gender: T.Gender): NounSelection {
                 return {
