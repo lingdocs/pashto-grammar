@@ -9,6 +9,7 @@ import {
     ButtonSelect,
     getVerbInfo,
 } from "@lingdocs/pashto-inflector";
+// import { useState } from "react";
 
 const tenseOptions: { label: string, value: VerbTense }[] = [{
     label: "present",
@@ -30,62 +31,22 @@ const tenseOptions: { label: string, value: VerbTense }[] = [{
     value: "imperfectivePast",
 }];
 
-function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): VerbSelection {
-    const info = getVerbInfo(verb.entry, verb.complement);
-    function getTransObjFromOldVerbSelection() {
-        if (
-            !oldVerbSelection ||
-            oldVerbSelection.object === "none" ||
-            typeof oldVerbSelection.object === "number" ||
-            oldVerbSelection.isCompound === "dynamic" ||
-            (oldVerbSelection.object?.type === "noun" && oldVerbSelection.object.dynamicComplement)  
-        ) return undefined;
-        return oldVerbSelection.object;
-    }
-    const transitivity: T.Transitivity = "grammaticallyTransitive" in info
-        ? "grammatically transitive"
-        : info.transitivity;
-    const object = (transitivity === "grammatically transitive")
-        ? T.Person.ThirdPlurMale
-        : info.type === "dynamic compound"
-        ? makeNounSelection(info.objComplement.entry as NounEntry, true)
-        : (transitivity === "transitive")
-        ? getTransObjFromOldVerbSelection()
-        : "none";
-    const isCompound = "stative" in info
-        ? "stative"
-        : info.type === "dynamic compound"
-        ? "dynamic"
-        : false;
-    const dynAuxVerb: VerbEntry | undefined = isCompound !== "dynamic"
-        ? undefined
-        : info.type === "dynamic compound"
-        ? { entry: info.auxVerb } as VerbEntry
-        : "dynamic" in info
-        ? { entry: info.dynamic.auxVerb } as VerbEntry
-        : undefined;
-    return {
-        type: "verb",
-        verb: verb,
-        dynAuxVerb,
-        tense: oldVerbSelection ? oldVerbSelection.tense : "present",
-        object,
-        transitivity,
-        isCompound,
-        negative: oldVerbSelection ? oldVerbSelection.negative : false,
-        ...("grammaticallyTransitive" in info) ? {
-            changeTransitivity: function (t) {
-                return {
-                    ...this,
-                    transitivity: t,
-                    object: t === "grammatically transitive" ? T.Person.ThirdPlurMale : undefined,
-                };
-            },
-        } : {},
-    };
-}
+// type Filters = {
+//     stative: boolean,
+//     dynamic: boolean,
+//     transitive: boolean,
+//     intransitive: boolean,
+//     grammaticallyTransitive: boolean,
+// }
 
 function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbSelection | undefined, onChange: (p: VerbSelection) => void }) {
+    // const [filters, useFilters] = useState<Filters>({
+    //     stative: true,
+    //     dynamic: true,
+    //     transitive: true,
+    //     intransitive: true,
+    //     grammaticallyTransitive: true,
+    // });
     const options = verbs.sort((a, b) => (a.entry.p.localeCompare(b.entry.p, "af-PS"))).map(makeVerbSelectOption);
     function onEntrySelect({ value }: { label: string, value: string }) {
         const v = verbs.find(v => v.entry.ts.toString() === value);
@@ -174,6 +135,61 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             />
         </div>}
     </div>;
+}
+
+function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): VerbSelection {
+    const info = getVerbInfo(verb.entry, verb.complement);
+    function getTransObjFromOldVerbSelection() {
+        if (
+            !oldVerbSelection ||
+            oldVerbSelection.object === "none" ||
+            typeof oldVerbSelection.object === "number" ||
+            oldVerbSelection.isCompound === "dynamic" ||
+            (oldVerbSelection.object?.type === "noun" && oldVerbSelection.object.dynamicComplement)  
+        ) return undefined;
+        return oldVerbSelection.object;
+    }
+    const transitivity: T.Transitivity = "grammaticallyTransitive" in info
+        ? "grammatically transitive"
+        : info.transitivity;
+    const object = (transitivity === "grammatically transitive")
+        ? T.Person.ThirdPlurMale
+        : info.type === "dynamic compound"
+        ? makeNounSelection(info.objComplement.entry as NounEntry, true)
+        : (transitivity === "transitive")
+        ? getTransObjFromOldVerbSelection()
+        : "none";
+    const isCompound = "stative" in info
+        ? "stative"
+        : info.type === "dynamic compound"
+        ? "dynamic"
+        : false;
+    const dynAuxVerb: VerbEntry | undefined = isCompound !== "dynamic"
+        ? undefined
+        : info.type === "dynamic compound"
+        ? { entry: info.auxVerb } as VerbEntry
+        : "dynamic" in info
+        ? { entry: info.dynamic.auxVerb } as VerbEntry
+        : undefined;
+    return {
+        type: "verb",
+        verb: verb,
+        dynAuxVerb,
+        tense: oldVerbSelection ? oldVerbSelection.tense : "present",
+        object,
+        transitivity,
+        isCompound,
+        negative: oldVerbSelection ? oldVerbSelection.negative : false,
+        ...("grammaticallyTransitive" in info) ? {
+            changeTransitivity: function (t) {
+                return {
+                    ...this,
+                    transitivity: t,
+                    object: t === "grammatically transitive" ? T.Person.ThirdPlurMale : undefined,
+                };
+            },
+        } : {},
+    };
 }
 
 export default VerbPicker;

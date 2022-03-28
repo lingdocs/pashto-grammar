@@ -8,8 +8,6 @@ import {
 import AbbreviationFormSelector from "./AbbreviationFormSelector";
 import { isPastTense } from "../../lib/phrase-building/vp-tools";
 
-// TODO: Issue when picking dynamic compound and then going back with the object dissappearing
-
 function VPDisplay({ VP }: { VP: VPSelection }) {
     const [form, setForm] = useState<FormVersion>({ removeKing: false, shrinkServant: false });
     const [OSV, setOSV] = useState<boolean>(false);
