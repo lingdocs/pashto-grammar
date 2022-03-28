@@ -41,6 +41,7 @@ function NPPicker({ np, onChange, counterPart, asObject }: {
         }
     }
     const isDynamicComplement = np && np.type === "noun" && np.dynamicComplement;
+    const clearButton = <button className="btn btn-sm btn-light mb-2" onClick={handleClear}>X</button>;
     return <div>
         {!npType && <div className="text-center mt-3">
             {npTypes.map((npt) => <div className="mb-2">
@@ -54,16 +55,32 @@ function NPPicker({ np, onChange, counterPart, asObject }: {
                 </button>
             </div>)}
         </div>}
-        {(npType && !isDynamicComplement) && <button className="btn btn-sm btn-light mb-2" onClick={handleClear}>X</button>}
         {(npType === "pronoun" && np?.type === "pronoun")
-            ? <PronounPicker asObject={asObject} pronoun={np} onChange={onChange} />
+            ? <PronounPicker
+                asObject={asObject}
+                pronoun={np}
+                onChange={onChange}
+                clearButton={clearButton}
+            />
             : npType === "noun"
-            ? <NounPicker nouns={nouns} noun={(np && np.type === "noun") ? np : undefined} onChange={onChange} />
+            ? <NounPicker
+                nouns={nouns}
+                noun={(np && np.type === "noun") ? np : undefined}
+                onChange={onChange}
+                clearButton={!isDynamicComplement ? clearButton : undefined}
+            />
             : npType === "participle"
-            ? <ParticiplePicker verbs={verbs} participle={(np && np.type === "participle") ? np : undefined} onChange={onChange} />
+            ? <ParticiplePicker
+                verbs={verbs}
+                participle={(np && np.type === "participle") ? np : undefined}
+                onChange={onChange}
+                clearButton={clearButton}
+            />
             : null
         }
     </div>;
 }
+
+// {(npType && !isDynamicComplement) && }
 
 export default NPPicker;

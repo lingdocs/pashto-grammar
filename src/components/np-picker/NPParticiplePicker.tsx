@@ -11,7 +11,12 @@ function makeParticipleSelection(verb: VerbEntry): ParticipleSelection {
     };
 }
 
-function NPParticiplePicker({ onChange, participle, verbs }: { verbs: VerbEntry[], participle: ParticipleSelection | undefined, onChange: (p: ParticipleSelection) => void }) {
+function NPParticiplePicker({ onChange, participle, verbs, clearButton }: {
+    verbs: VerbEntry[],
+    participle: ParticipleSelection | undefined,
+    onChange: (p: ParticipleSelection) => void,
+    clearButton: JSX.Element,
+}) {
     const options = verbs.map(makeSelectOption)
     function onEntrySelect({ value }: { label: string, value: string }) {
         const verb = verbs.find(v => v.entry.ts.toString() === value);
@@ -22,6 +27,7 @@ function NPParticiplePicker({ onChange, participle, verbs }: { verbs: VerbEntry[
         onChange(makeParticipleSelection(verb));
     }
     return <div style={{ maxWidth: "225px" }}>
+        {clearButton}
         <Select
             value={participle && participle.verb.entry.ts.toString()}
             // @ts-ignore

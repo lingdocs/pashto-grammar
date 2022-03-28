@@ -55,7 +55,12 @@ function pickerStateToPerson(s: PickerState): T.Person {
         + (6 * s.col);
 }
 
-function NPPronounPicker({ onChange, pronoun, asObject }: { pronoun: PronounSelection, onChange: (p: PronounSelection) => void , asObject?: boolean }) {
+function NPPronounPicker({ onChange, pronoun, asObject, clearButton }: {
+    pronoun: PronounSelection,
+    onChange: (p: PronounSelection) => void,
+    asObject?: boolean,
+    clearButton?: JSX.Element,
+}) {
     const [display, setDisplay] = useStickyState<"persons" | "p" | "e">("persons", "prounoun-picker-display"); 
 
     const p = personToPickerState(pronoun.person);
@@ -90,6 +95,7 @@ function NPPronounPicker({ onChange, pronoun, asObject }: { pronoun: PronounSele
     const prs = labels(!!asObject)[display];
     const pSpec = "near" in prs ? prs[pronoun.distance] : prs;
     return <div style={{ maxWidth: "225px", minWidth: "125px", padding: 0 }}>
+        {clearButton}
         <div className="d-flex flex-row justify-content-around mb-3">
             <ButtonSelect
                 xSmall
