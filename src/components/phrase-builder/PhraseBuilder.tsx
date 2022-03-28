@@ -13,6 +13,8 @@ const kingEmoji = "👑";
 const servantEmoji = "🙇‍♂️";
 const verbs = verbsRaw;
 
+// TODO: Ability to choose stative/dynamic compounds when both work
+
 // TODO: error handling on error with rendering etc
 export function PhraseBuilder() {
     const [subject, setSubject] = useState<NPSelection | undefined>(undefined);

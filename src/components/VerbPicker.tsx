@@ -150,7 +150,7 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         return oldVerbSelection.object;
     }
     const transitivity: T.Transitivity = "grammaticallyTransitive" in info
-        ? "grammatically transitive"
+        ? "transitive"
         : info.transitivity;
     const object = (transitivity === "grammatically transitive")
         ? T.Person.ThirdPlurMale
