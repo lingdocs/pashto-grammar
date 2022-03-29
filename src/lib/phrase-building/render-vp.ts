@@ -21,6 +21,7 @@ import {
     isPastTense,
 } from "./vp-tools";
 import { isPattern4Entry } from "../type-predicates";
+import { renderEnglishVPBase } from "./english-vp-rendering";
 
 // TODO: ISSUE GETTING SPLIT HEAD NOT MATCHING WITH FUTURE VERBS
 
@@ -139,89 +140,18 @@ function renderVerbSelection(vs: VerbSelection, person: T.Person, objectPerson: 
     return {
         ...vs,
         person,
-        ...getPsVerbConjugation(conj, vs.tense, person, objectPerson),
+        ...getPsVerbConjugation(conj, vs.tense, vs.tenseCategory, person, objectPerson),
     }
 }
 
-function renderEnglishVPBase({ subjectPerson, object, vs }: {
-    subjectPerson: T.Person,
-    object: NPSelection | ObjectNP,
-    vs: VerbSelection,
-}): string[] {
-    const ec = parseEc(vs.verb.entry.ec || "");
-    const ep = vs.verb.entry.ep;
-    const tense = vs.tense;
-    function engEquative(tense: "past" | "present", s: T.Person): string {
-        const [row, col] = getVerbBlockPosFromPerson(s);
-        return grammarUnits.englishEquative[tense][row][col];
-    }
-    function engPresC(s: T.Person, ec: T.EnglishVerbConjugationEc | [string, string]): string {
-        function isThirdPersonSing(p: T.Person): boolean {
-            return (
-                p === T.Person.ThirdSingMale ||
-                p === T.Person.ThirdSingFemale
-            );
-        }
-        return isThirdPersonSing(s) ? ec[1] : ec[0];
-    }
-    function isToBe(v: T.EnglishVerbConjugationEc): boolean {
-        return (v[2] === "being");
-    }
-    const futureEngBuilder: T.EnglishBuilder = (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
-        `$SUBJ will${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
-    ]);
-    // TODO: Pull these out to a seperate entity and import it
-    const builders: Record<
-        VerbTense,
-        (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => string[]
-    > = {
-        present: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
-            `$SUBJ ${isToBe(ec)
-                ? `${engEquative("present", s)}${n ? " not" : ""}`
-                : `${n ? engPresC(s, ["don't", "doesn't"]) : ""} ${n ? ec[0] : engPresC(s, ec)}`}`,
-            `$SUBJ ${engEquative("present", s)}${n ? " not" : ""} ${ec[2]}`,
-        ]),
-        subjunctive: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
-            `that $SUBJ ${n ? " won't" : " will"} ${isToBe(ec) ? "be" : ec[0]}`,
-            `should $SUBJ ${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
-        ]),
-        imperfectiveFuture: futureEngBuilder,
-        perfectiveFuture: futureEngBuilder,
-        imperfectivePast: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
-            //  - subj pastEquative (N && "not") ec.2 obj
-            `$SUBJ ${engEquative("past", s)}${n ? " not" : ""} ${ec[2]}`,
-            //  - subj "would" (N && "not") ec.0 obj
-            `$SUBJ would${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
-            //  - subj pastEquative (N && "not") going to" ec.0 obj
-            `$SUBJ ${engEquative("past", s)}${n ? " not" : ""} going to ${isToBe(ec) ? "be" : ec[0]}`,
-        ]),
-        perfectivePast: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
-            `$SUBJ${isToBe(ec)
-                ? ` ${engEquative("past", s)}${n ? " not" : ""}`
-                : (n ? ` did not ${ec[0]}` : ` ${ec[3]}`)
-            }`
-        ]),
-        habitualPerfectivePast: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
-            `$SUBJ would${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
-            `$SUBJ used to${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
-        ]),
-        habitualImperfectivePast: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
-            `$SUBJ would${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
-            `$SUBJ used to${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
-        ]),
-    };
-    const base = builders[tense](subjectPerson, ec, vs.negative);
-    return base.map(b => `${b}${typeof object === "object" ? " $OBJ" : ""}${ep ? ` ${ep}` : ""}`);
-}
-
-function getPsVerbConjugation(conj: T.VerbConjugation, tense: VerbTense, person: T.Person, objectPerson: T.Person | undefined): {
+function getPsVerbConjugation(conj: T.VerbConjugation, tense: VerbTense, tenseCategory: "basic" | "modal", person: T.Person, objectPerson: T.Person | undefined): {
     ps: {
         head: T.PsString | undefined,
         rest: T.SingleOrLengthOpts<T.PsString[]>,
     },
     hasBa: boolean,
 } { 
-    const f = getTenseVerbForm(conj, tense);
+    const f = getTenseVerbForm(conj, tense, tenseCategory);
     const block = getMatrixBlock(f, objectPerson, person);
     const perfective = isPerfective(tense);
     const verbForm = getVerbFromBlock(block, person);
@@ -233,12 +163,10 @@ function getPsVerbConjugation(conj: T.VerbConjugation, tense: VerbTense, person:
         // TODO: Either solve this in the inflector or here, it seems silly (or redundant)
         // to have a length option in the perfective split stem??
         const [splitHead] = getLong(getMatrixBlock(splitInfo, objectPerson, person));
+        const ps = getHeadAndRest(splitHead, verbForm);
         return {
             hasBa,
-            ps: {
-                head: splitHead,
-                rest: removeHead(splitHead, verbForm),
-            },
+            ps,
         };
     }
     return { hasBa, ps: { head: undefined, rest: verbForm }};
@@ -261,30 +189,42 @@ function getVerbFromBlock(block: T.SingleOrLengthOpts<T.VerbBlock>, person: T.Pe
     return grabFromBlock(block, pos);
 }
 
-function removeHead(head: T.PsString, rest: T.PsString[]): T.PsString[];
-function removeHead(head: T.PsString, rest: T.SingleOrLengthOpts<T.PsString[]>): T.SingleOrLengthOpts<T.PsString[]>;
-function removeHead(head: T.PsString, rest: T.SingleOrLengthOpts<T.PsString[]>): T.SingleOrLengthOpts<T.PsString[]> {
+function getHeadAndRest(head: T.PsString, rest: T.PsString[]): { head: T.PsString | undefined, rest: T.PsString[] };
+function getHeadAndRest(head: T.PsString, rest: T.SingleOrLengthOpts<T.PsString[]>): { head: T.PsString | undefined, rest: T.SingleOrLengthOpts<T.PsString[]> };
+function getHeadAndRest(head: T.PsString, rest: T.SingleOrLengthOpts<T.PsString[]>): { head: T.PsString | undefined, rest: T.SingleOrLengthOpts<T.PsString[]> } {
     if ("long" in rest) {
         return {
-            long: removeHead(head, rest.long),
-            short: removeHead(head, rest.short),
-            ...rest.mini ? {
-                mini: removeHead(head, rest.mini),
-            } : {},
-        }
+            // whether or not to include the head (for irreg tlul) -- eww // TODO: make nicer?
+            head: removeBa(rest.long[0]).p.slice(0, head.p.length) === head.p
+                ? head : undefined,
+            rest: {
+                long: getHeadAndRest(head, rest.long).rest,
+                short: getHeadAndRest(head, rest.short).rest,
+                ...rest.mini ? {
+                    mini: getHeadAndRest(head, rest.mini).rest,
+                } : {},
+            },
+        };
     }
-    return rest.map((psRaw) => {
+    let headMismatch = false;
+    const restM = rest.map((psRaw) => {
         const ps = removeBa(psRaw);
         const pMatches = removeAccents(ps.p.slice(0, head.p.length)) === head.p
         const fMatches = removeAccents(ps.f.slice(0, head.f.length)) === removeAccents(head.f);
         if (!(pMatches && fMatches)) {
-            throw new Error(`split head does not match - ${JSON.stringify(ps)} ${JSON.stringify(head)}`);
+            headMismatch = true;
+            return psRaw;
+            // throw new Error(`split head does not match - ${JSON.stringify(ps)} ${JSON.stringify(head)}`);
         }
         return {
             p: ps.p.slice(head.p.length), 
             f: ps.f.slice(head.f.length),
         }
     });
+    return {
+        head: headMismatch ? undefined : head,
+        rest: restM,
+    }
 }
 
 function getMatrixBlock<U>(f: {
@@ -313,30 +253,58 @@ function getMatrixBlock<U>(f: {
     return f[personToLabel(person)];
 }
 
-function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense): T.VerbForm {
-    if (tense === "present") {
-        return conj.imperfective.nonImperative;
+function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense, tenseCategory: "basic" | "modal"): T.VerbForm {
+    if (tenseCategory === "basic") {
+        if (tense === "present") {
+            return conj.imperfective.nonImperative;
+        }
+        if (tense === "subjunctive") {
+            return conj.perfective.nonImperative;
+        }
+        if (tense === "imperfectiveFuture") {
+            return conj.imperfective.future;
+        }
+        if (tense === "perfectiveFuture") {
+            return conj.perfective.future;
+        }
+        if (tense === "imperfectivePast") {
+            return conj.imperfective.past;
+        }
+        if (tense === "perfectivePast") {
+            return conj.perfective.past;
+        }
+        if (tense === "habitualImperfectivePast") {
+            return conj.imperfective.habitualPast;
+        }
+        if (tense === "habitualPerfectivePast") {
+            return conj.perfective.habitualPast;
+        }
     }
-    if (tense === "subjunctive") {
-        return conj.perfective.nonImperative;
-    }
-    if (tense === "imperfectiveFuture") {
-        return conj.imperfective.future;
-    }
-    if (tense === "perfectiveFuture") {
-        return conj.perfective.future;
-    }
-    if (tense === "imperfectivePast") {
-        return conj.imperfective.past;
-    }
-    if (tense === "perfectivePast") {
-        return conj.perfective.past;
-    }
-    if (tense === "habitualImperfectivePast") {
-        return conj.imperfective.habitualPast;
-    }
-    if (tense === "habitualPerfectivePast") {
-        return conj.perfective.habitualPast;
+    if (tenseCategory === "modal") {
+        if (tense === "present") {
+            return conj.imperfective.modal.nonImperative;
+        }
+        if (tense === "subjunctive") {
+            return conj.perfective.modal.nonImperative;
+        }
+        if (tense === "imperfectiveFuture") {
+            return conj.imperfective.modal.future;
+        }
+        if (tense === "perfectiveFuture") {
+            return conj.perfective.modal.future;
+        }
+        if (tense === "imperfectivePast") {
+            return conj.imperfective.modal.past;
+        }
+        if (tense === "perfectivePast") {
+            return conj.perfective.modal.past;
+        }
+        if (tense === "habitualImperfectivePast") {
+            return conj.imperfective.modal.habitualPast;
+        }
+        if (tense === "habitualPerfectivePast") {
+            return conj.perfective.modal.habitualPast;
+        }
     }
     throw new Error("unknown tense");
 }

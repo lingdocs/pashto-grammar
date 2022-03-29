@@ -11,30 +11,30 @@ import {
 } from "@lingdocs/pashto-inflector";
 // import { useState } from "react";
 
-const tenseOptions: { label: string, value: VerbTense }[] = [{
-    label: "present",
+const tenseOptions: { label: string | JSX.Element, value: VerbTense }[] = [{
+    label: <div><i className="fas fa-video mr-2" />present</div>,
     value: "present",
 }, {
-    label: "subjunctive",
+    label: <div><i className="fas fa-camera mr-2" />subjunctive</div>,
     value: "subjunctive",
 }, {
-    label: "imperf. future",
+    label: <div><i className="fas fa-video mr-2" />imperf. future</div>,
     value: "imperfectiveFuture",
 }, {
-    label: "perf. future",
+    label: <div><i className="fas fa-camera mr-2" />perf. future</div>,
     value: "perfectiveFuture",
 }, {
-    label: "simple past",
-    value: "perfectivePast",
-}, {
-    label: "continuous past",
+    label: <div><i className="fas fa-video mr-2" />continuous past</div>,
     value: "imperfectivePast",
 }, {
-    label: "habitual simp. past.",
-    value: "habitualPerfectivePast", 
+    label: <div><i className="fas fa-camera mr-2" />simple past</div>,
+    value: "perfectivePast",
 }, {
-    label: "habitual cont. past.",
+    label: <div><i className="fas fa-video mr-2" />habitual cont. past.</div>,
     value: "habitualImperfectivePast",
+}, {
+    label: <div><i className="fas fa-camera mr-2" />habitual simp. past.</div>,
+    value: "habitualPerfectivePast", 
 }];
 
 // type Filters = {
@@ -78,6 +78,14 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             });
         }
     }
+    function onTenseCategorySelect(value: "basic" | "modal") {
+        if (verb) {
+            onChange({
+                ...verb,
+                tenseCategory: value,
+            });
+        }
+    }
     function notInstransitive(t: "transitive" | "intransitive" | "grammatically transitive"): "transitive" | "grammatically transitive" {
         return t === "intransitive" ? "transitive" : t;
     }
@@ -91,7 +99,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             onChange(verb.changeStatDyn(c));
         }
     }
-    return <div style={{ maxWidth: "225px", minWidth: "125px" }}>
+    return <div style={{ maxWidth: "225px", minWidth: "175px" }}>
         <div>Verb:</div>
         <Select
             value={verb && verb.verb.entry.ts.toString()}
@@ -105,6 +113,20 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             placeholder={verb ? options.find(o => o.value === (verb.verb.entry).ts.toString())?.label : "Select Verb..."}
             {...zIndexProps}
         />
+        {verb && <div className="text-center my-3">
+            <ButtonSelect
+                small
+                value={verb.tenseCategory}
+                options={[{
+                    label: "Basic",
+                    value: "basic",
+                }, {
+                    label: "Modal",
+                    value: "modal",
+                }]}
+                handleChange={onTenseCategorySelect}
+            />
+        </div>}
         <div>Tense:</div>
         <Select
             isSearchable={false}
@@ -205,6 +227,7 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         object,
         transitivity,
         isCompound,
+        tenseCategory: oldVerbSelection ? oldVerbSelection.tenseCategory : "basic",
         negative: oldVerbSelection ? oldVerbSelection.negative : false,
         ...("grammaticallyTransitive" in info) ? {
             changeTransitivity: function (t) {

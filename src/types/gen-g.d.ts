@@ -40,6 +40,7 @@ type VerbSelection = {
     verb: VerbEntry,
     dynAuxVerb?: VerbEntry,
     tense: VerbTense,
+    tenseCategory: "basic" | "modal",
     object: VerbObject, // TODO: should have a locked in (but number changeable noun) here for dynamic compounds
     transitivity: import("@lingdocs/pashto-inflector").Types.Transitivity,
     isCompound: "stative" | "dynamic" | false,
