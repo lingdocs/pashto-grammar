@@ -34,7 +34,7 @@ const tenseOptions: { label: string | JSX.Element, value: VerbTense }[] = [{
     value: "habitualImperfectivePast",
 }, {
     label: <div><i className="fas fa-camera mr-2" />habitual simp. past.</div>,
-    value: "habitualPerfectivePast", 
+    value: "habitualPerfectivePast",
 }];
 
 // type Filters = {
@@ -74,18 +74,18 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
         if (verb) {
             onChange({
                 ...verb,
-                negative: value === "true", 
+                negative: value === "true",
             });
         }
     }
-    function onTenseCategorySelect(value: "basic" | "modal") {
-        if (verb) {
-            onChange({
-                ...verb,
-                tenseCategory: value,
-            });
-        }
-    }
+    // function onTenseCategorySelect(value: "basic" | "modal") {
+    //     if (verb) {
+    //         onChange({
+    //             ...verb,
+    //             tenseCategory: value,
+    //         });
+    //     }
+    // }
     function notInstransitive(t: "transitive" | "intransitive" | "grammatically transitive"): "transitive" | "grammatically transitive" {
         return t === "intransitive" ? "transitive" : t;
     }
@@ -113,7 +113,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             placeholder={verb ? options.find(o => o.value === (verb.verb.entry).ts.toString())?.label : "Select Verb..."}
             {...zIndexProps}
         />
-        {verb && <div className="text-center my-3">
+        {/* {verb && <div className="text-center my-3">
             <ButtonSelect
                 small
                 value={verb.tenseCategory}
@@ -126,7 +126,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                 }]}
                 handleChange={onTenseCategorySelect}
             />
-        </div>}
+        </div>} */}
         <div>Tense:</div>
         <Select
             isSearchable={false}
@@ -192,7 +192,7 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
             oldVerbSelection.object === "none" ||
             typeof oldVerbSelection.object === "number" ||
             oldVerbSelection.isCompound === "dynamic" ||
-            (oldVerbSelection.object?.type === "noun" && oldVerbSelection.object.dynamicComplement)  
+            (oldVerbSelection.object?.type === "noun" && oldVerbSelection.object.dynamicComplement)
         ) return undefined;
         return oldVerbSelection.object;
     }
@@ -202,23 +202,23 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
     const object = (transitivity === "grammatically transitive")
         ? T.Person.ThirdPlurMale
         : info.type === "dynamic compound"
-        ? makeNounSelection(info.objComplement.entry as NounEntry, true)
-        : (transitivity === "transitive")
-        ? getTransObjFromOldVerbSelection()
-        : "none";
+            ? makeNounSelection(info.objComplement.entry as NounEntry, true)
+            : (transitivity === "transitive")
+                ? getTransObjFromOldVerbSelection()
+                : "none";
     const isCompound = "stative" in info
         ? "stative"
         : info.type === "dynamic compound"
-        ? "dynamic"
-        : false;
+            ? "dynamic"
+            : false;
     // TODO: here and below in the changeStatDyn function ... allow for entries with complement
     const dynAuxVerb: VerbEntry | undefined = isCompound !== "dynamic"
         ? undefined
         : info.type === "dynamic compound"
-        ? { entry: info.auxVerb } as VerbEntry
-        : "dynamic" in info
-        ? { entry: info.dynamic.auxVerb } as VerbEntry
-        : undefined;
+            ? { entry: info.auxVerb } as VerbEntry
+            : "dynamic" in info
+                ? { entry: info.dynamic.auxVerb } as VerbEntry
+                : undefined;
     return {
         type: "verb",
         verb: verb,
