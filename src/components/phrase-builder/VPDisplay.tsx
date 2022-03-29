@@ -13,7 +13,7 @@ function VPDisplay({ VP }: { VP: VPSelection }) {
     const [OSV, setOSV] = useState<boolean>(false);
     const result = compileVP(renderVP(VP), { ...form, OSV });
     return <div className="text-center mt-2">
-        <div className="form-check mb-2">
+        {VP.verb.transitivity === "transitive" && <div className="form-check mb-2">
             <input
                 className="form-check-input"
                 type="checkbox"
@@ -24,7 +24,7 @@ function VPDisplay({ VP }: { VP: VPSelection }) {
             <label className="form-check-label text-muted" htmlFor="OSVCheckbox">
                 Include O S V
             </label>
-        </div>
+        </div>}
         <AbbreviationFormSelector
             adjustable={whatsAdjustable(VP)}
             form={form}
