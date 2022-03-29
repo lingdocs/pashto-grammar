@@ -78,14 +78,14 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             });
         }
     }
-    // function onTenseCategorySelect(value: "basic" | "modal") {
-    //     if (verb) {
-    //         onChange({
-    //             ...verb,
-    //             tenseCategory: value,
-    //         });
-    //     }
-    // }
+    function onTenseCategorySelect(value: "basic" | "modal") {
+        if (verb) {
+            onChange({
+                ...verb,
+                tenseCategory: value,
+            });
+        }
+    }
     function notInstransitive(t: "transitive" | "intransitive" | "grammatically transitive"): "transitive" | "grammatically transitive" {
         return t === "intransitive" ? "transitive" : t;
     }
@@ -113,7 +113,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             placeholder={verb ? options.find(o => o.value === (verb.verb.entry).ts.toString())?.label : "Select Verb..."}
             {...zIndexProps}
         />
-        {/* {verb && <div className="text-center my-3">
+        {verb && <div className="text-center my-3">
             <ButtonSelect
                 small
                 value={verb.tenseCategory}
@@ -126,7 +126,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                 }]}
                 handleChange={onTenseCategorySelect}
             />
-        </div>} */}
+        </div>}
         <div>Tense:</div>
         <Select
             isSearchable={false}
