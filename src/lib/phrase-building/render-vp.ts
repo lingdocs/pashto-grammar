@@ -201,6 +201,14 @@ function renderEnglishVPBase({ subjectPerson, object, vs }: {
                 : (n ? ` did not ${ec[0]}` : ` ${ec[3]}`)
             }`
         ]),
+        habitualPerfectivePast: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ would${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
+            `$SUBJ used to${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
+        ]),
+        habitualImperfectivePast: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ would${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
+            `$SUBJ used to${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
+        ]),
     };
     const base = builders[tense](subjectPerson, ec, vs.negative);
     return base.map(b => `${b}${typeof object === "object" ? " $OBJ" : ""}${ep ? ` ${ep}` : ""}`);
@@ -324,6 +332,12 @@ function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense): T.VerbForm
     if (tense === "perfectivePast") {
         return conj.perfective.past;
     }
+    if (tense === "habitualImperfectivePast") {
+        return conj.imperfective.habitualPast;
+    }
+    if (tense === "habitualPerfectivePast") {
+        return conj.perfective.habitualPast;
+    }
     throw new Error("unknown tense");
 }
 
@@ -395,10 +409,10 @@ function isFirstOrSecondPersPronoun(o: "none" | NPSelection | T.Person.ThirdPlur
 }
 
 function isPerfective(t: VerbTense): boolean {
-    if (t === "present" || t === "imperfectiveFuture" || t === "imperfectivePast") {
+    if (t === "present" || t === "imperfectiveFuture" || t === "imperfectivePast" || t === "habitualImperfectivePast") {
         return false;
     }
-    if (t === "perfectiveFuture" || t === "subjunctive" || t === "perfectivePast") {
+    if (t === "perfectiveFuture" || t === "subjunctive" || t === "perfectivePast" || t === "habitualPerfectivePast") {
         return true;
     }
     throw new Error("tense not implemented yet");

@@ -29,6 +29,12 @@ const tenseOptions: { label: string, value: VerbTense }[] = [{
 }, {
     label: "continuous past",
     value: "imperfectivePast",
+}, {
+    label: "habitual simp. past.",
+    value: "habitualPerfectivePast", 
+}, {
+    label: "habitual cont. past.",
+    value: "habitualImperfectivePast",
 }];
 
 // type Filters = {

@@ -26,7 +26,14 @@ type VPRendered = {
     englishBase?: string[],
 }
 
-type VerbTense = "present" | "subjunctive" | "perfectiveFuture" | "imperfectiveFuture" | "perfectivePast" | "imperfectivePast";
+type VerbTense = "present"
+    | "subjunctive"
+    | "perfectiveFuture"
+    | "imperfectiveFuture"
+    | "perfectivePast"
+    | "imperfectivePast"
+    | "habitualPerfectivePast"
+    | "habitualImperfectivePast";
 
 type VerbSelection = {
     type: "verb",
