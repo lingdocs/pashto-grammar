@@ -44,6 +44,7 @@ type VerbSelection = {
     transitivity: import("@lingdocs/pashto-inflector").Types.Transitivity,
     isCompound: "stative" | "dynamic" | false,
     changeTransitivity?: (t: "transitive" | "grammatically transitive") => VerbSelection,
+    changeStatDyn?: (t: "stative" | "dynamic") => VerbSelection,
     // TODO: changeStativeDynamic
     // TODO: add in aspect element here??
     negative: boolean,

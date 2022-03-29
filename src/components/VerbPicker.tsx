@@ -85,7 +85,12 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
         if (verb && verb.changeTransitivity) {
             onChange(verb.changeTransitivity(t));
         }
-    } 
+    }
+    function handleChangeStatDyn(c: "stative" | "dynamic") {
+        if (verb && verb.changeStatDyn) {
+            onChange(verb.changeStatDyn(c));
+        }
+    }
     return <div style={{ maxWidth: "225px", minWidth: "125px" }}>
         <div>Verb:</div>
         <Select
@@ -140,6 +145,20 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                 handleChange={handleChangeTransitivity}
             />
         </div>}
+        {verb && verb.changeStatDyn && <div className="text-center">
+            <ButtonSelect
+                small
+                options={[{
+                    label: "stative",
+                    value: "stative",
+                }, {
+                    label: "dynamic",
+                    value: "dynamic",
+                }]}
+                value={verb.isCompound ? verb.isCompound : "stative"}
+                handleChange={handleChangeStatDyn}
+            />
+        </div>}
     </div>;
 }
 
@@ -170,6 +189,7 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         : info.type === "dynamic compound"
         ? "dynamic"
         : false;
+    // TODO: here and below in the changeStatDyn function ... allow for entries with complement
     const dynAuxVerb: VerbEntry | undefined = isCompound !== "dynamic"
         ? undefined
         : info.type === "dynamic compound"
@@ -194,6 +214,20 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
                     object: t === "grammatically transitive" ? T.Person.ThirdPlurMale : undefined,
                 };
             },
+        } : {},
+        ...("stative" in info) ? {
+            changeStatDyn: function (c) {
+                return {
+                    ...this,
+                    isCompound: c,
+                    object: c === "dynamic"
+                        ? makeNounSelection(info.dynamic.objComplement.entry as NounEntry, true)
+                        : undefined,
+                    dynAuxVerb: c === "dynamic"
+                        ? { entry: info.dynamic.auxVerb } as VerbEntry
+                        : undefined,
+                };
+            }
         } : {},
     };
 }

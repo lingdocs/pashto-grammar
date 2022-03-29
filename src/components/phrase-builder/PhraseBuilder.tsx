@@ -3,7 +3,7 @@ import NPPicker from "../np-picker/NPPicker";
 import VerbPicker from "../VerbPicker";
 import VPDisplay from "./VPDisplay";
 import ObjectDisplay from "./ObjectDisplay";
-import { verbs as verbsRaw } from "../../words/words";
+import { verbs } from "../../words/words";
 import { renderVP } from "../../lib/phrase-building";
 import {
     isInvalidSubjObjCombo,
@@ -11,7 +11,6 @@ import {
 
 const kingEmoji = "👑";
 const servantEmoji = "🙇‍♂️";
-const verbs = verbsRaw;
 
 // TODO: Ability to choose stative/dynamic compounds when both work
 
