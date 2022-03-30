@@ -8,6 +8,12 @@ import {
 } from "@lingdocs/pashto-inflector";
 import { removeBa } from "./vp-tools";
 
+// also
+// nú dey me leeduley
+
+// نه مې دی لیدلی - nú me dey leeduley
+// لیدلی مې نه دی - leeduley me nú dey
+//
 // TODO: make it an option to include O S V order ?
 // TODO: tu ba laaR nu she hyphens all messed up
 type Form = FormVersion & { OSV?: boolean };
@@ -161,6 +167,14 @@ function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
     if (!headSegment) {
         if ("front" in rest) {
             return [
+                // pefect nu dey me leeduley and nu me dey leeduley
+                [
+                    mergeSegments(
+                        makeSegment(nu, ["isNu"]),
+                        rest.last.adjust({ ps: removeAccents }),
+                    ),
+                    rest.front.adjust({ ps: removeAccents }),
+                ],
                 [
                     makeSegment(nu, ["isNu"]),
                     rest.last.adjust({ ps: removeAccents }),
@@ -231,6 +245,10 @@ function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
 function shrinkNP(np: Rendered<NPSelection>): Segment {
     const [row, col] = getVerbBlockPosFromPerson(np.person);
     return makeSegment(grammarUnits.pronouns.mini[row][col], ["isKid", "isMiniPronoun"]);
+}
+
+function mergeSegments(s1: Segment, s2: Segment): Segment {
+    return s2.adjust({ ps: (p) => concatPsString(s1.ps[0], " ", p) });
 }
 
 function addSpacesBetweenSegments(segments: Segment[]): (Segment | " " | "" | T.PsString)[] {

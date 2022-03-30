@@ -269,18 +269,26 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
             : "dynamic" in info
                 ? { entry: info.dynamic.auxVerb } as VerbEntry
                 : undefined;
+    const tenseSelection = ((): { tenseCategory: "perfect", tense: PerfectTense } | {
+        tenseCategory: "basic" | "modal",
+        tense: VerbTense,
+    } => {
+        if (!oldVerbSelection) {
+            return { tense: "presentVerb", tenseCategory: "basic" };
+        }
+        if (oldVerbSelection.tenseCategory === "modal") {
+            return { tenseCategory: "modal", tense: isPerfectTense(oldVerbSelection.tense) ? "presentVerb" : oldVerbSelection.tense };
+        }
+        if (oldVerbSelection.tenseCategory === "basic") {
+            return { tenseCategory: "basic", tense: isPerfectTense(oldVerbSelection.tense) ? "presentVerb" : oldVerbSelection.tense };
+        }
+        return { tenseCategory: "perfect", tense: isPerfectTense(oldVerbSelection.tense) ? oldVerbSelection.tense : "present perfect" };
+    })();
     return {
         type: "verb",
         verb: verb,
         dynAuxVerb,
-        ...oldVerbSelection ? {
-            // TODO: carry it over from the old selection!!
-            tense: "presentVerb",
-            tenseCategory: "basic",
-        } : {
-            tense: "presentVerb",
-            tenseCategory: "basic",
-        },
+        ...tenseSelection,
         object,
         transitivity,
         isCompound,
