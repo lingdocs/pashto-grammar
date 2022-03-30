@@ -9,7 +9,7 @@ import {
     ButtonSelect,
     getVerbInfo,
 } from "@lingdocs/pashto-inflector";
-import { isEquativeTense } from "../lib/phrase-building/vp-tools";
+import { isPerfectTense } from "../lib/phrase-building/vp-tools";
 // import { useState } from "react";
 
 const tenseOptions: { label: string | JSX.Element, value: VerbTense }[] = [{
@@ -38,27 +38,27 @@ const tenseOptions: { label: string | JSX.Element, value: VerbTense }[] = [{
     value: "habitualPerfectivePast",
 }];
 
-const equativeTenseOptions: { label: string | JSX.Element, value: EquativeTense }[] = [{
+const perfectTenseOptions: { label: string | JSX.Element, value: PerfectTense }[] = [{
     label: "Present Perfect",
-    value: "present",
+    value: "present perfect",
 }, {
     label: "Habitual Perfect",
-    value: "habitual",
+    value: "habitual perfect",
 }, {
     label: "Subjunctive Perfect",
-    value: "subjunctive",
+    value: "subjunctive perfect",
 }, {
     label: "Future Perfect",
-    value: "future",
+    value: "future perfect",
 }, {
     label: "Past Perfect",
-    value: "past",
+    value: "past perfect",
 }, {
     label: "Would Be Perfect",
-    value: "wouldBe",
+    value: "wouldBe perfect",
 }, {
     label: "Past Subjunctive Perfect",
-    value: "pastSubjunctive",
+    value: "pastSubjunctive perfect",
 }];
 
 // type Filters = {
@@ -86,9 +86,9 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
         }
         onChange(makeVerbSelection(v, verb));
     }
-    function onTenseSelect({ value }: { label: string, value: VerbTense | EquativeTense }) {
+    function onTenseSelect({ value }: { label: string, value: VerbTense | PerfectTense }) {
         if (verb) {
-            if (isEquativeTense(value)) {
+            if (isPerfectTense(value)) {
                 onChange({
                     ...verb,
                     tense: value,
@@ -117,13 +117,13 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                 onChange({
                     ...verb,
                     tenseCategory: value,
-                    tense: isEquativeTense(verb.tense) ? verb.tense : "present",
+                    tense: isPerfectTense(verb.tense) ? verb.tense : "present perfect",
                 });
             } else {
                 onChange({
                     ...verb,
                     tenseCategory: value,
-                    tense: isEquativeTense(verb.tense) ? "presentVerb" : verb.tense,
+                    tense: isPerfectTense(verb.tense) ? "presentVerb" : verb.tense,
                 });
             }
         }
@@ -180,10 +180,10 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             onChange={onTenseSelect}
             className="mb-2"
             // @ts-ignore
-            options={verb?.tenseCategory === "perfect" ? equativeTenseOptions : tenseOptions}
+            options={verb?.tenseCategory === "perfect" ? perfectTenseOptions : tenseOptions}
             placeholder={verb ? (() => {
                 const label = (verb.tenseCategory === "perfect")
-                    ? equativeTenseOptions.find(o => o.value === verb.tense)?.label
+                    ? perfectTenseOptions.find(o => o.value === verb.tense)?.label
                     : tenseOptions.find(o => o.value === verb.tense)?.label;
                 return label || "Select Tense...";
             })() : undefined}

@@ -35,6 +35,8 @@ type VerbTense = "presentVerb"
     | "habitualPerfectivePast"
     | "habitualImperfectivePast";
 
+type PerfectTense = `${EquativeTense} perfect`;
+
 type VerbSelection = {
     type: "verb",
     verb: VerbEntry,
@@ -51,7 +53,7 @@ type VerbSelection = {
     tense: VerbTense,
     tenseCategory: "basic" | "modal",
 } | {
-    tense: EquativeTense,
+    tense: PerfectTense,
     tenseCategory: "perfect"
 });
 

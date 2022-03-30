@@ -19,7 +19,7 @@ import {
     getPersonFromNP,
     removeBa,
     isPastTense,
-    isEquativeTense,
+    isPerfectTense,
 } from "./vp-tools";
 import { isPattern4Entry } from "../type-predicates";
 import { renderEnglishVPBase } from "./english-vp-rendering";
@@ -152,7 +152,7 @@ function getPsVerbConjugation(conj: T.VerbConjugation, vs: VerbSelection, person
     },
     hasBa: boolean,
 } { 
-    const f = getTenseVerbForm(conj, vs.tense, vs.tenseCategory);
+    const f = getTenseVerbForm(conj, vs.tense);
     const block = getMatrixBlock(f, objectPerson, person);
     const perfective = isPerfective(vs.tense);
     const verbForm = getVerbFromBlock(block, person);
@@ -254,81 +254,75 @@ function getMatrixBlock<U>(f: {
     return f[personToLabel(person)];
 }
 
-function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense | EquativeTense, tenseCategory: "basic" | "modal" | "perfect"): T.VerbForm {
-    if (tenseCategory === "basic") {
-        if (tense === "presentVerb") {
-            return conj.imperfective.nonImperative;
-        }
-        if (tense === "subjunctiveVerb") {
-            return conj.perfective.nonImperative;
-        }
-        if (tense === "imperfectiveFuture") {
-            return conj.imperfective.future;
-        }
-        if (tense === "perfectiveFuture") {
-            return conj.perfective.future;
-        }
-        if (tense === "imperfectivePast") {
-            return conj.imperfective.past;
-        }
-        if (tense === "perfectivePast") {
-            return conj.perfective.past;
-        }
-        if (tense === "habitualImperfectivePast") {
-            return conj.imperfective.habitualPast;
-        }
-        if (tense === "habitualPerfectivePast") {
-            return conj.perfective.habitualPast;
-        }
+function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense | PerfectTense): T.VerbForm {
+    if (tense === "presentVerb") {
+        return conj.imperfective.nonImperative;
     }
-    if (tenseCategory === "perfect") {
-        if (tense === "present") {
-            return conj.perfect.present;
-        }
-        if (tense === "past") {
-            return conj.perfect.past;
-        }
-        if (tense === "future") {
-            return conj.perfect.future;
-        }
-        if (tense === "habitual") {
-            return conj.perfect.habitual;
-        }
-        if (tense === "subjunctive") {
-            return conj.perfect.subjunctive;
-        }
-        if (tense === "wouldBe") {
-            return conj.perfect.affirmational;
-        }
-        if (tense === "pastSubjunctive") {
-            return conj.perfect.pastSubjunctiveHypothetical;
-        }
+    if (tense === "subjunctiveVerb") {
+        return conj.perfective.nonImperative;
     }
-    if (tenseCategory === "modal") {
-        if (tense === "presentVerb") {
-            return conj.imperfective.modal.nonImperative;
-        }
-        if (tense === "subjunctiveVerb") {
-            return conj.perfective.modal.nonImperative;
-        }
-        if (tense === "imperfectiveFuture") {
-            return conj.imperfective.modal.future;
-        }
-        if (tense === "perfectiveFuture") {
-            return conj.perfective.modal.future;
-        }
-        if (tense === "imperfectivePast") {
-            return conj.imperfective.modal.past;
-        }
-        if (tense === "perfectivePast") {
-            return conj.perfective.modal.past;
-        }
-        if (tense === "habitualImperfectivePast") {
-            return conj.imperfective.modal.habitualPast;
-        }
-        if (tense === "habitualPerfectivePast") {
-            return conj.perfective.modal.habitualPast;
-        }
+    if (tense === "imperfectiveFuture") {
+        return conj.imperfective.future;
+    }
+    if (tense === "perfectiveFuture") {
+        return conj.perfective.future;
+    }
+    if (tense === "imperfectivePast") {
+        return conj.imperfective.past;
+    }
+    if (tense === "perfectivePast") {
+        return conj.perfective.past;
+    }
+    if (tense === "habitualImperfectivePast") {
+        return conj.imperfective.habitualPast;
+    }
+    if (tense === "habitualPerfectivePast") {
+        return conj.perfective.habitualPast;
+    }
+    if (tense === "present perfect") {
+        return conj.perfect.present;
+    }
+    if (tense === "past perfect") {
+        return conj.perfect.past;
+    }
+    if (tense === "future perfect") {
+        return conj.perfect.future;
+    }
+    if (tense === "habitual perfect") {
+        return conj.perfect.habitual;
+    }
+    if (tense === "subjunctive perfect") {
+        return conj.perfect.subjunctive;
+    }
+    if (tense === "wouldBe perfect") {
+        return conj.perfect.affirmational;
+    }
+    if (tense === "pastSubjunctive perfect") {
+        return conj.perfect.pastSubjunctiveHypothetical;
+    }
+    if (tense === "presentVerb") {
+        return conj.imperfective.modal.nonImperative;
+    }
+    if (tense === "subjunctiveVerb") {
+        return conj.perfective.modal.nonImperative;
+    }
+    if (tense === "imperfectiveFuture") {
+        return conj.imperfective.modal.future;
+    }
+    if (tense === "perfectiveFuture") {
+        return conj.perfective.modal.future;
+    }
+    if (tense === "imperfectivePast") {
+        return conj.imperfective.modal.past;
+    }
+    if (tense === "perfectivePast") {
+        return conj.perfective.modal.past;
+    }
+    if (tense === "habitualImperfectivePast") {
+        return conj.imperfective.modal.habitualPast;
+    }
+    if (tense === "habitualPerfectivePast") {
+        return conj.perfective.modal.habitualPast;
     }
     throw new Error("unknown tense");
 }
@@ -400,8 +394,8 @@ function isFirstOrSecondPersPronoun(o: "none" | NPSelection | T.Person.ThirdPlur
     return [0,1,2,3,6,7,8,9].includes(o.person);
 }
 
-function isPerfective(t: VerbTense | EquativeTense): boolean {
-    if (isEquativeTense(t)) return false;
+function isPerfective(t: VerbTense | PerfectTense): boolean {
+    if (isPerfectTense(t)) return false;
     if (t === "presentVerb" || t === "imperfectiveFuture" || t === "imperfectivePast" || t === "habitualImperfectivePast") {
         return false;
     }

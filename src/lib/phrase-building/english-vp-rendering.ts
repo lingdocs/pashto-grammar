@@ -115,28 +115,28 @@ export function renderEnglishVPBase({ subjectPerson, object, vs }: {
         ]),
     };
     const perfectBuilders: Record<
-        EquativeTense,
+        PerfectTense,
         (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => string[]
     > = {
-        present: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+        "present perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
             `$SUBJ ${engHave(s)}${n ? " not" : ""} ${v[4]}`,
         ]),
-        past: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+        "past perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
             `$SUBJ had${n ? " not" : ""} ${v[4]}`,
         ]),
-        habitual: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+        "habitual perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
             `$SUBJ ${engHave(s)}${n ? " not" : ""} ${v[4]}`,
         ]),
-        subjunctive: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+        "subjunctive perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
             `that $SUBJ will have${n ? " not" : ""} ${v[4]}`,
         ]),
-        future: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+        "future perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
             `$SUBJ will${n ? " not" : ""} have ${v[4]}`,
         ]),
-        wouldBe: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+        "wouldBe perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
             `$SUBJ would${n ? " not" : ""} have ${v[4]}`,
         ]),
-        pastSubjunctive: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+        "pastSubjunctive perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
             `$SUBJ would${n ? " not" : ""} have ${v[4]}`,
             `$SUBJ should${n ? " not" : ""} have ${v[4]}`,
         ]),
