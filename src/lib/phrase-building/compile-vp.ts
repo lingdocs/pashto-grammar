@@ -20,7 +20,7 @@ export function compileVP(VP: VPRendered, form: Form, combineLengths?: true): { 
         NPs,
         kids,
         verb,
-        hasLeapfrog: VP.verb.tenseCategory === "modal",
+        hasLeapfrog: VP.verb.tenseCategory !== "basic",
         negative: VP.verb.negative,
         isCompound: VP.isCompound,
     });

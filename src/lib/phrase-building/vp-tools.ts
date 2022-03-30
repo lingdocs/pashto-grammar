@@ -27,6 +27,14 @@ export function removeBa(ps: T.PsString): T.PsString {
     return psRemove(ps, concatPsString(grammarUnits.baParticle, " "));
 }
 
-export function isPastTense(tense: VerbTense): boolean {
+export function isEquativeTense(t: VerbTense | EquativeTense): t is EquativeTense {
+    return (t === "present" || t === "future" || t === "habitual" || t === "past" || t === "wouldBe" || t === "subjunctive" || t === "pastSubjunctive");
+}
+
+export function isPastTense(tense: VerbTense | EquativeTense): boolean {
+    if (isEquativeTense(tense)) {
+        // equative tenses are used HERE for the perfect forms, which are all considered past tense
+        return true;
+    }
     return tense.toLowerCase().includes("past");
 }

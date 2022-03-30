@@ -19,6 +19,7 @@ import {
     getPersonFromNP,
     removeBa,
     isPastTense,
+    isEquativeTense,
 } from "./vp-tools";
 import { isPattern4Entry } from "../type-predicates";
 import { renderEnglishVPBase } from "./english-vp-rendering";
@@ -140,24 +141,24 @@ function renderVerbSelection(vs: VerbSelection, person: T.Person, objectPerson: 
     return {
         ...vs,
         person,
-        ...getPsVerbConjugation(conj, vs.tense, vs.tenseCategory, person, objectPerson),
+        ...getPsVerbConjugation(conj, vs, person, objectPerson),
     }
 }
 
-function getPsVerbConjugation(conj: T.VerbConjugation, tense: VerbTense, tenseCategory: "basic" | "modal", person: T.Person, objectPerson: T.Person | undefined): {
+function getPsVerbConjugation(conj: T.VerbConjugation, vs: VerbSelection, person: T.Person, objectPerson: T.Person | undefined): {
     ps: {
         head: T.PsString | undefined,
         rest: T.SingleOrLengthOpts<T.PsString[]>,
     },
     hasBa: boolean,
 } { 
-    const f = getTenseVerbForm(conj, tense, tenseCategory);
+    const f = getTenseVerbForm(conj, vs.tense, vs.tenseCategory);
     const block = getMatrixBlock(f, objectPerson, person);
-    const perfective = isPerfective(tense);
+    const perfective = isPerfective(vs.tense);
     const verbForm = getVerbFromBlock(block, person);
     const hasBa = hasBaParticle(getLong(verbForm)[0]);
     if (perfective) {
-        const past = isPastTense(tense);
+        const past = isPastTense(vs.tense);
         const splitInfo = conj.info[past ? "root" : "stem"].perfectiveSplit;
         if (!splitInfo) return { ps: { head: undefined, rest: verbForm }, hasBa };
         // TODO: Either solve this in the inflector or here, it seems silly (or redundant)
@@ -253,12 +254,12 @@ function getMatrixBlock<U>(f: {
     return f[personToLabel(person)];
 }
 
-function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense, tenseCategory: "basic" | "modal"): T.VerbForm {
+function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense | EquativeTense, tenseCategory: "basic" | "modal" | "perfect"): T.VerbForm {
     if (tenseCategory === "basic") {
-        if (tense === "present") {
+        if (tense === "presentVerb") {
             return conj.imperfective.nonImperative;
         }
-        if (tense === "subjunctive") {
+        if (tense === "subjunctiveVerb") {
             return conj.perfective.nonImperative;
         }
         if (tense === "imperfectiveFuture") {
@@ -280,11 +281,34 @@ function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense, tenseCatego
             return conj.perfective.habitualPast;
         }
     }
-    if (tenseCategory === "modal") {
+    if (tenseCategory === "perfect") {
         if (tense === "present") {
-            return conj.imperfective.modal.nonImperative;
+            return conj.perfect.present;
+        }
+        if (tense === "past") {
+            return conj.perfect.past;
+        }
+        if (tense === "future") {
+            return conj.perfect.future;
+        }
+        if (tense === "habitual") {
+            return conj.perfect.habitual;
         }
         if (tense === "subjunctive") {
+            return conj.perfect.subjunctive;
+        }
+        if (tense === "wouldBe") {
+            return conj.perfect.affirmational;
+        }
+        if (tense === "pastSubjunctive") {
+            return conj.perfect.pastSubjunctiveHypothetical;
+        }
+    }
+    if (tenseCategory === "modal") {
+        if (tense === "presentVerb") {
+            return conj.imperfective.modal.nonImperative;
+        }
+        if (tense === "subjunctiveVerb") {
             return conj.perfective.modal.nonImperative;
         }
         if (tense === "imperfectiveFuture") {
@@ -376,11 +400,12 @@ function isFirstOrSecondPersPronoun(o: "none" | NPSelection | T.Person.ThirdPlur
     return [0,1,2,3,6,7,8,9].includes(o.person);
 }
 
-function isPerfective(t: VerbTense): boolean {
-    if (t === "present" || t === "imperfectiveFuture" || t === "imperfectivePast" || t === "habitualImperfectivePast") {
+function isPerfective(t: VerbTense | EquativeTense): boolean {
+    if (isEquativeTense(t)) return false;
+    if (t === "presentVerb" || t === "imperfectiveFuture" || t === "imperfectivePast" || t === "habitualImperfectivePast") {
         return false;
     }
-    if (t === "perfectiveFuture" || t === "subjunctive" || t === "perfectivePast" || t === "habitualPerfectivePast") {
+    if (t === "perfectiveFuture" || t === "subjunctiveVerb" || t === "perfectivePast" || t === "habitualPerfectivePast") {
         return true;
     }
     throw new Error("tense not implemented yet");

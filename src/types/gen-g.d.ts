@@ -26,8 +26,8 @@ type VPRendered = {
     englishBase?: string[],
 }
 
-type VerbTense = "present"
-    | "subjunctive"
+type VerbTense = "presentVerb"
+    | "subjunctiveVerb"
     | "perfectiveFuture"
     | "imperfectiveFuture"
     | "perfectivePast"
@@ -39,8 +39,6 @@ type VerbSelection = {
     type: "verb",
     verb: VerbEntry,
     dynAuxVerb?: VerbEntry,
-    tense: VerbTense,
-    tenseCategory: "basic" | "modal",
     object: VerbObject, // TODO: should have a locked in (but number changeable noun) here for dynamic compounds
     transitivity: import("@lingdocs/pashto-inflector").Types.Transitivity,
     isCompound: "stative" | "dynamic" | false,
@@ -49,7 +47,13 @@ type VerbSelection = {
     // TODO: changeStativeDynamic
     // TODO: add in aspect element here??
     negative: boolean,
-};
+} & ({  
+    tense: VerbTense,
+    tenseCategory: "basic" | "modal",
+} | {
+    tense: EquativeTense,
+    tenseCategory: "perfect"
+});
 
 type VerbRendered = Omit<VerbSelection, "object"> & {
     ps: { 

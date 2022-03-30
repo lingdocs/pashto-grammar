@@ -9,14 +9,15 @@ import {
     ButtonSelect,
     getVerbInfo,
 } from "@lingdocs/pashto-inflector";
+import { isEquativeTense } from "../lib/phrase-building/vp-tools";
 // import { useState } from "react";
 
 const tenseOptions: { label: string | JSX.Element, value: VerbTense }[] = [{
     label: <div><i className="fas fa-video mr-2" />present</div>,
-    value: "present",
+    value: "presentVerb",
 }, {
     label: <div><i className="fas fa-camera mr-2" />subjunctive</div>,
-    value: "subjunctive",
+    value: "subjunctiveVerb",
 }, {
     label: <div><i className="fas fa-video mr-2" />imperf. future</div>,
     value: "imperfectiveFuture",
@@ -35,6 +36,29 @@ const tenseOptions: { label: string | JSX.Element, value: VerbTense }[] = [{
 }, {
     label: <div><i className="fas fa-camera mr-2" />habitual simp. past.</div>,
     value: "habitualPerfectivePast",
+}];
+
+const equativeTenseOptions: { label: string | JSX.Element, value: EquativeTense }[] = [{
+    label: "Present Perfect",
+    value: "present",
+}, {
+    label: "Habitual Perfect",
+    value: "habitual",
+}, {
+    label: "Subjunctive Perfect",
+    value: "subjunctive",
+}, {
+    label: "Future Perfect",
+    value: "future",
+}, {
+    label: "Past Perfect",
+    value: "past",
+}, {
+    label: "Would Be Perfect",
+    value: "wouldBe",
+}, {
+    label: "Past Subjunctive Perfect",
+    value: "pastSubjunctive",
 }];
 
 // type Filters = {
@@ -62,12 +86,21 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
         }
         onChange(makeVerbSelection(v, verb));
     }
-    function onTenseSelect({ value }: { label: string, value: VerbTense }) {
+    function onTenseSelect({ value }: { label: string, value: VerbTense | EquativeTense }) {
         if (verb) {
-            onChange({
-                ...verb,
-                tense: value,
-            });
+            if (isEquativeTense(value)) {
+                onChange({
+                    ...verb,
+                    tense: value,
+                    tenseCategory: "perfect",
+                });
+            } else {
+                onChange({
+                    ...verb,
+                    tense: value,
+                    tenseCategory: verb.tenseCategory === "perfect" ? "basic" : verb.tenseCategory,
+                });
+            }
         }
     }
     function onPosNegSelect(value: string) {
@@ -78,12 +111,21 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             });
         }
     }
-    function onTenseCategorySelect(value: "basic" | "modal") {
+    function onTenseCategorySelect(value: "basic" | "modal" | "perfect") {
         if (verb) {
-            onChange({
-                ...verb,
-                tenseCategory: value,
-            });
+            if (value === "perfect") {
+                onChange({
+                    ...verb,
+                    tenseCategory: value,
+                    tense: isEquativeTense(verb.tense) ? verb.tense : "present",
+                });
+            } else {
+                onChange({
+                    ...verb,
+                    tenseCategory: value,
+                    tense: isEquativeTense(verb.tense) ? "presentVerb" : verb.tense,
+                });
+            }
         }
     }
     function notInstransitive(t: "transitive" | "intransitive" | "grammatically transitive"): "transitive" | "grammatically transitive" {
@@ -123,6 +165,9 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                 }, {
                     label: "Modal",
                     value: "modal",
+                }, {
+                    label: "Perfect",
+                    value: "perfect",
                 }]}
                 handleChange={onTenseCategorySelect}
             />
@@ -135,8 +180,13 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             onChange={onTenseSelect}
             className="mb-2"
             // @ts-ignore
-            options={tenseOptions}
-            placeholder={verb ? tenseOptions.find(o => o.value === verb.tense)?.label : "Select Tense..."}
+            options={verb?.tenseCategory === "perfect" ? equativeTenseOptions : tenseOptions}
+            placeholder={verb ? (() => {
+                const label = (verb.tenseCategory === "perfect")
+                    ? equativeTenseOptions.find(o => o.value === verb.tense)?.label
+                    : tenseOptions.find(o => o.value === verb.tense)?.label;
+                return label || "Select Tense...";
+            })() : undefined}
             {...zIndexProps}
         />
         {verb && <div className="text-center my-3">
@@ -223,11 +273,17 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         type: "verb",
         verb: verb,
         dynAuxVerb,
-        tense: oldVerbSelection ? oldVerbSelection.tense : "present",
+        ...oldVerbSelection ? {
+            // TODO: carry it over from the old selection!!
+            tense: "presentVerb",
+            tenseCategory: "basic",
+        } : {
+            tense: "presentVerb",
+            tenseCategory: "basic",
+        },
         object,
         transitivity,
         isCompound,
-        tenseCategory: oldVerbSelection ? oldVerbSelection.tenseCategory : "basic",
         negative: oldVerbSelection ? oldVerbSelection.negative : false,
         ...("grammaticallyTransitive" in info) ? {
             changeTransitivity: function (t) {

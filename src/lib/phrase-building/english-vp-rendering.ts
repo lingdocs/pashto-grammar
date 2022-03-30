@@ -5,6 +5,16 @@ import {
     parseEc,
 } from "@lingdocs/pashto-inflector";
 
+function engHave(s: T.Person): string {
+    function isThirdPersonSing(p: T.Person): boolean {
+        return (
+            p === T.Person.ThirdSingMale ||
+            p === T.Person.ThirdSingFemale
+        );
+    }
+    return isThirdPersonSing(s) ? "has" : "have";
+}
+
 export function renderEnglishVPBase({ subjectPerson, object, vs }: {
     subjectPerson: T.Person,
     object: NPSelection | ObjectNP,
@@ -12,7 +22,6 @@ export function renderEnglishVPBase({ subjectPerson, object, vs }: {
 }): string[] {
     const ec = parseEc(vs.verb.entry.ec || "");
     const ep = vs.verb.entry.ep;
-    const tense = vs.tense;
     function engEquative(tense: "past" | "present", s: T.Person): string {
         const [row, col] = getVerbBlockPosFromPerson(s);
         return grammarUnits.englishEquative[tense][row][col];
@@ -33,17 +42,17 @@ export function renderEnglishVPBase({ subjectPerson, object, vs }: {
         `$SUBJ will${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
     ]);
     // TODO: Pull these out to a seperate entity and import it
-    const builders: Record<
+    const basicBuilders: Record<
         VerbTense,
         (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => string[]
     > = {
-        present: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
+        presentVerb: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
             `$SUBJ ${isToBe(ec)
                 ? `${engEquative("present", s)}${n ? " not" : ""}`
                 : `${n ? engPresC(s, ["don't", "doesn't"]) : ""} ${n ? ec[0] : engPresC(s, ec)}`}`,
             `$SUBJ ${engEquative("present", s)}${n ? " not" : ""} ${ec[2]}`,
         ]),
-        subjunctive: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
+        subjunctiveVerb: (s: T.Person, ec: T.EnglishVerbConjugationEc, n: boolean) => ([
             `that $SUBJ ${n ? " won't" : " will"} ${isToBe(ec) ? "be" : ec[0]}`,
             `should $SUBJ ${n ? " not" : ""} ${isToBe(ec) ? "be" : ec[0]}`,
         ]),
@@ -76,10 +85,10 @@ export function renderEnglishVPBase({ subjectPerson, object, vs }: {
         VerbTense,
         (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => string[]
     > = {
-        present: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+        presentVerb: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
             `$SUBJ can${n ? "'t" : ""} ${isToBe(v) ? "be" : v[0]}`,
         ]),
-        subjunctive: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+        subjunctiveVerb: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
             `that $SUBJ can${n ? "'t" : ""} ${isToBe(v) ? "be" : v[0]}`,
         ]),
         imperfectiveFuture: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
@@ -105,6 +114,38 @@ export function renderEnglishVPBase({ subjectPerson, object, vs }: {
             `$SUBJ would ${n ? " not" : ""} be able to ${isToBe(v) ? "be" : v[0]}`,
         ]),
     };
-    const base = (vs.tenseCategory === "basic" ? builders : modalBuilders)[tense](subjectPerson, ec, vs.negative);
+    const perfectBuilders: Record<
+        EquativeTense,
+        (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => string[]
+    > = {
+        present: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ ${engHave(s)}${n ? " not" : ""} ${v[4]}`,
+        ]),
+        past: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ had${n ? " not" : ""} ${v[4]}`,
+        ]),
+        habitual: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ ${engHave(s)}${n ? " not" : ""} ${v[4]}`,
+        ]),
+        subjunctive: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `that $SUBJ will have${n ? " not" : ""} ${v[4]}`,
+        ]),
+        future: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ will${n ? " not" : ""} have ${v[4]}`,
+        ]),
+        wouldBe: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ would${n ? " not" : ""} have ${v[4]}`,
+        ]),
+        pastSubjunctive: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ would${n ? " not" : ""} have ${v[4]}`,
+            `$SUBJ should${n ? " not" : ""} have ${v[4]}`,
+        ]),
+    }
+    const base = (
+        (vs.tenseCategory === "perfect")
+        ? perfectBuilders[vs.tense]
+        : vs.tenseCategory === "basic"
+        ? basicBuilders[vs.tense]
+        : modalBuilders[vs.tense])(subjectPerson, ec, vs.negative);
     return base.map(b => `${b}${typeof object === "object" ? " $OBJ" : ""}${ep ? ` ${ep}` : ""}`);
 }
