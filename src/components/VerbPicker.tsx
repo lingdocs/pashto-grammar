@@ -206,11 +206,11 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
             : (transitivity === "transitive")
                 ? getTransObjFromOldVerbSelection()
                 : "none";
-    const isCompound = "stative" in info
+    const isCompound = ("stative" in info || info.type === "stative compound")
         ? "stative"
         : info.type === "dynamic compound"
-            ? "dynamic"
-            : false;
+        ? "dynamic"
+        : false;
     // TODO: here and below in the changeStatDyn function ... allow for entries with complement
     const dynAuxVerb: VerbEntry | undefined = isCompound !== "dynamic"
         ? undefined
