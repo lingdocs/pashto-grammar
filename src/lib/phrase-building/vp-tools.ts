@@ -4,6 +4,7 @@ import {
     grammarUnits,
     psRemove,
 } from "@lingdocs/pashto-inflector";
+import { psStringEquals } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
 
 export function getPersonFromNP(np: NPSelection): T.Person;
 export function getPersonFromNP(np: NPSelection | ObjectNP): T.Person | undefined;
@@ -46,4 +47,12 @@ export function isPerfectTense(t: VerbTense | EquativeTense | PerfectTense): t i
 export function isPastTense(tense: VerbTense | PerfectTense): boolean {
     if (isPerfectTense(tense)) return true;
     return tense.toLowerCase().includes("past");
+}
+
+export function removeDuplicates(psv: T.PsString[]): T.PsString[] {
+    return psv.filter((ps, i, arr) => (
+        i === arr.findIndex(t => (
+            psStringEquals(t, ps)
+        ))
+    ));
 }

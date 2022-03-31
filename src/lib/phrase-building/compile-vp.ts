@@ -6,16 +6,16 @@ import {
     getVerbBlockPosFromPerson,
     makePsString,
 } from "@lingdocs/pashto-inflector";
-import { removeBa } from "./vp-tools";
+import {
+    removeBa,
+    removeDuplicates,
+} from "./vp-tools";
 
-// also
-// nú dey me leeduley
+// TODO: get the past tense order right
+// ویې نه کړای شو
+// ویې نه شو کړای
+// add modal to the passive
 
-// نه مې دی لیدلی - nú me dey leeduley
-// لیدلی مې نه دی - leeduley me nú dey
-//
-// TODO: make it an option to include O S V order ?
-// TODO: tu ba laaR nu she hyphens all messed up
 type Form = FormVersion & { OSV?: boolean };
 export function compileVP(VP: VPRendered, form: Form): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] };
 export function compileVP(VP: VPRendered, form: Form, combineLengths: true): { ps: T.PsString[], e?: string [] };
@@ -26,9 +26,7 @@ export function compileVP(VP: VPRendered, form: Form, combineLengths?: true): { 
         NPs,
         kids,
         verb,
-        hasLeapfrog: VP.verb.tenseCategory !== "basic",
-        negative: VP.verb.negative,
-        isCompound: VP.isCompound,
+        VP,
     });
     return {
         ps: combineLengths ? flattenLengths(psResult) : psResult,
@@ -43,25 +41,23 @@ type CompilePsInput = {
         head: T.PsString | undefined,
         rest: T.SingleOrLengthOpts<T.PsString[]>,
     },
-    isCompound: "stative" | "dynamic" | false,
-    hasLeapfrog: boolean,
-    negative: boolean,
+    VP: VPRendered,
 }
-function compilePs({ NPs, kids, verb: { head, rest }, isCompound, hasLeapfrog, negative }: CompilePsInput): T.SingleOrLengthOpts<T.PsString[]> {
+function compilePs({ NPs, kids, verb: { head, rest }, VP }: CompilePsInput): T.SingleOrLengthOpts<T.PsString[]> {
     if ("long" in rest) {
         return {
-            long: compilePs({ NPs, verb: { head, rest: rest.long }, negative, hasLeapfrog, isCompound, kids }) as T.PsString[],
-            short: compilePs({ NPs, verb: { head, rest: rest.short }, negative, hasLeapfrog, isCompound, kids }) as T.PsString[],
+            long: compilePs({ NPs, verb: { head, rest: rest.long }, VP, kids }) as T.PsString[],
+            short: compilePs({ NPs, verb: { head, rest: rest.short }, VP, kids }) as T.PsString[],
             ...rest.mini ? {
-                mini: compilePs({ NPs, verb: { head, rest: rest.mini }, negative, hasLeapfrog, isCompound, kids }) as T.PsString[],
+                mini: compilePs({ NPs, verb: { head, rest: rest.mini }, VP, kids }) as T.PsString[],
             } : {},
         };
     }
-    const verbWNegativeVersions = arrangeVerbWNegative(head, rest, negative, isCompound, hasLeapfrog);
+    const verbWNegativeVersions = arrangeVerbWNegative(head, rest, VP.verb);
 
     // put together all the different possible permutations based on:
     // a. potential different versions of where the nu goes
-    return verbWNegativeVersions.flatMap((verbSegments) => (
+    return removeDuplicates(verbWNegativeVersions.flatMap((verbSegments) => (
     // b. potential reordering of NPs
         NPs.flatMap(NP => {
             // for each permutation of the possible ordering of NPs and Verb + nu
@@ -72,7 +68,7 @@ function compilePs({ NPs, kids, verb: { head, rest }, isCompound, hasLeapfrog, n
             // 3. throw it all together into a PsString for each permutation
             return combineSegments(withProperSpaces);
         })
-    ));
+    )));
 }
 
 function getSegmentsAndKids(VP: VPRendered, form: Form): { kids: Segment[], NPs: Segment[][] } {
@@ -134,7 +130,8 @@ function putKidsInKidsSection(segments: Segment[], kids: Segment[]): Segment[] {
     ];
 }
 
-function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], negative: boolean, isCompound: "stative" | "dynamic" | false, hasLeapfrog: boolean): Segment[][] {
+function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[], V: VerbRendered): Segment[][] {
+    const hasLeapfrog = V.tenseCategory === "modal" || V.tenseCategory === "perfect";
     const rest = (() => {
         if (hasLeapfrog) {
             const [restF, restLast] = splitOffLeapfrogWord(restRaw);
@@ -153,7 +150,7 @@ function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
                 ? ["isVerbHead", "isOoOrWaaHead"]
                 : ["isVerbHead"]
         );
-    if (!negative) {
+    if (!V.negative) {
         if ("front" in rest) {
             return [
                 headSegment ? [headSegment, rest.front, rest.last] : [rest.front, rest.last],
@@ -195,7 +192,7 @@ function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
     if ("front" in rest) {
         return [
             [
-                ...headSegment ? [headSegment.adjust({ ps: removeAccents })] : [],
+                headSegment.adjust({ ps: removeAccents }),
                 rest.last.adjust({
                     ps: r => concatPsString(nu, " ", removeAccents(r)),
                     desc: ["isNu"],
@@ -205,23 +202,24 @@ function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
                 }),
             ],
             [
-                ...headSegment ? [headSegment.adjust({ ps: removeAccents })] : [],
+                headSegment.adjust({ ps: removeAccents }),
                 rest.front.adjust({
-                    ps: r => removeAccents(r),
-                }),
-                rest.last.adjust({
                     ps: r => concatPsString(nu, " ", removeAccents(r)),
                     desc: ["isNu"],
                 }),
+                rest.last.adjust({
+                    ps: r => removeAccents(r),
+                }),
             ],
-            // TODO: do something like this with the leapfrog?
-            // // verbs that have a perfective prefix that is not و or وا can put the
-            // // nu *before* the prefix as well // TODO: also وي prefixes?
-            // ...(!headSegment.isOoOrWaaHead && !isCompound) ? [[
-            //     makeSegment(nu, ["isNu"]),
-            //     headSegment.adjust({ ps: removeAccents }),
-            //     rest.adjust({ ps: removeAccents }),
-            // ]] : [],
+            ...(!headSegment.isOoOrWaaHead && !V.isCompound) ? [[
+                mergeSegments(headSegment, rest.front, "no space").adjust({
+                    ps: r => concatPsString(nu, " ", removeAccents(r)),
+                    desc: ["isNu"],
+                }),
+                rest.last.adjust({
+                    ps: r => removeAccents(r),
+                }),
+            ]] : [],
         ];       
     }
     return [
@@ -234,7 +232,7 @@ function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
         ],
         // verbs that have a perfective prefix that is not و or وا can put the
         // nu *before* the prefix as well // TODO: also وي prefixes?
-        ...(!headSegment.isOoOrWaaHead && !isCompound) ? [[
+        ...(!headSegment.isOoOrWaaHead && !V.isCompound) ? [[
             makeSegment(nu, ["isNu"]),
             headSegment.adjust({ ps: removeAccents }),
             rest.adjust({ ps: removeAccents }),
@@ -247,7 +245,10 @@ function shrinkNP(np: Rendered<NPSelection>): Segment {
     return makeSegment(grammarUnits.pronouns.mini[row][col], ["isKid", "isMiniPronoun"]);
 }
 
-function mergeSegments(s1: Segment, s2: Segment): Segment {
+function mergeSegments(s1: Segment, s2: Segment, noSpace?: "no space"): Segment {
+    if (noSpace) {
+        return s2.adjust({ ps: (p) => concatPsString(s1.ps[0], p) });
+    }
     return s2.adjust({ ps: (p) => concatPsString(s1.ps[0], " ", p) });
 }
 
