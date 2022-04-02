@@ -190,7 +190,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                 handleChange={handleChangeTransitivity}
             />
         </div>}
-        {verb && <div className="text-center my-3">
+        {verb && <div className="col text-center my-3">
             <ButtonSelect
                 small
                 value={verb.tenseCategory}
@@ -207,7 +207,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                 handleChange={onTenseCategorySelect}
             />
         </div>}
-        {verb && verb.changeTransitivity && <div className="text-center my-3">
+        {verb && verb.changeVoice && <div className="col text-center my-3">
             <ButtonSelect
                 small
                 value={verb.voice}
