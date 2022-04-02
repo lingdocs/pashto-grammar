@@ -94,7 +94,7 @@ function NPPronounPicker({ onChange, pronoun, asObject, clearButton }: {
     }
     const prs = labels(!!asObject)[display];
     const pSpec = "near" in prs ? prs[pronoun.distance] : prs;
-    return <div style={{ maxWidth: "225px", minWidth: "125px", padding: 0 }}>
+    return <div style={{ maxWidth: "225px", padding: 0 }}>
         {clearButton}
         <div className="d-flex flex-row justify-content-around mb-3">
             <ButtonSelect
@@ -108,7 +108,7 @@ function NPPronounPicker({ onChange, pronoun, asObject, clearButton }: {
             />
             <button className="btn btn-sm btn-outline" onClick={handleDisplayChange}>{display === "persons" ? "#" : display === "p" ? "PS" : "EN"}</button>
         </div>
-        <table className="table table-bordered table-sm" style={{ textAlign: "center", minWidth: "125px", tableLayout: "fixed" }}>
+        <table className="table table-bordered table-sm" style={{ textAlign: "center", minWidth: "100px", tableLayout: "fixed" }}>
             <tbody>
                 {pSpec.map((rw, i) => (
                     <tr>
@@ -117,7 +117,10 @@ function NPPronounPicker({ onChange, pronoun, asObject, clearButton }: {
                             return <td
                                 onClick={() => handleClick(i, j)}
                                 className={classNames({ "table-active": active })}
-                                style={active ? { backgroundColor: gColors[p.gender] } : {}}
+                                style={{
+                                    backgroundColor: active ? gColors[p.gender] : "inherit",
+                                    padding: "0.25rem 0",
+                                }}
                             >
                                 <div className="my-1">
                                     {typeof r === "string" ? r : r[p.gender]}

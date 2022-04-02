@@ -56,7 +56,7 @@ export function PhraseBuilder() {
             <div>{` `}</div>
         </div>}
         <div className="d-flex flex-row justify-content-around flex-wrap">
-            <div className="mb-2">
+            <div className="my-2">
                 <div className="h4">Subject {showRole(VPRendered, "subject")}</div>
                 <NPPicker
                     np={subject}
@@ -64,7 +64,7 @@ export function PhraseBuilder() {
                     onChange={handleSubjectChange}
                 />
             </div>
-            {verb && (verb.object !== "none") && <div className="mb-2">
+            {verb && (verb.object !== "none") && <div className="my-2">
                 <div className="h4">Object {showRole(VPRendered, "object")}</div>
                 <ObjectDisplay
                     object={verb.object}
@@ -72,7 +72,7 @@ export function PhraseBuilder() {
                     onChange={handleObjectChange}
                 />
             </div>}
-            <div className="mb-2">
+            <div className="my-2">
                 <div className="h4">Verb</div>
                 <VerbPicker verbs={verbs} verb={verb} onChange={setVerb} />
             </div>
