@@ -54,7 +54,7 @@ const perfectTenseOptions: { label: string | JSX.Element, value: PerfectTense }[
     label: "Past Perfect",
     value: "past perfect",
 }, {
-    label: "Would Be Perfect",
+    label: `"Would Be" Perfect`,
     value: "wouldBe perfect",
 }, {
     label: "Past Subjunctive Perfect",
@@ -86,7 +86,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
         }
         onChange(makeVerbSelection(v, verb));
     }
-    function onTenseSelect({ value }: { label: string, value: VerbTense | PerfectTense }) {
+    function onTenseSelect({ value }: { label: string | JSX.Element, value: VerbTense | PerfectTense }) {
         if (verb) {
             if (isPerfectTense(value)) {
                 onChange({
@@ -102,6 +102,22 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                 });
             }
         }
+    }
+    function moveTense(dir: "forward" | "back") {
+        if (!verb) return;
+        return () => {
+            const tenses = verb.tenseCategory === "perfect" ? perfectTenseOptions : tenseOptions;
+            const currIndex = tenses.findIndex(tn => tn.value === verb.tense)
+            if (currIndex === -1) {
+                console.error("error moving tense", dir);
+                return;
+            }
+            const newIndex = dir === "forward"
+                ? ((currIndex + 1) % tenses.length)
+                : (currIndex === 0 ? (tenses.length - 1) : (currIndex - 1))
+            const newTense = tenses[newIndex];
+            onTenseSelect(newTense);
+        };
     }
     function onPosNegSelect(value: string) {
         if (verb) {
@@ -126,6 +142,11 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                     tense: isPerfectTense(verb.tense) ? "presentVerb" : verb.tense,
                 });
             }
+        }
+    }
+    function onVoiceSelect(value: "active" | "passive") {
+        if (verb && verb.changeVoice) {
+            onChange(verb.changeVoice(value));
         }
     }
     function notInstransitive(t: "transitive" | "intransitive" | "grammatically transitive"): "transitive" | "grammatically transitive" {
@@ -155,6 +176,20 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             placeholder={verb ? options.find(o => o.value === (verb.verb.entry).ts.toString())?.label : "Select Verb..."}
             {...zIndexProps}
         />
+        {verb && verb.changeTransitivity && <div className="text-center mt-3">
+            <ButtonSelect
+                small
+                options={[{
+                    label: "gramm. trans.",
+                    value: "grammatically transitive",
+                }, {
+                    label: "trans.",
+                    value: "transitive",
+                }]}
+                value={notInstransitive(verb.transitivity)}
+                handleChange={handleChangeTransitivity}
+            />
+        </div>}
         {verb && <div className="text-center my-3">
             <ButtonSelect
                 small
@@ -163,13 +198,27 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                     label: "Basic",
                     value: "basic",
                 }, {
-                    label: "Modal",
-                    value: "modal",
-                }, {
                     label: "Perfect",
                     value: "perfect",
+                }, {
+                    label: "Modal",
+                    value: "modal",
                 }]}
                 handleChange={onTenseCategorySelect}
+            />
+        </div>}
+        {verb && verb.changeTransitivity && <div className="text-center my-3">
+            <ButtonSelect
+                small
+                value={verb.voice}
+                options={[{
+                    label: "Active",
+                    value: "active",
+                }, {
+                    label: "Passive",
+                    value: "passive",
+                }]}
+                handleChange={onVoiceSelect}
             />
         </div>}
         <div>Tense:</div>
@@ -189,34 +238,6 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             })() : undefined}
             {...zIndexProps}
         />
-        {verb && <div className="text-center my-3">
-            <ButtonSelect
-                small
-                value={verb.negative.toString()}
-                options={[{
-                    label: "Pos.",
-                    value: "false",
-                }, {
-                    label: "Neg.",
-                    value: "true",
-                }]}
-                handleChange={onPosNegSelect}
-            />
-        </div>}
-        {verb && verb.changeTransitivity && <div className="text-center">
-            <ButtonSelect
-                small
-                options={[{
-                    label: "gramm. trans.",
-                    value: "grammatically transitive",
-                }, {
-                    label: "trans.",
-                    value: "transitive",
-                }]}
-                value={notInstransitive(verb.transitivity)}
-                handleChange={handleChangeTransitivity}
-            />
-        </div>}
         {verb && verb.changeStatDyn && <div className="text-center">
             <ButtonSelect
                 small
@@ -230,6 +251,26 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
                 value={verb.isCompound ? verb.isCompound : "stative"}
                 handleChange={handleChangeStatDyn}
             />
+        </div>}
+        {verb && <div className="d-flex flex-row justify-content-between align-items-center my-3" style={{ width: "100%" }}>
+            <div onClick={moveTense("back")} className="clickable">
+                <i className="fas fa-chevron-left" />
+            </div>
+            <ButtonSelect
+                small
+                value={verb.negative.toString()}
+                options={[{
+                    label: "Pos.",
+                    value: "false",
+                }, {
+                    label: "Neg.",
+                    value: "true",
+                }]}
+                handleChange={onPosNegSelect}
+            />
+            <div onClick={moveTense("forward")} className="clickable">
+                <i className="fas fa-chevron-right" />
+            </div>
         </div>}
     </div>;
 }
@@ -253,7 +294,7 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         ? T.Person.ThirdPlurMale
         : info.type === "dynamic compound"
             ? makeNounSelection(info.objComplement.entry as NounEntry, true)
-            : (transitivity === "transitive")
+            : (transitivity === "transitive" && oldVerbSelection?.voice !== "passive")
                 ? getTransObjFromOldVerbSelection()
                 : "none";
     const isCompound = ("stative" in info || info.type === "stative compound")
@@ -292,9 +333,12 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         object,
         transitivity,
         isCompound,
+        voice: transitivity === "transitive"
+            ? (oldVerbSelection?.voice || "active")
+            : "active",
         negative: oldVerbSelection ? oldVerbSelection.negative : false,
         ...("grammaticallyTransitive" in info) ? {
-            changeTransitivity: function (t) {
+            changeTransitivity: function(t) {
                 return {
                     ...this,
                     transitivity: t,
@@ -303,7 +347,7 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
             },
         } : {},
         ...("stative" in info) ? {
-            changeStatDyn: function (c) {
+            changeStatDyn: function(c) {
                 return {
                     ...this,
                     isCompound: c,
@@ -315,6 +359,15 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
                         : undefined,
                 };
             }
+        } : {},
+        ...(transitivity === "transitive") ? {
+            changeVoice: function(v) {
+                return {
+                    ...this,
+                    voice: v,
+                    object: v === "passive" ? "none" : undefined,
+                };
+            },
         } : {},
     };
 }

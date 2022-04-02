@@ -44,8 +44,10 @@ type VerbSelection = {
     object: VerbObject, // TODO: should have a locked in (but number changeable noun) here for dynamic compounds
     transitivity: import("@lingdocs/pashto-inflector").Types.Transitivity,
     isCompound: "stative" | "dynamic" | false,
+    voice: "active" | "passive",
     changeTransitivity?: (t: "transitive" | "grammatically transitive") => VerbSelection,
     changeStatDyn?: (t: "stative" | "dynamic") => VerbSelection,
+    changeVoice?: (v: "active" | "passive") => VerbSelection,
     // TODO: changeStativeDynamic
     // TODO: add in aspect element here??
     negative: boolean,

@@ -152,7 +152,7 @@ function getPsVerbConjugation(conj: T.VerbConjugation, vs: VerbSelection, person
     },
     hasBa: boolean,
 } { 
-    const f = getTenseVerbForm(conj, vs.tense, vs.tenseCategory);
+    const f = getTenseVerbForm(conj, vs.tense, vs.tenseCategory, vs.voice);
     const block = getMatrixBlock(f, objectPerson, person);
     const perfective = isPerfective(vs.tense);
     const verbForm = getVerbFromBlock(block, person);
@@ -254,7 +254,8 @@ function getMatrixBlock<U>(f: {
     return f[personToLabel(person)];
 }
 
-function getTenseVerbForm(conj: T.VerbConjugation, tense: VerbTense | PerfectTense, tenseCategory: "basic" | "modal" | "perfect"): T.VerbForm {
+function getTenseVerbForm(conjR: T.VerbConjugation, tense: VerbTense | PerfectTense, tenseCategory: "basic" | "modal" | "perfect", voice: "active" | "passive"): T.VerbForm {
+    const conj = (voice === "passive" && conjR.passive) ? conjR.passive : conjR;
     if (tenseCategory === "basic") {
         if (tense === "presentVerb") {
             return conj.imperfective.nonImperative;

@@ -141,11 +141,100 @@ export function renderEnglishVPBase({ subjectPerson, object, vs }: {
             `$SUBJ should${n ? " not" : ""} have ${v[4]}`,
         ]),
     }
+    const passiveBasicBuilders: Record<
+        VerbTense,
+        (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => string[]
+    > = {
+        presentVerb: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ ${engEquative("present", s)}${n ? " not" : ""} being ${v[4]}`,
+            `$SUBJ ${engEquative("present", s)}${n ? " not" : ""} ${v[4]}`,
+        ]),
+        subjunctiveVerb: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `that $SUBJ will${n ? " not" : ""} be ${v[4]}`,
+        ]),
+        imperfectiveFuture: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ will${n ? " not" : ""} be ${v[4]}`,
+        ]),
+        perfectiveFuture: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ will${n ? " not" : ""} be ${v[4]}`,
+        ]),
+        imperfectivePast: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ ${engEquative("past", s)}${n ? " not" : ""} being ${v[4]}`,
+            `$SUBJ would${n ? " not" : ""} be ${v[4]}`,
+        ]),
+        perfectivePast: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ ${engEquative("past", s)}${n ? " not" : ""} ${v[4]}`,
+        ]),
+        habitualPerfectivePast: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ would${n ? " not" : ""} be ${v[4]}`,
+        ]),
+        habitualImperfectivePast: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ would${n ? " not" : ""} be ${v[4]}`,
+        ]),
+    };
+    const passivePerfectBuilders: Record<
+        PerfectTense,
+        (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => string[]
+    > = {
+        "present perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ ${engHave(s)}${n ? " not" : ""} been ${v[4]}`,
+        ]),
+        "past perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ had${n ? " not" : ""} been ${v[4]}`,
+        ]),
+        "habitual perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ ${engHave(s)}${n ? " not" : ""} been ${v[4]}`,
+        ]),
+        "subjunctive perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `that $SUBJ will${n ? " not" : ""} have been ${v[4]}`,
+        ]),
+        "future perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ will${n ? " not" : ""} have been ${v[4]}`,
+        ]),
+        "wouldBe perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ will${n ? " not" : ""} have been ${v[4]}`,
+        ]),
+        "pastSubjunctive perfect": (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ would${n ? " not" : ""} have been ${v[4]}`,
+        ]),
+    }
+    const passiveModalBuilders: Record<
+        VerbTense,
+        (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => string[]
+    > = {
+        presentVerb: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ can${n ? " not" : ""} be ${v[4]}`,
+            `$SUBJ ${engEquative("present", s)}${n ? " not" : ""} able to be ${v[4]}`,
+        ]),
+        subjunctiveVerb: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `that $SUBJ will${n ? " not" : ""} be able to be ${v[4]}`,
+            `that $SUBJ ${n ? " not" : ""} be able to be ${v[4]}`,
+        ]),
+        imperfectiveFuture: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ will${n ? " not" : ""} be able to be ${v[4]}`,
+        ]),
+        perfectiveFuture: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ will${n ? " not" : ""} be able to be ${v[4]}`,
+        ]),
+        imperfectivePast: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ would${n ? " not" : ""} be able to be ${v[4]}`,
+            `$SUBJ ${engEquative("past", s)}${n ? " not" : ""} being able to be ${v[4]}`,
+        ]),
+        perfectivePast: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ ${engEquative("past", s)}${n ? " not" : ""} able to be ${v[4]}`,
+        ]),
+        habitualPerfectivePast: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ would${n ? " not" : ""} be able to be ${v[4]}`,
+        ]),
+        habitualImperfectivePast: (s: T.Person, v: T.EnglishVerbConjugationEc, n: boolean) => ([
+            `$SUBJ would${n ? " not" : ""} be able to be ${v[4]}`,
+        ]),
+    };
     const base = (
         (vs.tenseCategory === "perfect")
-        ? perfectBuilders[vs.tense]
+        ? (vs.voice === "active" ? perfectBuilders : passivePerfectBuilders)[vs.tense]
         : vs.tenseCategory === "basic"
-        ? basicBuilders[vs.tense]
-        : modalBuilders[vs.tense])(subjectPerson, ec, vs.negative);
+        ? (vs.voice === "active" ? basicBuilders : passiveBasicBuilders)[vs.tense]
+        : (vs.voice === "active" ? modalBuilders : passiveModalBuilders)[vs.tense])(subjectPerson, ec, vs.negative);
     return base.map(b => `${b}${typeof object === "object" ? " $OBJ" : ""}${ep ? ` ${ep}` : ""}`);
 }
