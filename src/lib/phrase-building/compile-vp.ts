@@ -223,16 +223,16 @@ function arrangeVerbWNegative(head: T.PsString | undefined, restRaw: T.PsString[
         ];       
     }
     return [
-        [
+        ...(V.voice !== "passive") ? [[
             ...headSegment ? [headSegment.adjust({ ps: removeAccents })] : [],
             rest.adjust({
                 ps: r => concatPsString(nu, " ", removeAccents(r)),
                 desc: ["isNu"],
             }),
-        ],
+        ]] : [],
         // verbs that have a perfective prefix that is not و or وا can put the
         // nu *before* the prefix as well // TODO: also وي prefixes?
-        ...(!headSegment.isOoOrWaaHead && !V.isCompound) ? [[
+        ...((!headSegment.isOoOrWaaHead && !V.isCompound) || (V.voice === "passive")) ? [[
             makeSegment(nu, ["isNu"]),
             headSegment.adjust({ ps: removeAccents }),
             rest.adjust({ ps: removeAccents }),
