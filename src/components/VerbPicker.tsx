@@ -92,8 +92,9 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
         }
         onChange(makeVerbSelection(v, changeSubject, verb));
     }
-    function onTenseSelect({ value }: { label: string | JSX.Element, value: VerbTense | PerfectTense }) {
-        if (verb) {
+    function onTenseSelect(o: { value: VerbTense | PerfectTense } | null) {
+        const value = o?.value ? o.value : undefined; 
+        if (verb && value) {
             if (isPerfectTense(value)) {
                 onChange({
                     ...verb,
@@ -174,6 +175,7 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
             onChange(verb.changeStatDyn(c));
         }
     }
+    const tOptions = (verb?.tenseCategory === "perfect") ? perfectTenseOptions : tenseOptions;
     return <div style={{ maxWidth: "225px", minWidth: "175px" }}>
         <div>Verb:</div>
         <Select
@@ -236,18 +238,11 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
         <div>Tense:</div>
         <Select
             isSearchable={false}
-            value={verb && verb.tense}
-            // @ts-ignore
+            // for some reason can't use tOptions with find here;
+            value={verb && ([...tenseOptions, ...perfectTenseOptions].find(o => o.value === verb.tense))}
             onChange={onTenseSelect}
             className="mb-2"
-            // @ts-ignore
-            options={verb?.tenseCategory === "perfect" ? perfectTenseOptions : tenseOptions}
-            placeholder={verb ? (() => {
-                const label = (verb.tenseCategory === "perfect")
-                    ? perfectTenseOptions.find(o => o.value === verb.tense)?.label
-                    : tenseOptions.find(o => o.value === verb.tense)?.label;
-                return label || "Select Tense...";
-            })() : undefined}
+            options={tOptions}
             {...zIndexProps}
         />
         {verb && verb.changeStatDyn && <div className="text-center">
