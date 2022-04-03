@@ -11,11 +11,6 @@ import {
     removeDuplicates,
 } from "./vp-tools";
 
-// TODO: get the past tense order right
-// ویې نه کړای شو
-// ویې نه شو کړای
-// add modal to the passive
-
 type Form = FormVersion & { OSV?: boolean };
 export function compileVP(VP: VPRendered, form: Form): { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string [] };
 export function compileVP(VP: VPRendered, form: Form, combineLengths: true): { ps: T.PsString[], e?: string [] };
