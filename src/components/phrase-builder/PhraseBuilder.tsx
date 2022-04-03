@@ -18,8 +18,8 @@ const servantEmoji = "🙇‍♂️";
 export function PhraseBuilder() {
     const [subject, setSubject] = useState<NPSelection | undefined>(undefined);
     const [verb, setVerb] = useState<VerbSelection | undefined>(undefined);
-    function handleSubjectChange(subject: NPSelection | undefined) {
-        if (hasPronounConflict(subject, verb?.object)) {
+    function handleSubjectChange(subject: NPSelection | undefined, skipPronounConflictCheck?: boolean) {
+        if (!skipPronounConflictCheck && hasPronounConflict(subject, verb?.object)) {
             alert("That combination of pronouns is not allowed");
             return;
         }
@@ -74,7 +74,13 @@ export function PhraseBuilder() {
             </div>}
             <div className="my-2">
                 <div className="h4">Verb</div>
-                <VerbPicker verbs={verbs} verb={verb} onChange={setVerb} />
+                <VerbPicker
+                    verbs={verbs}
+                    verb={verb}
+                    subject={subject}
+                    changeSubject={(s) => handleSubjectChange(s, true)}
+                    onChange={setVerb}
+                />
             </div>
         </div>
         {verbPhrase && <div>

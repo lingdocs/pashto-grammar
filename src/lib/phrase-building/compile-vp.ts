@@ -30,7 +30,8 @@ export function compileVP(VP: VPRendered, form: Form, combineLengths?: true): { 
     });
     return {
         ps: combineLengths ? flattenLengths(psResult) : psResult,
-        e: compileEnglish(VP),
+        // TODO: English doesn't quite work for dynamic compounds in passive voice
+        e: (VP.verb.voice === "passive" && VP.isCompound === "dynamic") ? undefined : compileEnglish(VP),
     };
 }
 

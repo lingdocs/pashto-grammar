@@ -69,7 +69,13 @@ const perfectTenseOptions: { label: string | JSX.Element, value: PerfectTense }[
 //     grammaticallyTransitive: boolean,
 // }
 
-function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbSelection | undefined, onChange: (p: VerbSelection) => void }) {
+function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
+    verbs: VerbEntry[],
+    verb: VerbSelection | undefined,
+    subject: NPSelection | undefined,
+    onChange: (p: VerbSelection) => void,
+    changeSubject: (p: NPSelection | undefined) => void,
+}) {
     // const [filters, useFilters] = useState<Filters>({
     //     stative: true,
     //     dynamic: true,
@@ -84,7 +90,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
             console.error("entry not found");
             return;
         }
-        onChange(makeVerbSelection(v, verb));
+        onChange(makeVerbSelection(v, changeSubject, verb));
     }
     function onTenseSelect({ value }: { label: string | JSX.Element, value: VerbTense | PerfectTense }) {
         if (verb) {
@@ -146,7 +152,13 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
     }
     function onVoiceSelect(value: "active" | "passive") {
         if (verb && verb.changeVoice) {
-            onChange(verb.changeVoice(value));
+            if (value === "passive" && (typeof verb.object === "object")) {
+                changeSubject(verb.object);
+            }
+            if (value === "active") {
+                changeSubject(undefined);
+            }
+            onChange(verb.changeVoice(value, value === "active" ? subject : undefined));
         }
     }
     function notInstransitive(t: "transitive" | "intransitive" | "grammatically transitive"): "transitive" | "grammatically transitive" {
@@ -275,7 +287,7 @@ function VerbPicker({ onChange, verb, verbs }: { verbs: VerbEntry[], verb: VerbS
     </div>;
 }
 
-function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): VerbSelection {
+function makeVerbSelection(verb: VerbEntry, changeSubject: (s: NPSelection | undefined) => void, oldVerbSelection?: VerbSelection): VerbSelection {
     const info = getVerbInfo(verb.entry, verb.complement);
     function getTransObjFromOldVerbSelection() {
         if (
@@ -292,11 +304,14 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
         : info.transitivity;
     const object = (transitivity === "grammatically transitive")
         ? T.Person.ThirdPlurMale
-        : info.type === "dynamic compound"
+        : (info.type === "dynamic compound" && oldVerbSelection?.voice !== "passive")
             ? makeNounSelection(info.objComplement.entry as NounEntry, true)
             : (transitivity === "transitive" && oldVerbSelection?.voice !== "passive")
                 ? getTransObjFromOldVerbSelection()
                 : "none";
+    if (oldVerbSelection?.voice === "passive" && info.type === "dynamic compound") {
+        changeSubject(makeNounSelection(info.objComplement.entry as NounEntry, true));
+    }
     const isCompound = ("stative" in info || info.type === "stative compound")
         ? "stative"
         : info.type === "dynamic compound"
@@ -361,11 +376,11 @@ function makeVerbSelection(verb: VerbEntry, oldVerbSelection?: VerbSelection): V
             }
         } : {},
         ...(transitivity === "transitive") ? {
-            changeVoice: function(v) {
+            changeVoice: function(v, s) {
                 return {
                     ...this,
                     voice: v,
-                    object: v === "passive" ? "none" : undefined,
+                    object: v === "active" ? s : "none",
                 };
             },
         } : {},

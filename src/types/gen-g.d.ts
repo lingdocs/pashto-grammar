@@ -47,7 +47,7 @@ type VerbSelection = {
     voice: "active" | "passive",
     changeTransitivity?: (t: "transitive" | "grammatically transitive") => VerbSelection,
     changeStatDyn?: (t: "stative" | "dynamic") => VerbSelection,
-    changeVoice?: (v: "active" | "passive") => VerbSelection,
+    changeVoice?: (v: "active" | "passive", subj?: NPSelection) => VerbSelection,
     // TODO: changeStativeDynamic
     // TODO: add in aspect element here??
     negative: boolean,
