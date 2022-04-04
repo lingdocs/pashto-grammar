@@ -44,8 +44,8 @@ function NPPicker({ np, onChange, counterPart, asObject }: {
     const clearButton = <button className="btn btn-sm btn-light mb-2" onClick={handleClear}>X</button>;
     return <div>
         {!npType && <div className="d-flex flex-row align-items-center text-center mt-3">
-            <div className="h4 mr-3">
-                NP
+            <div className="h6 mr-3">
+                Choose NP
             </div>
             <div className="ml-3">
                 {npTypes.map((npt) => <div className="mb-2">

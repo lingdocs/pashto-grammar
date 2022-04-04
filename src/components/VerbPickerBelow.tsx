@@ -122,25 +122,27 @@ function VerbPickerBelow({ onChange, verb }: {
     }
     const tOptions = (verb?.tenseCategory === "perfect") ? perfectTenseOptions : tenseOptions;
     return <div className="mb-4 mt-3">
-        {verb && <div className="col text-center mb-2">
-            <ButtonSelect
-                small
-                value={verb.tenseCategory}
-                options={[{
-                    label: "Basic",
-                    value: "basic",
-                }, {
-                    label: "Perfect",
-                    value: "perfect",
-                }, {
-                    label: "Modal",
-                    value: "modal",
-                }]}
-                handleChange={onTenseCategorySelect}
-            />
-        </div>}
         <div style={{ maxWidth: "300px", margin: "0 auto" }}>
-            <div>Tense:</div>
+            <div className="d-flex flex-row justify-content-between align-items-center">
+                <div className="h5">Tense:</div>
+                {verb && <div className="mb-2">
+                    <ButtonSelect
+                        small
+                        value={verb.tenseCategory}
+                        options={[{
+                            label: "Basic",
+                            value: "basic",
+                        }, {
+                            label: "Perfect",
+                            value: "perfect",
+                        }, {
+                            label: "Modal",
+                            value: "modal",
+                        }]}
+                        handleChange={onTenseCategorySelect}
+                    />
+                </div>}
+            </div>
             <Select
                 isSearchable={false}
                 // for some reason can't use tOptions with find here;
