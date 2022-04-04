@@ -181,6 +181,7 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
             value={verb?.verb}
             onChange={onVerbSelect}
             name="Verb"
+            isVerbSelect
         />
         {/* <Select
             value={verb && verb.verb.entry.ts.toString()}

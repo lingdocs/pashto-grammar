@@ -43,17 +43,22 @@ function NPPicker({ np, onChange, counterPart, asObject }: {
     const isDynamicComplement = np && np.type === "noun" && np.dynamicComplement;
     const clearButton = <button className="btn btn-sm btn-light mb-2" onClick={handleClear}>X</button>;
     return <div>
-        {!npType && <div className="text-center mt-3">
-            {npTypes.map((npt) => <div className="mb-2">
-                <button
-                    key={npt}
-                    type="button"
-                    className="mr-2 btn btn-sm btn-outline-secondary"
-                    onClick={() => handleNPTypeChange(npt)}
-                >
-                    {npt}
-                </button>
-            </div>)}
+        {!npType && <div className="d-flex flex-row align-items-center text-center mt-3">
+            <div className="h4 mr-3">
+                NP
+            </div>
+            <div className="ml-3">
+                {npTypes.map((npt) => <div className="mb-2">
+                    <button
+                        key={npt}
+                        type="button"
+                        className="mr-2 btn btn-sm btn-outline-secondary"
+                        onClick={() => handleNPTypeChange(npt)}
+                    >
+                        {npt}
+                    </button>
+                </div>)}
+            </div>
         </div>}
         {(npType === "pronoun" && np?.type === "pronoun")
             ? <PronounPicker

@@ -2,7 +2,6 @@ import { useState } from "react";
 import NPPicker from "../np-picker/NPPicker";
 import VerbPicker from "../VerbPicker";
 import VPDisplay from "./VPDisplay";
-import ObjectDisplay from "./ObjectDisplay";
 import { verbs } from "../../words/words";
 import { renderVP } from "../../lib/phrase-building";
 import {
@@ -66,11 +65,14 @@ export function PhraseBuilder() {
             </div>
             {verb && (verb.object !== "none") && <div className="my-2">
                 <div className="h4">Object {showRole(VPRendered, "object")}</div>
-                <ObjectDisplay
-                    object={verb.object}
-                    counterPart={subject}
-                    onChange={handleObjectChange}
-                />
+                {(typeof verb.object === "number")
+                    ? <div className="text-muted">Unspoken 3rd Pers. Masc. Plur.</div>
+                    : <NPPicker
+                        asObject
+                        np={verb.object}
+                        counterPart={subject}
+                        onChange={handleObjectChange}
+                    />}
             </div>}
             <div className="my-2">
                 <div className="h4">Verb</div>
