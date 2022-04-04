@@ -121,7 +121,7 @@ function VerbPickerBelow({ onChange, verb }: {
         }
     }
     const tOptions = (verb?.tenseCategory === "perfect") ? perfectTenseOptions : tenseOptions;
-    return <div className="mb-4 mt-3">
+    return <div className="mb-0 mt-3">
         <div style={{ maxWidth: "300px", minWidth: "250px", margin: "0 auto" }}>
             <div className="d-flex flex-row justify-content-between align-items-center">
                 <div className="h5">Tense:</div>
@@ -152,7 +152,7 @@ function VerbPickerBelow({ onChange, verb }: {
                 options={tOptions}
                 {...zIndexProps}
             />
-            {verb && <div className="d-flex flex-row justify-content-between align-items-center my-3" style={{ width: "100%" }}>
+            {verb && <div className="d-flex flex-row justify-content-between align-items-center mt-3 mb-1" style={{ width: "100%" }}>
                 <div onClick={moveTense("back")} className="clickable">
                     <i className="fas fa-chevron-left" />
                 </div>

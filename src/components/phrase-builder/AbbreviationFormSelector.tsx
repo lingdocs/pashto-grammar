@@ -88,6 +88,7 @@ function AbbreviationFormSelector({ form, onChange, adjustable }: {
     return <div className="mb-3">
         {/* <div className="text-center text-small mb-2">Abbreviation Options</div> */}
         <ButtonSelect
+            small
             // @ts-ignore
             value={limitValue(formToValue(form), adjustable)}
             // @ts-ignore
