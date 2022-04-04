@@ -122,7 +122,7 @@ function VerbPickerBelow({ onChange, verb }: {
     }
     const tOptions = (verb?.tenseCategory === "perfect") ? perfectTenseOptions : tenseOptions;
     return <div className="mb-4 mt-3">
-        <div style={{ maxWidth: "300px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "300px", minWidth: "250px", margin: "0 auto" }}>
             <div className="d-flex flex-row justify-content-between align-items-center">
                 <div className="h5">Tense:</div>
                 {verb && <div className="mb-2">

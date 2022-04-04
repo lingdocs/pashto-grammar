@@ -12,7 +12,8 @@ import {
 const kingEmoji = "👑";
 const servantEmoji = "🙇‍♂️";
 
-// TODO: Ability to choose stative/dynamic compounds when both work
+// TODO: SHOW KING AND SERVANT ONCE TENSE PICKED, EVEN IF NPs not selected
+// TODO: Issue with "the money were taken"
 
 // TODO: error handling on error with rendering etc
 export function PhraseBuilder() {
@@ -82,12 +83,14 @@ export function PhraseBuilder() {
                         onChange={handleObjectChange}
                     />}
             </div>}
+            <div className="my-2">
+                <VerbPickerBelow
+                    verbs={verbs}
+                    verb={verb}
+                    onChange={setVerb}
+                />
+            </div>
         </div>
-        <VerbPickerBelow
-            verbs={verbs}
-            verb={verb}
-            onChange={setVerb}
-        />
         {verbPhrase && <div>
             <VPDisplay VP={verbPhrase} />
         </div>}
