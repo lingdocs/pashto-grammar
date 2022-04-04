@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NPPicker from "../np-picker/NPPicker";
 import VerbPicker from "../VerbPicker";
+import VerbPickerBelow from "../VerbPickerBelow";
 import VPDisplay from "./VPDisplay";
 import { verbs } from "../../words/words";
 import { renderVP } from "../../lib/phrase-building";
@@ -47,13 +48,20 @@ export function PhraseBuilder() {
             <div>{kingEmoji} = <abbr title="controls the verb conjugation, can be removed">king</abbr> of phrase</div>
             <div>{servantEmoji} = <abbr title="can be shrunken into a mini-pronoun">servant</abbr> of phrase</div>
         </div>
+        <VerbPicker
+            verbs={verbs}
+            verb={verb}
+            subject={subject}
+            changeSubject={(s) => handleSubjectChange(s, true)}
+            onChange={setVerb}
+        />
         {(verb && (typeof verb.object === "object") && (verb.isCompound !== "dynamic")) &&
-        <div className="d-flex flex-row justify-content-around flex-wrap mb-2">
-            <button onClick={handleSubjObjSwap} className="btn btn-sm btn-light">
-                <i className="fas fa-exchange-alt mr-2" /> subj/obj
-            </button>
-            <div>{` `}</div>
-        </div>}
+            <div className="d-flex flex-row justify-content-around flex-wrap mt-4">
+                <button onClick={handleSubjObjSwap} className="btn btn-sm btn-light">
+                    <i className="fas fa-exchange-alt mr-2" /> subj/obj
+                </button>
+                {/* <div>{` `}</div> */}
+            </div>}
         <div className="d-flex flex-row justify-content-around flex-wrap">
             <div className="my-2">
                 <div className="h4">Subject {showRole(VPRendered, "subject")}</div>
@@ -74,17 +82,12 @@ export function PhraseBuilder() {
                         onChange={handleObjectChange}
                     />}
             </div>}
-            <div className="my-2">
-                <div className="h4">Verb</div>
-                <VerbPicker
-                    verbs={verbs}
-                    verb={verb}
-                    subject={subject}
-                    changeSubject={(s) => handleSubjectChange(s, true)}
-                    onChange={setVerb}
-                />
-            </div>
         </div>
+        <VerbPickerBelow
+            verbs={verbs}
+            verb={verb}
+            onChange={setVerb}
+        />
         {verbPhrase && <div>
             <VPDisplay VP={verbPhrase} />
         </div>}
