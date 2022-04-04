@@ -1,7 +1,4 @@
-import Select from "react-select";
 import {
-    makeSelectOption,
-    zIndexProps,
     makeNounSelection,
 } from "./picker-tools";
 import {
@@ -11,6 +8,7 @@ import {
 } from "@lingdocs/pashto-inflector";
 import { useState } from "react";
 import { isFemNounEntry, isPattern1Entry, isPattern2Entry, isPattern3Entry, isPattern4Entry, isPattern5Entry, isPattern6FemEntry } from "../../lib/type-predicates";
+import EntrySelect from "../EntrySelect";
 
 const filterOptions = [
     {
@@ -59,18 +57,15 @@ function nounFilter(p: FilterPattern | undefined) {
         : () => true;
 }
 
-function NPNounPicker({ onChange, noun, nouns, clearButton }: { nouns: NounEntry[], noun: NounSelection | undefined, onChange: (p: NounSelection) => void, clearButton?: JSX.Element }) {
+function NPNounPicker({ onChange, noun, nouns, clearButton }: { nouns: NounEntry[], noun: NounSelection | undefined, onChange: (p: NounSelection | undefined) => void, clearButton?: JSX.Element }) {
     const [patternFilter, setPatternFilter] = useState<FilterPattern | undefined>(undefined);
     const [showFilter, setShowFilter] = useState<boolean>(false)
-    const options = nouns
+    const nounsFiltered = nouns
         .filter(nounFilter(patternFilter))
-        .sort((a, b) => (a.p.localeCompare(b.p, "af-PS")))
-        .map(makeSelectOption);
-    function onEntrySelect({ value }: { label: string, value: string }) {
-        const entry = nouns.find(n => n.ts.toString() === value);
+        .sort((a, b) => (a.p.localeCompare(b.p, "af-PS")));
+    function onEntrySelect(entry: NounEntry | undefined) {
         if (!entry) {
-            console.error("entry not found");
-            return;
+            return onChange(undefined);
         }
         onChange(makeNounSelection(entry));
     }
@@ -101,17 +96,11 @@ function NPNounPicker({ onChange, noun, nouns, clearButton }: { nouns: NounEntry
             />
         </div>}
         {!(noun && noun.dynamicComplement) ? <div>
-            <Select
-                value={noun && noun.entry.ts.toString()}
-                // @ts-ignore
+            <EntrySelect
+                value={noun?.entry}
+                entries={nounsFiltered}
                 onChange={onEntrySelect}
-                className="mb-2"
-                // @ts-ignore
-                options={options}
-                isSearchable
-                // @ts-ignore
-                placeholder={noun ? options.find(o => o.value === (noun.entry).ts.toString())?.label : "Select Noun..."}
-                {...zIndexProps}
+                name="Noun"
             />
         </div> : <div>
             {noun && <div>

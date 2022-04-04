@@ -27,7 +27,7 @@ export function makeVerbSelectOption(e: VerbEntry): { value: string, label: stri
     };
 }
 
-export function makeSelectOption(e: VerbEntry | NounEntry | AdjectiveEntry | LocativeAdverbEntry): { value: string, label: string } {
+export function makeSelectOption(e: T.DictionaryEntry | VerbEntry | NounEntry | AdjectiveEntry | LocativeAdverbEntry): { value: string, label: string } {
     const entry = "entry" in e ? e.entry : e;
     const eng = (isVerbEntry(e)) 
         ? (getEnglishParticiple(e.entry))

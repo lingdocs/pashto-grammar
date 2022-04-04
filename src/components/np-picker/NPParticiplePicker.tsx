@@ -1,8 +1,4 @@
-import Select from "react-select";
-import {
-    makeSelectOption,
-    zIndexProps,
-} from "./picker-tools";
+import EntrySelect from "../EntrySelect";
 
 function makeParticipleSelection(verb: VerbEntry): ParticipleSelection {
     return {
@@ -14,31 +10,23 @@ function makeParticipleSelection(verb: VerbEntry): ParticipleSelection {
 function NPParticiplePicker({ onChange, participle, verbs, clearButton }: {
     verbs: VerbEntry[],
     participle: ParticipleSelection | undefined,
-    onChange: (p: ParticipleSelection) => void,
+    onChange: (p: ParticipleSelection | undefined) => void,
     clearButton: JSX.Element,
 }) {
-    const options = verbs.map(makeSelectOption)
-    function onEntrySelect({ value }: { label: string, value: string }) {
-        const verb = verbs.find(v => v.entry.ts.toString() === value);
-        if (!verb) {
-            console.error("entry not found");
+    function onEntrySelect(entry: VerbEntry | undefined) {
+        if (!entry) {
+            onChange(undefined);
             return;
         }
-        onChange(makeParticipleSelection(verb));
+        onChange(makeParticipleSelection(entry));
     }
     return <div style={{ maxWidth: "225px" }}>
         {clearButton}
-        <Select
-            value={participle && participle.verb.entry.ts.toString()}
-            // @ts-ignore
+        <EntrySelect
+            value={participle?.verb}
+            entries={verbs}
             onChange={onEntrySelect}
-            className="mb-2"
-            // @ts-ignore
-            options={options}
-            isSearchable
-            // // @ts-ignore
-            placeholder={participle ? options.find(o => o.value === (participle.verb.entry).ts.toString())?.label : "Select Participle..."}
-            {...zIndexProps}
+            name="Pariticple"
         />
         {participle && <div className="my-2 d-flex flex-row justify-content-around align-items-center">
             <div>Masc.</div>

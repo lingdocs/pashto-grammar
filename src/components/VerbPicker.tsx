@@ -1,7 +1,6 @@
 import Select from "react-select";
 import {
     makeNounSelection,
-    makeVerbSelectOption,
     zIndexProps,
 } from "./np-picker/picker-tools";
 import {
@@ -10,6 +9,7 @@ import {
     getVerbInfo,
 } from "@lingdocs/pashto-inflector";
 import { isPerfectTense } from "../lib/phrase-building/vp-tools";
+import EntrySelect from "./EntrySelect";
 // import { useState } from "react";
 
 const tenseOptions: { label: string | JSX.Element, value: VerbTense }[] = [{
@@ -73,7 +73,7 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
     verbs: VerbEntry[],
     verb: VerbSelection | undefined,
     subject: NPSelection | undefined,
-    onChange: (p: VerbSelection) => void,
+    onChange: (p: VerbSelection | undefined) => void,
     changeSubject: (p: NPSelection | undefined) => void,
 }) {
     // const [filters, useFilters] = useState<Filters>({
@@ -83,12 +83,10 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
     //     intransitive: true,
     //     grammaticallyTransitive: true,
     // });
-    const options = verbs.sort((a, b) => (a.entry.p.localeCompare(b.entry.p, "af-PS"))).map(makeVerbSelectOption);
-    function onEntrySelect({ value }: { label: string, value: string }) {
-        const v = verbs.find(v => v.entry.ts.toString() === value);
+    function onVerbSelect(v: VerbEntry | undefined) {
+        // TODO: what to do when clearing
         if (!v) {
-            console.error("entry not found");
-            return;
+            return onChange(v);
         }
         onChange(makeVerbSelection(v, changeSubject, verb));
     }
@@ -178,7 +176,13 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
     const tOptions = (verb?.tenseCategory === "perfect") ? perfectTenseOptions : tenseOptions;
     return <div style={{ maxWidth: "225px", minWidth: "175px" }}>
         <div>Verb:</div>
-        <Select
+        <EntrySelect
+            entries={verbs}
+            value={verb?.verb}
+            onChange={onVerbSelect}
+            name="Verb"
+        />
+        {/* <Select
             value={verb && verb.verb.entry.ts.toString()}
             // @ts-ignore
             onChange={onEntrySelect}
@@ -189,7 +193,7 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
             // // @ts-ignore
             placeholder={verb ? options.find(o => o.value === (verb.verb.entry).ts.toString())?.label : "Select Verb..."}
             {...zIndexProps}
-        />
+        /> */}
         {verb && verb.changeTransitivity && <div className="text-center mt-3">
             <ButtonSelect
                 small
