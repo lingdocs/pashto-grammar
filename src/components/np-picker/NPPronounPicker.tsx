@@ -94,7 +94,7 @@ function NPPronounPicker({ onChange, pronoun, asObject, clearButton }: {
     }
     const prs = labels(!!asObject)[display];
     const pSpec = "near" in prs ? prs[pronoun.distance] : prs;
-    return <div style={{ maxWidth: "225px", padding: 0 }}>
+    return <div style={{ maxWidth: "145px", padding: 0 }}>
         {clearButton}
         <div className="d-flex flex-row justify-content-around mb-3">
             <ButtonSelect

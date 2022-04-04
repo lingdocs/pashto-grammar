@@ -14,6 +14,8 @@ const servantEmoji = "🙇‍♂️";
 
 // TODO: SHOW KING AND SERVANT ONCE TENSE PICKED, EVEN IF NPs not selected
 // TODO: Issue with "the money were taken"
+// TODO: Use the same component for PronounPicker and NPPronounPicker (sizing issue)
+// get the practice pronoun picker page into a typesafe file
 
 // TODO: error handling on error with rendering etc
 export function PhraseBuilder() {
@@ -57,15 +59,14 @@ export function PhraseBuilder() {
             onChange={setVerb}
         />
         {(verb && (typeof verb.object === "object") && (verb.isCompound !== "dynamic")) &&
-            <div className="d-flex flex-row justify-content-around flex-wrap mt-4">
+            <div className="text-center mt-4">
                 <button onClick={handleSubjObjSwap} className="btn btn-sm btn-light">
                     <i className="fas fa-exchange-alt mr-2" /> subj/obj
                 </button>
-                {/* <div>{` `}</div> */}
             </div>}
-        <div className="d-flex flex-row justify-content-around flex-wrap">
+        <div className="d-flex flex-row justify-content-around flex-wrap" style={{ marginLeft: "-0.5rem", marginRight: "-0.5rem" }}>
             <div className="my-2">
-                <div className="h4">Subject {showRole(VPRendered, "subject")}</div>
+                <div className="h5 text-center">Subject {showRole(VPRendered, "subject")}</div>
                 <NPPicker
                     np={subject}
                     counterPart={verb ? verb.object : undefined}
@@ -73,7 +74,7 @@ export function PhraseBuilder() {
                 />
             </div>
             {verb && (verb.object !== "none") && <div className="my-2">
-                <div className="h4">Object {showRole(VPRendered, "object")}</div>
+                <div className="h5 text-center">Object {showRole(VPRendered, "object")}</div>
                 {(typeof verb.object === "number")
                     ? <div className="text-muted">Unspoken 3rd Pers. Masc. Plur.</div>
                     : <NPPicker

@@ -55,7 +55,7 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
     }
     return <div className="mb-3">
         <div style={{ maxWidth: "300px", margin: "0 auto" }}>
-            <div>Verb:</div>
+            <div className="h5">Verb:</div>
             <EntrySelect
                 entries={verbs}
                 value={verb?.verb}
