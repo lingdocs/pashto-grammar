@@ -13,9 +13,13 @@ const kingEmoji = "👑";
 const servantEmoji = "🙇‍♂️";
 
 // TODO: SHOW KING AND SERVANT ONCE TENSE PICKED, EVEN IF NPs not selected
+// TODO: Issue with dynamic compounds english making with plurals
 // TODO: Issue with "the money were taken"
 // TODO: Use the same component for PronounPicker and NPPronounPicker (sizing issue)
 // get the practice pronoun picker page into a typesafe file
+// A little button you can press on the tense select to show the formula and info about the tense
+// in a popup
+// TODO: option to show 3 modes  Phrases - Charts - Quiz
 
 // TODO: error handling on error with rendering etc
 export function PhraseBuilder() {

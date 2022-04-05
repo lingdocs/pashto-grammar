@@ -5,6 +5,7 @@ module.exports = [
     { ts: 1589023873660, e: `victory, conquest` }, // فتح - fathá
     { ts: 1527813791, e: `permission` }, // اجازه - ijaaza
 { ts: 1614083533098, e: `agenda` }, // اجنډه - ajanDa
+{ ts: 1527811425, e: "door" }, // darwaaza
 { ts: 1527816215, e: `administration, management, directorate` }, // اداره - idaara
 { ts: 1527812687, e: `continuation` }, // ادامه - idaama
 { ts: 1527811661, e: `base, army post, (air) port` }, // اډه - aDa
