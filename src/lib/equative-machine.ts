@@ -79,7 +79,7 @@ function makeEquative(e: EquativeClause) {
             : [t[row][col]];
     }
     const baseTense = (e.tense === "future")
-        ? "subjunctive"
+        ? "habitual"
         : e.tense === "wouldBe"
         ? "past"
         : e.tense;

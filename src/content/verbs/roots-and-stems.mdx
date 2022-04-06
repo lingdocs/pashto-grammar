@@ -25,13 +25,15 @@ import {
 } from "@lingdocs/pashto-inflector";
 import shuffle from "../../lib/shuffle-array";
 import Carousel from "../../components/Carousel";
-import { verbs } from "../../words/words";
+import { verbs as verbsRaw } from "../../words/words";
 import Link from "../../components/Link";
 import verbTreeBase from "./verb-tree-base.svg";
 import verbTreePastPresent from "./verb-tree-past-present.svg";
 import verbTreeImperfectivePerfective from "./verb-tree-imperfective-perfective.svg";
 
 export const opts = defaultTextOptions;
+
+export const verbs = verbsRaw.filter(v => !v.c?.includes("comp."));
 
 export function InfoCarousel({ items, highlighted, hidePastParticiple }) {
     return (
