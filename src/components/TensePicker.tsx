@@ -14,10 +14,10 @@ const tenseOptions: { label: string | JSX.Element, value: VerbTense }[] = [{
     label: <div><i className="fas fa-camera mr-2" />subjunctive</div>,
     value: "subjunctiveVerb",
 }, {
-    label: <div><i className="fas fa-video mr-2" />imperf. future</div>,
+    label: <div><i className="fas fa-video mr-2" />imperfective future</div>,
     value: "imperfectiveFuture",
 }, {
-    label: <div><i className="fas fa-camera mr-2" />perf. future</div>,
+    label: <div><i className="fas fa-camera mr-2" />perfective future</div>,
     value: "perfectiveFuture",
 }, {
     label: <div><i className="fas fa-video mr-2" />continuous past</div>,
@@ -26,10 +26,10 @@ const tenseOptions: { label: string | JSX.Element, value: VerbTense }[] = [{
     label: <div><i className="fas fa-camera mr-2" />simple past</div>,
     value: "perfectivePast",
 }, {
-    label: <div><i className="fas fa-video mr-2" />habitual cont. past</div>,
+    label: <div><i className="fas fa-video mr-2" />habitual continual past</div>,
     value: "habitualImperfectivePast",
 }, {
-    label: <div><i className="fas fa-camera mr-2" />habitual simp. past</div>,
+    label: <div><i className="fas fa-camera mr-2" />habitual simple past</div>,
     value: "habitualPerfectivePast",
 }];
 
