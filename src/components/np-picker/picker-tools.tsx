@@ -24,12 +24,6 @@ export const zIndexProps = {
 
 export function makeVerbSelectOption(e: VerbEntry, opts: T.TextOptions): { value: string, label: string | JSX.Element } {
     const eng = getEnglishVerb(e.entry);
-    if (!eng) {
-        console.log("yep no eng for", e);
-    } else if (e.entry.p === "اړېدل") {
-        console.log("eng for", e);
-        console.log(eng);
-    }
     const ps = plainTextPsAdjustment(
         { p: e.entry.p, f: removeFVarients(e.entry.f) },
         opts,

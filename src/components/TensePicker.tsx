@@ -122,7 +122,7 @@ function TensePicker({ onChange, verb, mode }: {
         }
     }
     const tOptions = (verb?.tenseCategory === "perfect") ? perfectTenseOptions : tenseOptions;
-    return <div className="mb-0 mt-3">
+    return <div>
         <div style={{ maxWidth: "300px", minWidth: "250px", margin: "0 auto" }}>
             <div className="d-flex flex-row justify-content-between align-items-center">
                 <div className="h5">Tense:</div>
