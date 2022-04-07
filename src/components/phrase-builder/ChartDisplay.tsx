@@ -8,13 +8,15 @@ import {
 } from "../../lib/phrase-building/vp-tools";
 
 function ChartDisplay({ VS, opts }: { VS: VerbSelection, opts: T.TextOptions }) {
-    const conjugations = conjugateVerb(VS.verb.entry, VS.verb.complement);
-    if (!conjugations) {
+    const rawConjugations = conjugateVerb(VS.verb.entry, VS.verb.complement);
+    if (!rawConjugations) {
         return <div>Error conjugating verb</div>;
     }
-    if ("stative" in conjugations || "transitive" in conjugations) {
-        return <div>Error: compound or transitivity type should be selected first</div>;
-    }
+    const conjugations = ("stative" in rawConjugations)
+        ? rawConjugations[VS.isCompound === "stative" ? "stative" : "dynamic"]
+        : ("transitive" in rawConjugations)
+        ? rawConjugations[VS.transitivity === "grammatically transitive" ? "grammaticallyTransitive" : "transitive"]
+        : rawConjugations;
     const form = getTenseVerbForm(conjugations, VS.tense, VS.tenseCategory, VS.voice);
     return <div className="mb-4">
         <VerbFormDisplay

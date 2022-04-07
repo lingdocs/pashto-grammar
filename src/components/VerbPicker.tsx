@@ -23,7 +23,14 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs, opts, verbL
     verbLocked: boolean,
 }) {
     const [showRootsAndStems, setShowRootsAndStems] = useStickyState<boolean>(false, "showRootsAndStems");
-    const info = verb ? getVerbInfo(verb.verb.entry, verb.verb.complement) : undefined;
+    const infoRaw = verb ? getVerbInfo(verb.verb.entry, verb.verb.complement) : undefined;
+    const info = (!infoRaw || !verb)
+        ? undefined
+        : ("stative" in infoRaw)
+        ? infoRaw[verb.isCompound === "stative" ? "stative" : "dynamic"]
+        : ("transitive" in infoRaw)
+        ? infoRaw[verb.transitivity === "grammatically transitive" ? "grammaticallyTransitive" : "transitive"]
+        : infoRaw;
     if (info && ("stative" in info || "transitive" in info)) {
         return <div>ERROR: Verb version should be select first</div>;
     }
