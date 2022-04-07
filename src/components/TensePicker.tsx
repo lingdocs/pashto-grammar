@@ -154,7 +154,7 @@ function TensePicker({ onChange, verb, mode }: {
                 {...zIndexProps}
             />
             {verb && <div className="d-flex flex-row justify-content-between align-items-center mt-3 mb-1" style={{ width: "100%" }}>
-                <div onClick={moveTense("back")} className="clickable">
+                <div className="btn btn-light clickable" onClick={moveTense("back")}>
                     <i className="fas fa-chevron-left" />
                 </div>
                 {mode !== "charts" && <ButtonSelect
@@ -169,7 +169,7 @@ function TensePicker({ onChange, verb, mode }: {
                     }]}
                     handleChange={onPosNegSelect}
                 />}
-                <div onClick={moveTense("forward")} className="clickable">
+                <div onClick={moveTense("forward")} className="btn btn-light clickable">
                     <i className="fas fa-chevron-right" />
                 </div>
             </div>}
