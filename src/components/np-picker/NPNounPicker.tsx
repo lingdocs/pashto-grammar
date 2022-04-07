@@ -4,7 +4,7 @@ import {
 import {
     ButtonSelect,
     InlinePs,
-    defaultTextOptions as opts,
+    Types as T,
 } from "@lingdocs/pashto-inflector";
 import { useState } from "react";
 import { isFemNounEntry, isPattern1Entry, isPattern2Entry, isPattern3Entry, isPattern4Entry, isPattern5Entry, isPattern6FemEntry } from "../../lib/type-predicates";
@@ -57,7 +57,7 @@ function nounFilter(p: FilterPattern | undefined) {
         : () => true;
 }
 
-function NPNounPicker({ onChange, noun, nouns, clearButton }: { nouns: NounEntry[], noun: NounSelection | undefined, onChange: (p: NounSelection | undefined) => void, clearButton?: JSX.Element }) {
+function NPNounPicker({ onChange, noun, nouns, clearButton, opts }: { nouns: NounEntry[], noun: NounSelection | undefined, onChange: (p: NounSelection | undefined) => void, clearButton?: JSX.Element, opts: T.TextOptions }) {
     const [patternFilter, setPatternFilter] = useState<FilterPattern | undefined>(undefined);
     const [showFilter, setShowFilter] = useState<boolean>(false)
     const nounsFiltered = nouns
@@ -101,6 +101,7 @@ function NPNounPicker({ onChange, noun, nouns, clearButton }: { nouns: NounEntry
                 entries={nounsFiltered}
                 onChange={onEntrySelect}
                 name="Noun"
+                opts={opts}
             />
         </div> : <div>
             {noun && <div>

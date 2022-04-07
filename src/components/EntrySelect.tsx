@@ -14,6 +14,7 @@ function EntrySelect<E extends T.DictionaryEntry | VerbEntry>(props: {
     onChange: (value: E | undefined) => void,
     name: string | undefined,
     isVerbSelect?: boolean,
+    opts: T.TextOptions,
 }) {
     const options = props.entries
         .sort((a, b) => {
@@ -24,11 +25,11 @@ function EntrySelect<E extends T.DictionaryEntry | VerbEntry>(props: {
         })
         .map((e) => {
             if ("entry" in e) {
-                return (props.isVerbSelect ? makeVerbSelectOption : makeSelectOption)(e);
+                return (props.isVerbSelect ? makeVerbSelectOption : makeSelectOption)(e, props.opts);
             }
-            return makeSelectOption(e);
+            return makeSelectOption(e, props.opts);
         });
-    function onSelect(v: { label: string, value: string } | null) {
+    function onSelect(v: { label: string | JSX.Element, value: string } | null) {
         if (!v) {
             props.onChange(undefined);
             return;

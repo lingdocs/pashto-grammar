@@ -6,6 +6,85 @@ import {
 } from "@lingdocs/pashto-inflector";
 import { psStringEquals } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
 
+export function getTenseVerbForm(conjR: T.VerbConjugation, tense: VerbTense | PerfectTense, tenseCategory: "basic" | "modal" | "perfect", voice: "active" | "passive"): T.VerbForm {
+    const conj = (voice === "passive" && conjR.passive) ? conjR.passive : conjR;
+    if (tenseCategory === "basic") {
+        if (tense === "presentVerb") {
+            return conj.imperfective.nonImperative;
+        }
+        if (tense === "subjunctiveVerb") {
+            return conj.perfective.nonImperative;
+        }
+        if (tense === "imperfectiveFuture") {
+            return conj.imperfective.future;
+        }
+        if (tense === "perfectiveFuture") {
+            return conj.perfective.future;
+        }
+        if (tense === "imperfectivePast") {
+            return conj.imperfective.past;
+        }
+        if (tense === "perfectivePast") {
+            return conj.perfective.past;
+        }
+        if (tense === "habitualImperfectivePast") {
+            return conj.imperfective.habitualPast;
+        }
+        if (tense === "habitualPerfectivePast") {
+            return conj.perfective.habitualPast;
+        }
+    }
+    if (tenseCategory === "modal") {
+        if (tense === "presentVerb") {
+            return conj.imperfective.modal.nonImperative;
+        }
+        if (tense === "subjunctiveVerb") {
+            return conj.perfective.modal.nonImperative;
+        }
+        if (tense === "imperfectiveFuture") {
+            return conj.imperfective.modal.future;
+        }
+        if (tense === "perfectiveFuture") {
+            return conj.perfective.modal.future;
+        }
+        if (tense === "imperfectivePast") {
+            return conj.imperfective.modal.past;
+        }
+        if (tense === "perfectivePast") {
+            return conj.perfective.modal.past;
+        }
+        if (tense === "habitualImperfectivePast") {
+            return conj.imperfective.modal.habitualPast;
+        }
+        if (tense === "habitualPerfectivePast") {
+            return conj.perfective.modal.habitualPast;
+        }
+    }
+    if (tense === "present perfect") {
+        return conj.perfect.present;
+    }
+    if (tense === "past perfect") {
+        return conj.perfect.past;
+    }
+    if (tense === "future perfect") {
+        return conj.perfect.future;
+    }
+    if (tense === "habitual perfect") {
+        return conj.perfect.habitual;
+    }
+    if (tense === "subjunctive perfect") {
+        return conj.perfect.subjunctive;
+    }
+    if (tense === "wouldBe perfect") {
+        return conj.perfect.affirmational;
+    }
+    if (tense === "pastSubjunctive perfect") {
+        return conj.perfect.pastSubjunctiveHypothetical;
+    }
+    throw new Error("unknown tense");
+}
+
+
 export function getPersonFromNP(np: NPSelection): T.Person;
 export function getPersonFromNP(np: NPSelection | ObjectNP): T.Person | undefined;
 export function getPersonFromNP(np: NPSelection | ObjectNP): T.Person | undefined {

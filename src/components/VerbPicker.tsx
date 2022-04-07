@@ -1,5 +1,6 @@
 import {
     ButtonSelect,
+    Types as T,
 } from "@lingdocs/pashto-inflector";
 import {
     makeVerbSelection,
@@ -8,12 +9,13 @@ import EntrySelect from "./EntrySelect";
 
 // TODO: dark on past tense selecitons
 
-function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
+function VerbPicker({ onChange, subject, changeSubject, verb, verbs, opts }: {
     verbs: VerbEntry[],
     verb: VerbSelection | undefined,
     subject: NPSelection | undefined,
     onChange: (p: VerbSelection | undefined) => void,
     changeSubject: (p: NPSelection | undefined) => void,
+    opts: T.TextOptions,
 }) {
     // const [filters, useFilters] = useState<Filters>({
     //     stative: true,
@@ -62,6 +64,7 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs }: {
                 onChange={onVerbSelect}
                 name="Verb"
                 isVerbSelect
+                opts={opts}
             />
         </div>
         <div className="d-flex flex-row justify-content-around flex-wrap" style={{ maxWidth: "400px", margin: "0 auto" }}>

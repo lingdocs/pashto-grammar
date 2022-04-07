@@ -2,13 +2,12 @@ import { useState } from "react";
 import { renderVP, compileVP } from "../../lib/phrase-building";
 import {
     InlinePs,
-    defaultTextOptions as opts,
     Types as T,
 } from "@lingdocs/pashto-inflector";
 import AbbreviationFormSelector from "./AbbreviationFormSelector";
 import { isPastTense } from "../../lib/phrase-building/vp-tools";
 
-function VPDisplay({ VP }: { VP: VPSelection }) {
+function VPDisplay({ VP, opts }: { VP: VPSelection, opts: T.TextOptions }) {
     const [form, setForm] = useState<FormVersion>({ removeKing: false, shrinkServant: false });
     const [OSV, setOSV] = useState<boolean>(false);
     const result = compileVP(renderVP(VP), { ...form, OSV });
@@ -33,15 +32,15 @@ function VPDisplay({ VP }: { VP: VPSelection }) {
         {"long" in result.ps ?
             <div>
                 {/* <div className="h6">Long Verb:</div> */}
-                <VariationLayer vs={result.ps.long} />
+                <VariationLayer vs={result.ps.long} opts={opts} />
                 {/* <div className="h6">Short Verb:</div> */}
-                <VariationLayer vs={result.ps.short} />
+                <VariationLayer vs={result.ps.short} opts={opts} />
                 {result.ps.mini && <>
                     {/* <div className="h6">Mini Verb:</div> */}
-                    <VariationLayer vs={result.ps.mini} />
+                    <VariationLayer vs={result.ps.mini} opts={opts} />
                 </>}
             </div>
-            : <VariationLayer vs={result.ps} />
+            : <VariationLayer vs={result.ps} opts={opts} />
         }
         {result.e && <div className="text-muted">
             {result.e.map((e, i) => <div key={i}>{e}</div>)}
@@ -63,7 +62,7 @@ function whatsAdjustable(VP: VPSelection): "both" | "king" | "servant" {
         : "king";
 }
 
-function VariationLayer({ vs }: { vs: T.PsString[] }) {
+function VariationLayer({ vs, opts }: { vs: T.PsString[], opts: T.TextOptions }) {
     return <div className="mb-2">
         {vs.map((r, i) => <div key={i}>
             <InlinePs opts={opts}>{r}</InlinePs>

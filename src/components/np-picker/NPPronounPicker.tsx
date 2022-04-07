@@ -55,11 +55,12 @@ function pickerStateToPerson(s: PickerState): T.Person {
         + (6 * s.col);
 }
 
-function NPPronounPicker({ onChange, pronoun, asObject, clearButton }: {
+function NPPronounPicker({ onChange, pronoun, asObject, clearButton, opts }: {
     pronoun: PronounSelection,
     onChange: (p: PronounSelection) => void,
     asObject?: boolean,
     clearButton?: JSX.Element,
+    opts: T.TextOptions,
 }) {
     const [display, setDisplay] = useStickyState<"persons" | "p" | "e">("persons", "prounoun-picker-display"); 
 

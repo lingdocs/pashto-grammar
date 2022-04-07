@@ -1,16 +1,24 @@
 import { useState } from "react";
 import NPPicker from "../np-picker/NPPicker";
 import VerbPicker from "../VerbPicker";
-import VerbPickerBelow from "../VerbPickerBelow";
+import TensePicker from "../TensePicker";
 import VPDisplay from "./VPDisplay";
 import { verbs } from "../../words/words";
 import { renderVP } from "../../lib/phrase-building";
 import {
     isInvalidSubjObjCombo,
 } from "../../lib/np-tools";
+import {
+    ButtonSelect,
+    defaultTextOptions,
+    Types as T,
+} from "@lingdocs/pashto-inflector";
+import ChartDisplay from "./ChartDisplay";
 
 const kingEmoji = "👑";
 const servantEmoji = "🙇‍♂️";
+
+// TODO: Drill Down text display options
 
 // TODO: SHOW KING AND SERVANT ONCE TENSE PICKED, EVEN IF NPs not selected
 // TODO: Issue with dynamic compounds english making with plurals
@@ -22,9 +30,14 @@ const servantEmoji = "🙇‍♂️";
 // TODO: option to show 3 modes  Phrases - Charts - Quiz
 
 // TODO: error handling on error with rendering etc
-export function PhraseBuilder() {
+export function PhraseBuilder(props: {
+    verb?: VerbEntry,
+    opts?: T.TextOptions,
+}) {
     const [subject, setSubject] = useState<NPSelection | undefined>(undefined);
+    const [mode, setMode] = useState<"charts" | "phrases">("phrases");
     const [verb, setVerb] = useState<VerbSelection | undefined>(undefined);
+    const textOpts = props.opts || defaultTextOptions;
     function handleSubjectChange(subject: NPSelection | undefined, skipPronounConflictCheck?: boolean) {
         if (!skipPronounConflictCheck && hasPronounConflict(subject, verb?.object)) {
             alert("That combination of pronouns is not allowed");
@@ -61,7 +74,18 @@ export function PhraseBuilder() {
             subject={subject}
             changeSubject={(s) => handleSubjectChange(s, true)}
             onChange={setVerb}
+            opts={textOpts}
         />
+        <div className="text-right mb-2">
+            <ButtonSelect
+                value={mode}
+                options={[
+                    { label: "Charts", value: "charts" },
+                    { label: "Phrases", value: "phrases" },
+                ]}
+                handleChange={setMode}
+            />
+        </div>
         {(verb && (typeof verb.object === "object") && (verb.isCompound !== "dynamic")) &&
             <div className="text-center mt-4">
                 <button onClick={handleSubjObjSwap} className="btn btn-sm btn-light">
@@ -69,36 +93,42 @@ export function PhraseBuilder() {
                 </button>
             </div>}
         <div className="d-flex flex-row justify-content-around flex-wrap" style={{ marginLeft: "-0.5rem", marginRight: "-0.5rem" }}>
+            {mode !== "charts" && <>
+                <div className="my-2">
+                    <div className="h5 text-center">Subject {showRole(VPRendered, "subject")}</div>
+                    <NPPicker
+                        np={subject}
+                        counterPart={verb ? verb.object : undefined}
+                        onChange={handleSubjectChange}
+                        opts={textOpts}
+                    />
+                </div>
+                {verb && (verb.object !== "none") && <div className="my-2">
+                    <div className="h5 text-center">Object {showRole(VPRendered, "object")}</div>
+                    {(typeof verb.object === "number")
+                        ? <div className="text-muted">Unspoken 3rd Pers. Masc. Plur.</div>
+                        : <NPPicker
+                            asObject
+                            np={verb.object}
+                            counterPart={subject}
+                            onChange={handleObjectChange}
+                            opts={textOpts}
+                        />}
+                </div>}
+            </>}
             <div className="my-2">
-                <div className="h5 text-center">Subject {showRole(VPRendered, "subject")}</div>
-                <NPPicker
-                    np={subject}
-                    counterPart={verb ? verb.object : undefined}
-                    onChange={handleSubjectChange}
-                />
-            </div>
-            {verb && (verb.object !== "none") && <div className="my-2">
-                <div className="h5 text-center">Object {showRole(VPRendered, "object")}</div>
-                {(typeof verb.object === "number")
-                    ? <div className="text-muted">Unspoken 3rd Pers. Masc. Plur.</div>
-                    : <NPPicker
-                        asObject
-                        np={verb.object}
-                        counterPart={subject}
-                        onChange={handleObjectChange}
-                    />}
-            </div>}
-            <div className="my-2">
-                <VerbPickerBelow
+                <TensePicker
                     verbs={verbs}
                     verb={verb}
                     onChange={setVerb}
+                    mode={mode}
                 />
             </div>
         </div>
-        {verbPhrase && <div>
-            <VPDisplay VP={verbPhrase} />
-        </div>}
+        {(verbPhrase && (mode === "phrases")) &&
+            <VPDisplay VP={verbPhrase} opts={textOpts} />
+        }
+        {(verb && (mode === "charts")) && <ChartDisplay VS={verb} opts={textOpts} />} 
     </div>
 }
 

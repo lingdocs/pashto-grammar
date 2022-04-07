@@ -6,15 +6,19 @@ import ParticiplePicker from "./NPParticiplePicker";
 import { randomPerson } from "../../lib/np-tools";
 import { useState, useEffect } from "react";
 import { nouns, verbs } from "../../words/words";
+import {
+    Types as T,
+} from "@lingdocs/pashto-inflector";
 // import { capitalizeFirstLetter } from "../../lib/text-tools";
 
 const npTypes: NPType[] = ["pronoun", "noun", "participle"];
 
-function NPPicker({ np, onChange, counterPart, asObject }: {
+function NPPicker({ np, onChange, counterPart, asObject, opts }: {
     onChange: (nps: NPSelection | undefined) => void,
     np: NPSelection | undefined,
     counterPart: NPSelection | VerbObject | undefined,
     asObject?: boolean,
+    opts: T.TextOptions,
 }) {
     const [npType, setNpType] = useState<NPType | undefined>(np ? np.type : undefined);
     useEffect(() => {
@@ -64,6 +68,7 @@ function NPPicker({ np, onChange, counterPart, asObject }: {
                 pronoun={np}
                 onChange={onChange}
                 clearButton={clearButton}
+                opts={opts}
             />
             : npType === "noun"
             ? <NounPicker
@@ -71,6 +76,7 @@ function NPPicker({ np, onChange, counterPart, asObject }: {
                 noun={(np && np.type === "noun") ? np : undefined}
                 onChange={onChange}
                 clearButton={!isDynamicComplement ? clearButton : undefined}
+                opts={opts}
             />
             : npType === "participle"
             ? <ParticiplePicker
@@ -78,6 +84,7 @@ function NPPicker({ np, onChange, counterPart, asObject }: {
                 participle={(np && np.type === "participle") ? np : undefined}
                 onChange={onChange}
                 clearButton={clearButton}
+                opts={opts}
             />
             : null
         }
