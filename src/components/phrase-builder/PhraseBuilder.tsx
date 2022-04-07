@@ -1,4 +1,3 @@
-import { useState } from "react";
 import NPPicker from "../np-picker/NPPicker";
 import VerbPicker from "../VerbPicker";
 import TensePicker from "../TensePicker";
@@ -38,8 +37,12 @@ export function PhraseBuilder(props: {
 }) {
     const [subject, setSubject] = useStickyState<NPSelection | undefined>(undefined, "subjectNPSelection");
     const [mode, setMode] = useStickyState<"charts" | "phrases">("phrases", "verbExplorerMode");
-    const [verb, setVerb] = useState<VerbSelection | undefined>(
-        props.verb ? makeVerbSelection(props.verb, setSubject, undefined) : undefined,
+    const passedVerb = props.verb;
+    const [verb, setVerb] = useStickyState<VerbSelection | undefined>(
+        passedVerb
+            ? (old) => makeVerbSelection(passedVerb, setSubject, old)
+            : undefined,
+        "verbExplorerVerb",
     );
     const textOpts = props.opts || defaultTextOptions;
     function handleSubjectChange(subject: NPSelection | undefined, skipPronounConflictCheck?: boolean) {
