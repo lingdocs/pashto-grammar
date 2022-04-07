@@ -14,6 +14,8 @@ import {
     Types as T,
 } from "@lingdocs/pashto-inflector";
 import ChartDisplay from "./ChartDisplay";
+import useStickyState from "../../useStickyState";
+import { makeVerbSelection } from "./verb-selection";
 
 const kingEmoji = "👑";
 const servantEmoji = "🙇‍♂️";
@@ -34,9 +36,11 @@ export function PhraseBuilder(props: {
     verb?: VerbEntry,
     opts?: T.TextOptions,
 }) {
-    const [subject, setSubject] = useState<NPSelection | undefined>(undefined);
-    const [mode, setMode] = useState<"charts" | "phrases">("phrases");
-    const [verb, setVerb] = useState<VerbSelection | undefined>(undefined);
+    const [subject, setSubject] = useStickyState<NPSelection | undefined>(undefined, "subjectNPSelection");
+    const [mode, setMode] = useStickyState<"charts" | "phrases">("phrases", "verbExplorerMode");
+    const [verb, setVerb] = useState<VerbSelection | undefined>(
+        props.verb ? makeVerbSelection(props.verb, setSubject, undefined) : undefined,
+    );
     const textOpts = props.opts || defaultTextOptions;
     function handleSubjectChange(subject: NPSelection | undefined, skipPronounConflictCheck?: boolean) {
         if (!skipPronounConflictCheck && hasPronounConflict(subject, verb?.object)) {
@@ -69,6 +73,7 @@ export function PhraseBuilder(props: {
             <div>{servantEmoji} = <abbr title="can be shrunken into a mini-pronoun">servant</abbr> of phrase</div>
         </div>
         <VerbPicker
+            verbLocked={!!props.verb}
             verbs={verbs}
             verb={verb}
             subject={subject}
@@ -86,7 +91,7 @@ export function PhraseBuilder(props: {
                 handleChange={setMode}
             />
         </div>
-        {(verb && (typeof verb.object === "object") && (verb.isCompound !== "dynamic")) &&
+        {(verb && (typeof verb.object === "object") && (verb.isCompound !== "dynamic") && (mode !== "charts")) &&
             <div className="text-center mt-4">
                 <button onClick={handleSubjObjSwap} className="btn btn-sm btn-light">
                     <i className="fas fa-exchange-alt mr-2" /> subj/obj

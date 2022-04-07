@@ -1,22 +1,32 @@
 import {
     ButtonSelect,
     Types as T,
+    RootsAndStems,
+    getVerbInfo,
 } from "@lingdocs/pashto-inflector";
+import Hider from "@lingdocs/pashto-inflector/dist/components/Hider";
 import {
     makeVerbSelection,
 } from "./phrase-builder/verb-selection";
 import EntrySelect from "./EntrySelect";
+import useStickyState from "../useStickyState";
 
 // TODO: dark on past tense selecitons
 
-function VerbPicker({ onChange, subject, changeSubject, verb, verbs, opts }: {
+function VerbPicker({ onChange, subject, changeSubject, verb, verbs, opts, verbLocked }: {
     verbs: VerbEntry[],
     verb: VerbSelection | undefined,
     subject: NPSelection | undefined,
     onChange: (p: VerbSelection | undefined) => void,
     changeSubject: (p: NPSelection | undefined) => void,
     opts: T.TextOptions,
+    verbLocked: boolean,
 }) {
+    const [showRootsAndStems, setShowRootsAndStems] = useStickyState<boolean>(false, "showRootsAndStems");
+    const info = verb ? getVerbInfo(verb.verb.entry, verb.verb.complement) : undefined;
+    if (info && ("stative" in info || "transitive" in info)) {
+        return <div>ERROR: Verb version should be select first</div>;
+    }
     // const [filters, useFilters] = useState<Filters>({
     //     stative: true,
     //     dynamic: true,
@@ -56,7 +66,7 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs, opts }: {
         }
     }
     return <div className="mb-3">
-        <div style={{ maxWidth: "300px", margin: "0 auto" }}>
+        {!verbLocked && <div style={{ maxWidth: "300px", margin: "0 auto" }}>
             <div className="h5">Verb:</div>
             <EntrySelect
                 entries={verbs}
@@ -66,7 +76,20 @@ function VerbPicker({ onChange, subject, changeSubject, verb, verbs, opts }: {
                 isVerbSelect
                 opts={opts}
             />
-        </div>
+        </div>}
+        {info && <div className="mt-3 mb-1 text-center">
+            <Hider
+                showing={showRootsAndStems}
+                label="🌳 Roots and Stems"      
+                handleChange={() => setShowRootsAndStems(p => !p)}
+                hLevel={5}
+            >
+                <RootsAndStems
+                    textOptions={opts}
+                    info={info}
+                />
+            </Hider>
+        </div>}
         <div className="d-flex flex-row justify-content-around flex-wrap" style={{ maxWidth: "400px", margin: "0 auto" }}>
             {verb && verb.changeTransitivity && <div className="text-center my-2">
                 <ButtonSelect
