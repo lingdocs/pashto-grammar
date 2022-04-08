@@ -1,10 +1,16 @@
 import {
+  typePredicates,
+  // super weird, need to es-lint disable this this
+  // eslint-disable-next-line
+  Types as T,
+} from "@lingdocs/pashto-inflector";
+const {
   isPattern1Entry,
   isPattern2Entry,
   isPattern3Entry,
   isPattern4Entry,
   isPattern5Entry,
-} from "./type-predicates";
+} = typePredicates;
 
 /**
  * sorts a given array of on type into a typed object of arrays of subtypes, based on predicates
@@ -75,22 +81,22 @@ export function categorize<I, X extends Record<string, I[]>>(
 
 // TODO: uncategorizable words like ایرې - n. f. pl. -- could be pattern 1 or 2 🤷‍♂️
 
-export function intoPatterns<T extends (NounEntry | AdjectiveEntry)>(words: T[]): {
-  "pattern1": Pattern1Entry<T>[],
-  "pattern2": Pattern2Entry<T>[],
-  "pattern3": Pattern3Entry<T>[],
-  "pattern4": Pattern4Entry<T>[],
-  "pattern5": Pattern5Entry<T>[],
-  "other": NonInflecting<T>[],
+export function intoPatterns<T extends (T.NounEntry | T.AdjectiveEntry)>(words: T[]): {
+  "pattern1": T.Pattern1Entry<T>[],
+  "pattern2": T.Pattern2Entry<T>[],
+  "pattern3": T.Pattern3Entry<T>[],
+  "pattern4": T.Pattern4Entry<T>[],
+  "pattern5": T.Pattern5Entry<T>[],
+  "other": T.NonInflecting<T>[],
 //   "pattern6fem": Pattern6FemNoun<T>[],
 } {
-  return categorize<(NounEntry | AdjectiveEntry), {
-    "pattern1": Pattern1Entry<T>[],
-    "pattern2": Pattern2Entry<T>[],
-    "pattern3": Pattern3Entry<T>[],
-    "pattern4": Pattern4Entry<T>[],
-    "pattern5": Pattern5Entry<T>[],
-    "other": NonInflecting<T>[],
+  return categorize<(T.NounEntry | T.AdjectiveEntry), {
+    "pattern1": T.Pattern1Entry<T>[],
+    "pattern2": T.Pattern2Entry<T>[],
+    "pattern3": T.Pattern3Entry<T>[],
+    "pattern4": T.Pattern4Entry<T>[],
+    "pattern5": T.Pattern5Entry<T>[],
+    "other": T.NonInflecting<T>[],
   //  "pattern6fem": Pattern6FemNoun<T>[],
   }>(
     words,

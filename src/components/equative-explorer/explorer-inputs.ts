@@ -1,10 +1,10 @@
 import { nouns, adjectives, verbs, adverbs } from "../../words/words";
 import {
-    isLocativeAdverbEntry,
-    isUnisexNounEntry,
-} from "../../lib/type-predicates";
+    Types as T,
+    typePredicates as tp,
+} from "@lingdocs/pashto-inflector";
 
-function sort<T extends (AdjectiveEntry | NounEntry | VerbEntry | AdverbEntry)>(arr: Readonly<T[]>): T[] {
+function sort<T extends (T.AdjectiveEntry | T.NounEntry | T.VerbEntry | T.AdverbEntry)>(arr: Readonly<T[]>): T[] {
     if ("entry" in arr[0]) {
         return [...arr].sort((a, b) => (
             // @ts-ignore
@@ -17,15 +17,15 @@ function sort<T extends (AdjectiveEntry | NounEntry | VerbEntry | AdverbEntry)>(
     ));
 }
 
-const unisexNouns = sort(nouns.filter(x => isUnisexNounEntry(x)) as UnisexNounEntry[]);
-const nonUnisexNouns = sort(nouns.filter(x => !isUnisexNounEntry(x)) as (MascNounEntry | FemNounEntry)[]);
+const unisexNouns = sort(nouns.filter(x => tp.isUnisexNounEntry(x)) as T.UnisexNounEntry[]);
+const nonUnisexNouns = sort(nouns.filter(x => !tp.isUnisexNounEntry(x)) as (T.MascNounEntry | T.FemNounEntry)[]);
 
 const inputs = {
     adjective: sort(adjectives),
     unisexNoun: unisexNouns,
     noun: nonUnisexNouns,
     participle: sort(verbs),
-    adverb: sort(adverbs.filter(isLocativeAdverbEntry)),
+    adverb: sort(adverbs.filter(tp.isLocativeAdverbEntry)),
 };
 
 export const defaultAdjective = inputs.adjective.find(ps => ps.p === "زوړ") || inputs.adjective[0];

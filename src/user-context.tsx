@@ -1,10 +1,12 @@
 import React, { createContext, useEffect } from "react"
-import useStickyState from "./useStickyState";
 import {
   AT,
   getUser,
   userObjIsEqual,
 } from "@lingdocs/lingdocs-main";
+import {
+  useStickyState,
+} from "@lingdocs/pashto-inflector";
 import { CronJob } from "cron";
 import { postSavedResults } from "./lib/game-results";
 

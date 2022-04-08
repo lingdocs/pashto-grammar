@@ -2,18 +2,16 @@
 title: Pronoun Picker
 ---
 
-import PronounPicker from "../../components/np-picker/PronounPicker";
+import PronounPicker from "../../components/PronounPicker";
 import {
     defaultTextOptions as opts,
     InlinePs,
     ButtonSelect,
-} from "@lingdocs/pashto-inflector";
-import { useState } from "react";
-import {
     randomPerson,
     randomSubjObj,
     isInvalidSubjObjCombo,
-} from "../../lib/np-tools";
+} from "@lingdocs/pashto-inflector";
+import { useState } from "react";
 
 export function RPicker() {
     // TODO: Pull this into a type safe file

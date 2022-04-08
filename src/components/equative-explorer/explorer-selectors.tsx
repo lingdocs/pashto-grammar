@@ -14,9 +14,17 @@ import {
     getEnglishWord,
     Types as T,
     removeFVarients,
+    typePredicates,
 } from "@lingdocs/pashto-inflector";
-import { isAdjectiveEntry, isAdverbEntry, isFemNounEntry, isMascNounEntry, isNounEntry, isPluralNounEntry } from "../../lib/type-predicates";
 import Select from "react-select";
+const {
+    isAdjectiveEntry,
+    isAdverbEntry,
+    isFemNounEntry,
+    isMascNounEntry,
+    isNounEntry,
+    isPluralNounEntry,
+} = typePredicates;
 
 const zIndexProps = {
     menuPortalTarget: document.body, 
@@ -83,7 +91,7 @@ export function InputSelector({ state, dispatch, entity }: {
     }
 
     const type = state[entity].type;
-    const entry: NounEntry | VerbEntry | AdjectiveEntry | LocativeAdverbEntry | undefined = type === "pronouns"
+    const entry: T.NounEntry | T.VerbEntry | T.AdjectiveEntry | T.LocativeAdverbEntry | undefined = type === "pronouns"
         ? undefined
         // @ts-ignore
         : state[entity][type];
@@ -164,7 +172,7 @@ function GenderAndNumberSelect({ state, dispatch, entity }: {
     </div>;
 }
 
-function makeOption(e: VerbEntry | NounEntry | AdjectiveEntry | LocativeAdverbEntry): { value: string, label: string } {
+function makeOption(e: T.VerbEntry | T.NounEntry | T.AdjectiveEntry | T.LocativeAdverbEntry): { value: string, label: string } {
     const entry = "entry" in e ? e.entry : e;
     // TODO: THIS IS SUUUPER SKETCH
     const eng = (isNounEntry(e) || isAdjectiveEntry(e) || isAdverbEntry(e))

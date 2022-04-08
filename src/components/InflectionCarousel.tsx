@@ -6,9 +6,10 @@ import {
     inflectWord,
     defaultTextOptions as opts,
     getEnglishWord,
+    Types as T,
 } from "@lingdocs/pashto-inflector";
 
-function InflectionCarousel({ items }: { items: (NounEntry | AdjectiveEntry)[] }) {
+function InflectionCarousel({ items }: { items: (T.NounEntry | T.AdjectiveEntry)[] }) {
     if (!items.length) {
         return "no items for carousel";
     }

@@ -17,14 +17,14 @@ export type SubjectEntityInfo = EntitiyInfo & { type: SubjectType };
 
 export type PredicateEntityInfo = EntitiyInfo & {
     type: PredicateType,
-    adjective: AdjectiveEntry,
-    adverb: LocativeAdverbEntry,
+    adjective: import("@lingdocs/pashto-inflector").Types.AdjectiveEntry,
+    adverb: import("@lingdocs/pashto-inflector").Types.LocativeAdverbEntry,
 }
 
 type EntitiyInfo = {
-    noun: NounEntry,
-    participle: VerbEntry,
-    unisexNoun: UnisexNounEntry,
+    noun: import("@lingdocs/pashto-inflector").Types.NounEntry,
+    participle: import("@lingdocs/pashto-inflector").Types.VerbEntry,
+    unisexNoun: import("@lingdocs/pashto-inflector").Types.UnisexNounEntry,
     info: {
         number: NounNumber,
         gender: T.Gender,

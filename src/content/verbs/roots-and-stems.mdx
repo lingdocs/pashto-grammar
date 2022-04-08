@@ -33,7 +33,7 @@ import verbTreeImperfectivePerfective from "./verb-tree-imperfective-perfective.
 
 export const opts = defaultTextOptions;
 
-export const verbs = verbsRaw.filter(v => !v.c?.includes("comp."));
+export const verbs = verbsRaw.filter(v => !("complement" in v));
 
 export function InfoCarousel({ items, highlighted, hidePastParticiple }) {
     return (

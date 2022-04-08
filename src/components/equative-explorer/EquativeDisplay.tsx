@@ -5,6 +5,7 @@ import {
     Types as T,
     personGender,
     personIsPlural,
+    typePredicates,
 } from "@lingdocs/pashto-inflector";
 import {
     ExplorerState,
@@ -14,13 +15,13 @@ import {
     equativeMachine,
     assembleEquativeOutput,
 } from "../../lib/equative-machine";
-import {
+const {
     isUnisexNounEntry,
     isAdjectiveEntry,
     isVerbEntry,
     isLocativeAdverbEntry,
     isNounEntry,
-} from "../../lib/type-predicates";
+} = typePredicates;
 
 function chooseLength<O>(o: T.SingleOrLengthOpts<O>, length: "short" | "long"): O {
     return ("long" in o) ? o[length] : o;
@@ -54,14 +55,14 @@ function SingleItemDisplay({ state }: { state: ExplorerState }) {
     }
 }
 
-function makeComplement(entry: AdjectiveEntry | LocativeAdverbEntry): Compliment {
+function makeComplement(entry: T.AdjectiveEntry | T.LocativeAdverbEntry): Compliment {
     return {
         type: "compliment",
         entry,
     };
 }
 
-function makeNounPhrase(entry: NounEntry | UnisexNounEntry | VerbEntry, state: ExplorerState, entity: "subject" | "predicate"): NounPhrase {
+function makeNounPhrase(entry: T.NounEntry | T.UnisexNounEntry | T.VerbEntry, state: ExplorerState, entity: "subject" | "predicate"): NounPhrase {
     if (isVerbEntry(entry)) {
         return {
             type: "participle",
@@ -76,7 +77,7 @@ function makeNounPhrase(entry: NounEntry | UnisexNounEntry | VerbEntry, state: E
     };
 }
 
-export function makeBlockWPronouns(e: AdjectiveEntry | UnisexNounEntry | LocativeAdverbEntry, tense: EquativeTense, negative: boolean, length?: "short" | "long"): T.SingleOrLengthOpts<T.VerbBlock> {
+export function makeBlockWPronouns(e: T.AdjectiveEntry | T.UnisexNounEntry | T.LocativeAdverbEntry, tense: EquativeTense, negative: boolean, length?: "short" | "long"): T.SingleOrLengthOpts<T.VerbBlock> {
     // if the output's gonna have long / short forms (if it's past or wouldBe) then recursive call to make the long and short versions
     if (!length && "long" in assembleEquativeOutput(equativeMachine({
         subject: { type: "pronoun", pronounType: "near", person: 0 },

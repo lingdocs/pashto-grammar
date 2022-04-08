@@ -1,4 +1,3 @@
-import { isMascNounEntry, isPluralNounEntry, isUnisexNounEntry } from "./type-predicates";
 import { 
     Types as T,
     getEnglishWord,
@@ -6,16 +5,15 @@ import {
     getVerbBlockPosFromPerson,
     grammarUnits,
     inflectWord,
-} from "@lingdocs/pashto-inflector";
-import {
     psStringFromEntry,
-} from "./text-tools";
+    typePredicates as tp,
+} from "@lingdocs/pashto-inflector";
 
 function getRandPers(): T.Person {
     return Math.floor(Math.random() * 12);
 }
 
-export function randomPerson(a?: { prev?: T.Person, counterPart?: VerbObject | NPSelection }) {
+export function randomPerson(a?: { prev?: T.Person, counterPart?: T.VerbObject | T.NPSelection }) {
     // no restrictions, just get any person
     if (!a) {
         return getRandPers();
@@ -99,9 +97,9 @@ export function evaluateNP(np: NounPhrase): { ps: T.PsString[], e: string } {
 }
 
 function nounGender(n: Noun): T.Gender {
-    const nGender = isUnisexNounEntry(n.entry)
+    const nGender = tp.isUnisexNounEntry(n.entry)
         ? "unisex"
-        : isMascNounEntry(n.entry)
+        : tp.isMascNounEntry(n.entry)
         ? "masc"
         : "fem";
     return (nGender === "unisex" && n.gender)
@@ -112,7 +110,7 @@ function nounGender(n: Noun): T.Gender {
 }
 
 function nounNumber(n: Noun): NounNumber {
-    const nNumber = isPluralNounEntry(n.entry)
+    const nNumber = tp.isPluralNounEntry(n.entry)
         ? "plural"
         : "singular";
     return nNumber === "plural"
@@ -215,4 +213,3 @@ function getEnglishFromNoun(entry: T.DictionaryEntry, number: NounNumber): strin
     }
     return addArticle(e.singular);
 }
-

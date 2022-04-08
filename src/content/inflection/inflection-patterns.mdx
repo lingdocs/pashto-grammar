@@ -21,24 +21,15 @@ import {
     grammarUnits,
     InflectionsTable,
     inflectWord,
+    typePredicates as tp,
 } from "@lingdocs/pashto-inflector";
-import {
-    isNounOrVerb,
-    isPattern1Entry,
-    isPattern2Entry,
-    isPattern3Entry,
-    isPattern4Entry,
-    isPattern5Entry,
-    isUnisexNounEntry,
-} from "../../lib/type-predicates";
 import InflectionCarousel from "../../components/InflectionCarousel";
 import { nouns, adjectives } from "../../words/words";
 import { startingWord } from "../../lib/starting-word";
 import Link from "../../components/Link";
 import psmd from "../../lib/psmd";
-
 export const words = [
-    ...nouns.filter(isUnisexNounEntry),
+    ...nouns.filter(tp.isUnisexNounEntry),
     ...adjectives,
 ];
 
@@ -58,7 +49,7 @@ These words always end in:
 - **Feminine:** - <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} />
 
 <InflectionCarousel items={startingWord(
-    words.filter(isPattern1Entry),
+    words.filter(tp.isPattern1Entry),
     "غټ",
 )} />
 
@@ -93,7 +84,7 @@ In any other kind of sandwich the first inflection would be used.
 ## 2. Words ending in an unstressed <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} />
 
 <InflectionCarousel items={startingWord(
-    words.filter(isPattern2Entry),
+    words.filter(tp.isPattern2Entry),
     "ستړی",
 )} />  
 
@@ -102,7 +93,7 @@ In any other kind of sandwich the first inflection would be used.
 This is very similar to pattern #2, but with the stress on the last syllable the feminine inflection changes.
 
 <InflectionCarousel items={startingWord(
-    words.filter(isPattern3Entry),
+    words.filter(tp.isPattern3Entry),
     "لومړی",
 )} />  
 
@@ -114,7 +105,7 @@ These words are a little irregular but you can see a common patten based around:
 - shortening the other forms and adding the <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} />, <InlinePs opts={opts} ps={{ p: "ـې", f: "-e" }} />, <InlinePs opts={opts} ps={{ p: "ـو", f: "-o" }} /> endings
 
 <InflectionCarousel items={startingWord(
-    words.filter(isPattern4Entry),
+    words.filter(tp.isPattern4Entry),
     "پښتون",
 )} />
 
@@ -157,7 +148,7 @@ But it will of course inflect for the plural.
 These are also a little irregular but instead of lengthening the 1st masculine inflection they compress it as well and take just an <InlinePs opts={opts} ps={{ p: "ـه", f: "-u" }} /> on the end.
 
 <InflectionCarousel items={startingWord(
-    words.filter(isPattern5Entry),
+    words.filter(tp.isPattern5Entry),
     "غل",
 )} />  
 

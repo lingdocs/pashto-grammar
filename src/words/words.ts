@@ -1,17 +1,15 @@
 import rawWords from "./raw-words";
 import {
-    isAdjectiveEntry,
-    isNounEntry,
-    isVerbEntry,
-    isAdverbEntry,
-} from "../lib/type-predicates";
+    typePredicates as tp,
+    Types as T,
+} from "@lingdocs/pashto-inflector";
 import { categorize } from "../lib/categorize";
 
-const words = categorize<Entry, Words>(rawWords, {
-    "nouns": isNounEntry,
-    "adjectives": isAdjectiveEntry,
-    "verbs": isVerbEntry,
-    "adverbs": isAdverbEntry,
+const words = categorize<T.Entry, T.Words>(rawWords, {
+    "nouns": tp.isNounEntry,
+    "adjectives": tp.isAdjectiveEntry,
+    "verbs": tp.isVerbEntry,
+    "adverbs": tp.isAdverbEntry,
 });
 
 export default words;

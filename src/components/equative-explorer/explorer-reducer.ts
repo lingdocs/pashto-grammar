@@ -1,9 +1,12 @@
 import inputs from "./explorer-inputs";
 import { ExplorerState, ExplorerReducerAction } from "./explorer-types";
+import {
+    Types as T,
+} from "@lingdocs/pashto-inflector";
 
 export function reducer(state: ExplorerState, action: ExplorerReducerAction): ExplorerState {
     if (action.type === "setPredicate") {
-        const pile = inputs[state.predicate.type] as (UnisexNounEntry | AdjectiveEntry)[];
+        const pile = inputs[state.predicate.type] as (T.UnisexNounEntry | T.AdjectiveEntry)[];
         const predicate = (pile.find(p => p.ts === action.payload) || pile[0]);
         return {
             ...state,

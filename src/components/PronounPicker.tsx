@@ -1,8 +1,10 @@
+// TODO: DEPRECATE THIS AND USE THE PASHTO INFLECTER NP PRONOUN PICKER!
+
 import {
     Types as T,
     ButtonSelect,
+    useStickyState,
 } from "@lingdocs/pashto-inflector";
-import useStickyState from "../../useStickyState";
 
 const gColors = {
     masc: "LightSkyBlue",
@@ -143,4 +145,3 @@ function PronounPicker({ onChange, pronoun, isObject }: {
 };
 
 export default PronounPicker;
-

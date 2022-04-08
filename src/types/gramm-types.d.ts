@@ -1,3 +1,6 @@
+// TODO: I think this is just used for the old equative explorer
+// build a new better equative explorer using NP Pickers etc and deprecate all this
+
 type EquativeTense = "present" | "subjunctive" | "habitual" | "past" | "future" | "wouldBe" | "pastSubjunctive";
 type NounNumber = "singular" | "plural";
 

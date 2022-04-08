@@ -5,6 +5,7 @@ import {
     getPersonFromVerbForm,
     concatPsString,
     removeAccents,
+    typePredicates as tp,
 } from "@lingdocs/pashto-inflector";
 import {
     personFromNP,
@@ -13,7 +14,6 @@ import {
 import {
     evaluateCompliment,
 } from "./compliment-tools";
-import { isPluralNounEntry } from "./type-predicates";
 
 // Equative Rules
 // - An equative equates a SUBJECT: Noun Phrase and a PREDICATE: Noun Phrase | Compliment
@@ -84,7 +84,7 @@ function makeEquative(e: EquativeClause) {
         ? "past"
         : e.tense;
     const subjP = personFromNP(e.subject);
-    const englishPerson = (e.subject.type === "participle" || (e.subject.type === "noun" && isPluralNounEntry(e.subject.entry)))
+    const englishPerson = (e.subject.type === "participle" || (e.subject.type === "noun" && tp.isPluralNounEntry(e.subject.entry)))
         ? T.Person.ThirdSingMale
         : subjP
     const pashtoPerson = (e.subject.type === "pronoun")

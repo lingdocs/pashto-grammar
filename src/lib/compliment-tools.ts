@@ -5,11 +5,9 @@ import {
     isUnisexSet,
     personGender,
     personIsPlural,
-} from "@lingdocs/pashto-inflector";
-import { isAdjectiveEntry, isLocativeAdverbEntry } from "./type-predicates";
-import {
+    typePredicates as tp,
     psStringFromEntry,
-} from "./text-tools";
+} from "@lingdocs/pashto-inflector";
 
 export function evaluateCompliment(c: Compliment, person: T.Person): { ps: T.PsString[], e: string } {
     const e = getEnglishWord(c.entry);
@@ -17,13 +15,13 @@ export function evaluateCompliment(c: Compliment, person: T.Person): { ps: T.PsS
         console.log(e);
         throw new Error("error getting english for compliment");
     }
-    if (isLocativeAdverbEntry(c.entry)) {
+    if (tp.isLocativeAdverbEntry(c.entry)) {
         return {
             ps: [psStringFromEntry(c.entry)],
             e,
         };
     }
-    if (isAdjectiveEntry(c.entry)) {
+    if (tp.isAdjectiveEntry(c.entry)) {
         const infs = inflectWord(c.entry);
         if (!infs) return {
             ps: [psStringFromEntry(c.entry)],
