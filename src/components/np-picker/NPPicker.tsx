@@ -5,7 +5,6 @@ import ParticiplePicker from "./NPParticiplePicker";
 // import { ButtonSelect } from "@lingdocs/pashto-inflector";
 import { randomPerson } from "../../lib/np-tools";
 import { useState, useEffect } from "react";
-import { nouns, verbs } from "../../words/words";
 import {
     Types as T,
 } from "@lingdocs/pashto-inflector";
@@ -13,38 +12,46 @@ import {
 
 const npTypes: NPType[] = ["pronoun", "noun", "participle"];
 
-function NPPicker({ np, onChange, counterPart, asObject, opts }: {
+function NPPicker(props: {
     onChange: (nps: NPSelection | undefined) => void,
     np: NPSelection | undefined,
     counterPart: NPSelection | VerbObject | undefined,
     asObject?: boolean,
     opts: T.TextOptions,
-}) {
-    const [npType, setNpType] = useState<NPType | undefined>(np ? np.type : undefined);
+} & ({
+    nouns: (s: string) => NounEntry[],
+    verbs: (s: string) => VerbEntry[],
+    getNounByTs: (ts: number) => NounEntry | undefined,
+    getVerbByTs: (ts: number) => VerbEntry | undefined,
+} | {
+    nouns: NounEntry[],
+    verbs: VerbEntry[],
+})) {
+    const [npType, setNpType] = useState<NPType | undefined>(props.np ? props.np.type : undefined);
     useEffect(() => {
-        setNpType(np ? np.type : undefined);
-    }, [np]);
+        setNpType(props.np ? props.np.type : undefined);
+    }, [props.np]);
     function handleClear() {
-        if (np && np.type === "noun" && np.dynamicComplement) return;
+        if (props.np && props.np.type === "noun" && props.np.dynamicComplement) return;
         setNpType(undefined);
-        onChange(undefined);
+        props.onChange(undefined);
     }
     function handleNPTypeChange(ntp: NPType) {
         if (ntp === "pronoun") {
-            const person = randomPerson({ counterPart });
+            const person = randomPerson({ counterPart: props.counterPart });
             const pronoun: PronounSelection = {
                 type: "pronoun",
                 person,
                 distance: "far",
             };
             setNpType(ntp);
-            onChange(pronoun);
+            props.onChange(pronoun);
         } else {
-            onChange(undefined);
+            props.onChange(undefined);
             setNpType(ntp);
         }
     }
-    const isDynamicComplement = np && np.type === "noun" && np.dynamicComplement;
+    const isDynamicComplement = props.np && props.np.type === "noun" && props.np.dynamicComplement;
     const clearButton = <button className="btn btn-sm btn-light mb-2" onClick={handleClear}>X</button>;
     return <div>
         {!npType && <div className="text-center mt-3">
@@ -62,29 +69,39 @@ function NPPicker({ np, onChange, counterPart, asObject, opts }: {
                 </button>
             </div>)}
         </div>}
-        {(npType === "pronoun" && np?.type === "pronoun")
+        {(npType === "pronoun" && props.np?.type === "pronoun")
             ? <PronounPicker
-                asObject={asObject}
-                pronoun={np}
-                onChange={onChange}
+                asObject={props.asObject}
+                pronoun={props.np}
+                onChange={props.onChange}
                 clearButton={clearButton}
-                opts={opts}
+                opts={props.opts}
             />
             : npType === "noun"
             ? <NounPicker
-                nouns={nouns}
-                noun={(np && np.type === "noun") ? np : undefined}
-                onChange={onChange}
+                {..."getNounByTs" in props ? {
+                    nouns: props.nouns,
+                    getNounByTs: props.getNounByTs,
+                } : {
+                    nouns: props.nouns,
+                }}
+                noun={(props.np && props.np.type === "noun") ? props.np : undefined}
+                onChange={props.onChange}
                 clearButton={!isDynamicComplement ? clearButton : undefined}
-                opts={opts}
+                opts={props.opts}
             />
             : npType === "participle"
             ? <ParticiplePicker
-                verbs={verbs}
-                participle={(np && np.type === "participle") ? np : undefined}
-                onChange={onChange}
+                {..."getVerbByTs" in props ? {
+                    verbs: props.verbs,
+                    getVerbByTs: props.getVerbByTs,
+                } : {
+                    verbs: props.verbs,
+                }}
+                participle={(props.np && props.np.type === "participle") ? props.np : undefined}
+                onChange={props.onChange}
                 clearButton={clearButton}
-                opts={opts}
+                opts={props.opts}
             />
             : null
         }

@@ -33,8 +33,16 @@ const servantEmoji = "🙇‍♂️";
 // TODO: error handling on error with rendering etc
 export function PhraseBuilder(props: {
     verb?: VerbEntry,
-    opts?: T.TextOptions,
-}) {
+    opts: T.TextOptions,
+} & ({
+    nouns: NounEntry[],
+    verbs: VerbEntry[],
+} | {
+    nouns: (s: string) => NounEntry[],
+    verbs: (s: string) => VerbEntry[],
+    getNounByTs: (ts: number) => NounEntry | undefined,
+    getVerbByTs: (ts: number) => VerbEntry | undefined,
+})) {
     const [subject, setSubject] = useStickyState<NPSelection | undefined>(undefined, "subjectNPSelection");
     const [mode, setMode] = useStickyState<"charts" | "phrases">("phrases", "verbExplorerMode");
     const passedVerb = props.verb;
@@ -101,6 +109,15 @@ export function PhraseBuilder(props: {
                 <div className="my-2">
                     <div className="h5 text-center">Subject {showRole(VPRendered, "subject")}</div>
                     <NPPicker
+                        {..."getNounByTs" in props ? {
+                            getNounByTs: props.getNounByTs,
+                            getVerbByTs: props.getVerbByTs,
+                            nouns: props.nouns,
+                            verbs: props.verbs,
+                        } : {
+                            nouns: props.nouns,
+                            verbs: props.verbs,
+                        }}
                         np={subject}
                         counterPart={verb ? verb.object : undefined}
                         onChange={handleSubjectChange}
@@ -112,6 +129,15 @@ export function PhraseBuilder(props: {
                     {(typeof verb.object === "number")
                         ? <div className="text-muted">Unspoken 3rd Pers. Masc. Plur.</div>
                         : <NPPicker
+                            {..."getNounByTs" in props ? {
+                                getNounByTs: props.getNounByTs,
+                                getVerbByTs: props.getVerbByTs,
+                                nouns: props.nouns,
+                                verbs: props.verbs,
+                            } : {
+                                nouns: props.nouns,
+                                verbs: props.verbs,
+                            }}
                             asObject
                             np={verb.object}
                             counterPart={subject}

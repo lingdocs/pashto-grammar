@@ -4,5 +4,13 @@ fullWidth: true
 ---
 
 import PhraseBuilder from "../../components/phrase-builder/PhraseBuilder";
+import {
+    defaultTextOptions,
+} from "@lingdocs/pashto-inflector";
+import { nouns, verbs } from "../../words/words";
 
-<PhraseBuilder />
+<PhraseBuilder
+    opts={defaultTextOptions}
+    nouns={nouns}
+    verbs={verbs}
+/>

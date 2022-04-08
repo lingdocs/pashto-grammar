@@ -13,7 +13,7 @@ function EntrySelect<E extends T.DictionaryEntry | VerbEntry>(props: ({
     entries: E[]
 } | { 
     searchF: (search: string) => E[],
-    getByTs: (ts: number) => E,
+    getByTs: (ts: number) => E | undefined,
 }) & {
     value: E | undefined,
     onChange: (value: E | undefined) => void,

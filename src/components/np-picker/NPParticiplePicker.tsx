@@ -10,8 +10,12 @@ function makeParticipleSelection(verb: VerbEntry): ParticipleSelection {
     };
 }
 
-function NPParticiplePicker({ onChange, participle, verbs, clearButton, opts }: {
+function NPParticiplePicker(props: ({
     verbs: VerbEntry[],
+} | {
+    verbs: (s: string) => VerbEntry[],
+    getVerbByTs: (ts: number) => VerbEntry | undefined;
+}) & {
     participle: ParticipleSelection | undefined,
     onChange: (p: ParticipleSelection | undefined) => void,
     clearButton: JSX.Element,
@@ -19,21 +23,26 @@ function NPParticiplePicker({ onChange, participle, verbs, clearButton, opts }: 
 }) {
     function onEntrySelect(entry: VerbEntry | undefined) {
         if (!entry) {
-            onChange(undefined);
+            props.onChange(undefined);
             return;
         }
-        onChange(makeParticipleSelection(entry));
+        props.onChange(makeParticipleSelection(entry));
     }
     return <div style={{ maxWidth: "225px" }}>
-        {clearButton}
+        {props.clearButton}
         <EntrySelect
-            value={participle?.verb}
-            entries={verbs}
+            value={props.participle?.verb}
+            {..."getVerbByTs" in props ? {
+                getByTs: props.getVerbByTs,
+                searchF: props.verbs,
+            } : {
+                entries: props.verbs,
+            }}
             onChange={onEntrySelect}
             name="Pariticple"
-            opts={opts}
+            opts={props.opts}
         />
-        {participle && <div className="my-2 d-flex flex-row justify-content-around align-items-center">
+        {props.participle && <div className="my-2 d-flex flex-row justify-content-around align-items-center">
             <div>Masc.</div>
             <div>Plur.</div>
         </div>}
