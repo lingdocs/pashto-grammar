@@ -1684,10 +1684,10 @@
     pbf "^3.2.1"
     rambda "^6.7.0"
 
-"@lingdocs/pashto-inflector@^1.8.0":
-  version "1.8.0"
-  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-1.8.0.tgz#51d4d55cc9a242feb29556136096a4bcfb5474f1"
-  integrity sha512-EE2F9mEs6px6jpolz75eHoztC4EDJ3090AhKKDaTvun3O5pRSu69yGJJpyAc1sj1SphbQeZSmTdwNAiR43RMBg==
+"@lingdocs/pashto-inflector@^1.8.3":
+  version "1.8.3"
+  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-1.8.3.tgz#ec219903cd7da4e476de8c1924eee7169847aad4"
+  integrity sha512-FUz6DG9tujeS4QNM67Aa27ifuqJ254sI1URCLO9imbDpejMvYwJRsiQq17i1bN44cAy08QbyEEAUR5woeQ/dpw==
   dependencies:
     classnames "^2.2.6"
     pbf "^3.2.1"
