@@ -1,6 +1,5 @@
 export default function playAudio(a: string) {
     if (!a) return;
-    console.log(`/audio/${a}.mp3`);
     let audio = new Audio(`/audio/${a}.mp3`);
     audio.addEventListener("ended", () => {
         audio.remove();
