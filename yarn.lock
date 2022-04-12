@@ -1684,15 +1684,14 @@
     pbf "^3.2.1"
     rambda "^6.7.0"
 
-"@lingdocs/pashto-inflector@^1.9.4":
-  version "1.9.4"
-  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-1.9.4.tgz#10e082fd403d821e85ef7587b67f33b9e6484cef"
-  integrity sha512-LnPLxwmZY2u4sKlKJNhfFlVb655BgLr8R1882H8ZRxLA0jxvvHEckzFdX+rZsZqg3u08JK56x5TCzSlM2MuP6Q==
+"@lingdocs/pashto-inflector@^1.9.7":
+  version "1.9.7"
+  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-1.9.7.tgz#fc8f4d3218a0143a4374ab181f2505add7b914d3"
+  integrity sha512-3cJDzOLC+AVKJi6nHbKLs+tgiD6aJKtzMMm4mxosX7YbkBa/ra5kV4KvY/DuG9vAY1lr1qnJs+8yxgS1pNnJHQ==
   dependencies:
     classnames "^2.2.6"
     pbf "^3.2.1"
     rambda "^6.7.0"
-    react-rewards "^2.0.3"
     react-select "^5.2.2"
 
 "@mdx-js/mdx@^0.15.5":
@@ -10363,11 +10362,6 @@ react-rewards@^1.1.2:
   dependencies:
     lottie-web "^5.5.7"
     react-pose "^4.0.8"
-
-react-rewards@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/react-rewards/-/react-rewards-2.0.3.tgz#685aee98654ab4f060e297849f39cf0a16cec042"
-  integrity sha512-qww5Jtk2HmCjR9wc7+0c2iP8oCQzENZn8pnoJGi0S6o+6dAD25+ZoagLSWdoBLGVwxfP5kFBjv3VZ6L8fPk6lg==
 
 react-router-dom@^5.3.0:
   version "5.3.0"
