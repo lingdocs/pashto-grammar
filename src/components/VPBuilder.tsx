@@ -4,11 +4,8 @@ import {
     EntrySelect,
     Types as T,
 } from "@lingdocs/pashto-inflector";
-import {
-    nouns,
-    verbs,
-} from "../words/words";
 import { useStickyState } from "@lingdocs/pashto-inflector";
+import entryFeeder from "../lib/entry-feeder";
 
 function VPBuilder() {
     const [entry, setEntry] = useStickyState<T.VerbEntry | undefined>(undefined, "vEntrySelect");
@@ -18,7 +15,7 @@ function VPBuilder() {
             <EntrySelect
                 value={entry}
                 onChange={setEntry}
-                entries={verbs}
+                entryFeeder={entryFeeder.verbs}
                 opts={defaultTextOptions}
                 isVerbSelect
                 name="Verb"
@@ -29,8 +26,8 @@ function VPBuilder() {
             ? <VPExplorer
                 verb={entry}
                 opts={defaultTextOptions}
-                nouns={nouns}
-                verbs={verbs}
+                entryFeeder={entryFeeder}
+                handleLinkClick="none"
             />
             : <div className="lead">
                 Choose a verb to start building

@@ -1,7 +1,6 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
 const path = require("path");
-const { readDictionary } = require("@lingdocs/pashto-inflector");
 const verbsPath = path.join(".", "src", "words");
 const pChars = [
   "آ",
@@ -51,10 +50,11 @@ const pChars = [
   'ږ',
 ];
 
-fetch(process.env.LINGDOCS_DICTIONARY_URL).then(res => res.arrayBuffer()).then(data => {
-  const { entries } = readDictionary(data);
+
+fetch(process.env.LINGDOCS_DICTIONARY_URL + ".json").then(res => res.json()).then(data => {
+  const { entries } = data;
   const filtered = shuffle(entries.filter(e => (
-    e.c?.includes("n. f.") && e.p.endsWith("ي")
+    e.c?.includes("loc. adv.")
   )));
   const content = `module.exports = [
 ${filtered.reduce((text, entry) => (

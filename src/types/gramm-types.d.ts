@@ -1,6 +1,15 @@
 // TODO: I think this is just used for the old equative explorer
 // build a new better equative explorer using NP Pickers etc and deprecate all this
 
+type EPSelection = {
+    subject: NPSelection,
+    predicate: NPSelection | EComplementSelection,
+    equative: {
+        tense: EquativeTense,
+        negative: boolean,
+    },
+};
+
 type EquativeTense = "present" | "subjunctive" | "habitual" | "past" | "future" | "wouldBe" | "pastSubjunctive";
 type NounNumber = "singular" | "plural";
 
