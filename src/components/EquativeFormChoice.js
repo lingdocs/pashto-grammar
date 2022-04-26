@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
     VerbFormDisplay,
     ButtonSelect,
@@ -10,9 +10,10 @@ function EquativeFormChoice({forms, opts}) {
         <div>
             <div className="text-center my-3">
                 <ButtonSelect
+                    small
                     options={[
                         { label: "Equative", value: "pure" },
-                        { label: "w/ Sentences", value: "sentence" },
+                        { label: "w/ Pronouns", value: "sentence" },
                     ]}
                     value={choice}
                     handleChange={(p) => setChoice(p)}
