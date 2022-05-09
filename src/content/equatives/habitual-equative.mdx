@@ -16,6 +16,10 @@ import EquativeFormChoice from "../../components/EquativeFormChoice";
 import Link from "../../components/Link";
 export const opts = defaultTextOptions;
 import grassBeWet from "../../images/grass-be-wet.jpg";
+import {
+    equativeGameHabitual,
+} from "../../games/games";
+import GameDisplay from "../../games/GameDisplay";
 
 In the last section we looked at the <Link to="/equatives/present-equative/">present equative</Link>, which we use to say something *is* something currently. But **we can only use the <Link to="/equatives/present-equative/">present equative</Link> for something is something *right now, at this moment***. What if we want to say that something *generally is something*?
 
@@ -127,3 +131,5 @@ Interestingly, there is also a separate [habitual equative](https://en.wikipedia
             </tbody>
         </table>
 </div>
+
+<GameDisplay record={equativeGameHabitual} />

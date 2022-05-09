@@ -129,7 +129,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                     colors="#555555"
                     onComplete={handleTimeOut}
                 />
-                {!finish && <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>}
+                <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>
             </div>}
             <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 125 }} type="confetti">
                 <div className="py-3">
@@ -161,9 +161,12 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                             {finish?.answer}
                         </div>}
                         <div>
-                            <button className="btn btn-secondary my-4" onClick={handleRestart}>Try Again</button>
+                            <button className="btn btn-secondary mt-3" onClick={handleRestart}>Try Again</button>
                         </div>
                         <div>
+                            <button className="btn btn-secondary mt-3" onClick={handleQuit}>Quit</button>
+                        </div>
+                        <div onClick={() => onStartStop("stop")} className="mt-3">
                             <Link to={studyLink}>
                                 <button className="btn btn-outline-secondary"><span role="img" aria-label="">📚</span> Study more</button>
                             </Link>

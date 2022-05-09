@@ -43,7 +43,7 @@ export const equativeGamePresent = makeGameRecord(
 );
 
 export const equativeGameHabitual = makeGameRecord(
-    "Write the habitual equative",
+    "Write the habitual  equative",
     "equative-habitual",
     "/equatives/habitual-equative/",
     (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} tense="habitual" onStartStop={s} />,

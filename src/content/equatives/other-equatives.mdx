@@ -27,6 +27,14 @@ import psmd from "../../lib/psmd";
 import EquativeFormChoice from "../../components/EquativeFormChoice";
 import Formula from "../../components/formula/Formula";
 import Link from "../../components/Link";
+import {
+    equativeGameSubjunctive,
+    equativeGameFuture,
+    equativeGamePast,
+    equativeGameWouldBe,
+    equativeGamePastSubjunctive,
+} from "../../games/games";
+import GameDisplay from "../../games/GameDisplay";
 
 ## Subjunctive Equative
 
@@ -138,6 +146,8 @@ This is the standard/written form of the subjunctive equative. However in many d
     },
 ])}</Examples>
 
+<GameDisplay record={equativeGameSubjunctive} />
+
 ## Future Equative
 
 This is used for:
@@ -208,6 +218,8 @@ This is used for:
     },
 ])}</Examples>
 
+<GameDisplay record={equativeGameFuture} />
+
 ## Past Equative
 
 This is used to say that something was something in the past. ("I was...")
@@ -270,6 +282,8 @@ It is usually used in the short form.
         e: "We **were** sad.",
     },
 ])}</Examples>
+
+<GameDisplay record={equativeGamePast} />
 
 ## "Would be" Equative
 
@@ -352,6 +366,8 @@ Like the <Link to="#past-equative">past equative</Link> that it's based on, it's
     },
 ])}</Examples>
 
+<GameDisplay record={equativeGameWouldBe} />
+
 ## Past Subjunctive
 
 This is used to talk about something being hypothetically something, or to wish that something were something. ("If I was ...", "If only I was ..."). It is also used for prayers and blessings in some dialects.
@@ -421,3 +437,5 @@ export function WithTailChoice() {
         e: "I we had known, we wouldn't have come.",
     },
 ])}</Examples>
+
+<GameDisplay record={equativeGamePastSubjunctive} />
