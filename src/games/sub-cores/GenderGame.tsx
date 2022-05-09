@@ -1,5 +1,4 @@
 import {
-    getRandomFromList,
     makeProgress,
 } from "../../lib/game-utils";
 import genderColors from "../../lib/gender-colors";
@@ -14,6 +13,7 @@ import {
     isUnisexSet,
     typePredicates as tp,
     firstVariation,
+    randFromArray,
 } from "@lingdocs/pashto-inflector";
 import { nouns } from "../../words/words";
 import { categorize } from "../../lib/categorize";
@@ -86,7 +86,7 @@ const exceptions: Record<string, CategorySet> = {
 
 const amount = 35;
 
-export default function GenderGame({level, id, link}: { level: 1 | 2, id: string, link: string }) {
+export default function GenderGame({level, id, link, onStartStop }: { level: 1 | 2, id: string, link: string, onStartStop: (a: "start" | "stop") => void }) {
     function* questions () {
         const wordPool = {...types};
         const exceptionsPool = {...exceptions};
@@ -94,13 +94,13 @@ export default function GenderGame({level, id, link}: { level: 1 | 2, id: string
         for (let i = 0; i < amount; i++) {
             const base = level === 1
                 ? wordPool
-                : getRandomFromList([wordPool, exceptionsPool]);
-            const gender = getRandomFromList(genders);
+                : randFromArray([wordPool, exceptionsPool]);
+            const gender = randFromArray(genders);
             let typeToUse: string;
             do {
-                typeToUse = getRandomFromList(Object.keys(base[gender]));
+                typeToUse = randFromArray(Object.keys(base[gender]));
             } while (!base[gender][typeToUse].length);
-            const question = getRandomFromList(base[gender][typeToUse]);
+            const question = randFromArray(base[gender][typeToUse]);
             base[gender][typeToUse] = base[gender][typeToUse].filter((entry) => entry.ts !== question.ts);
             yield {
                 progress: makeProgress(i, amount),
@@ -111,7 +111,10 @@ export default function GenderGame({level, id, link}: { level: 1 | 2, id: string
     
     function Display({ question, callback }: QuestionDisplayProps<T.DictionaryEntry>) {
         function check(gender: "m" | "f") {
-            callback(!nounNotIn(gender === "m" ? mascNouns : femNouns)(question));
+            const correct = !nounNotIn(gender === "m" ? mascNouns : femNouns)(question);
+            callback(!correct
+                ? <div>ANSWER HERE</div>
+                : true);
         }
         return <div>
             <div className="mb-4" style={{ fontSize: "larger" }}>
@@ -132,12 +135,13 @@ export default function GenderGame({level, id, link}: { level: 1 | 2, id: string
     
     function Instructions() {
         return <div>
-            <h4>Choose the right gender for each word</h4>
+            <h5>Choose the right gender for each word</h5>
             {level === 2 && <div>⚠ Exceptions included...</div>}
         </div>
     }
 
     return <GameCore
+        onStartStop={onStartStop}
         studyLink={link}
         questions={questions}
         id={id}

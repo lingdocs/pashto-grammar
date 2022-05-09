@@ -20,30 +20,29 @@ import {
 } from "@lingdocs/pashto-inflector";
 const errorVibration = 200;
 
-function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, id }:{
+function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, id, onStartStop }:{
     id: string,
     studyLink: string,
     Instructions: (props: { opts?: Types.TextOptions }) => JSX.Element,
     questions: () => QuestionGenerator<T>,
     Display: (props: QuestionDisplayProps<T>) => JSX.Element,
     timeLimit: number;
+    onStartStop: (a: "start" | "stop") => void,
 }) {
     // TODO: report pass with id to user info
     const rewardRef = useRef<RewardElement | null>(null);
     const { user, pullUser, setUser } = useUser();
-    const [finish, setFinish] = useState<null | "pass" | "fail" | "time out">(null);
+    const [finish, setFinish] = useState<undefined | "pass" | { msg: "fail", answer: JSX.Element } | "time out">(undefined);
     const [current, setCurrent] = useState<Current<T> | undefined>(undefined);
     const [questionBox, setQuestionBox] = useState<QuestionGenerator<T>>(questions());
     const [timerKey, setTimerKey] = useState<number>(1);
 
-    function handleCallback(correct: boolean) {
-        if (correct) handleAdvance();
-        else handleFailure();
-    }
-    function handleFailure() {
-        // rewardRef.current?.punishMe();
-        setFinish("fail");
-        navigator.vibrate(errorVibration);
+    function handleCallback(correct: true | JSX.Element) {
+        if (correct === true) handleAdvance();
+        else {
+            setFinish({ msg: "fail", answer: correct });
+            navigator.vibrate(errorVibration);
+        }
     }
     function handleAdvance() {
         const next = questionBox.next();
@@ -69,6 +68,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         }).catch(console.error);
     }
     function handleFinish() {
+        onStartStop("stop");
         setFinish("pass");
         rewardRef.current?.rewardMe();
         if (!user) return;
@@ -80,20 +80,23 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         handleResult(result);
     }
     function handleQuit() {
-        setFinish(null);
+        onStartStop("stop");
+        setFinish(undefined);
         setCurrent(undefined);
     }
     function handleRestart() {
+        onStartStop("start");
         const newQuestionBox = questions();
         const { value } = newQuestionBox.next();
         // just for type safety -- the generator will have at least one question
         if (!value) return;
         setQuestionBox(newQuestionBox);
-        setFinish(null);
+        setFinish(undefined);
         setCurrent(value);
         setTimerKey(prev => prev + 1);
     }
     function handleTimeOut() {
+        onStartStop("stop");
         setFinish("time out");
         navigator.vibrate(errorVibration);
     }
@@ -107,7 +110,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
     }
     const progressColor = finish === "pass"
         ? "success"
-        : finish === "fail"
+        : typeof finish === "object"
         ? "danger"
         : "primary";
     return <div>
@@ -130,7 +133,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
             </div>}
             <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 125 }} type="confetti">
                 <div className="py-3">
-                    {finish === null &&
+                    {finish === undefined &&
                         (current 
                             ? <div>
                                 <Display question={current.question} callback={handleCallback} />
@@ -151,8 +154,12 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                         </h4>
                         <button className="btn btn-secondary mt-4" onClick={handleRestart}>Try Again</button>
                     </div>}
-                    {(finish === "fail" || finish === "time out") && <div>
+                    {(typeof finish === "object" || finish === "time out") && <div>
                         <h4 className="mt-4">{failMessage(current?.progress, finish)}</h4>
+                        {typeof finish === "object" && <div>
+                            <div>The correct answer was:</div>
+                            {finish?.answer}
+                        </div>}
                         <div>
                             <button className="btn btn-secondary my-4" onClick={handleRestart}>Try Again</button>
                         </div>
@@ -168,7 +175,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
     </div>;
 }
 
-function failMessage(progress: Progress | undefined, finish: "time out" | "fail"): string {
+function failMessage(progress: Progress | undefined, finish: "time out" | { msg: "fail", answer: JSX.Element }): string {
     const pDone = progress ? getPercentageDone(progress) : 0;
     const { message, face } = pDone < 20
         ? { message: "No, sorry", face: "😑" }
@@ -179,7 +186,7 @@ function failMessage(progress: Progress | undefined, finish: "time out" | "fail"
         : pDone < 78
         ? { message: "You almost got it!", face: "😩" }
         : { message: "Nooo! So close!", face: "😭" };
-    return finish === "fail"
+    return typeof finish === "object"
         ? `${message} ${face}`
         : `⏳ Time's Up ${face}`;
 }

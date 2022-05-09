@@ -26,10 +26,6 @@ export function getPercentageDone(progress: Progress): number {
     );
 }
 
-export function getRandomFromList<T>(list: T[]): T {
-    return list[Math.floor((Math.random()*list.length))];
-}
-
 export function makeProgress(i: number, total: number): Progress {
     return { current: i + 1, total };
 }

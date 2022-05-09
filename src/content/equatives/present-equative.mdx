@@ -24,6 +24,10 @@ import {
     addToForm,
     InlinePs,
 } from "@lingdocs/pashto-inflector";
+import {
+    equativeGamePresent,
+} from "../../games/games";
+import GameDisplay from "../../games/GameDisplay";
 
 The [equative](https://en.wikipedia.org/wiki/Equative) might be the most basic way of joining words together. We use it to say that something *is/equals* something else. It's kind of like an equals "=" sign in math. 
 
@@ -212,3 +216,5 @@ When you're asking a question, all you have to do is change the intonation. You 
 <Examples opts={defaultTextOptions}>{[
     { p: "خو ته یې افعان", f: "kho tu ye afgháan", e: "But you are Afghan!" }
 ]}</Examples>
+
+<GameDisplay record={equativeGamePresent} />

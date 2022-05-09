@@ -12,12 +12,12 @@ type QuestionGenerator<T> = Generator<Current<T>, void, unknown>;
 
 type QuestionDisplayProps<T> = {
     question: T,
-    callback: (correct: boolean) => void,
+    callback: (correct: true | JSX.Element) => void,
 };
 
 type GameRecord = {
     title: string,
     id: string,
     studyLink: string,
-    Game: () => JSX.Element,
+    Game: (onStartStop: (a: "start" | "stop") => void) => JSX.Element,
 };

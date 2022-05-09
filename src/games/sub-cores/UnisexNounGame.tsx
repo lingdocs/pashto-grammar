@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-    getRandomFromList,
     makeProgress,
     compareF,
 } from "../../lib/game-utils";
@@ -14,6 +13,7 @@ import {
     standardizePashto,
     firstVariation,
     typePredicates as tp,
+    randFromArray,
 } from "@lingdocs/pashto-inflector";
 import { nouns } from "../../words/words";
 import { intoPatterns } from "../../lib/categorize";
@@ -28,20 +28,20 @@ const amount = 20;
 
 type Question = { entry: T.DictionaryEntry, gender: T.Gender };
 
-export default function UnisexNounGame({ id, link }: { id: string, link: string }) {
+export default function UnisexNounGame({ id, link, onStartStop }: { id: string, link: string, onStartStop: (a: "start" | "stop") => void }) {
     function* questions (): Generator<Current<Question>> {
         let pool = { ...types };
         for (let i = 0; i < amount; i++) {
             const keys = Object.keys(types) as NType[];
             let type: NType
             do {
-               type = getRandomFromList(keys);
+               type = randFromArray(keys);
             } while (!pool[type].length);
-            const entry = getRandomFromList<T.UnisexNounEntry>(
+            const entry = randFromArray<T.UnisexNounEntry>(
                 // @ts-ignore
                 pool[type]
             );
-            const gender = getRandomFromList(genders) as T.Gender;
+            const gender = randFromArray(genders) as T.Gender;
             // @ts-ignore
             pool[type] = pool[type].filter((x) => x.ts !== entry.ts);
             yield {
@@ -84,7 +84,9 @@ export default function UnisexNounGame({ id, link }: { id: string, link: string 
             if (correct) {
                 setAnswer("");
             }
-            callback(correct);
+            callback(!correct
+                ? <div>CORRECT ANSWER HERE</div>
+                : true);
         }
         
         return <div>
@@ -120,11 +122,12 @@ export default function UnisexNounGame({ id, link }: { id: string, link: string 
     
     function Instructions() {
         return <div>
-            <h4>Change the gender of a given noun</h4>
+            <h5>Change the gender of a given noun</h5>
         </div>
     }
 
     return <GameCore
+        onStartStop={onStartStop}
         studyLink={link}
         questions={questions}
         id={id}

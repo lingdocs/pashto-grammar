@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import games from "./games";
 import { useUser } from "../user-context";
 import Link from "../components/Link";
@@ -37,7 +37,7 @@ function GamesBrowser() {
                             </div>
                         </div>
                         <SmoothCollapse expanded={open}>
-                            <Game />
+                            {Game(() => null)}
                         </SmoothCollapse>
                     </div>
                 })}
