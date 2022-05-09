@@ -67,7 +67,7 @@ const pronounTypes = [
     [T.Person.ThirdPlurMale, T.Person.ThirdPlurFemale],
 ];
 
-export default function EquativeGame({ id, link, level, onStartStop }: { id: string, link: string, level: T.EquativeTense | "all", onStartStop: (a: "start" | "stop") => void }) {
+export default function EquativeGame({ id, link, level }: { id: string, link: string, level: T.EquativeTense | "all" }) {
     function* questions (): Generator<Current<Question>> {
         let pool = [...pronounTypes];
         function makeRandPronoun(): T.PronounSelection {
@@ -199,7 +199,6 @@ export default function EquativeGame({ id, link, level, onStartStop }: { id: str
     }
 
     return <GameCore
-        onStartStop={onStartStop}
         studyLink={link}
         questions={questions}
         id={id}

@@ -19,5 +19,5 @@ type GameRecord = {
     title: string,
     id: string,
     studyLink: string,
-    Game: (onStartStop: (a: "start" | "stop") => void) => JSX.Element,
+    Game: () => JSX.Element,
 };

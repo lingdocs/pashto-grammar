@@ -20,14 +20,13 @@ import {
 } from "@lingdocs/pashto-inflector";
 const errorVibration = 200;
 
-function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, id, onStartStop }:{
+function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, id }:{
     id: string,
     studyLink: string,
     Instructions: (props: { opts?: Types.TextOptions }) => JSX.Element,
     questions: () => QuestionGenerator<T>,
     Display: (props: QuestionDisplayProps<T>) => JSX.Element,
     timeLimit: number;
-    onStartStop: (a: "start" | "stop") => void,
 }) {
     // TODO: report pass with id to user info
     const rewardRef = useRef<RewardElement | null>(null);
@@ -68,7 +67,6 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         }).catch(console.error);
     }
     function handleFinish() {
-        onStartStop("stop");
         setFinish("pass");
         rewardRef.current?.rewardMe();
         if (!user) return;
@@ -80,12 +78,10 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         handleResult(result);
     }
     function handleQuit() {
-        onStartStop("stop");
         setFinish(undefined);
         setCurrent(undefined);
     }
     function handleRestart() {
-        onStartStop("start");
         const newQuestionBox = questions();
         const { value } = newQuestionBox.next();
         // just for type safety -- the generator will have at least one question
@@ -96,7 +92,6 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         setTimerKey(prev => prev + 1);
     }
     function handleTimeOut() {
-        onStartStop("stop");
         setFinish("time out");
         navigator.vibrate(errorVibration);
     }
@@ -113,8 +108,8 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         : typeof finish === "object"
         ? "danger"
         : "primary";
-    return <div>
-            <div className="text-center" style={{ minHeight: "200px" }}>
+    return <>
+        <div className="text-center" style={{ minHeight: "200px", zIndex: 10, position: "relative" }}>
             <div className="progress" style={{ height: "5px" }}>
                 <div className={`progress-bar bg-${progressColor}`} role="progressbar" style={{ width: getProgressWidth() }} />
             </div>
@@ -123,10 +118,11 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                     key={timerKey}
                     isPlaying={!!current && !finish}
                     size={30}
-                    strokeWidth={3}
+                    colors={["#555555", "#F7B801", "#A30000"]}
+                    colorsTime={[timeLimit, timeLimit*0.33, 0]}
+                    strokeWidth={4}
                     strokeLinecap="square"
                     duration={timeLimit}
-                    colors="#555555"
                     onComplete={handleTimeOut}
                 />
                 <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>
@@ -160,13 +156,11 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                             <div>The correct answer was:</div>
                             {finish?.answer}
                         </div>}
-                        <div>
-                            <button className="btn btn-secondary mt-3" onClick={handleRestart}>Try Again</button>
+                        <div className="mt-3">
+                            <button className="btn btn-success mr-2" onClick={handleRestart}>Try Again</button>
+                            <button className="btn btn-danger ml-2" onClick={handleQuit}>Quit</button>
                         </div>
-                        <div>
-                            <button className="btn btn-secondary mt-3" onClick={handleQuit}>Quit</button>
-                        </div>
-                        <div onClick={() => onStartStop("stop")} className="mt-3">
+                        <div onClick={handleQuit} className="my-3">
                             <Link to={studyLink}>
                                 <button className="btn btn-outline-secondary"><span role="img" aria-label="">📚</span> Study more</button>
                             </Link>
@@ -175,7 +169,17 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                 </div>
             </Reward>
         </div>
-    </div>;
+        {(current && finish === undefined) && <div style={{
+            position: "absolute",
+            backgroundColor: "rgba(255, 255, 255, 0.3)",
+            backdropFilter: "blur(10px)",
+            top: "0px",
+            left: "0px",
+            width: "100%",
+            height: "100%",
+            zIndex: 6,
+        }}></div>}
+    </>;
 }
 
 function failMessage(progress: Progress | undefined, finish: "time out" | { msg: "fail", answer: JSX.Element }): string {

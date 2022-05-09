@@ -86,7 +86,7 @@ const exceptions: Record<string, CategorySet> = {
 
 const amount = 35;
 
-export default function GenderGame({level, id, link, onStartStop }: { level: 1 | 2, id: string, link: string, onStartStop: (a: "start" | "stop") => void }) {
+export default function GenderGame({level, id, link }: { level: 1 | 2, id: string, link: string }) {
     function* questions () {
         const wordPool = {...types};
         const exceptionsPool = {...exceptions};
@@ -110,10 +110,15 @@ export default function GenderGame({level, id, link, onStartStop }: { level: 1 |
     }
     
     function Display({ question, callback }: QuestionDisplayProps<T.DictionaryEntry>) {
-        function check(gender: "m" | "f") {
-            const correct = !nounNotIn(gender === "m" ? mascNouns : femNouns)(question);
+        function check(gender: T.Gender) {
+            const nounGender: T.Gender = nounNotIn(mascNouns)(question) ? "fem" : "masc";
+            const correct = gender === nounGender;
             callback(!correct
-                ? <div>ANSWER HERE</div>
+                ? <div className="my-4 text-center">
+                    <button style={{ background: genderColors[nounGender === "masc" ? "m" : "f"], color: "black" }} className="btn btn-lg" disabled>
+                       {nounGender === "masc" ? "Masculine" : "Feminine"}
+                    </button>
+                </div>
                 : true);
         }
         return <div>
@@ -127,8 +132,8 @@ export default function GenderGame({level, id, link, onStartStop }: { level: 1 |
                 ]}</Examples>
             </div>
             <div className="mt-4">
-                <button style={{ background: genderColors.f, color: "black" }} className="btn btn-lg mr-3" onClick={() => check("f")}>Feminine</button>
-                <button style={{ background: genderColors.m, color: "black" }} className="btn btn-lg ml-3" onClick={() => check("m")}>Masculine</button>
+                <button style={{ background: genderColors.f, color: "black" }} className="btn btn-lg mr-3" onClick={() => check("fem")}>Feminine</button>
+                <button style={{ background: genderColors.m, color: "black" }} className="btn btn-lg ml-3" onClick={() => check("masc")}>Masculine</button>
             </div>
         </div>
     }
@@ -141,7 +146,6 @@ export default function GenderGame({level, id, link, onStartStop }: { level: 1 |
     }
 
     return <GameCore
-        onStartStop={onStartStop}
         studyLink={link}
         questions={questions}
         id={id}

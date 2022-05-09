@@ -28,7 +28,7 @@ const amount = 20;
 
 type Question = { entry: T.DictionaryEntry, gender: T.Gender };
 
-export default function UnisexNounGame({ id, link, onStartStop }: { id: string, link: string, onStartStop: (a: "start" | "stop") => void }) {
+export default function UnisexNounGame({ id, link }: { id: string, link: string }) {
     function* questions (): Generator<Current<Question>> {
         let pool = { ...types };
         for (let i = 0; i < amount; i++) {
@@ -78,14 +78,20 @@ export default function UnisexNounGame({ id, link, onStartStop }: { id: string, 
             e.preventDefault();
             const given = standardizePashto(answer.trim());
             // @ts-ignore
-            const correct = inflections[flipGender(question.gender)][0].some((ps: T.PsString) => (
+            const correctAnswer = inflections[flipGender(question.gender)][0];
+            const correct = correctAnswer.some((ps: T.PsString) => (
                 (given === ps.p) || compareF(given, ps.f)
             ));
             if (correct) {
                 setAnswer("");
             }
             callback(!correct
-                ? <div>CORRECT ANSWER HERE</div>
+                ? <div>
+                    {correctAnswer.length > 1 && <div className="text-muted">One of the following:</div>}
+                    {correctAnswer.map((ps) => (
+                        <Examples opts={opts}>{ps}</Examples>
+                    ))}
+                </div>
                 : true);
         }
         
@@ -127,7 +133,6 @@ export default function UnisexNounGame({ id, link, onStartStop }: { id: string, 
     }
 
     return <GameCore
-        onStartStop={onStartStop}
         studyLink={link}
         questions={questions}
         id={id}

@@ -6,7 +6,7 @@ function makeGameRecord(
     title: string,
     id: string,
     studyLink: string,
-    game: (id: string, link: string) => ((s: (a: "start" | "stop") => void) => JSX.Element),
+    game: (id: string, link: string) => () => JSX.Element,
 ): GameRecord {
     return {
         title,
@@ -20,75 +20,75 @@ export const nounGenderGame1 = makeGameRecord(
     "Identify Noun Genders - Level 1",
     "gender-nouns-1",
     "/nouns/nouns-gender#gender-by-ending",
-    (id, link) => (s: (a: "start" | "stop") => void) => <GenderGame id={id} level={1} link={link} onStartStop={s} />,
+    (id, link) => () => <GenderGame id={id} level={1} link={link} />,
 );
 export const nounGenderGame2 = makeGameRecord(
     "Identify Noun Genders - Level 2",
     "gender-nouns-2",
     "/nouns/nouns-gender#exceptions",
-    (id, link) => (s: (a: "start" | "stop") => void) => <GenderGame id={id} level={2} link={link} onStartStop={s} />,
+    (id, link) => () => <GenderGame id={id} level={2} link={link} />,
 );
 export const unisexNounGame = makeGameRecord(
     "Changing genders on unisex nouns",
     "unisex-nouns-1",
     "/nouns/nouns-unisex/",
-    (id, link) => (s: (a: "start" | "stop") => void) => <UnisexNounGame id={id} link={link} onStartStop={s} />,
+    (id, link) => () => <UnisexNounGame id={id} link={link} />,
 );
 
 export const equativeGamePresent = makeGameRecord(
     "Write the present equative",
     "equative-present",
     "/equatives/present-equative/",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="present" onStartStop={s} />,
+    (id, link) => () => <EquativeGame id={id} link={link} level="present" />,
 );
 
 export const equativeGameHabitual = makeGameRecord(
     "Write the habitual  equative",
     "equative-habitual",
     "/equatives/habitual-equative/",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="habitual" onStartStop={s} />,
+    (id, link) => () => <EquativeGame id={id} link={link} level="habitual" />,
 );
 
 export const equativeGameSubjunctive = makeGameRecord(
     "Write the subjunctive equative",
     "equative-subjunctive",
     "/equatives/other-equatives/#subjunctive-equative",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="subjunctive" onStartStop={s} />,
+    (id, link) => () => <EquativeGame id={id} link={link} level="subjunctive" />,
 );
 
 export const equativeGameFuture = makeGameRecord(
     "Write the future equative",
     "equative-future",
     "/equatives/other-equatives/#future-equative",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="future" onStartStop={s} />,
+    (id, link) => () => <EquativeGame id={id} link={link} level="future" />,
 );
 
 export const equativeGamePast = makeGameRecord(
     "Write the past equative",
     "equative-past",
     "/equatives/other-equatives/#past-equative",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="past" onStartStop={s} />,
+    (id, link) => () => <EquativeGame id={id} link={link} level="past" />,
 );
 
 export const equativeGameWouldBe = makeGameRecord(
     'Write the "would be" equative',
     "equative-would-be",
     "/equatives/other-equatives/#would-be-equative",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="wouldBe" onStartStop={s} />,
+    (id, link) => () => <EquativeGame id={id} link={link} level="wouldBe" />,
 );
 
 export const equativeGamePastSubjunctive = makeGameRecord(
     'Write the past subjunctive equative',
     "equative-past-subjunctive",
     "/equatives/other-equatives/#past-subjunctive",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="pastSubjunctive" onStartStop={s} />,
+    (id, link) => () => <EquativeGame id={id} link={link} level="pastSubjunctive" />,
 );
 
 export const equativeGameAll = makeGameRecord(
     'Write the equative (summary)',
     "equative-past-summary",
     "/equatives/other-equatives",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="all" onStartStop={s} />,
+    (id, link) => () => <EquativeGame id={id} link={link} level="all" />,
 );
 
 const games: { chapter: string, items: GameRecord[] }[] = [

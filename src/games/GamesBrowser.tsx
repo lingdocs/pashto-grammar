@@ -22,10 +22,10 @@ function GamesBrowser() {
                     return <div key={id}>
                         <div className="d-flex flex-row justify-content-between align-items-center">
                             <div>
-                                <h5 className="my-4 clickable" onClick={() => handleTitleClick(id)}>
+                                <h4 className="my-4 clickable" onClick={() => handleTitleClick(id)}>
                                     <i className={`fas fa-caret-${open ? "down" : "right"}`}></i> {title}
                                     {` `}
-                                </h5>
+                                </h4>
                             </div>
                             <div>
                                 <h4>
@@ -37,7 +37,7 @@ function GamesBrowser() {
                             </div>
                         </div>
                         <SmoothCollapse expanded={open}>
-                            {Game(() => null)}
+                            <Game />
                         </SmoothCollapse>
                     </div>
                 })}
