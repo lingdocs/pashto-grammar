@@ -84,11 +84,18 @@ export const equativeGamePastSubjunctive = makeGameRecord(
     (id, link) => () => <EquativeGame id={id} link={link} level="pastSubjunctive" />,
 );
 
-export const equativeGameAll = makeGameRecord(
-    'Write the equative (summary)',
-    "equative-past-summary",
+export const equativeGameAllIdentify = makeGameRecord(
+    "Identify the equative (all tenses)",
+    "equative-past-summary-identify",
     "/equatives/other-equatives",
-    (id, link) => () => <EquativeGame id={id} link={link} level="all" />,
+    (id, link) => () => <EquativeGame id={id} link={link} level="allIdentify" />,
+);
+
+export const equativeGameAllProduce = makeGameRecord(
+    "Write the equative (all tenses)",
+    "equative-past-summary-produce",
+    "/equatives/other-equatives",
+    (id, link) => () => <EquativeGame id={id} link={link} level="allProduce" />,
 );
 
 const games: { chapter: string, items: GameRecord[] }[] = [
@@ -110,7 +117,8 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             equativeGamePast,
             equativeGameWouldBe,
             equativeGamePastSubjunctive,
-            equativeGameAll,
+            equativeGameAllIdentify,
+            equativeGameAllProduce,
         ],
     },
 ];

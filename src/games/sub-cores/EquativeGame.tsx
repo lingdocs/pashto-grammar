@@ -18,6 +18,7 @@ import {
     InlinePs,
     grammarUnits,
 } from "@lingdocs/pashto-inflector";
+import { psStringEquals } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
 
 const kidsColor = "#017BFE";
 
@@ -52,9 +53,9 @@ const amount = 20;
 const timeLimit = 75;
 
 type Question = {
-    phrase: { ps: T.PsString, e?: string[] },
+    EPS: T.EPSelectionComplete,
+    phrase: { ps: T.PsString[], e?: string[] },
     equative: T.EquativeRendered,
-    tense: T.EquativeTense,
 };
 
 const pronounTypes = [
@@ -67,7 +68,7 @@ const pronounTypes = [
     [T.Person.ThirdPlurMale, T.Person.ThirdPlurFemale],
 ];
 
-export default function EquativeGame({ id, link, level }: { id: string, link: string, level: T.EquativeTense | "all" }) {
+export default function EquativeGame({ id, link, level }: { id: string, link: string, level: T.EquativeTense | "allProduce" | "allIdentify" }) {
     function* questions (): Generator<Current<Question>> {
         let pool = [...pronounTypes];
         function makeRandPronoun(): T.PronounSelection {
@@ -95,8 +96,7 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
                 number: n.numberCanChange ? randFromArray(["singular", "plural"]) : n.number,
             };
         }
-        for (let i = 0; i < amount; i++) {
-            console.log("one factory call");
+        function makeRandomEPS(): T.EPSelectionComplete {
             const subj = randFromArray([
                 makeRandPronoun,
                 makeRandPronoun,
@@ -104,20 +104,29 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
                 makeRandPronoun,
             ])();
             const pred = randFromArray([...adjectives, ...locAdverbs]);
-            const tense = level === "all" ? randFromArray(tenses) : level;
-            const EPS = makeEPS(subj, pred, tense);
-            const rendered = renderEP(EPS);
-            const compiled = compileEP(rendered, true, { equative: true, ba: false, kidsSection: true });
+            const tense = (level === "allIdentify" || level === "allProduce")
+                ? randFromArray(tenses)
+                : level;
+            return makeEPS(subj, pred, tense);
+        }
+        for (let i = 0; i < amount; i++) {
+            const EPS = makeRandomEPS();
+            const EP = renderEP(EPS);
+            const compiled = compileEP(
+                EP,
+                true,
+                level === "allIdentify" ? undefined : { equative: true, kidsSection: true },
+            );
             const phrase = {
-                ps: compiled.ps[0],
-                e: compiled.e,
+                ps: compiled.ps,
+                e: level === "allIdentify" ? undefined : compiled.e,
             };
             yield {
                 progress: makeProgress(i, amount),
                 question: {
+                    EPS,
                     phrase,
-                    equative: rendered.equative,
-                    tense, 
+                    equative: EP.equative,
                 },
             };
         };
@@ -140,20 +149,60 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
             }
             callback(!correct ? makeCorrectAnswer(question) : true);
         }
+        const handleTenseIdentify = (tense: T.EquativeTense) => {
+            const renderedWAnswer = renderEP({
+                ...question.EPS,
+                equative: {
+                    ...question.EPS.equative,
+                    tense,
+                },
+            });
+            const compiledWAnswer = compileEP(renderedWAnswer, true);
+            const wasCorrect = compiledWAnswer.ps.some(a => (
+                question.phrase.ps.some(b => psStringEquals(a, b))
+            ));
+            if (wasCorrect) {
+                return callback(wasCorrect);
+            } else {
+                callback(<div>
+                    {humanReadableTense(question.EPS.equative.tense)}
+                </div>)
+            }
+        }
         useEffect(() => {
-            if (level === "all") setWithBa(false);
+            if (level === "allProduce") setWithBa(false);
         }, [question]);
         
         return <div>
-            <div className="pt-2 pb-1 mb-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
-                {/* @ts-ignore */}
-                <Examples opts={opts} ex={modExs([question.phrase.ps], withBa)}></Examples>
-                {question.phrase.e && question.phrase.e.map((e, i) => (
-                    <div key={e+i} className="text-muted mb-1">{e}</div>
-                ))}
-                <div className="lead text-muted">{humanReadableTense(question.tense)} equative</div>
-            </div>
-            <form onSubmit={handleSubmit}>
+            {level === "allIdentify" ?
+                <div className="pt-2 pb-1 mb-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
+                    <Examples opts={opts}>
+                        {randFromArray(question.phrase.ps)}
+                    </Examples>
+                </div>
+                : <div className="pt-2 pb-1 mb-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
+                    <Examples opts={opts}>
+                        {/* @ts-ignore  TODO: REMOVE AS P_INFLE */}
+                        {modExs(question.phrase.ps, withBa)[0]}
+                    </Examples>
+                    {question.phrase.e && question.phrase.e.map((e, i) => (
+                        <div key={e+i} className="text-muted mb-1">{e}</div>
+                    ))}
+                    <div className="lead text-muted">{humanReadableTense(question.EPS.equative.tense)} equative</div>
+                </div>
+            }
+            {level === "allIdentify" ? <div className="text-center">
+                <div className="row">
+                    {tenses.map(t => <div className="col" key={t}>
+                        <button
+                            className="btn btn-sm btn-outline-secondary mb-3"
+                            onClick={() => handleTenseIdentify(t)}
+                        >
+                            {humanReadableTense(t)}
+                        </button>
+                    </div>)}
+                </div>
+            </div> : <form onSubmit={handleSubmit}>
                 <div className="form-check mt-1">
                     <input
                         id="baCheckbox"
@@ -186,15 +235,16 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
                         Type <kbd>Enter</kbd> to check
                     </div> */}
                 </div>
-            </form>
-
+            </form>}
         </div>
     }
     
     function Instructions() {
         return <div>
-            <p className="lead">Fill in the blank with the correct <strong>{humanReadableTense(level)} equative</strong> <strong>in Pashto script</strong></p>
-            {level === "all" && <div>⚠ All tenses included...</div>}
+            {level === "allProduce"
+                ? <p className="lead">Fill in the blank with the correct <strong>{humanReadableTense(level)} equative</strong> <strong>in Pashto script</strong></p>
+                : <p className="lead">Identify a correct tense for each equative phrase you see</p>}
+            {level === "allProduce" && <div>⚠ All tenses included...</div>}
         </div>
     }
 
@@ -203,7 +253,7 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
         questions={questions}
         id={id}
         Display={Display}
-        timeLimit={level === "all" ? timeLimit * 1.4 : timeLimit}
+        timeLimit={level === "allProduce" ? timeLimit * 1.4 : timeLimit}
         Instructions={Instructions}
     />
 };
@@ -239,8 +289,8 @@ function modExs(exs: T.PsString[], withBa: boolean): { p: JSX.Element, f: JSX.El
     });
 }
 
-function humanReadableTense(tense: T.EquativeTense | "all"): string {
-    return tense === "all"
+function humanReadableTense(tense: T.EquativeTense | "allProduce"): string {
+    return tense === "allProduce"
         ? ""
         : tense === "pastSubjunctive"
         ? "past subjunctive"
