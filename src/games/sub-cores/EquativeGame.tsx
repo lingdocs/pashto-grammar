@@ -164,8 +164,21 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
             if (wasCorrect) {
                 return callback(wasCorrect);
             } else {
-                callback(<div>
-                    {humanReadableTense(question.EPS.equative.tense)}
+                const possibleCorrect = tenses.filter(tn => {
+                    const r = renderEP({
+                        ...question.EPS,
+                        equative: {
+                            ...question.EPS.equative,
+                            tense: tn,
+                        },
+                    });
+                    const c = compileEP(r, true);
+                    return c.ps.some(a => (
+                        question.phrase.ps.some(b => psStringEquals(a, b))
+                    ));
+                });
+                callback(<div className="lead">
+                    {makeCorrectTenseAnswer(possibleCorrect)}
                 </div>)
             }
         }
@@ -257,6 +270,12 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
         Instructions={Instructions}
     />
 };
+
+function makeCorrectTenseAnswer(tenses: T.EquativeTense[]): string {
+    return tenses.reduce((accum, curr, i) => (
+        `${accum}${(i > 0 ? " or " : " ")}'${humanReadableTense(curr)}'`
+    ), "");
+}
 
 function makeCorrectAnswer(question: Question): JSX.Element {
     return <div>
