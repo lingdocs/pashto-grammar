@@ -39,49 +39,56 @@ export const equativeGamePresent = makeGameRecord(
     "Write the present equative",
     "equative-present",
     "/equatives/present-equative/",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} tense="present" onStartStop={s} />,
+    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="present" onStartStop={s} />,
 );
 
 export const equativeGameHabitual = makeGameRecord(
     "Write the habitual  equative",
     "equative-habitual",
     "/equatives/habitual-equative/",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} tense="habitual" onStartStop={s} />,
+    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="habitual" onStartStop={s} />,
 );
 
 export const equativeGameSubjunctive = makeGameRecord(
     "Write the subjunctive equative",
     "equative-subjunctive",
     "/equatives/other-equatives/#subjunctive-equative",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} tense="subjunctive" onStartStop={s} />,
+    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="subjunctive" onStartStop={s} />,
 );
 
 export const equativeGameFuture = makeGameRecord(
     "Write the future equative",
     "equative-future",
     "/equatives/other-equatives/#future-equative",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} tense="future" onStartStop={s} />,
+    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="future" onStartStop={s} />,
 );
 
 export const equativeGamePast = makeGameRecord(
     "Write the past equative",
     "equative-past",
     "/equatives/other-equatives/#past-equative",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} tense="past" onStartStop={s} />,
+    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="past" onStartStop={s} />,
 );
 
 export const equativeGameWouldBe = makeGameRecord(
     'Write the "would be" equative',
     "equative-would-be",
-    "equatives/other-equatives/#would-be-equative",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} tense="wouldBe" onStartStop={s} />,
+    "/equatives/other-equatives/#would-be-equative",
+    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="wouldBe" onStartStop={s} />,
 );
 
 export const equativeGamePastSubjunctive = makeGameRecord(
     'Write the past subjunctive equative',
     "equative-past-subjunctive",
     "/equatives/other-equatives/#past-subjunctive",
-    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} tense="pastSubjunctive" onStartStop={s} />,
+    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="pastSubjunctive" onStartStop={s} />,
+);
+
+export const equativeGameAll = makeGameRecord(
+    'Write the equative (summary)',
+    "equative-past-summary",
+    "/equatives/other-equatives",
+    (id, link) => (s: (a: "start" | "stop") => void) => <EquativeGame id={id} link={link} level="all" onStartStop={s} />,
 );
 
 const games: { chapter: string, items: GameRecord[] }[] = [
@@ -103,6 +110,7 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             equativeGamePast,
             equativeGameWouldBe,
             equativeGamePastSubjunctive,
+            equativeGameAll,
         ],
     },
 ];

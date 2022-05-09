@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     makeProgress,
 } from "../../lib/game-utils";
@@ -44,13 +44,17 @@ const locAdverbs: T.LocativeAdverbEntry[] = [
     {"ts":1527812558,"i":6241,"p":"دلته","f":"dălta","g":"dalta","e":"here","c":"loc. adv."},
     {"ts":1527812449,"i":13937,"p":"هلته","f":"hálta, álta","g":"halta,alta","e":"there","c":"loc. adv."},
 ].filter(tp.isLocativeAdverbEntry);
+const tenses: T.EquativeTense[] = [
+    "present", "habitual", "subjunctive", "future", "past", "wouldBe", "pastSubjunctive",
+];
 
 const amount = 20;
-const timeLimit = 55;
+const timeLimit = 75;
 
 type Question = {
     phrase: { ps: T.PsString, e?: string[] },
     equative: T.EquativeRendered,
+    tense: T.EquativeTense,
 };
 
 const pronounTypes = [
@@ -63,7 +67,7 @@ const pronounTypes = [
     [T.Person.ThirdPlurMale, T.Person.ThirdPlurFemale],
 ];
 
-export default function EquativeGame({ id, link, tense, onStartStop }: { id: string, link: string, tense: T.EquativeTense, onStartStop: (a: "start" | "stop") => void }) {
+export default function EquativeGame({ id, link, level, onStartStop }: { id: string, link: string, level: T.EquativeTense | "all", onStartStop: (a: "start" | "stop") => void }) {
     function* questions (): Generator<Current<Question>> {
         let pool = [...pronounTypes];
         function makeRandPronoun(): T.PronounSelection {
@@ -100,6 +104,7 @@ export default function EquativeGame({ id, link, tense, onStartStop }: { id: str
                 makeRandPronoun,
             ])();
             const pred = randFromArray([...adjectives, ...locAdverbs]);
+            const tense = level === "all" ? randFromArray(tenses) : level;
             const EPS = makeEPS(subj, pred, tense);
             const rendered = renderEP(EPS);
             const compiled = compileEP(rendered, true, { equative: true, ba: false, kidsSection: true });
@@ -112,6 +117,7 @@ export default function EquativeGame({ id, link, tense, onStartStop }: { id: str
                 question: {
                     phrase,
                     equative: rendered.equative,
+                    tense, 
                 },
             };
         };
@@ -132,32 +138,34 @@ export default function EquativeGame({ id, link, tense, onStartStop }: { id: str
             if (correct) {
                 setAnswer("");
             }
-            callback(!correct
-                ? <div>
-                    <div className="my-2">
-                        {flattenLengths(question.equative.ps).reduce(((accum, curr, i): JSX.Element[] => (
-                            [
-                                ...accum,
-                                ...i > 0 ? [<span className="text-muted"> or </span>] : [],
-                                <span>{curr.p}</span>,
-                            ]
-                        )), [] as JSX.Element[])}
-                    </div>
-                    <div><strong>{question.equative.hasBa ? "with" : "without"}</strong> a <InlinePs opts={opts}>{grammarUnits.baParticle}</InlinePs> in the kids' section.</div>
-                </div>
-                : true);
+            callback(!correct ? makeCorrectAnswer(question) : true);
         }
+        useEffect(() => {
+            if (level === "all") setWithBa(false);
+        }, [question]);
         
         return <div>
             <div className="pt-2 pb-1 mb-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
-                {/*
-                @ts-ignore */}
-                <Examples opts={opts} ex={modExs([question.phrase.ps])}></Examples>
-                {question.phrase.e && question.phrase.e.map(e => (
-                    <div className="text-muted mb-1">{e}</div>
+                {/* @ts-ignore */}
+                <Examples opts={opts} ex={modExs([question.phrase.ps], withBa)}></Examples>
+                {question.phrase.e && question.phrase.e.map((e, i) => (
+                    <div key={e+i} className="text-muted mb-1">{e}</div>
                 ))}
+                <div className="lead text-muted">{humanReadableTense(question.tense)} equative</div>
             </div>
             <form onSubmit={handleSubmit}>
+                <div className="form-check mt-1">
+                    <input
+                        id="baCheckbox"
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={withBa}
+                        onChange={e => setWithBa(e.target.checked)}
+                    />
+                    <label className="form-check-label text-muted" htmlFor="baCheckbox">
+                        with <InlinePs opts={opts}>{grammarUnits.baParticle}</InlinePs> in the <span style={{ color: kidsColor }}>kids' section</span>
+                    </label>
+                </div>
                 <div className="my-3" style={{ maxWidth: "200px", margin: "0 auto" }}>
                     <input
                         type="text"
@@ -170,26 +178,13 @@ export default function EquativeGame({ id, link, tense, onStartStop }: { id: str
                         onChange={handleInput}
                     />
                 </div>
-                <div>
-                    <div className="form-check mt-1">
-                        <input
-                            className="form-check-input"
-                            type="checkbox"
-                            checked={withBa}
-                            onChange={e => setWithBa(e.target.checked)}
-                        />
-                        <label className="form-check-label text-muted" htmlFor="OSVCheckbox">
-                            with <InlinePs opts={opts}>{grammarUnits.baParticle}</InlinePs> in the <span style={{ color: kidsColor }}>kids' section</span>
-                        </label>
-                    </div>
-                    <div className="text-center my-2">
-                        {/* <div> */}
-                            <button className="btn btn-primary" type="submit">check</button>
-                        {/* </div> */}
-                        {/* <div className="text-muted small text-center mt-2">
-                            Type <kbd>Enter</kbd> to check
-                        </div> */}
-                    </div>
+                <div className="text-center my-2">
+                    {/* <div> */}
+                        <button className="btn btn-primary" type="submit">check</button>
+                    {/* </div> */}
+                    {/* <div className="text-muted small text-center mt-2">
+                        Type <kbd>Enter</kbd> to check
+                    </div> */}
                 </div>
             </form>
 
@@ -198,7 +193,8 @@ export default function EquativeGame({ id, link, tense, onStartStop }: { id: str
     
     function Instructions() {
         return <div>
-            <p className="lead">Fill in the blank with the correct <strong>{humanReadableTense(tense)} equative</strong> <strong>in Pashto script</strong></p>
+            <p className="lead">Fill in the blank with the correct <strong>{humanReadableTense(level)} equative</strong> <strong>in Pashto script</strong></p>
+            {level === "all" && <div>⚠ All tenses included...</div>}
         </div>
     }
 
@@ -208,12 +204,26 @@ export default function EquativeGame({ id, link, tense, onStartStop }: { id: str
         questions={questions}
         id={id}
         Display={Display}
-        timeLimit={timeLimit}
+        timeLimit={level === "all" ? timeLimit * 1.4 : timeLimit}
         Instructions={Instructions}
     />
 };
 
-function modExs(exs: T.PsString[]): { p: JSX.Element, f: JSX.Element }[] {
+function makeCorrectAnswer(question: Question): JSX.Element {
+    return <div>
+        <div className="my-2">
+            {flattenLengths(question.equative.ps).reduce(((accum, curr, i): JSX.Element[] => (
+                [
+                    ...accum,
+                    ...i > 0 ? [<span className="text-muted"> or </span>] : [],
+                    <span>{curr.p}</span>,
+                ]
+            )), [] as JSX.Element[])}
+        </div>
+        <div><strong>{question.equative.hasBa ? "with" : "without"}</strong> a <InlinePs opts={opts}>{grammarUnits.baParticle}</InlinePs> in the kids' section.</div>
+    </div>;
+}
+function modExs(exs: T.PsString[], withBa: boolean): { p: JSX.Element, f: JSX.Element }[] {
     return exs.map(ps => {
         if (!ps.p.includes(" ___ ")) {
             return {
@@ -224,14 +234,16 @@ function modExs(exs: T.PsString[]): { p: JSX.Element, f: JSX.Element }[] {
         const splitP = ps.p.split(" ___ ");
         const splitF = ps.f.split(" ___ ");
         return {
-            p: <>{splitP[0]} <span style={{ color: kidsColor }}>___</span> {splitP[1]}</>,
-            f: <>{splitF[0]} <span style={{ color: kidsColor }}>___</span> {splitF[1]}</>,
+            p: <>{splitP[0]} <span style={{ color: kidsColor }}>{withBa ? "به" : "__"}</span> {splitP[1]}</>,
+            f: <>{splitF[0]} <span style={{ color: kidsColor }}>{withBa ? "ba" : "__"}</span> {splitF[1]}</>,
         };
     });
 }
 
-function humanReadableTense(tense: T.EquativeTense): string {
-    return tense === "pastSubjunctive"
+function humanReadableTense(tense: T.EquativeTense | "all"): string {
+    return tense === "all"
+        ? ""
+        : tense === "pastSubjunctive"
         ? "past subjunctive"
         : tense === "wouldBe"
         ? `"would be"`

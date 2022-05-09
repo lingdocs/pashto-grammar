@@ -14,18 +14,18 @@ function GamesBrowser() {
     }
     return <div>
         {games.map((chapter) => (
-            <>
-                <h3 key={chapter.chapter}>{chapter.chapter}</h3>
+            <div key={chapter.chapter}>
+                <h3>{chapter.chapter}</h3>
                 {chapter.items.map(({ id, title, Game, studyLink }) => {
                     const done = user && user.tests.some(t => t.id === id);
                     const open = opened === id;
                     return <div key={id}>
                         <div className="d-flex flex-row justify-content-between align-items-center">
                             <div>
-                                <h4 className="my-4 clickable" onClick={() => handleTitleClick(id)}>
+                                <h5 className="my-4 clickable" onClick={() => handleTitleClick(id)}>
                                     <i className={`fas fa-caret-${open ? "down" : "right"}`}></i> {title}
                                     {` `}
-                                </h4>
+                                </h5>
                             </div>
                             <div>
                                 <h4>
@@ -41,7 +41,7 @@ function GamesBrowser() {
                         </SmoothCollapse>
                     </div>
                 })}
-            </>
+            </div>
         ))}
     </div>
 }
