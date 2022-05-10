@@ -114,7 +114,7 @@ export default function GenderGame({level, id, link }: { level: 1 | 2, id: strin
             const nounGender: T.Gender = nounNotIn(mascNouns)(question) ? "fem" : "masc";
             const correct = gender === nounGender;
             callback(!correct
-                ? <div className="my-4 text-center">
+                ? <div className="my-2 text-center">
                     <button style={{ background: genderColors[nounGender === "masc" ? "m" : "f"], color: "black" }} className="btn btn-lg" disabled>
                        {nounGender === "masc" ? "Masculine" : "Feminine"}
                     </button>

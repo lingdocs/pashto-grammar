@@ -149,7 +149,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                 />
                 <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>
             </div>}
-            <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 150, zIndex: 500 }} type="confetti">
+            <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 150, zIndex: 999999999 }} type="confetti">
                 <div className="py-3">
                     {finish === undefined &&
                         (current 
@@ -176,7 +176,9 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                         <h4 className="mt-4">{failMessage(current?.progress, finish)}</h4>
                         {typeof finish === "object" && <div>
                             <div>The correct answer was:</div>
-                            {finish?.answer}
+                            <div className="my-2">
+                                {finish?.answer}
+                            </div>
                         </div>}
                         <div className="mt-3">
                             <button className="btn btn-success mr-2" onClick={handleRestart}>Try Again</button>

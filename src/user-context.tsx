@@ -36,7 +36,7 @@ function UserProvider({ children }: any) {
     }).catch(console.error);
   }
 
-  const checkUserCronJob = new CronJob("1/30 * * * * *", () => {
+  const checkUserCronJob = new CronJob("10 * * * *", () => {
     pullUser();
     if (value) {
       postSavedResults(value.userId);

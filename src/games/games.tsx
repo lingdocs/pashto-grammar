@@ -91,6 +91,13 @@ export const equativeGameAllIdentify = makeGameRecord(
     (id, link) => () => <EquativeGame id={id} link={link} level="allIdentify" />,
 );
 
+export const equativeGameSituations = makeGameRecord(
+    "Choose the right equative for the situation",
+    "equative-past-situations",
+    "/equatives/other-equatives",
+    (id, link) => () => <EquativeGame id={id} link={link} level="situations" />,
+);
+
 export const equativeGameAllProduce = makeGameRecord(
     "Write the equative (all tenses)",
     "equative-past-summary-produce",
@@ -117,6 +124,7 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             equativeGamePast,
             equativeGameWouldBe,
             equativeGamePastSubjunctive,
+            equativeGameSituations,
             equativeGameAllIdentify,
             equativeGameAllProduce,
         ],

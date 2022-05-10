@@ -57,13 +57,126 @@ const tenses: T.EquativeTense[] = [
     "present", "habitual", "subjunctive", "future", "past", "wouldBe", "pastSubjunctive",
 ];
 
-const amount = 16;
-const timeLimit = 75;
+type Situation = {
+    description: string | JSX.Element,
+    tense: T.EquativeTense[],
+};
+const situations: Situation[] = [
+    {
+        description: <>A is B, for sure, right now</>,
+        tense: ["present"],
+    },
+    {
+        description: <>A is <em>probably</em> B, right now</>,
+        tense: ["future"],
+    },
+    {
+        description: <>A will be B in the future</>,
+        tense: ["future"],
+    },
+    {
+        description: <>We can assume that A is most likely B</>,
+        tense: ["future"],
+    },
+    {
+        description: <>You <em>know</em> A is B, currently</>,
+        tense: ["present"],
+    },
+    {
+        description: <>A tends to be B</>,
+        tense: ["habitual"],
+    },
+    {
+        description: <>A is usually B</>,
+        tense: ["habitual"],
+    },
+    {
+        description: <>A is generally B</>,
+        tense: ["habitual"],
+    },
+    {
+        description: <>A is B, right now</>,
+        tense: ["present"],
+    },
+    {
+        description: <>A is always B, as a matter of habit</>,
+        tense: ["present"],
+    },
+    {
+        description: "It's a good thing for A to be B",
+        tense: ["subjunctive"],
+    },
+    {
+        description: "A needs to be B (out of obligation/necessity)",
+        tense: ["subjunctive"],
+    },
+    {
+        description: "You hope that A is B",
+        tense: ["subjunctive"],
+    },
+    {
+        description: "You desire A to be B",
+        tense: ["subjunctive"],
+    },
+    {
+        description: "If A is B ...",
+        tense: ["subjunctive"],
+    },
+    {
+        description: "...so that A will be B (a purpose)",
+        tense: ["subjunctive"],
+    },
+    {
+        description: "A was definately B",
+        tense: ["past"],
+    },
+    {
+        description: "A was B",
+        tense: ["past"],
+    },
+    {
+        description: "A was probably B in the past",
+        tense: ["wouldBe"],
+    },
+    {
+        description: "A used to be B (habitually, repeatedly)",
+        tense: ["wouldBe"],
+    },
+    {
+        description: "assume that A would have probably been B",
+        tense: ["wouldBe"],
+    },
+    {
+        description: "under different circumstances, A would have been B",
+        tense: ["wouldBe", "pastSubjunctive"],
+    },
+    {
+        description: "You wish A were B (but it's not)",
+        tense: ["pastSubjunctive"],
+    },
+    {
+        description: "If A were B (but it's not)",
+        tense: ["pastSubjunctive"],
+    },
+    {
+        description: "Aaagh! If only A were B!",
+        tense: ["pastSubjunctive"],
+    },
+    {
+        description: "A should have been B!",
+        tense: ["pastSubjunctive", "wouldBe"],
+    },
+];
+
+const amount = 20;
+const timeLimit = 90;
 
 type Question = {
     EPS: T.EPSelectionComplete,
     phrase: { ps: T.PsString[], e?: string[] },
     equative: T.EquativeRendered,
+} | {
+    situation: Situation,
 };
 
 const pronounTypes = [
@@ -76,12 +189,12 @@ const pronounTypes = [
     [T.Person.ThirdPlurMale, T.Person.ThirdPlurFemale],
 ];
 
-export default function EquativeGame({ id, link, level }: { id: string, link: string, level: T.EquativeTense | "allProduce" | "allIdentify" }) {
+export default function EquativeGame({ id, link, level }: { id: string, link: string, level: T.EquativeTense | "allProduce" | "allIdentify" | "situations" }) {
     function* questions (): Generator<Current<Question>> {
         let pool = [...pronounTypes];
+        let situationPool = [...situations];
         function makeRandPronoun(): T.PronounSelection {
             let person: T.Person;
-            console.log(pool);
             do {
                person = randomPerson();
                // eslint-disable-next-line
@@ -104,7 +217,7 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
                 number: n.numberCanChange ? randFromArray(["singular", "plural"]) : n.number,
             };
         }
-        function makeRandomEPS(): T.EPSelectionComplete {
+        function makeRandomEPS(l: T.EquativeTense | "allIdentify" | "allProduce"): T.EPSelectionComplete {
             const subj = randFromArray([
                 makeRandPronoun,
                 makeRandPronoun,
@@ -112,31 +225,43 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
                 makeRandPronoun,
             ])();
             const pred = randFromArray([...adjectives, ...locAdverbs]);
-            const tense = (level === "allIdentify" || level === "allProduce")
+            const tense = (l === "allIdentify" || l === "allProduce")
                 ? randFromArray(tenses)
-                : level;
+                : l;
             return makeEPS(subj, pred, tense);
         }
         for (let i = 0; i < amount; i++) {
-            const EPS = makeRandomEPS();
-            const EP = renderEP(EPS);
-            const compiled = compileEP(
-                EP,
-                true,
-                level === "allIdentify" ? undefined : { equative: true, kidsSection: true },
-            );
-            const phrase = {
-                ps: compiled.ps,
-                e: level === "allIdentify" ? undefined : compiled.e,
-            };
-            yield {
-                progress: makeProgress(i, amount),
-                question: {
-                    EPS,
-                    phrase,
-                    equative: EP.equative,
-                },
-            };
+            if (level === "situations") {
+                const picked = randFromArray(situationPool);
+                situationPool = situationPool.filter(x => picked.description !== x.description);
+                if (situationPool.length === 0) situationPool = [...situations];
+                yield {
+                    progress: makeProgress(i, amount),
+                    question: {
+                        situation: picked,
+                    },
+                };
+            } else {
+                const EPS = makeRandomEPS(level);
+                const EP = renderEP(EPS);
+                const compiled = compileEP(
+                    EP,
+                    true,
+                    level === "allIdentify" ? undefined : { equative: true, kidsSection: true },
+                );
+                const phrase = {
+                    ps: compiled.ps,
+                    e: level === "allIdentify" ? undefined : compiled.e,
+                };
+                yield {
+                    progress: makeProgress(i, amount),
+                    question: {
+                        EPS,
+                        phrase,
+                        equative: EP.equative,
+                    },
+                };
+            }
         };
     }
 
@@ -148,6 +273,9 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
             setAnswer(value);
         }
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+            if ("situation" in question) {
+                return;
+            }
             e.preventDefault();
             const given = standardizePashto(answer.trim());
             const correct = checkAnswer(given, question.equative.ps)
@@ -158,6 +286,15 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
             callback(!correct ? makeCorrectAnswer(question) : true);
         }
         const handleTenseIdentify = (tense: T.EquativeTense) => {
+            if ("situation" in question) {
+                const wasCorrect = question.situation.tense.includes(tense);
+                if (wasCorrect) {
+                    callback(true);
+                } else {
+                    callback(makeCorrectAnswer(question));
+                }
+                return;
+            }
             const renderedWAnswer = renderEP({
                 ...question.EPS,
                 equative: {
@@ -186,7 +323,7 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
                     ));
                 });
                 callback(<div className="lead">
-                    {makeCorrectTenseAnswer(possibleCorrect)}
+                    {possibleCorrect.map(humanReadableTense).join(" or ")}
                 </div>)
             }
         }
@@ -195,13 +332,15 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
         }, [question]);
         
         return <div>
-            {level === "allIdentify" ?
+            {(level === "allIdentify" || level === "situations") ?
                 <div className="pt-2 pb-1 mb-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
-                    <Examples opts={opts}>
+                    {"situation" in question ? <p className="lead">
+                        {question.situation.description}
+                    </p> : <Examples opts={opts}>
                         {randFromArray(question.phrase.ps)}
-                    </Examples>
+                    </Examples>}
                 </div>
-                : <div className="pt-2 pb-1 mb-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
+                : !("situation" in question) && <div className="pt-2 pb-1 mb-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
                     <Examples opts={opts}>
                         {/* @ts-ignore  TODO: REMOVE AS P_INFLE */}
                         {modExs(question.phrase.ps, withBa)[0]}
@@ -212,9 +351,9 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
                     <div className="lead text-muted">{humanReadableTense(question.EPS.equative.tense)} equative</div>
                 </div>
             }
-            {level === "allIdentify" ? <div className="text-center">
+            {level === "allIdentify" || "situation" in question ? <div className="text-center">
                 <div className="row">
-                    {tenses.map(t => <div className="col" key={t+question.phrase.ps}>
+                    {tenses.map(t => <div className="col" key={Math.random()}>
                         <button
                             style={{ width: "8rem" }}
                             className="btn btn-outline-secondary mb-3"
@@ -265,6 +404,8 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
         return <div>
             {level === "allProduce"
                 ? <p className="lead">Fill in the blank with the correct <strong>{humanReadableTense(level)} equative</strong> <strong>in Pashto script</strong></p>
+                : level === "situations"
+                ? <p className="lead">Choose the right type of equative for each given situation</p>
                 : <p className="lead">Identify a correct tense for each equative phrase you see</p>}
             {level === "allProduce" && <div>⚠ All tenses included...</div>}
         </div>
@@ -280,15 +421,14 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
     />
 };
 
-function makeCorrectTenseAnswer(tenses: T.EquativeTense[]): string {
-    return tenses.reduce((accum, curr, i) => (
-        `${accum}${(i > 0 ? " or " : " ")}'${humanReadableTense(curr)}'`
-    ), "");
-}
-
 function makeCorrectAnswer(question: Question): JSX.Element {
+    if ("situation" in question) {
+        return <div>
+            {question.situation.tense.map(humanReadableTense).join(" or ")}
+        </div>;
+    }
     return <div>
-        <div className="my-2">
+        <div>
             {flattenLengths(question.equative.ps).reduce(((accum, curr, i): JSX.Element[] => (
                 [
                     ...accum,
