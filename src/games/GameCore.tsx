@@ -129,6 +129,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         : typeof finish === "object"
         ? "danger"
         : "primary";
+    const gameRunning = current && finish === undefined;
     return <>
         <div className="text-center" style={{ minHeight: "200px", zIndex: 10, position: "relative" }}>
             <div className="progress" style={{ height: "5px" }}>
@@ -148,7 +149,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                 />
                 <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>
             </div>}
-            <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 125 }} type="confetti">
+            <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 150, zIndex: 500 }} type="confetti">
                 <div className="py-3">
                     {finish === undefined &&
                         (current 
@@ -190,7 +191,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                 </div>
             </Reward>
         </div>
-        {(current && finish === undefined) && <div style={{
+        {gameRunning && <div style={{
             position: "absolute",
             backgroundColor: "rgba(255, 255, 255, 0.3)",
             backdropFilter: "blur(10px)",
