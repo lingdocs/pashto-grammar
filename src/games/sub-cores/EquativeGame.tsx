@@ -49,7 +49,7 @@ const tenses: T.EquativeTense[] = [
     "present", "habitual", "subjunctive", "future", "past", "wouldBe", "pastSubjunctive",
 ];
 
-const amount = 20;
+const amount = 16;
 const timeLimit = 75;
 
 type Question = {
@@ -206,9 +206,10 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
             }
             {level === "allIdentify" ? <div className="text-center">
                 <div className="row">
-                    {tenses.map(t => <div className="col" key={t}>
+                    {tenses.map(t => <div className="col" key={t+question.phrase.ps}>
                         <button
-                            className="btn btn-sm btn-outline-secondary mb-3"
+                            style={{ width: "8rem" }}
+                            className="btn btn-outline-secondary mb-3"
                             onClick={() => handleTenseIdentify(t)}
                         >
                             {humanReadableTense(t)}
