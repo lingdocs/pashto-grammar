@@ -390,7 +390,7 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
                 </div>
                 <div className="text-center my-2">
                     {/* <div> */}
-                        <button className="btn btn-primary" type="submit">check</button>
+                        <button className="btn btn-primary" type="submit">return ↵</button>
                     {/* </div> */}
                     {/* <div className="text-muted small text-center mt-2">
                         Type <kbd>Enter</kbd> to check
@@ -402,11 +402,11 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
     
     function Instructions() {
         return <div>
-            {level === "allProduce"
-                ? <p className="lead">Fill in the blank with the correct <strong>{humanReadableTense(level)} equative</strong> <strong>in Pashto script</strong></p>
+            {level === "allIdentify"
+                ? <p className="lead">Identify a correct tense for each equative phrase you see</p>
                 : level === "situations"
                 ? <p className="lead">Choose the right type of equative for each given situation</p>
-                : <p className="lead">Identify a correct tense for each equative phrase you see</p>}
+                : <p className="lead">Fill in the blank with the correct <strong>{humanReadableTense(level)} equative</strong> <strong>in Pashto script</strong></p>}
             {level === "allProduce" && <div>⚠ All tenses included...</div>}
         </div>
     }
