@@ -17,6 +17,7 @@ import Header from "./components/Header";
 import TableOfContentsPage from "./pages/TableOfContentsPage";
 import AccountPage from "./pages/AccountPage";
 import { useEffect } from "react";
+import { isProd } from "./lib/isProd";
 
 import ReactGA from "react-ga";
 import { useUser } from "./user-context";
@@ -26,9 +27,7 @@ const chapters = content.reduce((chapters, item) => (
     : [...chapters, ...item.chapters]
 ), []);
 
-const prod = document.location.hostname === "grammar.lingdocs.com";
-
-if (prod) {
+if (isProd) {
   ReactGA.initialize("UA-196576671-2");
   ReactGA.set({ anonymizeIp: true });
 }
@@ -37,7 +36,7 @@ function App(props: RouteComponentProps) {
   const [navOpen, setNavOpen] = useState(false);
   const { user } = useUser();
   function logAnalytics() {
-    if (prod && !(user?.admin)) {
+    if (isProd && !(user?.admin)) {
       ReactGA.pageview(window.location.pathname);
     };
   }

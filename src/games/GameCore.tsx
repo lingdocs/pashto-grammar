@@ -19,6 +19,7 @@ import {
     Types,
 } from "@lingdocs/pashto-inflector";
 import ReactGA from "react-ga";
+import { isProd } from "../lib/isProd";
 const errorVibration = 200;
 
 function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, id }:{
@@ -37,14 +38,20 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
     const [questionBox, setQuestionBox] = useState<QuestionGenerator<T>>(questions());
     const [timerKey, setTimerKey] = useState<number>(1);
 
+    function logGameEvent(action: string) {
+        if (isProd && !(user?.admin)) {
+            ReactGA.event({
+                category: "Game",
+                action: `${action} - ${id}`,
+                label: id,
+            });
+        }
+    }
+
     function handleCallback(correct: true | JSX.Element) {
         if (correct === true) handleAdvance();
         else {
-            ReactGA.event({
-                category: "Game",
-                action: "fail on game",
-                label: id,
-            });
+            logGameEvent("fail on game");
             setFinish({ msg: "fail", answer: correct });
             navigator.vibrate(errorVibration);
         }
@@ -73,11 +80,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         }).catch(console.error);
     }
     function handleFinish() {
-        ReactGA.event({
-            category: "Game",
-            action: "passed game",
-            label: id,
-        });
+        logGameEvent("passed game")
         setFinish("pass");
         rewardRef.current?.rewardMe();
         if (!user) return;
@@ -93,11 +96,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         setCurrent(undefined);
     }
     function handleRestart() {
-        ReactGA.event({
-            category: "Game",
-            action: "started game",
-            label: id,
-        });
+        logGameEvent("started game");
         const newQuestionBox = questions();
         const { value } = newQuestionBox.next();
         // just for type safety -- the generator will have at least one question
@@ -108,11 +107,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         setTimerKey(prev => prev + 1);
     }
     function handleTimeOut() {
-        ReactGA.event({
-            category: "Game",
-            action: "timeout on game",
-            label: id,
-        });
+        logGameEvent("timeout on game")
         setFinish("time out");
         navigator.vibrate(errorVibration);
     }
