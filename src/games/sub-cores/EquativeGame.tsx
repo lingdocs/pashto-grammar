@@ -333,22 +333,22 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
         
         return <div>
             {(level === "allIdentify" || level === "situations") ?
-                <div className="pt-2 pb-1 mb-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
+                <div className="mb-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
                     {"situation" in question ? <p className="lead">
                         {question.situation.description}
                     </p> : <Examples opts={opts}>
                         {randFromArray(question.phrase.ps)}
                     </Examples>}
                 </div>
-                : !("situation" in question) && <div className="pt-2 pb-1 mb-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
-                    <Examples opts={opts}>
+                : !("situation" in question) && <div className="mb-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
+                    <Examples lineHeight={1} opts={opts}>
                         {/* @ts-ignore  TODO: REMOVE AS P_INFLE */}
                         {modExs(question.phrase.ps, withBa)[0]}
                     </Examples>
                     {question.phrase.e && question.phrase.e.map((e, i) => (
-                        <div key={e+i} className="text-muted mb-1">{e}</div>
+                        <div key={e+i} className="text-muted">{e}</div>
                     ))}
-                    <div className="lead text-muted">{humanReadableTense(question.EPS.equative.tense)} equative</div>
+                    <div>{humanReadableTense(question.EPS.equative.tense)} equative</div>
                 </div>
             }
             {level === "allIdentify" || "situation" in question ? <div className="text-center">
@@ -376,7 +376,7 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
                         with <InlinePs opts={opts}>{grammarUnits.baParticle}</InlinePs> in the <span style={{ color: kidsColor }}>kids' section</span>
                     </label>
                 </div>
-                <div className="my-3" style={{ maxWidth: "200px", margin: "0 auto" }}>
+                <div className="my-1" style={{ maxWidth: "200px", margin: "0 auto" }}>
                     <input
                         type="text"
                         className="form-control"

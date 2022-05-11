@@ -145,7 +145,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                 <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>
             </div>}
             <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 150, zIndex: 999999999 }} type="confetti">
-                <div className="py-3">
+                <div>
                     {finish === undefined &&
                         (current 
                             ? <div>
