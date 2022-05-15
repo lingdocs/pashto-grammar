@@ -1,4 +1,5 @@
 module.exports = [
+    { ts: 1527815177, e: "father" }, // پلار
     { ts: 1527812432, e: `sky, heaven` }, // آسمان - aasmaan
     { ts: 1527812431, e: `mango` }, // آم - aam
     { ts: 1527812434, e: `sound, voice` }, // آواز - aawaaz

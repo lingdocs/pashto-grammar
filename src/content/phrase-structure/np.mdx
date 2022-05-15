@@ -1,0 +1,226 @@
+---
+title: NPs
+---
+
+import {
+    defaultTextOptions as opts,
+    InlinePs,
+} from "@lingdocs/pashto-inflector";
+import Link from "../../components/Link";
+import PhraseDiagram from "../../components/phrase-diagram/PhraseDiagram";
+import NPPlayground from "../../components/NPPlayground";
+
+👷 * this page is correct, but incomplete - in progress* 🚧
+
+## Basic building blocks
+
+Pashto phrases are built with a few basic ingredients: NPs, APs, Particles, Verbs, Equatives.
+
+<div className="d-flex flex-row justify-content-center">
+    <div className="text-center mr-2">
+        <div className="d-flex justify-content-center align-items-center" style={{
+            border: "2px solid black",
+            height: "3rem",
+            width: "7rem",
+        }}/>
+        <div>AP</div>
+    </div>
+    <div className="text-center mr-2">
+        <div className="d-flex justify-content-center align-items-center" style={{
+            border: "2px solid black",
+            height: "3rem",
+            width: "7rem",
+        }}/>
+        <div>NP</div>
+    </div>
+    <div className="text-center mr-2">
+        <div className="d-flex justify-content-center align-items-center" style={{
+            border: "2px solid black",
+            height: "3rem",
+            width: "7rem",
+        }}/>
+        <div>NP</div>
+    </div>
+    <div className="text-center">
+        <div className="d-flex justify-content-center align-items-center" style={{
+            border: "2px solid black",
+            height: "3rem",
+            width: "7rem",
+        }}/>
+        <div>V</div>
+    </div>
+</div>
+
+In Pashto, it's important to know how these building blocks line up. But first, what is actually inside each of these blocks? Let's take a look at the NP. 
+
+### A Noun Phrase (NP)
+
+A noun phrase (NP) in Pashto is one of the following:
+
+- a noun
+- a pronoun
+- a participle
+
+#### Nouns
+
+A **noun** is a word that we use to identify people, places, things, or ideas. One of these words by itself it forms a NP, one of the basic building blocks.
+
+<PhraseDiagram>{[
+    {
+        type: "NP",
+        block: {
+            type: "noun",
+            entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+            gender: "masc",
+            genderCanChange: false,
+            number: "singular",
+            numberCanChange: true,
+            adjectives: [],
+            possesor: undefined,
+        },
+    },
+]}</PhraseDiagram> 
+
+But we can also **extend our noun by adding *adjectives***. Let's add the *adjective* <InlinePs opts={opts} ps={{ p: "زوړ", f: "zoR", e: "old" }} /> to our NP.
+
+<PhraseDiagram>{[
+    {
+        type: "NP",
+        block: {
+            type: "noun",
+            entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+            gender: "masc",
+            genderCanChange: false,
+            number: "singular",
+            numberCanChange: true,
+            adjectives: [{
+                type: "adjective",
+                entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
+            }],
+            possesor: undefined,
+        },
+    },
+]}</PhraseDiagram>
+
+Now we have two words, but it's still **one NP**, one building block. We can add as many adjectives as we want, and it still stays as one single building block.
+
+<PhraseDiagram>{[
+    {
+        type: "NP",
+        block: {
+            type: "noun",
+            entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+            gender: "masc",
+            genderCanChange: false,
+            number: "singular",
+            numberCanChange: true,
+            adjectives: [
+                {
+                    type: "adjective",
+                    entry: {"ts":1527812625,"i":9119,"p":"غټ","f":"ghuT, ghaT","g":"ghuT,ghaT","e":"big, fat","c":"adj."},
+                },
+                {
+                    type: "adjective",
+                    entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
+                },
+                {
+                    type: "adjective",
+                    entry: {"ts":1578329248464,"i":7542,"p":"سپین","f":"speen","g":"speen","e":"white (fig. clear, honest, beautiful)","c":"adj."},
+                },
+            ],
+            possesor: undefined,
+        },
+    },
+]}</PhraseDiagram>
+
+We can also add a **possesor** by adding another NP <Link to="/sandwiches/sandwiches/">sandwiched</Link> in with a <InlinePs opts={opts} ps={{ p: "د", f: "du", e: "of"}} />. Now we have a NP inside of an NP, but it's still all **one NP** or **one building block**. 
+
+<PhraseDiagram>{[
+    {
+        type: "NP",
+        block: {
+            type: "noun",
+            entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+            gender: "masc",
+            genderCanChange: false,
+            number: "singular",
+            numberCanChange: true,
+            adjectives: [
+                {
+                    type: "adjective",
+                    entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
+                },
+            ],
+            possesor: {
+                shrunken: false,
+                np: {
+                    type: "noun",
+                    entry: {"ts":1527812881,"i":11694,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},
+                    gender: "masc",
+                    genderCanChange: true,
+                    number: "singular",
+                    numberCanChange: true,
+                    adjectives: [],
+                },
+            },
+        },
+    },
+]}</PhraseDiagram>
+
+If we add another noun like this, we can add a possesor to *it*. This is *recursion*! (Nerdy math word 🤓)
+
+<PhraseDiagram>{[
+    {
+        type: "NP",
+        block: {
+            type: "noun",
+            entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+            gender: "masc",
+            genderCanChange: false,
+            number: "singular",
+            numberCanChange: true,
+            adjectives: [
+                {
+                    type: "adjective",
+                    entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
+                },
+            ],
+            possesor: {
+                shrunken: false,
+                np: {
+                    type: "noun",
+                    entry: {"ts":1527812881,"i":11694,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},
+                    gender: "masc",
+                    genderCanChange: true,
+                    number: "singular",
+                    numberCanChange: true,
+                    adjectives: [],
+                    possesor: {
+                        shrunken: false,
+                        np: {
+                            type: "noun",
+                            entry: {"ts":1527815177,"i":2530,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m."},
+                            gender: "masc",
+                            genderCanChange: false,
+                            number: "singular",
+                            numberCanChange: true,
+                            adjectives: [],
+                        },
+                    },
+                },
+            },
+        },
+    },
+]}</PhraseDiagram>
+
+#### Pronouns
+
+coming soon
+
+#### Participles
+
+coming soon
+
+Now try to make your own!
+
+<NPPlayground opts={opts} />

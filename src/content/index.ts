@@ -20,6 +20,9 @@ import * as otherEquatives from "!babel-loader!@lingdocs/mdx-loader!./equatives/
 import * as equativeExplorer from "!babel-loader!@lingdocs/mdx-loader!./equatives/equative-explorer.mdx";
 
 // @ts-ignore
+import * as NPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/np.mdx";
+
+// @ts-ignore
 import * as nounsGender from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-gender.mdx";
 // @ts-ignore
 import * as nounsUnisex from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-unisex.mdx";
@@ -93,6 +96,16 @@ const contentTree = [
     {
         import: intro,
         slug: "intro",
+    },
+    {
+        heading: "Phrase Structure",
+        subdirectory: "phrase-structure",
+        chapters: [
+            {
+                import: NPIntro,
+                slug: "np",
+            },
+        ],
     },
     {
         heading: "Equatives",
