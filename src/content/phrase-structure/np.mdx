@@ -8,15 +8,16 @@ import {
 } from "@lingdocs/pashto-inflector";
 import Link from "../../components/Link";
 import PhraseDiagram from "../../components/phrase-diagram/PhraseDiagram";
+import EditablePhraseDiagram, {
+    EditIcon,
+} from "../../components/phrase-diagram/EditablePhraseDiagram";
 import NPPlayground from "../../components/NPPlayground";
 
 👷 * this page is correct, but incomplete - in progress* 🚧
 
-## Basic building blocks
+Pashto phrases are built with a basic **building blocks** 🧱 like NPs, APs, verbs, and equatives. We can think of phrases in Pashto as a line of blocks like this:
 
-Pashto phrases are built with a few basic ingredients: NPs, APs, Particles, Verbs, Equatives.
-
-<div className="d-flex flex-row justify-content-center">
+<div className="d-flex flex-row justify-content-center mb-4 mt-4">
     <div className="text-center mr-2">
         <div className="d-flex justify-content-center align-items-center" style={{
             border: "2px solid black",
@@ -47,25 +48,54 @@ Pashto phrases are built with a few basic ingredients: NPs, APs, Particles, Verb
             height: "3rem",
             width: "7rem",
         }}/>
-        <div>V</div>
+        <div>Verb</div>
     </div>
 </div>
 
-In Pashto, it's important to know how these building blocks line up. But first, what is actually inside each of these blocks? Let's take a look at the NP. 
+Or like this...
 
-### A Noun Phrase (NP)
+<div className="d-flex flex-row justify-content-center mb-4">
+    <div className="text-center mr-2">
+        <div className="d-flex justify-content-center align-items-center" style={{
+            border: "2px solid black",
+            height: "3rem",
+            width: "7rem",
+        }}/>
+        <div>NP</div>
+    </div>
+    <div className="text-center mr-2">
+        <div className="d-flex justify-content-center align-items-center" style={{
+            border: "2px solid black",
+            height: "3rem",
+            width: "7rem",
+        }}/>
+        <div>NP</div>
+    </div>
+    <div className="text-center">
+        <div className="d-flex justify-content-center align-items-center" style={{
+            border: "2px solid black",
+            height: "3rem",
+            width: "7rem",
+        }}/>
+        <div>Equative</div>
+    </div>
+</div>
 
-A noun phrase (NP) in Pashto is one of the following:
+In Pashto, it's important to know how these building blocks line up. But first, let's look at what these blocks actually are blocks. In this chapter we'll look at the NP. 
+
+## Noun Phrase (NP)
+
+A noun phrase (NP) in Pashto is one of the following three things:
 
 - a noun
 - a pronoun
 - a participle
 
-#### Nouns
+### Noun
 
 A **noun** is a word that we use to identify people, places, things, or ideas. One of these words by itself it forms a NP, one of the basic building blocks.
 
-<PhraseDiagram>{[
+<PhraseDiagram opts={opts}>{[
     {
         type: "NP",
         block: {
@@ -81,9 +111,9 @@ A **noun** is a word that we use to identify people, places, things, or ideas. O
     },
 ]}</PhraseDiagram> 
 
-But we can also **extend our noun by adding *adjectives***. Let's add the *adjective* <InlinePs opts={opts} ps={{ p: "زوړ", f: "zoR", e: "old" }} /> to our NP.
+We can also **extend our noun by adding *adjectives***. Let's add the *adjective* <InlinePs opts={opts} ps={{ p: "زوړ", f: "zoR", e: "old" }} /> to our NP.
 
-<PhraseDiagram>{[
+<PhraseDiagram opts={opts}>{[
     {
         type: "NP",
         block: {
@@ -102,9 +132,9 @@ But we can also **extend our noun by adding *adjectives***. Let's add the *adjec
     },
 ]}</PhraseDiagram>
 
-Now we have two words, but it's still **one NP**, one building block. We can add as many adjectives as we want, and it still stays as one single building block.
+Now we have two words, but it's still **one NP**, one building block. We can add as many adjectives as we want, and it still stays as one single building block. Click on the <EditIcon /> icon below to try adding or removing more adjectives.
 
-<PhraseDiagram>{[
+<EditablePhraseDiagram opts={opts}>{[
     {
         type: "NP",
         block: {
@@ -131,11 +161,11 @@ Now we have two words, but it's still **one NP**, one building block. We can add
             possesor: undefined,
         },
     },
-]}</PhraseDiagram>
+]}</EditablePhraseDiagram>
 
 We can also add a **possesor** by adding another NP <Link to="/sandwiches/sandwiches/">sandwiched</Link> in with a <InlinePs opts={opts} ps={{ p: "د", f: "du", e: "of"}} />. Now we have a NP inside of an NP, but it's still all **one NP** or **one building block**. 
 
-<PhraseDiagram>{[
+<EditablePhraseDiagram opts={opts}>{[
     {
         type: "NP",
         block: {
@@ -165,11 +195,11 @@ We can also add a **possesor** by adding another NP <Link to="/sandwiches/sandwi
             },
         },
     },
-]}</PhraseDiagram>
+]}</EditablePhraseDiagram>
 
-If we add another noun like this, we can add a possesor to *it*. This is *recursion*! (Nerdy math word 🤓)
+If our possesor is a noun, we can add a possesor to *it*. Try clicking the <EditIcon /> icon below and adding possesors to the possesors, you can go forever! 🤯
 
-<PhraseDiagram>{[
+<EditablePhraseDiagram opts={opts}>{[
     {
         type: "NP",
         block: {
@@ -211,16 +241,30 @@ If we add another noun like this, we can add a possesor to *it*. This is *recurs
             },
         },
     },
-]}</PhraseDiagram>
+]}</EditablePhraseDiagram>
 
-#### Pronouns
+A possesor can have another possesor which can have another posseser and so-on and on *forever*. The nerdy word for this phenomenon where things reference/repeat themselves is called [recursion](https://en.wikipedia.org/wiki/Recursion). 🤓
+
+<details>
+    <summary>Click here for another example of what <strong>recursion</strong> looks like</summary>
+    <div style={{ width: "100%", height:0, paddingBottom: "51%", position: "relative" }}>
+        <iframe src="https://giphy.com/embed/5xtDarxMlfVnrjN4MyQ" width="100%" height="100%" style={{ position: "absolute" }} frameBorder="0" class="giphy-embed"></iframe>
+    </div>
+    <p className="mt-1">The starbucks cup has a picture of a starbucks cup, which has a picture of a starbucks cup which has a...</p>
+</details>
+
+**So in summary:** 👨🏻‍🏫 
+
+A noun is one of three starting points for making an NP. When you start with a noun you can add adjectives and a possesor to it. (The possesor is another NP, which you can keep building on in the same way.)
+
+### Pronoun
 
 coming soon
 
-#### Participles
+### Participle
 
 coming soon
 
-Now try to make your own!
+Now try to make your own from scratch!
 
 <NPPlayground opts={opts} />

@@ -98,7 +98,7 @@ const contentTree = [
         slug: "intro",
     },
     {
-        heading: "Phrase Structure",
+        heading: "Phrase Structure 🧱",
         subdirectory: "phrase-structure",
         chapters: [
             {

@@ -6,10 +6,11 @@ import entryFeeder from "../lib/entry-feeder";
 import { useState } from "react";
 import PhraseDiagram from "./phrase-diagram/PhraseDiagram";
 
-function NPPlayground({ opts }: {
+function NPPlayground({ opts, npIn }: {
     opts: T.TextOptions,
+    npIn: T.NPSelection | undefined,
 }) {
-    const [np, setNp] = useState<T.NPSelection | undefined>(undefined);
+    const [np, setNp] = useState<T.NPSelection | undefined>(npIn);
     return <div className="d-flex flex-column align-items-center">
         <div style={{ maxWidth: "225px", marginBottom: "2rem" }}>
             <NPPicker
