@@ -9,11 +9,13 @@ function PhraseDiagram({ opts, children }: {
     opts: T.TextOptions,
     children: BlockInput[]
 }) {
-    return <div className="d-flex flex-row justify-content-center flex-wrap">
-        {children.map((block) => (
-            <Block key={Math.random()} opts={opts}>{block}</Block>
-        ))}
-    </div>;
+    return <div style={{ overflowX: "auto" }}>
+            <div className="d-flex flex-row justify-content-center flex-wrap">
+            {children.map((block) => (
+                <Block key={Math.random()} opts={opts}>{block}</Block>
+            ))}
+        </div>
+    </div>
 }
 
 function Block({ opts, children }: {
@@ -45,7 +47,7 @@ function NP({ opts, children, inside }: {
             <Adjectives opts={opts}>{np.adjectives}</Adjectives>
             <div> {np.ps[0].f}</div>
         </div>
-        <div>NP</div>
+        <div className={inside ? "small" : ""}>NP</div>
     </div>
 }
 
