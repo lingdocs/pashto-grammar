@@ -13,7 +13,7 @@ function NPPlayground({ opts, npIn }: {
     const [np, setNp] = useState<T.NPSelection | undefined>(npIn);
     console.log({ np });
     return <div className="d-flex flex-column align-items-center">
-        <div style={{ maxWidth: "225px", marginBottom: "2rem", overflowX: "auto" }}>
+        <div style={{ maxWidth: "225px", marginBottom: "2rem" }}>
             <NPPicker
                 opts={opts}
                 np={np}

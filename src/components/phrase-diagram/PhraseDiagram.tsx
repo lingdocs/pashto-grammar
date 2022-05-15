@@ -9,7 +9,7 @@ function PhraseDiagram({ opts, children }: {
     opts: T.TextOptions,
     children: BlockInput[]
 }) {
-    return <div style={{ width: "100%", overflowX: "visible" }}>
+    return <div>
          <div className="d-flex flex-row justify-content-center" style={{ maxWidth: "100%" }}>
             {children.map((block) => (
                 <Block key={Math.random()} opts={opts}>{block}</Block>
