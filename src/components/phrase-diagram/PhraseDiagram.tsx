@@ -9,13 +9,13 @@ function PhraseDiagram({ opts, children }: {
     opts: T.TextOptions,
     children: BlockInput[]
 }) {
-    return <div style={{ overflowX: "auto" }}>
-            <div className="d-flex flex-row justify-content-center flex-wrap">
+    return <div style={{ width: "100%", overflowX: "visible" }}>
+         <div className="d-flex flex-row justify-content-center" style={{ maxWidth: "100%" }}>
             {children.map((block) => (
                 <Block key={Math.random()} opts={opts}>{block}</Block>
             ))}
         </div>
-    </div>
+    </div>;
 }
 
 function Block({ opts, children }: {
@@ -26,28 +26,38 @@ function Block({ opts, children }: {
     const rendered = renderNPSelection(children.block, false, false, "subject", "none");
     const english = getEnglishFromRendered(rendered)
     return <div className="text-center mb-2">
-        <NP opts={opts}>{rendered}</NP>
-        {english && <div className="small text-muted">{english}</div>}
+        <NP opts={opts} english={english}>{rendered}</NP>
     </div>;
 }
 
-function NP({ opts, children, inside }: {
+function NP({ opts, children, inside, english }: {
     opts: T.TextOptions,
     children: T.Rendered<T.NPSelection>,
     inside?: boolean,
+    english?: string,
 }) {
     const np = children;
+    const hasPossesor = !!(np.type !== "pronoun" && np.possesor);
     return <div>
-        <div className="d-flex justify-content-center align-items-center" style={{
-            border: "2px solid black",
-            padding: inside ? "0.3rem" : "1rem",
-            textAlign: "center",
-        }}>
+        <div 
+            className={classNames("d-flex flex-row justify-content-center align-items-center", { "pt-2": !inside && hasPossesor })}
+            style={{
+                border: "2px solid black",
+                padding: inside ? "0.3rem" : hasPossesor ? "0.5rem 1rem 0.25rem 1rem" : "1rem",
+                textAlign: "center",
+            }}
+        >
             {!inside && <Possesors opts={opts}>{np.type !== "pronoun" ? np.possesor : undefined}</Possesors>}
             <Adjectives opts={opts}>{np.adjectives}</Adjectives>
             <div> {np.ps[0].f}</div>
         </div>
         <div className={inside ? "small" : ""}>NP</div>
+        {english && <div className="small text-muted text-center" style={{
+            // TODO: find a better way to keep this limited to the width of the div above
+            // don't let this make the div above expand
+            margin: "0 auto",
+            maxWidth: "300px",
+        }}>{english}</div>}
     </div>
 }
 
@@ -58,12 +68,10 @@ function Possesors({ opts, children }: {
     if (!children) {
         return null;
     }
-    const hasPossesor = !!(children.np.type !== "pronoun" && children.np.possesor);
     const contraction = checkForContraction(children.np);
     return <div className="d-flex flex-row mr-1 align-items-end" style={{
         marginBottom: "0.5rem",
         borderBottom: "1px solid grey",
-        marginTop: hasPossesor ? "0.5rem" : "",
     }}>
         {children.np.type !== "pronoun" && <Possesors opts={opts}>{children.np.possesor}</Possesors>}
         <div>
