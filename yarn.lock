@@ -1638,16 +1638,19 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@lingdocs/lingdocs-main@^0.2.5":
-  version "0.2.5"
-  resolved "https://npm.lingdocs.com/@lingdocs%2flingdocs-main/-/lingdocs-main-0.2.5.tgz#435f2f1f8557ffc3aedcead2e7c0c9855b2e8699"
-  integrity sha512-+Ee+4L1MjaML3DZUmw6BHSj4Pm2HtkBOjK+ZRwOkWSgz4q3tyQxvBVizpsNas6MxvTT0VamVbJHiE6PVrFKWeQ==
+"@lingdocs/lingdocs-main@^0.3.1":
+  version "0.3.1"
+  resolved "https://npm.lingdocs.com/@lingdocs%2flingdocs-main/-/lingdocs-main-0.3.1.tgz#b09b2d5e1881ee09db136618e28b7777471b66f6"
+  integrity sha512-TN8sAACCIjnGMFFYvkIp/tVis9z+LevasZrdG9VUrZlaNJ4U8GjbmgLeaY8VthwtivL+pFR1Gtp8BUb5ceeccw==
   dependencies:
-    "@lingdocs/pashto-inflector" "^1.4.4"
+    "@lingdocs/pashto-inflector" "^2.5.5"
+    lokijs "^1.5.12"
     nano "^9.0.5"
     passport-github2 "^0.1.12"
     passport-google-oauth "^2.0.0"
     passport-twitter "^1.0.4"
+    relevancy "^0.2.0"
+    supermemo "^2.0.17"
 
 "@lingdocs/mdx-loader@^0.0.8":
   version "0.0.8"
@@ -1674,16 +1677,6 @@
     typographic-en-dashes "^1.0.1"
     typographic-quotes "^1.2.1"
     unist-util-visit "^1.4.0"
-
-"@lingdocs/pashto-inflector@^1.4.4":
-  version "1.9.9"
-  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-1.9.9.tgz#1882a52a9b6284dd67b6af3c7b0faecec8474b19"
-  integrity sha512-Ml1tOIM7Fa8zLkpQjBDSxBZG4ge9cizef0VI4AcSwORKXaHmnhji22VLO/a+qq3Uy0fti8DMnVFBDtc5unwKVA==
-  dependencies:
-    classnames "^2.2.6"
-    pbf "^3.2.1"
-    rambda "^6.7.0"
-    react-select "^5.2.2"
 
 "@lingdocs/pashto-inflector@^2.5.5":
   version "2.5.5"
@@ -10720,6 +10713,11 @@ relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
+relevancy@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/relevancy/-/relevancy-0.2.0.tgz#230600b24b465f26055e23730a1378b6f329cedb"
+  integrity sha1-IwYAsktGXyYFXiNzChN4tvMpzts=
+
 remark-footnotes@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/remark-footnotes/-/remark-footnotes-2.0.0.tgz#9001c4c2ffebba55695d2dd80ffb8b82f7e6303f"
@@ -11941,6 +11939,11 @@ stylis@^4.0.10:
   version "4.0.10"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.0.10.tgz#446512d1097197ab3f02fb3c258358c3f7a14240"
   integrity sha512-m3k+dk7QeJw660eIKRRn3xPF6uuvHs/FFzjX3HQ5ove0qYsiygoAhwn5a3IYKaZPo5LrYD0rfVmtv1gNY1uYwg==
+
+supermemo@^2.0.17:
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/supermemo/-/supermemo-2.0.17.tgz#03341ccd1bb824a3726111e7818092e98acff99f"
+  integrity sha512-c/BMAkG+IDYtAP1AR97DVU4x4gs8vfvLA4ejND7lHKdzjaAWwxixtcZjnQNfcyAKfZn2ovIYKJAGpTG45dr8ug==
 
 supports-color@^5.3.0:
   version "5.5.0"

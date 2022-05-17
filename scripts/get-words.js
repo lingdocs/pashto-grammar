@@ -1,6 +1,6 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
-const { readDictionary } = require("@lingdocs/pashto-inflector");
+// const { readDictionary } = require("@lingdocs/pashto-inflector");
 const path = require("path");
 const wordsPath = path.join(".", "src", "words");
 const wordsFile = "raw-words.ts";
@@ -27,9 +27,8 @@ const allAdverbTsS = adverbTsFiles.flatMap(fileName => [
 
 console.log("getting words from dictionary...");
 
-fetch(process.env.LINGDOCS_DICTIONARY_URL).then(res => res.arrayBuffer()).then(buffer => {
-  const dictionary = readDictionary(buffer);
-  const entries = dictionary.entries;
+fetch(process.env.LINGDOCS_DICTIONARY_URL + ".json").then(res => res.json()).then(data => {
+  const { entries } = data;
   // MAKE VERBS FILE
   const allWords = [
       ...getVerbsFromTsS(entries),

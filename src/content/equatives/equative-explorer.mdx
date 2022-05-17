@@ -1,16 +1,11 @@
 ---
 title: Equative Explorer 🌎
+fullWidth: true
 ---
 
 import {
-    EPExplorer,
-    defaultTextOptions,    
+    defaultTextOptions,   
 } from "@lingdocs/pashto-inflector";
-import entryFeeder from "../../lib/entry-feeder";
+import EPBuilder from "../../components/EPBuilder";
 
-<div className="mb-4">
-    <EPExplorer
-        entryFeeder={entryFeeder}
-        opts={defaultTextOptions}
-    />
-</div>
+<EPBuilder opts={defaultTextOptions} />
