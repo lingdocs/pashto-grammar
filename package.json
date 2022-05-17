@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@lingdocs/lingdocs-main": "^0.2.0",
+    "@lingdocs/lingdocs-main": "^0.2.7",
     "@lingdocs/pashto-inflector": "^2.5.5",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -14,6 +14,7 @@
     "bootstrap": "4.5.3",
     "classnames": "^2.3.1",
     "cron": "^1.8.2",
+    "lokijs": "^1.5.12",
     "markdown-to-jsx": "^7.1.3",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.4",
