@@ -38,7 +38,11 @@ import GameDisplay from "../../games/GameDisplay";
 
 ## Subjunctive Equative
 
-The subjunctive equative is used to talk about something being something when the statement involves a hypothetical condition, a wish, desire, hope, or statement of whether it should or shouldn't be, as in:
+The subjunctive equative is used to talk about something being something when the statement involves:
+- a hypothetical condition
+- a wish, desire, hope
+- a purpose
+- statement of whether it should or shouldn't be
 
 <Examples opts={opts}>{[
     psmd({
@@ -253,7 +257,7 @@ It is usually used in the short form.
     opts={opts}
 />
 
-#### Examples
+### Examples
 
 <Examples opts={opts}>{psmd([
     {
@@ -287,7 +291,11 @@ It is usually used in the short form.
 
 ## "Would be" Equative
 
-This is used to presume something about the past, to talk about something being something habitually/repeatedly in past, or to talk about the outcomes of hypothetical conditions.
+This is used to:
+- say A was B habitually/repeatedly in past
+- to presume or guess about A being B in the past
+- or to talk about the outcome of hypothetical conditions
+- to say that A should have been B
 
 Like the <Link to="#past-equative">past equative</Link> that it's based on, it's usually used with the short form.
 
@@ -370,7 +378,13 @@ Like the <Link to="#past-equative">past equative</Link> that it's based on, it's
 
 ## Past Subjunctive
 
-This is used to talk about something being hypothetically something, or to wish that something were something. ("If I was ...", "If only I was ..."). It is also used for prayers and blessings in some dialects.
+This is used to talk about:
+
+- If A were hypothetically B but it isn't
+    - also if A *had been* hypothetically B, but it isn't
+- If you wish A were B
+- If A should have been B
+- In prayers and blessings (in some dialects)
 
 Because this is based on the the non-inflecting tail, *it doesn't change at all, no matter what the subject is*.
 
@@ -410,7 +424,7 @@ export function WithTailChoice() {
                     },
                     pure: {
                         displayForm: waay,
-                    }
+                    },
                 }}
                 opts={opts}
             />
@@ -420,16 +434,15 @@ export function WithTailChoice() {
 
 <WithTailChoice />
 
+### Examples
+
+#### If A were B 
+
 <Examples opts={opts}>{psmd([
     {
-        p: "**کاشکې ته دلته **وای!",
-        f: "kaashke tu dălta **waay**!",
-        e: "If only you were here!",
-    },
-    {
-        p: "که زه ستا پلار نه **وای**...",
-        f: "ku zu staa plaar nu **waay**...",
-        e: "If I wasn't your father...",
+        p: "که زه ستا پر ځای **وای**",
+        f: "ku zu staa pur dzaay **waay**",
+        e: "If I **were** in your place",
     },
     {
         p: "که مونږ خبر **وای**، نه راتلو.",
@@ -438,4 +451,55 @@ export function WithTailChoice() {
     },
 ])}</Examples>
 
+#### You wish A were B
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "**کاشکې ته دلته **وای!",
+        f: "kaashke tu dălta **waay**!",
+        e: "If only you were here!",
+    },
+])}</Examples>
+
+#### A should have been B
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "د باید دلته **وای**!",
+        f: "tu baayad dălta **waay**!",
+        e: "You should have been here!",
+    },
+])}</Examples>
+
+
 <GameDisplay record={equativeGamePastSubjunctive} />
+
+## Overview
+
+#### Present Equative
+- A is B currently
+- A is B categorically, definately
+
+#### Habitual Equative
+- A is B habitually, repeatedly, generally
+- A tends to be B
+
+#### Subjunctive Equative
+- One desires or wants A to be B
+- A should/must be B (judgement)
+- If/it's possible that A is B
+- ...so that A is B (purpose)
+
+#### Future Equative
+- A will be B
+- presuming or guessing that A will be B
+
+#### Past Equative
+- A was B
+- (if) A turns out to be B
+
+#### "Would be" Equative
+- A was B habitually
+- Presuming or guessing that A was B
+- A would have been B (as the result of a hypothetical outcome)
+- A should have been B
