@@ -168,7 +168,7 @@ const situations: Situation[] = [
     },
 ];
 
-const amount = 20;
+const amount = 17;
 const timeLimit = 90;
 
 type Question = {
