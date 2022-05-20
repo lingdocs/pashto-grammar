@@ -1690,6 +1690,18 @@
     rambda "^6.7.0"
     react-select "^5.2.2"
 
+"@lingdocs/pashto-inflector@^2.5.6":
+  version "2.5.6"
+  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-2.5.6.tgz#bfb6ea8e968e8a03d7ba7ed5e00acc2c0af88182"
+  integrity sha512-3Z7rmhaPXsIbQCkJC5T2x+TQnXk4PTPprxrx/qTd6MC5TnBoXVCkxBXz8lUVdbzJKNiSuNKceMS14aq5dKNIsA==
+  dependencies:
+    classnames "^2.2.6"
+    jsurl2 "^2.1.0"
+    lz-string "^1.4.4"
+    pbf "^3.2.1"
+    rambda "^6.7.0"
+    react-select "^5.2.2"
+
 "@mdx-js/mdx@^0.15.5":
   version "0.15.7"
   resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-0.15.7.tgz#5fde5841d7b6f4c78f80c19fff559532af5ce5ad"
