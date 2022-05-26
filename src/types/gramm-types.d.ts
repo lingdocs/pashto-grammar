@@ -4,4 +4,10 @@ type Pronoun = {
     person: import("@lingdocs/pashto-inflector").Types.Person,
 };
 
-type BlockInput = { type: "NP", block: T.NPSelection };
+type BlockInput = {
+    type: "NP",
+    block: import("@lingdocs/pashto-inflector").Types.NPSelection,
+} | {
+    type: "AP",
+    block: import("@lingdocs/pashto-inflector").Types.APSelection,
+};

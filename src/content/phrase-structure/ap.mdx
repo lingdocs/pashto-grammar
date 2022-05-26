@@ -2,4 +2,48 @@
 title: APs
 ---
 
-AP page here
+import {
+    defaultTextOptions as opts,
+    InlinePs,
+    Examples,
+} from "@lingdocs/pashto-inflector";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+import EditablePhraseDiagram, {
+    EditIcon,
+} from "../../components/phrase-diagram/EditablePhraseDiagram";
+
+Another building block we have in Pashto phrases in the **AP (Adverb Phrase)**. Adverb Phrases are used to give more information about the phrase in terms of time, manner, place, degree, etc.
+
+An AP is either:
+
+- an adverb, or
+- a sandwich
+
+### Adverb
+
+An adverb is a word or expression that modifies the time, manner, place, etc. of a phrase.
+
+<EditablePhraseDiagram opts={opts}>{[
+    {
+        type: "AP",
+        block: {
+            type: "adverb",
+            entry: {"ts":1527815160,"i":2394,"p":"پرون","f":"paroon","g":"paroon","e":"yesterday","c":"adv."},
+        },
+    },
+]}</EditablePhraseDiagram>
+
+<EditablePhraseDiagram opts={opts}>{[
+    {
+        type: "AP",
+        block: {
+            type: "adverb",
+            entry: {"ts":1527819967,"i":5428,"p":"خامخا","f":"khaamakhaa","g":"khaamakhaa","e":"definitely, for sure, whether someone wants or not, willy-nilly (this last use more in Urdu)","c":"adv."},
+        },
+    },
+]}</EditablePhraseDiagram>
+
+### Sandwich
+
+Coming soon...

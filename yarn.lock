@@ -1695,13 +1695,12 @@
     rambda "^6.7.0"
     react-select "^5.2.2"
 
-"@lingdocs/pashto-inflector@^2.6.2":
-  version "2.6.2"
-  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-2.6.2.tgz#41c6a18a67aa9dff8ade2fd49ad8b27d04ecb4f8"
-  integrity sha512-GSiJ7FFoDEDIfDcPv10SienHYQr/8lRmBP6fbwDV2vFVf9vJ4+nywuhFmU0JuBL2HILG/e6CQ3tvQZvoquopCg==
+"@lingdocs/pashto-inflector@^2.6.4":
+  version "2.6.5"
+  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-2.6.5.tgz#9cd8efd14d48d0a9aa9ff8439b2bdc135a855f57"
+  integrity sha512-y1prO4ASg1P2v5960twoYD2NOfN4P6vc9cM2/QqMIHQX7TkXwzFnjKKu9MD3dCOH0FPOv1V6NAEgbBMJGJa1Pw==
   dependencies:
     "@formkit/auto-animate" "^1.0.0-beta.1"
-    assert-never "^1.2.1"
     classnames "^2.2.6"
     jsurl2 "^2.1.0"
     lz-string "^1.4.4"
@@ -2929,11 +2928,6 @@ asn1@~0.2.3:
   integrity sha512-jxwzQpLQjSmWXgwaCZE9Nz+glAG01yF1QnWgbhGwHI5A6FRIEY6IVqtHhIepHqI7/kyEyQEagBC5mBEFlIYvdg==
   dependencies:
     safer-buffer "~2.1.0"
-
-assert-never@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/assert-never/-/assert-never-1.2.1.tgz#11f0e363bf146205fb08193b5c7b90f4d1cf44fe"
-  integrity sha512-TaTivMB6pYI1kXwrFlEhLeGfOqoDNdTxjCdwRfFFkEA30Eu+k48W34nlok2EYWJfFFzqaEmichdNM7th6M5HNw==
 
 assert-plus@1.0.0, assert-plus@^1.0.0:
   version "1.0.0"

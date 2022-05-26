@@ -1,9 +1,16 @@
 import {
     Types as T,
+    NPPicker,
+    APPicker,
 } from "@lingdocs/pashto-inflector";
+import {
+    useEffect,
+    useRef,
+} from "react";
 import { useState } from "react";
 import PhraseDiagram from "./PhraseDiagram";
-import NPPlayground from "../NPPlayground";
+import entryFeeder from "../../lib/entry-feeder";
+import autoAnimate from "@formkit/auto-animate";
 
 export function EditIcon() {
     return <i className="fas fa-edit" />;
@@ -13,19 +20,64 @@ function EditablePhraseDiagram({ opts, children }: {
     opts: T.TextOptions,
     children: BlockInput[],
 }) {
-    const np = children[0].block;
+    const block = children[0];
+    const parent = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        parent.current && autoAnimate(parent.current)
+    }, [parent]);
     const [editing, setEditing] = useState<boolean>(false);
+    const [edited, setEdited] = useState<{
+        type: "NP",
+        block: T.NPSelection | undefined,
+    } | {
+        type: "AP",
+        block: T.APSelection | undefined,
+    }>(block);
     if (children.length === 0) return null;
+    function handleNPChange(np: T.NPSelection | undefined) {
+        setEdited({ type: "NP", block: np });
+    }
+    function handleAPChange(ap: T.APSelection | undefined) {
+        setEdited({ type: "AP", block: ap });
+    }
+    function handleReset() {
+        setEdited(block);
+        setEditing(false);
+    }
     return <div>
-        <div className="text-right clickable" onClick={() => setEditing(e => !e)}>
+        <div
+            className="text-right clickable"
+            onClick={editing ? handleReset : () => setEditing(true)}
+        >
             {!editing ? <EditIcon /> : <i className="fas fa-undo" />}
         </div>
-        <div>
-            {editing
-                ? <NPPlayground opts={opts} npIn={np} />
-                : <PhraseDiagram opts={opts}>{[
-                    { type: "NP", block: np },
-                ]}</PhraseDiagram>}
+        <div ref={parent} className="d-flex flex-column align-items-center">
+            {editing && <div style={{ maxWidth: "225px", marginBottom: "2rem" }}>
+                {edited.type === "NP"
+                    ? <NPPicker
+                        opts={opts}
+                        np={edited.block}
+                        onChange={handleNPChange}
+                        entryFeeder={entryFeeder}
+                        role="subject"
+                        counterPart={undefined}
+                        phraseIsComplete={false}
+                    />
+                    : <APPicker
+                        opts={opts}
+                        AP={edited.block}
+                        onChange={handleAPChange}
+                        entryFeeder={entryFeeder}
+                        phraseIsComplete={false}
+                        cantClear
+                        onRemove={() => null}
+                    />
+                }
+            </div>}
+            {edited.block
+                && <PhraseDiagram opts={opts}>
+                    {[edited] as BlockInput[]}
+                </PhraseDiagram>}
         </div>
     </div>;
 }

@@ -21,6 +21,8 @@ import * as equativeExplorer from "!babel-loader!@lingdocs/mdx-loader!./equative
 
 // @ts-ignore
 import * as NPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/np.mdx";
+// @ts-ignore
+import * as APIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/ap.mdx";
 
 // @ts-ignore
 import * as nounsGender from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-gender.mdx";
@@ -104,6 +106,10 @@ const contentTree = [
             {
                 import: NPIntro,
                 slug: "np",
+            },
+            {
+                import: APIntro,
+                slug: "ap",
             },
         ],
     },

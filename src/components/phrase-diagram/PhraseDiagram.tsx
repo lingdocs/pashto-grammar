@@ -2,6 +2,7 @@ import {
     renderNPSelection,
     Types as T,
     getEnglishFromRendered,
+    renderAPSelection,
 } from "@lingdocs/pashto-inflector";
 import classNames from "classnames";
 
@@ -22,11 +23,49 @@ function Block({ opts, children }: {
     opts: T.TextOptions,
     children: BlockInput,
 }) {
-    // const possesor = children.block.possesor;
-    const rendered = renderNPSelection(children.block, false, false, "subject", "none");
+    if (children.type === "NP") {
+        const rendered = renderNPSelection(children.block, false, false, "subject", "none");
+        const english = getEnglishFromRendered(rendered)
+        return <div className="text-center mb-2">
+            <NP opts={opts} english={english}>{rendered}</NP>
+        </div>;
+    }
+    const rendered = renderAPSelection(children.block);
     const english = getEnglishFromRendered(rendered)
     return <div className="text-center mb-2">
-        <NP opts={opts} english={english}>{rendered}</NP>
+        <AP opts={opts} english={english}>{rendered}</AP>
+    </div>;
+}
+
+function AP({ opts, children, english }: {
+    opts: T.TextOptions,
+    children: T.Rendered<T.APSelection>,
+    english?: string,
+}) {
+    const ap = children;
+    if (ap.type === "adverb") {
+        return <div>
+            <div 
+                className={classNames("d-flex flex-row justify-content-center align-items-center")}
+                style={{
+                    border: "2px solid black",
+                    padding: "1rem",
+                    textAlign: "center",
+                }}
+            >
+                {ap.ps[0].f}
+            </div>
+            <div>AP</div>
+            {english && <div className="small text-muted text-center" style={{
+                // TODO: find a better way to keep this limited to the width of the div above
+                // don't let this make the div above expand
+                margin: "0 auto",
+                maxWidth: "300px",
+            }}>{english}</div>}
+        </div>;
+    }
+    return <div>
+        Will implement sandwich
     </div>;
 }
 
