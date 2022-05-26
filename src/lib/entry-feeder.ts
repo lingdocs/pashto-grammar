@@ -4,6 +4,7 @@ import {
     verbs,
     adjectives,
     locativeAdverbs,
+    adverbs,
 } from "../words/words";
 
 const entryFeeder: T.EntryFeeder = {
@@ -11,6 +12,7 @@ const entryFeeder: T.EntryFeeder = {
     verbs,
     adjectives,
     locativeAdverbs,
+    adverbs,
 }
 
 export default entryFeeder;

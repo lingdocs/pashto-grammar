@@ -474,12 +474,21 @@ function checkAnswer(given: string, answer: T.SingleOrLengthOpts<T.PsString[]>):
 
 function makeEPS(subject: T.NPSelection, predicate: T.AdjectiveEntry | T.LocativeAdverbEntry, tense: T.EquativeTense): T.EPSelectionComplete {
     return {
-        subject,
+        blocks: [
+            {
+                key: Math.random(),
+                block: {
+                    type: "subjectSelection",
+                    selection: subject,
+                },
+            },
+        ],
         predicate: {
             type: "Complement",
             selection: tp.isAdjectiveEntry(predicate) ? {
                 type: "adjective",
                 entry: predicate,
+                sandwich: undefined,
             } : {
                 type: "loc. adv.",
                 entry: predicate,

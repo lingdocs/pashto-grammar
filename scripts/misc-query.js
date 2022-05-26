@@ -54,7 +54,7 @@ const pChars = [
 fetch(process.env.LINGDOCS_DICTIONARY_URL + ".json").then(res => res.json()).then(data => {
   const { entries } = data;
   const filtered = shuffle(entries.filter(e => (
-    e.c?.includes("loc. adv.")
+    e.c?.includes("adv.")
   )));
   const content = `module.exports = [
 ${filtered.reduce((text, entry) => (

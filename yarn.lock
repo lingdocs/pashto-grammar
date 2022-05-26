@@ -1403,6 +1403,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@formkit/auto-animate@^1.0.0-beta.1":
+  version "1.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@formkit/auto-animate/-/auto-animate-1.0.0-beta.1.tgz#aec5fd2ea5e499ceb7eb117c7fd1217a7f100748"
+  integrity sha512-I3OWOBaPZKSJL4bsooXI8kC3q7bcgibD2oML0P/Lir6MnbvUe/0/7EH8br024juvM/Ulm9C9xGx9CJUQYrOWSA==
+
 "@fortawesome/fontawesome-free@^5.15.4":
   version "5.15.4"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.4.tgz#ecda5712b61ac852c760d8b3c79c96adca5554e5"
@@ -1690,11 +1695,13 @@
     rambda "^6.7.0"
     react-select "^5.2.2"
 
-"@lingdocs/pashto-inflector@^2.5.7":
-  version "2.5.7"
-  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-2.5.7.tgz#4ffcf4af0803a9e36f21c7be0abe33990bfde829"
-  integrity sha512-yYmqZ917SkURD4Vgl/cplxpOREQnuqws0iLlpXxVg14NYX6JCtHaNejJLTuXN5TO0WXxogQYQ8mUlQ5XjXwHJw==
+"@lingdocs/pashto-inflector@^2.6.2":
+  version "2.6.2"
+  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-2.6.2.tgz#41c6a18a67aa9dff8ade2fd49ad8b27d04ecb4f8"
+  integrity sha512-GSiJ7FFoDEDIfDcPv10SienHYQr/8lRmBP6fbwDV2vFVf9vJ4+nywuhFmU0JuBL2HILG/e6CQ3tvQZvoquopCg==
   dependencies:
+    "@formkit/auto-animate" "^1.0.0-beta.1"
+    assert-never "^1.2.1"
     classnames "^2.2.6"
     jsurl2 "^2.1.0"
     lz-string "^1.4.4"
@@ -2922,6 +2929,11 @@ asn1@~0.2.3:
   integrity sha512-jxwzQpLQjSmWXgwaCZE9Nz+glAG01yF1QnWgbhGwHI5A6FRIEY6IVqtHhIepHqI7/kyEyQEagBC5mBEFlIYvdg==
   dependencies:
     safer-buffer "~2.1.0"
+
+assert-never@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/assert-never/-/assert-never-1.2.1.tgz#11f0e363bf146205fb08193b5c7b90f4d1cf44fe"
+  integrity sha512-TaTivMB6pYI1kXwrFlEhLeGfOqoDNdTxjCdwRfFFkEA30Eu+k48W34nlok2EYWJfFFzqaEmichdNM7th6M5HNw==
 
 assert-plus@1.0.0, assert-plus@^1.0.0:
   version "1.0.0"

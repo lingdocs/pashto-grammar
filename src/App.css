@@ -96,6 +96,11 @@
     }
 }
 
+.block-card {
+    background: #fafafa;
+    border-color: #555;
+}
+
 .link-unstyled a {
     color: inherit;
     text-decoration: none;
