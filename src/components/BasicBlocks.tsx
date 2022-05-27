@@ -1,6 +1,7 @@
-function KidsSectionIllustration({ blocks, showKidsSection }: {
-    blocks: ("NP" | "AP" | "comp." | "verb" | "equative")[],
+function BasicBlocks({ blocks, showKidsSection, large }: {
+    blocks: (string | { top?: string | JSX.Element, inside?: string | JSX.Element, bottom?: string | JSX.Element })[],
     showKidsSection?: boolean,
+    large?: boolean,
 }) {
     return <div className="d-flex flex-row justify-content-center">
         <div>
@@ -20,15 +21,21 @@ function KidsSectionIllustration({ blocks, showKidsSection }: {
                     </div>
                 </div>
             </div>}
-            <div className="d-flex flex-row justify-content-center mb-4">
+            <div className="d-flex flex-row justify-content-center mb-4 align-items-end">
                 {blocks.map((block, i) => (
                     <div className="text-center mr-2" key={`blockr-${i}`}>
-                        <div style={{
-                            border: "2px solid black",
-                            height: "2.5rem",
-                            width: "4rem",
-                        }}/>
-                        <div>{block}</div>
+                        <div>{typeof block === "object" ? block.top : <div></div>}</div>
+                        <div
+                            className="d-flex flex-row justify-content-center align-items-center"
+                            style={{
+                                border: "2px solid black",
+                                height: large ? "2.75rem" : "2.5rem",
+                                width: large ? "4.5rem" : "4rem",
+                            }}
+                        >
+                            {(typeof block === "object" && block.inside) ? block.inside : ""}
+                        </div>
+                        <div>{typeof block === "object" ? block.bottom : block}</div>
                     </div>
                 ))}
             </div>
@@ -36,4 +43,4 @@ function KidsSectionIllustration({ blocks, showKidsSection }: {
     </div>;
 }
 
-export default KidsSectionIllustration;
+export default BasicBlocks;

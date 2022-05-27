@@ -35,6 +35,8 @@ import * as NPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/
 // @ts-ignore
 import * as APIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/ap.mdx";
 // @ts-ignore
+import * as EPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/ep.mdx";
+// @ts-ignore
 import * as KidsSection from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/kids-section.mdx";
 
 // @ts-ignore
@@ -160,6 +162,10 @@ const contentTree = [
             {
                 import: APIntro,
                 slug: "ap",
+            },
+            {
+                import: EPIntro,
+                slug: "ep",
             },
             {
                 import: KidsSection,

@@ -9,26 +9,26 @@ import {
 } from "@lingdocs/pashto-inflector";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
-import KidsSectionIllustration from "../../components/KidsSectionIllustration";
+import BasicBlocks from "../../components/BasicBlocks";
 import EditablePhraseDiagram, {
     EditIcon,
 } from "../../components/phrase-diagram/EditablePhraseDiagram";
 
 Pashto phrases are built with **blocks** that are <Link to="/phrase-structure/np/">NPs</Link>, <Link to="/phrase-structure/ap/">APs</Link>, or complements, with a verb or equative at the end. Here are some examples of what the phrases can look like.
 
-<KidsSectionIllustration blocks={["NP", "Comp.", "Equative"]} />
-<KidsSectionIllustration blocks={["AP", "NP", "NP", "Equative"]} />
-<KidsSectionIllustration blocks={["NP", "Comp.", "Equative"]} />
-<KidsSectionIllustration blocks={["Verb"]} />
-<KidsSectionIllustration blocks={["NP", "NP", "Equative"]} />
+<BasicBlocks blocks={["NP", "Comp.", "Equative"]} />
+<BasicBlocks blocks={["AP", "NP", "NP", "Equative"]} />
+<BasicBlocks blocks={["NP", "Comp.", "Equative"]} />
+<BasicBlocks blocks={["Verb"]} />
+<BasicBlocks blocks={["NP", "NP", "Equative"]} />
 
 **After the first block** in a phrase comes a special place that we'll call the **kids' section**.
 
-<KidsSectionIllustration showKidsSection blocks={["NP", "Comp.", "Equative"]} />
-<KidsSectionIllustration showKidsSection blocks={["AP", "NP", "NP", "Equative"]} />
-<KidsSectionIllustration showKidsSection blocks={["NP", "Comp.", "Equative"]} />
-<KidsSectionIllustration showKidsSection blocks={["Verb"]} />
-<KidsSectionIllustration showKidsSection blocks={["NP", "NP", "Equative"]} />
+<BasicBlocks showKidsSection blocks={["NP", "Comp.", "Equative"]} />
+<BasicBlocks showKidsSection blocks={["AP", "NP", "NP", "Equative"]} />
+<BasicBlocks showKidsSection blocks={["NP", "Comp.", "Equative"]} />
+<BasicBlocks showKidsSection blocks={["Verb"]} />
+<BasicBlocks showKidsSection blocks={["NP", "NP", "Equative"]} />
 
 In Pashto we have a bunch of little words that we will treat like little **children**.
 
