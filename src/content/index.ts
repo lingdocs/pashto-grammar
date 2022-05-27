@@ -20,11 +20,6 @@ import * as otherEquatives from "!babel-loader!@lingdocs/mdx-loader!./equatives/
 import * as equativeExplorer from "!babel-loader!@lingdocs/mdx-loader!./equatives/equative-explorer.mdx";
 
 // @ts-ignore
-import * as NPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/np.mdx";
-// @ts-ignore
-import * as APIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/ap.mdx";
-
-// @ts-ignore
 import * as nounsGender from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-gender.mdx";
 // @ts-ignore
 import * as nounsUnisex from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-unisex.mdx";
@@ -34,6 +29,11 @@ import * as nounsPlural from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-p
 import * as arabicPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/arabic-plurals.mdx";
 // @ts-ignore
 import * as bundledPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/bundled-plurals.mdx";
+
+// @ts-ignore
+import * as NPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/np.mdx";
+// @ts-ignore
+import * as APIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/ap.mdx";
 
 // @ts-ignore
 import * as verbAspect from "!babel-loader!@lingdocs/mdx-loader!./verbs/verb-aspect.mdx";
@@ -100,20 +100,6 @@ const contentTree = [
         slug: "intro",
     },
     {
-        heading: "Phrase Structure 🧱",
-        subdirectory: "phrase-structure",
-        chapters: [
-            {
-                import: NPIntro,
-                slug: "np",
-            },
-            {
-                import: APIntro,
-                slug: "ap",
-            },
-        ],
-    },
-    {
         heading: "Equatives",
         subdirectory: "equatives",
         chapters: [
@@ -158,6 +144,20 @@ const contentTree = [
             {
                 import: bundledPlurals,
                 sluge: "bundled-plurals",
+            },
+        ],
+    },
+    {
+        heading: "Phrase Structure 🧱",
+        subdirectory: "phrase-structure",
+        chapters: [
+            {
+                import: NPIntro,
+                slug: "np",
+            },
+            {
+                import: APIntro,
+                slug: "ap",
             },
         ],
     },
