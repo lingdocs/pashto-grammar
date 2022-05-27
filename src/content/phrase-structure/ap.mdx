@@ -6,6 +6,7 @@ import {
     defaultTextOptions as opts,
     InlinePs,
     Examples,
+    makeNounSelection,
 } from "@lingdocs/pashto-inflector";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
@@ -44,6 +45,129 @@ An adverb is a word or expression that modifies the time, manner, place, etc. of
     },
 ]}</EditablePhraseDiagram>
 
-### Sandwich
+### Sandwich 🥪
 
-Coming soon...
+In English we have have [prepositions](https://en.wikipedia.org/wiki/Preposition_and_postposition) like "with", "at", "towards", "under" that we put *in front* of nouns. Other langagues have [prepositions](https://en.wikipedia.org/wiki/Preposition_and_postposition) that you add to the *end* of nouns. In Pashto we have [adpostions](https://en.wikipedia.org/wiki/Preposition_and_postposition), which are little sets of words that go *in front and behind* nouns. Sometimes they only go on one side, and sometimes they surround the word on both sides. Because of this we'll call them **sandwiches**.
+
+These "sandwiches" are also used as an adverb to give more information for the phrase. They take an <Link to="/phrase-structure/np/">NP</Link> in the middle. For example if we want to say "in the house" we take the sandwich <InlinePs opts={opts} ps={{ p: "په ... کې", f: "pu ... ke", e: "in" }} /> and put the NP <InlinePs opts={opts} ps={{ p: "کور", f: "kor", e: "house" }} /> inside of it.
+
+<EditablePhraseDiagram opts={opts}>{[
+    {
+        type: "AP",
+        block: {
+            type: "sandwich",
+            before: { p: "په", f: "pu" },
+            after: { p: "کې", f: "ke" },
+            e: "in",
+            inside: {
+                type: "noun",
+                entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [],
+                possesor: undefined,
+            },
+        },
+    },
+]}</EditablePhraseDiagram>
+
+Because the inside of a sandwich is an <Link to="/phrase-structure/np/">NP</Link> we can also spice it up by adding adjectives.
+
+<EditablePhraseDiagram opts={opts}>{[
+    {
+        type: "AP",
+        block: {
+            type: "sandwich",
+            before: { p: "په", f: "pu" },
+            after: { p: "کې", f: "ke" },
+            e: "in",
+            inside: {
+                type: "noun",
+                entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [{
+                    type: "adjective",
+                    entry: {"ts":1527812625,"i":9128,"p":"غټ","f":"ghuT, ghaT","g":"ghuT,ghaT","e":"big, fat","c":"adj."},
+                }],
+                possesor: undefined,
+            },
+        },
+    },
+]}</EditablePhraseDiagram>
+
+We can also add a possesor it hangs outside of the sandwich. All together it's still all considered one AP block though.
+
+<EditablePhraseDiagram opts={opts}>{[
+    {
+        type: "AP",
+        block: {
+            type: "sandwich",
+            before: { p: "په", f: "pu" },
+            after: { p: "کې", f: "ke" },
+            e: "in",
+            inside: {
+                type: "noun",
+                entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [{
+                    type: "adjective",
+                    entry: {"ts":1527812625,"i":9128,"p":"غټ","f":"ghuT, ghaT","g":"ghuT,ghaT","e":"big, fat","c":"adj."},
+                }],
+                possesor: {
+                    shrunken: false,
+                    np: {
+                        type: "noun",
+                        entry: {"ts":1527815251,"i":7802,"p":"سړی","f":"saRéy","g":"saRey","e":"man","c":"n. m.","ec":"man","ep":"men"},
+                        gender: "masc",
+                        genderCanChange: false,
+                        number: "singular",
+                        numberCanChange: true,
+                        adjectives: [],
+                        possesor: undefined,
+                    },
+                },
+            },
+        },
+    },
+]}</EditablePhraseDiagram>
+
+Here's another example using the sandwich <InlinePs opts={opts} ps={{ p: "سره", f: "sara", e: "with" }} />:
+
+<EditablePhraseDiagram opts={opts}>{[
+    {
+        type: "AP",
+        block: {
+            type: "sandwich",
+            before: { p: "له", f: "la" },
+            after: { p: "سره", f: "sara" },
+            e: "with",
+            inside: {
+                type: "noun",
+                entry: {"ts":1527814159,"i":12723,"p":"ملګری","f":"malgúrey","g":"malgurey","e":"friend, companion","c":"n. m. anim. unisex"},
+                gender: "masc",
+                genderCanChange: true,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [],
+                possesor: {
+                    shrunken: false,
+                    np: {
+                        type: "pronoun",
+                        distance: "far",
+                        person: 0,
+                    },
+                },
+            },
+        },
+    },
+]}</EditablePhraseDiagram>
+
+Notice how when we put the word <InlinePs opts={opts} ps={{ p: "ملګری", f: "malgúrey", e: "friend" }} /> inside the sandwich it <Link to="/inflection/inflection-intro/">inflects</Link>. You <strong>always inflect the inside of the sandwich</strong> except for <Link to="/inflection/inflection-patterns/#exceptions">two exceptions</Link>.

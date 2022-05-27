@@ -1695,7 +1695,7 @@
     rambda "^6.7.0"
     react-select "^5.2.2"
 
-"@lingdocs/pashto-inflector@^2.6.4":
+"@lingdocs/pashto-inflector@^2.6.5":
   version "2.6.5"
   resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-2.6.5.tgz#9cd8efd14d48d0a9aa9ff8439b2bdc135a855f57"
   integrity sha512-y1prO4ASg1P2v5960twoYD2NOfN4P6vc9cM2/QqMIHQX7TkXwzFnjKKu9MD3dCOH0FPOv1V6NAEgbBMJGJa1Pw==

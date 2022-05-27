@@ -65,7 +65,31 @@ function AP({ opts, children, english }: {
         </div>;
     }
     return <div>
-        Will implement sandwich
+        <div className="text-center">Sandwich 🥪</div>
+        <div 
+            className={classNames("d-flex flex-row justify-content-center align-items-center")}
+            style={{
+                border: "2px solid black",
+                padding: "0.75rem 0.5rem 0.25rem 0.5rem",
+                textAlign: "center",
+            }}
+        >
+            <div className="d-flex flex-row justify-content-between align-items-end">
+                <Possesors opts={opts}>{ap.inside.type !== "pronoun" ? ap.inside.possesor : undefined}</Possesors>
+                <div className="mr-2 ml-1 mb-1"><strong>{ap.before ? ap.before.f : ""}</strong></div>
+                <div>
+                    <NP opts={opts} inside>{ap.inside}</NP>
+                </div>
+                <div className="ml-2 mr-1 mb-1"><strong>{ap.after ? ap.after.f : ""}</strong></div>
+            </div>
+        </div>
+        <div>AP</div>
+        {english && <div className="small text-muted text-center" style={{
+            // TODO: find a better way to keep this limited to the width of the div above
+            // don't let this make the div above expand
+            margin: "0 auto",
+            maxWidth: "300px",
+        }}>{english}</div>}
     </div>;
 }
 

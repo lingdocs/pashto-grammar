@@ -33,6 +33,7 @@ function EditablePhraseDiagram({ opts, children }: {
         type: "AP",
         block: T.APSelection | undefined,
     }>(block);
+    console.log({ block });
     if (children.length === 0) return null;
     function handleNPChange(np: T.NPSelection | undefined) {
         setEdited({ type: "NP", block: np });
@@ -69,7 +70,6 @@ function EditablePhraseDiagram({ opts, children }: {
                         onChange={handleAPChange}
                         entryFeeder={entryFeeder}
                         phraseIsComplete={false}
-                        cantClear
                         onRemove={() => null}
                     />
                 }
