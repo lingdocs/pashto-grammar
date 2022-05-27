@@ -34,6 +34,8 @@ import * as bundledPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/bund
 import * as NPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/np.mdx";
 // @ts-ignore
 import * as APIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/ap.mdx";
+// @ts-ignore
+import * as KidsSection from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/kids-section.mdx";
 
 // @ts-ignore
 import * as verbAspect from "!babel-loader!@lingdocs/mdx-loader!./verbs/verb-aspect.mdx";
@@ -158,6 +160,10 @@ const contentTree = [
             {
                 import: APIntro,
                 slug: "ap",
+            },
+            {
+                import: KidsSection,
+                slug: "kids-section",
             },
         ],
     },

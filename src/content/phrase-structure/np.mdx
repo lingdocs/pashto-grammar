@@ -12,73 +12,16 @@ import Link from "../../components/Link";
 import EditablePhraseDiagram, {
     EditIcon,
 } from "../../components/phrase-diagram/EditablePhraseDiagram";
-// import NPPlayground from "../../components/NPPlayground";
+import KidsSectionIllustration from "../../components/KidsSectionIllustration";
 
 Pashto phrases are built with a basic **building blocks** 🧱 like NPs, APs, verbs, and equatives. We can think of phrases in Pashto as a line of blocks like this:
 
-<div className="d-flex flex-row justify-content-center mb-4 mt-4">
-    <div className="text-center mr-2">
-        <div className="d-flex justify-content-center align-items-center" style={{
-            border: "2px solid black",
-            height: "2.5rem",
-            width: "4rem",
-        }}/>
-        <div>AP</div>
-    </div>
-    <div className="text-center mr-2">
-        <div className="d-flex justify-content-center align-items-center" style={{
-            border: "2px solid black",
-            height: "2.5rem",
-            width: "4rem",
-        }}/>
-        <div>NP</div>
-    </div>
-    <div className="text-center mr-2">
-        <div className="d-flex justify-content-center align-items-center" style={{
-            border: "2px solid black",
-            height: "2.5rem",
-            width: "4rem",
-        }}/>
-        <div>NP</div>
-    </div>
-    <div className="text-center">
-        <div className="d-flex justify-content-center align-items-center" style={{
-            border: "2px solid black",
-            height: "2.5rem",
-            width: "4rem",
-        }}/>
-        <div>Verb</div>
-    </div>
-</div>
+<KidsSectionIllustration blocks={["AP", "NP", "NP", "Verb"]} />
 
 Or like this...
 
-<div className="d-flex flex-row justify-content-center mb-4">
-    <div className="text-center mr-2">
-        <div className="d-flex justify-content-center align-items-center" style={{
-            border: "2px solid black",
-            height: "2.5rem",
-            width: "4rem",
-        }}/>
-        <div>NP</div>
-    </div>
-    <div className="text-center mr-2">
-        <div className="d-flex justify-content-center align-items-center" style={{
-            border: "2px solid black",
-            height: "2.5rem",
-            width: "4rem",
-        }}/>
-        <div>NP</div>
-    </div>
-    <div className="text-center">
-        <div className="d-flex justify-content-center align-items-center" style={{
-            border: "2px solid black",
-            height: "2.5rem",
-            width: "4rem",
-        }}/>
-        <div>Equative</div>
-    </div>
-</div>
+<KidsSectionIllustration blocks={["NP", "NP", "Equative"]} />
+
 
 In Pashto, it's important to know how these building blocks line up. But first, let's look at what these blocks actually are. In this chapter we'll look at the NP. 
 

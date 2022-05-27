@@ -1,0 +1,54 @@
+---
+title: The Kids' Section 👦
+---
+
+import {
+    defaultTextOptions as opts,
+    InlinePs,
+    Examples,
+} from "@lingdocs/pashto-inflector";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+import KidsSectionIllustration from "../../components/KidsSectionIllustration";
+import EditablePhraseDiagram, {
+    EditIcon,
+} from "../../components/phrase-diagram/EditablePhraseDiagram";
+
+Pashto phrases are built with **blocks** that are <Link to="/phrase-structure/np/">NPs</Link>, <Link to="/phrase-structure/ap/">APs</Link>, or complements, with a verb or equative at the end. Here are some examples of what the phrases can look like.
+
+<KidsSectionIllustration blocks={["NP", "Comp.", "Equative"]} />
+<KidsSectionIllustration blocks={["AP", "NP", "NP", "Equative"]} />
+<KidsSectionIllustration blocks={["NP", "Comp.", "Equative"]} />
+<KidsSectionIllustration blocks={["Verb"]} />
+<KidsSectionIllustration blocks={["NP", "NP", "Equative"]} />
+
+**After the first block** in a phrase comes a special place that we'll call the **kids' section**.
+
+<KidsSectionIllustration showKidsSection blocks={["NP", "Comp.", "Equative"]} />
+<KidsSectionIllustration showKidsSection blocks={["AP", "NP", "NP", "Equative"]} />
+<KidsSectionIllustration showKidsSection blocks={["NP", "Comp.", "Equative"]} />
+<KidsSectionIllustration showKidsSection blocks={["Verb"]} />
+<KidsSectionIllustration showKidsSection blocks={["NP", "NP", "Equative"]} />
+
+In Pashto we have a bunch of little words that we will treat like little **children**.
+
+<ul>
+    <li>The emphatic <InlinePs opts={opts} ps={{ p: "خو", f: "kho" }} /> particle</li> 
+    <li>The <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> particle</li>
+    <li><Link to="/pronouns/pronouns-mini/">Mini-pronouns</Link>:</li>
+    <ul>
+        <li><InlinePs opts={opts} ps={{ p: "مې", f: "me", e: "1st pers sing" }} /></li> 
+        <li><InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "2nd pers sing" }} /></li>  
+        <li><InlinePs opts={opts} ps={{ p: "مو", f: "mU", e: "1st/2nd pers plur" }} /></li> 
+        <li><InlinePs opts={opts} ps={{ p: "یې", f: "ye", e: "3rd pers" }} /></li>
+    </ul>
+    <li>The jussive <InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "may" }} /></li>
+</ul>
+
+These little words/particles can't run around anywhere in the sentence. **They have to stay in the kids' section**. They're not allowed to go anywhere else! 🙅‍♂️
+
+Also like well behaved children, these little words have to line up in the right order. There are a few rules for the *inside the kids' seciton*.
+ - They need to follow the order of the list above
+ - The <Link to="/pronouns/pronouns-mini/">mini-pronouns</Link> need to line up in order of 1st, 2nd, and 3rd person
+ - You can't have duplicate mini-pronouns like <InlinePs opts={opts} ps={{ p: "یې یې", f: "ye ye" }} />
+
