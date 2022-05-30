@@ -22,6 +22,8 @@ import ReactGA from "react-ga";
 import { isProd } from "../lib/isProd";
 const errorVibration = 200;
 
+const maxStrikes = 2;
+
 function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, id }:{
     id: string,
     studyLink: string,
@@ -34,6 +36,8 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
     const rewardRef = useRef<RewardElement | null>(null);
     const { user, pullUser, setUser } = useUser();
     const [finish, setFinish] = useState<undefined | "pass" | { msg: "fail", answer: JSX.Element } | "time out">(undefined);
+    const [strikes, setStrikes] = useState<number>(0);
+    const [justStruck, setJustStruck] = useState<boolean>(false);
     const [current, setCurrent] = useState<Current<T> | undefined>(undefined);
     const [questionBox, setQuestionBox] = useState<QuestionGenerator<T>>(questions());
     const [timerKey, setTimerKey] = useState<number>(1);
@@ -50,13 +54,18 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
 
     function handleCallback(correct: true | JSX.Element) {
         if (correct === true) handleAdvance();
-        else {
+        else if (strikes < maxStrikes) {
+            navigator.vibrate(errorVibration);
+            setStrikes(s => s + 1);
+            setJustStruck(false);
+        } else {
             logGameEvent("fail on game");
             setFinish({ msg: "fail", answer: correct });
             navigator.vibrate(errorVibration);
         }
     }
     function handleAdvance() {
+        setJustStruck(false);
         const next = questionBox.next();
         if (next.done) handleFinish();
         else setCurrent(next.value);
@@ -130,6 +139,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
             <div className="progress" style={{ height: "5px" }}>
                 <div className={`progress-bar bg-${progressColor}`} role="progressbar" style={{ width: getProgressWidth() }} />
             </div>
+            <div>Strikes: {strikes}</div>
             {current && <div className="d-flex flex-row-reverse mt-2">
                 <CountdownCircleTimer
                     key={timerKey}
@@ -144,6 +154,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                 />
                 <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>
             </div>}
+            <div>OOPS, NOT QUITE - TRY AGAIN</div>
             <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 150, zIndex: 999999999 }} type="confetti">
                 <div>
                     {finish === undefined &&
