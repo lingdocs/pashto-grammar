@@ -1,6 +1,10 @@
 import {
     removeAccents,
     hasAccents,
+    Types as T,
+    standardizePashto,
+    standardizePhonetics,
+    flattenLengths,
 } from "@lingdocs/pashto-inflector";
 
 export function makeRandomQs<Q>(
@@ -40,4 +44,15 @@ export function makeProgress(i: number, total: number): Progress {
  */
 export function compareF(input: string, answer: string): boolean {
     return input === (hasAccents(input) ? answer : removeAccents(answer));
+}
+
+export function comparePs(input: string, answer: T.SingleOrLengthOpts<T.PsString | T.PsString[]>): boolean {
+    if ("long" in answer) {
+        return comparePs(input, flattenLengths(answer))
+    }
+    if (Array.isArray(answer)) {
+        return answer.some(a => comparePs(input, a));
+    }
+    const stand = standardizePhonetics(standardizePashto(input)).trim();
+    return stand === answer.p || compareF(stand, answer.f);
 }

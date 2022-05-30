@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
     makeProgress,
-    compareF,
+    comparePs,
 } from "../../lib/game-utils";
 import genderColors from "../../lib/gender-colors";
 import GameCore from "../GameCore";
@@ -10,7 +10,6 @@ import {
     Examples,
     defaultTextOptions as opts,
     inflectWord,
-    standardizePashto,
     firstVariation,
     typePredicates as tp,
     randFromArray,
@@ -76,12 +75,9 @@ export default function UnisexNounGame({ id, link }: { id: string, link: string 
         }
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            const given = standardizePashto(answer.trim());
             // @ts-ignore
             const correctAnswer = inflections[flipGender(question.gender)][0];
-            const correct = correctAnswer.some((ps: T.PsString) => (
-                (given === ps.p) || compareF(given, ps.f)
-            ));
+            const correct = comparePs(answer, correctAnswer);
             if (correct) {
                 setAnswer("");
             }

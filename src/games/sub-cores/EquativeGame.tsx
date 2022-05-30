@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+    comparePs,
     makeProgress,
 } from "../../lib/game-utils";
 import GameCore from "../GameCore";
@@ -7,7 +8,6 @@ import {
     Types as T,
     Examples,
     defaultTextOptions as opts,
-    standardizePashto,
     typePredicates as tp,
     makeNounSelection,
     randFromArray,
@@ -277,9 +277,8 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
                 return;
             }
             e.preventDefault();
-            const given = standardizePashto(answer.trim());
-            const correct = checkAnswer(given, question.equative.ps)
-                && withBa === question.equative.hasBa;
+            const correct = comparePs(answer, question.equative.ps)
+                && (withBa === question.equative.hasBa);
             if (correct) {
                 setAnswer("");
             }
@@ -465,11 +464,6 @@ function humanReadableTense(tense: T.EquativeTense | "allProduce"): string {
         : tense === "wouldBe"
         ? `"would be"`
         : tense;
-}
-
-function checkAnswer(given: string, answer: T.SingleOrLengthOpts<T.PsString[]>): boolean {
-    const possible = flattenLengths(answer);
-    return possible.some(x => given === x.p);
 }
 
 function makeEPS(subject: T.NPSelection, predicate: T.AdjectiveEntry | T.LocativeAdverbEntry, tense: T.EquativeTense): T.EPSelectionComplete {
