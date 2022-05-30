@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import Reward, { RewardElement } from 'react-rewards';
 import Link from "../components/Link";
@@ -16,10 +16,12 @@ import {
     getTimestamp,
 } from "@lingdocs/lingdocs-main";
 import {
+    randFromArray,
     Types,
 } from "@lingdocs/pashto-inflector";
 import ReactGA from "react-ga";
 import { isProd } from "../lib/isProd";
+import autoAnimate from "@formkit/auto-animate";
 const errorVibration = 200;
 
 const maxStrikes = 2;
@@ -34,6 +36,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
 }) {
     // TODO: report pass with id to user info
     const rewardRef = useRef<RewardElement | null>(null);
+    const parent = useRef<HTMLDivElement | null>(null);
     const { user, pullUser, setUser } = useUser();
     const [finish, setFinish] = useState<undefined | "pass" | { msg: "fail", answer: JSX.Element } | "time out">(undefined);
     const [strikes, setStrikes] = useState<number>(0);
@@ -41,6 +44,9 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
     const [current, setCurrent] = useState<Current<T> | undefined>(undefined);
     const [questionBox, setQuestionBox] = useState<QuestionGenerator<T>>(questions());
     const [timerKey, setTimerKey] = useState<number>(1);
+    useEffect(() => {
+        parent.current && autoAnimate(parent.current)
+    }, [parent]);
 
     function logGameEvent(action: string) {
         if (isProd && !(user?.admin)) {
@@ -53,15 +59,17 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
     }
 
     function handleCallback(correct: true | JSX.Element) {
-        if (correct === true) handleAdvance();
-        else if (strikes < maxStrikes) {
-            navigator.vibrate(errorVibration);
-            setStrikes(s => s + 1);
-            setJustStruck(false);
+        if (correct === true) {
+            handleAdvance();
+            return;
+        }
+        setStrikes(s => s + 1);
+        navigator.vibrate(errorVibration);
+        if (strikes < maxStrikes) {
+            setJustStruck(true);
         } else {
             logGameEvent("fail on game");
             setFinish({ msg: "fail", answer: correct });
-            navigator.vibrate(errorVibration);
         }
     }
     function handleAdvance() {
@@ -111,6 +119,8 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         // just for type safety -- the generator will have at least one question
         if (!value) return;
         setQuestionBox(newQuestionBox);
+        setJustStruck(false);
+        setStrikes(0);
         setFinish(undefined);
         setCurrent(value);
         setTimerKey(prev => prev + 1);
@@ -139,22 +149,28 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
             <div className="progress" style={{ height: "5px" }}>
                 <div className={`progress-bar bg-${progressColor}`} role="progressbar" style={{ width: getProgressWidth() }} />
             </div>
-            <div>Strikes: {strikes}</div>
-            {current && <div className="d-flex flex-row-reverse mt-2">
-                <CountdownCircleTimer
-                    key={timerKey}
-                    isPlaying={!!current && !finish}
-                    size={30}
-                    colors={["#555555", "#F7B801", "#A30000"]}
-                    colorsTime={[timeLimit, timeLimit*0.33, 0]}
-                    strokeWidth={4}
-                    strokeLinecap="square"
-                    duration={timeLimit}
-                    onComplete={handleTimeOut}
-                />
-                <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>
+            {current && <div className="d-flex flex-row justify-content-between mt-2">
+                <StrikesDisplay strikes={strikes} />
+                <div className="d-flex flex-row-reverse">
+                    <CountdownCircleTimer
+                        key={timerKey}
+                        isPlaying={!!current && !finish}
+                        size={30}
+                        colors={["#555555", "#F7B801", "#A30000"]}
+                        colorsTime={[timeLimit, timeLimit*0.33, 0]}
+                        strokeWidth={4}
+                        strokeLinecap="square"
+                        duration={timeLimit}
+                        onComplete={handleTimeOut}
+                    />
+                    <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>
+                </div>
             </div>}
-            <div>OOPS, NOT QUITE - TRY AGAIN</div>
+            <div ref={parent}>
+                {justStruck && <div className="alert alert-warning my-2" role="alert" style={{ maxWidth: "300px", margin: "0 auto" }}>
+                    {getStrikeMessage()}
+                </div>}
+            </div>
             <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 150, zIndex: 999999999 }} type="confetti">
                 <div>
                     {finish === undefined &&
@@ -210,6 +226,22 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
             zIndex: 6,
         }}></div>}
     </>;
+}
+
+function StrikesDisplay({ strikes }: { strikes: number }) {
+    return <div>
+        {[...Array(strikes)].map(_ => <span key={Math.random()} className="mr-2">❌</span>)}
+    </div>;
+}
+
+function getStrikeMessage() {
+    return randFromArray([
+        "Not quite! Try again.",
+        "No sorry, try again",
+        "Umm, no, try again",
+        "Try again",
+        "Oooooooo, sorry no...",
+    ]);
 }
 
 function failMessage(progress: Progress | undefined, finish: "time out" | { msg: "fail", answer: JSX.Element }): string {

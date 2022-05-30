@@ -168,8 +168,8 @@ const situations: Situation[] = [
     },
 ];
 
-const amount = 17;
-const timeLimit = 90;
+const amount = 15;
+const timeLimit = 100;
 
 type Question = {
     EPS: T.EPSelectionComplete,
