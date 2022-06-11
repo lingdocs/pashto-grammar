@@ -11,7 +11,7 @@ import {
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import EquativeIllustration from "../../components/EquativeIllustration";
-import EditableEPEx from "../../components/phrase-diagram/EditableEPEx";
+import EditableEPEx, { EditIcon } from "../../components/phrase-diagram/EditableEPEx";
 import BasicBlocks from "../../components/BasicBlocks"
 
 
@@ -55,7 +55,7 @@ An **EP complement** is one of four things:
 - sandwich
 - complement noun
 
-Let's look at some examples using each of these kinds of complements.
+Let's look at some examples using each of these kinds of complements. Click on the <i className="fas fa-cubes" /> to see how the phrase in divided into blocks and click on the <EditIcon /> to change things and play around with the phrase.
 
 #### With an adjective
 
@@ -83,6 +83,8 @@ A location adverb is a word that describes the location of the subject. Don't wo
 
 #### With a sandwich
 
+You can also use any kind of sandwich to describe the subject of an EP.
+
 <EditableEPEx opts={opts}>{
     {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"predicate":{"type":"Complement","Complement":{"type":"EQComp","selection":{"type":"sandwich","before":{"p":"له","f":"la"},"after":{"p":"سره","f":"sara"},"e":"with","inside":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
 }</EditableEPEx>
@@ -91,8 +93,9 @@ A location adverb is a word that describes the location of the subject. Don't wo
     {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}}],"predicate":{"type":"Complement","Complement":{"type":"EQComp","selection":{"type":"sandwich","before":{"p":"په","f":"pu"},"after":{"p":"کې","f":"ke"},"e":"in","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812828,"i":10540,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
 }</EditableEPEx>
 
-
 #### With a complement noun
+
+COMING SOON...
 
 ## 2. NP + NP
 
@@ -102,3 +105,22 @@ A location adverb is a word that describes the location of the subject. Don't wo
     { bottom: "Equative", inside: "=" },
 ]} />
 
+Sometimes you need to say that an <Link to="/phrase-structure/np/">NP</Link> is an <Link to="/phrase-structure/np/">NP</Link>. When you do this, the equative always agrees with the <em>last</em> <Link to="/phrase-structure/np/">NP</Link>.
+
+<EditableEPEx opts={opts}>{
+    {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10010,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}}],"predicate":{"type":"NP","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527819521,"i":5824,"p":"خوشالي","f":"khoshaalee","g":"khoshaalee","e":"happiness (خوشحالي)","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+<EditableEPEx opts={opts}>{
+    {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527819521,"i":5824,"p":"خوشالي","f":"khoshaalee","g":"khoshaalee","e":"happiness (خوشحالي)","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"predicate":{"type":"NP","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10010,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+## Adding APs
+
+You can add as many <Link to="/phrase-structure/ap/">APs</Link> as you like to a phrase. For example if we wanted to say that the weather is good <strong>here</strong> we can add the <Link to="/phrase-structure/ap/">APs</Link> <InlinePs opts={opts} ps={{ p: "دلته", f: "dalta", e: "here - adverb" }} />.
+
+<EditableEPEx opts={opts}>{
+{"blocks":[{"key":0.925654634890972,"block":{"type":"AP","selection":{"type":"adverb","entry":{"ts":1527812558,"i":6251,"p":"دلته","f":"dălta","g":"dalta","e":"here","c":"loc. adv."}}}},{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812672,"i":14045,"p":"هوا","f":"hawaa","g":"hawaa","e":"air, atmosphere; weather","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10010,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}},"Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527812796,"i":8655,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+Try adding clicking the <EditIcon /> and adding other <Link to="/phrase-structure/ap/">APs</Link> to this or other examples above.

@@ -18,9 +18,10 @@ function EditableEPEx({ children, opts }: { children: T.EPSelectionState, opts: 
         setEditing(false);
         setEps(children);
     }
-    return <div>
+    return <div className="mt-2 mb-4">
         <div
-            className="text-right clickable"
+            className="text-left clickable"
+            style={{ marginBottom: editing ? "0.5rem" : "-0.5rem" }}
             onClick={editing ? handleReset : () => setEditing(true)}
         >
             {!editing ? <EditIcon /> : <i className="fas fa-undo" />}
@@ -32,7 +33,13 @@ function EditableEPEx({ children, opts }: { children: T.EPSelectionState, opts: 
                 eps={eps}
                 onChange={setEps}
             />}
-        <EPDisplay opts={opts} eps={eps} setOmitSubject={false} />
+        <EPDisplay
+            opts={opts}
+            eps={eps}
+            setOmitSubject={false}
+            justify="left"
+            onlyOne
+        />
     </div>;
 }
 
