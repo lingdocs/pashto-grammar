@@ -8,7 +8,7 @@ import {
     useRef,
 } from "react";
 import { useState } from "react";
-import PhraseDiagram from "./PhraseDiagram";
+import BlockDiagram from "./BlockDiagram";
 import entryFeeder from "../../lib/entry-feeder";
 import autoAnimate from "@formkit/auto-animate";
 
@@ -22,12 +22,10 @@ function selectionToBlock(s: T.NPSelection | T.APSelection): { type: "NP", block
         : { type: "NP", block: s };
 }
 
-function EditablePhraseDiagram({ opts, children }: {
+function EditableBlock({ opts, children: block }: {
     opts: T.TextOptions,
-    children: (T.NPSelection | T.APSelection)[],
+    children: T.NPSelection | T.APSelection,
 }) {
-    console.log({ aa: children[0] })
-    const block = children[0];
     const parent = useRef<HTMLDivElement>(null);
     useEffect(() => {
         parent.current && autoAnimate(parent.current)
@@ -40,7 +38,6 @@ function EditablePhraseDiagram({ opts, children }: {
         type: "AP",
         block: T.APSelection | undefined,
     }>(selectionToBlock(block));
-    if (children.length === 0) return null;
     function handleNPChange(np: T.NPSelection | undefined) {
         setEdited({ type: "NP", block: np });
     }
@@ -81,11 +78,11 @@ function EditablePhraseDiagram({ opts, children }: {
                 }
             </div>}
             {edited.block
-                && <PhraseDiagram opts={opts}>
+                && <BlockDiagram opts={opts}>
                     {edited.block}
-                </PhraseDiagram>}
+                </BlockDiagram>}
         </div>
     </div>;
 }
 
-export default EditablePhraseDiagram;
+export default EditableBlock;

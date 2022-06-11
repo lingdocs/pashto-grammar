@@ -6,7 +6,7 @@ import {
     APBlock,
 } from "@lingdocs/pashto-inflector";
 
-function PhraseDiagram({ opts, children }: {
+function BlockDiagram({ opts, children }: {
     opts: T.TextOptions,
     children: T.NPSelection | T.APSelection,
 }) {
@@ -28,4 +28,4 @@ function PhraseDiagram({ opts, children }: {
 }
 
 
-export default PhraseDiagram;
+export default BlockDiagram;

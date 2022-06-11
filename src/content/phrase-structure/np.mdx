@@ -9,9 +9,9 @@ import {
 } from "@lingdocs/pashto-inflector";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
-import EditablePhraseDiagram, {
+import EditableBlock, {
     EditIcon,
-} from "../../components/phrase-diagram/EditablePhraseDiagram";
+} from "../../components/phrase-diagram/EditableBlock";
 import BasicBlocks from "../../components/BasicBlocks";
 
 Pashto phrases are built with a basic **building blocks** 🧱 like NPs, APs, verbs, and equatives. We can think of phrases in Pashto as a line of blocks like this:
@@ -37,7 +37,7 @@ A noun phrase (NP) in Pashto is one of the following three things:
 
 A **noun** is a word that we use to identify people, places, things, or ideas. One of these words by itself it forms a NP, one of the basic building blocks.
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "NP",
         selection: {
@@ -50,12 +50,12 @@ A **noun** is a word that we use to identify people, places, things, or ideas. O
             adjectives: [],
             possesor: undefined,
         },
-    },
-]}</EditablePhraseDiagram> 
+    }
+}</EditableBlock> 
 
 We can also **extend our noun by adding *adjectives***. Let's add the *adjective* <InlinePs opts={opts} ps={{ p: "زوړ", f: "zoR", e: "old" }} /> to our NP.
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "NP",
         selection: {
@@ -71,12 +71,12 @@ We can also **extend our noun by adding *adjectives***. Let's add the *adjective
             }],
             possesor: undefined,
         }
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 Now we have two words, but it's still **one NP**, one building block. We can add as many adjectives as we want, and it still stays as one single building block. Click on the <EditIcon /> icon below to try adding or removing more adjectives.
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "NP",
         selection: {
@@ -102,12 +102,12 @@ Now we have two words, but it's still **one NP**, one building block. We can add
             ],
             possesor: undefined,
         }
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 We can also add a **possesor** by adding another NP <Link to="/sandwiches/sandwiches/">sandwiched</Link> in with a <InlinePs opts={opts} ps={{ p: "د", f: "du", e: "of"}} />. (Notice that the word sandwiched in there will <Link to="/inflection/inflection-intro/">inflect</Link> if possible.) Now we have a NP inside of an NP, but it's still all **one NP** or **one building block**. 
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "NP",
         selection: {
@@ -139,12 +139,12 @@ We can also add a **possesor** by adding another NP <Link to="/sandwiches/sandwi
                 },
             },
         },
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 If our possesor is a noun, we can add a possesor to *it*. Try clicking the <EditIcon /> icon below and adding possesors to the possesors, you can go forever! 🤯
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "NP",
         selection: {
@@ -191,8 +191,8 @@ If our possesor is a noun, we can add a possesor to *it*. Try clicking the <Edit
                 },
             },
         },
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 A possesor can have another possesor which can have another posseser and so-on and on *forever*. The nerdy word for this phenomenon where things reference/repeat themselves is [recursion](https://en.wikipedia.org/wiki/Recursion). 🤓
 
@@ -212,7 +212,7 @@ A pronoun is a word like "I", "you", "us", "them" that signifies a person or thi
 
 You can't add any adjectives or possesors to pronouns in Pashto. They just stand on their own as an NP.
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "NP",
         selection: {
@@ -220,17 +220,19 @@ You can't add any adjectives or possesors to pronouns in Pashto. They just stand
             person: 0,
             distance: "far",
         }
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
-<EditablePhraseDiagram opts={opts}>{[
-    {type: "NP", selection:
+<EditableBlock opts={opts}>{
     {
+        type: "NP",
+        selection: {
             type: "pronoun",
             person: 11,
             distance: "far",
-        }},
-]}</EditablePhraseDiagram>
+        },
+    }
+}</EditableBlock>
 
 ### Participle
 
@@ -239,7 +241,7 @@ In Pashto you can use the infinitive form of a verb as a participle, meaning you
 - "to write" or
 - "writing"
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "NP",
         selection: {
@@ -248,8 +250,8 @@ In Pashto you can use the infinitive form of a verb as a participle, meaning you
                 entry: {"ts":1527812856,"i":11617,"p":"لیکل","f":"leekul","g":"leekul","e":"to write","c":"v. trans./gramm. trans.","ec":"write,writes,writing,wrote,written"},
             },
         }
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 Then we can use this NP just like we would any other noun in a sentence.
 
@@ -295,7 +297,7 @@ We can also **add subjects or objects** to the participle by <Link to="/sandwich
 
 For example, if we take the participle <InlinePs opts={opts} ps={{ p: "وهل", f: "wahúl", e: "to hit / hitting" }} />
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "NP",
         selection: {
@@ -304,12 +306,12 @@ For example, if we take the participle <InlinePs opts={opts} ps={{ p: "وهل", 
                 entry: {"ts":1527815399,"i":14463,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"},
             },
         }
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 And we can add the word <InlinePs opts={opts} ps={{ p: "ماشومان", f: "maashoomaan", e: "children" }} /> by sandwiching it in like we did with the possesor, we get
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "NP",
         selection: {
@@ -333,8 +335,8 @@ And we can add the word <InlinePs opts={opts} ps={{ p: "ماشومان", f: "maa
                 },
             },
         },
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 The noun we just attached can be a subject *or* an object of the participle. You just have to know from context. So this NP can mean either:
 

@@ -10,9 +10,9 @@ import {
 } from "@lingdocs/pashto-inflector";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
-import EditablePhraseDiagram, {
+import EditableBlock, {
     EditIcon,
-} from "../../components/phrase-diagram/EditablePhraseDiagram";
+} from "../../components/phrase-diagram/EditableBlock";
 
 Another building block we have in Pashto phrases in the **AP (Adverb Phrase)**. Adverb Phrases are used to give more information about the phrase in terms of time, manner, place, degree, etc.
 
@@ -25,25 +25,25 @@ An AP is either:
 
 An adverb is a word or expression that modifies the time, manner, place, etc. of a phrase.
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "AP",
         selection: {
             type: "adverb",
             entry: {"ts":1527815160,"i":2394,"p":"پرون","f":"paroon","g":"paroon","e":"yesterday","c":"adv."},
         },
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "AP",
         selection: {
             type: "adverb",
             entry: {"ts":1527819967,"i":5428,"p":"خامخا","f":"khaamakhaa","g":"khaamakhaa","e":"definitely, for sure, whether someone wants or not, willy-nilly (this last use more in Urdu)","c":"adv."},
         },
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 ### Sandwich 🥪
 
@@ -51,7 +51,7 @@ In English we have have [prepositions](https://en.wikipedia.org/wiki/Preposition
 
 These "sandwiches" are also used as an adverb to give more information for the phrase. They take an <Link to="/phrase-structure/np/">NP</Link> in the middle. For example if we want to say "in the house" we take the sandwich <InlinePs opts={opts} ps={{ p: "په ... کې", f: "pu ... ke", e: "in" }} /> and put the NP <InlinePs opts={opts} ps={{ p: "کور", f: "kor", e: "house" }} /> inside of it.
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "AP",
         selection: {
@@ -73,12 +73,12 @@ These "sandwiches" are also used as an adverb to give more information for the p
                 },
             },
         },
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 Because the inside of a sandwich is an <Link to="/phrase-structure/np/">NP</Link> we can also spice it up by adding adjectives.
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "AP",
         selection: {
@@ -103,12 +103,12 @@ Because the inside of a sandwich is an <Link to="/phrase-structure/np/">NP</Link
                 },
             },
         },
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 We can also add a possesor it hangs outside of the sandwich. All together it's still all considered one AP block though.
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "AP",
         selection: {
@@ -148,12 +148,12 @@ We can also add a possesor it hangs outside of the sandwich. All together it's s
                 },
             },
         },
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 Here's another example using the sandwich <InlinePs opts={opts} ps={{ p: "سره", f: "sara", e: "with" }} />:
 
-<EditablePhraseDiagram opts={opts}>{[
+<EditableBlock opts={opts}>{
     {
         type: "AP",
         selection: {
@@ -185,7 +185,7 @@ Here's another example using the sandwich <InlinePs opts={opts} ps={{ p: "سره
                 },
             },
         },
-    },
-]}</EditablePhraseDiagram>
+    }
+}</EditableBlock>
 
 Notice how when we put the word <InlinePs opts={opts} ps={{ p: "ملګری", f: "malgúrey", e: "friend" }} /> inside the sandwich it <Link to="/inflection/inflection-intro/">inflects</Link>. You <strong>always inflect the inside of the sandwich</strong> except for <Link to="/inflection/inflection-patterns/#exceptions">two exceptions</Link>.
