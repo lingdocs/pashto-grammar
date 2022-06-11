@@ -218,12 +218,15 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
             };
         }
         function makeRandomEPS(l: T.EquativeTense | "allIdentify" | "allProduce"): T.EPSelectionComplete {
-            const subj = randFromArray([
-                makeRandPronoun,
-                makeRandPronoun,
-                makeRandomNoun,
-                makeRandPronoun,
-            ])();
+            const subj: T.NPSelection = {
+                type: "NP",
+                selection: randFromArray([
+                    makeRandPronoun,
+                    makeRandPronoun,
+                    makeRandomNoun,
+                    makeRandPronoun,
+                ])(),
+            };
             const pred = randFromArray([...adjectives, ...locAdverbs]);
             const tense = (l === "allIdentify" || l === "allProduce")
                 ? randFromArray(tenses)
@@ -258,7 +261,7 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
                     question: {
                         EPS,
                         phrase,
-                        equative: EP.equative,
+                        equative: getEqFromRendered(EP),
                     },
                 };
             }
@@ -478,14 +481,17 @@ function makeEPS(subject: T.NPSelection, predicate: T.AdjectiveEntry | T.Locativ
             },
         ],
         predicate: {
-            type: "Complement",
-            selection: tp.isAdjectiveEntry(predicate) ? {
-                type: "adjective",
-                entry: predicate,
-                sandwich: undefined,
-            } : {
-                type: "loc. adv.",
-                entry: predicate,
+            type: "predicateSelection",
+            selection: {
+                type: "EQComp",
+                selection: tp.isAdjectiveEntry(predicate) ? {
+                    type: "adjective",
+                    entry: predicate,
+                    sandwich: undefined,
+                } : {
+                    type: "loc. adv.",
+                    entry: predicate,
+                },
             },
         },
         equative: {
@@ -494,4 +500,10 @@ function makeEPS(subject: T.NPSelection, predicate: T.AdjectiveEntry | T.Locativ
         },
         omitSubject: false,
     };
+}
+
+function getEqFromRendered(e: T.EPRendered): T.EquativeRendered {
+    const eblock = e.blocks.find(x => x.type === "equative");
+    if (!eblock || eblock.type !== "equative") throw new Error("Error getting equative block");
+    return eblock.equative;
 }

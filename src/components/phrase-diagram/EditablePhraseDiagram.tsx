@@ -16,10 +16,17 @@ export function EditIcon() {
     return <i className="fas fa-edit" />;
 }
 
+function selectionToBlock(s: T.NPSelection | T.APSelection): { type: "NP", block: T.NPSelection | undefined } | { type: "AP", block: T.APSelection | undefined } {
+    return (s.type === "AP")
+        ? { type: "AP", block: s }
+        : { type: "NP", block: s };
+}
+
 function EditablePhraseDiagram({ opts, children }: {
     opts: T.TextOptions,
-    children: BlockInput[],
+    children: (T.NPSelection | T.APSelection)[],
 }) {
+    console.log({ aa: children[0] })
     const block = children[0];
     const parent = useRef<HTMLDivElement>(null);
     useEffect(() => {
@@ -32,8 +39,7 @@ function EditablePhraseDiagram({ opts, children }: {
     } | {
         type: "AP",
         block: T.APSelection | undefined,
-    }>(block);
-    console.log({ block });
+    }>(selectionToBlock(block));
     if (children.length === 0) return null;
     function handleNPChange(np: T.NPSelection | undefined) {
         setEdited({ type: "NP", block: np });
@@ -42,7 +48,7 @@ function EditablePhraseDiagram({ opts, children }: {
         setEdited({ type: "AP", block: ap });
     }
     function handleReset() {
-        setEdited(block);
+        setEdited(selectionToBlock(block));
         setEditing(false);
     }
     return <div>
@@ -76,7 +82,7 @@ function EditablePhraseDiagram({ opts, children }: {
             </div>}
             {edited.block
                 && <PhraseDiagram opts={opts}>
-                    {[edited] as BlockInput[]}
+                    {edited.block}
                 </PhraseDiagram>}
         </div>
     </div>;

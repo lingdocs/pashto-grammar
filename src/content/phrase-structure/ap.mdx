@@ -28,7 +28,7 @@ An adverb is a word or expression that modifies the time, manner, place, etc. of
 <EditablePhraseDiagram opts={opts}>{[
     {
         type: "AP",
-        block: {
+        selection: {
             type: "adverb",
             entry: {"ts":1527815160,"i":2394,"p":"پرون","f":"paroon","g":"paroon","e":"yesterday","c":"adv."},
         },
@@ -38,7 +38,7 @@ An adverb is a word or expression that modifies the time, manner, place, etc. of
 <EditablePhraseDiagram opts={opts}>{[
     {
         type: "AP",
-        block: {
+        selection: {
             type: "adverb",
             entry: {"ts":1527819967,"i":5428,"p":"خامخا","f":"khaamakhaa","g":"khaamakhaa","e":"definitely, for sure, whether someone wants or not, willy-nilly (this last use more in Urdu)","c":"adv."},
         },
@@ -54,20 +54,23 @@ These "sandwiches" are also used as an adverb to give more information for the p
 <EditablePhraseDiagram opts={opts}>{[
     {
         type: "AP",
-        block: {
+        selection: {
             type: "sandwich",
             before: { p: "په", f: "pu" },
             after: { p: "کې", f: "ke" },
             e: "in",
             inside: {
-                type: "noun",
-                entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
-                gender: "masc",
-                genderCanChange: false,
-                number: "singular",
-                numberCanChange: true,
-                adjectives: [],
-                possesor: undefined,
+                type: "NP",
+                selection: {
+                    type: "noun",
+                    entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
+                    gender: "masc",
+                    genderCanChange: false,
+                    number: "singular",
+                    numberCanChange: true,
+                    adjectives: [],
+                    possesor: undefined,
+                },
             },
         },
     },
@@ -78,23 +81,26 @@ Because the inside of a sandwich is an <Link to="/phrase-structure/np/">NP</Link
 <EditablePhraseDiagram opts={opts}>{[
     {
         type: "AP",
-        block: {
+        selection: {
             type: "sandwich",
             before: { p: "په", f: "pu" },
             after: { p: "کې", f: "ke" },
             e: "in",
             inside: {
-                type: "noun",
-                entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
-                gender: "masc",
-                genderCanChange: false,
-                number: "singular",
-                numberCanChange: true,
-                adjectives: [{
-                    type: "adjective",
-                    entry: {"ts":1527812625,"i":9128,"p":"غټ","f":"ghuT, ghaT","g":"ghuT,ghaT","e":"big, fat","c":"adj."},
-                }],
-                possesor: undefined,
+                type: "NP",
+                selection: {
+                    type: "noun",
+                    entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
+                    gender: "masc",
+                    genderCanChange: false,
+                    number: "singular",
+                    numberCanChange: true,
+                    adjectives: [{
+                        type: "adjective",
+                        entry: {"ts":1527812625,"i":9128,"p":"غټ","f":"ghuT, ghaT","g":"ghuT,ghaT","e":"big, fat","c":"adj."},
+                    }],
+                    possesor: undefined,
+                },
             },
         },
     },
@@ -105,33 +111,39 @@ We can also add a possesor it hangs outside of the sandwich. All together it's s
 <EditablePhraseDiagram opts={opts}>{[
     {
         type: "AP",
-        block: {
+        selection: {
             type: "sandwich",
             before: { p: "په", f: "pu" },
             after: { p: "کې", f: "ke" },
             e: "in",
             inside: {
-                type: "noun",
-                entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
-                gender: "masc",
-                genderCanChange: false,
-                number: "singular",
-                numberCanChange: true,
-                adjectives: [{
-                    type: "adjective",
-                    entry: {"ts":1527812625,"i":9128,"p":"غټ","f":"ghuT, ghaT","g":"ghuT,ghaT","e":"big, fat","c":"adj."},
-                }],
-                possesor: {
-                    shrunken: false,
-                    np: {
-                        type: "noun",
-                        entry: {"ts":1527815251,"i":7802,"p":"سړی","f":"saRéy","g":"saRey","e":"man","c":"n. m.","ec":"man","ep":"men"},
-                        gender: "masc",
-                        genderCanChange: false,
-                        number: "singular",
-                        numberCanChange: true,
-                        adjectives: [],
-                        possesor: undefined,
+                type: "NP",
+                selection: {
+                    type: "noun",
+                    entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
+                    gender: "masc",
+                    genderCanChange: false,
+                    number: "singular",
+                    numberCanChange: true,
+                    adjectives: [{
+                        type: "adjective",
+                        entry: {"ts":1527812625,"i":9128,"p":"غټ","f":"ghuT, ghaT","g":"ghuT,ghaT","e":"big, fat","c":"adj."},
+                    }],
+                    possesor: {
+                        shrunken: false,
+                        np: {
+                            type: "NP",
+                            selection: {
+                                type: "noun",
+                                entry: {"ts":1527815251,"i":7802,"p":"سړی","f":"saRéy","g":"saRey","e":"man","c":"n. m.","ec":"man","ep":"men"},
+                                gender: "masc",
+                                genderCanChange: false,
+                                number: "singular",
+                                numberCanChange: true,
+                                adjectives: [],
+                                possesor: undefined,
+                            },
+                        },
                     },
                 },
             },
@@ -144,25 +156,31 @@ Here's another example using the sandwich <InlinePs opts={opts} ps={{ p: "سره
 <EditablePhraseDiagram opts={opts}>{[
     {
         type: "AP",
-        block: {
+        selection: {
             type: "sandwich",
             before: { p: "له", f: "la" },
             after: { p: "سره", f: "sara" },
             e: "with",
             inside: {
-                type: "noun",
-                entry: {"ts":1527814159,"i":12723,"p":"ملګری","f":"malgúrey","g":"malgurey","e":"friend, companion","c":"n. m. anim. unisex"},
-                gender: "masc",
-                genderCanChange: true,
-                number: "singular",
-                numberCanChange: true,
-                adjectives: [],
-                possesor: {
-                    shrunken: false,
-                    np: {
-                        type: "pronoun",
-                        distance: "far",
-                        person: 0,
+                type: "NP",
+                selection: {
+                    type: "noun",
+                    entry: {"ts":1527814159,"i":12723,"p":"ملګری","f":"malgúrey","g":"malgurey","e":"friend, companion","c":"n. m. anim. unisex"},
+                    gender: "masc",
+                    genderCanChange: true,
+                    number: "singular",
+                    numberCanChange: true,
+                    adjectives: [],
+                    possesor: {
+                        shrunken: false,
+                        np: {
+                            type: "NP",
+                            selection: {
+                                type: "pronoun",
+                                distance: "far",
+                                person: 0,
+                            },
+                        },
                     },
                 },
             },
