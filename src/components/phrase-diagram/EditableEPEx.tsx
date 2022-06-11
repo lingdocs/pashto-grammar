@@ -11,7 +11,7 @@ export function EditIcon() {
     return <i className="fas fa-edit" />;
 }
 
-function EditableEPEx({ children, opts }: { children: T.EPSelectionState, opts: T.TextOptions }) {
+function EditableEPEx({ children, opts, hideOmitSubject }: { children: T.EPSelectionState, opts: T.TextOptions, hideOmitSubject?: boolean }) {
     const [editing, setEditing] = useState<boolean>(false);
     const [eps, setEps] = useState<T.EPSelectionState>(children);
     function handleReset() {
@@ -36,7 +36,10 @@ function EditableEPEx({ children, opts }: { children: T.EPSelectionState, opts: 
         <EPDisplay
             opts={opts}
             eps={eps}
-            setOmitSubject={false}
+            setOmitSubject={hideOmitSubject ? false : (value) => setEps(o => ({
+                ...o,
+                omitSubject: value === "true",
+            }))}
             justify="left"
             onlyOne
         />
