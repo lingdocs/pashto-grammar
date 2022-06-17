@@ -14,11 +14,11 @@ function BlockDiagram({ opts, children }: {
     const rendered = children.type === "AP"
         ? renderAPSelection(children)
         : renderNPSelection(children, false, false, "subject", "none");
-    return <div>
+    return <div className="mb-3">
          <div className="d-flex flex-row justify-content-center" style={{ maxWidth: "100%" }}>
             {rendered.type === "NP"
-                ? <NPBlock opts={opts}>{rendered}</NPBlock>
-                : <APBlock opts={opts}>{rendered}</APBlock>}
+                ? <NPBlock opts={opts} english={rendered.selection.e}>{rendered}</NPBlock>
+                : <APBlock opts={opts} english={rendered.selection.e}>{rendered}</APBlock>}
         </div>
     </div>;
     } catch(e) {
