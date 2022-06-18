@@ -50,10 +50,10 @@ This is the most common phrase you will see for describing what a subject is. Wi
 
 An **EP complement** is one of four things:
 
-- adjective
-- location adverb
-- sandwich
-- complement noun
+- <Link to="#with-an-adjective">adjective</Link>
+- <Link to="#with-a-location-adverb">location adverb</Link>
+- <Link to="#with-a-sandwich">sandwich</Link>
+- <Link to="#with-a-complement-noun">complement noun</Link>
 
 Let's look at some examples using each of these kinds of complements. Click on the <i className="fas fa-cubes" /> to see how the phrase in divided into blocks and click on the <EditIcon /> to change things and play around with the phrase.
 
@@ -95,7 +95,29 @@ You can also use any kind of sandwich to describe the subject of an EP.
 
 #### With a complement noun
 
-COMING SOON...
+In Pashto there are a lot of [compound verbs](https://www.lingdocs.com/blog/pashto-compound-verbs) that use *nouns* as the complement. For example, to become angry <InlinePs opts={opts} ps={{ p: "غوسه کېدل", f: "ghwUsa kedul", e: "to become angry" }} /> uses the complement <InlinePs opts={opts} ps={{ p: "غوسه", f: "ghWusa", e: "anger" }} />. This complement noun can also be used with an equative, for instance.
+
+<Examples opts={opts}>{psmd([
+    { p: "هغه **غوسه** دی", f: "hagha **ghwUsa** dey", e: "He is **angry**" },
+])}</Examples>
+
+In English it would [sound funny](https://www.youtube.com/shorts/U7X7cEh5au8) to say "I am anger," but in Pashto it's normal. These complement nouns get treated almost as if they were adjectives. Except...
+
+You will notice how when people use these complement nouns with equatives they *don't inflect* based on the subject. For instance you could ask if someone is resting using the word <InlinePs opts={opts} ps={{ p: "استرحات", f: "istiraháat", e: "rest" }} /> from the compound verb <InlinePs opts={opts} ps={{ p: "استرحات کول", f: "istirahaat kawul", e: "to rest" }} />.
+
+<Examples opts={opts}>{psmd([
+    { p: "ته استرحات یې؟", f: "tu istirahaat ye?", e: "Are you (m.) **resting**?" },
+    { p: "ته استرحات یې؟", f: "tu istirahaat ye?", e: "Are you (f.) **resting**?" },
+])}</Examples>
+
+You don't inflect the <InlinePs opts={opts} ps={{ p: "استرحات", f: "istiraháat", e: "rest" }} /> because it's a noun, not an adjective.
+
+It's not always that straightforward though. Some complement nouns get used so much they get treated (by some people) as adjectives and *will* inflect. A good example of this is the <InlinePs opts={opts} ps={{ p: "خبر", f: "khabur", e: "news" }} /> in <InlinePs opts={opts} ps={{ p: "خبرېدل", f: "khabredul", e: "to become aware of" }} />. Some people will inflect it, and some people won't.
+
+<Examples opts={opts}>{psmd([
+    { p: "زه **خبر** یم", f: "zu **khabúr** yum", e: "I (f.) am aware", sub: "not inflected" },
+    { p: "زه **خبره** یم", f: "zu **khabúra** yum", e: "I (f.) am aware", sub: "inflected" },
+])}</Examples>
 
 ## 2. NP + NP
 
@@ -105,7 +127,7 @@ COMING SOON...
     { bottom: "Equative", inside: "=" },
 ]} />
 
-Sometimes you need to say that an <Link to="/phrase-structure/np/">NP</Link> is an <Link to="/phrase-structure/np/">NP</Link>. When you do this, the equative always agrees with the <em>last</em> <Link to="/phrase-structure/np/">NP</Link>.
+Sometimes you need to say that an <Link to="/phrase-structure/np/">NP</Link> is an <Link to="/phrase-structure/np/">NP</Link>. <strong>The equative always agrees with the <em>last</em> <Link to="/phrase-structure/np/">NP</Link></strong>.
 
 <EditableEPEx opts={opts} hideOmitSubject>{
     {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10010,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}}],"predicate":{"type":"NP","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527819521,"i":5824,"p":"خوشالي","f":"khoshaalee","g":"khoshaalee","e":"happiness (خوشحالي)","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
@@ -113,6 +135,10 @@ Sometimes you need to say that an <Link to="/phrase-structure/np/">NP</Link> is 
 
 <EditableEPEx opts={opts} hideOmitSubject>{
     {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527819521,"i":5824,"p":"خوشالي","f":"khoshaalee","g":"khoshaalee","e":"happiness (خوشحالي)","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"predicate":{"type":"NP","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10010,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>{
+    {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812903,"i":13128,"p":"مینه","f":"meena","g":"meena","e":"love","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"predicate":{"type":"NP","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815268,"i":8554,"p":"شی","f":"shey","g":"shey","e":"thing","c":"n. m.","ppp":"شیان، شیونه","ppf":"sheyáan, sheyóona"},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527812796,"i":8655,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."}}]}},"Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7595,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
 }</EditableEPEx>
 
 ## Adding APs
