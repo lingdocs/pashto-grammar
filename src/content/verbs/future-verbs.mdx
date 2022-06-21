@@ -6,20 +6,14 @@ import {
     defaultTextOptions as opts,
     Examples,
     InlinePs,
-    removeFVarients,
-    ConjugationViewer,
 } from "@lingdocs/pashto-inflector";
 import cousins from "./cousins.png";
 import psmd from "../../lib/psmd";
-import Carousel from "../../components/Carousel";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
-import { verbs } from "../../words/words";
-import shuffleArray from "../../lib/shuffle-array";
 import imperfectiveFuture from "./imperfective-future-graph.svg";
 import perfectiveFuture from "./perfective-future-graph.svg";
-
-export const basicVerbs = verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
+import BasicVerbShowCase from "../../components/BasicVerbShowCase";
 
 There are two kinds of future forms in Pashto:
 
@@ -39,24 +33,9 @@ This is used to talk about something happening in the future, while thinking of 
     <Link to="/verbs/present-verbs/">Present</Link>
 </Formula>
 
-<Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
-    return {
-        title: <InlinePs opts={opts} ps={{
-            ...removeFVarients(item.entry),
-            e: item.def,
-        }} />,
-        body: <div style={{ textAlign: "left" }}>
-            <ConjugationViewer
-                entry={item.entry}
-                textOptions={opts}
-                highlightInRootsAndStems={["imperfective stem"]}
-                showOnly={["Present", "Imperfective Future"]}
-                hidePastParticiple
-                sentenceLevel="easy"
-            />
-        </div>,
-    };
-}}/>
+<BasicVerbShowCase opts={opts} tense="imperfectiveFuture" />
+
+Notice that the <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> goes in the <Link to="/phrase-structure/kids-section/">kid's section</Link>.
 
 ## Perfective Future
 
@@ -71,21 +50,4 @@ This is used to talk about something happening in the future, while thinking of 
     <Link to="/verbs/subjunctive-verbs/">Subjunctive</Link>
 </Formula>
 
-<Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
-    return {
-        title: <InlinePs opts={opts} ps={{
-            ...removeFVarients(item.entry),
-            e: item.def,
-        }} />,
-        body: <div style={{ textAlign: "left" }}>
-            <ConjugationViewer
-                entry={item.entry}
-                textOptions={opts}
-                highlightInRootsAndStems={["Perfective stem"]}
-                showOnly={["Subjunctive", "Perfective Future"]}
-                hidePastParticiple
-                sentenceLevel="easy"
-            />
-        </div>,
-    };
-}}/>
+<BasicVerbShowCase opts={opts} tense="perfectiveFuture" />

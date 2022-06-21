@@ -503,7 +503,7 @@ function makeEPS(subject: T.NPSelection, predicate: T.AdjectiveEntry | T.Locativ
 }
 
 function getEqFromRendered(e: T.EPRendered): T.EquativeRendered {
-    const eblock = e.blocks.find(x => x.type === "equative");
+    const eblock = e.blocks[0].find(x => x.type === "equative");
     if (!eblock || eblock.type !== "equative") throw new Error("Error getting equative block");
     return eblock.equative;
 }

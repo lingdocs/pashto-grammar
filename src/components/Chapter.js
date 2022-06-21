@@ -23,7 +23,7 @@ const Chapter = ({ children: chapter }) => {
     });
   }
   return <>
-    <main className="col bg-faded py-3 d-flex flex-column">
+    <main className="col bg-faded py-3 d-flex flex-column" style={{ maxWidth: !chapter.frontMatter.fullWidth ? "850px" : undefined }}>
       <div className="flex-shrink-0">
         <div className="mb-2" style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
           <h1>{chapter.frontMatter.title}</h1>

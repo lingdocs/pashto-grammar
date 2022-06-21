@@ -6,19 +6,13 @@ import {
     defaultTextOptions as opts,
     Examples,
     InlinePs,
-    removeFVarients,
-    ConjugationViewer,
 } from "@lingdocs/pashto-inflector";
 import psmd from "../../lib/psmd";
-import Carousel from "../../components/Carousel";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
-import { verbs } from "../../words/words";
-import shuffleArray from "../../lib/shuffle-array";
 import realityGraph from "./reality-graph.svg";
 import presentTime from "./present-time.svg";
-
-export const basicVerbs = verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
+import BasicVerbShowCase from "./../../components/BasicVerbShowCase";
 
 The first verb form we'll learn is the **present**. This will be the first tool in our toolbox of verb forms. 🧰 With each verb form we'll learn two things:
 
@@ -35,24 +29,7 @@ As with all verb forms, the **present form** is made by following a very simple 
 
 The <Link to="/verbs/verb-endings/">present ending</Link> will change according to what the subject is. Have a look through the verbs below and see how the present form follows the same formula for all of them. 👇
 
-<Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
-    return {
-        title: <InlinePs opts={opts} ps={{
-            ...removeFVarients(item.entry),
-            e: item.def,
-        }} />,
-        body: <div className="text-left">
-            <ConjugationViewer
-                entry={item.entry}
-                textOptions={opts}
-                highlightInRootsAndStems={["imperfective stem"]}
-                showOnly="Present"
-                hidePastParticiple
-                sentenceLevel="easy"
-            />
-        </div>,
-    };
-}}/>
+<BasicVerbShowCase opts={opts} tense="presentVerb" />
 
 **Notes:**
 

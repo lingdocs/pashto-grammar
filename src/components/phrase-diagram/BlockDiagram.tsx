@@ -17,8 +17,8 @@ function BlockDiagram({ opts, children }: {
     return <div className="mb-3">
          <div className="d-flex flex-row justify-content-center" style={{ maxWidth: "100%" }}>
             {rendered.type === "NP"
-                ? <NPBlock opts={opts} english={rendered.selection.e}>{rendered}</NPBlock>
-                : <APBlock opts={opts} english={rendered.selection.e}>{rendered}</APBlock>}
+                ? <NPBlock script="f" opts={opts} english={rendered.selection.e}>{rendered}</NPBlock>
+                : <APBlock script="f" opts={opts} english={rendered.selection.e}>{rendered}</APBlock>}
         </div>
     </div>;
     } catch(e) {

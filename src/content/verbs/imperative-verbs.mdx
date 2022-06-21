@@ -7,7 +7,6 @@ import {
     Examples,
     InlinePs,
     removeFVarients,
-    ConjugationViewer,
 } from "@lingdocs/pashto-inflector";
 import psmd from "../../lib/psmd";
 import Carousel from "../../components/Carousel";
@@ -17,6 +16,7 @@ import { verbs } from "../../words/words";
 import shuffleArray from "../../lib/shuffle-array";
 import imperfectiveImperative from "./imperfective-imperative.svg";
 import perfectiveImperative from "./perfective-imperative.svg";
+import BasicVerbShowCase from "../../components/BasicVerbShowCase";
 
 The imperative form is used for **giving commands** (telling people to do things).
 
@@ -39,6 +39,8 @@ The <i className="fas fa-video" /> **imperfective imperative** is used when you 
     <img src={imperfectiveImperative} alt="" className="img-fluid" />
 </div>
 
+<BasicVerbShowCase opts={opts} tense="imperfectiveImperative" />
+
 ## Perfective Imperative
 
 <Formula name="Perfective Imperative">
@@ -51,24 +53,7 @@ The <i className="fas fa-camera" /> **perfective imperative** is used when you w
     <img src={perfectiveImperative} alt="" className="img-fluid" />
 </div>
 
-<Carousel stickyTitle items={shuffleArray(basicVerbs)} render={(item) => {
-    return {
-        title: <InlinePs opts={opts} ps={{
-            ...removeFVarients(item.entry),
-            e: item.def,
-        }} />,
-        body: <div className="text-left">
-            <ConjugationViewer
-                entry={item.entry}
-                textOptions={opts}
-                highlightInRootsAndStems={["imperfective stem", "perfective stem"]}
-                showOnly={["Perfective Imperative", "Imperfective Imperative"]}
-                hidePastParticiple
-                sentenceLevel="easy"
-            />
-        </div>,
-    };
-}}/>
+<BasicVerbShowCase opts={opts} tense="perfectiveImperative" />
 
 ## Using Imperatives
 
