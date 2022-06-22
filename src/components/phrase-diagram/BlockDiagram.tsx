@@ -15,7 +15,7 @@ function BlockDiagram({ opts, children }: {
         ? renderAPSelection(children)
         : renderNPSelection(children, false, false, "subject", "none");
     return <div className="mb-3">
-         <div className="d-flex flex-row justify-content-center" style={{ maxWidth: "100%" }}>
+         <div className="d-flex flex-row justify-content-center text-center" style={{ maxWidth: "100%" }}>
             {rendered.type === "NP"
                 ? <NPBlock script="f" opts={opts} english={rendered.selection.e}>{rendered}</NPBlock>
                 : <APBlock script="f" opts={opts} english={rendered.selection.e}>{rendered}</APBlock>}
