@@ -39,6 +39,8 @@ import * as EPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/
 // @ts-ignore
 import * as VPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/vp.mdx";
 // @ts-ignore
+import * as ShorteningVPs from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/shortening-vps.mdx";
+// @ts-ignore
 import * as KidsSection from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/kids-section.mdx";
 
 // @ts-ignore
@@ -170,6 +172,10 @@ const contentTree = [
             {
                 import: VPIntro,
                 slug: "vp",
+            },
+            {
+                import: ShorteningVPs,
+                slug: "shortening-vps",
             },
             {
                 import: KidsSection,
