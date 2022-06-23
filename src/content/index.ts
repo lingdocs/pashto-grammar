@@ -37,6 +37,8 @@ import * as APIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/
 // @ts-ignore
 import * as EPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/ep.mdx";
 // @ts-ignore
+import * as VPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/vp.mdx";
+// @ts-ignore
 import * as KidsSection from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/kids-section.mdx";
 
 // @ts-ignore
@@ -55,8 +57,6 @@ import * as imperativeVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/imp
 import * as verbEndings from "!babel-loader!@lingdocs/mdx-loader!./verbs/verb-endings.mdx";
 // @ts-ignore
 import * as rootsAndStems from "!babel-loader!@lingdocs/mdx-loader!./verbs/roots-and-stems.mdx";
-// @ts-ignore
-import * as sentenceStructure from "!babel-loader!@lingdocs/mdx-loader!./verbs/sentence-structure.mdx";
 
 // @ts-ignore
 import * as introToParticiples from "!babel-loader!@lingdocs/mdx-loader!./participles/intro.mdx";
@@ -168,6 +168,10 @@ const contentTree = [
                 slug: "ep",
             },
             {
+                import: VPIntro,
+                slug: "vp",
+            },
+            {
                 import: KidsSection,
                 slug: "kids-section",
             },
@@ -208,10 +212,6 @@ const contentTree = [
             {
                 import: verbEndings,
                 slug: "verb-endings",
-            },
-            {
-                import: sentenceStructure,
-                slug: "sentence-structure",
             },
         ],
     },
@@ -403,3 +403,4 @@ export const content = contentTree.map((item) => {
         )),
     }
 });
+
