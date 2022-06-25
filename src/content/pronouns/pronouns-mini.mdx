@@ -24,8 +24,22 @@ import psmd from "../../lib/psmd";
 import bigAndLittleBrother from "../../images/big-and-little-brother.jpg";
 import Link from "../../components/Link";
 import Chart from "../../components/Chart";
+import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+import { NP, AP, KidsSection, VP } from "../../components/terms-links";
 
-Mini-pronouns are shrunken forms of pronouns that are used to shorten parts of a phrase. They're like little babies and so they need to go in the <Link to="/phrase-structure/kids-section/">kids' section</Link> 👶.
+export function ServantIcon() {
+    return <i className="mx-1 fas fa-male" />;
+};
+
+export function KingIcon() {
+    return <i className="mx-1 fas fa-crown" />;
+}
+
+export function MiniButton() {
+    return <span className="btn btn-sm btn-outline-secondary disabled">Mini <ServantIcon /></span>;
+}
+
+Mini-pronouns are shrunken forms of pronouns that are used to shorten parts of a phrase. They're like little babies and so they need to go in the <KidsSection /> 👶.
 
 <img className="rounded mx-auto d-block my-3" style={{ maxWidth: "100%"}} src={bigAndLittleBrother} />
 
@@ -46,49 +60,59 @@ Mini-pronouns are shrunken forms of pronouns that are used to shorten parts of a
 
 ## Where they're used
 
-Mini pronouns can only be used as one of three things:
+For Pashto learners, it can be confusing to see these little pronouns peppered in sentences. They can seem ambiguous and confusing, as if they could mean *anything*. Thankfully Pashto gives us another very simple rule to know what mini-pronouns can be used for. Mini pronouns are only used to "shrink" 🪄 or replace **two things**:
 
-1. The **object** of a **present transitive** verb
-2. The **subject** of a **past transitive** verb
-3. A **possesive** pronoun
+1. The **servant** <ServantIcon /> of a <VP />
+3. A **possesive**
 
-Below are some examples of how mini pronouns can be used in the place of regular pronouns. The mini pronouns are used when you don't need a strong emphasis on the pronoun.
+### 1. As a shrunken servant
 
-### 1. As the object of a present transitive verb
+<div className="alert alert-info" role="alert">
 
-<Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={opts}>{[
-    [
-        { p: "زه تا وینم", f: "zu taa weenum", e: "I see you"},
-        { p: "زه دې وینم", f: "zu de weenum", e: "I see you"},
-    ],
-    [
-        { p: "هلک ما وهي", f: "haluk maa wahee", e: "The boy's hitting me" },
-        { p: "هلک مې وهي", f: "haluk me wahee", e: "The boy's hitting me" },
-    ],
-    [
-        { p: "دوي ولې مونږ وهی؟", f: "dwee wăle moonG wahée?", e: "Why are they hitting us?" },
-        { p: "دوي ولې مو وهی؟", f: "dwee wăle mU wahée?", e: "Why are they hitting us?" },
-    ],
-]}</Chart>
+What's a servant?
 
-### 2. As the subject of a past transitive verb
+There's an explanation about what a <strong>servant</strong> <ServantIcon /> is in the section on <Link to="/phrase-structure/vp/#2-with-non-past-transitive-verbs-">VPs</Link>. Basically a servant is either:
 
-<Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={opts}>{[
-    [
-        { p: "ما ډوډۍ وخوړله", f: "maa DoDuy óokhoRula", e: "I ate food"},
-        { p: "ډوډۍ مې وخوړله", f: "DoDuy me óokhoRula", e: "I ate food"},
-    ],
-    [
-        { p: "هغه واده کړی دی", f: "haghú waadu kúRey dey", e: "He's gotten married" },
-        { p: "واده یې کړی دی", f: "waadu ye kúRey dey", e: "He's gotten married" },
-    ],
-    [
-        { p: "ما ولیدې", f: "maa óoleede", e: "I saw you" },
-        { p: "ومې لیدې", f: "óo-me-leede", e: "I saw you" },
-    ],
-]}</Chart>
+- the **object** <NP /> of a non-past transitive verb
+- the **subject** <NP /> of a past-tense transitive verb
 
-### 3. As a possesive pronoun  
+We call these the **servant** <ServantIcon /> of the <VP /> because they're not the **king** <KingIcon /> of the phrase -- they don't control the verb. (There is no servant with an intransitive verb.)
+
+</div>
+
+The "servant" <NP /> in a <VP /> can be "shrunken" 🪄 and replaced with a mini pronoun.
+
+#### Examples with non-past transitive verbs
+
+Have a look at this present tense phrase.
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.9744021270696674,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.68319897242172,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+The object <NP /> <InlinePs opts={opts} ps={{ p: "تا", f: "taa", e: "you" }} /> is the servant <ServantIcon />, so we can shrink 🪄 it into a mini-pronoun and then put it in the <Link to="/phrase-structure/kids-section">kids' section</Link>.
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.9744021270696674,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.68319897242172,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":true}}
+}</EditableVPEx>
+
+Whatever the servant <NP /> is, the whole block is shrunken and replaced by a mini pronoun. For example we can have a really long <NP /> like <InlinePs opts={opts} ps={{ p: "ستا د مور خوندوره ډوډۍ", f: "staa du mor khwundawara DoDuy", e: "your mother's tasty food" }} />. Have a look at the blocks that make up this phrase by clicking on the <i className="fas fa-cubes" />, then see what happens when you click on the <MiniButton /> below to shrink the servant.
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.957009632373707,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}},{"key":0.21709277985114528,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812564,"i":6538,"p":"ډوډۍ","f":"DoDúy","g":"DoDuy","e":"bread, food, meal","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527812813,"i":5864,"p":"خوندور","f":"khwundawar","g":"khwundawar","e":"tasty, delicious","c":"adj."}}],"possesor":{"np":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812928,"i":12956,"p":"مور","f":"mor","g":"mor","e":"mother, mom","c":"n. f. anim.","ppp":"میندې, میېندې","ppf":"méynde, myénde"},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}},"shrunken":false}}},"shrunken":false}}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812790,"i":5795,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+#### Examples with past-tense transitive verbs
+
+With **past-tense transitive verbs, the servant <ServantIcon /> is the subject**. See what happens when you shrink the servant with this kid of VP. (Click <MiniButton /> below) 
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.9744021270696674,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.68319897242172,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+### 2. As a shrunken possesive
+
+Better explanation and examples coming soon...
 
 <Chart titleRow={["w/ reg. pronoun", "w/ mini pronoun 👶"]} opts={opts}>{[
     [
