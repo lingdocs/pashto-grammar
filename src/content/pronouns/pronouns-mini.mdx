@@ -151,11 +151,11 @@ When we talked about <NP text="NPs" /> we also noted that you <Link to="/phrase-
     {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"participle","verb":{"entry":{"ts":1527816801,"i":14549,"p":"وینځل","f":"weendzul","g":"weendzul","e":"to wash","c":"v. trans.","ec":"wash"}},"possesor":{"np":{"type":"NP","selection":{"type":"noun","entry":{"ts":1573667460938,"i":4285,"p":"جامې","f":"jaame","g":"jaame","e":"clothes, clothing (plural of جامه)","c":"n. f. pl."},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":false,"adjectives":[]}},"shrunken":false}}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815268,"i":8554,"p":"شی","f":"shey","g":"shey","e":"thing","c":"n. m.","ppp":"شیان، شیونه","ppf":"sheyáan, sheyóona"},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527812796,"i":8655,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."}}]}},"Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527815246,"i":7657,"p":"سخت","f":"sakht","g":"sakht","e":"hard, difficult","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
 }</EditableEPEx>
 
-## More about these kids
+## More about these kids 👶
 
-### Doesn't matter where they come from...
+### Mini-pronouns run off on their own
 
-Wherever the mini-pronouns came from, they always have to go in the <KidsSection />! Especially with possesive pronouns, learners may feel like they need to stay attached to the word they were connected to. This is **not true at all**. Once something becomes a mini-pronoun, it just runs over to the kids' section, wherever that may be. Sometimes the kids section will *happen to be* next to the word a possesive came from.
+Wherever the mini-pronouns came from, they always run off to the <KidsSection />! Especially with possesive pronouns, learners may feel like they need to stay attached to the word they were connected to. This is **not true at all**. Once we have a a mini-pronoun, in always goes it the kids' section, wherever that may be. It does not stay attached to the area it came from. Sometimes the kids section will *happen to be* next to the word a possesive came from.
 
 <EditableEPEx opts={opts} hideOmitSubject>{
     {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815177,"i":2535,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m. anim."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}},"shrunken":true}}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815268,"i":8554,"p":"شی","f":"shey","g":"shey","e":"thing","c":"n. m.","ppp":"شیان، شیونه","ppf":"sheyáan, sheyóona"},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527812796,"i":8655,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."}}]}},"Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527812792,"i":5823,"p":"خوشاله","f":"khoshaala","g":"khoshaala","e":"happy, glad","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
@@ -181,46 +181,72 @@ The <InlinePs opts={opts} ps={{ p: "یې", f: "ye" }} /> sits in the kids sectio
 
 Now we have two mini-pronouns in the <KidsSection />! Which brings us to an really interesting and important rule.
 
-### They line up in order
+### With multiple mini-pronouns 👶 👶
+
+It's possible to have **up to 2 mini-pronouns** in the kids section as long as they're not the same (no twins!)
 
 **When mini-pronouns go in the kids' section, they always line up in order of 1st, 2nd, 3rd person.**
 
-Also, you can have a maximum of two mini-prounouns in a kids' section, and they can't be two of the same. (You can't say <InlinePs opts={opts} ps={{ p: "مو مو", f: "mU mU", e: "" }} />)
+In our example above about their brother sitting in your house the 2nd person sing. pronoun <InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "" }} /> came before the 3rd person pronoun <InlinePs opts={opts} ps={{ p: "یې", f: "ye", e: "" }} />. The kids will always follow this pecking order.
 
-MORE EXAMPLES COMING SOON...
+Let's see how this works with a very common example. Pashtuns often say "I'm happy that *I heard your voice*".
 
-<!-- ## Other Notes
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.8295906862124551,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.5964107897386419,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812621,"i":9211,"p":"غږ","f":"ghuG, ghaG","g":"ghug,ghag","e":"voice, sound","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}},"shrunken":false}}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1577049208257,"i":1068,"p":"اورېدل","f":"awredul","g":"awredul","e":"to hear, listen","c":"v. trans./gramm. trans.","psp":"اور","psf":"awr","tppp":"اورېد","tppf":"awred","ec":"hear,hears,hearing,heard"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
 
-### Don't confuse with other <InlinePs opts={opts} ps={{ p: "دې", f: "de" }} />'s
+Here we can shrink two things:
 
-The mini-pronoun <InlinePs opts={opts} ps={{ p: "دې", f: "de" }} /> is not to be confused with two other particles that look and sound the exact same:
+- the servant <InlinePs opts={opts} ps={{ p: "ما", f: "maa", e: "" }} /> shrinks to <InlinePs opts={opts} ps={{ p: "مې", f: "me", e: "" }} />
+- the possesive <InlinePs opts={opts} ps={{ p: "ستا", f: "staa", e: "" }} /> shrinks to <InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "" }} />
 
- - The jussive <InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "should, must" }} />
- - The demonstrative pronoun <InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "this" }} />
- - The inflected form of the 3rd pers fem near pronoun <InlinePs opts={opts} ps={{ p: "دا", f: "daa", e: "she" }} /> (<InlinePs opts={opts} ps={{ p: "دې", f: "de" }} />) -->
+Both of these go into the kids section and line up in order of 1st, 2nd, 3rd... so we line them up as <InlinePs opts={opts} ps={{ p: "مې دې", f: "me de", e: "" }} />
 
-<!-- ### Mini-pronouns are used an order
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.8295906862124551,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.5964107897386419,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812621,"i":9211,"p":"غږ","f":"ghuG, ghaG","g":"ghug,ghag","e":"voice, sound","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}},"shrunken":true}}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1577049208257,"i":1068,"p":"اورېدل","f":"awredul","g":"awredul","e":"to hear, listen","c":"v. trans./gramm. trans.","psp":"اور","psf":"awr","tppp":"اورېد","tppf":"awred","ec":"hear,hears,hearing,heard"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":true}}
+}</EditableVPEx>
 
-THIS SEEMS TO BE WRONG / NOT ALWAYS TRUE
+Now let's take a different phrase:
 
-Sometimes **you might see two mini pronouns right next to each other** because one is being used as a possesive and the other is being used for a subject or object. When this happens, the pronouns are ordered by person: 1st, 2nd, then 3rd.
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.8295906862124551,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}},{"key":0.5964107897386419,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812621,"i":9211,"p":"غږ","f":"ghuG, ghaG","g":"ghug,ghag","e":"voice, sound","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}},"shrunken":false}}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1577049208257,"i":1068,"p":"اورېدل","f":"awredul","g":"awredul","e":"to hear, listen","c":"v. trans./gramm. trans.","psp":"اور","psf":"awr","tppp":"اورېد","tppf":"awred","ec":"hear,hears,hearing,heard"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
 
-For example:
+We can shrink two things in this phrase:
 
-<Examples opts={opts}>{[
-    { p: "پیغام مې دې واورېده", f: "peyghaam me de wáawredu", e: "I heard your message" },
-    { p: "پیغام دې مې واورېده❌ ", f: "peyghaam de me wáawredu ❌", e: "I heard your message" },
-]}</Examples>
+- the servant <InlinePs opts={opts} ps={{ p: "تا", f: "taa", e: "" }} /> shrinks to <InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "" }} />
+- the possesive <InlinePs opts={opts} ps={{ p: "زما", f: "zmaa", e: "" }} /> shrinks to <InlinePs opts={opts} ps={{ p: "مې", f: "me", e: "" }} />
 
-With this sentence there's some ambiguity as to which pronoun is used for what. Is the <InlinePs opts={opts} ps={{ p: "مې", f: "me" }} /> the subject? Or the possesive pronoun? It could be both, and the sentence could mean "I heard your message" *or* "You heard my message." But usually when people make sentences like this, it will be obvious from context.
+Once we line these up in order in the kids' section we get <InlinePs opts={opts} ps={{ p: "مې دې", f: "me de", e: "" }} />, the exact same thing as above! 
 
-### Mini-pronouns go outside of sandwiches
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.8295906862124551,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}},{"key":0.5964107897386419,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812621,"i":9211,"p":"غږ","f":"ghuG, ghaG","g":"ghug,ghag","e":"voice, sound","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}},"shrunken":true}}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1577049208257,"i":1068,"p":"اورېدل","f":"awredul","g":"awredul","e":"to hear, listen","c":"v. trans./gramm. trans.","psp":"اور","psf":"awr","tppp":"اورېد","tppf":"awred","ec":"hear,hears,hearing,heard"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":true}}
+}</EditableVPEx>
 
-Mini prounouns **can't go inside sandwiches**. They can only go *after* the end of a sandwich.
+So when we see a sentence like <InlinePs opts={opts} ps={{ p: "غږ مې دې واورېد", f: "ghuG me de waawred", e: "" }} /> this can mean either "I heard your voice", or "you heard my voice" 🤯
 
-<Examples opts={opts}>{psmd([
-    { p: "❌ زه **دفتر *یې* ته** ځم", f: "❌ zu **dăftar *ye* ta** dzum", e: "I'm going **to *his* office**" },
-    { p: "زه **دفتر ته *یې*** ځم", f: "zu **dăftar ta *ye*** dzum", e: "I'm going **to *his* office**" },
-    { p: "**له پلار *مې* سره** خبرې کوي❌ ", f: "**la plaar *me* sara** khabure kawee ❌", e: "He is talking **with *my* father**" },
-    { p: "**له پلار سره *مې*** خبرې کوي", f: "**la plaar sara *me*** khabure kawee", e: "He is talking **with *my* father**" },
-])}</Examples> -->
+Try clicking the <EditIcon /> and shrinking down the servants and possesives in these two phrases below.
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.9764153072449697,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.3601331139959125,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}},"shrunken":false}}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14480,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.9764153072449697,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.3601331139959125,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}},"shrunken":false}}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14480,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Both turn out to be the exact same thing. So if someone says, <InlinePs opts={opts} ps={{ p: "ماشوم مې یې وواهه", f: "maashoom me ye óowaahu", e: "" }} /> that can mean either, "She hit my child" or "I hit her child!"
+
+Remember our example about about their brother sitting in your house yesterday? There could be a second meaning to this sentence, can you work it out?
+
+<EditableEPEx opts={opts} hideOmitSubject>{
+    {"blocks":[{"key":0.6731829827008933,"block":{"type":"AP","selection":{"type":"adverb","entry":{"ts":1527815160,"i":2394,"p":"پرون","f":"paroon","g":"paroon","e":"yesterday","c":"adv."}}}},{"key":0.6531124225011433,"block":{"type":"AP","selection":{"type":"sandwich","before":{"p":"په","f":"pu"},"after":{"p":"کې","f":"ke"},"e":"in","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812828,"i":10542,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}},"shrunken":true}}}}}},{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815421,"i":14292,"p":"ورور","f":"wror","g":"wror","e":"brother","c":"n. m. anim.","ppp":"وروڼه","ppf":"wrooNa"},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":10,"distance":"far"}},"shrunken":true}}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815268,"i":8554,"p":"شی","f":"shey","g":"shey","e":"thing","c":"n. m.","ppp":"شیان، شیونه","ppf":"sheyáan, sheyóona"},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527812796,"i":8655,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."}}]}},"Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527815106,"i":13232,"p":"ناست","f":"naast","g":"naast","e":"sitting, seated","c":"adj."}}}},"equative":{"tense":"past","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+<details>
+    <summary>Answer:</summary>
+    Your brother was sitting in his/her/their house yesterday.
+</details>
+
+So you can see there can be a bit of ambiguity when using mini-pronouns. They are used **extremely frequently**, but in places when it's obvious who/what you're referencing. 
+

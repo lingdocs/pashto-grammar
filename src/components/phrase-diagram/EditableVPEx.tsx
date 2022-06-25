@@ -23,7 +23,7 @@ function EditableVPEx({ children, opts, formChoice }: { children: T.VPSelectionS
     }
     return <div className="mt-2 mb-4">
         <div
-            className="text-left clickable mb-1"
+            className="text-left clickable mb-2"
             style={{ marginBottom: editing ? "0.5rem" : "-0.5rem" }}
             onClick={editing ? handleReset : () => setEditing(true)}
         >
