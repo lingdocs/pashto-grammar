@@ -54,7 +54,7 @@ const locAdverbs: T.LocativeAdverbEntry[] = [
     {"ts":1527812449,"i":13937,"p":"هلته","f":"hálta, álta","g":"halta,alta","e":"there","c":"loc. adv."},
 ].filter(tp.isLocativeAdverbEntry);
 const tenses: T.EquativeTense[] = [
-    "present", "habitual", "subjunctive", "future", "past", "wouldBe", "pastSubjunctive",
+    "present", "habitual", "subjunctive", "future", "past", "wouldBe", "pastSubjunctive", "wouldHaveBeen"
 ];
 
 type Situation = {
@@ -466,6 +466,8 @@ function humanReadableTense(tense: T.EquativeTense | "allProduce"): string {
         ? "past subjunctive"
         : tense === "wouldBe"
         ? `"would be"`
+        : tense === "wouldHaveBeen"
+        ? `"would have been"`
         : tense;
 }
 

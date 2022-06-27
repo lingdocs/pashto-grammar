@@ -33,6 +33,7 @@ import {
     equativeGamePast,
     equativeGameWouldBe,
     equativeGamePastSubjunctive,
+    equativeGameWouldHaveBeen,
 } from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
 
@@ -400,7 +401,7 @@ Because this is based on the the non-inflecting tail, *it doesn't change at all,
     <InlinePs opts={opts} ps={{ p: "و", f: "w" }} /> + non-inflecting tail
 </Formula>
 
-export function WithTailChoice() {
+export function WithTailChoice(props) {
     const [choice, setChoice] = React.useState("aay");
     const waay = concatPsString(
         {p: "و", f: "w"},
@@ -423,15 +424,20 @@ export function WithTailChoice() {
             </div>
             <EquativeFormChoice
                 forms={{
-                    sentence: {
+                    sentence: !props.ba ? {
                         displayForm: concatPsString(
                             { p: "کاشکې ... ...", f: "kaashke ... ..."}, " ",
                             waay, { p: "!", f: "!" },
                         ),
                         english: [[["If only ... was/were ...!"]]],
+                    } : {
+                        displayForm: concatPsString(
+                            { p: "به ...", f: "ba ..." }, " ", waay,
+                        ),
+                        english: [[["... would have been ..."]]],
                     },
                     pure: {
-                        displayForm: waay,
+                        displayForm: !props.ba ? waay : concatPsString(grammarUnits.baParticle, " ", waay),
                     },
                 }}
                 opts={opts}
@@ -482,37 +488,55 @@ export function WithTailChoice() {
 
 <GameDisplay record={equativeGamePastSubjunctive} />
 
-## Overview
+## "Would have been" Equative
 
-#### Present Equative
+This is used to talk about:
+
+- If some hypothetical condition were true, A would have been B
+- A should have been B, or it would have been good if A would have been B
+
+<Formula>
+    <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="#past-subjunctive">past subjunctive</Link>
+</Formula>
+
+<WithTailChoice ba />
+
+<GameDisplay record={equativeGameWouldHaveBeen} />
+
+## Overview of 8 Equatives
+
+#### 1. Present Equative
 - A is B currently
 - A is B categorically, definately
 
-#### Habitual Equative
+#### 2. Habitual Equative
 - A is B habitually, repeatedly, generally
 - A tends to be B
 
-#### Subjunctive Equative
+#### 3. Subjunctive Equative
 - One desires or wants A to be B
 - A should/must be B (judgement)
 - If/it's possible that A is B
 - ...so that A is B (purpose)
 
-#### Future Equative
+#### 4. Future Equative
 - A will be B
 - presuming or guessing that A will be B
 
-#### Past Equative
+#### 5. Past Equative
 - A was B
 - (if) A turns out to be B
 
-#### "Would be" Equative
+#### 6. "Would be" Equative
 - A was B habitually
 - Presuming or guessing that A was B
 - A would have been B (as the result of a hypothetical outcome)
 - A should have been B
 
-#### Past Subjunctive Equative
+#### 7. Past Subjunctive Equative
 - A should have been B
 - If A were B (unreal conditional)
 - I wish/if only A were B!
+
+#### 8. "Would have been" Equative
+- A would have been B

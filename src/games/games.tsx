@@ -84,6 +84,13 @@ export const equativeGamePastSubjunctive = makeGameRecord(
     (id, link) => () => <EquativeGame id={id} link={link} level="pastSubjunctive" />,
 );
 
+export const equativeGameWouldHaveBeen = makeGameRecord(
+    'Write the "would have been" equative',
+    "equative-would-have-been",
+    "/equatives/other-equatives/#wold-have-been-equative",
+    (id, link) => () => <EquativeGame id={id} link={link} level="wouldHaveBeen" />,
+);
+
 export const equativeGameAllIdentify = makeGameRecord(
     "Identify the equative (all tenses)",
     "equative-past-summary-identify",
@@ -124,6 +131,7 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             equativeGamePast,
             equativeGameWouldBe,
             equativeGamePastSubjunctive,
+            equativeGameWouldHaveBeen,
             equativeGameSituations,
             equativeGameAllIdentify,
             equativeGameAllProduce,

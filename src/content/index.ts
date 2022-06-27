@@ -90,7 +90,7 @@ import * as theFiveYeys from "!babel-loader!@lingdocs/mdx-loader!./writing/the-f
 import * as typingIssues from "!babel-loader!@lingdocs/mdx-loader!./writing/typing-issues.mdx";
 
 // @ts-ignore
-import * as unrealConditionals from "!babel-loader!@lingdocs/mdx-loader!./recipies/unreal-conditionals.mdx";
+import * as unrealConditionals from "!babel-loader!@lingdocs/mdx-loader!./recipes/unreal-conditionals.mdx";
 
 // @ts-ignore
 import * as games from "!babel-loader!@lingdocs/mdx-loader!./games.mdx";
@@ -300,8 +300,8 @@ const contentTree = [
         ],
     },
     {
-        heading: "Recipies 👩‍🍳",
-        subdirectory: "recipies",
+        heading: "Recipes 👩‍🍳",
+        subdirectory: "recipes",
         chapters: [
             {
                 import: unrealConditionals,
