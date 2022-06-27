@@ -1,0 +1,127 @@
+---
+title: Blocks and Kids
+---
+
+import {
+    defaultTextOptions as opts,
+    InlinePs,
+    Examples,
+} from "@lingdocs/pashto-inflector";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+import EditableBlock, {
+    EditIcon,
+} from "../../components/phrase-diagram/EditableBlock";
+import BasicBlocks from "../../components/BasicBlocks";
+import { AP, NP } from "../../components/terms-links";
+import EditableVPEx from "../../components/phrase-diagram/EditableVPEx";
+import EditableEPEx from "../../components/phrase-diagram/EditableEPEx";
+
+export function BlocksIcon() {
+    return <i className="mx-1 fas fa-cubes" />;
+};
+
+Pashto phrases are built with **blocks** 🧱 and **kids** 👶. It's important to know what these parts are and how they fit together.
+
+## Blocks
+
+Blocks are units of speech like <NP text="NPs" />, <AP text="APs" /> or verbs, etc.
+
+<BasicBlocks blocks={["AP", "NP", "NP", "Verb"]} />
+
+<BasicBlocks blocks={["NP", "NP", "Equative"]} />
+
+Wherever you see an example phrase with a <BlocksIcon /> you can click it to see the blocks that make up the phrase. Try clicking the <BlocksIcon /> to see the blocks that make up the examples below.
+
+<EditableVPEx opts={opts} noEdit>{
+    {"blocks":[{"key":0.21116655057859535,"block":{"type":"AP","selection":{"type":"adverb","entry":{"ts":1527815160,"i":2394,"p":"پرون","f":"paroon","g":"paroon","e":"yesterday","c":"adv."}}}},{"key":0.3303626365055592,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.03422215123934946,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11610,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableEPEx opts={opts} noEdit hideOmitSubject>{
+    {"blocks":[{"key":0.7559632995928578,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"predicate":{"type":"Complement","Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7595,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}}},"equative":{"tense":"present","negative":true},"omitSubject":false}
+}</EditableEPEx>
+
+<EditableVPEx opts={opts} noEdit>{
+    {"blocks":[{"key":0.3303626365055592,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.03422215123934946,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11610,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+You will see a bunch of different blocks. Don't worry about learning what they all are, but if you want here's a complete list:
+<details>
+    <summary>All the blocks</summary>
+<ul>
+<li><NP /></li>
+<li> <AP /></li>
+<li>Complement (adjective/adverb/Complement NP)</li>
+<li>Verb</li>
+<li>The perfective head of a Verb (a perfective prefix like <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} />)</li>
+<li>Equative</li>
+<li>Past Participle (in a perfect verb)</li>
+<li>The negative <InlinePs opts={opts} ps={{ p: "نه", f: "nú", e: "not" }} /> or <InlinePs opts={opts} ps={{ p: "مه", f: "mú", e: "don't" }} /></li>
+<li>The ability auxilary verb (ie. the <InlinePs opts={opts} ps={{ p: "شي", f: "shee" }} /> in <InlinePs opts={opts} ps={{ p: "کولی شي", f: "shee" }} />)</li>
+</ul>
+</details> 
+
+## The Kids' Section
+
+In Pashto there are a bunch of little particles that we will call **kids**. (<InlinePs opts={opts} ps={{ p: "به", f: "ba" }} />, <InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "" }} />, <InlinePs opts={opts} ps={{ p: "یې", f: "ye", e: "" }} /> etc.) All of these have to go in the **kid's section**.
+
+The **kids' section is always after the first block**.
+
+<BasicBlocks showKidsSection blocks={["AP", "NP", "NP", "Equative"]} />
+<BasicBlocks showKidsSection blocks={["NP", "Verb"]} />
+<BasicBlocks showKidsSection blocks={["Verb"]} />
+<BasicBlocks showKidsSection blocks={["NP", "NP", "Equative"]} />
+
+Click on the <BlocksIcon /> on the following examples to see where the kids' section lies.
+
+<EditableVPEx opts={opts} noEdit>{
+    {"blocks":[{"key":0.27231313024586834,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.6810015291689175,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11610,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":true}}
+}</EditableVPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject noEdit>{
+    {"blocks":[{"key":0.7559632995928578,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815177,"i":2535,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m. anim."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}},"shrunken":true}}}}}],"predicate":{"type":"Complement","Complement":{"type":"EQComp","selection":{"type":"loc. adv.","entry":{"ts":1527812558,"i":6251,"p":"دلته","f":"dălta","g":"dalta","e":"here","c":"loc. adv."}}}},"equative":{"tense":"future","negative":true},"omitSubject":false}
+}</EditableEPEx>
+
+<EditableVPEx opts={opts} noEdit>{
+    {"blocks":[{"key":0.27231313024586834,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.6810015291689175,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11610,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":true,"shrinkServant":true}}
+}</EditableVPEx>
+
+Here are the kids that go in the kids' section, and they always line up **in this order**.
+
+<ul>
+    <li>The emphatic <InlinePs opts={opts} ps={{ p: "خو", f: "kho" }} /> particle</li> 
+    <li>The <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> particle</li>
+    <li>The jussive <InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "may" }} /></li>
+    <li><Link to="/pronouns/pronouns-mini/">Mini-pronouns</Link>:</li>
+    <ul>
+        <li><InlinePs opts={opts} ps={{ p: "مې", f: "me", e: "1st pers sing" }} /></li> 
+        <li><InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "2nd pers sing" }} /></li>  
+        <li><InlinePs opts={opts} ps={{ p: "مو", f: "mU", e: "1st/2nd pers plur" }} /></li> 
+        <li><InlinePs opts={opts} ps={{ p: "یې", f: "ye", e: "3rd pers" }} /></li>
+    </ul>
+    <li><InlinePs opts={opts} ps={{ p: "هم", f: "hUm", e: "also/too" }} /></li>
+</ul>
+
+<p><Link to="/pronouns/pronouns-mini/">Mini-pronouns</Link> will always line up in 1st, 2rd, 3rd person order.</p>
+
+**Note**: You'll also see <InlinePs opts={opts} ps={{ p: "خو", f: "kho", e: "but/however" }} /> as a connector or <InlinePs opts={opts} ps={{ p: "هم", f: "hUm", e: "also/too" }} /> *outsite of the kids' section*. But all the other kids have to stay in the kids' section always!
+
+## Connectors
+
+Phrases are connected using conjuctions like:
+
+- <InlinePs opts={opts} ps={{ p: "او", f: "aw", e: "and" }} />
+- <InlinePs opts={opts} ps={{ p: "چې", f: "che", e: "that" }} />
+- <InlinePs opts={opts} ps={{ p: "خو", f: "kho", e: "but/however" }} />
+
+These **connectors do not count as blocks**. The <Link to="#the-kids-section">kids' section</Link> will always come after the first *block*.
+
+Phrases also might start with little directional words like:
+
+- <InlinePs opts={opts} ps={{ p: "راته", f: "raa-ta", e: "to me/us" }} />
+- <InlinePs opts={opts} ps={{ p: "درته", f: "dăr-ta", e: "to you" }} />
+- <InlinePs opts={opts} ps={{ p: "ورته", f: "wăr-ta", e: "to him/her/them/it" }} />
+- <InlinePs opts={opts} ps={{ p: "راپسې", f: "raa-pase", e: "after me/us" }} />
+- <InlinePs opts={opts} ps={{ p: "درپسې", f: "dăr-pase", e: "after you" }} />
+
+These these are often treated as connectors, but they can be blocks or connectors, depending on how they are used.

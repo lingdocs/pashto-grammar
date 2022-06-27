@@ -17,7 +17,7 @@ export function EP({ text }: { text: string}) {
 }
 
 export function KidsSection({ text }: { text: string}) {
-    return <Link to="/phrase-structure/kids-section">{text || "kids' section"}</Link>;
+    return <Link to="/phrase-structure/blocks-and-kids/#the-kids-section">{text || "kids' section"}</Link>;
 }
 
 export function MiniPronoun({ text }: { text: string}) {

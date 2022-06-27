@@ -11,7 +11,7 @@ export function EditIcon() {
     return <i className="fas fa-edit" />;
 }
 
-function EditableVPEx({ children, opts, formChoice }: { children: T.VPSelectionState, opts: T.TextOptions, formChoice?: boolean }) {
+function EditableVPEx({ children, opts, formChoice, noEdit }: { children: T.VPSelectionState, opts: T.TextOptions, formChoice?: boolean, noEdit?: boolean }) {
     const [editing, setEditing] = useState<boolean>(false);
     const [vps, setVps] = useState<T.VPSelectionState>(children);
     function handleReset() {
@@ -22,13 +22,13 @@ function EditableVPEx({ children, opts, formChoice }: { children: T.VPSelectionS
         setVps(vpsReducer(vps, { type: "set form", payload: form }));
     }
     return <div className="mt-2 mb-4">
-        <div
+        {!noEdit && <div
             className="text-left clickable mb-2"
             style={{ marginBottom: editing ? "0.5rem" : "-0.5rem" }}
             onClick={editing ? handleReset : () => setEditing(true)}
         >
             {!editing ? <EditIcon /> : <i className="fas fa-undo" />}
-        </div>
+        </div>}
         {editing
             && <VPPicker
                 opts={opts}

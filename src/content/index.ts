@@ -31,6 +31,8 @@ import * as arabicPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/arabi
 import * as bundledPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/bundled-plurals.mdx";
 
 // @ts-ignore
+import * as BlocksAndKids from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/blocks-and-kids.mdx";
+// @ts-ignore
 import * as NPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/np.mdx";
 // @ts-ignore
 import * as APIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/ap.mdx";
@@ -40,8 +42,6 @@ import * as EPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/
 import * as VPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/vp.mdx";
 // @ts-ignore
 import * as ShorteningVPs from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/shortening-vps.mdx";
-// @ts-ignore
-import * as KidsSection from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/kids-section.mdx";
 
 // @ts-ignore
 import * as verbAspect from "!babel-loader!@lingdocs/mdx-loader!./verbs/verb-aspect.mdx";
@@ -158,6 +158,10 @@ const contentTree = [
         subdirectory: "phrase-structure",
         chapters: [
             {
+                import: BlocksAndKids,
+                slug: "blocks-and-kids",
+            },
+            {
                 import: NPIntro,
                 slug: "np",
             },
@@ -176,10 +180,6 @@ const contentTree = [
             {
                 import: ShorteningVPs,
                 slug: "shortening-vps",
-            },
-            {
-                import: KidsSection,
-                slug: "kids-section",
             },
         ],
     },

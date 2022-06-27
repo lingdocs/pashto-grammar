@@ -11,7 +11,7 @@ export function EditIcon() {
     return <i className="fas fa-edit" />;
 }
 
-function EditableEPEx({ children, opts, hideOmitSubject }: { children: T.EPSelectionState, opts: T.TextOptions, hideOmitSubject?: boolean }) {
+function EditableEPEx({ children, opts, hideOmitSubject, noEdit }: { children: T.EPSelectionState, opts: T.TextOptions, hideOmitSubject?: boolean, noEdit?: boolean }) {
     const [editing, setEditing] = useState<boolean>(false);
     const [eps, setEps] = useState<T.EPSelectionState>(children);
     function handleReset() {
@@ -19,13 +19,13 @@ function EditableEPEx({ children, opts, hideOmitSubject }: { children: T.EPSelec
         setEps(children);
     }
     return <div className="mt-2 mb-4">
-        <div
+        {!noEdit && <div
             className="text-left clickable"
             style={{ marginBottom: editing ? "0.5rem" : "-0.5rem" }}
             onClick={editing ? handleReset : () => setEditing(true)}
         >
             {!editing ? <EditIcon /> : <i className="fas fa-undo" />}
-        </div>
+        </div>}
         {editing
             && <EPPicker
                 opts={opts}
