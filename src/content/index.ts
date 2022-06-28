@@ -59,6 +59,8 @@ import * as imperativeVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/imp
 import * as verbEndings from "!babel-loader!@lingdocs/mdx-loader!./verbs/verb-endings.mdx";
 // @ts-ignore
 import * as rootsAndStems from "!babel-loader!@lingdocs/mdx-loader!./verbs/roots-and-stems.mdx";
+// @ts-ignore
+import * as pastVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/past-verbs.mdx";
 
 // @ts-ignore
 import * as introToParticiples from "!babel-loader!@lingdocs/mdx-loader!./participles/intro.mdx";
@@ -214,6 +216,10 @@ const contentTree = [
             {
                 import: imperativeVerbs,
                 slug: "imperative-verbs",
+            },
+            {
+                import: pastVerbs,
+                slug: "past-verbs",
             },
             {
                 import: verbEndings,
