@@ -18,7 +18,7 @@
     overflow-y: auto;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 900px) {
     .table-of-contents {
         display: none;
     }

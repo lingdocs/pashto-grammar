@@ -12,7 +12,10 @@ import { Link } from "react-router-dom";
 
 export default function L(props) {
     const { to } = props || "";
-    if (to.includes("#")) {
+    const toA = (to.includes("#") && to.split("#")[0] === window.location.pathname)
+        ? ("#" + to.split("#")[1])
+        : to;
+    if (toA.includes("#")) {
         // If it's a hash link return the special hash link
         return <HashLink
             // scroll={scrollWithOffset}
@@ -22,5 +25,5 @@ export default function L(props) {
         >{props.children}</HashLink>;
     }
     // If it's a regular link return the regular router linker
-    return <Link to={to} style={props.style}>{props.children}</Link>;
+    return <Link to={toA} style={props.style}>{props.children}</Link>;
 }; 

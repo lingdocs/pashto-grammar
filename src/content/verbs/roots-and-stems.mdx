@@ -30,6 +30,8 @@ import Link from "../../components/Link";
 import verbTreeBase from "./verb-tree-base.svg";
 import verbTreePastPresent from "./verb-tree-past-present.svg";
 import verbTreeImperfectivePerfective from "./verb-tree-imperfective-perfective.svg";
+import { BlockTerm, KidsSection, PerfectiveHead, VP } from "../../components/terms-links.tsx";
+import psmd from "../../lib/psmd";
 
 export const opts = defaultTextOptions;
 
@@ -87,20 +89,20 @@ The tree is also divided from left to right. On the left we have the [*imperfect
 On the <i className="fas fa-camera" /> **perfective** side of the tree:
 
  - The accent/emphasis **always** goes on the first syllable
- - The <InlinePs opts={opts} ps={{ p: "و", f: "óo" }} /> prefix goes on this side (for the verbs that can take it)
- - The first syllable can split off from the rest of the verb
+ - The verb has a <PerfectiveHead /> that splits off into a seperate <BlockTerm />
 
 ## Making the Verb Tree
 
 Many verbs follow a very clear pattern of how the roots and stems grow out from the dictionary form. But there are some verbs that have irregular roots and stems. If you're new to verbs, don't worry about reading or understanding everything all the way to the bottom.
+
 ### Regular Verbs
 
 With regular verbs, knowing all the roots and stems is simple:
 
 - The perfective root is made by:
-    - **adding the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix** and
-    - **shifting the accent to the front**.
-- The stems are just the **shorter version** of the roots.
+    - **adding the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix** as the <PerfectiveHead />
+    - **shifting the accent to the front**
+- The stems are just the **shorter version** of the roots
 
 Flip through all these regular verbs and notice the pattern of how they're all built.
 
@@ -112,7 +114,9 @@ export const regularTrans = regularVerbs.filter((verb) => verb.entry.c && verb.e
 
 <InfoCarousel items={regularTrans} hidePastParticiple />
 
-Notice how the <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> behaves a little differently when it's added on to a word starting with a vowel. In these cases, it behaves like a <<InlinePs opts={opts} ps={{ p: "و", f: "w" }} /> and the vowel behind is kept long.
+### Introducing the Perfective Head
+
+On the right (perfective) side of the verb tree beside the <i className="fas fa-camera" /> icon you'll notice there's a button labelled "split head." When you click it you'll see how one part splits off the rest of the verb stem/root. The front part that splits off is what we'll call the **perfective head**. In the phrase structure, it gets treated like a seperate <BlockTerm /> from the rest of the verb. For regular verbs starting with a consonant the perfective head is just the <InlinePs opts={opts} ps={{ p: "و", f: "oo" }} /> prefix. But for verbs starting with an <InlinePs opts={opts} ps={{ p: "ا", f: "aa", e: "" }} /> or <InlinePs opts={opts} ps={{ p: "ا", f: "a", e: "" }} /> the perfective side starts with a <InlinePs opts={opts} ps={{ p: "و", f: "w" }} /> in front and then the <InlinePs opts={opts} ps={{ p: "ا", f: "aa", e: "" }} /> is taken with it in the split so the perfective head is <InlinePs opts={opts} ps={{ p: "وا", f: "waa", e: "" }} />. Look for verbs starting with <InlinePs opts={opts} ps={{ p: "ا", f: "aa", e: "" }} /> in the examples above and see how this works.
 
 ### Regular Intransitive Verbs
 
@@ -154,6 +158,8 @@ export const separableVerbs = verbs.filter((verb) => (
     !verb.entry.ssp
 ));
 
+The other fascinating part about these types of verbs is that the first syllable gets split off as the <Link to="/verbs/roots-and-stems/#introducing-the-perfective-head">perfective head</Link>.
+
 <InfoCarousel items={separableVerbs} hidePastParticiple />
 
 ### Totally Irregular Verbs
@@ -179,33 +185,17 @@ In almost all verbs, the past participle is just the imperfective root plus a <I
 
 <InfoCarousel items={verbs} />
 
-## About the split in the perfective side
-In the perfective roots and stems there is a spot where the verb can be broken apart into two blocks. This is important because you can put the <InlinePs opts={opts} ps={{ p: "نه", f: "nú", e: "negative 'not'" }} /> in there or the split can become a <KidsSection />.
+## With the negative
 
-## About inserting <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> 
+The negative <InlinePs opts={opts} ps={{ p: "نه", f: "nú" , e: "not" }} /> is a <BlockTerm /> used to make verbs negative, and <InlinePs opts={opts} ps={{ p: "مه", f: "mú", e: "don't" }} /> is used to with the imperative forms.
 
-If the verb takes a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix and you want to use a <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> to make it negative, you always have to insert the <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> into the split in the perfective form.
+### The negative takes over the accent
 
-For example:
+When one of these negatives is used **it always takes over the accent from the verb**.
 
-<Examples opts={opts}>{[
-    { p: "زه ورسره ونه غږېدم", f: "zu wăr-sara oo-nú-ghuGedum", e: "I didn't talk with him" },
-]}</Examples>
-
-<Examples opts={opts}>{[
-    { p: "زه ورسره نه وغږېدم ❌", f: "zu wăr-sara nú ooghuGedum ❌", e: "I didn't talk with him" },
-]}</Examples>
-
-But if the verb is a one of the <Link to="/verbs/roots-and-stems/#seperable-verbs">seperable verbs</Link> that doesn't take a <InlinePs opts={opts} ps={grammarUnits.ooPrefix} /> prefix, then the <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> can be inserted *inside or outside of the split*.
-
-<Examples opts={opts}>{[
-    { p: "زه ورسره کې نه ناستم", f: "zu wăr-sara ke-nú-naastum", e: "I didn't sit with him" },
-]}</Examples>
-
-<Examples opts={opts}>{[
-    { p: "زه ورسره نه کېناستم", f: "zu wăr-sara nú kenaastum", e: "I didn't sit with him" },
-]}</Examples>
-
-### <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> always takes over the accent
-
-Whenever a <InlinePs opts={opts} ps={{ p: "نه", f: "nu" }} /> is inserted in a split or in front of a verb, it takes over the accent and receives the emphasis for a verb. It's like a mean, negative bully.
+<Examples opts={opts}>{psmd([
+    { p: "دتله **کېنه**", f: "dălta **kéna**", e: "sit here" },
+    { p: "دلته **مه کېنه**", f: "dălta **mú kena**", e: "don't sit here" },
+    { p: "زه ورسره **غږېدم**", f: "zu wăr-sara **ghuGedúm**", e: "I was talking with him" },
+    { p: "زه ورسره **نه غږېدم**", f: "zu wăr-sara **nú ghuGedum**", e: "I was talking with him" },
+])}</Examples>

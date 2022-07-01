@@ -1,25 +1,33 @@
 import Link from "./Link";
 
-export function NP({ text }: { text: string}) {
+export function NP({ text }: { text: string }) {
     return <Link to="/phrase-structure/np">{text || "NP"}</Link>;
 }
 
-export function AP({ text }: { text: string}) {
+export function AP({ text }: { text: string }) {
     return <Link to="/phrase-structure/ap">{text || "AP"}</Link>;
 }
 
-export function VP({ text }: { text: string}) {
+export function VP({ text }: { text: string }) {
     return <Link to="/phrase-structure/vp">{text || "VP"}</Link>;
 }
 
-export function EP({ text }: { text: string}) {
+export function EP({ text }: { text: string }) {
     return <Link to="/phrase-structure/ep">{text || "EP"}</Link>;
 }
 
-export function KidsSection({ text }: { text: string}) {
+export function KidsSection({ text }: { text: string }) {
     return <Link to="/phrase-structure/blocks-and-kids/#the-kids-section">{text || "kids' section"}</Link>;
 }
 
-export function MiniPronoun({ text }: { text: string}) {
+export function MiniPronoun({ text }: { text: string }) {
     return <Link to="/pronouns/pronouns-mini">{text || "mini-pronoun"}</Link>;
+}
+
+export function BlockTerm({ text }: { text: string }) {
+    return <Link to="/phrase-structure/blocks-and-kids/#blocks">{ text || "block"}</Link>;
+}
+
+export function PerfectiveHead({ text }: { text: string }) {
+    return <Link to="/verbs/roots-and-stems/#introducing-the-perfective-head">{ text || "perfective head"}</Link>;
 }

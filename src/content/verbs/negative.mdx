@@ -1,0 +1,70 @@
+---
+title: Negatives
+---
+
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+    grammarUnits,
+    RootsAndStems,
+    getVerbInfo,
+    removeFVarients,
+} from "@lingdocs/pashto-inflector";
+import Link from "../../components/Link";
+import { BlockTerm, KidsSection, PerfectiveHead, VP } from "../../components/terms-links.tsx";
+import psmd from "../../lib/psmd";
+
+To make verbs negative, we use a negative <BlockTerm />.
+
+- <InlinePs opts={opts} ps={{ p: "نه", f: "nú", e: "not" }} />
+- <InlinePs opts={opts} ps={{ p: "مه", f: "mú", e: "don't" }} /> (for imperative verbs)
+
+### Where the negative goes
+
+The negative goes in front of the verb block at the end of a <VP />.
+
+<Examples opts={opts}>{psmd([
+    { p: "زه ښار ته نه ځم", f: "zu xaar ta nú dzum", e: "I'm not going to the city" },
+    { p: "هغه عربي نه زده کوي", f: "haghá arabee nu zda kawee", e: "He's not learning Arabic" }, 
+])}</Examples>
+
+With the perfective roots and stems, if we have a <PerfectiveHead /> of <InlinePs opts={opts} ps={{ p: "و", f: "oo" }} /> or <InlinePs opts={opts} ps={{ p: "وا", f: "waa" }} />, the <InlinePs opts={opts} ps={{ p: "نه", f: "nú" , e: "not" }} /> always goes *after* the <PerfectiveHead /> block.
+
+<Examples opts={opts}>{psmd([
+    { p: "زه ورسره وغږېدم", f: "zu wăr-sara óoghuGedum", e: "I talked with him" },
+    { p: "زه ورسره ونه غږېدم", f: "zu wăr-sara oo-nú ghuGedum", e: "I talked with him", sub: "negative block always goes after the perfective head" },
+    { p: "ما کتابچه واخسته", f: "maa kitaabchaa wáakhista", e: "I took the booklet" },
+    { p: "ما کتابچه وانه خسته", f: "maa kitaabchaa wáa-nu khista", e: "I didn't take the booklet", sub: "negative block always goes after the perfective head" },
+])}</Examples>
+
+But if it's one of those verbs that don't take the <InlinePs opts={opts} ps={{ p: "و", f: "oo" }} /> prefix where the <PerfectiveHead /> is made from splitting off the first syllable of the word, you can put the negative after the perfective head *or* before it.
+
+<Examples opts={opts}>{psmd([
+    { p: "هغه کور ته لاړه", f: "haghá kor ta láaRa", e: "She went home" },
+    { p: "هغه کور ته لانه ړه", f: "haghá kor ta laa-nú-Ra", e: "She didn't go home", sub: "negative block after the perfective head" },
+    { p: "هغه کور ته نه لانه ړه", f: "haghá kor ta nú laaRa", e: "She didn't go home", sub: "negative block before the perfective head" },
+    { p: "زه دلته کېنم؟", f: "zu dălta kenúm?", e: "Do I sit here? (present)" },
+    { p: "زه دلته کېنم؟", f: "zu dălta kénum?", e: "Should I sit here? (subjunctive)" },
+    { p: "زه دلته نه کېنم؟", f: "zu dălta nú kenum?", e: "Do I not sit here? (present)", sub: "no perfective head, negative block before verb block" },
+    { p: "زه دلته نه کېنم؟", f: "zu dălta nú kenum?", e: ":Should I not sit here? (subjunctive)", sub: "negative block before the perfective head" },
+    { p: "زه دلته نه کېنه نم؟", f: "zu dălta ke-nú num?", e: "Should I not sit here? (subjunctive)", subj: "negative block after the perfective head" },
+])}</Examples>
+
+Notice how with verbs like <InlinePs opts={opts} ps={{ p: "کېناستل", f: "kenaastúl", e: "" }} /> the only thing indicating a difference between the perfective and imperfective forms is the accent, and therefore when we add the <InlinePs opts={opts} ps={{ p: "نه", f: "nú", e: "" }} /> we have no way of telling if a verb was perfective or imperfective, because the <InlinePs opts={opts} ps={{ p: "نه", f: "nú", e: "" }} /> took over the accent.
+
+With stative compounds the complement and verb are considered one or two blocks depending on the aspect.
+
+With the <i className="fas fa-video" /> **imperfective** aspect, the complement and verb are fused together and considered one indivisable block, so the negative goes before that whole verb block.
+
+<Examples opts={opts}>{psmd([
+    { p: "ما پښتو نه زده کوله", f: "maa puxto nú zda kawula", e: "I wasn't learning Pashto" },
+    { p: "هغه ما نه ستړی کوي", f: "hagha maa nú stuRey kawee", e: "He's not making me (m.) tired" },
+])}</Examples>
+
+In the <i className="fas fa-camera" /> **perfective** aspect, however the complement breaks out and acts as a <PerfectiveHead />, so the negative goes after it.
+
+<Examples opts={opts}>{psmd([
+    { p: "ما پښتو زده نه کړه", f: "maa puxto zda nú kRa", e: "I didn't learn Pashto" },
+    { p: "چې هغه ما نه ستړی نه کړي", f: "che haghá maa stuRey nú kRee", e: "I hope he doesn't make me (m.) tired" },
+])}</Examples>
