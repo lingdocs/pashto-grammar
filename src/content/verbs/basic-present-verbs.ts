@@ -13,3 +13,11 @@ export const basicVerbs: T.VerbEntry[] = [
     {"ts":1527812790,"i":5795,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"},
     {"ts":1527815216,"i":6630,"p":"راتلل","f":"raatlúl","g":"raatlul","e":"to come","c":"v. intrans. irreg.","psp":"راځ","psf":"raadz","ssp":"راش","ssf":"ráash","prp":"راغلل","prf":"ráaghlul","pprtp":"راغلی","pprtf":"raaghúley","tppp":"راغی","tppf":"ráaghey","noOo":true,"separationAtP":2,"separationAtF":3,"ec":"come,comes,coming,came,come"},
 ].map(entry => ({ entry }));
+
+// @ts-ignore
+export const intransitivePast: T.VerbEntry[] = [
+    {"ts":1527813573,"i":6809,"p":"رسېدل","f":"rasedul","g":"rasedul","e":"arrive, reached; (fig.) understand, attain to; mature, ripen","c":"v. intrans.","shortIntrans":true,"ec":"arrive"},
+    {"ts":1527812645,"i":10822,"p":"ګرځېدل","f":"gurdzedul","g":"gurdzedul","e":"to walk, wander, turn about; to become, to be","c":"v. intrans.","shortIntrans":true,"ec":"walk"},
+    {"ts":1527816495,"i":3470,"p":"تښتېدل","f":"tuxtedul","g":"tuxtedul","e":"to run off, escape, flee","c":"v. intrans.","shortIntrans":true,"ec":"escape"},
+    {"ts":1527813680,"i":9218,"p":"غږېدل","f":"ghuGedul, ghaGedul","g":"ghugedul,ghagedul","e":"to speak, talk, converse, sing","c":"v. intrans.","ec":"speak,speaks,speaking,spoke"},
+].map(entry => ({ entry }));

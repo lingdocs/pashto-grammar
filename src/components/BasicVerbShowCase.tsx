@@ -9,17 +9,20 @@ import {
     getEnglishVerb,
     InlinePs,
     removeFVarients,
+    isPastTense,
 } from "@lingdocs/pashto-inflector";
 import { isImperativeTense } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
 import { useState } from "react";
 import Carousel from "./Carousel";
-import { basicVerbs } from "../content/verbs/basic-present-verbs";
+import { basicVerbs, intransitivePast } from "../content/verbs/basic-present-verbs";
+import { getLength } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
 
 function BasicVerbShowCase({ opts, tense }: {
     opts: T.TextOptions,
     tense: T.VerbTense | T.ImperativeTense, 
 }) {
-    return <Carousel stickyTitle items={basicVerbs} render={(item) => {
+    const items = isPastTense(tense) ? intransitivePast : basicVerbs;
+    return <Carousel stickyTitle items={items} render={(item) => {
         return {
             title: <InlinePs opts={opts}>{{
                 ...removeFVarients(item.entry),
@@ -42,13 +45,14 @@ function BasicVerbChart({ verb, opts, tense }: {
     tense: T.VerbTense | T.ImperativeTense,
 }) {
     const [negative, setNegative] = useState<boolean>(false);
+    const [length, setLength] = useState<"short" | "long">("short");
     const c = conjugateVerb(verb.entry, verb.complement);
     const conjugations = "stative" in c
         ? c.stative
         : "grammaticallyTransitive" in c
         ? c.grammaticallyTransitive
         : c;
-    const phrasesForTable = makeExamplePhrases(verb, tense, negative)
+    const phrasesForTable = makeExamplePhrases(verb, tense, negative, length)
     return <div>
         <div>
             {getEnglishVerb(verb.entry)}
@@ -59,16 +63,29 @@ function BasicVerbChart({ verb, opts, tense }: {
             hidePastParticiple={true}
             highlighted={[tenseToStem(tense)]}
         />
-        <div className="my-3">
-            <ButtonSelect
-                handleChange={(value) => setNegative(value === "true")}
-                value={String(negative)}
+        <div className="my-3 d-flex flex-row justify-content-center">
+            {isPastTense(tense) && <div className="mx-2">
+                <ButtonSelect
+                handleChange={setLength}
+                value={length}
                 small
                 options={[
-                    { value: "true", label: "Neg." },
-                    { value: "false", label: "Pos." },
+                    { value: "long", label: "long" },
+                    { value: "short", label: "short" },
                 ]}
-            />
+                />
+            </div>}
+            <div className="mx-2">
+                <ButtonSelect
+                    handleChange={(value) => setNegative(value === "true")}
+                    value={String(negative)}
+                    small
+                    options={[
+                        { value: "true", label: "Neg." },
+                        { value: "false", label: "Pos." },
+                    ]}
+                />
+            </div>
         </div>
         <div className="text-left">
             <VerbTable
@@ -80,7 +97,7 @@ function BasicVerbChart({ verb, opts, tense }: {
     </div>
 }
 
-function makeExamplePhrases(verb: T.VerbEntry, tense: T.VerbTense | T.ImperativeTense, negative: boolean): { ps: T.VerbBlock | T.ImperativeBlock, e: T.EnglishBlock } {
+function makeExamplePhrases(verb: T.VerbEntry, tense: T.VerbTense | T.ImperativeTense, negative: boolean, length: "short" | "long"): { ps: T.VerbBlock | T.ImperativeBlock, e: T.EnglishBlock } {
     function makeSelection(person: T.Person): T.VPSelectionComplete{
         return {
             "blocks": [
@@ -111,13 +128,13 @@ function makeExamplePhrases(verb: T.VerbEntry, tense: T.VerbTense | T.Imperative
     function makePhrase(person: T.Person): { ps: T.ArrayOneOrMore<T.PsString>, e: string } {
         const selection = makeSelection(person);
         const rendered = renderVP(selection);
-        const compiled = compileVP(rendered, rendered.form, true);
+        const compiled = compileVP(rendered, rendered.form);
         return {
-            ps: [modifyP(compiled.ps[0])],
+            ps: [modifyP(getLength(compiled.ps, length)[0])],
             e: compiled.e ? modifyEnglish(compiled.e.join(" • ")) : "",
         };
     }
-    return createVerbTable(makePhrase, isImperativeTense(tense) ? "imperative" : "nonImperative");
+    return createVerbTable(makePhrase, isImperativeTense(tense) ? "imperative" : isPastTense(tense) ? "past" : "nonImperative");
 }
 
 function modifyP(ps: T.PsString): T.PsString {
@@ -160,7 +177,7 @@ function tenseToStem(t: T.VerbTense | T.ImperativeTense): "imperfective stem" | 
         : "perfective root";
 }
 
-function createVerbTable(f: (person: T.Person) => { ps: T.ArrayOneOrMore<T.PsString>, e: string }, type: "imperative" | "nonImperative"): { ps: T.VerbBlock | T.ImperativeBlock, e: T.EnglishBlock } {
+function createVerbTable(f: (person: T.Person) => { ps: T.ArrayOneOrMore<T.PsString>, e: string }, type: "imperative" | "nonImperative" | "past"): { ps: T.VerbBlock | T.ImperativeBlock, e: T.EnglishBlock } {
     if (type === "imperative") {
         const b = [
             [f(2), f(8)],
@@ -180,7 +197,6 @@ function createVerbTable(f: (person: T.Person) => { ps: T.ArrayOneOrMore<T.PsStr
                 [b[1][0].e, b[1][1].e],
             ],
         };
-
     }
     const b = [
         [f(0), f(6)],
