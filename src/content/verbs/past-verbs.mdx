@@ -8,6 +8,7 @@ import {
     InlinePs,
 } from "@lingdocs/pashto-inflector";
 import cousins from "./cousins.png";
+import { KidsSection, VP } from "../../components/terms-links";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
@@ -15,9 +16,12 @@ import verbTreePastPresent from "./verb-tree-past-present.svg";
 import verbTreeImperfectivePerfective from "./verb-tree-imperfective-perfective.svg";
 import simplePast from "./simple-past-in-reality.svg";
 import continuousPast from "./continuous-past-in-reality.svg";
+import habitualSimplePast from "./habitual-simple-past.svg";
+import habitualContinuousPast from "./habitual-continuous-past.svg";
 import unoReverseMeme from "./uno-reverse-meme.jpg";
 import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
 import BasicVerbShowCase from "../../components/BasicVerbShowCase";
+
 
 export function KingIcon() {
     return <i className="mx-1 fas fa-crown" />;
@@ -169,3 +173,50 @@ The tenses (simple and continous past) stay the same and the formulas for making
 <EditableVPEx opts={opts} long>{
     {"blocks":[{"key":0.7215647271503056,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.5243897934182491,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812564,"i":6538,"p":"ډوډۍ","f":"DoDúy","g":"DoDuy","e":"bread, food, meal","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812790,"i":5795,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
+
+## Habitual Past Tenses
+
+You can add a <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> to either the simple or continuous past to talk about a <strong>habitually recurring action in the past</strong>. (Remember the <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> always goes in the <KidsSection />.) The difference between the two habitual tenses *is slight*, and depends on how we view the events.
+
+- Habitual Simple Past <i className="fas fa-camera" />
+    - an event that occured and finished habitually/repeatedly
+- Habitual Continuous Past <i className="fas fa-video" />
+    - an event that happened habitually/repeatedly as a process or ongoing activity
+
+### Habitual Simple Past <i className="fas fa-camera" />
+
+With the habitual simple past (AKA habitual perfective past), we are talking about an action that was habitually repeated in the past, but we look at each event as a complete action, kind of like recurring snapshots taken with a camera. <i className="fas fa-camera" />
+
+<div className="text-center">
+    <img src={habitualSimplePast} alt="" className="img-fluid" />
+</div>
+
+<Formula>
+    به - ba +{` `}
+    <Link to="/verbs/past-verbs/#simple-past-i-classnamefas-fa-camera-">simple past</Link>
+</Formula>
+
+<Examples opts={opts}>{[
+    { p: "ما به ناوخته ډوډۍ وخوړله", f: "maa ba naawakhta DoDuy óokhoRula", e: "I would eat late", sub: "I would repeatedly/habitually eat my meals at a late time - thinking of eating the meal as a complete event that got done" },
+    { p: "مونږ به دلته کېناستو", f: "moonG ba dalta kénaastoo", e: "We would sit down here", sub: "We would repeatedly/habitually sit down at this spot - thinking of the sitting down as a one-time action we did each time" }
+]}</Examples>
+
+### Habitual Continuous Past <i className="fas fa-video" />
+
+With the habitual continuous past (AKA habitual imperfective past), we are talking about an action that was habitually repeated in the past, but we look at each event as an activity that was ongoing or happening, kind of like a a collection of video clips. <i className="fas fas-video" />
+
+<div className="text-center">
+    <img src={habitualContinuousPast} alt="" className="img-fluid" />
+</div>
+
+<Formula>
+    به - ba +{` `}
+    <Link to="/verbs/past-verbs/#continuous-past-i-classnamefas-fa-video-">continuous past</Link>
+</Formula>
+
+<Examples opts={opts}>{[
+    { p: "ما به ناوخته ډوډۍ خوړله", f: "maa ba naawakhta DoDuy khoRúla", e: "I would eat late", sub: "I would repeatedly/habitually eat my meals at a late time - thinking of eating as a process that happened repeatedly" },
+    { p: "مونږ به دلته کېناستو", f: "moonG ba dalta kenaastóo", e: "We would sit down here", sub: "We would repeatedly/habitually sit down at this spot - thinking of the sitting down as an activity / process where we would sit together and spend time here habitually" }
+]}</Examples>
+
+
