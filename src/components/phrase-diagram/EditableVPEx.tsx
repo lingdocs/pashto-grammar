@@ -11,7 +11,7 @@ export function EditIcon() {
     return <i className="fas fa-edit" />;
 }
 
-function EditableVPEx({ children, opts, formChoice, noEdit }: { children: T.VPSelectionState, opts: T.TextOptions, formChoice?: boolean, noEdit?: boolean }) {
+function EditableVPEx({ children, opts, formChoice, noEdit, length }: { children: T.VPSelectionState, opts: T.TextOptions, formChoice?: boolean, noEdit?: boolean, length: "long" | "short" }) {
     const [editing, setEditing] = useState<boolean>(false);
     const [vps, setVps] = useState<T.VPSelectionState>(children);
     function handleReset() {
@@ -43,6 +43,7 @@ function EditableVPEx({ children, opts, formChoice, noEdit }: { children: T.VPSe
             justify="left"
             onlyOne="concat"
             setForm={formChoice ? handleSetForm : "disable"}
+            length={length}
         />
     </div>;
 }
