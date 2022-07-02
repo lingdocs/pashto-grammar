@@ -11,11 +11,12 @@ import {
     removeFVarients,
     isPastTense,
 } from "@lingdocs/pashto-inflector";
-import { isImperativeTense } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
+import { isImperativeTense, isPerfectTense } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
 import { useState } from "react";
 import Carousel from "./Carousel";
 import { basicVerbs, intransitivePast } from "../content/verbs/basic-present-verbs";
 import { getLength } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
+import { isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
 
 function BasicVerbShowCase({ opts, tense }: {
     opts: T.TextOptions,
@@ -42,7 +43,7 @@ export default BasicVerbShowCase;
 function BasicVerbChart({ verb, opts, tense }: {
     verb: T.VerbEntry,
     opts: T.TextOptions,
-    tense: T.VerbTense | T.ImperativeTense,
+    tense: T.VerbTense | T.ImperativeTense | T.PerfectTense,
 }) {
     const [negative, setNegative] = useState<boolean>(false);
     const [length, setLength] = useState<"short" | "long">("short");
@@ -60,11 +61,11 @@ function BasicVerbChart({ verb, opts, tense }: {
         <RootsAndStems
             textOptions={opts}
             info={conjugations.info}
-            hidePastParticiple={true}
+            hidePastParticiple={isPerfectTense(tense) ? false : true}
             highlighted={[tenseToStem(tense)]}
         />
         <div className="my-3 d-flex flex-row justify-content-center">
-            {isPastTense(tense) && <div className="mx-2">
+            {isPastTense(tense) && !isPerfectTense(tense) && <div className="mx-2">
                 <ButtonSelect
                 handleChange={setLength}
                 value={length}
@@ -97,7 +98,7 @@ function BasicVerbChart({ verb, opts, tense }: {
     </div>
 }
 
-function makeExamplePhrases(verb: T.VerbEntry, tense: T.VerbTense | T.ImperativeTense, negative: boolean, length: "short" | "long"): { ps: T.VerbBlock | T.ImperativeBlock, e: T.EnglishBlock } {
+function makeExamplePhrases(verb: T.VerbEntry, tense: T.VerbTense | T.ImperativeTense | T.PerfectTense, negative: boolean, length: "short" | "long"): { ps: T.VerbBlock | T.ImperativeBlock, e: T.EnglishBlock } {
     function makeSelection(person: T.Person): T.VPSelectionComplete{
         return {
             "blocks": [
@@ -131,7 +132,7 @@ function makeExamplePhrases(verb: T.VerbEntry, tense: T.VerbTense | T.Imperative
         const compiled = compileVP(rendered, rendered.form);
         return {
             ps: [modifyP(getLength(compiled.ps, length)[0])],
-            e: compiled.e ? modifyEnglish(compiled.e.join(" • ")) : "",
+            e: compiled.e ? modifyEnglish(compiled.e.join(" • "), tense, isThirdPerson(person)) : "",
         };
     }
     return createVerbTable(makePhrase, isImperativeTense(tense) ? "imperative" : isPastTense(tense) ? "past" : "nonImperative");
@@ -144,19 +145,22 @@ function modifyP(ps: T.PsString): T.PsString {
     };
 }
 
-function modifyEnglish(e: string): string {
+function modifyEnglish(e: string, tense: T.VerbTense | T.ImperativeTense | T.PerfectTense, isThirdPerson: boolean): string {
     // "kitaab" used as a dummy object
-    return e
-        .replace(/\(a\/the\) +book/ig, "")
-        .replace(/he\/it/ig, "he/she/it")
-        .replace(/We \(m\. pl\.\)/ig, "We ")
-        .replace(/They \(m\. pl\.\)/ig, "They ")
-        .replace(/\(m\. pl\.\)/ig, "(pl.)")
-        .replace(/\(m\.\)/ig, "");
+    const dummyObjectRemoved =
+        e.replace(/\(a\/the\) +book/ig, "")
+    return (isPerfectTense(tense) || (isPastTense(tense) && isThirdPerson)) 
+        ? dummyObjectRemoved
+        : dummyObjectRemoved
+            .replace(/he\/it/ig, "he/she/it")
+            .replace(/We \(m\. pl\.\)/ig, "We ")
+            .replace(/They \(m\. pl\.\)/ig, "They ")
+            .replace(/\(m\. pl\.\)/ig, "(pl.)")
+            .replace(/\(m\.\)/ig, "");
 }
 
-function tenseToStem(t: T.VerbTense | T.ImperativeTense): "imperfective stem" | "perfective stem" | "imperfective root" | "perfective root" {
-    return t === "presentVerb"
+function tenseToStem(t: T.VerbTense | T.ImperativeTense | T.PerfectTense): "imperfective stem" | "perfective stem" | "imperfective root" | "perfective root" | "past participle" {
+    const stem = t === "presentVerb"
         ? "imperfective stem"
         : t === "subjunctiveVerb"
         ? "perfective stem"
@@ -174,7 +178,10 @@ function tenseToStem(t: T.VerbTense | T.ImperativeTense): "imperfective stem" | 
         ? "perfective root"
         : t === "imperfectiveImperative"
         ? "imperfective root"
+        : t.endsWith("Perfect")
+        ? "past participle"
         : "perfective root";
+    return stem;
 }
 
 function createVerbTable(f: (person: T.Person) => { ps: T.ArrayOneOrMore<T.PsString>, e: string }, type: "imperative" | "nonImperative" | "past"): { ps: T.VerbBlock | T.ImperativeBlock, e: T.EnglishBlock } {

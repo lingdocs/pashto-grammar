@@ -31,3 +31,19 @@ export function BlockTerm({ text }: { text: string }) {
 export function PerfectiveHead({ text }: { text: string }) {
     return <Link to="/verbs/roots-and-stems/#introducing-the-perfective-head">{ text || "perfective head"}</Link>;
 }
+
+export function Camera() {
+    return <i className="fas fa-camera" />;
+}
+
+export function Video() {
+    return <i className="fas fa-video" />;
+}
+
+export function KingIcon() {
+    return <i className="mx-1 fas fa-crown" />;
+}
+
+export function ServantIcon() {
+    return <i className="mx-1 fas fa-male" />;
+};

@@ -29,8 +29,8 @@ function BasicBlocks({ blocks, showKidsSection, large }: {
                             className="d-flex flex-row justify-content-center align-items-center"
                             style={{
                                 border: "2px solid black",
-                                height: large ? "2.75rem" : "2.5rem",
-                                width: large ? "4.5rem" : "4rem",
+                                height: large ? "3.5rem" : "2.5rem",
+                                width: large ? "6rem" : "4rem",
                             }}
                         >
                             {(typeof block === "object" && block.inside) ? block.inside : ""}

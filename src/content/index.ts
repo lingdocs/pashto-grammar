@@ -63,6 +63,8 @@ import * as negativeVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/negat
 import * as rootsAndStems from "!babel-loader!@lingdocs/mdx-loader!./verbs/roots-and-stems.mdx";
 // @ts-ignore
 import * as pastVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/past-verbs.mdx";
+// @ts-ignore
+import * as perfectVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/perfect-verbs.mdx";
 
 // @ts-ignore
 import * as introToParticiples from "!babel-loader!@lingdocs/mdx-loader!./participles/intro.mdx";
@@ -222,6 +224,10 @@ const contentTree = [
             {
                 import: pastVerbs,
                 slug: "past-verbs",
+            },
+            {
+                import: perfectVerbs,
+                slug: "perfect-verbs",
             },
             {
                 import: negativeVerbs,

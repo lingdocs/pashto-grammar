@@ -1,0 +1,105 @@
+---
+title: Perfect
+---
+
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+} from "@lingdocs/pashto-inflector";
+import { KidsSection, VP, EP, Camera, Video, KingIcon } from "../../components/terms-links";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+import Formula from "../../components/formula/Formula";
+import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+import BasicVerbShowCase from "../../components/BasicVerbShowCase";
+import simplePast from "./simple-past-in-reality.svg";
+import presentPerfect from "./present-perfect.svg";
+import chemistryPerfect from "./chemistry-perfect.jpg";
+import BasicBlocks from "../../components/BasicBlocks";
+
+## Introduction
+
+We use [perfect tenses](https://en.wikipedia.org/wiki/Perfect_(grammar)) when we want to **emphasize the consequences** of an event or **focus on the resulting state** after the event.
+
+> A perfect tense (abbreviated perf or prf) is a grammatical form used to describe a past event with present relevance, or a present state resulting from a past situation. For example, “I have put it on the table” implies both that I put the object on the table and that it is still there; “I have been to France” conveys that this is a part of my experience as of now; and “I have lost my wallet” implies that this loss is troublesome at the present moment. ([wikipedia](https://en.wikipedia.org/wiki/Perfective_aspect#Perfective_vs._perfect))
+
+<div className="alert alert-warning">
+
+**Note** ⚠️: This is *not* to be confused with the <Link to="/verbs/verb-aspect/#i-classnamefas-fa-camera--perfective-aspect">perfective aspect</Link> <Camera />, which is a totally different thing.
+
+</div>
+
+In English we're not as strict with using the perfect tense. In fact it can sound a little formal or bookish to always say things like "I've lost my wallet" (perfect) instead of "I lost my wallet" (simple past). In Pashto however, this distinction is very normal and common, and you will see the perfect form used whenever it's important to talk about a state resulting from the action.
+
+With the past tense we're talking about an event happening. We're just relaying the fact that something happened, without talking about the consequences of that event.
+
+<div style={{ maxWidth: "350px", margin: "0 auto 2rem auto" }}>
+    <img src={simplePast} alt="" className="img-fluid" />
+</div>
+
+<Examples opts={opts}>{[
+    {
+        p: "ما ډوډۍ وخوړله",
+        f: "maa DoDúy óokhoRula",
+        e: "I ate food",
+        sub: "meaning: I chewed and swallowed the food."
+    }
+]}</Examples>
+
+With a perfect tense, we're talking about the **result of an event**. We're saying that something has happened, and therefore there's an affect on the situation.
+
+<div style={{ maxWidth: "350px", margin: "0 auto 2rem auto" }}>
+    <img src={presentPerfect} alt="" className="img-fluid" />
+</div>
+
+<Examples opts={opts}>{[
+    {
+        p: "ما ډوډۍ خوړلې ده",
+        f: "maa DoDúy khoRúle da",
+        e: "I've eaten food",
+        sub: "meaning: I am full now."
+    }
+]}</Examples>
+
+## How to make perfect tenses 🧪
+
+Earlier we talked about how <EP text="equatives" /> and <VP text="verbs" /> are totally different in Pashto. They have different tenses, equatives don't have <Link to="/verbs/verb-aspect/">aspect</Link>, and they have totally different phrase structures.
+
+Well now we're going to do something very crazy. To make the perfect forms we are going to **combine verbs and equatives**. 👨🏻‍🔬😮
+
+<div style={{ maxWidth: "350px", margin: "0 auto 2rem auto" }}>
+    <img src={chemistryPerfect} alt="" className="img-fluid" />
+</div>
+
+<Formula>
+    Verb Past Participle +{` `}
+    Equative = Perfect
+</Formula>
+
+To make the perfect forms we take the <Link to="/verbs/roots-and-stems/#the-past-participle">past participle</Link> of the verb and **add an equative block** next to it. For example, with the verb <InlinePs opts={opts} ps={{ p: "تلل", f: "tlul", e: "to go" }} /> we could have something like:
+
+<BasicBlocks large blocks={[
+    { bottom: "Past Particple", inside: "tlúley" },
+    { bottom: "Equative", inside: "yum" },
+]} />
+
+Now instead of one verb block, *we have **two blocks** that have to agree with the king* <KingIcon /> of the <VP />. Let's see how this works with some intransitive verbs.
+
+<BasicVerbShowCase opts={opts} tense="presentPerfect" />
+
+That seems like a pretty intimidating chart! But it gets simpler if we remember that we are just making the two blocks (past participle and equative) agree with the king <KingIcon /> of the phrase. 
+
+Have a look at the examples below, and notice how both the past participle and the equative blocks agree with the king of the phrase. Perfects are considered past-tense so they will follow the <Link to="/phrase-structure/vp/">same VP structure</Link> as other past tense forms:
+
+- with **intransitive** verbs the *subject is king*
+- with **transitive** verbs the *object is king*
+
+#### Intransitive Examples
+
+
+
+With perfect tenses, we'll use the <VP text="phrase structure of verbs" /> and the <Link to="/equatives/other-equatives/#overview-of-8-equatives">tenses of equatives</Link>.
+
+IN PROGRESS
+
