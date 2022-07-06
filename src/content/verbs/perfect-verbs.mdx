@@ -32,7 +32,9 @@ We use [perfect tenses](https://en.wikipedia.org/wiki/Perfect_(grammar)) when we
 
 In English we're not as strict with using the perfect tense. In fact it can sound a little formal or bookish to always say things like "I've lost my wallet" (perfect) instead of "I lost my wallet" (simple past). In Pashto however, this distinction is very normal and common, and you will see the perfect form used whenever it's important to talk about a state resulting from the action.
 
-With the past tense we're talking about an event happening. We're just relaying the fact that something happened, without talking about the consequences of that event.
+### Comparing Simple Past to Perfect
+
+With the <Link to="/verbs/past-verbs/#simple-past-i-classnamefas-fa-camera-">simple past tense</Link> we're talking about an event happening. We're just relaying the fact that something happened, without talking about the consequences of that event.
 
 <div style={{ maxWidth: "350px", margin: "0 auto 2rem auto" }}>
     <img src={simplePast} alt="" className="img-fluid" />
@@ -42,12 +44,12 @@ With the past tense we're talking about an event happening. We're just relaying 
     {
         p: "ما ډوډۍ وخوړله",
         f: "maa DoDúy óokhoRula",
-        e: "I ate food",
+        e: "I ate food (simple past)",
         sub: "meaning: I chewed and swallowed the food."
     }
 ]}</Examples>
 
-With a perfect tense, we're talking about the **result of an event**. We're saying that something has happened, and therefore there's an affect on the situation.
+With a **perfect** tense, we're talking about the **result of an event**. We're saying that something has happened, and therefore there's an affect on the situation.
 
 <div style={{ maxWidth: "350px", margin: "0 auto 2rem auto" }}>
     <img src={presentPerfect} alt="" className="img-fluid" />
@@ -57,7 +59,7 @@ With a perfect tense, we're talking about the **result of an event**. We're sayi
     {
         p: "ما ډوډۍ خوړلې ده",
         f: "maa DoDúy khoRúle da",
-        e: "I've eaten food",
+        e: "I've eaten food (perfect)",
         sub: "meaning: I am full now."
     }
 ]}</Examples>
@@ -79,28 +81,102 @@ Well now we're going to do something very crazy. To make the perfect forms we ar
 
 To make the perfect forms we take the <Link to="/verbs/roots-and-stems/#the-past-participle">past participle</Link> of the verb and **add an equative block** next to it. For example, with the verb <InlinePs opts={opts} ps={{ p: "تلل", f: "tlul", e: "to go" }} /> we could have something like:
 
-<BasicBlocks large blocks={[
-    { bottom: "Past Particple", inside: "tlúley" },
-    { bottom: "Equative", inside: "yum" },
-]} />
+<EditableVPEx opts={opts} mode="blocks">{
+    {"blocks":[{"key":0.9450165572504559,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9846690662896809,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3656,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
 
-Now instead of one verb block, *we have **two blocks** that have to agree with the king* <KingIcon /> of the <VP />. Let's see how this works with some intransitive verbs.
+Now instead of one verb block, we have **two blocks** that have to agree with the king <KingIcon /> of the <VP />.
+
+1. The **past participle** <InlinePs opts={opts} ps={{ p: "تللی", f: "tlúley" }} /> is in the <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ey--">masculine uninflected form</Link> because it agrees with <InlinePs opts={opts} ps={{ p: "زه", f: "zu", e: "I (m.)" }} /> which is masculine singular.
+2. The **equative** <InlinePs opts={opts} ps={{ p: "یم", f: "yum", e: "" }} /> also agrees with the king  <InlinePs opts={opts} ps={{ p: "زه", f: "zu" }} />, because it's a <Link to="/equatives/present-equative/">1st pers. sing. equative</Link>.
+
+If a woman says this sentence it will change slightly...
+
+<EditableVPEx opts={opts} mode="blocks">{
+    {"blocks":[{"key":0.9450165572504559,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}},{"key":0.9846690662896809,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3656,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+In that case the king, <InlinePs opts={opts} ps={{ p: "زه", f: "zu", e: "I" }} />, will be *feminine*, so:
+
+1. The **past participle** <InlinePs opts={opts} ps={{ p: "تللی", f: "tlúley" }} /> will be given the <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ey--">feminine form</Link> <InlinePs opts={opts} ps={{ p: "تللې", f: "tlúle", e: "" }} /> because it agrees with <InlinePs opts={opts} ps={{ p: "زه", f: "zu", e: "I (f.)" }} /> which is feminine singular.
+2. The **equative** <InlinePs opts={opts} ps={{ p: "یم", f: "yum", e: "" }} /> stays the same.
+
+Note that <strong>the past participle always follows the <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ey--">#2 inflection pattern</Link></strong> because it ends with an unstressed <InlinePs opts={opts} ps={{ p: "ی", f: "ey", e: "" }} />.
+
+How would we say "*We* have gone" ? Try to make this sentence by making the two blocks agree with <InlinePs opts={opts} ps={{ p: "مونږ", f: "moonG" }} />.
+
+1. Inflect the **past participle** <InlinePs opts={opts} ps={{ p: "تللی", f: "tluley" }} />
+2. Choose the right equative
+
+<details>
+    <summary>Show Answer</summary>
+
+<EditableVPEx opts={opts} mode="blocks">{
+    {"blocks":[{"key":0.9450165572504559,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.9846690662896809,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3656,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+</details>
+
+Notice how answer changes depending on whether the "we" in masculine or feminine! (Mixed groups are always considered masculine.) Press the <EditIcon /> and adjust it to see how it changes.
+
+Let's look at some examples of other intransitive verbs with all the different persons:
 
 <BasicVerbShowCase opts={opts} tense="presentPerfect" />
 
-That seems like a pretty intimidating chart! But it gets simpler if we remember that we are just making the two blocks (past participle and equative) agree with the king <KingIcon /> of the phrase. 
+That seems like a pretty intimidating chart! But it gets simpler if we remember that we are just making the two blocks (past participle and equative) agree with the king <KingIcon /> of the phrase. Also notice how there's a pattern with the participle inflection that repeats every two lines. 🤓 
+
+## Examples
 
 Have a look at the examples below, and notice how both the past participle and the equative blocks agree with the king of the phrase. Perfects are considered past-tense so they will follow the <Link to="/phrase-structure/vp/">same VP structure</Link> as other past tense forms, meaning that:
 
 - with **intransitive** verbs the *subject is king*
 - with **transitive** verbs the *object is king*
 
-#### Intransitive Examples
+### Intransitive Examples
 
+<EditableVPEx opts={opts}>{
+{"blocks":[{"key":0.8079406878333233,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.23472051857740772,"block":{"type":"AP","selection":{"type":"sandwich","before":{"p":"له","f":"la"},"after":{"p":"سره","f":"sara"},"e":"with","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815177,"i":2536,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m. anim."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}},"shrunken":false}}}}}},{"key":0.886370288897965,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813680,"i":9219,"p":"غږېدل","f":"ghuGedul, ghaGedul","g":"ghugedul,ghagedul","e":"to speak, talk, converse, sing","c":"v. intrans.","ec":"speak,speaks,speaking,spoke,spoken"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
 
+<EditableVPEx opts={opts}>{
+{"blocks":[{"key":0.9075416982120486,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.28604648139292244,"block":{"type":"AP","selection":{"type":"sandwich","before":{"p":"له","f":"la"},"after":{"p":"نه","f":"na"},"e":"from","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822092,"i":4766,"p":"چت","f":"chat","g":"chat","e":"roof, ceiling, awning, deck","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}},{"key":0.48162044574550333,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813994,"i":11589,"p":"لوېدل","f":"lwedul","g":"lwedul","e":"to fall, to tumble, go down, settle","c":"v. intrans.","ec":"fall,falls,falling,fell,fallen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
 
-IN PROGRESS
+<EditableVPEx opts={opts}>{
+{"blocks":[{"key":0.5572202015592207,"block":{"type":"AP","selection":{"type":"sandwich","before":{"p":"په","f":"pu"},"after":{"p":"کې","f":"ke"},"e":"in","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812828,"i":10545,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}},"shrunken":false}}}}}},{"key":0.3374492151395745,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11710,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"fem","genderCanChange":true,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.9314743458918573,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813710,"i":7321,"p":"زېږېدل","f":"zeGedul","g":"zegedul","e":"to be born, to appear, arise","c":"v. intrans.","ec":"be","ep":"born"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
 
+### Transitive Examples
 
-With perfect tenses, we'll use the <VP text="phrase structure of verbs" /> and the <Link to="/equatives/other-equatives/#overview-of-8-equatives">tenses of equatives</Link>.
+With transitive verbs everything works the same, but we follow the <Link to="/phrase-structure/vp/#3-with-past-tense-transitive-verbs-">VP structure for past-tense transitive verbs</Link> meaning that now:
+
+1. The subject will inflect
+2. The *object* is king <KingIcon />
+    - The two verb blocks (past participle and equative) will agree with the *object*
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.16283326329910142,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}},{"key":0.934824319231268,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11611,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.16283326329910142,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812797,"i":8621,"p":"ښځه","f":"xúdza","g":"xudza","e":"woman, wife","c":"n. f.","ec":"woman","ep":"women"},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.934824319231268,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11611,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.10982560050266565,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.41532608310706687,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527816299,"i":2903,"p":"پیسې","f":"peyse","g":"peyse","e":"money (plural of پېسې)","c":"n. f. pl."},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":false,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815273,"i":8464,"p":"شمېرل","f":"shmerul","g":"shmerul","e":"to count","c":"v. trans.","ec":"count"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.740132092191961,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.47712578068366907,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10014,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812856,"i":11633,"p":"لیکل","f":"leekul","g":"leekul","e":"to write, draw","c":"v. trans./gramm. trans.","ec":"write,writes,writing,wrote,written"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.48107357509198234,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11710,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}},"shrunken":false}}}}},{"key":0.8253773159904139,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14484,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+## Other forms of perfect
+
+All of these examples used the <Link to="/equatives/present-equative/">present equative</Link>. So this whole lesson has been about making the "present perfect." But we can actually use any of the <Link to="/equatives/other-equatives/#overview-of-8-equatives">8 equatives</Link> to make perfect tenses with different meanings.
+
+EXPLANATION IN PROGRESS...
 

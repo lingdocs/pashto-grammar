@@ -20,4 +20,6 @@ export const intransitivePast: T.VerbEntry[] = [
     {"ts":1527812645,"i":10822,"p":"ګرځېدل","f":"gurdzedul","g":"gurdzedul","e":"to walk, wander, turn about; to become, to be","c":"v. intrans.","shortIntrans":true,"ec":"walk"},
     {"ts":1527816495,"i":3470,"p":"تښتېدل","f":"tuxtedul","g":"tuxtedul","e":"to run off, escape, flee","c":"v. intrans.","shortIntrans":true,"ec":"escape"},
     {"ts":1527813680,"i":9218,"p":"غږېدل","f":"ghuGedul, ghaGedul","g":"ghugedul,ghagedul","e":"to speak, talk, converse, sing","c":"v. intrans.","ec":"speak,speaks,speaking,spoke"},
+    {"ts":1527813994,"i":11589,"p":"لوېدل","f":"lwedul","g":"lwedul","e":"to fall, to tumble, go down, settle","c":"v. intrans.","ec":"fall,falls,falling,fell,fallen"},
+    {"ts":1527813710,"i":7321,"p":"زېږېدل","f":"zeGedul","g":"zegedul","e":"to be born, to appear, arise","c":"v. intrans.","ec":"be","ep":"born"},
 ].map(entry => ({ entry }));
