@@ -20,10 +20,11 @@ function EditableVPEx({ children, opts, formChoice, noEdit, length, mode }: {
     mode?: "text" | "blocks",
 }) {
     const [editing, setEditing] = useState<boolean>(false);
-    const [vps, setVps] = useState<T.VPSelectionState>(children);
+    const [vps, setVps] = useState<T.VPSelectionState>({ ...children });
     function handleReset() {
-        setEditing(false);
+        // TODO: this is crazy, how does children get changed after calling setVps ???
         setVps(children);
+        setEditing(false);
     }
     function handleSetForm(form: T.FormVersion)  {
         setVps(vpsReducer(vps, { type: "set form", payload: form }));

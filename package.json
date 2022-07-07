@@ -6,7 +6,7 @@
     "@formkit/auto-animate": "^1.0.0-beta.1",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@lingdocs/lingdocs-main": "^0.3.1",
-    "@lingdocs/pashto-inflector": "^3.2.8",
+    "@lingdocs/pashto-inflector": "^3.3.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

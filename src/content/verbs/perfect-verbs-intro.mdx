@@ -1,11 +1,13 @@
 ---
-title: Perfect
+title: Perfect Intro
 ---
 
 import {
     defaultTextOptions as opts,
     Examples,
     InlinePs,
+    Pashto,
+    Phonetics,
 } from "@lingdocs/pashto-inflector";
 import { KidsSection, VP, EP, Camera, Video, KingIcon } from "../../components/terms-links";
 import psmd from "../../lib/psmd";
@@ -49,7 +51,7 @@ With the <Link to="/verbs/past-verbs/#simple-past-i-classnamefas-fa-camera-">sim
     }
 ]}</Examples>
 
-With a **perfect** tense, we're talking about the **result of an event**. We're saying that something has happened, and therefore there's an affect on the situation.
+With a **perfect** tense, we're talking about the **result of an event**. We're saying that something has happened, and therefore there's an effect on the situation.
 
 <div style={{ maxWidth: "350px", margin: "0 auto 2rem auto" }}>
     <img src={presentPerfect} alt="" className="img-fluid" />
@@ -75,11 +77,11 @@ Well now we're going to do something very crazy. To make the perfect forms we ar
 </div>
 
 <Formula>
-    Verb Past Participle +{` `}
+    <Link to="/verbs/roots-and-stems/#the-past-participle">Verb Past Participle</Link> +{` `}
     Equative = Perfect
 </Formula>
 
-To make the perfect forms we take the <Link to="/verbs/roots-and-stems/#the-past-participle">past participle</Link> of the verb and **add an equative block** next to it. For example, with the verb <InlinePs opts={opts} ps={{ p: "تلل", f: "tlul", e: "to go" }} /> we could have something like:
+To make the perfect forms we take the <Link to="/verbs/roots-and-stems/#the-past-participle">past participle</Link> of the verb and **add an equative block** next to it. For example, with the verb <InlinePs opts={opts} ps={{ p: "تلل", f: "tlul", e: "to go" }} /> we could say:
 
 <EditableVPEx opts={opts} mode="blocks">{
     {"blocks":[{"key":0.9450165572504559,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9846690662896809,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3656,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
@@ -87,10 +89,69 @@ To make the perfect forms we take the <Link to="/verbs/roots-and-stems/#the-past
 
 Now instead of one verb block, we have **two blocks** that have to agree with the king <KingIcon /> of the <VP />.
 
-1. The **past participle** <InlinePs opts={opts} ps={{ p: "تللی", f: "tlúley" }} /> is in the <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ey--">masculine uninflected form</Link> because it agrees with <InlinePs opts={opts} ps={{ p: "زه", f: "zu", e: "I (m.)" }} /> which is masculine singular.
-2. The **equative** <InlinePs opts={opts} ps={{ p: "یم", f: "yum", e: "" }} /> also agrees with the king  <InlinePs opts={opts} ps={{ p: "زه", f: "zu" }} />, because it's a <Link to="/equatives/present-equative/">1st pers. sing. equative</Link>.
+1. The **past participle** <InlinePs opts={opts} ps={{ p: "تللی", f: "tlúley" }} />
+2. The **equative** <InlinePs opts={opts} ps={{ p: "یم", f: "yum", e: "" }} />
 
-If a woman says this sentence it will change slightly...
+Both of these need to agree with the king <KingIcon />. To do that we need to:
+
+1. Inflect the past participle
+2. Choose the right equative
+
+### Inflecting the Past Participle
+
+The past participle will always follow the <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ey--">#2 inflection pattern</Link> because it ends with an unstressed <InlinePs opts={opts} ps={{ p: "ی", f: "ey", e: "" }} />. So, depending on what the king <KingIcon /> is you need to choose the right inflection to agree with the gender (masculine or feminine) and number (singular or plural) of the king.
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Masculine</th>
+      <th scope="col">Feminine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Singular / Plain</th>
+      <td>
+        <div>
+            <Pashto opts={opts}>{{ p: "تللی", f: "tlúley" }}</Pashto>
+        </div>
+        <div>
+            <Phonetics opts={opts}>{{ p: "تللی", f: "tlúley" }}</Phonetics>
+        </div>
+      </td>
+      <td>
+        <div>
+            <Pashto opts={opts}>{{ p: "تللې", f: "tlúle" }}</Pashto>
+        </div>
+        <div>
+            <Phonetics opts={opts}>{{ p: "تللې", f: "tlúle" }}</Phonetics>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">Plural / Inflected</th>
+      <td>
+        <div>
+            <Pashto opts={opts}>{{ p: "تللي", f: "tlúlee" }}</Pashto>
+        </div>
+        <div>
+            <Phonetics opts={opts}>{{ p: "تللي", f: "tlúlee" }}</Phonetics>
+        </div>
+      </td>
+      <td>
+        <div>
+            <Pashto opts={opts}>{{ p: "تللې", f: "tlúle" }}</Pashto>
+        </div>
+        <div>
+            <Phonetics opts={opts}>{{ p: "تللې", f: "tlúle" }}</Phonetics>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+So this sentence it will change slightly if a woman says it.
 
 <EditableVPEx opts={opts} mode="blocks">{
     {"blocks":[{"key":0.9450165572504559,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}},{"key":0.9846690662896809,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3656,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
@@ -100,8 +161,6 @@ In that case the king, <InlinePs opts={opts} ps={{ p: "زه", f: "zu", e: "I" }}
 
 1. The **past participle** <InlinePs opts={opts} ps={{ p: "تللی", f: "tlúley" }} /> will be given the <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ey--">feminine form</Link> <InlinePs opts={opts} ps={{ p: "تللې", f: "tlúle", e: "" }} /> because it agrees with <InlinePs opts={opts} ps={{ p: "زه", f: "zu", e: "I (f.)" }} /> which is feminine singular.
 2. The **equative** <InlinePs opts={opts} ps={{ p: "یم", f: "yum", e: "" }} /> stays the same.
-
-Note that <strong>the past participle always follows the <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ey--">#2 inflection pattern</Link></strong> because it ends with an unstressed <InlinePs opts={opts} ps={{ p: "ی", f: "ey", e: "" }} />.
 
 How would we say "*We* have gone" ? Try to make this sentence by making the two blocks agree with <InlinePs opts={opts} ps={{ p: "مونږ", f: "moonG" }} />.
 
@@ -117,7 +176,7 @@ How would we say "*We* have gone" ? Try to make this sentence by making the two 
 
 </details>
 
-Notice how answer changes depending on whether the "we" in masculine or feminine! (Mixed groups are always considered masculine.) Press the <EditIcon /> and adjust it to see how it changes.
+Actually the answer changes depending on whether the "we" in masculine or feminine! (Mixed groups are always considered masculine.) Press the <EditIcon /> above the answer and adjust it to see how it changes when you use a feminine "we."
 
 Let's look at some examples of other intransitive verbs with all the different persons:
 
@@ -176,9 +235,22 @@ With transitive verbs everything works the same, but we follow the <Link to="/ph
     {"blocks":[{"key":0.48107357509198234,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11710,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}},"shrunken":false}}}}},{"key":0.8253773159904139,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14484,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
 
+## Negatives with the perfect
+
+To make perfect forms negative you add a <InlinePs opts={opts} ps={{ p: "نه", f: "nú", e: "" }} /> block, just as you would with any other verb. But interestingly, **the past participle and equative blocks switch places**.
+
+<EditableVPEx opts={opts} mode="blocks">{
+    {"blocks":[{"key":0.9450165572504559,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9846690662896809,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3656,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} mode="blocks">{
+    {"blocks":[{"key":0.9450165572504559,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9846690662896809,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3656,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+You can also say the negative without swapping the order of the past participle and equative, for example <InlinePs opts={opts} ps={{ p: "زه تللی نه یم", f: "zu tlúley nú yum" }} /> but that makes it more emphatically negative, kind of like if you were to say, "I have **NOT** gone" in a loud voice.
+
+Try editing the <Link to="#examples">examples above</Link> and making them negative. Notice how the different forms <Link to="/phrase-structure/shortening-vps/">are shortened</Link> with the <InlinePs opts={opts} ps={{ p: "نه", f: "nú", e: "" }} /> block in there.
+
 ## Other forms of perfect
 
-All of these examples used the <Link to="/equatives/present-equative/">present equative</Link>. So this whole lesson has been about making the "present perfect." But we can actually use any of the <Link to="/equatives/other-equatives/#overview-of-8-equatives">8 equatives</Link> to make perfect tenses with different meanings.
-
-COMING SOON...
-
+So far we have only made perfect forms using the <Link to="/equatives/present-equative/">present equative</Link>. This form with the present equative is called the **present perfect** because it's talking about things that happened in the past but **have an effect on the present situation**. But actually, we can use any of the <Link to="/equatives/other-equatives/#overview-of-8-equatives">8 equatives</Link> with the perfect which gives a whole new gamut of expressive super-powers. 💪  <Link to="/verbs/all-perfect-verbs/">Read on</Link>...
