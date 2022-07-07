@@ -1,8 +1,8 @@
 import Markdown from "markdown-to-jsx";
 
-export default function mdps(input) {
+export default function psmd(input) {
     if (Array.isArray(input)) {
-        return input.map(mdps);
+        return input.map(psmd);
     }
     return {
         ...input,
@@ -10,6 +10,9 @@ export default function mdps(input) {
         f: <Markdown>{input.f}</Markdown>,
         ...input.e ? {
             e: <Markdown>{input.e}</Markdown>,
+        } : {},
+        ...input.sub ? {
+            sub: <Markdown>{input.sub}</Markdown>,
         } : {},
     };
 }
