@@ -1,0 +1,96 @@
+---
+title: Intro to Compound Verbs
+---
+
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+} from "@lingdocs/pashto-inflector";
+import { KidsSection, VP, KingIcon, ServantIcon } from "../../components/terms-links";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+import Formula from "../../components/formula/Formula";
+import cookingPotatoes from "./cooking-potatoes.svg";
+import doingWork from "./doing-work.svg";
+import stativeCompoundTransitive from "./stative-compound-transitive.svg";
+import dynamicCopmoundTransitive from "./dynamic-compound-transitive.svg";
+
+Compound verbs are verbs made up from a helper verb and some other word. These are extremely common in Pashto. In fact, 70% of the verbs in the [LingDocs Pashto Dictionary](https://dictionary.lingdocs.com) are compound verbs. Here are some examples:
+
+<ul>
+    <li>
+        <InlinePs opts={opts} ps={{ p: "کار کول", f: "kaar kawul", e: "to work" }} />
+    </li>
+    <ul>
+        <li>
+            <InlinePs opts={opts} ps={{ p: "کار", f: "kaar", e: "work" }} /> + <InlinePs opts={opts} ps={{ p: "کول", f: "kawul", e: "to do" }} />
+        </li>
+    </ul>
+    <li>
+        <InlinePs opts={opts} ps={{ p: "منډې وهل", f: "munDe wahul", e: "to run" }} />
+    </li>
+    <ul>
+        <li>
+            <InlinePs opts={opts} ps={{ p: "منډې", f: "munDe", e: "runs" }} /> + <InlinePs opts={opts} ps={{ p: "وهل", f: "wahul", e: "to hit" }} />
+        </li>
+    </ul>
+    <li>
+        <InlinePs opts={opts} ps={{ p: "بندول", f: "bandawul", e: "to close" }} />
+    </li>
+    <ul>
+        <li>
+            <InlinePs opts={opts} ps={{ p: "بند", f: "band", e: "closed" }} /> + <InlinePs opts={opts} ps={{ p: "کول", f: "kawul", e: "to make" }} />
+        </li>
+    </ul>
+    <li>
+        <InlinePs opts={opts} ps={{ p: "ستړی کېدل", f: "stuRey kedúl", e: "to get tired" }} />
+    </li>
+    <ul>
+        <li>
+            <InlinePs opts={opts} ps={{ p: "ستړی", f: "stúRey", e: "tired" }} /> + <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />
+        </li>
+    </ul>
+</ul>
+
+In order to understand how compound verbs work it's important to know that they fall into two different categories:
+
+- **stative** compound verbs
+    - involve *something being changed*
+- **dynamic** compound verbs
+    - involve *an action being done*
+
+These two types of compounds look very similary but they *behave completely differently*. Unfortunately this is an area of Pashto grammar that is not very well known or explained, and so, learners often get quite confused about compound verbs and why they behave the way they do.
+
+Before we understand how these compounds are made and how they work, it might be helpful to quickly picture them as little machines.
+
+With **stative compounds**, we are taking some object and changing it by "making" it something else. We have something that is changing *"state"*, hence the name "stative." For example - if we *melt* ice, we are changing the state of the water from frozen to liquid. We are *making* the ice into liquid.
+
+<div className="text-center mb-2">
+    <img src={stativeCompoundTransitive} alt="" className="img-fluid" />
+</div>
+
+If we cook potatoes, we are changing the state of the potatoes from raw to cooked.
+
+<div className="text-center mb-2">
+    <img src={cookingPotatoes} alt="" className="img-fluid" />
+</div>
+
+With **dynamic compounds**, we are simply *doing* some action. The action is the object and the subject "does" it. So these compounds look like much simpler machines. 
+
+<div className="text-center mb-2">
+    <img src={dynamicCopmoundTransitive} alt="" className="img-fluid" />
+</div>
+
+For example, with the compound verb <InlinePs opts={opts} ps={{ p: "کار کول", f: "kaar kawul", e: "to work" }} /> we have <InlinePs opts={opts} ps={{ p: "کار", f: "kaar", e: "work" }} /> as the object/action that gets done.
+
+<div className="text-center mb-2">
+    <img src={doingWork} alt="" className="img-fluid" />
+</div>
+
+Don't worry if this doesn't fully make sense yet. We will explain how these compounds work in the chapters ahead. For now, the important thing to know is that there are these two kinds of compounds, and they are **very different**.
+
+- **stative compounds** are used **to make** something different
+- **dynamic compounds** are used **to do** an action
+
+For each type of compound we have a completely different structure and set of rules. If a student is just told that there are "compound verbs" in Pashto and then they try to understand what's going on with them, they are in for a world of pain. 😫  But if we know that there are both stative and dynamic compounds, **everything will make sense**. 🙂

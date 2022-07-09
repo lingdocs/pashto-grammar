@@ -69,6 +69,11 @@ import * as perfectVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./verbs/p
 import * as allPerfectVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/all-perfect-verbs.mdx";
 
 // @ts-ignore
+import * as compoundVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/intro.mdx";
+// @ts-ignore
+import * as helperVerbs from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/helper-verbs.mdx";
+
+// @ts-ignore
 import * as introToParticiples from "!babel-loader!@lingdocs/mdx-loader!./participles/intro.mdx";
 
 // @ts-ignore
@@ -242,6 +247,20 @@ const contentTree = [
             {
                 import: verbEndings,
                 slug: "verb-endings",
+            },
+        ],
+    },
+    {
+        heading: "Compound Verbs",
+        subdirectory: "compound-verbs",
+        chapters: [
+            {
+                import: compoundVerbsIntro,
+                slug: "intro",
+            },
+            {
+                import: helperVerbs,
+                slug: "helper-verbs",
             },
         ],
     },
