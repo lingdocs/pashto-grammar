@@ -485,7 +485,7 @@ function makeEPS(subject: T.NPSelection, predicate: T.AdjectiveEntry | T.Locativ
         predicate: {
             type: "predicateSelection",
             selection: {
-                type: "EQComp",
+                type: "complement",
                 selection: tp.isAdjectiveEntry(predicate) ? {
                     type: "adjective",
                     entry: predicate,

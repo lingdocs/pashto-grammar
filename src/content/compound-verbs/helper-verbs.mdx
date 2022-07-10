@@ -6,23 +6,38 @@ import {
     defaultTextOptions as opts,
     Examples,
     InlinePs,
+    RootsAndStems,
+    getVerbInfo,
 } from "@lingdocs/pashto-inflector";
-import { KidsSection, VP, KingIcon, ServantIcon } from "../../components/terms-links";
+import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead } from "../../components/terms-links";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
 import ReactPlayer from "react-player";
+import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+
+export function RootsAndStemsDisplay(props) {
+    return <div className="mb-4">
+        <div className="text-center">
+            <InlinePs opts={opts} ps={props.label} />
+        </div>
+        <RootsAndStems
+            textOptions={opts}
+            info={getVerbInfo(props.entry)}
+        />
+    </div>
+}
 
 Pashto uses a number of helper verbs (auxillary verbs) to form compounds.
 
 The most important ones are these four:
 
-- Transitive
-    - <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make ___ ___" }} />
-    - <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to do ___" }} />
 - Intransitive
-    - <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become ___" }} />
     - <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} />
+    - <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become ___" }} />
+- Transitive
+    - <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to do ___" }} />
+    - <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make ___ ___" }} />
 
 Wait, how are these *four* verbs, and not *two*?? 🤔🤔 Don't the pairs look exactly the same? When you look at this you may feel like this lady does in this video. 
 
@@ -44,6 +59,72 @@ Wait, how are these *four* verbs, and not *two*?? 🤔🤔 Don't the pairs look 
 
 Yes, there really are four separate verbs. You're not seeing double, and this is not a trick. The verbs behave differently and have different meanings. And once we see them in the perfective form we will see that they really do look different too.
 
+## کېدل vs. کېدل
+
+There's a big difference between <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} /> and <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />!
+
+### کېدل - to happen
+
+We use this verb when we're talking about an action/event **happening**. Notice that the roots and stems are pretty irregular.
+
+<RootsAndStemsDisplay
+    entry={{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}}
+    label={{ p: "کېدل", f: "kedúl", e: "to happen" }}
+/>
+
+Here are some example phrases uses this verb. Try playing around with these phrases, and watch how they work with the blocks.
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.7004599909397782,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9886,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.9564388674146864,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.7004599909397782,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9886,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.9564388674146864,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.7004599909397782,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815166,"i":2937,"p":"پېښه","f":"péxa","g":"pexa","e":"event, occurance, happeing, case","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.9564388674146864,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.8938126585721999,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812907,"i":13121,"p":"مېله","f":"mela","g":"mela","e":"picnic, feast, celebration","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.3685906255385354,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.8938126585721999,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812907,"i":13121,"p":"مېله","f":"mela","g":"mela","e":"picnic, feast, celebration","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.3685906255385354,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} formChoice>{
+    {"blocks":[{"key":0.8938126585721999,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812907,"i":13121,"p":"مېله","f":"mela","g":"mela","e":"picnic, feast, celebration","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.3685906255385354,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Just a few things we might notice about this verb:
+
+- It's intransitive, and only takes a subject (something that happens/occurs)
+- It has a <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix as a <PerfectiveHead />
+- We will use it for **dynamic** compounds, because it talks about an action happening/occuring
+
+### کېدل - to become
+
+Here's another verb that looks exactly the same at first, but we'll soon find out that it is quite different. First of all, we'll notice that the roots and stems are different. On the perfective side, there's no <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix, no <PerfectiveHead />!
+
+<RootsAndStemsDisplay
+    entry={{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}}
+    label={{ p: "کېدل", f: "kedúl", e: "to become" }}
+/>
+
+And this verb has a completely different meaning as well. We're not talking about something happening, **we're talking about something *becoming* \_\_\_\_**. The subject is changed into a state of being \_\_\_\_. And that \_\_\_\_ is what we'll call a **complement**. For example in the phrase:
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812798,"i":5645,"p":"خفه","f":"khufa","g":"khufa","e":"sad, upset, angry; choked, suffocated","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+We have:
+
+- A **subject**: <InlinePs opts={opts} ps={{ p: "زه", f: "zu", e: "I" }} />
+- A **complement**: <InlinePs opts={opts} ps={{ p: "خفه", f: "khufa", e: "sad" }} />
+
+
 ## کول vs. کول
 
 ### کول - to make
@@ -59,18 +140,4 @@ IN PROGRESS 🚧
 - used with dynamic compounds
 - has <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix as perfective head.
 - takes a subject and object
-
-## کېدل vs. کېدل
-
-### کېدل - to become
-
-- used with stative compounds
-- doesn't take the <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix. The complement splits off as the perfective head
-- takes a subject and complement
-
-### کېدل - to happen
-
-- used with dynamic compounds
-- has <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix as perfective head
-- takes a subject
 
