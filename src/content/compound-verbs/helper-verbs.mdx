@@ -9,7 +9,7 @@ import {
     RootsAndStems,
     getVerbInfo,
 } from "@lingdocs/pashto-inflector";
-import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead } from "../../components/terms-links";
+import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead, Camera, Video } from "../../components/terms-links";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
@@ -132,9 +132,20 @@ So with this verb we add a complement - something that the subject is *becoming*
     {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812792,"i":5826,"p":"خوشاله","f":"khoshaala","g":"khoshaala","e":"happy, glad","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
 
-But that's not all... Here's something suuuuuper interesting and important about this verb!
+But that's not all... Here's something **suuuuuper interesting and important** about this verb!
 
-👩🏻‍🏭 ‼️ **With the imperfective aspect, the complement is JOINED TO THE VERB IN ONE BLOCK** ‼️ 👨🏻‍🏭
+#### Welding / splitting the complement 👨🏻‍🏭 ⛏️
+
+Depending on which part of the verb tree we're using (imperfective <Video />, perfective <Camera />, or past participle), the complement either gets welded onto the verb or splits off as a <PerfectiveHead />.
+
+- with the imperfective / past particple we **weld** the complement onto the verb
+    - the complement and verb become *one block*
+- with the perfective the complement **stays separate** and acts as a <PerfectiveHead />
+    - the complement sits in front of the verb, just like a <PerfectiveHead />, as a seperate block
+
+##### Welding with the imperfective / past participle 👨🏻‍🏭
+
+When we use the imperfective aspect / past participle, the complement is joined together with the verb in **one block**.
 
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812792,"i":5826,"p":"خوشاله","f":"khoshaala","g":"khoshaala","e":"happy, glad","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
@@ -150,21 +161,43 @@ Have a look at the blocks in these examples above. The complement is joined in w
     {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
 
-We **CANNOT SAY** <InlinePs opts={opts} ps={{ p: "❌ مونږ ستړي نه کېږو ❌", f: "❌ moonG stuRee nú keGoo ❌" }} /> because in the imperfective aspect <strong>the complement is welded together with the verb</strong> <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /> 👨🏻‍🏭 and <em>nothing</em> can break those two pieces apart.
-<!--  -->
+We **CANNOT SAY** <InlinePs opts={opts} ps={{ p: "❌ مونږ ستړي نه کېږو ❌", f: "❌ moonG stuRee nú keGoo ❌" }} /> because with the imperfective aspect <strong>the complement is welded together with the verb</strong> <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /> 👨🏻‍🏭 and <em>nothing</em> can break those two pieces apart.
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+We also **CANNOT SAY** <InlinePs opts={opts} ps={{ p: "❌ مونږ ستړی نه یو شوي ❌", f: "❌ moonG stúRey nú yoo shuwee ❌" }} /> because with the **past participle / perfect** the complement is welded together with the verb. 
+
+##### Splitting with the perfective ⛏️
+
+But when we use anything on the *perfective*, the complement stays seperate and sits in front of the verb as a <PerfectiveHead />.
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.5930062917804333,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.20242278752113463,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812792,"i":5826,"p":"خوشاله","f":"khoshaala","g":"khoshaala","e":"happy, glad","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.5930062917804333,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.20242278752113463,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812798,"i":5645,"p":"خفه","f":"khufa","g":"khufa","e":"sad, upset, angry; choked, suffocated","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.5930062917804333,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.20242278752113463,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812798,"i":5645,"p":"خفه","f":"khufa","g":"khufa","e":"sad, upset, angry; choked, suffocated","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
 ## کول vs. کول
 
-### کول - to make
-
-IN PROGRESS 🚧
-
-- used with stative componuds
-- doesn't take the <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix. The complement splits off as the perfective head
-- takes a subject, object and complement
+##### IN PROGRESS 🚧
 
 ### کول - to do
 
 - used with dynamic compounds
 - has <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix as perfective head.
 - takes a subject and object
+
+### کول - to make
+
+- used with stative componuds
+- doesn't take the <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix. The complement splits off as the perfective head
+- takes a subject, object and complement
 

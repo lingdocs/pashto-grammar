@@ -16,10 +16,11 @@ function EditableVPEx({ children, opts, formChoice, noEdit, length, mode }: {
     opts: T.TextOptions,
     formChoice?: boolean,
     noEdit?: boolean,
-    length: "long" | "short",
+    length?: "long" | "short",
     mode?: "text" | "blocks",
 }) {
     const [editing, setEditing] = useState<boolean>(false);
+    const [selectedLength, setSelectedLength] = useState<"long" | "short">(length || "short");
     const [vps, setVps] = useState<T.VPSelectionState>({ ...children });
     function handleReset() {
         // TODO: this is crazy, how does children get changed after calling setVps ???
@@ -51,7 +52,8 @@ function EditableVPEx({ children, opts, formChoice, noEdit, length, mode }: {
             justify="left"
             onlyOne="concat"
             setForm={formChoice ? handleSetForm : "disable"}
-            length={length}
+            onLengthChange={setSelectedLength}
+            length={selectedLength}
             mode={mode}
         />
     </div>;
