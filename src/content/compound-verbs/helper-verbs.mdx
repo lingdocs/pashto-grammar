@@ -15,6 +15,8 @@ import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
 import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
 import helperVerbsSummaryChart from "./helper-verbs-summary-chart.svg";
+import welding from "./welding.svg";
+import separateBlocks from "./separate.svg";
 import VideoPlayer from "../../components/VideoPlayer";
 
 export function RootsAndStemsDisplay(props) {
@@ -148,6 +150,10 @@ Depending on which part of the verb tree we're using (imperfective <Video />, pe
 
 When we use the imperfective aspect / past participle, the complement is joined together with the verb in **one block**.
 
+<div className="text-center mb-2">
+    <img src={welding} alt="" className="img-fluid" />
+</div>
+
 Have a look at the blocks in these examples above. The complement is joined in with the same block as the verb. So if we want to add a <InlinePs opts={opts} ps={{ p: "نه", f: "nú", e: "not" }} /> in and make it negative we get:
 
 <EditableVPEx opts={opts}>{
@@ -179,6 +185,10 @@ Notice that he does NOT say <InlinePs opts={opts} ps={{ p: "❌ زه به لېو
 ##### Splitting with the perfective ⛏️
 
 When we use anything with the *perfective aspect*, the complement stays seperate and sits in front of the verb as a <PerfectiveHead />.
+
+<div className="text-center mb-2">
+    <img src={separateBlocks} alt="" className="img-fluid" />
+</div>
 
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.5930062917804333,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.20242278752113463,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812792,"i":5826,"p":"خوشاله","f":"khoshaala","g":"khoshaala","e":"happy, glad","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
