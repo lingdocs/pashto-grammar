@@ -13,9 +13,9 @@ import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead, Camera, Video }
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
-import ReactPlayer from "react-player";
 import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
 import helperVerbsSummaryChart from "./helper-verbs-summary-chart.svg";
+import VideoPlayer from "../../components/VideoPlayer";
 
 export function RootsAndStemsDisplay(props) {
     return <div className="mb-4">
@@ -42,21 +42,7 @@ The most important ones are these four:
 
 Wait, how are these *four* verbs, and not *two*?? 🤔🤔 Don't the pairs look exactly the same? When you look at this you may feel like this lady does in this video. 
 
-<div className="player-wrapper" style={{ position: "relative", paddingBottom: "56.25%" }}>
-<ReactPlayer
-    url="https://www.youtube.com/watch?v=5YG6tlxv4eU"
-    controls={true}
-    width='100%'
-    height='100%'
-    style={{ 
-        position: 'absolute',
-        top: 0,
-        left: 0,
-    }}
-/>
-</div>
-<div style={{ paddingBottom: "1rem" }}>
-</div>
+<VideoPlayer url="https://www.youtube.com/watch?v=5YG6tlxv4eU" />
 
 Yes, there really are four separate verbs. You're not seeing double, and this is not a trick. The verbs behave differently and have different meanings. And once we see them in the perfective form we will see that they really do look different too.
 
@@ -176,9 +162,23 @@ We **CANNOT SAY** <InlinePs opts={opts} ps={{ p: "❌ مونږ ستړي نه ک�
 
 We also **CANNOT SAY** <InlinePs opts={opts} ps={{ p: "❌ مونږ ستړی نه یو شوي ❌", f: "❌ moonG stúRey nú yoo shuwee ❌" }} /> because with the **past participle / perfect** the complement is welded together with the verb. 
 
+Listen to this famous poet say:
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.8570804481621925,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.6977993181555702,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527820680,"i":11664,"p":"لېونی","f":"lewanéy","g":"lewaney","e":"crazy, insane, mad person","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<VideoPlayer url="https://www.youtube.com/watch?v=I7dZpBFdelU" />
+
+Notice that he does NOT say <InlinePs opts={opts} ps={{ p: "❌ زه به لېونی نه کېږم ❌", f: "❌ zu ba lewaney nú keGum ❌" }} /> because he is using an *imperfective future* and so the complement and verb are **welded together** in one block. If he was using a *perfective future* he could say,
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.8570804481621925,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.6977993181555702,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"}},"verbTense":"perfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527820680,"i":11664,"p":"لېونی","f":"lewanéy","g":"lewaney","e":"crazy, insane, mad person","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
 ##### Splitting with the perfective ⛏️
 
-But when we use anything on the *perfective*, the complement stays seperate and sits in front of the verb as a <PerfectiveHead />.
+When we use anything with the *perfective aspect*, the complement stays seperate and sits in front of the verb as a <PerfectiveHead />.
 
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.5930062917804333,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.20242278752113463,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812792,"i":5826,"p":"خوشاله","f":"khoshaala","g":"khoshaala","e":"happy, glad","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
