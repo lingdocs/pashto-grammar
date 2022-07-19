@@ -16,10 +16,12 @@ https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
 import {
     addToForm,
-    defaultTextOptions,
+    defaultTextOptions as opts,
     grammarUnits,
     VerbFormDisplay,
+    InlinePs,
 } from "@lingdocs/pashto-inflector";
+import Link from "../../components/Link";
 
 export function addTail(form) {
     return addToForm([{ p: "ـ", f: "-" }], form, true);
@@ -27,28 +29,37 @@ export function addTail(form) {
 
 ## Present Verb Endings
 
-These endings are added on to the ends of present, subjunctive, and future verbs.
+These endings are added on to the ends of <Link to="/verbs/roots-and-stems/">verb stems</Link> to make present, subjunctive, and future verbs.
 
 <VerbFormDisplay
     displayForm={addTail(grammarUnits.presentEndings)}
-    textOptions={defaultTextOptions}
+    textOptions={opts}
 />
 
 ## Imperative Verb Endings
 
-These endings are added on to the ends of imperative verbs.
+These endings are added on to the ends <Link to="/verbs/roots-and-stems/">verb stems</Link> to make imperative verbs.
 
 <VerbFormDisplay
     displayForm={addTail(grammarUnits.imperativeEndings)}
-    textOptions={defaultTextOptions}
+    textOptions={opts}
 />
 
 ## Past Verb Endings
 
-These endings are added on to the ends of simple and continuous past verbs.
+These endings are added on to the ends <Link to="/verbs/roots-and-stems/">verb roots</Link> to make past-tense verbs.
 
 <VerbFormDisplay
-    displayForm={addTail(grammarUnits.pastEndings)}
-    textOptions={defaultTextOptions}
+    displayForm={addTail(grammarUnits.pastEndings.short)}
+    textOptions={opts}
 />
+
+### Notes about past verb endings
+
+- the <InlinePs opts={opts} ps={{ p: "هْ", f: "u" }} /> ending is only used with the <strong>short</strong> forms of the roots. (without the <InlinePs opts={opts} ps={{ p: "ل", f: "l", e: "" }} />)
+- The **short form of the 3rd pers. masc. sing.** verbs in the past is a bit interesting. The ending is often left off (if it ends in a consanant like <InlinePs opts={opts} ps={{ p: "ولید", f: "óoleed", e: "" }} /> or is irregular like <InlinePs opts={opts} ps={{ p: "کاوه", f: "kaawú" }} /> from <InlinePs opts={opts} ps={{ p: "کول", f: "kawul" }} /> or <InlinePs opts={opts} ps={{ p: "خوت", f: "khot" }} /> from <InlinePs opts={opts} ps={{ p: "ختل", f: "khatúl" }} />
+- The **3rd pers. masc. plur.** form of verbs is the same regardless of whether the short or long roots are used.
+- In the **Kandahari dialect** some different endings are used;
+    - 3rd pers. masc. sing.: <InlinePs opts={opts} ps={{ p: "ـی", f: "ey", e: "" }} />
+    - 3rd pers. masc. plur.: <InlinePs opts={opts} ps={{ p: "ـله", f: "ulu", e: "" }} />
 
