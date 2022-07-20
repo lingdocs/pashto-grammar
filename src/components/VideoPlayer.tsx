@@ -5,7 +5,7 @@ function VideoPlayer(props: { url: string }) {
     const [errored, setErrored] = useState(false);
     if (errored) {
         return <div className="my-4 text-center">
-            <div>Offline - Video Not Available</div>
+            <div>Offline / Video Not Available</div>
             <button className="btn btn-light mt-4 mb-4" onClick={() => setErrored(false)}>RETRY</button>
         </div>;
     }
