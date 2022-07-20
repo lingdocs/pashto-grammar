@@ -1,6 +1,14 @@
+import { useState } from "react";
 import ReactPlayer from "react-player";
 
 function VideoPlayer(props: { url: string }) {
+    const [errored, setErrored] = useState(false);
+    if (errored) {
+        return <div className="my-4 text-center">
+            <div>Offline - Video Not Available</div>
+            <button className="btn btn-light mt-4 mb-4" onClick={() => setErrored(false)}>RETRY</button>
+        </div>;
+    }
     return <div className="player-wrapper" style={{ position: "relative", paddingBottom: "56.25%", marginBottom: "2rem" }}>
         <ReactPlayer
             url={props.url}
@@ -12,8 +20,10 @@ function VideoPlayer(props: { url: string }) {
                 top: 0,
                 left: 0,
             }}
-        />
-    </div>;
+            onError={() => setErrored(true)}
+        /> 
+    </div>
+
 }
 
 export default VideoPlayer;
