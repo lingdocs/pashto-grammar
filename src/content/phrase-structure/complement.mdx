@@ -9,10 +9,11 @@ import {
 } from "@lingdocs/pashto-inflector";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
-import { NP, VP, EP } from "../../components/terms-links";
+import { NP, VP, EP, BlocksIcon, Sandwich } from "../../components/terms-links";
 import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
 import EditableEPEx from "../../components/phrase-diagram/EditableEPEx";
 import BasicBlocks from "../../components/BasicBlocks";
+import VideoPlayer from "../../components/VideoPlayer";
 
 ## What's a complement?
 
@@ -40,15 +41,108 @@ Here <InlinePs opts={opts} ps={{ p: "خفه", f: "khufa", e: "sad" }} /> is a <e
 
 In Pashto a **complement** can be one of four things:
 
-- <Link to="#adjectives">adjective</Link>
-- <Link to="#locative-adverbs">locative adverb</Link>
-- <Link to="#sandwiches">sandwich</Link>
-- <Link to="#complement-nouns">complement noun</Link>
+- <Link to="#adjective">adjective</Link>
+- <Link to="#locative-adverb">locative adverb</Link>
+- <Link to="#sandwiche">sandwich</Link>
+- <Link to="#complement-noun">complement noun</Link>
 
-### Adjectives
+### Adjective
 
-### Locative Adverbs
+Adjectives seem like the most natural and common things to use as a complement. In the <NP /> section we saw how <Link to="/phrase-structure/np/#adding-adjectives">adjectives can be joined to a noun</Link> to describe it. We can also use adjectives *on their* own, as a complement, separate from the <NP />.
 
-### Sandwiches
+Click on the <BlocksIcon /> to see what the complement is in the examples below.
 
-### Complement Nouns
+<EditableEPEx opts={opts} hideOmitSubject>{
+    {"blocks":[{"key":0.7559632995928578,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815177,"i":2535,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m. anim."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527815451,"i":7256,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"}}],"possesor":{"np":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11709,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}},"shrunken":false}}},"Complement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812792,"i":5828,"p":"خوشاله","f":"khoshaala","g":"khoshaala","e":"happy, glad","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.6407963893481012,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}},{"key":0.6392166687010554,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10699,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812792,"i":5828,"p":"خوشاله","f":"khoshaala","g":"khoshaala","e":"happy, glad","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Notice that the adjective will inflect to match the <NP /> that it is describing. Try editing <EditIcon /> the examples below and see how the adjective changes when you change the <NP /> it describes.
+
+<EditableEPEx opts={opts} hideOmitSubject>{
+    {"blocks":[{"key":0.7559632995928578,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815177,"i":2535,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m. anim."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527815451,"i":7256,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"}}],"possesor":{"np":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11709,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}},"shrunken":false}}},"Complement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7600,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.6407963893481012,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.6392166687010554,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10699,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7600,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.2936852927534954,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}},{"key":0.9001306626884367,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10633,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7600,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+### Locative Adverb
+
+You can also use an **adverb that describes a location** as a complement. These do not inflect.
+
+<EditableEPEx opts={opts} hideOmitSubject>{
+    {"blocks":[{"key":0.7559632995928578,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815177,"i":2535,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m. anim."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527815451,"i":7256,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"}}],"possesor":{"np":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11709,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}},"shrunken":false}}},"Complement":{"type":"complement","selection":{"type":"loc. adv.","entry":{"ts":1527812558,"i":6256,"p":"دلته","f":"dălta","g":"dalta","e":"here","c":"loc. adv."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>{
+    {"blocks":[{"key":0.7559632995928578,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815177,"i":2535,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m. anim."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527815451,"i":7256,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"}}],"possesor":{"np":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11709,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}},"shrunken":false}}},"Complement":{"type":"complement","selection":{"type":"loc. adv.","entry":{"ts":1527812449,"i":13967,"p":"هلته","f":"hálta, álta","g":"halta,alta","e":"there","c":"loc. adv."}}}},"equative":{"tense":"past","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+### Sandwich
+
+You can also use a <Sandwich /> as a complement to describe an <NP /> (where it is, who it's with, what it's for etc. etc.)
+
+<EditableEPEx opts={opts} hideOmitSubject>{
+    {"blocks":[{"key":0.7559632995928578,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815177,"i":2535,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m. anim."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527815451,"i":7256,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"}}],"possesor":{"np":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11709,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}},"shrunken":false}}},"Complement":{"type":"complement","selection":{"type":"sandwich","before":{"p":"له","f":"la"},"after":{"p":"سره","f":"sara"},"e":"with","inside":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>{
+    {"blocks":[{"key":0.7559632995928578,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10018,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815177,"i":2535,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m. anim."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527815451,"i":7256,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"}}],"possesor":{"np":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11709,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}},"shrunken":false}}},"Complement":{"type":"complement","selection":{"type":"sandwich","before":{"p":"د","f":"du"},"after":{"p":"لپاره","f":"lapaara"},"e":"for","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11715,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"fem","genderCanChange":true,"number":"singular","numberCanChange":true,"adjectives":[]}}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+### Complement Noun
+
+Here's where things get weird... In Pashto, we can use a **noun** as a complement. In English, this sounds really funny, because we're always used to having *adjectives* as complements. For example, a native English speaker would never say, "I am **confusion**. (noun)"
+
+<VideoPlayer url="https://youtu.be/5EbnoElOJx0?t=2" />
+
+You'd have to say, "I am **confused**. (adjective)" But Pashto doesn't play by that rule.
+
+There are a lot of compounds (stative and dynamic) that use nouns to describe an change made to an <NP /> or action being done. These nouns can be used as complements in places where an English speaker would think we *have* to use an adjective.
+
+For example, we have the compound <InlinePs opts={opts} ps={{ p: "حلېدل", f: "haledul", e: "to be solved" }} /> which is a combination of:
+
+ - <InlinePs opts={opts} ps={{ p: "حل", f: "hal", e: "solution" }} /> - noun
+ - <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /> - verb
+
+The complement noun <InlinePs opts={opts} ps={{ p: "حل", f: "hal", e: "solution" }} /> gets used almost as if it were an adjective (in an English brain).
+
+<Examples opts={opts}>{psmd([
+    {
+        f: "مسئله **حل** شوه",
+        p: "masala **hal** shwa",
+        e: "The problem was solved",
+        sub: "lit. The problem became **solution**",
+    },
+])}</Examples>
+
+Notice this is a **noun** in this sentence, not an adjective. That means that:
+
+- it does not inflect
+- it does not mean exactly what the noun means
+
+We also have the the dynamic compound <InlinePs opts={opts} ps={{ p: "استرحات کول", f: "istirahaat kawul", e: "to rest" }} /> which is a combination of:
+
+ - <InlinePs opts={opts} ps={{ p: "استراحات", f: "istiraháat", e: "rest/relaxation" }} />
+ - <InlinePs opts={opts} ps={{ p: "کول", f: "kawul", e: "to do" }} />
+
+So we can use <InlinePs opts={opts} ps={{ p: "استراحات", f: "istiraháat", e: "rest/relaxation" }} /> as a complement noun. You might here someone say:
+
+<Examples opts={opts}>{psmd([
+    {
+        p: "اوپخښه. ته **استرحات** وې؟",
+        f: "oobakhxa. tu **istiraháat** we?",
+        e: "Sorry. Were you resting?",
+        sub: "lit. Sorry. Were you **relaxation**?",
+    },
+])}</Examples>
+
+Again this makes absolutely no sense to the English brain, but it happens in all the time in Pashto (and many other languages), so you'll just have to accept it.

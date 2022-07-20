@@ -9,7 +9,7 @@ import {
     RootsAndStems,
     getVerbInfo,
 } from "@lingdocs/pashto-inflector";
-import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead, Camera, Video } from "../../components/terms-links";
+import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead, Camera, Video, Complement } from "../../components/terms-links";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
@@ -115,7 +115,7 @@ We have:
 - A **subject**: <InlinePs opts={opts} ps={{ p: "زه", f: "zu", e: "I" }} />
 - A **complement**: <InlinePs opts={opts} ps={{ p: "خفه", f: "khufa", e: "sad" }} />
 
-So with this verb we add a complement - something that the subject is *becoming*.
+So with this verb we add a <Complement /> - something that the subject is *becoming*.
 
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812792,"i":5826,"p":"خوشاله","f":"khoshaala","g":"khoshaala","e":"happy, glad","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
@@ -125,7 +125,7 @@ So with this verb we add a complement - something that the subject is *becoming*
     {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
 
-Notice how the **if the complement is an adjective in will inflect according to the subject**.
+Notice how the **if the <Complement /> is an adjective in will inflect according to the subject**.
 
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
@@ -139,23 +139,23 @@ But that's not all... Here's something **suuuuuper interesting and important** a
 
 #### Welding / splitting the complement 👨🏻‍🏭 ⛏️
 
-Depending on which part of the verb tree we're using (imperfective <Video />, perfective <Camera />, or past participle), the complement either gets welded onto the verb or splits off as a <PerfectiveHead />.
+Depending on which part of the verb tree we're using (imperfective <Video />, perfective <Camera />, or past participle), the <Complement/> either gets welded onto the verb or splits off as a <PerfectiveHead />.
 
 - with the imperfective / past particple we **weld** the complement onto the verb
-    - the complement and verb become *one block*
-- with the perfective the complement **stays separate** and acts as a <PerfectiveHead />
-    - the complement sits in front of the verb, just like a <PerfectiveHead />, as a seperate block
+    - the <Complement /> and verb become *one block*
+- with the perfective the <Complement /> **stays separate** and acts as a <PerfectiveHead />
+    - the <Complement /> sits in front of the verb, just like a <PerfectiveHead />, as a seperate block
 
 ##### Welding with the imperfective / past participle 👨🏻‍🏭
 
-When we use the imperfective aspect / past participle, the complement is joined together with the verb in **one block**.
+When we use the imperfective aspect / past participle, the <Complement /> is joined together with the verb in **one block**.
 
 <div className="text-center mb-3">
     <img src={welding} alt="" className="img-fluid" />
     <div className="small text-muted">vecteezy.com</div>
 </div>
 
-Have a look at the blocks in these examples above. The complement is joined in with the same block as the verb. So if we want to add a <InlinePs opts={opts} ps={{ p: "نه", f: "nú", e: "not" }} /> in and make it negative we get:
+Have a look at the blocks in these examples above. The <Complement /> is joined in with the same block as the verb. So if we want to add a <InlinePs opts={opts} ps={{ p: "نه", f: "nú", e: "not" }} /> in and make it negative we get:
 
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
@@ -167,7 +167,7 @@ We **CANNOT SAY** <InlinePs opts={opts} ps={{ p: "❌ مونږ ستړي نه ک�
     {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
 
-We also **CANNOT SAY** <InlinePs opts={opts} ps={{ p: "❌ مونږ ستړی نه یو شوي ❌", f: "❌ moonG stúRey nú yoo shuwee ❌" }} /> because with the **past participle / perfect** the complement is welded together with the verb. 
+We also **CANNOT SAY** <InlinePs opts={opts} ps={{ p: "❌ مونږ ستړی نه یو شوي ❌", f: "❌ moonG stúRey nú yoo shuwee ❌" }} /> because with the **past participle / perfect** the <Complement /> is welded together with the verb. 
 
 Listen to this famous poet say:
 
@@ -177,7 +177,7 @@ Listen to this famous poet say:
 
 <VideoPlayer url="https://www.youtube.com/watch?v=I7dZpBFdelU" />
 
-Notice that he does NOT say <InlinePs opts={opts} ps={{ p: "❌ زه به لېونی نه کېږم ❌", f: "❌ zu ba lewaney nú keGum ❌" }} /> because he is using an *imperfective future* and so the complement and verb are **welded together** in one block. If he was using a *perfective future* he could say,
+Notice that he does NOT say <InlinePs opts={opts} ps={{ p: "❌ زه به لېونی نه کېږم ❌", f: "❌ zu ba lewaney nú keGum ❌" }} /> because he is using an *imperfective future* and so the <Complement />and verb are **welded together** in one block. If he was using a *perfective future* he could say,
 
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.8570804481621925,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.6977993181555702,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"}},"verbTense":"perfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527820680,"i":11664,"p":"لېونی","f":"lewanéy","g":"lewaney","e":"crazy, insane, mad person","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
@@ -185,7 +185,7 @@ Notice that he does NOT say <InlinePs opts={opts} ps={{ p: "❌ زه به لېو
 
 ##### Splitting with the perfective ⛏️
 
-When we use anything with the *perfective aspect*, the complement stays seperate and sits in front of the verb as a <PerfectiveHead />.
+When we use anything with the *perfective aspect*, the <Complement />stays seperate and sits in front of the verb as a <PerfectiveHead />.
 
 <div className="text-center mb-2">
     <img src={separateBlocks} alt="" className="img-fluid" />
@@ -207,8 +207,8 @@ To summarize about this verb <InlinePs opts={opts} ps={{ p: "کېدل", f: "ked�
 
 - It's intransitive, and only takes a subject (something that changes state) and a **complement**
 - There is no <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix but instead we add a complement
-    - with the imperfective / past participle the complement is *welded together* with the verb in one, indivisible block
-    - with the perfective the complement sits in front of the verb in a seperate block, just like a <PerfectiveHead />
+    - with the imperfective / past participle the <Complement />is *welded together* with the verb in one, indivisible block
+    - with the perfective the <Complement />sits in front of the verb in a seperate block, just like a <PerfectiveHead />
 - We will use it for **stative** compounds, because it talks about a subject changing state
 
 ## کول vs. کول
@@ -286,12 +286,12 @@ Have a look at the roots and stems for <InlinePs opts={opts} ps={{ p: "کول", 
     label={{ p: "کول", f: "kawul", e: "to make" }}
 />
 
-Like its brother <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />, this verb also <strong>has no <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix</strong>. Instead we will use the complement and <Link to="#welding--splitting-the-complement--️">in the exact same way as with <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /></Link> we will:
+Like its brother <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />, this verb also <strong>has no <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix</strong>. Instead we will use the <Complement />and <Link to="#welding--splitting-the-complement--️">in the exact same way as with <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /></Link> we will:
 
 - with the imperfective <Video /> / past participle
-  - 👨🏻‍🏭 weld the complement together with the verb in one block
+  - 👨🏻‍🏭 weld the <Complement />together with the verb in one block
 - with the perfective <Camera />
-  - ⛏ keep the complement separate, sitting as a <PerfectiveHead /> in front of the verb
+  - ⛏ keep the <Complement />separate, sitting as a <PerfectiveHead /> in front of the verb
 
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
@@ -301,7 +301,7 @@ Like its brother <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to 
     {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
 
-Notice how **if the complement is an adjective it will inflect according the object**.
+Notice how **if the <Complement />is an adjective it will inflect according the object**.
 
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
@@ -315,7 +315,7 @@ Notice how **if the complement is an adjective it will inflect according the obj
     {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
 
-Notice how with the imperfective/past participle the complement is welded together with the verb, but with the perfective it's separate.
+Notice how with the imperfective/past participle the <Complement />is welded together with the verb, but with the perfective it's separate.
 
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
@@ -333,8 +333,8 @@ To summarize about this verb <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl
 
 - It's trasinitive, so it takes a subject, object, and complement
 - There is no <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix but instead we add a complement
-    - with the imperfective / past participle the complement is *welded together* with the verb in one, indivisible block
-    - with the perfective the complement sits in front of the verb in a seperate block, just like a <PerfectiveHead />
+    - with the imperfective / past participle the <Complement />is *welded together* with the verb in one, indivisible block
+    - with the perfective the <Complement />sits in front of the verb in a seperate block, just like a <PerfectiveHead />
 - We will use it for **stative** compounds, because it talks about a subject changing an object into a different state
 
 ## Summary Chart

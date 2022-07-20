@@ -20,6 +20,10 @@ export function EP({ text }: { text: string }) {
     return <Link to="/phrase-structure/ep">{text || "EP"}</Link>;
 }
 
+export function Sandwich({ text }: { text: string}) {
+    return <Link to="/sandwiches/sandwiches/">{text || "sandwich"}</Link>;
+}
+
 export function KidsSection({ text }: { text: string }) {
     return <Link to="/phrase-structure/blocks-and-kids/#the-kids-section">{text || "kids' section"}</Link>;
 }
@@ -42,6 +46,10 @@ export function Camera() {
 
 export function Video() {
     return <i className="fas fa-video" />;
+}
+
+export function BlocksIcon() {
+    return <i className="fas fa-cubes" />;
 }
 
 export function KingIcon() {
