@@ -13,7 +13,7 @@ import EditableBlock, {
     EditIcon,
 } from "../../components/phrase-diagram/EditableBlock";
 import BasicBlocks from "../../components/BasicBlocks";
-import { AP, NP } from "../../components/terms-links";
+import { AP, NP, Complement } from "../../components/terms-links";
 import EditableVPEx from "../../components/phrase-diagram/EditableVPEx";
 import EditableEPEx from "../../components/phrase-diagram/EditableEPEx";
 
@@ -50,8 +50,8 @@ You will see a bunch of different blocks. Don't worry about learning what they a
     <summary>All the blocks</summary>
 <ul>
 <li><NP /></li>
-<li> <AP /></li>
-<li>Complement (adjective/adverb/Complement NP)</li>
+<li><AP /></li>
+<li><Complement text="Complement" /></li>
 <li>Verb</li>
 <li>The perfective head of a Verb (a perfective prefix like <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} />)</li>
 <li>Equative</li>

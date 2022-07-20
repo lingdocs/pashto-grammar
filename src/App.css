@@ -18,6 +18,20 @@
     overflow-y: auto;
 }
 
+.heading-link {
+    text-decoration: none;
+    color: #21252A;
+}
+.heading-link:hover {
+    color: #21252A;
+}
+.heading-link:active {
+    color: #21252A;
+}
+.heading-link:visited {
+    color: #21252A;
+}
+
 @media (max-width: 900px) {
     .table-of-contents {
         display: none;

@@ -31,7 +31,6 @@ const Chapter = ({ children: chapter }) => {
               <i className="fas fa-share-alt" style={{ fontSize: "1.8rem" }} />
             </div>}
         </div>
-        
         <Content />
       </div>
       <Footer chapter={chapter} />

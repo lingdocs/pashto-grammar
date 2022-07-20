@@ -4,6 +4,10 @@ export function NP({ text }: { text: string }) {
     return <Link to="/phrase-structure/np">{text || "NP"}</Link>;
 }
 
+export function Complement({ text }: { text: string }) {
+    return <Link to="/phrase-structure/complement">{text || "complement"}</Link>;
+}
+
 export function AP({ text }: { text: string }) {
     return <Link to="/phrase-structure/ap">{text || "AP"}</Link>;
 }

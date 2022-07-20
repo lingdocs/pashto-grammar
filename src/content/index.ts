@@ -41,6 +41,8 @@ import * as EPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/
 // @ts-ignore
 import * as VPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/vp.mdx";
 // @ts-ignore
+import * as Complement from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/complement.mdx";
+// @ts-ignore
 import * as ShorteningVPs from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/shortening-vps.mdx";
 
 // @ts-ignore
@@ -113,7 +115,17 @@ import * as pronounPicker from "!babel-loader!@lingdocs/mdx-loader!./practice-to
 // @ts-ignore
 import * as phraseBuilder from "!babel-loader!@lingdocs/mdx-loader!./practice-tools/phrase-builder.mdx";
 
-const contentTree = [
+type ChapterSection = {
+    import: any,
+    slug: string,
+};
+type ChaptersSection = {
+    heading: string,
+    subdirectory: string,
+    chapters: ChapterSection[],
+};
+
+const contentTree: (ChapterSection | ChaptersSection)[] = [
     {
         import: intro,
         slug: "intro",
@@ -162,7 +174,7 @@ const contentTree = [
             },
             {
                 import: bundledPlurals,
-                sluge: "bundled-plurals",
+                slug: "bundled-plurals",
             },
         ],
     },
@@ -189,6 +201,10 @@ const contentTree = [
             {
                 import: VPIntro,
                 slug: "vp",
+            },
+            {
+                import: Complement,
+                slug: "complement",
             },
             {
                 import: ShorteningVPs,
@@ -382,7 +398,7 @@ export const content = contentTree.map((item) => {
             tableOfContents: chp.import.tableOfContents(),
         };
     }
-    return (item.import)
+    return ("import" in item)
         ? prepareChapter(item)
         : {
             ...item,
