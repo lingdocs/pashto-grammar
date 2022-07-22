@@ -1,0 +1,98 @@
+---
+title: Stative Compounds
+---
+
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+    RootsAndStems,
+    getVerbInfo,
+} from "@lingdocs/pashto-inflector";
+import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead, Camera, Video, Complement } from "../../components/terms-links";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+import Formula from "../../components/formula/Formula";
+import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+import helperVerbsSummaryChartStative from "./helper-verbs-summary-chart-stative.svg";
+import stativeCompoundIntransitive from "./stative-compound-intransitive.svg";
+import stativeCompoundTransitive from "./stative-compound-transitive.svg";
+import becomingTired from "./becoming-tired.svg";
+import makingTired from "./making-tired.svg";
+import welding from "./welding.svg";
+import separateBlocks from "./separate.svg";
+
+Stative compound verbs are used to talk about something being changed or put into a different "state." To make these compounds we will use the *stative* <Link to="/compound-verbs/helper-verbs/">helper verbs</Link>.
+
+<div className="text-center">
+    <img src={helperVerbsSummaryChartStative} alt="" className="img-fluid" />
+</div>
+
+We use the two stative helper verbs to make the intransitive and transitive forms of these compounds:
+- Intransitive: <Complement /> + <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />
+- Transitive: <Complement /> + <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} />
+
+## Intransitive Stative Compounds
+
+Instransitive stative compounds are used to talk about a **subject** changing into a different state.
+
+<div className="text-center">
+    <img src={stativeCompoundIntransitive} alt="" className="img-fluid" />
+</div>
+
+For example, the compound <InlinePs opts={opts} ps={{ p: "ستړی کېدل", f: "stuRey kedul", e: "to get tired" }} /> is a combination of:
+
+<p><InlinePs opts={opts} ps={{ p: "ستړی", f: "stúRey", e: "tired" }} /> + <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /></p>
+
+<div className="text-center">
+    <img src={becomingTired} alt="" className="img-fluid" />
+</div>
+
+We use this verb to describe a **subject** changing into a new state described by the <Complement />. So here we have "him" changing into / becoming "tired."
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.32458466385023566,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.02209534971051208,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1591033069786,"i":7602,"p":"ستړی کېدل","f":"stuRey kedul","g":"stuReykedul","e":"to get tired, fatigued","c":"v. stat. comp. intrans.","l":1527815306,"ec":"get","ep":"tired"},"complement":{"ts":1527815306,"i":7600,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.32458466385023566,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.02209534971051208,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1591033069786,"i":7602,"p":"ستړی کېدل","f":"stuRey kedul","g":"stuReykedul","e":"to get tired, fatigued","c":"v. stat. comp. intrans.","l":1527815306,"ec":"get","ep":"tired"},"complement":{"ts":1527815306,"i":7600,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Go ahead and edit <EditIcon /> the examples above. Notice how the inflection of the complement changes depending on what the *subject* is.
+
+## Transitive Stative Compounds
+
+With transitive stative compounds we have a **subject** that does something to change an **object**, or put it in a different state. For this, we use the <Link to="/compound-verbs/helper-verbs/#کول---to-make">helper verb</Link> <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} />.
+
+<div className="text-center">
+    <img src={stativeCompoundTransitive} alt="" className="img-fluid" />
+</div>
+
+For example, the compound <InlinePs opts={opts} ps={{ p: "ستړی کېدل", f: "stuRey kawul", e: "to make tired" }} /> is a combination of:
+
+<p><InlinePs opts={opts} ps={{ p: "ستړی", f: "stúRey", e: "tired" }} /> + <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} /></p>
+
+<div className="text-center">
+    <img src={makingTired} alt="" className="img-fluid" />
+</div>
+
+We use this verb to describe a **subject** that does something to change an **object** into a new state described by the <Complement />. So here we have "I" (subject) making "him" (object) "tired." (complement)
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.9251654828746088,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.22651100938791546,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1591033078746,"i":7601,"p":"ستړی کول","f":"stuRey kawul","g":"stuReykawul","e":"to make tired, wear out","c":"v. stat. comp. trans.","l":1527815306,"ec":"make","ep":"tired"},"complement":{"ts":1527815306,"i":7600,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.9251654828746088,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.22651100938791546,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1591033078746,"i":7601,"p":"ستړی کول","f":"stuRey kawul","g":"stuReykawul","e":"to make tired, wear out","c":"v. stat. comp. trans.","l":1527815306,"ec":"make","ep":"tired"},"complement":{"ts":1527815306,"i":7600,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Go ahead and edit <EditIcon /> the examples above. Notice how the inflection of the complement changes depending on what the *object* is.
+
+## Special Behaviors
+
+🚧 IN PROGRESS 🚧
+
+### Welding
+
+### Inflecting
+
