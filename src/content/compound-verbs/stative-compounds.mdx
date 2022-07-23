@@ -117,15 +117,30 @@ When we're *not* using the perfective <Camera /> aspect of the verb (ie. if the 
     <div className="small text-muted">vecteezy.com</div>
 </div>
 
-That means that even though it looks like there might be two separate words, they are actually one <BlockTerm /> and you can never, ever put anything in between them.
+That means that even though it looks like there might be two separate words, they are actually one <BlockTerm />. That means that and you can never, ever put anything in between them. It also means that the complement **loses it's accent in the welding process**. The complement just becomes the first part of the verb.
 
+For example, we have an accent on the first part of the word <InlinePs opts={opts} ps={{ p: "ستړی", f: "stúRey", e: "" }} /> but if we weld it together with <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /> the complement loses its accent.
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.7090037057284271,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.07622523068621034,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1591033069786,"i":7604,"p":"ستړی کېدل","f":"stuRey kedul","g":"stuReykedul","e":"to get tired, fatigued","c":"v. stat. comp. intrans.","l":1527815306,"ec":"get","ep":"tired"},"complement":{"ts":1527815306,"i":7602,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Notice you'll never hear a Pashtun say <InlinePs opts={opts} ps={{ p: "❌ زه ستړی کېږم ❌", f: "❌ zu stúRey kéGum ❌" }} />! When it's welded together with the verb, the consonant loses it's accent and just rolls along into the verb which carries the accent. 
+
+Remember that the welding does not happen in the perfective aspect <Camera />. If we say something in the perfective aspect <Camera />, then the complement splits out and it gets its accent back.
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.7090037057284271,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.07622523068621034,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1591033069786,"i":7604,"p":"ستړی کېدل","f":"stuRey kedul","g":"stuReykedul","e":"to get tired, fatigued","c":"v. stat. comp. intrans.","l":1527815306,"ec":"get","ep":"tired"},"complement":{"ts":1527815306,"i":7602,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Also, when the complement and verb are welded together, even though there might be a space and they *look* like two words on paper, you can never, ever put anything between them. For example, if you add a <InlinePs opts={opts} ps={{ p: "نه", f: "nú" }} /> to the phrase it has to go in front of the welded complement/verb block.
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.7483472617346707,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.07721876881104794,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1658537932357,"i":11670,"p":"لېونی کېدل","f":"lewaney kedul","g":"lewaneykedul","e":"to go crazy, to go mad, to go insane","c":"v. stat. comp. intrans.","l":1527820680,"ec":"go,goes,going,went,gone","ep":"crazy"},"complement":{"ts":1527820680,"i":11668,"p":"لېونی","f":"lewanéy","g":"lewaney","e":"crazy, insane, mad person","c":"n. m. anim. unisex / adj."}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
 
 Here <InlinePs opts={opts} ps={{ p: "لیونی کېږم", f: "lewaney kéGum" }} /> has been welded into one block. Have a look at the blocks <BlocksIcon /> and see.
 
-So you *cannot* say,
+So you *cannot* put the <InlinePs opts={opts} ps={{ p: "نه", f: "nú" }} /> in the middle of the block and say,
 
 <Examples opts={opts}>{[
     { p: "❌ زه به لېونی نه کېږم ❌", f: "❌ zu ba lewaney nú kéGum ❌" },
@@ -133,7 +148,7 @@ So you *cannot* say,
 
 because <InlinePs opts={opts} ps={{ p: "لیونی کېږم", f: "lewaney kéGum" }} /> has been welded into one block, and nothing can go in-between those two words.
 
-The same thing goes for the perect/past participle forms.
+The same thing goes for the perfect/past participle forms.
 
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.7483472617346707,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.07721876881104794,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1658537932357,"i":11670,"p":"لېونی کېدل","f":"lewaney kedul","g":"lewaneykedul","e":"to go crazy, to go mad, to go insane","c":"v. stat. comp. intrans.","l":1527820680,"ec":"go,goes,going,went,gone","ep":"crazy"},"complement":{"ts":1527820680,"i":11668,"p":"لېونی","f":"lewanéy","g":"lewaney","e":"crazy, insane, mad person","c":"n. m. anim. unisex / adj."}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
