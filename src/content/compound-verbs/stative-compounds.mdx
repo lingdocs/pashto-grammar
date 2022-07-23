@@ -9,7 +9,7 @@ import {
     RootsAndStems,
     getVerbInfo,
 } from "@lingdocs/pashto-inflector";
-import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead, Camera, Video, Complement } from "../../components/terms-links";
+import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead, Camera, Video, Complement, BlockTerm, BlocksIcon } from "../../components/terms-links";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
@@ -21,6 +21,7 @@ import becomingTired from "./becoming-tired.svg";
 import makingTired from "./making-tired.svg";
 import welding from "./welding.svg";
 import separateBlocks from "./separate.svg";
+import VideoPlayer from "../../components/VideoPlayer";
 
 Stative compound verbs are used to talk about something being changed or put into a different "state." To make these compounds we will use the *stative* <Link to="/compound-verbs/helper-verbs/">helper verbs</Link>.
 
@@ -90,9 +91,135 @@ Go ahead and edit <EditIcon /> the examples above. Notice how the inflection of 
 
 ## Special Behaviors
 
-🚧 IN PROGRESS 🚧
+So far we've seen the parts that make up the stative compounds:
 
-### Welding
+**<Link to="/compound-verbs/stative-compounds/#intransitive-stative-compounds">Intransitive Stative Compounds</Link>** have:
 
-### Inflecting
+- a **subject** that gets changed
+- a <Complement /> that describes the change
+- the helper verb <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />
+
+**<Link to="/compound-verbs/stative-compounds/#transitive-stative-compounds">Transitive Stative Compounds</Link>** have:
+
+- a **subject** that works to change an object
+- an **object** that gets changed
+- a <Complement /> that describes the change
+- the helper verb <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} />
+
+And there's something very special that happens with both of these verbs... 🥁
+
+### Welding 👨🏻‍🏭
+
+When we're *not* using the perfective <Camera /> aspect of the verb (ie. if the verb is imperfective/past participle/perfect) the complement gets **welded together with the verb** to make **one single, indivisible <BlockTerm />**.
+
+<div className="text-center mb-3">
+    <img src={welding} alt="" className="img-fluid" />
+    <div className="small text-muted">vecteezy.com</div>
+</div>
+
+That means that even though it looks like there might be two separate words, they are actually one <BlockTerm /> and you can never, ever put anything in between them.
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.7483472617346707,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.07721876881104794,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1658537932357,"i":11670,"p":"لېونی کېدل","f":"lewaney kedul","g":"lewaneykedul","e":"to go crazy, to go mad, to go insane","c":"v. stat. comp. intrans.","l":1527820680,"ec":"go,goes,going,went,gone","ep":"crazy"},"complement":{"ts":1527820680,"i":11668,"p":"لېونی","f":"lewanéy","g":"lewaney","e":"crazy, insane, mad person","c":"n. m. anim. unisex / adj."}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Here <InlinePs opts={opts} ps={{ p: "لیونی کېږم", f: "lewaney kéGum" }} /> has been welded into one block. Have a look at the blocks <BlocksIcon /> and see.
+
+So you *cannot* say,
+
+<Examples opts={opts}>{[
+    { p: "❌ زه به لېونی نه کېږم ❌", f: "❌ zu ba lewaney nú kéGum ❌" },
+]}</Examples>
+
+because <InlinePs opts={opts} ps={{ p: "لیونی کېږم", f: "lewaney kéGum" }} /> has been welded into one block, and nothing can go in-between those two words.
+
+The same thing goes for the perect/past participle forms.
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.7483472617346707,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.07721876881104794,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1658537932357,"i":11670,"p":"لېونی کېدل","f":"lewaney kedul","g":"lewaneykedul","e":"to go crazy, to go mad, to go insane","c":"v. stat. comp. intrans.","l":1527820680,"ec":"go,goes,going,went,gone","ep":"crazy"},"complement":{"ts":1527820680,"i":11668,"p":"لېونی","f":"lewanéy","g":"lewaney","e":"crazy, insane, mad person","c":"n. m. anim. unisex / adj."}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+But when we use the *perfective* aspect <Camera /> then the complement stays separate, and just sits in front of the verb like a <PerfectiveHead /> would.
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.7483472617346707,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.07721876881104794,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1658537932357,"i":11670,"p":"لېونی کېدل","f":"lewaney kedul","g":"lewaneykedul","e":"to go crazy, to go mad, to go insane","c":"v. stat. comp. intrans.","l":1527820680,"ec":"go,goes,going,went,gone","ep":"crazy"},"complement":{"ts":1527820680,"i":11668,"p":"لېونی","f":"lewanéy","g":"lewaney","e":"crazy, insane, mad person","c":"n. m. anim. unisex / adj."}},"verbTense":"perfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Now we can't say
+
+<Examples opts={opts}>{[
+    { p: "❌ زه به نه لیونی شم ❌", f: "❌ zu ba nú lewaney shum ❌" },
+]}</Examples>
+
+because the <InlinePs opts={opts} ps={{ p: "نه", f: "nú" }} /> goes in front of the verb block, which is separate from the complement.
+
+That's probably a nice anthem to repeat to yourself as you are learning Pashto. "I will not go crazy, I will not go crazy..." 🤪
+
+<VideoPlayer url="https://www.youtube.com/watch?v=I7dZpBFdelU" />
+
+### Squishing
+
+When we're not using the prefective aspect <Camera /> (ie. if the verb is imperfective/past participle/perfect), not only does the complement get <Link to="/compound-verbs/stative-compounds/#welding-">welded</Link> together, it can also be squished/shortened together with the complement.
+
+When we have a <Complement /> that is an <Link to="/phrase-structure/complement/#adjective">adjective</Link> or a <Link to="/phrase-structure/complement/#complement-noun">noun</Link> and ends in a consonant or <InlinePs opts={opts} ps={{ p: "ه", f: "u", e: "" }} />, it will be squished/shortened together with the <Link to="/compound-verbs/helper-verbs/">helper verb</Link> in the imperfective aspect <Video />.
+
+To do the squishing we remove the <InlinePs opts={opts} ps={{ p: "ک", f: "k", e: "" }} /> from the front of the verb and join the two words into one. Remember, this only happens when we are *not* using the imperfective aspect <Video />.
+
+For example:
+
+- <InlinePs opts={opts} ps={{ p: "بند", f: "band", e: "closed" }} /> + <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /> = <InlinePs opts={opts} ps={{ p: "بندېدل", f: "bandedúl", e: "to be closed" }} />
+- <InlinePs opts={opts} ps={{ p: "بند", f: "band", e: "closed" }} /> + <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} /> = <InlinePs opts={opts} ps={{ p: "بندول", f: "bandawúl", e: "to close" }} />
+- <InlinePs opts={opts} ps={{ p: "ډک", f: "Duk", e: "full" }} /> + <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /> = <InlinePs opts={opts} ps={{ p: "ډکېدل", f: "Dukedúl", e: "to be filled" }} />
+- <InlinePs opts={opts} ps={{ p: "ډک", f: "Duk", e: "full" }} /> + <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} /> = <InlinePs opts={opts} ps={{ p: "ډکول", f: "Dukawúl", e: "to fill" }} />
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.5224750093174901,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.27229739847476364,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527811425,"i":6125,"p":"دروازه","f":"darwaaza","g":"darwaaza","e":"door","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527821309,"i":1740,"p":"بندول","f":"bandawul","g":"bandawul","e":"to close, block, stop, barricade, cut off, restrain, hold back","c":"v. stat. comp. trans.","l":1577301753727,"ec":"close"},"complement":{"ts":1577301753727,"i":1728,"p":"بند","f":"band","g":"band","e":"closed, blocked, stopped","c":"adj."}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} length="long">{
+    {"blocks":[{"key":0.5224750093174901,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.27229739847476364,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527811425,"i":6125,"p":"دروازه","f":"darwaaza","g":"darwaaza","e":"door","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527821309,"i":1740,"p":"بندول","f":"bandawul","g":"bandawul","e":"to close, block, stop, barricade, cut off, restrain, hold back","c":"v. stat. comp. trans.","l":1577301753727,"ec":"close"},"complement":{"ts":1577301753727,"i":1728,"p":"بند","f":"band","g":"band","e":"closed, blocked, stopped","c":"adj."}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Because the <Complement /> is squished together with the helper verb **it can't inflect** to match the subject/object <InlinePs opts={opts} ps={{ p: "دروازه", f: "darwaaza", e: "door - f." }} /> that's changing.
+
+But when we stop using the imperfective roots/stems the squishing stops, and we need to inflect the complement if it's an adjective.
+
+<EditableVPEx opts={opts} length="long">{
+    {"blocks":[{"key":0.5224750093174901,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.27229739847476364,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527811425,"i":6125,"p":"دروازه","f":"darwaaza","g":"darwaaza","e":"door","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527821309,"i":1740,"p":"بندول","f":"bandawul","g":"bandawul","e":"to close, block, stop, barricade, cut off, restrain, hold back","c":"v. stat. comp. trans.","l":1577301753727,"ec":"close"},"complement":{"ts":1577301753727,"i":1728,"p":"بند","f":"band","g":"band","e":"closed, blocked, stopped","c":"adj."}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.5224750093174901,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.27229739847476364,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527811425,"i":6125,"p":"دروازه","f":"darwaaza","g":"darwaaza","e":"door","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527821309,"i":1740,"p":"بندول","f":"bandawul","g":"bandawul","e":"to close, block, stop, barricade, cut off, restrain, hold back","c":"v. stat. comp. trans.","l":1577301753727,"ec":"close"},"complement":{"ts":1577301753727,"i":1728,"p":"بند","f":"band","g":"band","e":"closed, blocked, stopped","c":"adj."}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} length="long">{
+    {"blocks":[{"key":0.5224750093174901,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.27229739847476364,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527811425,"i":6125,"p":"دروازه","f":"darwaaza","g":"darwaaza","e":"door","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527821309,"i":1740,"p":"بندول","f":"bandawul","g":"bandawul","e":"to close, block, stop, barricade, cut off, restrain, hold back","c":"v. stat. comp. trans.","l":1577301753727,"ec":"close"},"complement":{"ts":1577301753727,"i":1728,"p":"بند","f":"band","g":"band","e":"closed, blocked, stopped","c":"adj."}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+#### With #4 "Pashtoon" pattern nouns/adjectives
+
+When a complement is a noun/adjective in the <Link to="/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern">#4 "Pashtoon" pattern</Link> and ends in a consonant/<InlinePs opts={opts} ps={{ p: "ه", f: "u", e: "" }} /> then we squish it even tighter by just taking the first syllable from the 2nd inflection / femine form.
+
+- <InlinePs opts={opts} ps={{ p: "پوخ", f: "pokh", e: "cooked" }} /> + <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /> = <InlinePs opts={opts} ps={{ p: "پوخېدل", f: "pakhedúl", e: "to be cooked" }} />
+- <InlinePs opts={opts} ps={{ p: "پوخ", f: "pokh", e: "closed" }} /> + <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} /> = <InlinePs opts={opts} ps={{ p: "پوخول", f: "pakhawúl", e: "to cook" }} />
+- <InlinePs opts={opts} ps={{ p: "موړ", f: "moR", e: "full" }} /> + <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /> = <InlinePs opts={opts} ps={{ p: "مړېدل", f: "maRedúl", e: "to get full/satisfied" }} />
+- <InlinePs opts={opts} ps={{ p: "موړ", f: "moR", e: "full" }} /> + <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} /> = <InlinePs opts={opts} ps={{ p: "مړول", f: "maRawúl", e: "to fill/satisfy" }} />
+
+Again with the imperfective roots/stems you won't be able to inflect the complement because it's been squished together with the complement, but in other cases you will need to inflect the complement if it's an adjective.
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.9326674075253254,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1658541389964,"i":2528,"p":"پکوړه","f":"pakoRa","g":"pakoRa","e":"pakora","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.8555588472544122,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581906176268,"i":2297,"p":"پخېدل","f":"pakhedul","g":"pakhedul","e":"to be cooked, prepared, ripened, matured","c":"v. stat. comp. intrans.","l":1574867531681,"ec":"cook"},"complement":{"ts":1574867531681,"i":2739,"p":"پوخ","f":"pokh","g":"pokh","e":"cooked, mature, ripe, ready, able, skillful, experienced, tried, tested, true","c":"adj. irreg.","infap":"پاخه","infaf":"paakhu","infbp":"پخ","infbf":"pakh"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.9326674075253254,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1658541389964,"i":2528,"p":"پکوړه","f":"pakoRa","g":"pakoRa","e":"pakora","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.8555588472544122,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581906176268,"i":2297,"p":"پخېدل","f":"pakhedul","g":"pakhedul","e":"to be cooked, prepared, ripened, matured","c":"v. stat. comp. intrans.","l":1574867531681,"ec":"cook"},"complement":{"ts":1574867531681,"i":2739,"p":"پوخ","f":"pokh","g":"pokh","e":"cooked, mature, ripe, ready, able, skillful, experienced, tried, tested, true","c":"adj. irreg.","infap":"پاخه","infaf":"paakhu","infbp":"پخ","infbf":"pakh"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.9326674075253254,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1658541389964,"i":2528,"p":"پکوړه","f":"pakoRa","g":"pakoRa","e":"pakora","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.8555588472544122,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581906176268,"i":2297,"p":"پخېدل","f":"pakhedul","g":"pakhedul","e":"to be cooked, prepared, ripened, matured","c":"v. stat. comp. intrans.","l":1574867531681,"ec":"cook"},"complement":{"ts":1574867531681,"i":2739,"p":"پوخ","f":"pokh","g":"pokh","e":"cooked, mature, ripe, ready, able, skillful, experienced, tried, tested, true","c":"adj. irreg.","infap":"پاخه","infaf":"paakhu","infbp":"پخ","infbf":"pakh"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.9326674075253254,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1658541389964,"i":2528,"p":"پکوړه","f":"pakoRa","g":"pakoRa","e":"pakora","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.8555588472544122,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581906176268,"i":2297,"p":"پخېدل","f":"pakhedul","g":"pakhedul","e":"to be cooked, prepared, ripened, matured","c":"v. stat. comp. intrans.","l":1574867531681,"ec":"cook"},"complement":{"ts":1574867531681,"i":2739,"p":"پوخ","f":"pokh","g":"pokh","e":"cooked, mature, ripe, ready, able, skillful, experienced, tried, tested, true","c":"adj. irreg.","infap":"پاخه","infaf":"paakhu","infbp":"پخ","infbf":"pakh"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
 
