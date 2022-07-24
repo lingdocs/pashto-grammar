@@ -36,6 +36,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "bump-dep": "yarn install && git add . && git commit -m up && git push origin master",
     "start": "react-scripts start",
     "start-w-user": "REACT_APP_ENV=dev react-scripts start",
     "build": "react-scripts build",

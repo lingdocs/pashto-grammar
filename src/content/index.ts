@@ -76,6 +76,8 @@ import * as compoundVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./compou
 import * as helperVerbs from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/helper-verbs.mdx";
 // @ts-ignore
 import * as stativeCompounds from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/stative-compounds.mdx";
+// @ts-ignore
+import * as dynamicCompounds from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/dynamic-compounds.mdx";
 
 // @ts-ignore
 import * as introToParticiples from "!babel-loader!@lingdocs/mdx-loader!./participles/intro.mdx";
@@ -283,6 +285,10 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
             {
                 import: stativeCompounds,
                 slug: "stative-compounds",
+            },
+            {
+                import: dynamicCompounds,
+                slug: "dynamic-compounds",
             },
         ],
     },

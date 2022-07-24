@@ -23,7 +23,13 @@ function BasicBlocks({ blocks, showKidsSection, large }: {
             </div>}
             <div className="d-flex flex-row justify-content-center mb-4 align-items-end">
                 {blocks.map((block, i) => (
-                    <div className="text-center mr-2" key={`blockr-${i}`}>
+                    (block === "+" || block === "plus") ?
+                    <div className="ml-2 mr-3 mb-4 d-flex flex-column justify-content-center">
+                        <div style={{ fontSize: "2.5rem" }}>
+                            <strong>+</strong>
+                        </div>
+                    </div>
+                    : <div className="text-center mr-2" key={`blockr-${i}`}>
                         <div>{typeof block === "object" ? block.top : <div></div>}</div>
                         <div
                             className="d-flex flex-row justify-content-center align-items-center"
