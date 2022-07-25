@@ -32,6 +32,10 @@
     color: #21252A;
 }
 
+.block-border {
+    border: 2px solid #333;
+}
+
 @media (max-width: 900px) {
     .table-of-contents {
         display: none;
