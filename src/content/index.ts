@@ -69,6 +69,8 @@ import * as pastVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/past-verb
 import * as perfectVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./verbs/perfect-verbs-intro.mdx";
 // @ts-ignore
 import * as allPerfectVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/all-perfect-verbs.mdx";
+// @ts-ignore
+import * as passiveVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/passive-verbs.mdx";
 
 // @ts-ignore
 import * as compoundVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/intro.mdx";
@@ -269,6 +271,10 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
             {
                 import: verbEndings,
                 slug: "verb-endings",
+            },
+            {
+                import: passiveVerbs,
+                slug: "passive-verbs",
             },
         ],
     },

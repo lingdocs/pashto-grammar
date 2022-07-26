@@ -8,6 +8,7 @@ import {
     InlinePs,
     RootsAndStems,
     getVerbInfo,
+    conjugateVerb,
 } from "@lingdocs/pashto-inflector";
 import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead, Camera, Video, Complement, BlockTerm, BlocksIcon } from "../../components/terms-links";
 import psmd from "../../lib/psmd";
@@ -21,13 +22,13 @@ import becomingTired from "./becoming-tired.svg";
 import makingTired from "./making-tired.svg";
 import welding from "./welding.svg";
 import separateBlocks from "./separate.svg";
+import weldingAndSquishing from "./welding-and-squishing.jpg";
 import VideoPlayer from "../../components/VideoPlayer";
+import Image from "../../components/Image";
 
 Stative compound verbs are used to talk about something being changed or put into a different "state." To make these compounds we will use the *stative* <Link to="/compound-verbs/helper-verbs/">helper verbs</Link>.
 
-<div className="text-center">
-    <img src={helperVerbsSummaryChartStative} alt="" className="img-fluid" />
-</div>
+<Image src={helperVerbsSummaryChartStative} maxWidth="550px" alt="" />
 
 We use the two stative helper verbs to make the intransitive and transitive forms of these compounds:
 - Intransitive: <Complement /> + <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />
@@ -37,17 +38,13 @@ We use the two stative helper verbs to make the intransitive and transitive form
 
 Instransitive stative compounds are used to talk about a **subject** changing into a different state.
 
-<div className="text-center">
-    <img src={stativeCompoundIntransitive} alt="" className="img-fluid" />
-</div>
+<Image src={stativeCompoundIntransitive} maxWidth="600px" />
 
 For example, the compound <InlinePs opts={opts} ps={{ p: "ستړی کېدل", f: "stuRey kedul", e: "to get tired" }} /> is a combination of:
 
 <p><InlinePs opts={opts} ps={{ p: "ستړی", f: "stúRey", e: "tired" }} /> + <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /></p>
 
-<div className="text-center">
-    <img src={becomingTired} alt="" className="img-fluid" />
-</div>
+<Image src={becomingTired} alt="" maxWidth="600px" />
 
 We use this verb to describe a **subject** changing into a new state described by the <Complement />. So here we have "him" changing into / becoming "tired."
 
@@ -73,9 +70,7 @@ For example, the compound <InlinePs opts={opts} ps={{ p: "ستړی کېدل", f:
 
 <p><InlinePs opts={opts} ps={{ p: "ستړی", f: "stúRey", e: "tired" }} /> + <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} /></p>
 
-<div className="text-center">
-    <img src={makingTired} alt="" className="img-fluid" />
-</div>
+<Image src={makingTired} maxWidth="600px" />
 
 We use this verb to describe a **subject** that does something to change an **object** into a new state described by the <Complement />. So here we have "I" (subject) making "him" (object) "tired." (complement)
 
@@ -88,8 +83,6 @@ We use this verb to describe a **subject** that does something to change an **ob
 }</EditableVPEx>
 
 Go ahead and edit <EditIcon /> the examples above. Notice how the inflection of the complement changes depending on what the *object* is.
-
-## Special Behaviors
 
 So far we've seen the parts that make up the stative compounds:
 
@@ -106,7 +99,11 @@ So far we've seen the parts that make up the stative compounds:
 - a <Complement /> that describes the change
 - the helper verb <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} />
 
-And there's something very special that happens with both of these verbs... 🥁
+And now we'll learn about something very special that happens to certain forms of these verbs: <Link to="/compound-verbs/stative-compounds/#welding-">welding</Link> and <Link to="/compound-verbs/stative-compounds/#squishing">squishing</Link>.
+
+## Welding and Squishing
+
+<Image src={weldingAndSquishing} maxWidth="600px" />
 
 ### Welding 👨🏻‍🏭
 
@@ -237,4 +234,26 @@ Again with the imperfective roots/stems you won't be able to inflect the complem
 <EditableVPEx opts={opts}>{
     {"blocks":[{"key":0.9326674075253254,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527820648,"i":794,"p":"الو","f":"aloo","g":"aloo","e":"potato","c":"n. m.","ppp":"الوګان","ppf":"aloogáan"},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.8555588472544122,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581906176268,"i":2297,"p":"پخېدل","f":"pakhedul","g":"pakhedul","e":"to be cooked, prepared, ripened, matured","c":"v. stat. comp. intrans.","l":1574867531681,"ec":"cook"},"complement":{"ts":1574867531681,"i":2739,"p":"پوخ","f":"pokh","g":"pokh","e":"cooked, mature, ripe, ready, able, skillful, experienced, tried, tested, true","c":"adj. irreg.","infap":"پاخه","infaf":"paakhu","infbp":"پخ","infbf":"pakh"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
+
+To review:
+
+<ul>
+    <li>
+        <Link to="/compound-verbs/stative-compounds/#welding-">welding</Link>
+    </li>
+    <ul>
+        <li>means joining the complement and verb into one <BlockTerm /></li>
+        <li>happens to everthing except the perfective root/stem.</li>
+    </ul>
+    <li>
+        <Link to="/compound-verbs/stative-compounds/#squishing">squishing</Link>
+    </li>
+    <ul>
+        <li>means mashing the complement and verb together into one word</li>
+        <li>happens only when the complement is an adjective or noun</li>
+        <li>happens to only the imperefective root/stem.</li>
+    </ul>
+</ul>
+
+<Image src={weldingAndSquishing} maxWidth="600px" />
 
