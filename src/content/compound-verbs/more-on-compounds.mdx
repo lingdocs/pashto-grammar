@@ -2,9 +2,123 @@
 title: More on Compounds
 ---
 
-IN PROGRESS
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+    RootsAndStems,
+    getVerbInfo,
+} from "@lingdocs/pashto-inflector";
+import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead, Camera, Video, Complement, BlockTerm, BlocksIcon } from "../../components/terms-links";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+import Formula from "../../components/formula/Formula";
+import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+import VideoPlayer from "../../components/VideoPlayer";
+import BasicBlocks from "../../components/BasicBlocks";
+import Image from "../../components/Image";
+import helperVerbsSummaryChart from "./helper-verbs-summary-chart.svg";
+import ironingStative from "./ironing-stative.svg";
 
-## Some can be Dynamic or Stative
+Once we learn about the difference between <Link to="/compound-verbs/stative-compounds/">stative</Link> and <Link to="/compound-verbs/dynamic-compounds/">dynamic</Link> compounds, a lot of confusion is removed.
+
+#### Dynamic Compounds
+
+- talk about an action/activity being done
+- are made up of:
+  - a noun describing an action/activity
+  - a helper verb
+- bring their own object (with transitive compounds the noun in the compound becomes the object of the phrase)
+- use <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to do" }} /> or other helper verbs
+- you can recognize them when there's a <InlinePs opts={opts} ps={{ p: "و", f: "óo", e: "perfective prefix" }} /> added to <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to do" }} />
+
+#### Stative Compounds
+
+- talk about something changing (changing state)
+- are made up of:
+  - a <Complement /> that describes the change
+  - a helper verb <InlinePs opts={opts} ps={{ p: "کول", f: "kawul", e: "to make" }} /> / <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedul", e: "to become" }} />
+- the complement gets <Link to="/compound-verbs/stative-compounds/#welding-">welded together</Link> as one block with the verb unless we're using the perfective aspect
+- If the complement is a adjective or noun and has a hard ending, it usually gets <Link to="/compound-verbs/stative-compounds/#squishing">squished together</Link> with the helper verb
+- you will never see a <InlinePs opts={opts} ps={{ p: "و", f: "óo", e: "perfective prefix" }} /> added to the helper verb
+
+But there are a couple of special cases to watch out for which can cause more confusion for the learner.
+
+## Some can be dynamic or stative
+
+Some compounds can be used as either dynamic *or* stative compounds. For instance with the compound verb <InlinePs opts={opts} ps={{ p: "استري کول", f: "istree kawul", e: "to iron" }} /> you can use it either as:
+
+- a stative compound
+  - as in "to iron \_\_\_\_" (to make \_\_\_\_ ironed)
+- a dynamic compound
+  - as in "to do ironing" (to do the activity of ironing)
+
+#### استري کول as stative
+
+With the stative version we are using
+
+ - <InlinePs opts={opts} ps={{ p: "استري", f: "istree", e: "iron" }} /> as a <Complement /> noun.
+ - <InlinePs opts={opts} ps={{ p: "کول", f: "kawul" }} /> as "to make"
+
+So we are talking about making an object ironed.
+
+<Image src={ironingStative} />
+
+In the past tense, the verb will always agree with the object that's being ironed (the <KingIcon /> of the phrase).
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.8393288429274519,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.4708124056055294,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815718,"i":10413,"p":"کمیس","f":"kamees","g":"kamees","e":"shirt, undershirt, slip, kameez","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1658796089458,"i":507,"p":"استري کول","f":"istree kawul","g":"istreekawul","e":"to iron (clothes etc.)","c":"v. dyn./stat. comp. trans.","l":1658795458148,"ec":"iron"},"complement":{"ts":1658795458148,"i":506,"p":"استري","f":"istree","g":"istree","e":"iron (for ironing clothes)","c":"n. f."}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":true},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.8393288429274519,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.4708124056055294,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815718,"i":10413,"p":"کمیس","f":"kamees","g":"kamees","e":"shirt, undershirt, slip, kameez","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1658796089458,"i":507,"p":"استري کول","f":"istree kawul","g":"istreekawul","e":"to iron (clothes etc.)","c":"v. dyn./stat. comp. trans.","l":1658795458148,"ec":"iron"},"complement":{"ts":1658795458148,"i":506,"p":"استري","f":"istree","g":"istree","e":"iron (for ironing clothes)","c":"n. f."}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":true},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Also we notice that since we are using <InlinePs opts={opts} ps={{ p: "کول", f: "kawul", e: "to make" }} /> as the helper verb, there is no <InlinePs opts={opts} ps={{ p: "و", f: "óo", e: "" }} /> prefix.
+
+#### استري کول as dynamic
+
+But we can also use a <Link to="/compound-verbs/dynamic-compounds/">dynamic</Link> version of this compound if we use
+
+- <InlinePs opts={opts} ps={{ p: "استري", f: "istree", e: "iron" }} /> as an action noun/object
+- <InlinePs opts={opts} ps={{ p: "کول", f: "kawul", e: "to do" }} /> as the helper verb
+
+Now instead of talking about making something ironed (stative), we are talking about **doing the action of ironing**
+
+<BasicBlocks large blocks={[
+    {
+        bottom: "Noun/Object",
+        inside: <div>
+            <div>استري</div>
+            <div>iron</div>
+        </div>,
+    },
+    "+",
+    {
+        bottom: "Helper Verb",
+        inside: <div>
+            <div>کول</div>
+            <div>to do</div>
+        </div>,
+    },
+]} />
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.8393288429274519,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.4708124056055294,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1658795458148,"i":506,"p":"استري","f":"istree","g":"istree","e":"iron (for ironing clothes)","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1658796089458,"i":507,"p":"استري کول","f":"istree kawul","g":"istreekawul","e":"to iron (clothes etc.)","c":"v. dyn./stat. comp. trans.","l":1658795458148,"ec":"iron"},"complement":{"ts":1658795458148,"i":506,"p":"استري","f":"istree","g":"istree","e":"iron (for ironing clothes)","c":"n. f."}},"dynAuxVerb":{"entry":{"i":10058,"ts":1527812752,"g":"","p":"کول","f":"kawul","e":"to do (an action or activity)","c":"v. trans. irreg. dyn. aux.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":true},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Now the object of the phrase is <InlinePs opts={opts} ps={{ p: "استري", f: "istree", e: "iron" }} />, so in the past tense, the verb will <em>always</em> agree with <InlinePs opts={opts} ps={{ p: "استري", f: "istree", e: "iron" }} />. Even if you add a possesor to <InlinePs opts={opts} ps={{ p: "استري", f: "istree", e: "iron" }} /> to say what she was ironing, <InlinePs opts={opts} ps={{ p: "استري", f: "istree", e: "iron" }} /> is *still* the object.
+
+<EditableVPEx opts={opts} sub="lit. she did ironing of the shirt">{
+    {"blocks":[{"key":0.8393288429274519,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.4708124056055294,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1658795458148,"i":506,"p":"استري","f":"istree","g":"istree","e":"iron (for ironing clothes)","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815718,"i":10413,"p":"کمیس","f":"kamees","g":"kamees","e":"shirt, undershirt, slip, kameez","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}},"shrunken":false},"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1658796089458,"i":507,"p":"استري کول","f":"istree kawul","g":"istreekawul","e":"to iron (clothes etc.)","c":"v. dyn./stat. comp. trans.","l":1658795458148,"ec":"iron"},"complement":{"ts":1658795458148,"i":506,"p":"استري","f":"istree","g":"istree","e":"iron (for ironing clothes)","c":"n. f."}},"dynAuxVerb":{"entry":{"i":10058,"ts":1527812752,"g":"","p":"کول","f":"kawul","e":"to do (an action or activity)","c":"v. trans. irreg. dyn. aux.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":true},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} sub="lit. she did ironing of the shirt">{
+    {"blocks":[{"key":0.8393288429274519,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.4708124056055294,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1658795458148,"i":506,"p":"استري","f":"istree","g":"istree","e":"iron (for ironing clothes)","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"possesor":{"np":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815718,"i":10413,"p":"کمیس","f":"kamees","g":"kamees","e":"shirt, undershirt, slip, kameez","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}},"shrunken":false},"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1658796089458,"i":507,"p":"استري کول","f":"istree kawul","g":"istreekawul","e":"to iron (clothes etc.)","c":"v. dyn./stat. comp. trans.","l":1658795458148,"ec":"iron"},"complement":{"ts":1658795458148,"i":506,"p":"استري","f":"istree","g":"istree","e":"iron (for ironing clothes)","c":"n. f."}},"dynAuxVerb":{"entry":{"i":10058,"ts":1527812752,"g":"","p":"کول","f":"kawul","e":"to do (an action or activity)","c":"v. trans. irreg. dyn. aux.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":true},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+#### Other examples
+
 
 ## Generative Stative Compounds
 

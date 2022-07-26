@@ -14,13 +14,14 @@ export function EditIcon() {
     return <i className="fas fa-edit" />;
 }
 
-function EditableVPEx({ children, opts, formChoice, noEdit, length, mode }: {
+function EditableVPEx({ children, opts, formChoice, noEdit, length, mode, sub }: {
     children: T.VPSelectionState,
     opts: T.TextOptions,
     formChoice?: boolean,
     noEdit?: boolean,
     length?: "long" | "short",
     mode?: "text" | "blocks",
+    sub?: string | JSX.Element,
 }) {
     const [editing, setEditing] = useState<boolean>(false);
     const [selectedLength, setSelectedLength] = useState<"long" | "short">(length || "short");
@@ -72,6 +73,7 @@ function EditableVPEx({ children, opts, formChoice, noEdit, length, mode }: {
             length={selectedLength}
             mode={mode}
         />
+        {sub && <div className="text-muted small">{sub}</div>}
     </div>;
 }
 
