@@ -2,6 +2,7 @@
   "name": "lingdocs-grammar",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://grammar.lingdocs.com",
   "dependencies": {
     "@formkit/auto-animate": "^1.0.0-beta.1",
     "@fortawesome/fontawesome-free": "^5.15.4",
