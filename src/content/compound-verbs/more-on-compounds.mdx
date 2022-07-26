@@ -18,6 +18,7 @@ import VideoPlayer from "../../components/VideoPlayer";
 import BasicBlocks from "../../components/BasicBlocks";
 import Image from "../../components/Image";
 import helperVerbsSummaryChart from "./helper-verbs-summary-chart.svg";
+import generativeStativeCompound from "./generative-stative-compound.svg";
 import ironingStative from "./ironing-stative.svg";
 
 Once we learn about the difference between <Link to="/compound-verbs/stative-compounds/">stative</Link> and <Link to="/compound-verbs/dynamic-compounds/">dynamic</Link> compounds, a lot of confusion is removed.
@@ -62,7 +63,7 @@ With the stative version we are using
 
 So we are talking about making an object ironed.
 
-<Image src={ironingStative} />
+<Image src={ironingStative} maxWidth="600px" />
 
 In the past tense, the verb will always agree with the object that's being ironed (the <KingIcon /> of the phrase).
 
@@ -165,8 +166,64 @@ In this example:
  - the verb agrees with the object <InlinePs opts={opts} ps={{ p: "قتل", f: "qatul", e: "murder" }} />
  - there is a <InlinePs opts={opts} ps={{ p: "و", f: "óo" }} /> prefix because we're using <InlinePs opts={opts} ps={{ p: "کول", f: "kawul", e: "to do" }} />
 
-
-## Generative Stative Compounds
+## Generative stative compounds
  
-IN PROGRESS
+There are a number of compound verbs like:
 
+- <InlinePs opts={opts} ps={{ p: "چیغه کول", f: "cheegha kawul", e: "to scream" }} />
+- <InlinePs opts={opts} ps={{ p: "غږ کول", f: "ghuG kawul", e: "to call out" }} />
+- <InlinePs opts={opts} ps={{ p: "کیسه کول", f: "keesa kawul", e: "to tell a story" }} />
+
+that can be used either as <Link to="/compound-verbs/dynamic-compounds/">dynamic compounds</Link> or as **generative stative compounds**.
+
+That means that these can be used as stative compounds, but **with an unspoken complement** that describes something "existing."
+
+<Image
+    src={generativeStativeCompound}
+    alt="generative stative compound diagram"
+    maxWidth="550px"
+/>
+
+So with <InlinePs opts={opts} ps={{ p: "چیغه کول", f: "cheegha kawul", e: "to scream" }} /> you could say:
+
+<Examples opts={opts}>{[
+    {
+        p: "هغې چیغه وکړه",
+        f: "haghé chéegha óokRa",
+        e: "She screamed",
+        sub: "DYNAMIC - lit. she did a scream"
+    },
+]}</Examples>
+
+or 
+
+<Examples opts={opts}>{[
+    {
+        p: "هغې چیغه کړه",
+        f: "haghé chéegha kRa",
+        e: "She screamed",
+        sub: "GENERATIVE STATIVE - lit. she made a scream existing (she let out/created a scream)"
+    },
+]}</Examples>
+
+You might also hear something like,
+
+<Examples opts={opts}>{[
+    {
+        p: "ما منډه کړه",
+        f: "maa múnDa kRa",
+        e: "I ran",
+        sub: "GENERATIVE STATIVE - lit. I made a run existing (I let out/created a run)",
+    },
+]}</Examples>
+
+And these can work the the intransitive versions as well
+
+<Examples opts={opts}>{[
+    {
+        p: "چیغه شوه",
+        f: "chéegha shwa",
+        e: "A scream was let out",
+        sub: "GENERATIVE STATIVE - lit. A scream became existing",
+    },
+]}</Examples>

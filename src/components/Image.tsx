@@ -3,7 +3,7 @@ function Image(props: {
     alt?: string,
     maxWidth?: string | number,
 }) {
-    return <div className="text-center mb-2" style={props.maxWidth ? {
+    return <div className="text-center mb-3" style={props.maxWidth ? {
         maxWidth: props.maxWidth,
         margin: "0 auto",
     } : {}}>
