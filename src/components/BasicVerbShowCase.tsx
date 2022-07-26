@@ -10,6 +10,7 @@ import {
     InlinePs,
     removeFVarients,
     isPastTense,
+    getPassiveRootsAndStems,
 } from "@lingdocs/pashto-inflector";
 import { isImperativeTense, isPerfectTense } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
 import { useState } from "react";
@@ -18,11 +19,14 @@ import { basicVerbs, intransitivePast } from "../content/verbs/basic-present-ver
 import { getLength } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
 import { isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
 
-function BasicVerbShowCase({ opts, tense }: {
+function BasicVerbShowCase({ opts, tense, passive }: {
     opts: T.TextOptions,
-    tense: T.VerbTense | T.ImperativeTense, 
+    tense: T.VerbTense | T.ImperativeTense,
+    passive?: boolean, 
 }) {
-    const items = isPastTense(tense) ? intransitivePast : basicVerbs;
+    const items = isPastTense(tense)
+        ? intransitivePast
+        : (passive ? basicVerbs.filter(v => v.entry.p !== "کول") : basicVerbs);
     return <Carousel stickyTitle items={items} render={(item) => {
         return {
             title: <InlinePs opts={opts}>{{
@@ -30,6 +34,7 @@ function BasicVerbShowCase({ opts, tense }: {
                 e: undefined,
             }}</InlinePs>,
             body: <BasicVerbChart
+                passive={passive}
                 verb={item}
                 opts={opts}
                 tense={tense}
@@ -40,11 +45,13 @@ function BasicVerbShowCase({ opts, tense }: {
 
 export default BasicVerbShowCase;
 
-function BasicVerbChart({ verb, opts, tense }: {
+function BasicVerbChart({ verb, opts, tense, passive }: {
     verb: T.VerbEntry,
     opts: T.TextOptions,
     tense: T.VerbTense | T.ImperativeTense | T.PerfectTense,
+    passive?: boolean,
 }) {
+    const [voice, setVoice] = useState<"active" | "passive">("active");
     const [negative, setNegative] = useState<boolean>(false);
     const [length, setLength] = useState<"short" | "long">("short");
     const c = conjugateVerb(verb.entry, verb.complement);
@@ -53,17 +60,33 @@ function BasicVerbChart({ verb, opts, tense }: {
         : "grammaticallyTransitive" in c
         ? c.grammaticallyTransitive
         : c;
-    const phrasesForTable = makeExamplePhrases(verb, tense, negative, length)
+    const phrasesForTable = makeExamplePhrases(verb, tense, negative, length, voice);
     return <div>
         <div>
             {getEnglishVerb(verb.entry)}
         </div>
         <RootsAndStems
             textOptions={opts}
-            info={conjugations.info}
+            info={voice === "passive"
+                ? (getPassiveRootsAndStems(conjugations.info) || /* type safety */ conjugations.info)
+                : conjugations.info
+            }
             hidePastParticiple={isPerfectTense(tense) ? false : true}
             highlighted={[tenseToStem(tense)]}
         />
+        {passive && <div className="mt-2">
+            <ButtonSelect
+                options={[{
+                    label: "Active",
+                    value: "active",
+                }, {
+                    label: "Passive",
+                    value: "passive",
+                }]}
+                value={voice}
+                handleChange={setVoice}
+            />
+        </div>}
         <div className="my-3 d-flex flex-row justify-content-center">
             {isPastTense(tense) && !isPerfectTense(tense) && <div className="mx-2">
                 <ButtonSelect
@@ -98,7 +121,13 @@ function BasicVerbChart({ verb, opts, tense }: {
     </div>
 }
 
-function makeExamplePhrases(verb: T.VerbEntry, tense: T.VerbTense | T.ImperativeTense | T.PerfectTense, negative: boolean, length: "short" | "long"): { ps: T.VerbBlock | T.ImperativeBlock, e: T.EnglishBlock } {
+function makeExamplePhrases(
+    verb: T.VerbEntry,
+    tense: T.VerbTense | T.ImperativeTense | T.PerfectTense,
+    negative: boolean,
+    length: "short" | "long",
+    voice: "active" | "passive",
+): { ps: T.VerbBlock | T.ImperativeBlock, e: T.EnglishBlock } {
     function makeSelection(person: T.Person): T.VPSelectionComplete{
         return {
             "blocks": [
@@ -106,7 +135,7 @@ function makeExamplePhrases(verb: T.VerbEntry, tense: T.VerbTense | T.Imperative
                 {
                     key: Math.random(),
                     // @ts-ignore
-                    block: verb.entry.c?.includes("intrans.")
+                    block: (verb.entry.c?.includes("intrans.") || voice === "passive")
                         ? {"type":"objectSelection","selection":"none"}
                         : {"type":"objectSelection", "selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10011,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}},
                 },
@@ -117,7 +146,7 @@ function makeExamplePhrases(verb: T.VerbEntry, tense: T.VerbTense | T.Imperative
                 tense,
                 "transitivity":"intransitive",
                 "isCompound":false,
-                "voice":"active",
+                voice,
                 negative,
                 "canChangeTransitivity":false,
                 "canChangeVoice":false,
