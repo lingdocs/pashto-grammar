@@ -1,0 +1,358 @@
+---
+title: Passive Voice
+---
+
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+    RootsAndStems,
+    conjugateVerb,
+    getVerbInfo,
+    getPassiveRootsAndStems,
+} from "@lingdocs/pashto-inflector";
+import { KidsSection, VP, KingIcon, ServantIcon } from "../../components/terms-links";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+import Formula from "../../components/formula/Formula";
+import VideoPlayer from "../../components/VideoPlayer";
+import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+export const leedulInfo = getVerbInfo({"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"});
+export const passiveLeedulInfo = getPassiveRootsAndStems(leedulInfo);
+
+<VideoPlayer src="https://www.youtube.com/watch?v=iaVbnx5FQps" />
+
+Transitive verbs in Pashto can be used in the [passive voice](https://en.wikipedia.org/wiki/Passive_voice). In the passive voice the object moves over to the role of the subject and the verb talks about the action being done to it.
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Active Voice</th>
+      <th scope="col">Passive Voice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>
+            <Examples opts={opts}>{[
+                {
+                    p: "زه کتاب لیکم",
+                    f: "zu kitáab leekúm",
+                    e: "I (subject) am writing a book (object)",
+                },
+            ]}</Examples>
+        </td>
+        <td>
+            <Examples opts={opts}>{[
+                {
+                    p: "کتاب لیکل کېږي",
+                    f: "kitáab leekul kéGee",
+                    e: "A book (subject) is being written",
+                },
+            ]}</Examples>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <Examples opts={opts}>{[
+                {
+                    p: "هغوي پښټو وايي",
+                    f: "haghwée puxto waayee",
+                    e: "They (subject) are speaking Pashto (object)",
+                },
+            ]}</Examples>
+        </td>
+        <td>
+            <Examples opts={opts}>{[
+                {
+                    p: "پښتو وایل کېږي",
+                    f: "puxto waayul kéGee",
+                    e: "Pashto (subject) is spoken",
+                },
+            ]}</Examples>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <Examples opts={opts}>{[
+                {
+                    p: "ما ډوډۍ وخوړله",
+                    f: "maa DoDúy óokhoRula",
+                    e: "I (subject) ate food (object)",
+                }
+            ]}</Examples>
+        </td>
+        <td>
+            <Examples opts={opts}>{[
+                {
+                    p: "ډوډۍ وخوړل شوه",
+                    f: "DoDúy óokhoRul shwa",
+                    e: "Food (subject) was eaten",
+                },
+            ]}</Examples>
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+## Making passive roots and stems
+
+To make passive forms we will just need to change the 🌳 <Link to="/verbs/roots-and-stems/">roots and stems</Link> of the verb.
+
+This can be done in two simple steps: 👨‍🍳
+
+### 1. Copy the roots up to the stems
+
+First we need to take just the **long form** of the roots on the bottom, and copy those to use for the stems and the past participle.
+
+For example, with the verb <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedúl", e: "to see" }} /> we have roots and stems like this in the active voice:
+
+<RootsAndStems
+    textOptions={opts}
+    info={leedulInfo}
+/>
+
+So let's use **just the long form of the roots** and also copy them to for the stems and the past participle...
+
+<RootsAndStems
+    textOptions={opts}
+    info={{
+    "entry": {
+        "entry": {
+            "ts": 1527812275,
+            "i": 11623,
+            "p": "لیدل",
+            "f": "leedul",
+            "g": "leedul",
+            "e": "to see",
+            "c": "v. trans.",
+            "psp": "وین",
+            "psf": "ween",
+            "tppp": "لید",
+            "tppf": "leed",
+            "ec": "see,sees,seeing,saw,seen"
+        }
+    },
+    "transitivity": "transitive",
+    "yulEnding": false,
+    "root": {
+        "imperfective": {
+            "p": "لیدل",
+            "f": "leedúl"
+        },
+        "perfective": {
+            "p": "ولیدل",
+            "f": "óoleedul"
+        },
+        "perfectiveSplit": [
+            {
+                "p": "و",
+                "f": "óo"
+            },
+            {
+                "p": "لیدل",
+                "f": "leedul"
+            },
+        ],
+    },
+    "stem": {
+        "imperfective": {
+            "p": "لیدل",
+            "f": "leedúl"
+        },
+        "perfective": {
+            "p": "ولیدل",
+            "f": "óoleedul"
+        },
+        "perfectiveSplit": [
+            {
+                "p": "و",
+                "f": "óo"
+            },
+            {
+                "p": "لیدل",
+                "f": "leedul"
+            },
+        ],
+    },
+    "participle": {
+        "past": {
+            "p": "لیدلی",
+            "f": "leedúley"
+        },
+        "present": {
+            "p": "لیدونکی",
+            "f": "leedóonkey"
+        }
+    },
+    "idiosyncraticThirdMascSing": {
+        "imperfective": {
+            "p": "لید",
+            "f": "leed"
+        },
+        "perfective": {
+            "p": "ولید",
+            "f": "óoleed"
+        }
+    },
+    "type": "simple"
+}} />
+
+### 2. Add the helper verb کېدل - to become
+
+And then we take the roots and stems for <Link to="/compound-verbs/helper-verbs/#کېدل---to-become"><InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /></Link>
+
+<RootsAndStems
+    textOptions={opts}
+    info={leedulInfo}
+/>
+
+And add that to our roots and stems we made in <Link to="/verbs/passive-verbs/#1-copy-the-roots-up-to-the-stems">the previous step</Link> and we're done!
+
+<div className="text-center lead">Passive Roots/Stems of <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedúl", e: "to see" }} /></div>
+
+<RootsAndStems
+    textOptions={opts}
+    info={passiveLeedulInfo}
+/>
+
+There we go! Now we have all the roots and stems we need to make passive verb forms.
+
+## Using passive roots and stems
+
+Once we've made our <Link to="/verbs/passive-verbs/#how-to-make-passive-forms">passive roots and stems</Link> we can use them follow *the exact same verb formulas* to build all the same verb tenses, just in the passive voice.
+
+Let's try making different tenses with the passive roots and stems we just made for <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedúl", e: "to see" }} />
+
+For example we know that to make the <Link to="/verbs/present-verbs/">present tense</Link> we use the formula:
+
+<Formula>
+    Imperfective Stem + <Link to="/verbs/verb-endings/">Present Ending</Link>
+</Formula>
+
+So now we can use the *imperfective stem* of these passive roots and stems:
+
+<RootsAndStems
+    textOptions={opts}
+    info={passiveLeedulInfo}
+    highlighted={["imperfective stem"]}
+/>
+
+and say something like:
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+We also know that for the <Link to="/verbs/subjunctive-verbs/">subjunctive</Link> we use the formula:
+
+<Formula>
+    Perfective Stem + <Link to="/verbs/verb-endings/">Present Ending</Link>
+</Formula>
+
+So let's take our passive *perfective stem*:
+
+<RootsAndStems
+    textOptions={opts}
+    info={passiveLeedulInfo}
+    highlighted={["perfective stem"]}
+/>
+
+and say...
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+We could do this same process for the future tense, using the imperfective and perfective roots to make the imperfective future,
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+and the perfective future:
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Again, same thing for the past tense verbs. We know that the <Link to="/verbs/past-verbs/">simple past</Link> is made with the formula:
+
+<Formula>
+    Perfective root +{` `}
+    <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
+</Formula>
+
+So we can grab the *perfective root*:
+
+<RootsAndStems
+    textOptions={opts}
+    info={passiveLeedulInfo}
+    highlighted={["perfective root"]}
+/>
+
+and make a phrase like,
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Again, same thing for the past tense verbs. We know that the <Link to="/verbs/past-verbs/#simple-past">simple past</Link> is made with the formula:
+
+<Formula>
+    Perfective root +{` `}
+    <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
+</Formula>
+
+So we take the *perfective root*:
+
+<RootsAndStems
+    textOptions={opts}
+    info={passiveLeedulInfo}
+    highlighted={["perfective root"]}
+/>
+
+And we can say 
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+**Important note:** With the passive voice, we don't have an object anymore, so these phrases will follow the <Link to="/phrase-structure/vp/#1-with-intransitive-verbs-">phrase structure for intransitive verbs</Link>. 
+
+The <Link to="/verbs/past-verbs/#continuous-past">continuous past</Link> is made with the formula:
+
+<Formula>
+    Imperfective root +{` `}
+    <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
+</Formula>
+
+So we can grab the *imperfective root*:
+
+<RootsAndStems
+    textOptions={opts}
+    info={passiveLeedulInfo}
+    highlighted={["imperfective root"]}
+/>
+
+and make a phrase like,
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+Also same thing for making perfect forms, just follow <Link to="/verbs/perfect-verbs-intro/#how-to-make-perfect-tenses-">the same formula as we learned before</Link>. (<samp>Past participle + Equative</samp>)
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"pastPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+So we see that to make verb forms in the passive forms we follow all the same formulas as we did with the active voice, but just using these new <Link to="/verbs/passive-voice#making-passive-roots-and-stems">passive roots and stems</Link>.
+
+### More examples
+
+IN PROGRESS

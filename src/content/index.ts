@@ -70,7 +70,7 @@ import * as perfectVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./verbs/p
 // @ts-ignore
 import * as allPerfectVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/all-perfect-verbs.mdx";
 // @ts-ignore
-import * as passiveVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/passive-verbs.mdx";
+import * as passiveVoice from "!babel-loader!@lingdocs/mdx-loader!./verbs/passive-voice.mdx";
 
 // @ts-ignore
 import * as compoundVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/intro.mdx";
@@ -273,8 +273,8 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
                 slug: "verb-endings",
             },
             {
-                import: passiveVerbs,
-                slug: "passive-verbs",
+                import: passiveVoice,
+                slug: "passive-voice",
             },
         ],
     },
