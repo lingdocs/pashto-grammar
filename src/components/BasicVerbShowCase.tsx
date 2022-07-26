@@ -65,16 +65,7 @@ function BasicVerbChart({ verb, opts, tense, passive }: {
         <div>
             {getEnglishVerb(verb.entry)}
         </div>
-        <RootsAndStems
-            textOptions={opts}
-            info={voice === "passive"
-                ? (getPassiveRootsAndStems(conjugations.info) || /* type safety */ conjugations.info)
-                : conjugations.info
-            }
-            hidePastParticiple={isPerfectTense(tense) ? false : true}
-            highlighted={[tenseToStem(tense)]}
-        />
-        {passive && <div className="mt-2">
+        {passive && <div className="my-2">
             <ButtonSelect
                 options={[{
                     label: "Active",
@@ -87,6 +78,15 @@ function BasicVerbChart({ verb, opts, tense, passive }: {
                 handleChange={setVoice}
             />
         </div>}
+        <RootsAndStems
+            textOptions={opts}
+            info={voice === "passive"
+                ? (getPassiveRootsAndStems(conjugations.info) || /* type safety */ conjugations.info)
+                : conjugations.info
+            }
+            hidePastParticiple={isPerfectTense(tense) ? false : true}
+            highlighted={[tenseToStem(tense)]}
+        />
         <div className="my-3 d-flex flex-row justify-content-center">
             {isPastTense(tense) && !isPerfectTense(tense) && <div className="mx-2">
                 <ButtonSelect
