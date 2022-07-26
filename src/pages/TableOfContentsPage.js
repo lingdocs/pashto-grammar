@@ -9,6 +9,13 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { content } from "../content/index";
+import algoliasearch from 'algoliasearch/lite';
+import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
+
+const searchClient = algoliasearch(
+  "EWHINHYXIN",
+  "7b26af65a81605dfea5ab0b973ee90cb",
+);
 
 const TableOfContentsPage = () => {
   function handleShare() {
@@ -31,6 +38,13 @@ const TableOfContentsPage = () => {
             <i className="fas fa-share-alt" style={{ fontSize: "1.8rem" }} />
           </div>}
         </div>
+        {3 > 4 && <InstantSearch
+          indexName="netlify_150beb8b-aae1-4cef-a05c-2add5d8904f7_master_all"
+          searchClient={searchClient}
+        >
+          <SearchBox />
+          <Hits />
+        </InstantSearch>}
         {content.map((section) => (
           section.path ?
             <Link to={section.path} className="plain-link">
