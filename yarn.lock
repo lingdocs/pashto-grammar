@@ -1803,10 +1803,10 @@
     rambda "^6.7.0"
     react-select "^5.2.2"
 
-"@lingdocs/pashto-inflector@^3.5.8":
-  version "3.5.8"
-  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-3.5.8.tgz#5023372360916c023a5d90ee9cbd82294e198931"
-  integrity sha512-cq8HkhBM5IcazZDLs8qThAf7+QhsDS8VkyzjecRAB3M6OVyyR4IwFRJWzn107r/xGu/YHxyMWsDWnxiePBn+RA==
+"@lingdocs/pashto-inflector@^3.5.9":
+  version "3.5.9"
+  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-3.5.9.tgz#3402f382c6818c0ab9d823537a3291764f4de0bd"
+  integrity sha512-A1+Fz7/n1HdC7yWliEKuGiFtEW/eDSn0OeQpFd617ZgsykNmyt3n/hlkojsOHKs+1gLNoi0zS7Xc+XUn63dXKw==
   dependencies:
     "@formkit/auto-animate" "^1.0.0-beta.1"
     classnames "^2.2.6"

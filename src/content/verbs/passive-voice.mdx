@@ -11,15 +11,18 @@ import {
     getVerbInfo,
     getPassiveRootsAndStems,
 } from "@lingdocs/pashto-inflector";
-import { KidsSection, VP, KingIcon, ServantIcon } from "../../components/terms-links";
+import { KidsSection, VP, KingIcon, ServantIcon, Camera, Video } from "../../components/terms-links";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
+import Image from "../../components/Image";
 import Formula from "../../components/formula/Formula";
 import VideoPlayer from "../../components/VideoPlayer";
 import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
 import BasicVerbShowCase from "../../components/BasicVerbShowCase";
+import passiveRootsCopy from "./verb-tree-passive-roots-copy.svg";
 export const leedulInfo = getVerbInfo({"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"});
 export const passiveLeedulInfo = getPassiveRootsAndStems(leedulInfo);
+export const kedulStatInfo = getVerbInfo({"ts":1581086654898,"i":10706,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"});
 
 <VideoPlayer src="https://www.youtube.com/watch?v=iaVbnx5FQps" />
 
@@ -98,13 +101,39 @@ Transitive verbs in Pashto can be used in the [passive voice](https://en.wikiped
 
 ## Making passive roots and stems
 
-To make passive forms we will just need to change the 🌳 <Link to="/verbs/roots-and-stems/">roots and stems</Link> of the verb.
+To make passive forms we will just need to adjust the 🌳 <Link to="/verbs/roots-and-stems/">roots and stems</Link> of the verb.
 
 This can be done in two simple steps: 👨‍🍳
 
-### 1. Copy the roots up to the stems
+1. Use the long form of the roots for the stems and past participle
+2. Add the roots and stems form <Link to="/compound-verbs/helper-verbs/#کېدل---to-become"><InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /></Link>
 
-First we need to take just the **long form** of the roots on the bottom, and copy those to use for the stems and the past participle.
+<div className="mb-3">
+    <div
+        className="d-flex flex-row justify-content-between align-items-center"
+        style={{ overflowX: "auto" }}
+    >
+        <div>
+        <img src={passiveRootsCopy} style={{ maxWidth: "275px" }} />
+        </div>
+        <div style={{ fontSize: "2.5rem" }} className="mx-3">+</div>
+        <div className="text-center" style={{ minWidth: "8rem" }}>
+            <div>کېدل - kedúl</div>
+            <div>"to become"</div>
+            <div>roots and stems</div>
+        </div>
+    </div>
+</div>
+
+### 1. Use the long form of the roots
+
+First we need to take the **long form** of the roots on the bottom and copy these over to the stems and the past participle.
+
+- Use the perfective <Camera /> root for the perfective stem
+- Use the perfective <Camera /> root for the past participle  
+- Use the imperfective <Video /> root for the imperfective stem
+
+<Image src={passiveRootsCopy} maxWidth="350px" />
 
 For example, with the verb <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedúl", e: "to see" }} /> we have roots and stems like this in the active voice:
 
@@ -113,10 +142,11 @@ For example, with the verb <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedú
     info={leedulInfo}
 />
 
-So let's use **just the long form of the roots** and also copy them to for the stems and the past participle...
+So let's use **the long form of the roots** and also copy them to for the stems and the past participle...
 
 <RootsAndStems
     textOptions={opts}
+    noTails
     info={{
     "entry": {
         "entry": {
@@ -178,8 +208,8 @@ So let's use **just the long form of the roots** and also copy them to for the s
     },
     "participle": {
         "past": {
-            "p": "لیدلی",
-            "f": "leedúley"
+            "p": "لیدل",
+            "f": "leedúl"
         },
         "present": {
             "p": "لیدونکی",
@@ -205,10 +235,10 @@ And then we take the roots and stems for <Link to="/compound-verbs/helper-verbs/
 
 <RootsAndStems
     textOptions={opts}
-    info={leedulInfo}
+    info={kedulStatInfo}
 />
 
-And add that to our roots and stems we made in <Link to="/verbs/passive-verbs/#1-copy-the-roots-up-to-the-stems">the previous step</Link>.
+And add that to our roots and stems we made in <Link to="/verbs/passive-voice/#1-use-the-long-form-of-the-roots">the previous step</Link>.
 
 <div className="text-center lead">Passive Roots/Stems of <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedúl", e: "to see" }} /></div>
 
@@ -217,7 +247,7 @@ And add that to our roots and stems we made in <Link to="/verbs/passive-verbs/#1
     info={passiveLeedulInfo}
 />
 
-**Watch the accent!** It's important to note that except for in the perfective aspect, the helper verb takes over the accent and the roots/stems from the previous step lose their accents.
+**Note on accent**: Except for in the perfective aspect, the helper verb takes over the accent and the roots/stems from the previous step lose their accents.
 
 Try flipping through these other verbs and see how the the active stems are transformed into the passive stems, following this recipe.
 
@@ -395,7 +425,7 @@ But if we use the **passive voice of the transitive verb** <InlinePs opts={opts}
 <Examples opts={opts}>{[
     {
         p: "پلاو پخول کېږي",
-        f: "pulaaw pakhawul keGee",
+        f: "pulaaw pakhawul kéGee",
         e: "The pulaw is being cooked",
         sub: "Someone is cooking it / it's being worked on 👨‍🍳",
     },
