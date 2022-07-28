@@ -11,6 +11,7 @@ import {
     removeFVarients,
     isPastTense,
     getPassiveRootsAndStems,
+    getAbilityRootsAndStems,
 } from "@lingdocs/pashto-inflector";
 import { isImperativeTense, isPerfectTense } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
 import { useState } from "react";
@@ -19,10 +20,11 @@ import { basicVerbs, intransitivePast } from "../content/verbs/basic-present-ver
 import { getLength } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
 import { isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
 
-function BasicVerbShowCase({ opts, tense, passive }: {
+function BasicVerbShowCase({ opts, tense, passive, ability }: {
     opts: T.TextOptions,
     tense: T.VerbTense | T.ImperativeTense,
-    passive?: boolean, 
+    passive?: boolean,
+    ability?: boolean,
 }) {
     const items = isPastTense(tense)
         ? intransitivePast
@@ -35,6 +37,7 @@ function BasicVerbShowCase({ opts, tense, passive }: {
             }}</InlinePs>,
             body: <BasicVerbChart
                 passive={passive}
+                ability={ability}
                 verb={item}
                 opts={opts}
                 tense={tense}
@@ -45,13 +48,15 @@ function BasicVerbShowCase({ opts, tense, passive }: {
 
 export default BasicVerbShowCase;
 
-function BasicVerbChart({ verb, opts, tense, passive }: {
+function BasicVerbChart({ verb, opts, tense, passive, ability }: {
     verb: T.VerbEntry,
     opts: T.TextOptions,
     tense: T.VerbTense | T.ImperativeTense | T.PerfectTense,
     passive?: boolean,
+    ability?: boolean,
 }) {
     const [voice, setVoice] = useState<"active" | "passive">("active");
+    const [category, setCategory] = useState<"basic" | "ability">("basic");
     const [negative, setNegative] = useState<boolean>(false);
     const [length, setLength] = useState<"short" | "long">("short");
     const c = conjugateVerb(verb.entry, verb.complement);
@@ -60,7 +65,7 @@ function BasicVerbChart({ verb, opts, tense, passive }: {
         : "grammaticallyTransitive" in c
         ? c.grammaticallyTransitive
         : c;
-    const phrasesForTable = makeExamplePhrases(verb, tense, negative, length, voice);
+    const phrasesForTable = makeExamplePhrases(verb, tense, negative, length, voice, category);
     return <div>
         <div>
             {getEnglishVerb(verb.entry)}
@@ -78,9 +83,24 @@ function BasicVerbChart({ verb, opts, tense, passive }: {
                 handleChange={setVoice}
             />
         </div>}
+        {ability && <div className="my-2">
+            <ButtonSelect
+                options={[{
+                    label: "Basic",
+                    value: "basic",
+                }, {
+                    label: "Ability",
+                    value: "ability",
+                }]}
+                value={category}
+                handleChange={setCategory}
+            />
+        </div>}
         <RootsAndStems
             textOptions={opts}
-            info={voice === "passive"
+            info={category === "ability"
+                ? (getAbilityRootsAndStems(conjugations.info))
+                : voice === "passive"
                 ? (getPassiveRootsAndStems(conjugations.info) || /* type safety */ conjugations.info)
                 : conjugations.info
             }
@@ -88,7 +108,7 @@ function BasicVerbChart({ verb, opts, tense, passive }: {
             highlighted={[tenseToStem(tense)]}
         />
         <div className="my-3 d-flex flex-row justify-content-center">
-            {isPastTense(tense) && !isPerfectTense(tense) && <div className="mx-2">
+            {((isPastTense(tense) && !isPerfectTense(tense)) || category === "ability") && <div className="mx-2">
                 <ButtonSelect
                 handleChange={setLength}
                 value={length}
@@ -127,7 +147,17 @@ function makeExamplePhrases(
     negative: boolean,
     length: "short" | "long",
     voice: "active" | "passive",
+    category: "basic" | "ability",
 ): { ps: T.VerbBlock | T.ImperativeBlock, e: T.EnglishBlock } {
+    function tenseToModal(t: T.VerbTense | T.ImperativeTense | T.PerfectTense): T.ModalTense {
+        if (isImperativeTense(t)) {
+            throw new Error("can't have imperative tense with modal");
+        }
+        if (isPerfectTense(t)) {
+            throw new Error("cant' have perfect tense with modal");
+        }
+        return `${t}Modal`;
+    }
     function makeSelection(person: T.Person): T.VPSelectionComplete{
         return {
             "blocks": [
@@ -143,7 +173,7 @@ function makeExamplePhrases(
             "verb":{
                 "type":"verb",
                 verb,
-                tense,
+                tense: category === "basic" ? tense : tenseToModal(tense),
                 "transitivity":"intransitive",
                 "isCompound":false,
                 voice,

@@ -2,4 +2,68 @@
 title: Ability
 ---
 
-COMING SOON
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+    RootsAndStems,
+    conjugateVerb,
+    getVerbInfo,
+    getPassiveRootsAndStems,
+} from "@lingdocs/pashto-inflector";
+import { KidsSection, VP, KingIcon, ServantIcon, Camera, Video } from "../../components/terms-links";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+import Image from "../../components/Image";
+import Formula from "../../components/formula/Formula";
+import VideoPlayer from "../../components/VideoPlayer";
+import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+import BasicVerbShowCase from "../../components/BasicVerbShowCase";
+import abilityCopy from "./verb-tree-ability-roots-copy.svg";
+import halfKedul from "./verb-tree-half-kedul.svg";
+
+We use "ability" verb forms to talk about the ability of a verb to happen. For example:
+
+<EditableVPEx opts={opts} length="long">{
+    {"blocks":[{"key":0.7144630314236184,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.3237406469603912,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.22382799925273678,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.8844517944804815,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815216,"i":6642,"p":"راتلل","f":"raatlúl","g":"raatlul","e":"to come","c":"v. intrans. irreg.","psp":"راځ","psf":"raadz","ssp":"راش","ssf":"ráash","prp":"راغلل","prf":"ráaghlul","pprtp":"راغلی","pprtf":"raaghúley","tppp":"راغی","tppf":"ráaghey","noOo":true,"separationAtP":2,"separationAtF":3,"ec":"come,comes,coming,came,come"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+## Making the ability roots and stems
+
+To make these "ability" forms we will need to modify the 🌳 <Link to="/verbs/roots-and-stems/">roots and stems</Link> of the verb.
+
+1. Use the roots for the stems as well
+2. Add a tail <InlinePs opts={opts} ps={{ p: "ی", f: "ey", e: "" }} /> or <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} />
+3. Add the *perfective* <Camera /> roots and stems of <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />
+
+<div className="mb-3">
+    <div
+        className="d-flex flex-row align-items-center justify-content-center"
+        style={{ overflowX: "auto", maxWidth: "700px" }}
+    >
+        <div>
+            <img src={abilityCopy} style={{ maxWidth: "275px" }} />
+        </div>
+        <div style={{ fontSize: "2.5rem" }} className="mx-3">+</div>
+        <div className="text-center" style={{ minWidth: "3rem" }}>
+            <div>ی - ey /</div>
+            <div>ای - aay</div>
+        </div>
+        <div style={{ fontSize: "2.5rem" }} className="mx-3">+</div>
+        <div>
+            <img src={halfKedul} style={{ maxWidth: "115px" }} />
+        </div>
+    </div>
+</div>
+
+Have a look through these verbs and notice how the same formula is always used to make the "ability" roots and stems.
+
+<BasicVerbShowCase opts={opts} tense="presentVerb" ability />
+
+## Using the ability roots and stems
+
+🚧 IN PROGRESS ...
