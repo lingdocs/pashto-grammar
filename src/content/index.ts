@@ -71,6 +71,8 @@ import * as perfectVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./verbs/p
 import * as allPerfectVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/all-perfect-verbs.mdx";
 // @ts-ignore
 import * as passiveVoice from "!babel-loader!@lingdocs/mdx-loader!./verbs/passive-voice.mdx";
+// @ts-ignore
+import * as ability from "!babel-loader!@lingdocs/mdx-loader!./verbs/ability.mdx";
 
 // @ts-ignore
 import * as compoundVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/intro.mdx";
@@ -271,6 +273,10 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
             {
                 import: verbEndings,
                 slug: "verb-endings",
+            },
+            {
+                import: ability,
+                slug: "ability",
             },
             {
                 import: passiveVoice,
