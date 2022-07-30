@@ -68,10 +68,11 @@ function EditableVPEx({ children, opts, formChoice, noEdit, length, mode, sub }:
             VPS={vps}
             justify="left"
             onlyOne="concat"
-            setForm={formChoice ? handleSetForm : "disable"}
+            setForm={handleSetForm}
             onLengthChange={setSelectedLength}
             length={selectedLength}
             mode={mode}
+            inlineFormChoice
         />
         {sub && <div className="text-muted small">{sub}</div>}
     </div>;
