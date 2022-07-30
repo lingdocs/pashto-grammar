@@ -11,7 +11,7 @@ import {
     getVerbInfo,
     getPassiveRootsAndStems,
 } from "@lingdocs/pashto-inflector";
-import { KidsSection, VP, KingIcon, ServantIcon, Camera, Video } from "../../components/terms-links";
+import { KidsSection, VP, KingIcon, ServantIcon, Camera, Video, BlocksIcon } from "../../components/terms-links";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import Image from "../../components/Image";
@@ -21,6 +21,8 @@ import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/Editable
 import BasicVerbShowCase from "../../components/BasicVerbShowCase";
 import abilityCopy from "./verb-tree-ability-roots-copy.svg";
 import halfKedul from "./verb-tree-half-kedul.svg";
+import BasicBlocks from "../../components/BasicBlocks";
+import shwaayEverything from "./shwaay-everything.jpg";
 
 We use "ability" verb forms to talk about the ability of a verb to happen. For example:
 
@@ -66,4 +68,354 @@ Have a look through these verbs and notice how the same formula is always used t
 
 ## Using the ability roots and stems
 
-🚧 IN PROGRESS ...
+We can uses these ability roots and stems just like we did with regular verb tenses, but now using these "ability" roots and stems.
+
+### Present Ability
+
+<Formula>
+    Imperfective Ability Stem + <Link to="/verbs/verb-endings/">Present Ending</Link>
+</Formula>
+
+<EditableVPEx opts={opts} length="long">{
+    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.2966992402794464,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.6487943718280598,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813680,"i":9231,"p":"غږېدل","f":"ghuGedul, ghaGedul","g":"ghugedul,ghagedul","e":"to speak, talk, converse, sing","c":"v. intrans.","ec":"speak,speaks,speaking,spoke,spoken"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+### Subjunctive Ability
+
+<Formula>
+    Perfective Ability Stem + <Link to="/verbs/verb-endings/">Present Ending</Link>
+</Formula>
+
+<EditableVPEx opts={opts} length="long">{
+    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.2966992402794464,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.6487943718280598,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813680,"i":9231,"p":"غږېدل","f":"ghuGedul, ghaGedul","g":"ghugedul,ghagedul","e":"to speak, talk, converse, sing","c":"v. intrans.","ec":"speak,speaks,speaking,spoke,spoken"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+### Future Ability
+
+#### Imperfective Future Ability
+
+<Formula>
+    به - ba + <Link to="/verbs/ability/#present-ability">Present Ability</Link>
+</Formula>
+
+<EditableVPEx opts={opts} length="long">{
+    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.2966992402794464,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.6487943718280598,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813680,"i":9231,"p":"غږېدل","f":"ghuGedul, ghaGedul","g":"ghugedul,ghagedul","e":"to speak, talk, converse, sing","c":"v. intrans.","ec":"speak,speaks,speaking,spoke,spoken"}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+#### Perfective Future Ability
+
+<Formula>
+    به - ba + <Link to="/verbs/ability/#subjunctive-ability">Subjunctive Ability</Link>
+</Formula>
+
+<EditableVPEx opts={opts} length="long">{
+    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts}>{
+    {"blocks":[{"key":0.2966992402794464,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.6487943718280598,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813680,"i":9231,"p":"غږېدل","f":"ghuGedul, ghaGedul","g":"ghugedul,ghagedul","e":"to speak, talk, converse, sing","c":"v. intrans.","ec":"speak,speaks,speaking,spoke,spoken"}},"verbTense":"perfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+### Past Ability
+
+The past ability in Pashto is interesting because just like with the regular past tense, you can use the imperfective <Video /> (continuous) or the perfective <Camera /> (simple) forms.
+
+#### Simple Past Ability
+
+<Formula>
+    Perfective Ability Root + <Link to="/verbs/verb-endings/">Past Ending</Link>
+</Formula>
+
+<EditableVPEx opts={opts} length="long" sub="I was able to get out of the house in one particular instance">{
+    {"blocks":[{"key":0.5272874508102714,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2225650273784472,"block":{"type":"AP","selection":{"type":"sandwich","before":{"p":"له","f":"la"},"after":{"p":"څخه","f":"tsuxa"},"e":"from","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812828,"i":10557,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}},{"key":0.15630811214184237,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527823376,"i":14220,"p":"وتل","f":"watul","g":"watul","e":"to go out, exit, leave, emerge","c":"v. intrans. irreg.","psp":"وځ","psf":"oodz","tppp":"واته","tppf":"waatu","ec":"go,goes,going,went,gone","ep":"out"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+This means that I was able to get out of the house **in one instance** or **at one point in time**. We're looking at the past ability from the perfective <Camera /> aspect, and saying that in one particular snapshot of time I was able to do something.
+
+#### Continuous Past Ability
+
+<Formula>
+    Imperfective Ability Root + <Link to="/verbs/verb-endings/">Past Ending</Link>
+</Formula>
+
+<EditableVPEx opts={opts} length="long" sub="I was able to leave the house whenever I wanted to">{
+    {"blocks":[{"key":0.5272874508102714,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2225650273784472,"block":{"type":"AP","selection":{"type":"sandwich","before":{"p":"له","f":"la"},"after":{"p":"څخه","f":"tsuxa"},"e":"from","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812828,"i":10557,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}},{"key":0.15630811214184237,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527823376,"i":14220,"p":"وتل","f":"watul","g":"watul","e":"to go out, exit, leave, emerge","c":"v. intrans. irreg.","psp":"وځ","psf":"oodz","tppp":"واته","tppf":"waatu","ec":"go,goes,going,went,gone","ep":"out"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+This is a *very different statement*, meaning that I had the ability to leave the house in an ongoing sense. It means that **I had the ability to leave the house whenever I wanted to**. We're looking at the ability from the imperfective <Video /> aspect. 
+
+#### With transitive verbs
+
+Ability verbs will follow the same <Link to="/phrase-structure/vp/#3-vp-structures">VP structure</Link> as other verbs, so with past tense ability verbs the object is king. <KingIcon /> 
+
+<EditableVPEx opts={opts} sub="SIMPLE PAST ABILITY - I was able to see you in one instance" length="long">{
+    {"blocks":[{"key":0.1914245855622032,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.10810428860719257,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} sub="CONTINUOUS PAST ABILITY - I was able to see you in an ongoing or repeated sense" length="long">{
+    {"blocks":[{"key":0.1914245855622032,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.10810428860719257,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+#### With habitual past
+
+Of course we can also use the habitual past forms with ability, simply by adding <InlinePs opts={opts} ps={{ p: "به", f: "ba", e: "" }} /> as we would with the regular verb forms.
+
+<EditableVPEx opts={opts} sub="HABITUAL SIMPLE PAST ABILITY - I was able to see you repeatedly in single instances" length="long">{
+    {"blocks":[{"key":0.1914245855622032,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.10810428860719257,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"habitualPerfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} sub="HABITUAL CONTINUOUS PAST ABILITY - I was able to see you repeatedly, in an ongoing sense" length="long">{
+    {"blocks":[{"key":0.1914245855622032,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.10810428860719257,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"habitualImperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+## Notes on blocks and the negative
+
+If you look up at the blocks <BlocksIcon /> in the examples above you'll notice that the verb is actually made up of two parts:
+
+<BasicBlocks large blocks={[
+    {
+        inside: "leedúley",
+        bottom: <div>
+            <div>Verb</div>
+            <div>&nbsp;</div>
+        </div>,
+    },
+    {
+        inside: "shee",
+        bottom: <div>
+            <div>Ability</div>
+            <div>Auxilary Verb</div>
+        </div>,
+    },
+]} />
+
+These two parts switch places when the negative is used.
+
+<EditableVPEx opts={opts} length="long">{
+    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+<EditableVPEx opts={opts} length="long">{
+    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+But you can still say the negative *without swapping the blocks* if you want to sound emphatic.
+
+<Examples opts={opts}>{[
+    {
+        p: "هغه تا لیدلی نه شي",
+        f: "haghá taa leedúley nu shee",
+        e: "He/it (m.) can't see you.",
+    },
+]}</Examples>
+
+## Shortcuts
+
+You may notice that some ability statements can feel a bit tricky, especially when using the past tense. There are actually a couple of things that Pashto speakers do to make these ability statements easier.
+
+### Wildcard ending with the past tense
+
+In colloquial/informal *spoken* Pashto, people often **use a wildcard** <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} /> ending <strong>when making past tense ability statements with transitive verbs</strong>. Instead of bothering to make the verb agree with the king <KingIcon /> they will often just throw an <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} /> an the end and be done with it.
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Proper/Standard</th>
+      <th scope="col">Easier/Informal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>
+            <Examples opts={opts}>{[
+                {
+                    p: "ما هغه لیدلی شوه",
+                    f: "maa hagha leedúley shwa",
+                    e: "I was able to see her",
+                },
+            ]}</Examples>
+        </td>
+        <td>
+            <Examples opts={opts}>{[
+                {
+                    p: "ما هغه لیدلی شوای",
+                    f: "maa hagha leedúley shwaay",
+                    e: "I was able to see her",
+                },
+            ]}</Examples>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <Examples opts={opts}>{[
+                {
+                    p: "ما ته لیدلی شوې",
+                    f: "maa tu leedúley shwe",
+                    e: "I was able to see you",
+                },
+            ]}</Examples>
+        </td>
+        <td>
+            <Examples opts={opts}>{[
+                {
+                    p: "ما ته لیدلی شوای",
+                    f: "maa tu leedúley shwaay",
+                    e: "I was able to see you",
+                },
+            ]}</Examples>
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+As a learner try to also be able to say the proper past tense endings, because people won't *always* use this shortcut. You don't exactly wanna be like...
+
+<Image src={shwaayEverything} maxWidth="400px" />
+
+### Using کول - kawul "to do" + subjunctive
+
+Another extremely common thing to do is to make ability statements using the verb <InlinePs opts={opts} ps={{ p: "کول", f: "kawul", e: "to do" }} /> and then a <Link to="/verbs/subjunctive-verbs/">subjunctive</Link> clause right after that. For example:
+
+<Examples opts={opts}>{[
+    {
+        p: "زه کولی شم چې تا سره لاړ شم",
+        f: "zu kawuley shum che taa sara laaR shum",
+        e: "I can go with you",
+        sub: "Lit. I can do (present) - that - I go with you (subjunctive)",
+    },
+    {
+        p: "مونږ څنګه کولی شو چې پخه هندواڼه وپېژنو؟",
+        f: "moonG tsunga kawúley shoo che pakha hindwaaNa óopejzenoo?",
+        e: "How can we recognize a ripe watermelon?",
+        sub: "Lit. How can we do (present) - that - We recognize a ripe watermelon (subjunctive)",
+    },
+    {
+        p: "ما کولی شو چې بېرته راوګرځم",
+        f: "maa kawuley shoo che berta raa-óo-gurdzum",
+        e: "I was able to turn back (whenever I wanted to - ongoing sense)",
+        sub: "Lit. I was able to do (continuous past) - that - I turn back (subjunctive)",
+    },
+    {
+        p: "ما وکولی شو چې بېرته راوګرځم",
+        f: "maa óokawuley shoo che berta raa-óo-gurdzum",
+        e: "I was able to turn back (at one point in time - momentary sense)",
+        sub: "Lit. I was able to do (simple continuous past) - that - I turn back (subjunctive)",
+    },
+    {
+        p: "د افغانستان لوبډلې وکولی شو چې د بلې لوبډلې ته ماته ورکړي",
+        f: "du afghaanistaan lobDúle óokawuley shoo che du bule lobDúle ta maata wárkRee",
+        e: "Afghanistan's team was able to defeat the other team",
+        sub: "Lit. Afghanistan's team was able to (simple past) - that - They beat the other team (subjunctive)",
+    },
+    {
+        p: "ما ونه شو کولی په وخت کې تا ته ځواب درکړم",
+        f: "maa oo-nú-shoo kawuley pu wakht ke taa ta dzawaab dár-kRum.",
+        e: "I wasn't able to answer you in time",
+        sub: "Lit. I was not able to do (simple past) - that I answer you in time (subjunctive)",
+    },
+]}</Examples>
+
+This kind of sentence structure is likely *a direct influnce* of Farsi, and is probably heard more in Afghanistan. It is easier to say because you just have to now how to say <InlinePs opts={opts} ps={{ p: "زه کولی شم", f: "zu kawuley shum", e: "I can do..." }} /> in all the tenses and then no matter what tense you're using, you just use a <Link to="/verbs/subjunctive-verbs/">subjunctive verb</Link> for the next clause.
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tense</th>
+      <th scope="col">Opening Phrase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <Video /> Present 
+      </td>
+      <td>
+        <Examples opts={opts}>{[
+            { p: "زه کولی شم", f: "zu kawúley shum", e: "" }
+        ]}</Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <Camera /> Subjunctive
+      </td>
+      <td>
+        <Examples opts={opts}>{[
+            { p: "زه وکولی شم", f: "zu óokawúley shum", e: "" }
+        ]}</Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <Video /> Imperfective Future
+      </td>
+      <td>
+        <Examples opts={opts}>{[
+            { p: "زه به کولی شم", f: "zu ba kawúley shum", e: "" }
+        ]}</Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <Camera /> Perfective Future
+      </td>
+      <td>
+        <Examples opts={opts}>{[
+            { p: "زه به وکولی شم", f: "zu ba óokawuley shum", e: "" }
+        ]}</Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <Video /> Continuous Past
+      </td>
+      <td>
+        <Examples opts={opts}>{[
+            { p: "ما کولی شو", f: "maa kawúley shoo", e: "" }
+        ]}</Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <Camera /> Simple Past
+      </td>
+      <td>
+        <Examples opts={opts}>{[
+            { p: "ما وکولی شو", f: "maa óokawuley shoo", e: "" }
+        ]}</Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <Camera /> Habitual Continuous Past
+      </td>
+      <td>
+        <Examples opts={opts}>{[
+            { p: "ما به کولی شو", f: "maa ba kawúley shoo", e: "" }
+        ]}</Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <Video /> Habitual Simple Past
+      </td>
+      <td>
+        <Examples opts={opts}>{[
+            { p: "ما به وکولی شو", f: "maa ba óokawúley shum", e: "" }
+        ]}</Examples>
+      </td>
+    </tr>
+  </tbody>
+</table>
