@@ -273,16 +273,16 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
                 slug: "negative-verbs",
             },
             {
-                import: verbEndings,
-                slug: "verb-endings",
-            },
-            {
                 import: ability,
                 slug: "ability",
             },
             {
                 import: passiveVoice,
                 slug: "passive-voice",
+            },
+            {
+                import: verbEndings,
+                slug: "verb-endings",
             },
             {
                 import: masterChart,
