@@ -14,6 +14,8 @@ export function EditIcon() {
     return <i className="fas fa-edit" />;
 }
 
+// TODO: Ability to show all variations
+
 function EditableVPEx({ children, opts, formChoice, noEdit, length, mode, sub }: {
     children: T.VPSelectionState,
     opts: T.TextOptions,
