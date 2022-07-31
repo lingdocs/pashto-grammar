@@ -73,6 +73,8 @@ import * as allPerfectVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/all
 import * as passiveVoice from "!babel-loader!@lingdocs/mdx-loader!./verbs/passive-voice.mdx";
 // @ts-ignore
 import * as ability from "!babel-loader!@lingdocs/mdx-loader!./verbs/ability.mdx";
+// @ts-ignore
+import * as masterChart from "!babel-loader!@lingdocs/mdx-loader!./verbs/master-chart.mdx";
 
 // @ts-ignore
 import * as compoundVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/intro.mdx";
@@ -281,6 +283,10 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
             {
                 import: passiveVoice,
                 slug: "passive-voice",
+            },
+            {
+                import: masterChart,
+                slug: "master-chart",
             },
         ],
     },
