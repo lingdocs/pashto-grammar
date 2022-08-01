@@ -9,9 +9,11 @@ import {
     RootsAndStems,
     conjugateVerb,
     getVerbInfo,
-    getPassiveRootsAndStems,
+    getAbilityRootsAndStems,
+    removeFVarients,
 } from "@lingdocs/pashto-inflector";
 import { KidsSection, VP, KingIcon, ServantIcon, Camera, Video, BlocksIcon } from "../../components/terms-links";
+import Carousel from "../../components/Carousel";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import Image from "../../components/Image";
@@ -180,6 +182,69 @@ Of course we can also use the habitual past forms with ability, simply by adding
     {"blocks":[{"key":0.1914245855622032,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.10810428860719257,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"habitualImperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
 
+## Exceptions
+
+With <Link to="/compound-verbs/stative-compounds/#intransitive-stative-compounds">intransitive stative compound verbs</Link> we can't use the perfective roots because it would be awkward doubling up the <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /> helper verbs. For example, you can't say <InlinePs opts={opts} ps={{ p: "❌ داخل شولی شوم ❌", f: "❌ daakhil shwuley shwum ❌", e: "I was able to enter" }} /> because <InlinePs opts={opts} ps={{ p: "❌ شولی شوم ❌", f: "❌ shwuley shwum ❌", e: "I was able to enter" }} /> is just... no.
+
+So for the ability roots and stems of <Link to="/compound-verbs/stative-compounds/#intransitive-stative-compounds">intransitive stative compound verbs</Link> we just <strong>use the imperfective roots and stems <Video /> for both sides</strong>.
+
+<RootsAndStems
+  textOptions={opts}
+  info={getAbilityRootsAndStems(getVerbInfo(
+    {"ts":1527816735,"i":5983,"p":"داخلېدل","f":"daakhiledul","g":"daakhiledul","e":"to enter, go in; to be included; to be enrolled","c":"v. stat. comp. intrans.","l":1527816727,"ec":"enter"},
+    {"ts":1527816727,"i":5979,"p":"داخل","f":"daakhil","g":"daakhil","e":"entering, internal, included; participation","c":"adj. / n. m."},
+  ))}
+/>
+
+This means that when someone says:
+
+<EditableVPEx opts={opts}>{
+  {"blocks":[{"key":0.411085695548967,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9034337400391925,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527816735,"i":5983,"p":"داخلېدل","f":"daakhiledul","g":"daakhiledul","e":"to enter, go in; to be included; to be enrolled","c":"v. stat. comp. intrans.","l":1527816727,"ec":"enter"},"complement":{"ts":1527816727,"i":5979,"p":"داخل","f":"daakhil","g":"daakhil","e":"entering, internal, included; participation","c":"adj. / n. m."}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
+They could be talking about it in a imperfective <Video /> sense (I was able to enter whenever I wanted to) or a perfective <Camera /> sense. (I was able to enter in one instance) Both are exactly the same with these kinds of verbs.
+
+The same thing goes for the <InlinePs opts={opts} ps={{ p: "تلل", f: "tlul", e: "to go" }} /> verbs:
+
+ - <InlinePs opts={opts} ps={{ p: "تلل", f: "tlul", e: "to go" }} /> 
+ - <InlinePs opts={opts} ps={{ p: "راتلل", f: "raatlúl", e: "to come" }} />
+ - <InlinePs opts={opts} ps={{ p: "درتلل", f: "dartlúl", e: "to go - to second person" }} />
+ - <InlinePs opts={opts} ps={{ p: "ورتلل", f: "wartlúl", e: "to go - to third person" }} />
+
+These ones will also **use the imperfective roots and stems on both sides**, because you can't say something like <InlinePs opts={opts} ps={{ p: "❌ زه لاړلی شوم ❌", f: "❌ zu laaRúley shwum ❌", e: "I was able to go" }} />. You have to use the imperfective stems and roots and say <InlinePs opts={opts} ps={{ p: "زه تللی شوم", f: "zu tlúley shwum", e: "I was able to go" }} />, regardless of the aspect.
+
+export function GoingStems() {
+  const items = [
+    {"ts":1527815348,"i":3666,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"},
+    {"ts":1527815216,"i":6642,"p":"راتلل","f":"raatlúl","g":"raatlul","e":"to come","c":"v. intrans. irreg.","psp":"راځ","psf":"raadz","ssp":"راش","ssf":"ráash","prp":"راغلل","prf":"ráaghlul","pprtp":"راغلی","pprtf":"raaghúley","tppp":"راغی","tppf":"ráaghey","noOo":true,"separationAtP":2,"separationAtF":3,"ec":"come,comes,coming,came,come"},
+    {"ts":1585228551150,"i":6062,"p":"درتلل","f":"dărtlul","g":"dartlul","e":"to come (to you / second person)","c":"v. intrans. irreg.","psp":"درځ","psf":"dărdz","ssp":"درش","ssf":"dársh","prp":"درغلل","prf":"dáraghlul","pprtp":"درغلی","pprtf":"dăraghúley","tppp":"درغی","tppf":"dáraghey","noOo":true,"separationAtP":2,"separationAtF":3,"ec":"come,comes,coming,came,come"},
+    {"ts":1585228579997,"i":14282,"p":"ورتلل","f":"wărtlul","g":"wartlul","e":"to come / go over to (third person or place)","c":"v. intrans. irreg.","psp":"ورځ","psf":"wărdz","ssp":"ورش","ssf":"wársh","prp":"ورغلل","prf":"wáraghlul","pprtp":"ورغلی","pprtf":"wăraghúley","tppp":"ورغی","tppf":"wáraghey","noOo":true,"separationAtP":2,"separationAtF":3,"ec":"come,comes,coming,came,come"},
+  ].map(entry => ({ entry }));
+  return <Carousel stickyTitle items={items} render={(item) => {
+        const rs = getAbilityRootsAndStems(getVerbInfo(item.entry));
+        return {
+            title: <InlinePs opts={opts}>{{
+                ...removeFVarients(item.entry),
+                e: undefined,
+            }}</InlinePs>,
+            body: <RootsAndStems
+              textOptions={opts}
+              info={rs}
+            />,
+        };
+  }}/>
+}
+
+<GoingStems />
+
+## Variations
+
+As we mentioned before we can either use <InlinePs opts={opts} ps={{ p: "ی", f: "ey", e: "" }} /> or <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} /> for the tail in these ability roots and stems. We can also use the long or short forms of the roots. This means that there are a lot of possible ways to make these verb forms. For example:
+
+<EditableVPEx opts={opts} allVariations>{
+  {"blocks":[{"key":0.42309512632682345,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":10,"distance":"far"}}}},{"key":0.3537180592163174,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3666,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+}</EditableVPEx>
+
 ## Notes on blocks and the negative
 
 If you look up at the blocks <BlocksIcon /> in the examples above you'll notice that the verb is actually made up of two parts:
@@ -301,6 +366,11 @@ Another extremely common thing to do is to make ability statements using the ver
         e: "How can we recognize a ripe watermelon?",
         sub: "Lit. How can we do (present) - that - We recognize a ripe watermelon (subjunctive)",
     },
+]}</Examples>
+
+Here <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to do" }} /> is used as a grammatically transitive verb, as if it has an unspoken 3rd person masculine singular object. "I can do ..." So In the past tense the verb will always be 3rd person masculine singular.
+
+<Examples opts={opts}>{[
     {
         p: "ما کولی شو چې بېرته راوګرځم",
         f: "maa kawuley shoo che berta raa-óo-gurdzum",

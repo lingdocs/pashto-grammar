@@ -16,7 +16,7 @@ export function EditIcon() {
 
 // TODO: Ability to show all variations
 
-function EditableVPEx({ children, opts, formChoice, noEdit, length, mode, sub }: {
+function EditableVPEx({ children, opts, formChoice, noEdit, length, mode, sub, allVariations }: {
     children: T.VPSelectionState,
     opts: T.TextOptions,
     formChoice?: boolean,
@@ -24,6 +24,7 @@ function EditableVPEx({ children, opts, formChoice, noEdit, length, mode, sub }:
     length?: "long" | "short",
     mode?: "text" | "blocks",
     sub?: string | JSX.Element,
+    allVariations?: boolean,
 }) {
     const [editing, setEditing] = useState<boolean>(false);
     const [selectedLength, setSelectedLength] = useState<"long" | "short">(length || "short");
@@ -69,10 +70,10 @@ function EditableVPEx({ children, opts, formChoice, noEdit, length, mode, sub }:
             opts={opts}
             VPS={vps}
             justify="left"
-            onlyOne="concat"
+            onlyOne={allVariations ? false : "concat"}
             setForm={handleSetForm}
             onLengthChange={setSelectedLength}
-            length={selectedLength}
+            length={allVariations ? undefined : selectedLength}
             mode={mode}
             inlineFormChoice
         />
