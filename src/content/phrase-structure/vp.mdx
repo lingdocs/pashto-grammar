@@ -17,6 +17,8 @@ import BasicBlocks from "../../components/BasicBlocks";
 import InlineInflectionButton from "../../components/InlineInflectionButton";
 import unoReverseMeme from "../verbs/uno-reverse-meme.jpg";
 import VPStructureSummary from "./vp-structure.svg";
+import Image from "../../components/Image";
+import grammTransMeme from "./gramm-trans-yes-no.jpg";
 
 export function KingIcon() {
     return <i className="mx-1 fas fa-crown" />;
@@ -259,6 +261,8 @@ For example if you say "I looked towards you":
 }</EditableVPEx>
 
 This is **a transitive verb, but there's no spoken object in this phrase**. There's just a subject (I) and a verb (looked) and then a <Link to="/phrase-structure/ap">AP</Link> explaining the direction that I looked. (Some people might talk about there being an *indirect object* but we will never use that term when talking about Pashto, because it's super confusing. In Pashto there can only be one object in a phrase, and it's just a direct object.)
+
+<Image src={grammTransMeme} maxWidth="600px" />
 
 Whenever this happens **the object is considered to be 3rd person masculine plural**. That's why the verb is conjugated as <InlinePs opts={opts} ps={{ p: "وکتل", f: "óokatul" }} />. This is a past tense transitive sentence and the verb is agreeing with the unspoken, ambiguous 3rd pers. masc. plural object/king of the sentence. 
 
