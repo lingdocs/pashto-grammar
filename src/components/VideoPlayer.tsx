@@ -24,7 +24,6 @@ function VideoPlayer(props: { url: string } | { src: string }) {
             onError={() => setErrored(true)}
         /> 
     </div>
-
 }
 
 export default VideoPlayer;
