@@ -81,7 +81,7 @@
      inkscape:window-width="1440"
      showgrid="false"
      inkscape:document-rotation="0"
-     inkscape:current-layer="g1684"
+     inkscape:current-layer="layer1"
      inkscape:document-units="mm"
      inkscape:cy="366.21103"
      inkscape:cx="390.42333"
@@ -768,31 +768,31 @@
        xml:space="preserve"><tspan
          x="22.447266"
          y="30.563668"
-         id="tspan10683">Imperfective</tspan></text>
+         id="tspan421">Imperfective</tspan></text>
     <text
        xml:space="preserve"
        id="text1362-7"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1364-1);fill:#000000;fill-opacity:1;stroke:none"
-       transform="matrix(0.91712803,0,0,0.91712803,109.59571,8.5740819)"><tspan
+       transform="matrix(0.91712803,0,0,0.91712803,117.00409,8.5740819)"><tspan
          x="22.447266"
          y="30.563668"
-         id="tspan10685">Perfective</tspan></text>
+         id="tspan423">Perfective</tspan></text>
     <image
        id="image1407"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE8AAABLCAYAAAAxpdqQAAAAAXNSR0IArs4c6QAAAARnQU1BAACx jwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAUNSURBVHhe7Zrbb1RVFIf9V3zQBBJqihlELrXF QgnV1lYaxBteKFBAsFipiMbEqKhPxigIRgKITQs1IhUstxaRiCTSYluDkWIkYg20tMX0oe3L0t/M nsx4umbW7LPP7DOO+0u+ZDJdZ63uX07as/fMbeTwjQvPABeeAS48A1x4BrjwDHDhGeDCM8CFZ4AL zwAXngGhh3djcJC6ui/SufPnffljTw8NDg2pbnYJLbyTHZ20clUd3X7HtEBEL/S0SSjhHTnazgYQ hOhtC+vhXb9+g+6ZW8QuPAjRGzNsYD28997/gF10kGKGDayHt+TBh9gFB2lxaZmall2shvfdue/Z xWbDQ4fb1NTsYTW81WufYxeaDZc9+oSamj18h/fNmbPRvy14RFj++IqM5BaZTbnfIZXbd+ykM9+e VavLDF/h7d23n/1l88H6hs1qlTLa4dWuWccOzSffevtdtdr0aIXXcqCVHZaPftn2lVp1arTC29TQ yA7KR9dteF6tOjVa4c0vLmUH5aNz5peoVadGKzxuSD4r4cJLo0TOhnfn9AKaU1RCFdU1UfEa73G1 2VIip8Jb8czK6IP3ha5uNXEqfX0/0a6PP6Gnnq1lewSpRE6EV7X0ETrcdkRNyRxcg2u5nkEoEXp4 QRwfbd6yle1tqkSo4XV0nladp/Lb1at0/MRJ2r1nb1S8/v3aNfXTqTQ1t7AzTJQILTzujpuYmKDt H+2i0rIl7DVwcXlFtAa1Xr5uP85e41eJUMLb9GKj6pjgl8uX6YHKh9l6TtTi0zMvr7+xja33o4T1 8IpKFtKQ56NChMDVZmJvb5/qEgO9MYOr1VXCeni79+xT3WKYBBcXd20ymMHV6SphNTzsjb3g2Y6r 1RE9vGBvytXqKGE1vIbGLapTjCCPuNArGZyKcHU6SlgNr/XzL1SnGBvrG9g6P66qW6+6xgji0UXC ang9Pb2qU4zCyGy2zo933T1LdY2BWVydjhJWwxsY+FN1in3Bh6sxET3jYBZXo6OE1fAmJydVJ4p+ M4qrMRE942AWV6OjhNXwRkdHVSei/iu/sjUmomcczOJqdJSwGl5//xXViWh8fJytMRE942AWV6Oj hNXwvNupqqXL2Do/lldUqa4xgnj4lrAanvcw4M1t77B1fsSeNpkgektYDQ9fa0gG26oZhRG2Vkf0 8G7RqmuWs7U6SlgND3ZfTPxHBLgbuTodvXc0ZnB1ukpYD29D/QuqWwLckVxtJr78ymuqSwLM4Gp1 lbAeHjzafkx1TODnDvRuyQBOnLlaP0qEEl7BzAj7veFP9zdR8f1l7DXJoga1Xm7d+osis+ex1/hR IpTw4H0LFqmu/2bo5k36rKk5+lUvPH5gzwrx+qWtr0YPF1DDUVldw87yq0Ro4cHF5ZVpP9TJFJwm zy1awM4wUSLU8GDBzFnUfOCgmqAPrp0+o5DtbapE6OHFfezJp+nEqQ6aSDo8SAU2/ajFNVyvoJTI mfDi4oEXx+of7thJLQdb6VTn6ah4jffwHxZ/A7lrg1Yi58LLJSVceGmUcOGlUUIrvCCPkHJd7xEX h1Z4QR4h5breIy4OrfCGh0cCOULKdSP3zqOxsTG16tRohQd+uNDFDswnL136Wa02PdrhgeGREapb vzGv7sJp/+xSatespT8GBtQqZXyFlwz2lfi84L9uJjsbL8bh/Z9x4RngwjPAhWeAC88AF54BLjwD XHgGuPAMcOH5huhvJyOtjV3KJIwAAAAASUVORK5CYII= "
        preserveAspectRatio="none"
        height="14.358292"
        width="15.124067"
-       x="38.720497"
-       y="12.461152" />
+       x="154.49979"
+       y="11.393457" />
     <image
        id="image1421"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABFCAYAAAC1+eO9AAAAAXNSR0IArs4c6QAAAARnQU1BAACx jwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAJWSURBVHhe7Zy9a9NBHIf9VxwcAh06OASkpGoI ulZKaRFaEJyEooTYGF+KCK6lLxSLg7QoHRp1VBeNCCVzbNOltiQZ45QpWb729AIlXl9ynyTfg9/n gWfK5bhfHkhCcve7IEQVBlCGAZRhAGUYQBkGUIYBlGEAZRhAGQZQhgGUgQM0Gg0pfP8hC4vLQbiV /yDl8p5dXfhAAbaLRbmWuikXL8WCc2x8Uvb3f9mVhot3gFdrr50XHprVWs2uOEy8Api3HNfFhuit iSlptlp25eHhFeDR42fOiw3Vt+827cr92dkty/MXL2Uu9+Tv50yz2bSPYHgFuJq84bzQUL2fztiV +7G0svrfnJO3p6VSqdoR/ngF6FxM6JoXy4dS6afM3LnrnNOYfpi1I/1hgBN4s74hsaFh53xtR0aT drQ/DNDBweGh3Jt94JzHJQoDHCP//qMMX4475zhJFAY4ol7/LelM1vncs0SJfIBPn79I/ErC+bzz iBLZAOZ7fO7pvHN8N6JEMsDXbwVJXE85x3YrSiQDmF9NXeN8RGEAUBQGAEVhAFAUBgBFYQBQFAYA RWEAUBQGAEVhAFAUBgBFYQBQFAYARWEAUBQGAEVhAFAUBgBFYQBQlEgG4F+SA7YzgIF/yg9QV4A2 3JYyAE8LYODGrD57VoA23JrYJ88bwMDNuX2wmwBtuD29h/oEMAR7QINHlP5FVTuixEN6yof0eEy1 d3gFMPCgdm/wDmDgrQpwoAAG3qwDAw5AMBhAGQZQhgGUYQBlGEAZBlCGAZRhAGUYQBkGUIYBVBH5 A+4ozhqbUWxXAAAAAElFTkSuQmCC "
        preserveAspectRatio="none"
        height="13.394654"
        width="18.636044"
-       x="145.198"
-       y="13.096152" />
+       x="37.871235"
+       y="12.562304" />
     <g
        transform="translate(0,-4.6493736)"
        id="g1684">
@@ -891,8 +891,7 @@
        id="path1128-3-1"
        sodipodi:nodetypes="cc" />
     <g
-       aria-label="Past
-Participle"
+       aria-label="Past Participle"
        transform="matrix(0.26458333,0,0,0.26458333,-37.221274,8.7476236)"
        id="text5884"
        style="font-size:37.3333px;line-height:1.25;white-space:pre;shape-inside:url(#rect5886)">
