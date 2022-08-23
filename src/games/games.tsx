@@ -1,4 +1,5 @@
 import EquativeGame from "./sub-cores/EquativeGame";
+import VerbGame from "./sub-cores/VerbGame";
 import GenderGame from "./sub-cores/GenderGame";
 import UnisexNounGame from "./sub-cores/UnisexNounGame";
 
@@ -15,6 +16,13 @@ function makeGameRecord(
         Game: game(id, studyLink),
     }
 }
+
+export const presentVerbGame = makeGameRecord(
+    "Write the present verb",
+    "present-verbs-write",
+    "/verbs/present-verbs/",
+    (id, link) => () => <VerbGame id={id} level="presentVerb" link={link} />
+)
 
 export const nounGenderGame1 = makeGameRecord(
     "Identify Noun Genders - Level 1",
@@ -137,6 +145,12 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             equativeGameAllProduce,
         ],
     },
+    {
+        chapter: "Verbs",
+        items: [
+            presentVerbGame,
+        ],
+    }
 ];
 
 export default games;
