@@ -20,9 +20,15 @@ import {
     blockUtils,
     concatPsString,
     isInvalidSubjObjCombo,
+    removeFVarients,
+    getEnglishVerb,
+    RootsAndStems,
+    getVerbInfo,
+    defaultTextOptions,
 } from "@lingdocs/pashto-inflector";
 import { isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
 import { maybeShuffleArray } from "../../lib/shuffle-array";
+import { getVerbFromBlocks } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/blocks-utils";
 
 const kidsColor = "#017BFE";
 
@@ -39,6 +45,7 @@ const verbs: T.VerbEntry[] = [
     {"ts":1527815399,"i":14480,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"},
     {"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"},
     {"ts":1577049208257,"i":1068,"p":"اورېدل","f":"awredul","g":"awredul","e":"to hear, listen","c":"v. trans./gramm. trans.","psp":"اور","psf":"awr","tppp":"اورېد","tppf":"awred","ec":"hear,hears,hearing,heard"},
+    {"ts":1527812790,"i":5813,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"},
 ].map(entry => ({ entry })) as T.VerbEntry[];
 // @ts-ignore
 const nouns: T.NounEntry[] = [
@@ -226,7 +233,20 @@ export default function VerbGame({ id, link, level }: { id: string, link: string
 
 function QuestionDisplay({ question }: { question: Question }) {
     const ps = flattenLengths(question.phrase.ps)[0];
+    const v = getVerbFromBlocks(question.rendered.blocks);
+    const vEntry = v.block.verb.entry;
+    const infoV = getVerbInfo(vEntry)
+    const info = "grammaticallyTransitive" in infoV
+        ? infoV.grammaticallyTransitive
+        : "stative" in infoV
+        ? infoV.stative
+        : infoV;
     return <div className="mb-3">
+        <div className="lead mb-2">{vEntry.p} - {removeFVarients(vEntry.f)} "{getEnglishVerb(vEntry)}"</div>
+        <details>
+            <summary>🌳 Show roots and stems</summary>
+            <RootsAndStems info={info} textOptions={defaultTextOptions} />
+        </details>
         <div>{ps.p}</div>
         <div>{ps.f}</div>
         {question.phrase.e && <div className="text-muted mt-2">
