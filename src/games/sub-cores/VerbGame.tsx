@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
     comparePs,
     makeProgress,
@@ -6,26 +6,23 @@ import {
 import GameCore from "../GameCore";
 import {
     Types as T,
-    Examples,
     defaultTextOptions as opts,
     typePredicates as tp,
     makeNounSelection,
     randFromArray,
-    renderEP,
-    compileEP,
     flattenLengths,
     randomPerson,
     InlinePs,
     grammarUnits,
-    randomSubjObj,
     renderVP,
     makeVPSelectionState,
     compileVP,
     blockUtils,
     concatPsString,
+    isInvalidSubjObjCombo,
 } from "@lingdocs/pashto-inflector";
-import { basicVerbs, intransitivePast } from "../../content/verbs/basic-present-verbs";
-import { psStringEquals } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
+import { isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
+import { maybeShuffleArray } from "../../lib/shuffle-array";
 
 const kidsColor = "#017BFE";
 
@@ -37,6 +34,12 @@ type Question = {
     phrase: { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string[] },
 };
 
+const verbs: T.VerbEntry[] = [
+    {"ts":1527812856,"i":11630,"p":"لیکل","f":"leekul","g":"leekul","e":"to write, draw","c":"v. trans./gramm. trans.","ec":"write,writes,writing,wrote,written"},
+    {"ts":1527815399,"i":14480,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"},
+    {"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"},
+    {"ts":1577049208257,"i":1068,"p":"اورېدل","f":"awredul","g":"awredul","e":"to hear, listen","c":"v. trans./gramm. trans.","psp":"اور","psf":"awr","tppp":"اورېد","tppf":"awred","ec":"hear,hears,hearing,heard"},
+].map(entry => ({ entry })) as T.VerbEntry[];
 // @ts-ignore
 const nouns: T.NounEntry[] = [
     {"ts":1527815251,"i":7790,"p":"سړی","f":"saRéy","g":"saRey","e":"man","c":"n. m.","ec":"man","ep":"men"},
@@ -61,7 +64,7 @@ const pronounTypes = [
 export default function VerbGame({ id, link, level }: { id: string, link: string, level: T.VerbTense }) {
     function* questions (): Generator<Current<Question>> {
         let pool = [...pronounTypes];
-        function makeRandPronoun(): T.PronounSelection {
+        function getRandPersFromPool(): T.Person {
             let person: T.Person;
             do {
                person = randomPerson();
@@ -71,11 +74,7 @@ export default function VerbGame({ id, link, level }: { id: string, link: string
             if (pool.length === 0) {
                 pool = pronounTypes;
             }
-            return {
-                type: "pronoun",
-                distance: "far",
-                person,
-            };
+            return person;
         }
         function makeRandomNoun(): T.NounSelection {
             const n = makeNounSelection(randFromArray(nouns), undefined);
@@ -86,43 +85,48 @@ export default function VerbGame({ id, link, level }: { id: string, link: string
             };
         }
         function makeRandomVPS(l: T.VerbTense): T.VPSelectionComplete {
-            function makePronoun(p: T.Person): T.PronounSelection {
+            function personToNPSelection(p: T.Person): T.NPSelection {
+                if (!isThirdPerson(p)) {
+                    return {
+                        type: "NP",
+                        selection: randFromArray([
+                            () => makePronounS(p),
+                            makeRandomNoun,
+                            () => makePronounS(p),
+                        ])(),
+                    };
+                }
+                return {
+                    type: "NP",
+                    selection: makePronounS(p),
+                };
+            }
+            function makePronounS(p: T.Person): T.PronounSelection {
                 return {
                     type: "pronoun",
                     person: p,
-                    distance: "far",
+                    distance: randFromArray(["far", "near", "far"]),
                 };
             }
-            function makeNPSelection(pr: T.PronounSelection): T.NPSelection {
-                return {
-                    type: "NP",
-                    selection: pr,
-                };
-            }
-            const verb = randFromArray(basicVerbs);
-            const { subj, obj } = randomSubjObj();
-            // const subj: T.NPSelection = {
-            //     type: "NP",
-            //     selection: randFromArray([
-            //         makeRandPronoun,
-            //         makeRandPronoun,
-            //         makeRandomNoun,
-            //         makeRandPronoun,
-            //     ])(),
-            // };
+            const verb = randFromArray(verbs);
+            const subj = getRandPersFromPool();
+            let obj: T.Person;
+            do {
+                obj = randomPerson();
+            } while (isInvalidSubjObjCombo(subj, obj));
             // const tense = (l === "allIdentify" || l === "allProduce")
             //     ? randFromArray(tenses)
             //     : l;
             const tense = l;
             return makeVPS({
                 verb,
-                subject: makeNPSelection(makePronoun(subj)),
-                object: makeNPSelection(makePronoun(obj)),
+                subject: personToNPSelection(subj),
+                object: personToNPSelection(obj),
                 tense,
             });
         }
         for (let i = 0; i < amount; i++) {
-            const VPS = makeRandomVPS("presentVerb");
+            const VPS = makeRandomVPS(level);
             const VP = renderVP(VPS);
             const compiled = compileVP(
                 VP,
@@ -144,7 +148,6 @@ export default function VerbGame({ id, link, level }: { id: string, link: string
         };
     }
 
-    
     function Display({ question, callback }: QuestionDisplayProps<Question>) {
         const [answer, setAnswer] = useState<string>("");
         const [withBa, setWithBa] = useState<boolean>(false);
@@ -207,7 +210,7 @@ export default function VerbGame({ id, link, level }: { id: string, link: string
     
     function Instructions() {
         return <div>
-            <p className="lead">Write the present verb to complete the phrase</p>
+            <p className="lead">Write the {humanReadableVerbTense(level)} verb to complete the phrase</p>
         </div>
     }
 
@@ -221,12 +224,12 @@ export default function VerbGame({ id, link, level }: { id: string, link: string
     />
 };
 
-function QuestionDisplay(question: Question) {
+function QuestionDisplay({ question }: { question: Question }) {
     const ps = flattenLengths(question.phrase.ps)[0];
-    return <div>
+    return <div className="mb-3">
         <div>{ps.p}</div>
         <div>{ps.f}</div>
-        {question.phrase.e && <div>
+        {question.phrase.e && <div className="text-muted mt-2">
             {question.phrase.e.map(x => <div key={Math.random()}>
                 {x}
             </div>)}
@@ -248,33 +251,40 @@ function makeCorrectAnswer(question: Question): JSX.Element {
         <div><strong>{verbHasBa(question.rendered) ? "with" : "without"}</strong> a <InlinePs opts={opts}>{grammarUnits.baParticle}</InlinePs> in the kids' section.</div>
     </div>;
 }
-function modExs(exs: T.PsString[], withBa: boolean): { p: JSX.Element, f: JSX.Element }[] {
-    return exs.map(ps => {
-        if (!ps.p.includes(" ___ ")) {
-            return {
-                p: <>{ps.p}</>,
-                f: <>{ps.f}</>,
-            };
-        }
-        const splitP = ps.p.split(" ___ ");
-        const splitF = ps.f.split(" ___ ");
-        return {
-            p: <>{splitP[0]} <span style={{ color: kidsColor }}>{withBa ? "به" : "__"}</span> {splitP[1]}</>,
-            f: <>{splitF[0]} <span style={{ color: kidsColor }}>{withBa ? "ba" : "__"}</span> {splitF[1]}</>,
-        };
-    });
-}
+// function modExs(exs: T.PsString[], withBa: boolean): { p: JSX.Element, f: JSX.Element }[] {
+//     return exs.map(ps => {
+//         if (!ps.p.includes(" ___ ")) {
+//             return {
+//                 p: <>{ps.p}</>,
+//                 f: <>{ps.f}</>,
+//             };
+//         }
+//         const splitP = ps.p.split(" ___ ");
+//         const splitF = ps.f.split(" ___ ");
+//         return {
+//             p: <>{splitP[0]} <span style={{ color: kidsColor }}>{withBa ? "به" : "__"}</span> {splitP[1]}</>,
+//             f: <>{splitF[0]} <span style={{ color: kidsColor }}>{withBa ? "ba" : "__"}</span> {splitF[1]}</>,
+//         };
+//     });
+// }
 
-function humanReadableTense(tense: T.EquativeTense | "allProduce"): string {
-    return tense === "allProduce"
-        ? ""
-        : tense === "pastSubjunctive"
-        ? "past subjunctive"
-        : tense === "wouldBe"
-        ? `"would be"`
-        : tense === "wouldHaveBeen"
-        ? `"would have been"`
-        : tense;
+
+function humanReadableVerbTense(tense: T.VerbTense): string {
+    return tense === "presentVerb"
+        ? "present"
+        : tense === "subjunctiveVerb"
+        ? "subjunctive"
+        : tense === "imperfectiveFuture"
+        ? "imperfective future"
+        : tense === "perfectiveFuture"
+        ? "perfective future"
+        : tense === "perfectivePast"
+        ? "simple past"
+        : tense === "imperfectivePast"
+        ? "continuous past"
+        : tense === "habitualImperfectivePast"
+        ? "habitual simple past"
+        : "habitual continuous past";
 }
 
 function makeVPS({ verb, subject, object, tense }: {
@@ -284,13 +294,17 @@ function makeVPS({ verb, subject, object, tense }: {
     tense: T.VerbTense,
 }): T.VPSelectionComplete {
     const vps = makeVPSelectionState(verb);
+    const transitivity = (vps.verb.transitivity === "transitive" && vps.verb.canChangeTransitivity)
+        ? "grammatically transitive"
+        : vps.verb.transitivity;
     return {
         ...vps,
         verb: {
             ...vps.verb,
+            transitivity,
             tense,
         },
-        blocks: [
+        blocks: maybeShuffleArray([
             {
                 key: Math.random(),
                 block: {
@@ -302,10 +316,14 @@ function makeVPS({ verb, subject, object, tense }: {
                 key: Math.random(),
                 block: {
                     type: "objectSelection",
-                    selection: object,
+                    selection: transitivity === "intransitive"
+                        ? "none"
+                        : transitivity === "grammatically transitive"
+                        ? T.Person.ThirdPlurMale
+                        : object,
                 },
             },
-        ],
+        ]),
     };
 }
 

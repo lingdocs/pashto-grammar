@@ -1,5 +1,7 @@
 // https://stackoverflow.com/a/2450976
 
+import { randFromArray } from "@lingdocs/pashto-inflector";
+
 function shuffleArray<T>(arr: Readonly<Array<T>>): Array<T> {
     let currentIndex = arr.length, temporaryValue, randomIndex;
 
@@ -19,6 +21,14 @@ function shuffleArray<T>(arr: Readonly<Array<T>>): Array<T> {
     }
   
     return array;
+}
+
+export function maybeShuffleArray<T>(arr: Array<T>): Array<T> {
+  const shuffle = randFromArray([true, false, true, false, false]);
+  if (shuffle) {
+    return shuffleArray(arr);
+  }
+  return arr;
 }
 
 export default shuffleArray;
