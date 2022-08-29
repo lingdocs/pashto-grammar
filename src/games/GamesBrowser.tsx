@@ -99,23 +99,17 @@ function getPercentageComplete(
     tests: undefined | AT.TestResult[],
 ): "not logged in" | number {
     if (!tests) return "not logged in";
-    try {
-        const chapterTestIds = chapter.items.map(gr => gr.id);
-        const userCompletedIds = tests.map(t => t.id);
-        const required = chapterTestIds.length;
-        console.log({ chapterTestIds, userCompletedIds })
-        const completed = chapterTestIds
-            .filter(x => userCompletedIds.includes(x)) 
-            .length;
-        
-        return Math.round(
-            (completed / (required + 1)) * 100
-        );
-    } catch (e) {
-        console.error("error getting per");
-        console.error(e);
-        return 0;
-    }
+    const chapterTestIds = chapter.items.map(gr => gr.id);
+    const userCompletedIds = tests.map(t => t.id);
+    
+    const required = chapterTestIds.length;
+    const completed = chapterTestIds
+        .filter(x => userCompletedIds.includes(x)) 
+        .length;
+    
+    return Math.round(
+        (completed / (required + 1)) * 100
+    );
 }
 
 export default GamesBrowser;
