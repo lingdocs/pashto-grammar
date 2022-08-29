@@ -11,9 +11,7 @@ function GamesBrowser() {
     const { user } = useUser();
     const [opened, setOpened] = useState<string | undefined>(undefined);
     function handleChapterClick(id: string) {
-        setOpened(prev => (
-            prev === id ? undefined : id
-        ));
+        setOpened(prev => prev === id ? undefined : id);
     }
     return <div>
         {games.map((chapter) => (
@@ -38,9 +36,7 @@ function ChapterDisplay({ chapter, user, handleClick, expanded }: {
     const [opened, setOpened] = useState<string | undefined>(undefined);
     const progress = getPercentageComplete(chapter, user?.tests);
     function handleTitleClick(id: string) {
-        setOpened(prev => (
-            prev === id ? undefined : id
-        ));
+        setOpened(prev => prev === id ? undefined : id);
     }
     return <div className="mb-3">
         <div className="card clickable" onClick={() => handleClick(chapter.chapter)}>
@@ -103,13 +99,13 @@ function getPercentageComplete(
     tests: undefined | AT.TestResult[],
 ): "not logged in" | number {
     if (!tests) return "not logged in";
-    console.log({ tests, chapter });
     try {
         const chapterTestIds = chapter.items.map(gr => gr.id);
         const userCompletedIds = tests.map(t => t.id);
         const required = chapterTestIds.length;
+        console.log({ chapterTestIds, userCompletedIds })
         const completed = chapterTestIds
-            .filter(userCompletedIds.includes) 
+            .filter(x => userCompletedIds.includes(x)) 
             .length;
         
         return Math.round(
