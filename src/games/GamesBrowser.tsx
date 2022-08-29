@@ -3,11 +3,14 @@ import games from "./games";
 import { useUser } from "../user-context";
 import Link from "../components/Link";
 import SmoothCollapse from "react-smooth-collapse";
+import {
+    AT,
+} from "@lingdocs/lingdocs-main";
 
 function GamesBrowser() {
     const { user } = useUser();
     const [opened, setOpened] = useState<string | undefined>(undefined);
-    function handleTitleClick(id: string) {
+    function handleChapterClick(id: string) {
         setOpened(prev => (
             prev === id ? undefined : id
         ));
@@ -15,35 +18,101 @@ function GamesBrowser() {
     return <div>
         {games.map((chapter) => (
             <div key={chapter.chapter}>
-                <h3>{chapter.chapter}</h3>
-                {chapter.items.map(({ id, title, Game, studyLink }) => {
-                    const done = user && user.tests.some(t => t.id === id);
-                    const open = opened === id;
-                    return <div key={id}>
-                        <div className="d-flex flex-row justify-content-between align-items-center">
-                            <div>
-                                <h4 className="my-4 clickable" onClick={() => handleTitleClick(id)}>
-                                    <i className={`fas fa-caret-${open ? "down" : "right"}`}></i> {title}
-                                    {` `}
-                                </h4>
-                            </div>
-                            <div>
-                                <h4>
-                                    {done ? "✅"
-                                    :
-                                        <Link to={studyLink}>{"📚"}</Link>
-                                    }
-                                </h4>
-                            </div>
-                        </div>
-                        <SmoothCollapse expanded={open}>
-                            <Game />
-                        </SmoothCollapse>
-                    </div>
-                })}
+                <ChapterDisplay
+                    chapter={chapter}
+                    user={user}
+                    handleClick={handleChapterClick}
+                    expanded={opened === chapter.chapter}
+                />
             </div>
         ))}
     </div>
+}
+
+function ChapterDisplay({ chapter, user, handleClick, expanded }: {
+    chapter: { chapter: string, items: GameRecord[] },
+    user: AT.LingdocsUser | undefined,
+    handleClick: (chapter: string) => void,
+    expanded: boolean,
+}) {
+    const [opened, setOpened] = useState<string | undefined>(undefined);
+    const progress = getPercentageComplete(chapter, user?.tests);
+    function handleTitleClick(id: string) {
+        setOpened(prev => (
+            prev === id ? undefined : id
+        ));
+    }
+    return <div className="mb-3">
+        <div className="card clickable" onClick={() => handleClick(chapter.chapter)}>
+            <div className="card-body" style={{
+                backgroundColor: expanded ? "#e6e6e6" : "inherit",
+            }}>
+                <h4>{chapter.chapter}</h4>
+                <ChapterProgress progress={progress} />
+            </div>
+        </div>
+        <SmoothCollapse expanded={expanded}>
+            {chapter.items.map(({ id, title, Game, studyLink }) => {
+                const done = user && user.tests.some(t => t.id === id);
+                const open = opened === id;
+                return <div key={id}>
+                    <div className="d-flex flex-row justify-content-between align-items-center">
+                        <div>
+                            <h4 className="my-4 clickable" onClick={() => handleTitleClick(id)}>
+                                <i className={`fas fa-caret-${open ? "down" : "right"}`}></i> {title}
+                                {` `}
+                            </h4>
+                        </div>
+                        <div>
+                            <h4>
+                                {done ? "✅"
+                                :
+                                    <Link to={studyLink}>{"📚"}</Link>
+                                }
+                            </h4>
+                        </div>
+                    </div>
+                    <SmoothCollapse expanded={open}>
+                        <Game />
+                    </SmoothCollapse>
+                </div>
+            })}
+        </SmoothCollapse>
+    </div>
+
+}
+
+function ChapterProgress({ progress }: { progress: "not logged in" | number }) {
+    if (progress === "not logged in") {
+        return <div className="small text-muted">Log in to see progress</div>;
+    }
+    return <div>
+        <div className="small text-muted">{progress}% mastered</div>
+        <div className="progress my-1" style={{ height: "5px" }}>
+            <div
+                className="progress-bar"
+                role="progressbar"
+                style={{ width: `${progress}%` }}
+            />
+        </div>
+    </div>;
+}
+
+function getPercentageComplete(
+    chapter: { chapter: string, items: GameRecord[] },
+    tests: undefined | AT.TestResult[],
+): "not logged in" | number {
+    if (!tests) return "not logged in";
+    const chapterTestIds = chapter.items.map(gr => gr.id);
+    const userCompletedIds = tests.map(t => t.id);
+    const required = chapterTestIds.length;
+    const completed = chapterTestIds
+        .filter(userCompletedIds.includes) 
+        .length;
+    
+    return Math.round(
+        (completed / (required + 1)) * 100
+    );
 }
 
 export default GamesBrowser;
