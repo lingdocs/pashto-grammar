@@ -14,7 +14,7 @@ function BlockDiagram({ opts, children }: {
     try {
     const rendered = children.type === "AP"
         ? renderAPSelection(children)
-        : renderNPSelection(children, false, false, "subject", "none");
+        : renderNPSelection(children, false, false, "subject", "none", false);
     const english = getEnglishFromRendered(rendered);
     return <div className="mb-3">
          <div className="d-flex flex-row justify-content-center text-center" style={{ maxWidth: "100%" }}>

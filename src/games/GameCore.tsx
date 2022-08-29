@@ -69,6 +69,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
             setJustStruck(true);
         } else {
             logGameEvent("fail on game");
+            setJustStruck(false);
             setFinish({ msg: "fail", answer: correct });
         }
     }
@@ -126,7 +127,8 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         setTimerKey(prev => prev + 1);
     }
     function handleTimeOut() {
-        logGameEvent("timeout on game")
+        logGameEvent("timeout on game");
+        setJustStruck(false);
         setFinish("time out");
         navigator.vibrate(errorVibration);
     }

@@ -29,6 +29,12 @@ export const subjunctiveVerbGame = makeGameRecord(
     "/verbs/subjunctive-verbs/",
     (id, link) => () => <VerbGame id={id} level="subjunctiveVerb" link={link} />
 );
+export const futureVerbGame = makeGameRecord(
+    "Write the future verb",
+    "future-verbs-write",
+    "/verbs/future-verbs/",
+    (id, link) => () => <VerbGame id={id} level="futureVerb" link={link} />
+);
 
 export const nounGenderGame1 = makeGameRecord(
     "Identify Noun Genders - Level 1",
@@ -156,6 +162,7 @@ const games: { chapter: string, items: GameRecord[] }[] = [
         items: [
             presentVerbGame,
             subjunctiveVerbGame,
+            futureVerbGame,
         ],
     }
 ];

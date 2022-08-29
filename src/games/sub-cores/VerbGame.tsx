@@ -25,6 +25,7 @@ import {
     RootsAndStems,
     getVerbInfo,
     defaultTextOptions,
+    humanReadableVerbForm,
 } from "@lingdocs/pashto-inflector";
 import { isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
 import { maybeShuffleArray } from "../../lib/shuffle-array";
@@ -33,7 +34,7 @@ import { getVerbFromBlocks } from "@lingdocs/pashto-inflector/dist/lib/phrase-bu
 const kidsColor = "#017BFE";
 
 const amount = 10;
-const timeLimit = 80;
+const timeLimit = 150;
 
 type Question = {
     rendered: T.VPRendered,
@@ -46,6 +47,7 @@ const verbs: T.VerbEntry[] = [
     {"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"},
     {"ts":1577049208257,"i":1068,"p":"اورېدل","f":"awredul","g":"awredul","e":"to hear, listen","c":"v. trans./gramm. trans.","psp":"اور","psf":"awr","tppp":"اورېد","tppf":"awred","ec":"hear,hears,hearing,heard"},
     {"ts":1527812790,"i":5813,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"},
+    {"ts":1527812447,"i":292,"p":"اخستل","f":"akhistúl, akhustúl","g":"akhistul,akhustul","e":"to take, buy, purchase, receive; to shave, cut with scissors","c":"v. trans.","psp":"اخل","psf":"akhl","tppp":"اخست","tppf":"akhist","ec":"take,takes,taking,took,taken"},
 ].map(entry => ({ entry })) as T.VerbEntry[];
 // @ts-ignore
 const nouns: T.NounEntry[] = [
@@ -68,7 +70,13 @@ const pronounTypes = [
     [T.Person.ThirdPlurMale, T.Person.ThirdPlurFemale],
 ];
 
-export default function VerbGame({ id, link, level }: { id: string, link: string, level: T.VerbTense }) {
+type VerbGameLevel = "presentVerb" | "subjunctiveVerb" | "futureVerb";
+
+export default function VerbGame({ id, link, level }: {
+    id: string,
+    link: string,
+    level: VerbGameLevel,
+ }) {
     function* questions (): Generator<Current<Question>> {
         let pool = [...pronounTypes];
         function getRandPersFromPool(): T.Person {
@@ -133,13 +141,13 @@ export default function VerbGame({ id, link, level }: { id: string, link: string
             });
         }
         for (let i = 0; i < amount; i++) {
-            const VPS = makeRandomVPS(level);
+            const VPS = makeRandomVPS(levelToTense(level));
             const VP = renderVP(VPS);
             const compiled = compileVP(
                 VP,
                 { removeKing: false, shrinkServant: false },
                 true,
-                "verb",
+                { ba: true, verb: true },
             );
             const phrase = {
                 ps: compiled.ps,
@@ -217,7 +225,7 @@ export default function VerbGame({ id, link, level }: { id: string, link: string
     
     function Instructions() {
         return <div>
-            <p className="lead">Write the {humanReadableVerbTense(level)} verb to complete the phrase</p>
+            <p className="lead">Write the {levelToDescription(level)} verb to complete the phrase</p>
         </div>
     }
 
@@ -242,18 +250,19 @@ function QuestionDisplay({ question }: { question: Question }) {
         ? infoV.stative
         : infoV;
     return <div className="mb-3">
-        <div className="lead mb-2">{vEntry.p} - {removeFVarients(vEntry.f)} "{getEnglishVerb(vEntry)}"</div>
-        <details>
+        <div className="mb-2">{vEntry.p} - {removeFVarients(vEntry.f)} "{getEnglishVerb(vEntry)}"</div>
+        <details style={{ marginBottom: 0 }}>
             <summary>🌳 Show roots and stems</summary>
             <RootsAndStems info={info} textOptions={defaultTextOptions} />
         </details>
-        <div>{ps.p}</div>
-        <div>{ps.f}</div>
+        <div dir="rtl">{ps.p}</div>
+        <div dir="ltr">{ps.f}</div>
         {question.phrase.e && <div className="text-muted mt-2">
             {question.phrase.e.map(x => <div key={Math.random()}>
                 {x}
             </div>)}
         </div>}
+        <div>{humanReadableVerbForm(v.block.tense)}</div>
     </div>;
 }
 
@@ -264,7 +273,7 @@ function makeCorrectAnswer(question: Question): JSX.Element {
                 [
                     ...accum,
                     ...i > 0 ? [<span className="text-muted"> or </span>] : [],
-                    <span>{curr.p}</span>,
+                    <span>{curr.p} - {curr.f}</span>,
                 ]
             )), [] as JSX.Element[])}
         </div>
@@ -289,22 +298,20 @@ function makeCorrectAnswer(question: Question): JSX.Element {
 // }
 
 
-function humanReadableVerbTense(tense: T.VerbTense): string {
-    return tense === "presentVerb"
+function levelToDescription(level: VerbGameLevel): string {
+    return level === "presentVerb"
         ? "present"
-        : tense === "subjunctiveVerb"
+        : level === "subjunctiveVerb"
         ? "subjunctive"
-        : tense === "imperfectiveFuture"
-        ? "imperfective future"
-        : tense === "perfectiveFuture"
-        ? "perfective future"
-        : tense === "perfectivePast"
-        ? "simple past"
-        : tense === "imperfectivePast"
-        ? "continuous past"
-        : tense === "habitualImperfectivePast"
-        ? "habitual simple past"
-        : "habitual continuous past";
+        : "imperfective future or perfective future"
+}
+
+function levelToTense(level: VerbGameLevel): T.VerbTense {
+    return level === "presentVerb"
+        ? level
+        : level === "subjunctiveVerb"
+        ? level
+        : randFromArray(["perfectiveFuture", "imperfectiveFuture"]);
 }
 
 function makeVPS({ verb, subject, object, tense }: {
