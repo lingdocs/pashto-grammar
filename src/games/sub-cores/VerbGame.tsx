@@ -91,7 +91,6 @@ export default function VerbGame({ id, link, level }: {
     const poolBase = level === "imperative"
         ? secondPersonPronounTypes
         : pronounTypes;
-    console.log({ poolBase })
     function* questions (): Generator<Current<Question>> {
         let pool = [...poolBase];
         function getRandPersFromPool(): T.Person {
