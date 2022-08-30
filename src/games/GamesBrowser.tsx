@@ -54,13 +54,13 @@ function ChapterDisplay({ chapter, user, handleClick, expanded }: {
                 return <div key={id}>
                     <div className="d-flex flex-row justify-content-between align-items-center">
                         <div>
-                            <h4 className="my-4 clickable" onClick={() => handleTitleClick(id)}>
+                            <h5 className="my-3 clickable" onClick={() => handleTitleClick(id)}>
                                 <i className={`fas fa-caret-${open ? "down" : "right"}`}></i> {title}
                                 {` `}
-                            </h4>
+                            </h5>
                         </div>
                         <div>
-                            <h4>
+                            <h4 className={done ? "clickable" : ""}>
                                 {done ? "✅"
                                 :
                                     <Link to={studyLink}>{"📚"}</Link>

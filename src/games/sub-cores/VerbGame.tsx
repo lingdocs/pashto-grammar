@@ -34,6 +34,8 @@ import { isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-buildi
 import { maybeShuffleArray } from "../../lib/shuffle-array";
 import { getVerbFromBlocks } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/blocks-utils";
 import { baParticle } from "@lingdocs/pashto-inflector/dist/lib/grammar-units";
+import { intransitivePastVerbs } from "../../content/verbs/basic-present-verbs";
+import { makePool } from "../../lib/pool";
 
 const kidsColor = "#017BFE";
 
@@ -66,45 +68,47 @@ const nouns: T.NounEntry[] = [
     {"ts":1527812661,"i":13938,"p":"هلک","f":"halík, halúk","g":"halik,haluk","e":"boy, young lad","c":"n. m. anim."},
 ].filter(tp.isNounEntry);
 
-const pronounTypes = [
-    [T.Person.FirstSingMale, T.Person.FirstSingFemale],
-    [T.Person.SecondSingMale, T.Person.SecondSingFemale],
-    [T.Person.ThirdSingMale],
-    [T.Person.ThirdSingFemale],
-    [T.Person.FirstPlurMale, T.Person.FirstPlurFemale],
-    [T.Person.SecondPlurMale, T.Person.SecondPlurFemale],
-    [T.Person.ThirdPlurMale, T.Person.ThirdPlurFemale],
+const persons = [
+    T.Person.FirstSingMale,
+    T.Person.FirstSingFemale,
+    T.Person.SecondSingMale,
+    T.Person.SecondSingFemale,
+    T.Person.ThirdSingMale,
+    T.Person.ThirdSingFemale,
+    T.Person.FirstPlurMale,
+    T.Person.FirstPlurFemale,
+    T.Person.SecondPlurMale,
+    T.Person.SecondPlurFemale,
+    T.Person.ThirdPlurMale,
+    T.Person.ThirdPlurFemale,
 ];
 
-const secondPersonPronounTypes = [
-    [T.Person.SecondSingMale, T.Person.SecondSingFemale],
-    [T.Person.SecondPlurMale, T.Person.SecondPlurFemale],
+const secondPersons = [
+    T.Person.SecondSingMale,
+    T.Person.SecondSingFemale,
+    T.Person.SecondPlurMale,
+    T.Person.SecondPlurFemale,
 ];
 
-type VerbGameLevel = "presentVerb" | "subjunctiveVerb" | "futureVerb" | "imperative";
+type VerbGameLevel = "presentVerb" | "subjunctiveVerb"
+    | "futureVerb" | "imperative" | "intransitivePerfectivePast" | "intransitiveImperfectivePast";
 
 export default function VerbGame({ id, link, level }: {
     id: string,
     link: string,
     level: VerbGameLevel,
  }) {
-    const poolBase = level === "imperative"
-        ? secondPersonPronounTypes
-        : pronounTypes;
     function* questions (): Generator<Current<Question>> {
-        let pool = [...poolBase];
-        function getRandPersFromPool(): T.Person {
-            let person: T.Person;
-            do {
-               person = randomPerson();
-               // eslint-disable-next-line
-            } while (!pool.some(p => p.includes(person)));
-            pool = pool.filter(p => !p.includes(person));
-            if (pool.length === 0) {
-                pool = poolBase;
-            }
-            return person;
-        }
+        const personPool = makePool(level === "imperative"
+            ? secondPersons
+            : persons
+        );
+        const verbPool = makePool(
+            level.includes("intransitive")
+                ? intransitivePastVerbs
+                : verbs,
+            30,
+        );
         function makeRandomNoun(): T.NounSelection {
             const n = makeNounSelection(randFromArray(nouns), undefined);
             return {
@@ -137,8 +141,8 @@ export default function VerbGame({ id, link, level }: {
                     distance: randFromArray(["far", "near", "far"]),
                 };
             }
-            const verb = randFromArray(verbs);
-            const subj = getRandPersFromPool();
+            const verb = verbPool();
+            const subj = personPool();
             let obj: T.Person;
             do {
                 obj = randomPerson();
@@ -184,9 +188,6 @@ export default function VerbGame({ id, link, level }: {
             setAnswer(value);
         }
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-            if ("situation" in question) {
-                return;
-            }
             e.preventDefault();
             const correct = comparePs(answer, getVerbPs(question.rendered))
                 && (withBa === verbHasBa(question.rendered));
@@ -347,6 +348,10 @@ function levelToDescription(level: VerbGameLevel): string {
         ? "subjunctive"
         : level === "futureVerb"
         ? "imperfective future or perfective future"
+        : level === "intransitivePerfectivePast"
+        ? "simple past intransitive"
+        : level === "intransitiveImperfectivePast"
+        ? "continuous past intransitive"
         : "imperfective imperative or perfective imperative";
 }
 
@@ -357,8 +362,12 @@ function levelToTense(level: VerbGameLevel): T.VerbTense | T.ImperativeTense {
         ? level
         : level === "futureVerb"
         ? randFromArray(["perfectiveFuture", "imperfectiveFuture"])
-        // : level === "imperative"
-        : randFromArray(["perfectiveImperative", "imperfectiveImperative"]);
+        : level === "imperative"
+        ? randFromArray(["perfectiveImperative", "imperfectiveImperative"])
+        : level.includes("ImperfectivePast")
+        ? "imperfectivePast"
+        // : level.includes("perfectivePast")
+        : "perfectivePast";
 }
 
 function makeVPS({ verb, subject, object, tense }: {
@@ -371,6 +380,7 @@ function makeVPS({ verb, subject, object, tense }: {
     const transitivity = (vps.verb.transitivity === "transitive" && vps.verb.canChangeTransitivity)
         ? "grammatically transitive"
         : vps.verb.transitivity;
+    console.log({ transitivity });
     return {
         ...vps,
         verb: {

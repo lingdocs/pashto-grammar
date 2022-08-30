@@ -53,6 +53,8 @@ export function comparePs(input: string, answer: T.SingleOrLengthOpts<T.PsString
     if (Array.isArray(answer)) {
         return answer.some(a => comparePs(input, a));
     }
-    const stand = standardizePhonetics(standardizePashto(input)).trim();
+    const stand = standardizePhonetics(
+        standardizePashto(input)
+    ).trim();
     return stand === answer.p || compareF(stand, answer.f);
 }

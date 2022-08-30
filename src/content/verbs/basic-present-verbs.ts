@@ -14,7 +14,7 @@ export const basicVerbs: T.VerbEntry[] = [
 ].map(entry => ({ entry }));
 
 // @ts-ignore
-export const intransitivePast: T.VerbEntry[] = [
+export const intransitivePastVerbs: T.VerbEntry[] = [
     {"ts":1527813573,"i":6809,"p":"رسېدل","f":"rasedul","g":"rasedul","e":"arrive, reached; (fig.) understand, attain to; mature, ripen","c":"v. intrans.","shortIntrans":true,"ec":"arrive"},
     {"ts":1527812645,"i":10822,"p":"ګرځېدل","f":"gurdzedul","g":"gurdzedul","e":"to walk, wander, turn about; to become, to be","c":"v. intrans.","shortIntrans":true,"ec":"walk"},
     {"ts":1527816495,"i":3470,"p":"تښتېدل","f":"tuxtedul","g":"tuxtedul","e":"to run off, escape, flee","c":"v. intrans.","shortIntrans":true,"ec":"escape"},

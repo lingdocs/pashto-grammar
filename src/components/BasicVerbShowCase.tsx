@@ -16,7 +16,7 @@ import {
 import { isImperativeTense, isPerfectTense } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
 import { useState } from "react";
 import Carousel from "./Carousel";
-import { basicVerbs, intransitivePast } from "../content/verbs/basic-present-verbs";
+import { basicVerbs, intransitivePastVerbs } from "../content/verbs/basic-present-verbs";
 import { getLength } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
 import { isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
 
@@ -27,7 +27,7 @@ function BasicVerbShowCase({ opts, tense, passive, ability }: {
     ability?: boolean,
 }) {
     const items = isPastTense(tense)
-        ? intransitivePast
+        ? intransitivePastVerbs
         : (passive ? basicVerbs.filter(v => v.entry.p !== "کول") : basicVerbs);
     return <Carousel stickyTitle items={items} render={(item) => {
         return {

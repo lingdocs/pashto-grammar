@@ -41,6 +41,18 @@ export const imperativeVerbGame = makeGameRecord(
     "/verbs/imperative-verbs/",
     (id, link) => () => <VerbGame id={id} level="imperative" link={link} />
 );
+export const intransitivePerfectivePastVerbGame = makeGameRecord(
+    "Write the intransitive simple past verb",
+    "intransitive-perfective-past-verbs-write",
+    "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
+    (id, link) => () => <VerbGame id={id} level="intransitivePerfectivePast" link={link} />
+);
+export const intransitiveImperfectivePastVerbGame = makeGameRecord(
+    "Write the intransitive continuous past verb",
+    "transitive-imperfective-past-verbs-write",
+    "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
+    (id, link) => () => <VerbGame id={id} level="intransitiveImperfectivePast" link={link} />
+);
 
 export const nounGenderGame1 = makeGameRecord(
     "Identify Noun Genders - Level 1",
@@ -170,6 +182,8 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             subjunctiveVerbGame,
             futureVerbGame,
             imperativeVerbGame,
+            intransitiveImperfectivePastVerbGame,
+            intransitivePerfectivePastVerbGame,
         ],
     }
 ];
