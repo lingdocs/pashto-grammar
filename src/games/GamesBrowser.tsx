@@ -80,7 +80,7 @@ function ChapterDisplay({ chapter, user, handleClick, expanded }: {
 
 function ChapterProgress({ progress }: { progress: "not logged in" | number }) {
     if (progress === "not logged in") {
-        return <div className="small text-muted">Log in to see progress</div>;
+        return <div className="small text-muted"><Link to="/account">Log in</Link> to see progress</div>;
     }
     return <div>
         <div className="small text-muted">{progress}% mastered</div>

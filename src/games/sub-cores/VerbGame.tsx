@@ -26,15 +26,19 @@ import {
     getVerbInfo,
     defaultTextOptions,
     humanReadableVerbForm,
+    blank,
+    kidsBlank,
+    isPashtoScript,
 } from "@lingdocs/pashto-inflector";
 import { isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
 import { maybeShuffleArray } from "../../lib/shuffle-array";
 import { getVerbFromBlocks } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/blocks-utils";
+import { baParticle } from "@lingdocs/pashto-inflector/dist/lib/grammar-units";
 
 const kidsColor = "#017BFE";
 
 const amount = 10;
-const timeLimit = 150;
+const timeLimit = 200;
 
 type Question = {
     rendered: T.VPRendered,
@@ -48,6 +52,8 @@ const verbs: T.VerbEntry[] = [
     {"ts":1577049208257,"i":1068,"p":"اورېدل","f":"awredul","g":"awredul","e":"to hear, listen","c":"v. trans./gramm. trans.","psp":"اور","psf":"awr","tppp":"اورېد","tppf":"awred","ec":"hear,hears,hearing,heard"},
     {"ts":1527812790,"i":5813,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"},
     {"ts":1527812447,"i":292,"p":"اخستل","f":"akhistúl, akhustúl","g":"akhistul,akhustul","e":"to take, buy, purchase, receive; to shave, cut with scissors","c":"v. trans.","psp":"اخل","psf":"akhl","tppp":"اخست","tppf":"akhist","ec":"take,takes,taking,took,taken"},
+    {"ts":1527812751,"i":10083,"p":"کتل","f":"katul","g":"katul","e":"to look, see, watch, examine; to meet with","c":"v. trans./gramm. trans.","psp":"ګور","psf":"gor","tppp":"کوت","tppf":"kot","ec":"look"},
+    {"ts":1527813994,"i":11654,"p":"لوېدل","f":"lwedul","g":"lwedul","e":"to fall, to tumble, go down, settle","c":"v. intrans.","ec":"fall,falls,falling,fell,fallen"},
 ].map(entry => ({ entry })) as T.VerbEntry[];
 // @ts-ignore
 const nouns: T.NounEntry[] = [
@@ -70,15 +76,24 @@ const pronounTypes = [
     [T.Person.ThirdPlurMale, T.Person.ThirdPlurFemale],
 ];
 
-type VerbGameLevel = "presentVerb" | "subjunctiveVerb" | "futureVerb";
+const secondPersonPronounTypes = [
+    [T.Person.SecondSingMale, T.Person.SecondSingFemale],
+    [T.Person.SecondPlurMale, T.Person.SecondPlurFemale],
+];
+
+type VerbGameLevel = "presentVerb" | "subjunctiveVerb" | "futureVerb" | "imperative";
 
 export default function VerbGame({ id, link, level }: {
     id: string,
     link: string,
     level: VerbGameLevel,
  }) {
+    const poolBase = level === "imperative"
+        ? secondPersonPronounTypes
+        : pronounTypes;
+    console.log({ poolBase })
     function* questions (): Generator<Current<Question>> {
-        let pool = [...pronounTypes];
+        let pool = [...poolBase];
         function getRandPersFromPool(): T.Person {
             let person: T.Person;
             do {
@@ -87,7 +102,7 @@ export default function VerbGame({ id, link, level }: {
             } while (!pool.some(p => p.includes(person)));
             pool = pool.filter(p => !p.includes(person));
             if (pool.length === 0) {
-                pool = pronounTypes;
+                pool = poolBase;
             }
             return person;
         }
@@ -99,9 +114,9 @@ export default function VerbGame({ id, link, level }: {
                 number: n.numberCanChange ? randFromArray(["singular", "plural"]) : n.number,
             };
         }
-        function makeRandomVPS(l: T.VerbTense): T.VPSelectionComplete {
+        function makeRandomVPS(l: T.VerbTense | T.ImperativeTense): T.VPSelectionComplete {
             function personToNPSelection(p: T.Person): T.NPSelection {
-                if (!isThirdPerson(p)) {
+                if (isThirdPerson(p)) {
                     return {
                         type: "NP",
                         selection: randFromArray([
@@ -185,7 +200,10 @@ export default function VerbGame({ id, link, level }: {
         //     if (level === "allProduce") setWithBa(false);
         // }, [question]);
         return <div>
-            <QuestionDisplay question={question} />
+            <QuestionDisplay question={question} userAnswer={{
+                withBa,
+                answer,
+            }} />
             <form onSubmit={handleSubmit}>
                 <div className="form-check mt-1">
                     <input
@@ -239,8 +257,14 @@ export default function VerbGame({ id, link, level }: {
     />
 };
 
-function QuestionDisplay({ question }: { question: Question }) {
-    const ps = flattenLengths(question.phrase.ps)[0];
+function QuestionDisplay({ question, userAnswer }: {
+    question: Question,
+    userAnswer: { withBa: boolean, answer: string },
+}) {
+    const ps = addUserAnswer(
+        userAnswer,
+        flattenLengths(question.phrase.ps)[0]
+    );
     const v = getVerbFromBlocks(question.rendered.blocks);
     const vEntry = v.block.verb.entry;
     const infoV = getVerbInfo(vEntry)
@@ -297,28 +321,52 @@ function makeCorrectAnswer(question: Question): JSX.Element {
 //     });
 // }
 
+function addUserAnswer(a: { withBa: boolean, answer: string }, ps: T.PsString): T.PsString {
+    function addBa(x: T.PsString) {
+        if (!a.withBa) return x;
+        return {
+            p: x.p.replace(kidsBlank.p, baParticle.p),
+            f: x.f.replace(kidsBlank.f, baParticle.f),
+        }
+    }
+    function addAnswer(x: T.PsString): T.PsString {
+        if (!a.answer) return x;
+        const field = isPashtoScript(a.answer) ? "p" : "f";
+        return {
+            ...x,
+            [field]: x[field].replace(blank[field], a.answer),
+        };
+    }
+    return addAnswer(addBa(ps));
+}
+
 
 function levelToDescription(level: VerbGameLevel): string {
     return level === "presentVerb"
         ? "present"
         : level === "subjunctiveVerb"
         ? "subjunctive"
-        : "imperfective future or perfective future"
+        : level === "futureVerb"
+        ? "imperfective future or perfective future"
+        : "imperfective imperative or perfective imperative";
 }
 
-function levelToTense(level: VerbGameLevel): T.VerbTense {
+function levelToTense(level: VerbGameLevel): T.VerbTense | T.ImperativeTense {
     return level === "presentVerb"
         ? level
         : level === "subjunctiveVerb"
         ? level
-        : randFromArray(["perfectiveFuture", "imperfectiveFuture"]);
+        : level === "futureVerb"
+        ? randFromArray(["perfectiveFuture", "imperfectiveFuture"])
+        // : level === "imperative"
+        : randFromArray(["perfectiveImperative", "imperfectiveImperative"]);
 }
 
 function makeVPS({ verb, subject, object, tense }: {
     verb: T.VerbEntry,
     subject: T.NPSelection,
     object: T.NPSelection,
-    tense: T.VerbTense,
+    tense: T.VerbTense | T.ImperativeTense,
 }): T.VPSelectionComplete {
     const vps = makeVPSelectionState(verb);
     const transitivity = (vps.verb.transitivity === "transitive" && vps.verb.canChangeTransitivity)
