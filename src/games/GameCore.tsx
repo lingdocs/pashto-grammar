@@ -38,6 +38,7 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
     const rewardRef = useRef<RewardElement | null>(null);
     const parent = useRef<HTMLDivElement | null>(null);
     const { user, pullUser, setUser } = useUser();
+    const [mode, setMode] = useState<"practice" | "test">("test");
     const [finish, setFinish] = useState<undefined | "pass" | { msg: "fail", answer: JSX.Element } | "time out">(undefined);
     const [strikes, setStrikes] = useState<number>(0);
     const [justStruck, setJustStruck] = useState<boolean>(false);
@@ -119,8 +120,9 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         setFinish(undefined);
         setCurrent(undefined);
     }
-    function handleRestart() {
-        logGameEvent("started game");
+    function handleRestart(mode: "test" | "practice") {
+        logGameEvent(`started game ${mode}`);
+        setMode(mode);
         const newQuestionBox = questions();
         const { value } = newQuestionBox.next();
         // just for type safety -- the generator will have at least one question
@@ -160,13 +162,13 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
     const gameRunning = current && finish === undefined;
     return <>
         <div className="text-center" style={{ minHeight: "200px", zIndex: 10, position: "relative" }}>
-            <div className="progress" style={{ height: "5px" }}>
+            {mode === "test" && <div className="progress" style={{ height: "5px" }}>
                 <div className={`progress-bar bg-${progressColor}`} role="progressbar" style={{ width: getProgressWidth() }} />
-            </div>
+            </div>}
             {current && <div className="d-flex flex-row justify-content-between mt-2">
                 <StrikesDisplay strikes={strikes} />
                 <div className="d-flex flex-row-reverse">
-                    <CountdownCircleTimer
+                    {mode === "test" && <CountdownCircleTimer
                         key={timerKey}
                         isPlaying={!!current && !finish}
                         size={30}
@@ -176,15 +178,15 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                         strokeLinecap="square"
                         duration={timeLimit}
                         onComplete={handleTimeOut}
-                    />
+                    />}
                     <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>
                 </div>
             </div>}
-            <div ref={parent}>
+            {mode === "test" && <div ref={parent}>
                 {justStruck && <div className="alert alert-warning my-2" role="alert" style={{ maxWidth: "300px", margin: "0 auto" }}>
                     {getStrikeMessage()}
                 </div>}
-            </div>
+            </div>}
             <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 150, zIndex: 999999999 }} type="confetti">
                 <div>
                     {finish === undefined &&
@@ -198,7 +200,11 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                                     <Instructions />
                                 </div>
                                 <div>
-                                    <button className="btn btn-primary mt-4" onClick={handleRestart}>Start</button>
+                                    <Link to={studyLink}>
+                                        <button className="btn btn-danger mt-4 mx-3">Study</button>
+                                    </Link>
+                                    <button className="btn btn-warning mt-4 mx-3" onClick={() => handleRestart("practice")}>Practice</button>
+                                    <button className="btn btn-success mt-4 mx-3" onClick={() => handleRestart("test")}>Test</button>
                                 </div>
                             </div>)
                     }
@@ -206,10 +212,10 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                         <h4 className="mt-4">
                             <span role="img" aria-label="celebration">🎉</span> Finished!
                         </h4>
-                        <button className="btn btn-secondary mt-4" onClick={handleRestart}>Try Again</button>
+                        <button className="btn btn-secondary mt-4" onClick={() => handleRestart("test")}>Try Again</button>
                     </div>}
                     {(typeof finish === "object" || finish === "time out") && <div>
-                        <h4 className="mt-4">{failMessage(current?.progress, finish)}</h4>
+                        {mode === "test" && <h4 className="mt-4">{failMessage(current?.progress, finish)}</h4>}
                         {typeof finish === "object" && <div>
                             <div>The correct answer was:</div>
                             <div className="my-2">
@@ -217,8 +223,9 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                             </div>
                         </div>}
                         <div className="mt-3">
-                            <button className="btn btn-success mr-2" onClick={handleRestart}>Try Again</button>
-                            <button className="btn btn-danger ml-2" onClick={handleQuit}>Quit</button>
+                            <button className="btn btn-light mx-2" onClick={() => handleRestart("practice")}>Practice</button>
+                            <button className="btn btn-success mx-2" onClick={() => handleRestart("test")}>Test</button>
+                            <button className="btn btn-danger mx-2" onClick={handleQuit}>Quit</button>
                         </div>
                         <div onClick={handleQuit} className="my-3">
                             <Link to={studyLink}>

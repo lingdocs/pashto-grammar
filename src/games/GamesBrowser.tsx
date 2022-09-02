@@ -60,12 +60,7 @@ function ChapterDisplay({ chapter, user, handleClick, expanded }: {
                             </h5>
                         </div>
                         <div>
-                            <h4 className={done ? "clickable" : ""}>
-                                {done ? "✅"
-                                :
-                                    <Link to={studyLink}>{"📚"}</Link>
-                                }
-                            </h4>
+                            {done && <h4>✅</h4>}
                         </div>
                     </div>
                     <SmoothCollapse expanded={open}>
