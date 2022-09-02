@@ -27,10 +27,12 @@ function Header({ setNavOpen }) {
                 <div>
                     <h4 className="header-title link-unstyled mt-2"><Link to="/">Pashto Grammar</Link></h4>
                 </div>
-                <div className="mr-3 link-unstyled">
-                    <Link to="/account">
-                        <i className={`fas ${user ? "fa-user" : "fa-sign-in-alt"} fa-lg clickable`}></i>
-                    </Link>
+                <div className="d-flex flex-row justify-content-right align-items-center">
+                    <div className="mr-3 link-unstyled">
+                        <Link to="/account">
+                            <i className={`fas ${user ? "fa-user" : "fa-sign-in-alt"} fa-lg clickable`}></i>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </header>
