@@ -1752,12 +1752,12 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@lingdocs/lingdocs-main@^0.3.1":
-  version "0.3.1"
-  resolved "https://npm.lingdocs.com/@lingdocs%2flingdocs-main/-/lingdocs-main-0.3.1.tgz#b09b2d5e1881ee09db136618e28b7777471b66f6"
-  integrity sha512-TN8sAACCIjnGMFFYvkIp/tVis9z+LevasZrdG9VUrZlaNJ4U8GjbmgLeaY8VthwtivL+pFR1Gtp8BUb5ceeccw==
+"@lingdocs/lingdocs-main@^0.3.3":
+  version "0.3.3"
+  resolved "https://npm.lingdocs.com/@lingdocs%2flingdocs-main/-/lingdocs-main-0.3.3.tgz#31904ffd7a39a18afa93a14c52b97d904538ac52"
+  integrity sha512-npMJ/Zixlv2ZZ3EBPDNkVK074TCp6MLsi5xLtNeL3Lqa5BYCfS4wezaR8DueiUDcsFi2z4jah8/H61LAtzO3vg==
   dependencies:
-    "@lingdocs/pashto-inflector" "^2.5.5"
+    "@lingdocs/pashto-inflector" "^3.8.7"
     lokijs "^1.5.12"
     nano "^9.0.5"
     passport-github2 "^0.1.12"
@@ -1790,18 +1790,6 @@
     typographic-em-dashes "^1.0.2"
     typographic-en-dashes "^1.0.1"
     typographic-quotes "^1.2.1"
-
-"@lingdocs/pashto-inflector@^2.5.5":
-  version "2.5.5"
-  resolved "https://npm.lingdocs.com/@lingdocs%2fpashto-inflector/-/pashto-inflector-2.5.5.tgz#1d42acb3d7bc98400973d75d5a190f8b07ffa5e3"
-  integrity sha512-yIr1VpHGHkp+hEzMcaZProAYDrAJ+go/60Mky36piGLcFeuS4Kzg/LcrEW8aM+O55Qpgws4do6xEHJT2Hp/++Q==
-  dependencies:
-    classnames "^2.2.6"
-    jsurl2 "^2.1.0"
-    lz-string "^1.4.4"
-    pbf "^3.2.1"
-    rambda "^6.7.0"
-    react-select "^5.2.2"
 
 "@lingdocs/pashto-inflector@^3.8.7":
   version "3.8.7"

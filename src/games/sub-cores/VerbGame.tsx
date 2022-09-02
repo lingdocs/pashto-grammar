@@ -380,7 +380,6 @@ function makeVPS({ verb, subject, object, tense }: {
     const transitivity = (vps.verb.transitivity === "transitive" && vps.verb.canChangeTransitivity)
         ? "grammatically transitive"
         : vps.verb.transitivity;
-    console.log({ transitivity });
     return {
         ...vps,
         verb: {

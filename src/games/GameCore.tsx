@@ -71,6 +71,12 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
             logGameEvent("fail on game");
             setJustStruck(false);
             setFinish({ msg: "fail", answer: correct });
+            const result: AT.TestResult = {
+                done: false,
+                time: getTimestamp(),
+                id,
+            };
+            handleResult(result);
         }
     }
     function handleAdvance() {
@@ -131,6 +137,12 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
         setJustStruck(false);
         setFinish("time out");
         navigator.vibrate(errorVibration);
+        const result: AT.TestResult = {
+            done: false,
+            time: getTimestamp(),
+            id,
+        };
+        handleResult(result);
     }
     function getProgressWidth(): string {
         const num = !current
