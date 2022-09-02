@@ -143,6 +143,10 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
         slug: "intro",
     },
     {
+        import: games,
+        slug: "games",
+    },
+    {
         heading: "Equatives",
         subdirectory: "equatives",
         chapters: [
@@ -403,10 +407,6 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
                 slug: "unreal-conditionals",
             },
         ],
-    },
-    {
-        import: games,
-        slug: "games",
     },
     {
         heading: "Practice Tools 🔧",
