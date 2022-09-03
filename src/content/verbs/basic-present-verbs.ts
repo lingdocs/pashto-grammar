@@ -22,4 +22,5 @@ export const intransitivePastVerbs: T.VerbEntry[] = [
     {"ts":1527813994,"i":11676,"p":"لوېدل","f":"lwedul","g":"lwedul","e":"to fall, to tumble, go down, settle","c":"v. intrans.","tppp":"لوېد","tppf":"lwed","ec":"fall,falls,falling,fell,fallen"},
     {"ts":1527815216,"i":6630,"p":"راتلل","f":"raatlúl","g":"raatlul","e":"to come","c":"v. intrans. irreg.","psp":"راځ","psf":"raadz","ssp":"راش","ssf":"ráash","prp":"راغلل","prf":"ráaghlul","pprtp":"راغلی","pprtf":"raaghúley","tppp":"راغی","tppf":"ráaghey","noOo":true,"separationAtP":2,"separationAtF":3,"ec":"come,comes,coming,came,come"},
     {"ts":1527813710,"i":7321,"p":"زېږېدل","f":"zeGedul","g":"zegedul","e":"to be born, to appear, arise","c":"v. intrans.","ec":"be","ep":"born"},
+    {"ts":1527812759,"i":10796,"p":"کېناستل","f":"kenaastul","g":"kenaastul","e":"to sit down, to have a seat","c":"v. intrans. irreg.","psp":"کېن","psf":"ken","noOo":true,"separationAtP":2,"separationAtF":2,"ec":"sit,sits,sitting,sat","ep":"down"},
 ].map(entry => ({ entry }));

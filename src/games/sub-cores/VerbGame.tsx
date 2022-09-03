@@ -47,6 +47,8 @@ type Question = {
     phrase: { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string[] },
 };
 
+// TODO: Make a mechanism where we just create a list of words like "leedul", "wahul" and it searches them out of the pool of words in the grammar
+
 const transitivePastVerbs: T.VerbEntry[] = [
     {"ts":1527812275,"i":11698,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"},
     {"ts":1527815399,"i":14594,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"},
@@ -93,6 +95,9 @@ type VerbGameLevel = {
         | "futureVerb" | "imperative" | "intransitivePerfectivePast"
         | "intransitiveImperfectivePast" | "transitivePerfectivePast" | "transitiveImperfectivePast";
 }
+
+// TODO: Level where you create the formulas (seperate file)
+// level where you choose the right situation
 
 const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
     inChapter: boolean,
