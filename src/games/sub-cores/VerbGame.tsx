@@ -40,7 +40,7 @@ import { makePool } from "../../lib/pool";
 const kidsColor = "#017BFE";
 
 const amount = 10;
-const timeLimit = 200;
+const timeLimit = 130;
 
 type Question = {
     rendered: T.VPRendered,
