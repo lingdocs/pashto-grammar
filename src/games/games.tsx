@@ -106,46 +106,116 @@ export const equativeGameAllProduce = makeGameRecord({
 });
 
 // VERBS
-export const presentVerbGame = makeGameRecord({
-    title: "Write the present verb",
-    id: "present-verbs-write",
+export const presentVerbGame1 = makeGameRecord({
+    title: "Write the present verb (one)",
+    id: "present-verbs-write-1",
     link: "/verbs/present-verbs/",
-    level: "presentVerb",
+    level: { level: 1, type :"presentVerb" },
     SubCore: VerbGame,
 });
-export const subjunctiveVerbGame = makeGameRecord({
-    title: "Write the subjunctive verb",
-    id: "subjunctive-verbs-write",
+export const presentVerbGame2 = makeGameRecord({
+    title: "Write the present verb (mix)",
+    id: "present-verbs-write-2",
+    link: "/verbs/present-verbs/",
+    level: { level: 2, type :"presentVerb" },
+    SubCore: VerbGame,
+});
+export const subjunctiveVerbGame1 = makeGameRecord({
+    title: "Write the subjunctive verb (one)",
+    id: "subjunctive-verbs-write-1",
     link: "/verbs/subjunctive-verbs/",
-    level: "subjunctiveVerb",
+    level: { level: 1, type :"subjunctiveVerb" },
     SubCore: VerbGame,
 });
-export const futureVerbGame = makeGameRecord({
-    title: "Write the future verb",
-    id: "future-verbs-write",
+export const subjunctiveVerbGame2 = makeGameRecord({
+    title: "Write the subjunctive verb (mix)",
+    id: "subjunctive-verbs-write-2",
+    link: "/verbs/subjunctive-verbs/",
+    level: { level: 2, type :"subjunctiveVerb" },
+    SubCore: VerbGame,
+});
+export const futureVerbGame1 = makeGameRecord({
+    title: "Write the future verb (one)",
+    id: "future-verbs-write-1",
     link: "/verbs/future-verbs/",
-    level: "futureVerb",
+    level: { level: 1, type :"futureVerb" },
     SubCore: VerbGame,
 });
-export const imperativeVerbGame = makeGameRecord({
-    title: "Write the imperative verb",
-    id: "imperative-verbs-write",
+export const futureVerbGame2 = makeGameRecord({
+    title: "Write the future verb (mix)",
+    id: "future-verbs-write-2",
+    link: "/verbs/future-verbs/",
+    level: { level: 2, type :"futureVerb" },
+    SubCore: VerbGame,
+});
+export const imperativeVerbGame1 = makeGameRecord({
+    title: "Write the imperative verb (one)",
+    id: "imperative-verbs-write-1",
     link: "/verbs/imperative-verbs/",
-    level: "imperative",
+    level: { level: 1, type :"imperative" },
     SubCore: VerbGame,
 });
-export const intransitivePerfectivePastVerbGame = makeGameRecord({
-    title: "Write the intransitive simple past verb",
-    id: "intransitive-perfective-past-verbs-write",
-    link: "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
-    level: "intransitivePerfectivePast",
+export const imperativeVerbGame2 = makeGameRecord({
+    title: "Write the imperative verb (mix)",
+    id: "imperative-verbs-write-2",
+    link: "/verbs/imperative-verbs/",
+    level: { level: 2, type :"imperative" },
     SubCore: VerbGame,
 });
-export const intransitiveImperfectivePastVerbGame = makeGameRecord({
-    title: "Write the intransitive continuous past verb",
-    id: "transitive-imperfective-past-verbs-write",
+export const intransitivePerfectivePastVerbGame1 = makeGameRecord({
+    title: "Write the intransitive simple past verb (one)",
+    id: "intransitive-perfective-past-verbs-write-1",
+    link: "/verbs/past-verbs/#past-tense-with-intransitive-verbs-",
+    level: { level: 1, type :"intransitivePerfectivePast" },
+    SubCore: VerbGame,
+});
+export const intransitivePerfectivePastVerbGame2 = makeGameRecord({
+    title: "Write the intransitive simple past verb (mix)",
+    id: "intransitive-perfective-past-verbs-write-2",
+    link: "/verbs/past-verbs/#past-tense-with-intransitive-verbs-",
+    level: { level: 2, type :"intransitivePerfectivePast" },
+    SubCore: VerbGame,
+});
+export const intransitiveImperfectivePastVerbGame1 = makeGameRecord({
+    title: "Write the intransitive continuous past verb (one)",
+    id: "intransitive-imperfective-past-verbs-write-1",
+    link: "/verbs/past-verbs/#past-tense-with-intransitive-verbs-",
+    level: { level: 1, type :"intransitiveImperfectivePast" },
+    SubCore: VerbGame,
+});
+export const intransitiveImperfectivePastVerbGame2 = makeGameRecord({
+    title: "Write the intransitive continuous past verb (mix)",
+    id: "intransitive-imperfective-past-verbs-write-2",
+    link: "/verbs/past-verbs/#past-tense-with-intransitive-verbs-",
+    level: { level: 2, type :"intransitiveImperfectivePast" },
+    SubCore: VerbGame,
+});
+export const transitivePerfectivePastVerbGame1 = makeGameRecord({
+    title: "Write the transitive simple past verb (one)",
+    id: "transitive-perfective-past-verbs-write-1",
     link: "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
-    level: "intransitiveImperfectivePast",
+    level: { level: 1, type :"transitivePerfectivePast" },
+    SubCore: VerbGame,
+});
+export const transitivePerfectivePastVerbGame2 = makeGameRecord({
+    title: "Write the transitive simple past verb (mix)",
+    id: "transitive-perfective-past-verbs-write-2",
+    link: "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
+    level: { level: 2, type :"transitivePerfectivePast" },
+    SubCore: VerbGame,
+});
+export const transitiveImperfectivePastVerbGame1 = makeGameRecord({
+    title: "Write the transitive continuous past verb (one)",
+    id: "transitive-imperfective-past-verbs-write-1",
+    link: "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
+    level: { level: 1, type :"transitiveImperfectivePast" },
+    SubCore: VerbGame,
+});
+export const transitiveImperfectivePastVerbGame2 = makeGameRecord({
+    title: "Write the transitive continuous past verb (mix)",
+    id: "transitive-imperfective-past-verbs-write-2",
+    link: "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
+    level: { level: 2, type :"transitiveImperfectivePast" },
     SubCore: VerbGame,
 });
 
@@ -177,12 +247,22 @@ const games: { chapter: string, items: GameRecord[] }[] = [
     {
         chapter: "Verbs",
         items: [
-            presentVerbGame,
-            subjunctiveVerbGame,
-            futureVerbGame,
-            imperativeVerbGame,
-            intransitiveImperfectivePastVerbGame,
-            intransitivePerfectivePastVerbGame,
+            presentVerbGame1,
+            presentVerbGame2,
+            subjunctiveVerbGame1,
+            subjunctiveVerbGame2,
+            futureVerbGame1,
+            futureVerbGame2,
+            imperativeVerbGame1,
+            imperativeVerbGame2,
+            intransitiveImperfectivePastVerbGame1,
+            intransitiveImperfectivePastVerbGame2,
+            intransitivePerfectivePastVerbGame1,
+            intransitivePerfectivePastVerbGame2,
+            transitiveImperfectivePastVerbGame1,
+            transitiveImperfectivePastVerbGame2,
+            transitivePerfectivePastVerbGame1,
+            transitivePerfectivePastVerbGame2,
         ],
     }
 ];

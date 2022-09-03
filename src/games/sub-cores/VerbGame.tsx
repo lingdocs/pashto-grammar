@@ -30,7 +30,7 @@ import {
     kidsBlank,
     isPashtoScript,
 } from "@lingdocs/pashto-inflector";
-import { isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
+import { isPastTense, isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
 import { maybeShuffleArray } from "../../lib/shuffle-array";
 import { getVerbFromBlocks } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/blocks-utils";
 import { baParticle } from "@lingdocs/pashto-inflector/dist/lib/grammar-units";
@@ -46,6 +46,13 @@ type Question = {
     rendered: T.VPRendered,
     phrase: { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string[] },
 };
+
+const transitivePastVerbs: T.VerbEntry[] = [
+    {"ts":1527812275,"i":11698,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"},
+    {"ts":1527815399,"i":14594,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"},
+    {"ts":1527812790,"i":5840,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"},
+    {"ts":1527814596,"i":8398,"p":"شرمول","f":"shărmawul","g":"sharmawul","e":"to shame, to disgrace, to dishonor","c":"v. trans.","ec":"embarrass"},
+].map(entry => ({ entry })) as T.VerbEntry[]
 
 const verbs: T.VerbEntry[] = [
     {"ts":1527812856,"i":11630,"p":"لیکل","f":"leekul","g":"leekul","e":"to write, draw","c":"v. trans./gramm. trans.","ec":"write,writes,writing,wrote,written"},
@@ -90,8 +97,13 @@ const secondPersons = [
     T.Person.SecondPlurFemale,
 ];
 
-type VerbGameLevel = "presentVerb" | "subjunctiveVerb"
-    | "futureVerb" | "imperative" | "intransitivePerfectivePast" | "intransitiveImperfectivePast";
+type VerbGameLevel = {
+    /* 1 is just a single verb, 2 picks a random verb for every question */
+    level: 1 | 2,
+    type: "presentVerb" | "subjunctiveVerb"
+        | "futureVerb" | "imperative" | "intransitivePerfectivePast"
+        | "intransitiveImperfectivePast" | "transitivePerfectivePast" | "transitiveImperfectivePast";
+}
 
 const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
     inChapter: boolean,
@@ -100,16 +112,20 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
     level: VerbGameLevel,
  }) => {
     function* questions (): Generator<Current<Question>> {
-        const personPool = makePool(level === "imperative"
+        const personPool = makePool(level.type === "imperative"
             ? secondPersons
             : persons
         );
-        const verbPool = makePool(
-            level.includes("intransitive")
-                ? intransitivePastVerbs
-                : verbs,
-            30,
-        );
+        const verbsUsed = level.type.startsWith("intransitive")
+            ? intransitivePastVerbs
+            : level.type.startsWith("transitive")
+            ? transitivePastVerbs
+            : verbs;
+        const oneVerb = randFromArray(verbsUsed);
+        const verbPool = makePool(verbsUsed, 15);
+        const getVerb = level.level === 1
+            ? () => oneVerb
+            : () => verbPool();
         function makeRandomNoun(): T.NounSelection {
             const n = makeNounSelection(randFromArray(nouns), undefined);
             return {
@@ -142,21 +158,24 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
                     distance: randFromArray(["far", "near", "far"]),
                 };
             }
-            const verb = verbPool();
-            const subj = personPool();
-            let obj: T.Person;
+            const verb = getVerb();
+            const king = personPool();
+            let servant: T.Person;
             do {
-                obj = randomPerson();
-            } while (isInvalidSubjObjCombo(subj, obj));
+                servant = randomPerson();
+            } while (isInvalidSubjObjCombo(king, servant));
             // const tense = (l === "allIdentify" || l === "allProduce")
             //     ? randFromArray(tenses)
             //     : l;
             const tense = l;
             return makeVPS({
                 verb,
-                subject: personToNPSelection(subj),
-                object: personToNPSelection(obj),
+                king: personToNPSelection(king),
+                servant: personToNPSelection(servant),
                 tense,
+                defaultTransitivity: level.type.startsWith("transitive")
+                    ? "transitive"
+                    : "grammatically transitive",
             });
         }
         for (let i = 0; i < amount; i++) {
@@ -345,45 +364,53 @@ function addUserAnswer(a: { withBa: boolean, answer: string }, ps: T.PsString): 
 }
 
 
-function levelToDescription(level: VerbGameLevel): string {
-    return level === "presentVerb"
+function levelToDescription({ type }: VerbGameLevel): string {
+    return type === "presentVerb"
         ? "present"
-        : level === "subjunctiveVerb"
+        : type === "subjunctiveVerb"
         ? "subjunctive"
-        : level === "futureVerb"
+        : type === "futureVerb"
         ? "imperfective future or perfective future"
-        : level === "intransitivePerfectivePast"
+        : type === "intransitivePerfectivePast"
         ? "simple past intransitive"
-        : level === "intransitiveImperfectivePast"
+        : type === "intransitiveImperfectivePast"
         ? "continuous past intransitive"
+        : type === "transitiveImperfectivePast"
+        ? "continuous past transitive"
+        : type === "transitivePerfectivePast"
+        ? "simple past transitive"
         : "imperfective imperative or perfective imperative";
 }
 
-function levelToTense(level: VerbGameLevel): T.VerbTense | T.ImperativeTense {
-    return level === "presentVerb"
-        ? level
-        : level === "subjunctiveVerb"
-        ? level
-        : level === "futureVerb"
+function levelToTense({ type }: VerbGameLevel): T.VerbTense | T.ImperativeTense {
+    return type === "presentVerb"
+        ? type
+        : type === "subjunctiveVerb"
+        ? type
+        : type === "futureVerb"
         ? randFromArray(["perfectiveFuture", "imperfectiveFuture"])
-        : level === "imperative"
+        : type === "imperative"
         ? randFromArray(["perfectiveImperative", "imperfectiveImperative"])
-        : level.includes("ImperfectivePast")
+        : type.includes("ImperfectivePast")
         ? "imperfectivePast"
         // : level.includes("perfectivePast")
         : "perfectivePast";
 }
 
-function makeVPS({ verb, subject, object, tense }: {
+function makeVPS({ verb, king, servant, tense, defaultTransitivity }: {
     verb: T.VerbEntry,
-    subject: T.NPSelection,
-    object: T.NPSelection,
+    king: T.NPSelection,
+    servant: T.NPSelection,
     tense: T.VerbTense | T.ImperativeTense,
+    defaultTransitivity: "transitive" | "grammatically transitive"
 }): T.VPSelectionComplete {
     const vps = makeVPSelectionState(verb);
     const transitivity = (vps.verb.transitivity === "transitive" && vps.verb.canChangeTransitivity)
-        ? "grammatically transitive"
+        ? defaultTransitivity
         : vps.verb.transitivity;
+    const ergative = vps.verb.transitivity !== "intransitive" && isPastTense(tense);
+    const subject = ergative ? servant : king;
+    const object = ergative ? king : servant;
     return {
         ...vps,
         verb: {

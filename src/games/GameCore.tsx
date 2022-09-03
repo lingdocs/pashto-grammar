@@ -161,6 +161,15 @@ function GameCore<T>({ inChapter, questions, Display, timeLimit, Instructions, s
         ? "danger"
         : "primary";
     const gameRunning = current && finish === undefined;
+    function ActionButtons() {
+        return <div>
+            {!inChapter && <Link to={studyLink}>
+                <button className="btn btn-danger mt-4 mx-3">Study</button>
+            </Link>}
+            <button className="btn btn-warning mt-4 mx-3" onClick={() => handleRestart("practice")}>Practice</button>
+            <button className="btn btn-success mt-4 mx-3" onClick={() => handleRestart("test")}>Test</button>
+        </div>;
+    }
     return <>
         <div className="text-center" style={{ minHeight: "200px", zIndex: 10, position: "relative" }}>
             {mode === "test" && <div className="progress" style={{ height: "5px" }}>
@@ -200,13 +209,7 @@ function GameCore<T>({ inChapter, questions, Display, timeLimit, Instructions, s
                                     {/* TODO: ADD IN TEXT DISPLAY OPTIONS HERE TOO - WHEN WE START USING THEM*/}
                                     <Instructions />
                                 </div>
-                                <div>
-                                    {!inChapter && <Link to={studyLink}>
-                                        <button className="btn btn-danger mt-4 mx-3">Study</button>
-                                    </Link>}
-                                    <button className="btn btn-warning mt-4 mx-3" onClick={() => handleRestart("practice")}>Practice</button>
-                                    <button className="btn btn-success mt-4 mx-3" onClick={() => handleRestart("test")}>Test</button>
-                                </div>
+                                <ActionButtons />
                             </div>)
                     }
                     {finish === "pass" && <div>
@@ -224,14 +227,7 @@ function GameCore<T>({ inChapter, questions, Display, timeLimit, Instructions, s
                             </div>
                         </div>}
                         <div className="mt-3">
-                            <button className="btn btn-light mx-2" onClick={() => handleRestart("practice")}>Practice</button>
-                            <button className="btn btn-success mx-2" onClick={() => handleRestart("test")}>Test</button>
-                            <button className="btn btn-danger mx-2" onClick={handleQuit}>Quit</button>
-                        </div>
-                        <div onClick={handleQuit} className="my-3">
-                            <Link to={studyLink}>
-                                <button className="btn btn-outline-secondary"><span role="img" aria-label="">📚</span> Study more</button>
-                            </Link>
+                            <ActionButtons />
                         </div>
                     </div>}
                 </div>
