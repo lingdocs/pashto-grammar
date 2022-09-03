@@ -226,7 +226,7 @@ function GameCore<T>({ inChapter, questions, Display, timeLimit, Instructions, s
                                 {finish?.answer}
                             </div>
                         </div>}
-                        <div className="mt-3">
+                        <div className="my-3">
                             <ActionButtons />
                         </div>
                     </div>}

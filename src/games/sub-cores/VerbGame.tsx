@@ -75,19 +75,8 @@ const nouns: T.NounEntry[] = [
     {"ts":1527812661,"i":13938,"p":"هلک","f":"halík, halúk","g":"halik,haluk","e":"boy, young lad","c":"n. m. anim."},
 ].filter(tp.isNounEntry);
 
-const persons = [
-    T.Person.FirstSingMale,
-    T.Person.FirstSingFemale,
-    T.Person.SecondSingMale,
-    T.Person.SecondSingFemale,
-    T.Person.ThirdSingMale,
-    T.Person.ThirdSingFemale,
-    T.Person.FirstPlurMale,
-    T.Person.FirstPlurFemale,
-    T.Person.SecondPlurMale,
-    T.Person.SecondPlurFemale,
-    T.Person.ThirdPlurMale,
-    T.Person.ThirdPlurFemale,
+const persons: T.Person[] = [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
 ];
 
 const secondPersons = [

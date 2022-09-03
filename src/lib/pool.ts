@@ -11,6 +11,7 @@ import { randFromArray } from "@lingdocs/pashto-inflector";
 export function makePool<P>(poolBase: P[], removalLaxity = 0): () => P {
     let pool = [...poolBase];
     function shouldStillKeepIt() {
+        if (!removalLaxity) return false;
         return Math.random() < (removalLaxity / 100);
     }
     function pickRandomFromPool(): P {
@@ -18,14 +19,15 @@ export function makePool<P>(poolBase: P[], removalLaxity = 0): () => P {
         const pick = randFromArray(pool);
         // Remove the (first occurance of) the item from the pool
         // This step might be skipped if the removal laxity is set
-        if (removalLaxity && !shouldStillKeepIt()) {
-            const index = pool.findIndex(v => matches(v, pick))
-            if (index === -1) throw new Error("could not find pick from pool");
-            pool.splice(index, 1);
-            // If the pool is empty, reset it
-            if (pool.length === 0) {
-                pool = [...poolBase];
-            }
+        if (shouldStillKeepIt()) {
+            return pick;
+        }
+        const index = pool.findIndex(v => matches(v, pick))
+        if (index === -1) throw new Error("could not find pick from pool");
+        pool.splice(index, 1);
+        // If the pool is empty, reset it
+        if (pool.length === 0) {
+            pool = [...poolBase];
         }
         return pick;
     }
