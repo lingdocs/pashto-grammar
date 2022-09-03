@@ -26,7 +26,8 @@ const errorVibration = 200;
 
 const maxStrikes = 2;
 
-function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, id }:{
+function GameCore<T>({ inChapter, questions, Display, timeLimit, Instructions, studyLink, id }:{
+    inChapter: boolean,
     id: string,
     studyLink: string,
     Instructions: (props: { opts?: Types.TextOptions }) => JSX.Element,
@@ -200,9 +201,9 @@ function GameCore<T>({ questions, Display, timeLimit, Instructions, studyLink, i
                                     <Instructions />
                                 </div>
                                 <div>
-                                    <Link to={studyLink}>
+                                    {!inChapter && <Link to={studyLink}>
                                         <button className="btn btn-danger mt-4 mx-3">Study</button>
-                                    </Link>
+                                    </Link>}
                                     <button className="btn btn-warning mt-4 mx-3" onClick={() => handleRestart("practice")}>Practice</button>
                                     <button className="btn btn-success mt-4 mx-3" onClick={() => handleRestart("test")}>Test</button>
                                 </div>

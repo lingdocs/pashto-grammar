@@ -85,9 +85,14 @@ const exceptions: Record<string, CategorySet> = {
 };
 
 const amount = 35;
+type Question = T.DictionaryEntry;
 
-export default function GenderGame({level, id, link }: { level: 1 | 2, id: string, link: string }) {
-    function* questions () {
+export default function GenderGame({level, id, link, inChapter }: {
+    inChapter: boolean,
+    level: 1 | 2, id: string,
+    link: string,
+}) {
+    function* questions (): Generator<Current<Question>> {
         const wordPool = {...types};
         const exceptionsPool = {...exceptions};
         console.log(exceptionsPool);
@@ -108,8 +113,7 @@ export default function GenderGame({level, id, link }: { level: 1 | 2, id: strin
             };
         }
     }
-    
-    function Display({ question, callback }: QuestionDisplayProps<T.DictionaryEntry>) {
+    function Display({ question, callback }: QuestionDisplayProps<Question>) {
         function check(gender: T.Gender) {
             const nounGender: T.Gender = nounNotIn(mascNouns)(question) ? "fem" : "masc";
             const correct = gender === nounGender;
@@ -146,6 +150,7 @@ export default function GenderGame({level, id, link }: { level: 1 | 2, id: strin
     }
 
     return <GameCore
+        inChapter={inChapter}
         studyLink={link}
         questions={questions}
         id={id}

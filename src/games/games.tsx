@@ -3,152 +3,151 @@ import VerbGame from "./sub-cores/VerbGame";
 import GenderGame from "./sub-cores/GenderGame";
 import UnisexNounGame from "./sub-cores/UnisexNounGame";
 
-function makeGameRecord(
-    title: string,
-    id: string,
-    studyLink: string,
-    game: (id: string, link: string) => () => JSX.Element,
-): GameRecord {
-    return {
-        title,
-        studyLink,
-        id,
-        Game: game(id, studyLink),
-    }
-}
+// NOUNS
+export const nounGenderGame1 = makeGameRecord({
+    title: "Identify Noun Genders - Level 1",
+    id: "gender-nouns-1",
+    link: "/nouns/nouns-gender#gender-by-ending",
+    level: 1,
+    SubCore: GenderGame,
+});
+export const nounGenderGame2 = makeGameRecord({
+    title: "Identify Noun Genders - Level 2",
+    id: "gender-nouns-2",
+    link: "/nouns/nouns-gender#exceptions",
+    level: 2,
+    SubCore: GenderGame,
+});
+export const unisexNounGame = makeGameRecord({
+    title: "Changing genders on unisex nouns",
+    id: "unisex-nouns-1",
+    link: "/nouns/nouns-unisex/",
+    level: undefined,
+    SubCore: UnisexNounGame,
+});
 
-export const presentVerbGame = makeGameRecord(
-    "Write the present verb",
-    "present-verbs-write",
-    "/verbs/present-verbs/",
-    (id, link) => () => <VerbGame id={id} level="presentVerb" link={link} />
-);
-export const subjunctiveVerbGame = makeGameRecord(
-    "Write the subjunctive verb",
-    "subjunctive-verbs-write",
-    "/verbs/subjunctive-verbs/",
-    (id, link) => () => <VerbGame id={id} level="subjunctiveVerb" link={link} />
-);
-export const futureVerbGame = makeGameRecord(
-    "Write the future verb",
-    "future-verbs-write",
-    "/verbs/future-verbs/",
-    (id, link) => () => <VerbGame id={id} level="futureVerb" link={link} />
-);
-export const imperativeVerbGame = makeGameRecord(
-    "Write the imperative verb",
-    "imperative-verbs-write",
-    "/verbs/imperative-verbs/",
-    (id, link) => () => <VerbGame id={id} level="imperative" link={link} />
-);
-export const intransitivePerfectivePastVerbGame = makeGameRecord(
-    "Write the intransitive simple past verb",
-    "intransitive-perfective-past-verbs-write",
-    "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
-    (id, link) => () => <VerbGame id={id} level="intransitivePerfectivePast" link={link} />
-);
-export const intransitiveImperfectivePastVerbGame = makeGameRecord(
-    "Write the intransitive continuous past verb",
-    "transitive-imperfective-past-verbs-write",
-    "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
-    (id, link) => () => <VerbGame id={id} level="intransitiveImperfectivePast" link={link} />
-);
+// EQUATIVES
+export const equativeGamePresent = makeGameRecord({
+    title: "Write the present equative",
+    id: "equative-present",
+    link: "/equatives/present-equative/",
+    level: "present",
+    SubCore: EquativeGame,
+});
+export const equativeGameHabitual = makeGameRecord({
+    title: "Write the habitual  equative",
+    id: "equative-habitual",
+    link: "/equatives/habitual-equative/",
+    level: "habitual",
+    SubCore: EquativeGame,
+});
+export const equativeGameSubjunctive = makeGameRecord({
+    title: "Write the subjunctive equative",
+    id: "equative-subjunctive",
+    link: "/equatives/other-equatives/#subjunctive-equative",
+    level: "subjunctive",
+    SubCore: EquativeGame,
+});
+export const equativeGameFuture = makeGameRecord({
+    title: "Write the future equative",
+    id: "equative-future",
+    link: "/equatives/other-equatives/#future-equative",
+    level: "future",
+    SubCore: EquativeGame,
+});
+export const equativeGamePast = makeGameRecord({
+    title: "Write the past equative",
+    id: "equative-past",
+    link: "/equatives/other-equatives/#past-equative",
+    level: "past",
+    SubCore: EquativeGame,
+});
+export const equativeGameWouldBe = makeGameRecord({
+    title: 'Write the "would be" equative',
+    id: "equative-would-be",
+    link: "/equatives/other-equatives/#would-be-equative",
+    level: "wouldBe",
+    SubCore: EquativeGame,
+});
+export const equativeGamePastSubjunctive = makeGameRecord({
+    title: 'Write the past subjunctive equative',
+    id: "equative-past-subjunctive",
+    link: "/equatives/other-equatives/#past-subjunctive",
+    level: "pastSubjunctive",
+    SubCore: EquativeGame,
+});
+export const equativeGameWouldHaveBeen = makeGameRecord({
+    title: 'Write the "would have been" equative',
+    id: "equative-would-have-been",
+    link: "/equatives/other-equatives/#wold-have-been-equative",
+    level: "wouldHaveBeen",
+    SubCore: EquativeGame,
+});
+export const equativeGameAllIdentify = makeGameRecord({
+    title: "Identify the equative (all tenses)",
+    id: "equative-past-summary-identify",
+    link: "/equatives/other-equatives",
+    level: "allIdentify",
+    SubCore: EquativeGame,
+});
+export const equativeGameSituations = makeGameRecord({
+    title: "Choose the right equative for the situation",
+    id: "equative-past-situations",
+    link: "/equatives/other-equatives",
+    level: "situations",
+    SubCore: EquativeGame,
+});
+export const equativeGameAllProduce = makeGameRecord({
+    title: "Write the equative (all tenses)",
+    id: "equative-past-summary-produce",
+    link: "/equatives/other-equatives",
+    level: "allProduce",
+    SubCore: EquativeGame,
+});
 
-export const nounGenderGame1 = makeGameRecord(
-    "Identify Noun Genders - Level 1",
-    "gender-nouns-1",
-    "/nouns/nouns-gender#gender-by-ending",
-    (id, link) => () => <GenderGame id={id} level={1} link={link} />,
-);
-export const nounGenderGame2 = makeGameRecord(
-    "Identify Noun Genders - Level 2",
-    "gender-nouns-2",
-    "/nouns/nouns-gender#exceptions",
-    (id, link) => () => <GenderGame id={id} level={2} link={link} />,
-);
-export const unisexNounGame = makeGameRecord(
-    "Changing genders on unisex nouns",
-    "unisex-nouns-1",
-    "/nouns/nouns-unisex/",
-    (id, link) => () => <UnisexNounGame id={id} link={link} />,
-);
-
-export const equativeGamePresent = makeGameRecord(
-    "Write the present equative",
-    "equative-present",
-    "/equatives/present-equative/",
-    (id, link) => () => <EquativeGame id={id} link={link} level="present" />,
-);
-
-export const equativeGameHabitual = makeGameRecord(
-    "Write the habitual  equative",
-    "equative-habitual",
-    "/equatives/habitual-equative/",
-    (id, link) => () => <EquativeGame id={id} link={link} level="habitual" />,
-);
-
-export const equativeGameSubjunctive = makeGameRecord(
-    "Write the subjunctive equative",
-    "equative-subjunctive",
-    "/equatives/other-equatives/#subjunctive-equative",
-    (id, link) => () => <EquativeGame id={id} link={link} level="subjunctive" />,
-);
-
-export const equativeGameFuture = makeGameRecord(
-    "Write the future equative",
-    "equative-future",
-    "/equatives/other-equatives/#future-equative",
-    (id, link) => () => <EquativeGame id={id} link={link} level="future" />,
-);
-
-export const equativeGamePast = makeGameRecord(
-    "Write the past equative",
-    "equative-past",
-    "/equatives/other-equatives/#past-equative",
-    (id, link) => () => <EquativeGame id={id} link={link} level="past" />,
-);
-
-export const equativeGameWouldBe = makeGameRecord(
-    'Write the "would be" equative',
-    "equative-would-be",
-    "/equatives/other-equatives/#would-be-equative",
-    (id, link) => () => <EquativeGame id={id} link={link} level="wouldBe" />,
-);
-
-export const equativeGamePastSubjunctive = makeGameRecord(
-    'Write the past subjunctive equative',
-    "equative-past-subjunctive",
-    "/equatives/other-equatives/#past-subjunctive",
-    (id, link) => () => <EquativeGame id={id} link={link} level="pastSubjunctive" />,
-);
-
-export const equativeGameWouldHaveBeen = makeGameRecord(
-    'Write the "would have been" equative',
-    "equative-would-have-been",
-    "/equatives/other-equatives/#wold-have-been-equative",
-    (id, link) => () => <EquativeGame id={id} link={link} level="wouldHaveBeen" />,
-);
-
-export const equativeGameAllIdentify = makeGameRecord(
-    "Identify the equative (all tenses)",
-    "equative-past-summary-identify",
-    "/equatives/other-equatives",
-    (id, link) => () => <EquativeGame id={id} link={link} level="allIdentify" />,
-);
-
-export const equativeGameSituations = makeGameRecord(
-    "Choose the right equative for the situation",
-    "equative-past-situations",
-    "/equatives/other-equatives",
-    (id, link) => () => <EquativeGame id={id} link={link} level="situations" />,
-);
-
-export const equativeGameAllProduce = makeGameRecord(
-    "Write the equative (all tenses)",
-    "equative-past-summary-produce",
-    "/equatives/other-equatives",
-    (id, link) => () => <EquativeGame id={id} link={link} level="allProduce" />,
-);
+// VERBS
+export const presentVerbGame = makeGameRecord({
+    title: "Write the present verb",
+    id: "present-verbs-write",
+    link: "/verbs/present-verbs/",
+    level: "presentVerb",
+    SubCore: VerbGame,
+});
+export const subjunctiveVerbGame = makeGameRecord({
+    title: "Write the subjunctive verb",
+    id: "subjunctive-verbs-write",
+    link: "/verbs/subjunctive-verbs/",
+    level: "subjunctiveVerb",
+    SubCore: VerbGame,
+});
+export const futureVerbGame = makeGameRecord({
+    title: "Write the future verb",
+    id: "future-verbs-write",
+    link: "/verbs/future-verbs/",
+    level: "futureVerb",
+    SubCore: VerbGame,
+});
+export const imperativeVerbGame = makeGameRecord({
+    title: "Write the imperative verb",
+    id: "imperative-verbs-write",
+    link: "/verbs/imperative-verbs/",
+    level: "imperative",
+    SubCore: VerbGame,
+});
+export const intransitivePerfectivePastVerbGame = makeGameRecord({
+    title: "Write the intransitive simple past verb",
+    id: "intransitive-perfective-past-verbs-write",
+    link: "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
+    level: "intransitivePerfectivePast",
+    SubCore: VerbGame,
+});
+export const intransitiveImperfectivePastVerbGame = makeGameRecord({
+    title: "Write the intransitive continuous past verb",
+    id: "transitive-imperfective-past-verbs-write",
+    link: "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
+    level: "intransitiveImperfectivePast",
+    SubCore: VerbGame,
+});
 
 const games: { chapter: string, items: GameRecord[] }[] = [
     {
@@ -189,3 +188,19 @@ const games: { chapter: string, items: GameRecord[] }[] = [
 ];
 
 export default games;
+
+function makeGameRecord<T>({ title, id, link, level, SubCore }:{
+    title: string,
+    id: string,
+    link: string,
+    level: T,
+    SubCore: GameSubCore<T>,
+}): GameRecord {
+    return {
+        title,
+        id,
+        Game: ({ inChapter }: { inChapter: boolean }) => (
+            <SubCore inChapter={inChapter} id={id} level={level} link={link} />
+        ),
+    }
+}

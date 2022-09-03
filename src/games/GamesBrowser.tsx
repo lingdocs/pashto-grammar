@@ -48,7 +48,7 @@ function ChapterDisplay({ chapter, user, handleClick, expanded }: {
             </div>
         </div>
         <SmoothCollapse expanded={expanded}>
-            {chapter.items.map(({ id, title, Game, studyLink }) => {
+            {chapter.items.map(({ id, title, Game }) => {
                 const done = user && user.tests.some(t => t.id === id);
                 const open = opened === id;
                 return <div key={id}>
@@ -64,7 +64,7 @@ function ChapterDisplay({ chapter, user, handleClick, expanded }: {
                         </div>
                     </div>
                     <SmoothCollapse expanded={open}>
-                        <Game />
+                        <Game inChapter={false} />
                     </SmoothCollapse>
                 </div>
             })}

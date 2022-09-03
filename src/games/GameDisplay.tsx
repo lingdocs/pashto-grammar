@@ -15,7 +15,7 @@ function GameDisplay({ record: { title, Game, id } }: { record: GameRecord }) {
                 <h4>{completed ? "✅" : ""}</h4>
             </div>
         </div>
-        <Game />
+        <Game inChapter />
     </div>;
 }
 

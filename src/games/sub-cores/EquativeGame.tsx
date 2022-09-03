@@ -189,7 +189,7 @@ const pronounTypes = [
     [T.Person.ThirdPlurMale, T.Person.ThirdPlurFemale],
 ];
 
-export default function EquativeGame({ id, link, level }: { id: string, link: string, level: T.EquativeTense | "allProduce" | "allIdentify" | "situations" }) {
+export default function EquativeGame({ inChapter, id, link, level }: { inChapter: boolean, id: string, link: string, level: T.EquativeTense | "allProduce" | "allIdentify" | "situations" }) {
     function* questions (): Generator<Current<Question>> {
         let pool = [...pronounTypes];
         let situationPool = [...situations];
@@ -414,6 +414,7 @@ export default function EquativeGame({ id, link, level }: { id: string, link: st
     }
 
     return <GameCore
+        inChapter={inChapter}
         studyLink={link}
         questions={questions}
         id={id}

@@ -8,6 +8,13 @@ type Current<T> = {
     question: T,
 };
 
+type GameSubCore<T> = (props: {
+    inChapter: boolean,
+    id: string,
+    level: T,
+    link: string;
+}) => JSX.Element;
+
 type QuestionGenerator<T> = Generator<Current<T>, void, unknown>;
 
 type QuestionDisplayProps<T> = {
@@ -18,6 +25,5 @@ type QuestionDisplayProps<T> = {
 type GameRecord = {
     title: string,
     id: string,
-    studyLink: string,
-    Game: () => JSX.Element,
+    Game: (props: { inChapter: boolean }) => JSX.Element,
 };

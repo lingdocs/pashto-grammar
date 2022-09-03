@@ -93,11 +93,12 @@ const secondPersons = [
 type VerbGameLevel = "presentVerb" | "subjunctiveVerb"
     | "futureVerb" | "imperative" | "intransitivePerfectivePast" | "intransitiveImperfectivePast";
 
-export default function VerbGame({ id, link, level }: {
+const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
+    inChapter: boolean,
     id: string,
     link: string,
     level: VerbGameLevel,
- }) {
+ }) => {
     function* questions (): Generator<Current<Question>> {
         const personPool = makePool(level === "imperative"
             ? secondPersons
@@ -248,6 +249,7 @@ export default function VerbGame({ id, link, level }: {
     }
 
     return <GameCore
+        inChapter={inChapter}
         studyLink={link}
         questions={questions}
         id={id}
@@ -256,6 +258,8 @@ export default function VerbGame({ id, link, level }: {
         Instructions={Instructions}
     />
 };
+
+export default VerbGame;
 
 function QuestionDisplay({ question, userAnswer }: {
     question: Question,
