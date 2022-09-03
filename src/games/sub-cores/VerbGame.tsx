@@ -39,8 +39,8 @@ import { makePool } from "../../lib/pool";
 
 const kidsColor = "#017BFE";
 
-const amount = 10;
-const timeLimit = 130;
+const amount = 12;
+const timeLimit = 140;
 
 type Question = {
     rendered: T.VPRendered,
