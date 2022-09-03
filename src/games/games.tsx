@@ -206,7 +206,7 @@ export const transitivePerfectivePastVerbGame2 = makeGameRecord({
 });
 export const transitiveImperfectivePastVerbGame1 = makeGameRecord({
     title: "Write the transitive continuous past verb (one)",
-    id: "transitive-imperfective-past-verbs-write-1",
+    id: "transitive-imperfective-past-verbs-write",
     link: "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
     level: { level: 1, type :"transitiveImperfectivePast" },
     SubCore: VerbGame,

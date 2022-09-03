@@ -20,6 +20,17 @@ import habitualContinuousPast from "./habitual-continuous-past.svg";
 import unoReverseMeme from "./uno-reverse-meme.jpg";
 import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
 import BasicVerbShowCase from "../../components/BasicVerbShowCase";
+import {
+    intransitiveImperfectivePastVerbGame1,
+    intransitiveImperfectivePastVerbGame2,
+    intransitivePerfectivePastVerbGame1,
+    intransitivePerfectivePastVerbGame2,
+    transitiveImperfectivePastVerbGame1,
+    transitiveImperfectivePastVerbGame2,
+    transitivePerfectivePastVerbGame1,
+    transitivePerfectivePastVerbGame2,
+} from "../../games/games";
+import GameDisplay from "../../games/GameDisplay";
 
 Past tense verbs in Pashto are famous for being very difficult and confusing for the learner. Thankfully there are some very simple rules that we can learn, and with a little practice (ok, a *lot* of practice) you'll find there's nothing scary about the past tense in Pashto at all.
 
@@ -74,6 +85,10 @@ It uses the <i className="fas fa-camera" /> **perfective root** because it's loo
 
 Notice how when you can use the *short or the long* version of the roots.
 
+<GameDisplay record={intransitivePerfectivePastVerbGame1} />
+
+<GameDisplay record={intransitivePerfectivePastVerbGame2} />
+
 ### Continuous Past
 
 The continuous past tense is used for:
@@ -92,6 +107,10 @@ The continuous past uses the <i className="fas fa-video" /> **imperfective root*
 </Formula>
 
 <BasicVerbShowCase opts={opts} tense="imperfectivePast" />
+
+<GameDisplay record={intransitiveImperfectivePastVerbGame1} />
+
+<GameDisplay record={intransitiveImperfectivePastVerbGame2} />
 
 ## Past tense with transitive verbs 😵
 
@@ -137,6 +156,10 @@ The tenses (simple and continous past) stay the same and the formulas for making
     {"blocks":[{"key":0.7215647271503056,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.5243897934182491,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812564,"i":6538,"p":"ډوډۍ","f":"DoDúy","g":"DoDuy","e":"bread, food, meal","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812790,"i":5795,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
 
+<GameDisplay record={transitivePerfectivePastVerbGame1} />
+
+<GameDisplay record={transitivePerfectivePastVerbGame2} />
+
 ### Examples with continous past
 
 <Formula>
@@ -159,6 +182,10 @@ The tenses (simple and continous past) stay the same and the formulas for making
 <EditableVPEx opts={opts} long>{
     {"blocks":[{"key":0.7215647271503056,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.5243897934182491,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812564,"i":6538,"p":"ډوډۍ","f":"DoDúy","g":"DoDuy","e":"bread, food, meal","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812790,"i":5795,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
 }</EditableVPEx>
+
+<GameDisplay record={transitiveImperfectivePastVerbGame1} />
+
+<GameDisplay record={transitiveImperfectivePastVerbGame2} />
 
 ## Habitual Past Tenses
 
