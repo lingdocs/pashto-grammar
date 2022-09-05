@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
     comparePs,
-    makeProgress,
 } from "../../lib/game-utils";
 import GameCore from "../GameCore";
 import {
@@ -95,6 +94,26 @@ type VerbGameLevel = {
         | "futureVerb" | "imperative" | "intransitivePerfectivePast"
         | "intransitiveImperfectivePast" | "transitivePerfectivePast" | "transitiveImperfectivePast";
 }
+type VerbPoolName = "basic" | "transitivePast" | "intransitivePast";
+
+function selectVerbPool({ type }: VerbGameLevel): VerbPoolName {
+    return type === "presentVerb"
+        ? "basic"
+        : type === "futureVerb"
+        ? "basic"
+        : type === "subjunctiveVerb"
+        ? "basic"
+        : type === "imperative"
+        ? "basic"
+        : type === "intransitiveImperfectivePast"
+        ? "intransitivePast"
+        : type === "intransitivePerfectivePast"
+        ? "intransitivePast"
+        : type === "transitiveImperfectivePast"
+        ? "transitivePast"
+        // : type === "transitivePerfectivePast"
+        : "transitivePast";
+}
 
 // TODO: Level where you create the formulas (seperate file)
 // level where you choose the right situation
@@ -105,93 +124,87 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
     link: string,
     level: VerbGameLevel,
  }) => {
-    function* questions (): Generator<Current<Question>> {
-        const personPool = makePool(level.type === "imperative"
-            ? secondPersons
-            : persons
-        );
-        const verbsUsed = level.type.startsWith("intransitive")
-            ? intransitivePastVerbs
-            : level.type.startsWith("transitive")
-            ? transitivePastVerbs
-            : verbs;
-        const oneVerb = randFromArray(verbsUsed);
-        const verbPool = makePool(verbsUsed, 15);
-        const getVerb = level.level === 1
-            ? () => oneVerb
-            : () => verbPool();
-        function makeRandomNoun(): T.NounSelection {
-            const n = makeNounSelection(randFromArray(nouns), undefined);
-            return {
-                ...n,
-                gender: n.genderCanChange ? randFromArray(["masc", "fem"]) : n.gender,
-                number: n.numberCanChange ? randFromArray(["singular", "plural"]) : n.number,
-            };
-        }
-        function makeRandomVPS(l: T.VerbTense | T.ImperativeTense): T.VPSelectionComplete {
-            function personToNPSelection(p: T.Person): T.NPSelection {
-                if (isThirdPerson(p)) {
-                    return {
-                        type: "NP",
-                        selection: randFromArray([
-                            () => makePronounS(p),
-                            makeRandomNoun,
-                            () => makePronounS(p),
-                        ])(),
-                    };
-                }
+    const personPool = makePool(level.type === "imperative"
+        ? secondPersons
+        : persons
+    );
+    const verbPools: Record<VerbPoolName, () => T.VerbEntry> = {
+        basic: makePool(verbs, 15),
+        transitivePast: makePool(transitivePastVerbs, 15),
+        intransitivePast: makePool(intransitivePastVerbs, 15),
+    };
+    const oneVerb: T.VerbEntry = verbPools[selectVerbPool(level)]();
+    const getVerb = level.level === 1
+        ? () => oneVerb
+        : () => verbPools[selectVerbPool(level)]();
+    function makeRandomNoun(): T.NounSelection {
+        const n = makeNounSelection(randFromArray(nouns), undefined);
+        return {
+            ...n,
+            gender: n.genderCanChange ? randFromArray(["masc", "fem"]) : n.gender,
+            number: n.numberCanChange ? randFromArray(["singular", "plural"]) : n.number,
+        };
+    }
+    function makeRandomVPS(l: T.VerbTense | T.ImperativeTense): T.VPSelectionComplete {
+        function personToNPSelection(p: T.Person): T.NPSelection {
+            if (isThirdPerson(p)) {
                 return {
                     type: "NP",
-                    selection: makePronounS(p),
+                    selection: randFromArray([
+                        () => makePronounS(p),
+                        makeRandomNoun,
+                        () => makePronounS(p),
+                    ])(),
                 };
             }
-            function makePronounS(p: T.Person): T.PronounSelection {
-                return {
-                    type: "pronoun",
-                    person: p,
-                    distance: randFromArray(["far", "near", "far"]),
-                };
-            }
-            const verb = getVerb();
-            const king = personPool();
-            let servant: T.Person;
-            do {
-                servant = randomPerson();
-            } while (isInvalidSubjObjCombo(king, servant));
-            // const tense = (l === "allIdentify" || l === "allProduce")
-            //     ? randFromArray(tenses)
-            //     : l;
-            const tense = l;
-            return makeVPS({
-                verb,
-                king: personToNPSelection(king),
-                servant: personToNPSelection(servant),
-                tense,
-                defaultTransitivity: level.type.startsWith("transitive")
-                    ? "transitive"
-                    : "grammatically transitive",
-            });
+            return {
+                type: "NP",
+                selection: makePronounS(p),
+            };
         }
-        for (let i = 0; i < amount; i++) {
-            const VPS = makeRandomVPS(levelToTense(level));
-            const VP = renderVP(VPS);
-            const compiled = compileVP(
-                VP,
-                { removeKing: false, shrinkServant: false },
-                true,
-                { ba: true, verb: true },
-            );
-            const phrase = {
-                ps: compiled.ps,
-                e: compiled.e,
+        function makePronounS(p: T.Person): T.PronounSelection {
+            return {
+                type: "pronoun",
+                person: p,
+                distance: randFromArray(["far", "near", "far"]),
             };
-            yield {
-                progress: makeProgress(i, amount),
-                question: {
-                    rendered: VP,
-                    phrase,
-                },
-            };
+        }
+        const verb = getVerb();
+        const king = personPool();
+        let servant: T.Person;
+        do {
+            servant = randomPerson();
+        } while (isInvalidSubjObjCombo(king, servant));
+        // const tense = (l === "allIdentify" || l === "allProduce")
+        //     ? randFromArray(tenses)
+        //     : l;
+        const tense = l;
+        return makeVPS({
+            verb,
+            king: personToNPSelection(king),
+            servant: personToNPSelection(servant),
+            tense,
+            defaultTransitivity: level.type.startsWith("transitive")
+                ? "transitive"
+                : "grammatically transitive",
+        });
+    }
+    function getQuestion(): Question {
+        const VPS = makeRandomVPS(levelToTense(level));
+        const VP = renderVP(VPS);
+        const compiled = compileVP(
+            VP,
+            { removeKing: false, shrinkServant: false },
+            true,
+            { ba: true, verb: true },
+        );
+        const phrase = {
+            ps: compiled.ps,
+            e: compiled.e,
+        };
+        return {
+            rendered: VP,
+            phrase,
         };
     }
 
@@ -208,7 +221,7 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
             if (correct) {
                 setAnswer("");
             }
-            callback(!correct ? makeCorrectAnswer(question) : true);
+            callback(correct);
         }
         // useEffect(() => {
         //     if (level === "allProduce") setWithBa(false);
@@ -264,10 +277,12 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
     return <GameCore
         inChapter={inChapter}
         studyLink={link}
-        questions={questions}
+        getQuestion={getQuestion}
         id={id}
         Display={Display}
+        DisplayCorrectAnswer={DisplayCorrectAnswer}
         timeLimit={timeLimit}
+        amount={amount}
         Instructions={Instructions}
     />
 };
@@ -307,7 +322,7 @@ function QuestionDisplay({ question, userAnswer }: {
     </div>;
 }
 
-function makeCorrectAnswer(question: Question): JSX.Element {
+function DisplayCorrectAnswer({ question }: { question: Question }): JSX.Element {
     return <div>
         <div>
             {getVerbPs(question.rendered).reduce(((accum, curr, i): JSX.Element[] => (

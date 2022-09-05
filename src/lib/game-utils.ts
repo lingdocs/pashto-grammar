@@ -7,31 +7,10 @@ import {
     flattenLengths,
 } from "@lingdocs/pashto-inflector";
 
-export function makeRandomQs<Q>(
-    amount: number,
-    makeQuestion: () => Q
-): () => QuestionGenerator<Q> {
-    function makeProgress(i: number, total: number): Progress {
-        return { current: i + 1, total };
-    }
-    return function* () {
-        for (let i = 0; i < amount; i++) {
-            yield {
-                progress: makeProgress(i, amount),
-                question: makeQuestion(),
-            };
-        }
-    }
-}
-
-export function getPercentageDone(progress: Progress): number {
+export function getPercentageDone(current: number, total: number): number {
     return Math.round(
-        (progress.current / (progress.total + 1)) * 100
+        (current / (total + 1)) * 100
     );
-}
-
-export function makeProgress(i: number, total: number): Progress {
-    return { current: i + 1, total };
 }
 
 /**

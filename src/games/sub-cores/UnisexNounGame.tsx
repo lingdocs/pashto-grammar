@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-    makeProgress,
     comparePs,
 } from "../../lib/game-utils";
 import genderColors from "../../lib/gender-colors";
@@ -28,29 +27,24 @@ const amount = 20;
 type Question = { entry: T.DictionaryEntry, gender: T.Gender };
 
 export default function UnisexNounGame({ id, link, inChapter }: { inChapter: boolean, id: string, link: string }) {
-    function* questions (): Generator<Current<Question>> {
-        let pool = { ...types };
-        for (let i = 0; i < amount; i++) {
-            const keys = Object.keys(types) as NType[];
-            let type: NType
-            do {
-               type = randFromArray(keys);
-            } while (!pool[type].length);
-            const entry = randFromArray<T.UnisexNounEntry>(
-                // @ts-ignore
-                pool[type]
-            );
-            const gender = randFromArray(genders) as T.Gender;
+    let pool = { ...types };
+    function getQuestion(): Question {
+        const keys = Object.keys(types) as NType[];
+        let type: NType
+        do {
+            type = randFromArray(keys);
+        } while (!pool[type].length);
+        const entry = randFromArray<T.UnisexNounEntry>(
             // @ts-ignore
-            pool[type] = pool[type].filter((x) => x.ts !== entry.ts);
-            yield {
-                progress: makeProgress(i, amount),
-                question: {
-                    entry,
-                    gender,
-                },
-            };
-        }
+            pool[type]
+        );
+        const gender = randFromArray(genders) as T.Gender;
+        // @ts-ignore
+        pool[type] = pool[type].filter((x) => x.ts !== entry.ts);
+        return {
+            entry,
+            gender,
+        };
     }
     
     function Display({ question, callback }: QuestionDisplayProps<Question>) {
@@ -81,14 +75,7 @@ export default function UnisexNounGame({ id, link, inChapter }: { inChapter: boo
             if (correct) {
                 setAnswer("");
             }
-            callback(!correct
-                ? <div>
-                    {correctAnswer.length > 1 && <div className="text-muted">One of the following:</div>}
-                    {correctAnswer.map((ps) => (
-                        <Examples opts={opts}>{ps}</Examples>
-                    ))}
-                </div>
-                : true);
+            callback(correct);
         }
         
         return <div>
@@ -128,12 +115,28 @@ export default function UnisexNounGame({ id, link, inChapter }: { inChapter: boo
         </div>
     }
 
+    function DisplayCorrectAnswer({ question }: { question: Question }) {
+        const infOut = inflectWord(question.entry);
+        if (!infOut) return <div>WORD ERROR</div>;
+        const { inflections } = infOut;
+        // @ts-ignore
+        const correctAnswer = inflections[flipGender(question.gender)][0];
+        return <div>
+            {correctAnswer.length > 1 && <div className="text-muted">One of the following:</div>}
+            {correctAnswer.map((ps: any) => (
+                <Examples opts={opts}>{ps}</Examples>
+            ))}
+        </div>;
+    }
+
     return <GameCore
         inChapter={inChapter}
         studyLink={link}
-        questions={questions}
+        getQuestion={getQuestion}
         id={id}
         Display={Display}
+        DisplayCorrectAnswer={DisplayCorrectAnswer}
+        amount={amount}
         timeLimit={130}
         Instructions={Instructions}
     />

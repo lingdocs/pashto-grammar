@@ -2,6 +2,8 @@ import EquativeGame from "./sub-cores/EquativeGame";
 import VerbGame from "./sub-cores/VerbGame";
 import GenderGame from "./sub-cores/GenderGame";
 import UnisexNounGame from "./sub-cores/UnisexNounGame";
+import EquativeSituations from "./sub-cores/EquativeSituations";
+import EquativeIdentify from "./sub-cores/EquativeIdentify";
 
 // NOUNS
 export const nounGenderGame1 = makeGameRecord({
@@ -87,21 +89,21 @@ export const equativeGameAllIdentify = makeGameRecord({
     title: "Identify the equative (all tenses)",
     id: "equative-past-summary-identify",
     link: "/equatives/other-equatives",
-    level: "allIdentify",
-    SubCore: EquativeGame,
+    level: "allTenses",
+    SubCore: EquativeIdentify,
 });
 export const equativeGameSituations = makeGameRecord({
     title: "Choose the right equative for the situation",
     id: "equative-past-situations",
     link: "/equatives/other-equatives",
     level: "situations",
-    SubCore: EquativeGame,
+    SubCore: EquativeSituations,
 });
 export const equativeGameAllProduce = makeGameRecord({
     title: "Write the equative (all tenses)",
     id: "equative-past-summary-produce",
     link: "/equatives/other-equatives",
-    level: "allProduce",
+    level: "allTenses",
     SubCore: EquativeGame,
 });
 

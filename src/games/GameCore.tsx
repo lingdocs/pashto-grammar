@@ -23,32 +23,186 @@ import ReactGA from "react-ga";
 import { isProd } from "../lib/isProd";
 import autoAnimate from "@formkit/auto-animate";
 const errorVibration = 200;
+const strikesToFail = 3;
 
-const maxStrikes = 2;
+type GameState<Question> = ({
+    mode: "practice",
+    showAnswer: boolean,
+} | {
+    mode: "intro" | "test" | "fail" | "timeout" | "complete",
+    showAnswer: false,
+}) & {
+    numberComplete: number,
+    current: Question,
+    timerKey: number,
+    strikes: number,
+    justStruck: boolean,
+}
 
-function GameCore<T>({ inChapter, questions, Display, timeLimit, Instructions, studyLink, id }:{
+type GameReducerAction = {
+    type: "handle question response",
+    payload: { correct: boolean },
+} | {
+    type: "start",
+    payload: "practice" | "test",
+} | {
+    type: "quit",
+} | {
+    type: "timeout",
+} | {
+    type: "show answer",
+} | {
+    type: "skip",
+}
+
+function GameCore<Question>({ inChapter, getQuestion, amount, Display, DisplayCorrectAnswer, timeLimit, Instructions, studyLink, id }: {
     inChapter: boolean,
     id: string,
     studyLink: string,
     Instructions: (props: { opts?: Types.TextOptions }) => JSX.Element,
-    questions: () => QuestionGenerator<T>,
-    Display: (props: QuestionDisplayProps<T>) => JSX.Element,
-    timeLimit: number;
+    getQuestion: () => Question,
+    DisplayCorrectAnswer: (props: { question: Question }) => JSX.Element,
+    Display: (props: QuestionDisplayProps<Question>) => JSX.Element,
+    timeLimit: number,
+    amount: number,
 }) {
+    const initialState: GameState<Question> = {
+        mode: "intro",
+        numberComplete: 0,
+        current: getQuestion(),
+        timerKey: 0,
+        strikes: 0,
+        justStruck: false,
+        showAnswer: false,
+    };
     // TODO: report pass with id to user info
     const rewardRef = useRef<RewardElement | null>(null);
     const parent = useRef<HTMLDivElement | null>(null);
     const { user, pullUser, setUser } = useUser();
-    const [mode, setMode] = useState<"practice" | "test">("test");
-    const [finish, setFinish] = useState<undefined | "pass" | { msg: "fail", answer: JSX.Element } | "time out">(undefined);
-    const [strikes, setStrikes] = useState<number>(0);
-    const [justStruck, setJustStruck] = useState<boolean>(false);
-    const [current, setCurrent] = useState<Current<T> | undefined>(undefined);
-    const [questionBox, setQuestionBox] = useState<QuestionGenerator<T>>(questions());
-    const [timerKey, setTimerKey] = useState<number>(1);
+    const [state, setStateDangerous] = useState<GameState<Question>>(initialState);
     useEffect(() => {
         parent.current && autoAnimate(parent.current)
     }, [parent]);
+
+    const gameReducer = (gs: GameState<Question>, action: GameReducerAction): GameState<Question> => {
+        if (action.type === "handle question response") {
+            if (gs.mode === "test") {
+                if (action.payload.correct) {
+                    const numberComplete = gs.numberComplete + 1;
+                    if (numberComplete === amount) {
+                        logGameEvent("passed");
+                        rewardRef.current?.rewardMe();
+                        handleResult(true);
+                        return {
+                            ...gs,
+                            numberComplete,
+                            justStruck: false,
+                            mode: "complete",
+
+                        }
+                    } else {
+                        return {
+                            ...gs,
+                            numberComplete,
+                            current: getQuestion(),
+                            justStruck: false,
+                        };
+                    }
+                } else {
+                    punish();
+                    const strikes = gs.strikes + 1;
+                    if (strikes === strikesToFail) {
+                        logGameEvent("fail");
+                        handleResult(false);
+                        return {
+                            ...gs,
+                            strikes,
+                            mode: "fail",
+                            justStruck: false,
+                        };
+                    } else {
+                        return {
+                            ...gs,
+                            strikes,
+                            justStruck: true,
+                        };
+                    }
+                }
+            }
+            else /* (gs.mode === "practice") */ {
+                if (action.payload.correct) {
+                    const numberComplete = gs.numberComplete + 1;
+                    return {
+                        ...gs,
+                        numberComplete,
+                        current: getQuestion(),
+                        justStruck: false,
+                        showAnswer: false,
+                    };
+                } else {
+                    punish();
+                    const strikes = gs.strikes + 1;
+                    return {
+                        ...gs,
+                        strikes,
+                        justStruck: true,
+                        showAnswer: false,
+                    };
+                }
+            }
+        }
+        if (action.type === "start") {
+            logGameEvent(`started ${action.payload}`);
+            return {
+                ...initialState,
+                mode: action.payload,
+                current: getQuestion(),
+                timerKey: gs.timerKey + 1,
+            }
+        }
+        if (action.type === "quit") {
+            return {
+                ...initialState,
+                timerKey: gs.timerKey + 1,
+            }
+        }
+        if (action.type === "timeout") {
+            logGameEvent("timeout");
+            handleResult(false);
+            return {
+                ...gs,
+                mode: "timeout",
+                justStruck: false,
+                showAnswer: false,
+            };
+        }
+        if (action.type === "show answer") {
+            if (gs.mode === "practice" && gs.justStruck) {
+                return {
+                    ...gs,
+                    justStruck: false,
+                    showAnswer: true,
+                };
+            }
+            return gs;
+        }
+        if (action.type === "skip") {
+            if (gs.mode === "practice") {
+                return {
+                    ...gs,
+                    current: getQuestion(),
+                    justStruck: false,
+                    showAnswer: false, 
+                };
+            }
+            return gs;
+        }
+        throw new Error("unknown GameReducerAction");
+    }
+
+    function dispatch(action: GameReducerAction) {
+        setStateDangerous(gs => gameReducer(gs, action));
+    }
 
     function logGameEvent(action: string) {
         if (isProd && !(user?.admin)) {
@@ -59,35 +213,15 @@ function GameCore<T>({ inChapter, questions, Display, timeLimit, Instructions, s
             });
         }
     }
-
-    function handleCallback(correct: true | JSX.Element) {
-        if (correct === true) {
-            handleAdvance();
-            return;
-        }
-        setStrikes(s => s + 1);
+    function punish() {
         navigator.vibrate(errorVibration);
-        if (strikes < maxStrikes) {
-            setJustStruck(true);
-        } else {
-            logGameEvent("fail on game");
-            setJustStruck(false);
-            setFinish({ msg: "fail", answer: correct });
-            const result: AT.TestResult = {
-                done: false,
-                time: getTimestamp(),
-                id,
-            };
-            handleResult(result);
-        }
     }
-    function handleAdvance() {
-        setJustStruck(false);
-        const next = questionBox.next();
-        if (next.done) handleFinish();
-        else setCurrent(next.value);
-    }
-    function handleResult(result: AT.TestResult) {
+    function handleResult(done: boolean) {
+        const result: AT.TestResult = {
+            done,
+            time: getTimestamp(),
+            id,
+        };
         // add the test to the user object
         if (!user) return;
         setUser((u) => {
@@ -105,127 +239,105 @@ function GameCore<T>({ inChapter, questions, Display, timeLimit, Instructions, s
             if (r === "sent") pullUser();
         }).catch(console.error);
     }
-    function handleFinish() {
-        logGameEvent("passed game")
-        setFinish("pass");
-        rewardRef.current?.rewardMe();
-        if (!user) return;
-        const result: AT.TestResult = {
-            done: true,
-            time: getTimestamp(),
-            id,
-        };
-        handleResult(result);
-    }
-    function handleQuit() {
-        setFinish(undefined);
-        setCurrent(undefined);
-    }
-    function handleRestart(mode: "test" | "practice") {
-        logGameEvent(`started game ${mode}`);
-        setMode(mode);
-        const newQuestionBox = questions();
-        const { value } = newQuestionBox.next();
-        // just for type safety -- the generator will have at least one question
-        if (!value) return;
-        setQuestionBox(newQuestionBox);
-        setJustStruck(false);
-        setStrikes(0);
-        setFinish(undefined);
-        setCurrent(value);
-        setTimerKey(prev => prev + 1);
-    }
-    function handleTimeOut() {
-        logGameEvent("timeout on game");
-        setJustStruck(false);
-        setFinish("time out");
-        navigator.vibrate(errorVibration);
-        const result: AT.TestResult = {
-            done: false,
-            time: getTimestamp(),
-            id,
-        };
-        handleResult(result);
-    }
     function getProgressWidth(): string {
-        const num = !current
+        const num = !state.current
             ? 0
-            : (finish === "pass")
+            : (state.mode === "complete")
             ? 100
-            : getPercentageDone(current.progress);
+            : getPercentageDone(state.numberComplete, amount);
         return `${num}%`;
     }
-    const progressColor = finish === "pass"
+    const progressColor = state.mode === "complete"
         ? "success"
-        : typeof finish === "object"
+        : (state.mode === "fail" || state.mode === "timeout")
         ? "danger"
         : "primary";
-    const gameRunning = current && finish === undefined;
+    const gameRunning = state.mode === "practice" || state.mode === "test";
     function ActionButtons() {
         return <div>
             {!inChapter && <Link to={studyLink}>
                 <button className="btn btn-danger mt-4 mx-3">Study</button>
             </Link>}
-            <button className="btn btn-warning mt-4 mx-3" onClick={() => handleRestart("practice")}>Practice</button>
-            <button className="btn btn-success mt-4 mx-3" onClick={() => handleRestart("test")}>Test</button>
+            <button className="btn btn-warning mt-4 mx-3" onClick={() => dispatch({ type: "start", payload: "practice" })}>Practice</button>
+            <button className="btn btn-success mt-4 mx-3" onClick={() => dispatch({ type: "start", payload: "test" })}>Test</button>
         </div>;
     }
     return <>
         <div className="text-center" style={{ minHeight: "200px", zIndex: 10, position: "relative" }}>
-            {mode === "test" && <div className="progress" style={{ height: "5px" }}>
+            {(state.mode === "test" || state.mode === "intro") && <div className="progress" style={{ height: "5px" }}>
                 <div className={`progress-bar bg-${progressColor}`} role="progressbar" style={{ width: getProgressWidth() }} />
             </div>}
-            {current && <div className="d-flex flex-row justify-content-between mt-2">
-                <StrikesDisplay strikes={strikes} />
-                <div className="d-flex flex-row-reverse">
-                    {mode === "test" && <CountdownCircleTimer
-                        key={timerKey}
-                        isPlaying={!!current && !finish}
+            <div className="d-flex flex-row justify-content-between mt-2">
+                {state.mode === "test" && <StrikesDisplay strikes={state.strikes} />}
+                {state.mode === "practice" && <PracticeStatusDisplay
+                    correct={state.numberComplete}
+                    incorrect={state.strikes}
+                />}
+                <div className="d-flex flex-row justify-content-right">
+                    {state.mode === "test" && <CountdownCircleTimer
+                        key={state.timerKey}
+                        isPlaying={gameRunning}
                         size={30}
                         colors={["#555555", "#F7B801", "#A30000"]}
                         colorsTime={[timeLimit, timeLimit*0.33, 0]}
                         strokeWidth={4}
                         strokeLinecap="square"
                         duration={timeLimit}
-                        onComplete={handleTimeOut}
+                        onComplete={() => dispatch({ type: "timeout" })}
                     />}
-                    <button onClick={handleQuit} className="btn btn-outline-secondary btn-sm mr-2">Quit</button>
+                    {state.mode !== "intro" && <button onClick={() => dispatch({ type: "quit" })} className="btn btn-outline-secondary btn-sm ml-2">
+                        Quit
+                    </button>}
                 </div>
-            </div>}
-            {mode === "test" && <div ref={parent}>
-                {justStruck && <div className="alert alert-warning my-2" role="alert" style={{ maxWidth: "300px", margin: "0 auto" }}>
+            </div>
+            <div ref={parent}>
+                {state.justStruck && <div className="alert alert-warning my-2" role="alert" style={{ maxWidth: "300px", margin: "0 auto" }}>
                     {getStrikeMessage()}
                 </div>}
-            </div>}
+            </div>
             <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 150, zIndex: 999999999 }} type="confetti">
                 <div>
-                    {finish === undefined &&
-                        (current 
-                            ? <div>
-                                <Display question={current.question} callback={handleCallback} />
-                            </div>
-                            : <div>
-                                <div className="pt-3">
-                                    {/* TODO: ADD IN TEXT DISPLAY OPTIONS HERE TOO - WHEN WE START USING THEM*/}
-                                    <Instructions />
-                                </div>
-                                <ActionButtons />
-                            </div>)
-                    }
-                    {finish === "pass" && <div>
+                    {state.mode === "intro" && <div>
+                        <div className="pt-3">
+                            {/* TODO: ADD IN TEXT DISPLAY OPTIONS HERE TOO - WHEN WE START USING THEM*/}
+                            <Instructions />
+                        </div>
+                        <ActionButtons />
+                    </div>}
+                    {gameRunning && <Display
+                        question={state.current}
+                        callback={(correct) => dispatch({ type: "handle question response", payload: { correct }})}
+                    />}
+                    {(state.mode === "practice" && state.justStruck) && <div className="my-3">
+                        <button className="btn btn-sm btn-secondary" onClick={() => dispatch({ type: "show answer" })}>
+                            Show Answer
+                        </button>
+                    </div>}
+                    {(state.showAnswer && state.mode === "practice") && <div className="my-2">
+                        <div>The correct answer was:</div>
+                        <div className="my-1">
+                            <DisplayCorrectAnswer question={state.current} />
+                        </div>
+                        <button className="btn btn-sm btn-primary my-2" onClick={() => dispatch({ type: "skip" })}>
+                            Next Question
+                        </button>
+                    </div>}
+                    {state.mode === "complete" && <div>
                         <h4 className="mt-4">
                             <span role="img" aria-label="celebration">🎉</span> Finished!
                         </h4>
-                        <button className="btn btn-secondary mt-4" onClick={() => handleRestart("test")}>Try Again</button>
+                        <button className="btn btn-secondary mt-4" onClick={() => dispatch({ type: "start", payload: "test" })}>Try Again</button>
                     </div>}
-                    {(typeof finish === "object" || finish === "time out") && <div>
-                        {mode === "test" && <h4 className="mt-4">{failMessage(current?.progress, finish)}</h4>}
-                        {typeof finish === "object" && <div>
-                            <div>The correct answer was:</div>
-                            <div className="my-2">
-                                {finish?.answer}
-                            </div>
-                        </div>}
+                    {(state.mode === "timeout" || state.mode === "fail") && <div className="mb-4">
+                        <h4 className="mt-4">{failMessage({
+                            numberComplete: state.numberComplete,
+                            amount,
+                            type: state.mode,
+                        })}</h4>
+                        <div>The correct answer was:</div>
+                        <div className="my-2">
+                            <DisplayCorrectAnswer question={state.current} />
+                        </div>
                         <div className="my-3">
                             <ActionButtons />
                         </div>
@@ -246,6 +358,13 @@ function GameCore<T>({ inChapter, questions, Display, timeLimit, Instructions, s
     </>;
 }
 
+function PracticeStatusDisplay({ correct, incorrect }: { correct: number, incorrect: number }) {
+    return <div className="d-flex flex-row justify-content-between align-items-center small">
+        <div className="mr-3">✅ <samp>Correct: {correct}</samp></div>
+        <div>❌ <samp>Incorrect: {incorrect}</samp></div>
+    </div>
+}
+
 function StrikesDisplay({ strikes }: { strikes: number }) {
     return <div>
         {[...Array(strikes)].map(_ => <span key={Math.random()} className="mr-2">❌</span>)}
@@ -262,8 +381,12 @@ function getStrikeMessage() {
     ]);
 }
 
-function failMessage(progress: Progress | undefined, finish: "time out" | { msg: "fail", answer: JSX.Element }): string {
-    const pDone = progress ? getPercentageDone(progress) : 0;
+function failMessage({ numberComplete, amount, type }: {
+    numberComplete: number,
+    amount: number,
+    type: "timeout" | "fail",
+}): string {
+    const pDone = getPercentageDone(numberComplete, amount);
     const { message, face } = pDone < 20
         ? { message: "No, sorry", face: "😑" }
         : pDone < 30
@@ -273,7 +396,7 @@ function failMessage(progress: Progress | undefined, finish: "time out" | { msg:
         : pDone < 78
         ? { message: "You almost got it!", face: "😩" }
         : { message: "Nooo! So close!", face: "😭" };
-    return typeof finish === "object"
+    return type === "fail"
         ? `${message} ${face}`
         : `⏳ Time's Up ${face}`;
 }

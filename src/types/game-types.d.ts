@@ -3,11 +3,6 @@ type Progress = {
     current: number,
 };
 
-type Current<T> = {
-    progress: Progress,
-    question: T,
-};
-
 type GameSubCore<T> = (props: {
     inChapter: boolean,
     id: string,
@@ -15,11 +10,9 @@ type GameSubCore<T> = (props: {
     link: string;
 }) => JSX.Element;
 
-type QuestionGenerator<T> = Generator<Current<T>, void, unknown>;
-
 type QuestionDisplayProps<T> = {
     question: T,
-    callback: (correct: true | JSX.Element) => void,
+    callback: (correct: boolean) => void,
 };
 
 type GameRecord = {
