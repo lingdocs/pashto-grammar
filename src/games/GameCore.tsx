@@ -268,11 +268,13 @@ function GameCore<Question>({ inChapter, getQuestion, amount, Display, DisplayCo
                 <div className={`progress-bar bg-${progressColor}`} role="progressbar" style={{ width: getProgressWidth() }} />
             </div>}
             <div className="d-flex flex-row justify-content-between mt-2">
-                {state.mode === "test" && <StrikesDisplay strikes={state.strikes} />}
-                {state.mode === "practice" && <PracticeStatusDisplay
-                    correct={state.numberComplete}
-                    incorrect={state.strikes}
-                />}
+                {state.mode === "test"
+                    ? <StrikesDisplay strikes={state.strikes} />
+                    : state.mode === "practice" ? <PracticeStatusDisplay
+                            correct={state.numberComplete}
+                            incorrect={state.strikes}
+                        />
+                    : <div />}
                 <div className="d-flex flex-row justify-content-right">
                     {state.mode === "test" && <CountdownCircleTimer
                         key={state.timerKey}
@@ -296,7 +298,7 @@ function GameCore<Question>({ inChapter, getQuestion, amount, Display, DisplayCo
                 </div>}
             </div>
             <Reward ref={rewardRef} config={{ lifetime: 130, spread: 90, elementCount: 150, zIndex: 999999999 }} type="confetti">
-                <div>
+                <div className="mb-2">
                     {state.mode === "intro" && <div>
                         <div className="pt-3">
                             {/* TODO: ADD IN TEXT DISPLAY OPTIONS HERE TOO - WHEN WE START USING THEM*/}

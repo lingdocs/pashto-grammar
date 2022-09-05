@@ -81,7 +81,7 @@ const exceptions: Record<string, CategorySet> = {
     },
 };
 
-const amount = 30;
+const amount = 25;
 type Question = T.DictionaryEntry;
 
 export default function GenderGame({level, id, link, inChapter }: {
