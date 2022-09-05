@@ -131,7 +131,7 @@ function GameCore<Question>({ inChapter, getQuestion, amount, Display, DisplayCo
             }
             else /* (gs.mode === "practice") */ {
                 if (action.payload.correct) {
-                    const numberComplete = gs.numberComplete + 1;
+                    const numberComplete = gs.numberComplete + (!gs.showAnswer ? 1 : 0);
                     return {
                         ...gs,
                         numberComplete,
