@@ -1,4 +1,4 @@
 module.exports = [
-    { ts: 1527819253 },
-    { ts: 1527812566 },
+    1527819253, // shUroo kawul
+    1527812566, // doka kawul
 ];

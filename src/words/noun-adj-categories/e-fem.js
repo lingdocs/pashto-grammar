@@ -1,25 +1,25 @@
 module.exports = [
-    { ts: 1568926976497, e: `x-ray` }, // اکسرې - iksre
-    { ts: 1602179757779, e: `alphabet` }, // الف بې - alif be
-    { ts: 1527813840, e: `ashes` }, // ایرې - eere
-    { ts: 1527816692, e: `glasses, spectacles` }, // اینکې - aynake
-    { ts: 1527819286, e: `stairs, steps, staircase` }, // پاشتقې - paashtáqe
-    { ts: 1527816299, e: `money (plural of پېسې)` }, // پیسې - peyse
-    { ts: 1527814529, e: `buttermilk` }, // تروې - turwe
-    { ts: 1527816369, e: `widow, woman` }, // تورسرې - torsăre
-    { ts: 1577408787088, e: `sprey (as in a medicinal spray)` }, // سپرې - spre
-    { ts: 1527822255, e: `break of dawn, first light of day, sunrise` }, // سپېدې - spedé
-    { ts: 1626765107329, e: `chickenpox, chicken pox` }, // شرې - sharé
-    { ts: 1527815008, e: `milk` }, // شودې - shoode
-    { ts: 1527822131, e: `raw rice, unprocessed rice` }, // شولې - shole
-    { ts: 1527815009, e: `milk (plural of شيده)` }, // شیدې - sheede
-    { ts: 1527823571, e: `spit, saliva` }, // ښیالمې - xyaalmé
-    { ts: 1527816530, e: `sister in law` }, // ښینې - xeene
-    { ts: 1527823567, e: `spit, saliva, slobber, slime` }, // لاړې - laaRe
-    { ts: 1527822275, e: `dishes, pots, pans` }, // لوښې - looxe
-    { ts: 1617443138210, e: `urine, pee, piss` }, // مچیازې - michyaaze, muchyaaze
-    { ts: 1527814420, e: `yogurt` }, // مستې - maste
-    { ts: 1577999538077, e: `a sound/cry used to drive sheep on` }, // هرې - hire
-    { ts: 1586551382412, e: `rice` }, // وریژې - wreejze
-    { ts: 1527820261, e: `plow, plowing, plough, ploughing` }, // یوې - yuwe
+    1568926976497, // اکسرې - iksre
+    1602179757779, // الف بې - alif be
+    1527813840, // ایرې - eere
+    1527816692, // اینکې - aynake
+    1527819286, // پاشتقې - paashtáqe
+    1527816299, // پیسې - peyse
+    1527814529, // تروې - turwe
+    1527816369, // تورسرې - torsăre
+    1577408787088, // سپرې - spre
+    1527822255, // سپېدې - spedé
+    1626765107329, // شرې - sharé
+    1527815008, // شودې - shoode
+    1527822131, // شولې - shole
+    1527815009, // شیدې - sheede
+    1527823571, // ښیالمې - xyaalmé
+    1527816530, // ښینې - xeene
+    1527823567, // لاړې - laaRe
+    1527822275, // لوښې - looxe
+    1617443138210, // مچیازې - michyaaze, muchyaaze
+    1527814420, // مستې - maste
+    1577999538077, // هرې - hire
+    1586551382412, // وریژې - wreejze
+    1527820261, // یوې - yuwe
 ];

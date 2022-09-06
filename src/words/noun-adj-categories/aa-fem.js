@@ -7,30 +7,30 @@
  */
 
 module.exports = [
-    { ts: 1527813115, e: "claim" }, // ادعا - idaa
-    { ts: 1527818119, e: "stick, walking staff, walking stick, crutch" }, // امسا - amsaa
-    { ts: 1527815043, e: "punishment, retribution" }, // جزا - jazaa
-    { ts: 1527819022, e: "well, water-hole" }, // څا - tsaa
-    { ts: 1527814225, e: "mistake, error, blunder" }, // خطا - khataa
-    { ts: 1610797589510, e: "cavity, emptiness, vacuum, empty space, space (as in planets etc.)" }, // خلا - khaláa
-    { ts: 1527812582, e: "prayer" }, // دعا - dUaa
-    { ts: 1527813415, e: "medicine, medication" }, // دوا - dawaa
-    { ts: 1527812272, e: "light, glory" }, // رڼا - raNaa
-    { ts: 1527823245, e: "dream, vision" }, // رویا - rooyáa
-    { ts: 1586596579414, e: "council (an institution)" }, // شورا - shooraa
-    { ts: 1527815984, e: "beauty" }, // ښکلا - xkulaa
-    { ts: 1527817670, e: "theft, robbery, stealing" }, // غلا - ghlaa
-    { ts: 1527814362, e: "cow" }, // غوا - ghwaa
-    { ts: 1585487002625, e: "castle, fort, fortress" }, // قلا - qaláa
-    { ts: 1527812048, e: "meaning, sense, spirit" }, // مانا - maanaa
-    { ts: 1527815483, e: "back (body part)" }, // ملا - mlaa
-    { ts: 1527812230, e: "friendship" }, // ملګرتیا - malgurtiyaa
-    { ts: 1527812910, e: "hospitality; invitation, event, party, banquet, reception" }, // مېلمستیا - melmastiyaa
-    { ts: 1617781446945, e: "sickness, illness" }, // ناجوړتیا - naajoRtiyaa, naajoRtyaa
-    { ts: 1527815120, e: "grandmother" }, // نیا - niyaa
-    { ts: 1527811740, e: "incompleteness, default, shortcoming" }, // نیمګړتیا - neemguRtiyaa
-    { ts: 1527821040, e: "plague, cholera" }, // وبا - wabáa
-    { ts: 1527823534, e: "ability, capacity, capability, power, volumeá" }, // وړتیا - waRtiyáa
-    { ts: 1610443988250, e: "division, distribution" }, // وېشلتیا - weshiltyaa, weshiltiyaa
-    { ts: 1527816806, e: "speech, statement" }, // وینا - waynaa    
+    1527813115, // ادعا - idaa
+    1527818119, // امسا - amsaa
+    1527815043, // جزا - jazaa
+    1527819022, // څا - tsaa
+    1527814225, // خطا - khataa
+    1610797589510, // خلا - khaláa
+    1527812582, // دعا - dUaa
+    1527813415, // دوا - dawaa
+    1527812272, // رڼا - raNaa
+    1527823245, // رویا - rooyáa
+    1586596579414, // شورا - shooraa
+    1527815984, // ښکلا - xkulaa
+    1527817670, // غلا - ghlaa
+    1527814362, // غوا - ghwaa
+    1585487002625, // قلا - qaláa
+    1527812048, // مانا - maanaa
+    1527815483, // ملا - mlaa
+    1527812230, // ملګرتیا - malgurtiyaa
+    1527812910, // مېلمستیا - melmastiyaa
+    1617781446945, // ناجوړتیا - naajoRtiyaa, naajoRtyaa
+    1527815120, // نیا - niyaa
+    1527811740, // نیمګړتیا - neemguRtiyaa
+    1527821040, // وبا - wabáa
+    1527823534, // وړتیا - waRtiyáa
+    1610443988250, // وېشلتیا - weshiltyaa, weshiltiyaa
+    1527816806, // وینا - waynaa    
 ];

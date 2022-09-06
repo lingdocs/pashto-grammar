@@ -7,6 +7,8 @@ import {
 } from "@lingdocs/pashto-inflector";
 import { categorize } from "../lib/categorize";
 
+
+// TODO: BIG ISSUE WITH THE LOC ADVERBS BEING LUMPED INTO THE ADVERBS!
 const words = categorize<T.Entry, {
     nouns: T.NounEntry[],
     adjectives: T.AdjectiveEntry[],

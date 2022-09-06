@@ -7,12 +7,12 @@
  */
 
 module.exports = [
-	{ ts: 1577383674332, e: "to howl" },// انګولل - to howl, wail
-	{ ts: 1527818962, e: "to sneeze" },// پرنجل - to sneeze
-	{ ts: 1527821425, e: "to cough" },// ټوخل - to cough
-	{ ts: 1527812767, e: "to laugh" },// خندل - to laugh
-	{ ts: 1605360223155, e: "to jump" },// دنګل - to jump, leap, run, race
-	{ ts: 1605360127430, e: "to swing" },// زنګل - to swing, rock (back and forth)
-	{ ts: 1527812717, e: "to swing" },// ژړل - to cry
-	{ ts: 1591899573844, e: "to dance" },// نڅل - to dance	
+	1577383674332,// انګولل - to howl, wail
+	1527818962,// پرنجل - to sneeze
+	1527821425,// ټوخل - to cough
+	1527812767,// خندل - to laugh
+	1605360223155,// دنګل - to jump, leap, run, race
+	1605360127430,// زنګل - to swing, rock (back and forth)
+	1527812717,// ژړل - to cry
+	1591899573844,// نڅل - to dance	
 ]

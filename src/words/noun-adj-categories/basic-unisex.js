@@ -7,122 +7,122 @@
  */
 
 module.exports = [
-    { ts: 1527815408, e: "asleep" }, // ویده - weedú
-    { ts: 1527812796, e: "good" }, // ښه - xu
-    { ts: 1527821744, e: "cook, chef" }, // آشپز - aashpáz
-    { ts: 1527812461, e: "hero, brave" }, // اتل - atul
-    { ts: 1527821649, e: "impressive, effective, influencing" }, // اثرناک - asarnáak
-    { ts: 1527818704, e: "wide, spacious, extensive" }, // ارت - arát
-    { ts: 1578340121962, e: "free, independant" }, // ازاد - azáad
-    { ts: 1527819418, e: "independant, autonomous" }, // خپلواک - khpulwaak
-    { ts: 1527817146, e: "resident; settled" }, // استوګن - astogan
-    { ts: 1527813713, e: "hopeful, pregnant" }, // امیدوار - Umeedwaar
-    { ts: 1527819451, e: "Englishman, English (adjective)" }, // انګرېز - angréz
-    { ts: 1527820346, e: "on-line" }, // انلاین - anlaayn
-    { ts: 1527813667, e: "important" }, // اهم - aham
-    { ts: 1598724912198, e: "dry" }, // اوچ - ooch
-    { ts: 1527815138, e: "insurgent" }, // اورپک - orpak
-    { ts: 1586452587974, e: "free, available" }, // اوزګار - oozgáar
-    { ts: 1527816489, e: "faithful, believer" }, // ایماندار - eemaandaar
-    { ts: 1527820433, e: "valiant" }, // باتور - baatóor
-    { ts: 1527813425, e: "stingy" }, // بخیل - bakheel
-    { ts: 1527812511, e: "bad" }, // بد - bud, bad
-    { ts: 1527812518, e: "equal, even, set up" }, // برابر - buraabur
-    { ts: 1527811861, e: "naked" }, // بربنډ - barbunD
-    { ts: 1527811511, e: "full, complete" }, // بشپړ - bushpuR
-    { ts: 1527812515, e: "other, next" }, // بل - bul
-    { ts: 1527815725, e: "knowledgeable, accustomed" }, // بلد - balad
-    { ts: 1577301753727, e: "closed" }, // بند - band
-    { ts: 1527812490, e: "useless" }, // بې کار - be kaar
-    { ts: 1527812031, e: "separate, different" }, // بېل - bel
-    { ts: 1527815144, e: "clean, pure" }, // پاک - paak
-    { ts: 1527815201, e: "hidden" }, // پټ - puT
-    { ts: 1527815179, e: "wide" }, // پلن - plun
-    { ts: 1527819059, e: "thick, fat" }, // پنډ - punD
-    { ts: 1611767359178, e: "compassionate" }, // ترسناک - tarsnáak
-    { ts: 1527813270, e: "sour" }, // تروش - troosh
-    { ts: 1527813817, e: "narrow, cramped" }, // تنګ - tang
-    { ts: 1527816354, e: "ready" }, // تیار - tayaar
-    { ts: 1527817056, e: "sharp, fast" }, // تېز - tez
-    { ts: 1527814076, e: "societal, social" }, // ټولنیز - Toluneez
-    { ts: 1527819864, e: "low" }, // ټیټ - TeeT
-    { ts: 1527811894, e: "firm, tough, rigid" }, // ټینګ - Teeng
-    { ts: 1527812943, e: "constant, stable, proven" }, // ثابت - saabit
-    { ts: 1527813085, e: "heavy, difficult" }, // ثقیل - saqeel
-    { ts: 1527820479, e: "ignorant" }, // جاهل - jaahíl
-    { ts: 1588160800930, e: "surgeon" }, // جراح - jarráah
-    { ts: 1527812707, e: "high, tall" }, // جګ - jig, jug
-    { ts: 1527816944, e: "clear, evident" }, // جوت - jawat
-    { ts: 1527822996, e: "alongside, adjoining" }, // جوخت - jokht
-    { ts: 1527812711, e: "well, healthy" }, // جوړ - joR
-    { ts: 1527816323, e: "shining, sparkling" }, // ځلاند - dzalaand
-    { ts: 1527812291, e: "young, youthful" }, // ځوان - dzwaan
-    { ts: 1527820112, e: "hanging" }, // ځوړند - dzwáRund
-    { ts: 1527819672, e: "crafty" }, // چالاک - chaaláak
-    { ts: 1527811230, e: "quick, fast" }, // چټک - chaTak
-    { ts: 1527812524, e: "started, in motion" }, // چلان - chalaan
-    { ts: 1527815370, e: "clear, apparent" }, // څرګند - tsărgund
-    { ts: 1576366107077, e: "straight, upright" }, // څک - tsak
-    { ts: 1527812113, e: "present, on hand, ready" }, // حاضر - haazir, haazur
-    { ts: 1527820699, e: "pregnant, carrying" }, // حامل - haamíl
-    { ts: 1527819824, e: "greedy" }, // حریص - harées
-    { ts: 1527812669, e: "sensitive" }, // حساس - hasaas
-    { ts: 1527812057, e: "raw, unripe" }, // خام - khaam
-    { ts: 1527811523, e: "traitor, treacherous" }, // خاین - khaayin
-    { ts: 1527814219, e: "relative, one's own" }, // خپل - khpul
-    { ts: 1527812795, e: "relative" }, // خپلوان - khpulwaan
-    { ts: 1527812808, e: "poor, miserable" }, // خوار - khwaar
-    { ts: 1527814880, e: "tall" }, // دنګ - dung
-    { ts: 1527812537, e: "assured" }, // ډاډمن - DaaDmun
-    { ts: 1527812583, e: "full" }, // ډک - Duk
-    { ts: 1527822674, e: "gaunt" }, // ډنګر - Dungár, Dangár
-    { ts: 1527817256, e: "sunk" }, // ډوب - Doob
-    { ts: 1527814277, e: "healthy" }, // روغ - rogh
-    { ts: 1609780006604, e: "fruitful" }, // زرخېز - zarkhéz
-    { ts: 1527817116, e: "green, flourishing" }, // زرغون - zarghoon
-    { ts: 1527814026, e: "golden" }, // زرین - zareen
-    { ts: 1567594312839, e: "brave" }, // زړه ور - zuRawár
-    { ts: 1527815848, e: "committed" }, // ژمن - jzman
-    { ts: 1527813498, e: "light" }, // سپک - spuk
-    { ts: 1578329248464, e: "white" }, // سپین - speen
-    { ts: 1527811860, e: "great" }, // ستر - stur
-    { ts: 1527820178, e: "problematic" }, // ستونزمن - stoonzmán
-    { ts: 1527815246, e: "difficult" }, // سخت - sakht
-    { ts: 1527817262, e: "barren" }, // شنډ - shanD
-    { ts: 1527813426, e: "stingy" }, // شوم - shoom
-    { ts: 1527812625, e: "big" }, // غټ - ghuT, ghaT
-    { ts: 1527811846, e: "successful" }, // کامیاب - kaamyaab
-    { ts: 1527823678, e: "lazy" }, // کاهل - kaahíl
-    { ts: 1527814896, e: "proud, arrogant" }, // کبرجن - kaburjun
-    { ts: 1527813117, e: "firm, solid" }, // کلک - klak, kluk
-    { ts: 1578769492475, e: "few, little" }, // کم - kam
-    // { ts: 1527814253, e: "mixed up" }, // ګډ وډ  // TODO: FIX INFLECTION MACHINE FOR DOUBLES!
-    { ts: 1578769409512, e: "weak" }, // کمزور - kamzór
-    { ts: 1527812639, e: "dear, difficult" }, // ګران - graan
-    { ts: 1527816786, e: "all" }, // ګرد - gurd
-    { ts: 1527814811, e: "warm, hot" }, // ګرم - garm, garum
-    { ts: 1527817662, e: "guilty" }, // ګرم - gram
-    { ts: 1527812308, e: "thick, lots" }, // ګڼ - gaN
-    { ts: 1527813848, e: "desiring, eager" }, // لېوال - lewaal
-    { ts: 1527816011, e: "broken" }, // مات - maat
-    { ts: 1527812881, e: "child" }, // ماشوم - maashoom
-    { ts: 1527817007, e: "known" }, // مالوم - maaloom
-    { ts: 1527814321, e: "positive" }, // مثبت - mUsbat
-    { ts: 1527811264, e: "condemned" }, // محکوم - mahkoom
-    { ts: 1527814802, e: "foul" }, // مردار - mUrdáar
-    { ts: 1527821812, e: "arrogant" }, // مغرور - maghróor
-    { ts: 1527820222, e: "lying down" }, // ملاست - mlaast
-    { ts: 1527814344, e: "important" }, // مهم - mUhím
-    { ts: 1527816033, e: "uncommon" }, // نادر - naadir
-    { ts: 1527815106, e: "sitting, seated" }, // ناست - naast
-    { ts: 1527815127, e: "nurse" }, // نرس - nurs
-    { ts: 1527821673, e: "moist, damp, wet" }, // نمجن - namjún
-    { ts: 1527815130, e: "dry, land, ground" }, // وچ - wuch, wUch
-    { ts: 1527817486, e: "ruined, destroyed; destructive, bad, naughty" }, // وران - wraan
-    { ts: 1527814373, e: "lost" }, // ورک - wruk
-    { ts: 1527822838, e: "decayed, spoiled, rotten" }, // وروست - wrost
-    { ts: 1609949334478, e: "roasted" }, // وریت - wreet
-    { ts: 1527811544, e: "standing" }, // ولاړ - waláaR, wuláaR
-    { ts: 1527815498, e: "aforementioned" }, // یاد - yaad
-    { ts: 1527815434, e: "cold" }, // یخ - yakh, yukh
-    ];
+    1527815408, // ویده - weedú
+    1527812796, // ښه - xu
+    1527821744, // آشپز - aashpáz
+    1527812461, // اتل - atul
+    1527821649, // اثرناک - asarnáak
+    1527818704, // ارت - arát
+    1578340121962, // ازاد - azáad
+    1527819418, // خپلواک - khpulwaak
+    1527817146, // استوګن - astogan
+    1527813713, // امیدوار - Umeedwaar
+    1527819451, // انګرېز - angréz
+    1527820346, // انلاین - anlaayn
+    1527813667, // اهم - aham
+    1598724912198, // اوچ - ooch
+    1527815138, // اورپک - orpak
+    1586452587974, // اوزګار - oozgáar
+    1527816489, // ایماندار - eemaandaar
+    1527820433, // باتور - baatóor
+    1527813425, // بخیل - bakheel
+    1527812511, // بد - bud, bad
+    1527812518, // برابر - buraabur
+    1527811861, // بربنډ - barbunD
+    1527811511, // بشپړ - bushpuR
+    1527812515, // بل - bul
+    1527815725, // بلد - balad
+    1577301753727, // بند - band
+    1527812490, // بې کار - be kaar
+    1527812031, // بېل - bel
+    1527815144, // پاک - paak
+    1527815201, // پټ - puT
+    1527815179, // پلن - plun
+    1527819059, // پنډ - punD
+    1611767359178, // ترسناک - tarsnáak
+    1527813270, // تروش - troosh
+    1527813817, // تنګ - tang
+    1527816354, // تیار - tayaar
+    1527817056, // تېز - tez
+    1527814076, // ټولنیز - Toluneez
+    1527819864, // ټیټ - TeeT
+    1527811894, // ټینګ - Teeng
+    1527812943, // ثابت - saabit
+    1527813085, // ثقیل - saqeel
+    1527820479, // جاهل - jaahíl
+    1588160800930, // جراح - jarráah
+    1527812707, // جګ - jig, jug
+    1527816944, // جوت - jawat
+    1527822996, // جوخت - jokht
+    1527812711, // جوړ - joR
+    1527816323, // ځلاند - dzalaand
+    1527812291, // ځوان - dzwaan
+    1527820112, // ځوړند - dzwáRund
+    1527819672, // چالاک - chaaláak
+    1527811230, // چټک - chaTak
+    1527812524, // چلان - chalaan
+    1527815370, // څرګند - tsărgund
+    1576366107077, // څک - tsak
+    1527812113, // حاضر - haazir, haazur
+    1527820699, // حامل - haamíl
+    1527819824, // حریص - harées
+    1527812669, // حساس - hasaas
+    1527812057, // خام - khaam
+    1527811523, // خاین - khaayin
+    1527814219, // خپل - khpul
+    1527812795, // خپلوان - khpulwaan
+    1527812808, // خوار - khwaar
+    1527814880, // دنګ - dung
+    1527812537, // ډاډمن - DaaDmun
+    1527812583, // ډک - Duk
+    1527822674, // ډنګر - Dungár, Dangár
+    1527817256, // ډوب - Doob
+    1527814277, // روغ - rogh
+    1609780006604, // زرخېز - zarkhéz
+    1527817116, // زرغون - zarghoon
+    1527814026, // زرین - zareen
+    1567594312839, // زړه ور - zuRawár
+    1527815848, // ژمن - jzman
+    1527813498, // سپک - spuk
+    1578329248464, // سپین - speen
+    1527811860, // ستر - stur
+    1527820178, // ستونزمن - stoonzmán
+    1527815246, // سخت - sakht
+    1527817262, // شنډ - shanD
+    1527813426, // شوم - shoom
+    1527812625, // غټ - ghuT, ghaT
+    1527811846, // کامیاب - kaamyaab
+    1527823678, // کاهل - kaahíl
+    1527814896, // کبرجن - kaburjun
+    1527813117, // کلک - klak, kluk
+    1578769492475, // کم - kam
+    1527814253, // ګډ وډ  // TODO: FIX INFLECTION MACHINE FOR DOUBLES!
+    1578769409512, // کمزور - kamzór
+    1527812639, // ګران - graan
+    1527816786, // ګرد - gurd
+    1527814811, // ګرم - garm, garum
+    1527817662, // ګرم - gram
+    1527812308, // ګڼ - gaN
+    1527813848, // لېوال - lewaal
+    1527816011, // مات - maat
+    1527812881, // ماشوم - maashoom
+    1527817007, // مالوم - maaloom
+    1527814321, // مثبت - mUsbat
+    1527811264, // محکوم - mahkoom
+    1527814802, // مردار - mUrdáar
+    1527821812, // مغرور - maghróor
+    1527820222, // ملاست - mlaast
+    1527814344, // مهم - mUhím
+    1527816033, // نادر - naadir
+    1527815106, // ناست - naast
+    1527815127, // نرس - nurs
+    1527821673, // نمجن - namjún
+    1527815130, // وچ - wuch, wUch
+    1527817486, // وران - wraan
+    1527814373, // ورک - wruk
+    1527822838, // وروست - wrost
+    1609949334478, // وریت - wreet
+    1527811544, // ولاړ - waláaR, wuláaR
+    1527815498, // یاد - yaad
+    1527815434, // یخ - yakh, yukh
+];

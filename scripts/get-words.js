@@ -14,15 +14,15 @@ const nounAdjTsFiles = fs.readdirSync(nounAdjCollectionPath);
 const adverbTsFiles = fs.readdirSync(adverbCollectionPath);
 
 const allVerbTsS = verbTsFiles.flatMap(fileName => [
-    ...require(path.join("..", verbCollectionPath, fileName)).map(x => x.ts)
+    ...require(path.join("..", verbCollectionPath, fileName))
 ]).filter((v, i, a) => a.findIndex(x => x === v) === i);
 
 const allNounAdjTsS = nounAdjTsFiles.flatMap(fileName => [
-    ...require(path.join("..", nounAdjCollectionPath, fileName)).map(x => x.ts)
+    ...require(path.join("..", nounAdjCollectionPath, fileName))
 ]).filter((v, i, a) => a.findIndex(x => x === v) === i);
 
 const allAdverbTsS = adverbTsFiles.flatMap(fileName => [
-    ...require(path.join("..", adverbCollectionPath, fileName)).map(x => x.ts)
+    ...require(path.join("..", adverbCollectionPath, fileName))
 ]).filter((v, i, a) => a.findIndex(x => x === v) === i);
 
 console.log("getting words from dictionary...");
