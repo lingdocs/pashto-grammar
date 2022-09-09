@@ -31,7 +31,23 @@ export function wordQuery(category: "nouns", w: string[]): T.NounEntry[];
 export function wordQuery(category: "adjectives", w: string[]): T.AdjectiveEntry[];
 export function wordQuery(category: "adverbs", w: string[]): T.AdverbEntry[];
 export function wordQuery(category: "locativeAdverbs", w: string[]): T.LocativeAdverbEntry[];
-export function wordQuery(category: "nouns" | "adjectives" | "adverbs" | "locativeAdverbs", w: string[]): T.NounEntry[] | T.AdjectiveEntry[] | T.AdverbEntry[] | T.LocativeAdverbEntry[] {
+export function wordQuery(category: "verbs", w: string[]): T.VerbEntry[];
+export function wordQuery(
+    category: "nouns" | "adjectives" | "adverbs" | "locativeAdverbs" | "verbs",
+    w: string[],
+): T.NounEntry[] | T.AdjectiveEntry[] | T.AdverbEntry[] | T.LocativeAdverbEntry[] | T.VerbEntry[] {
+    if (category === "verbs") {
+        return w.map(word => {
+            const l = words[category];
+            const found = l.find(x => vMatches(x, word));
+            if (!found) throw new Error(`${word} not found by wordQuery`);
+            return found;
+        });
+    }
+    function vMatches(x: T.VerbEntry, y: string) {
+        return (y === x.entry.p) 
+            || (removeAccents(y) === removeAccents(removeFVarients(x.entry.f)));
+    }
     function wMatches(x: T.DictionaryEntry, y: string) {
         return (y === x.p) 
             || (removeAccents(y) === removeAccents(removeFVarients(x.f)));

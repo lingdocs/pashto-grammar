@@ -6,7 +6,6 @@ import GameCore from "../GameCore";
 import {
     Types as T,
     defaultTextOptions as opts,
-    typePredicates as tp,
     makeNounSelection,
     randFromArray,
     flattenLengths,
@@ -35,6 +34,7 @@ import { getVerbFromBlocks } from "@lingdocs/pashto-inflector/dist/lib/phrase-bu
 import { baParticle } from "@lingdocs/pashto-inflector/dist/lib/grammar-units";
 import { intransitivePastVerbs } from "../../content/verbs/basic-present-verbs";
 import { makePool } from "../../lib/pool";
+import { wordQuery } from "../../words/words";
 
 const kidsColor = "#017BFE";
 
@@ -46,35 +46,35 @@ type Question = {
     phrase: { ps: T.SingleOrLengthOpts<T.PsString[]>, e?: string[] },
 };
 
-// TODO: Make a mechanism where we just create a list of words like "leedul", "wahul" and it searches them out of the pool of words in the grammar
+const transitivePastVerbs = wordQuery("verbs", [
+    "leedul",
+    "wahul",
+    "khoRul",
+    "shărmawul",
+    "pejzandul",
+    "taRul",
+]);
 
-const transitivePastVerbs: T.VerbEntry[] = [
-    {"ts":1527812275,"i":11698,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"},
-    {"ts":1527815399,"i":14594,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"},
-    {"ts":1527812790,"i":5840,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"},
-    {"ts":1527814596,"i":8398,"p":"شرمول","f":"shărmawul","g":"sharmawul","e":"to shame, to disgrace, to dishonor","c":"v. trans.","ec":"embarrass"},
-].map(entry => ({ entry })) as T.VerbEntry[]
+const verbs = wordQuery("verbs", [
+    "leekul",
+    "wahul",
+    "leedul",
+    "awredul",
+    "khoRul",
+    "akhistul",
+    "katul",
+    "lwedul",
+]);
 
-const verbs: T.VerbEntry[] = [
-    {"ts":1527812856,"i":11630,"p":"لیکل","f":"leekul","g":"leekul","e":"to write, draw","c":"v. trans./gramm. trans.","ec":"write,writes,writing,wrote,written"},
-    {"ts":1527815399,"i":14480,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"},
-    {"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"},
-    {"ts":1577049208257,"i":1068,"p":"اورېدل","f":"awredul","g":"awredul","e":"to hear, listen","c":"v. trans./gramm. trans.","psp":"اور","psf":"awr","tppp":"اورېد","tppf":"awred","ec":"hear,hears,hearing,heard"},
-    {"ts":1527812790,"i":5813,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"},
-    {"ts":1527812447,"i":292,"p":"اخستل","f":"akhistúl, akhustúl","g":"akhistul,akhustul","e":"to take, buy, purchase, receive; to shave, cut with scissors","c":"v. trans.","psp":"اخل","psf":"akhl","tppp":"اخست","tppf":"akhist","ec":"take,takes,taking,took,taken"},
-    {"ts":1527812751,"i":10083,"p":"کتل","f":"katul","g":"katul","e":"to look, see, watch, examine; to meet with","c":"v. trans./gramm. trans.","psp":"ګور","psf":"gor","tppp":"کوت","tppf":"kot","ec":"look"},
-    {"ts":1527813994,"i":11654,"p":"لوېدل","f":"lwedul","g":"lwedul","e":"to fall, to tumble, go down, settle","c":"v. intrans.","ec":"fall,falls,falling,fell,fallen"},
-].map(entry => ({ entry })) as T.VerbEntry[];
-// @ts-ignore
-const nouns: T.NounEntry[] = [
-    {"ts":1527815251,"i":7790,"p":"سړی","f":"saRéy","g":"saRey","e":"man","c":"n. m.","ec":"man","ep":"men"},
-    {"ts":1527812797,"i":8605,"p":"ښځه","f":"xúdza","g":"xudza","e":"woman, wife","c":"n. f.","ec":"woman","ep":"women"},
-    {"ts":1527812881,"i":11691,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},
-    {"ts":1527815197,"i":2503,"p":"پښتون","f":"puxtoon","g":"puxtoon","e":"Pashtun","c":"n. m. anim. unisex / adj.","infap":"پښتانه","infaf":"puxtaanu","infbp":"پښتن","infbf":"puxtan"},
-    {"ts":1527815737,"i":484,"p":"استاذ","f":"Ustaaz","g":"Ustaaz","e":"teacher, professor, expert, master (in a field)","c":"n. m. anim. unisex anim.","ec":"teacher"},
-    {"ts":1527816747,"i":6418,"p":"ډاکټر","f":"DaakTar","g":"DaakTar","e":"doctor","c":"n. m. anim. unisex"},
-    {"ts":1527812661,"i":13938,"p":"هلک","f":"halík, halúk","g":"halik,haluk","e":"boy, young lad","c":"n. m. anim."},
-].filter(tp.isNounEntry);
+const nouns = wordQuery("nouns", [
+    "saRey",
+    "xudza",
+    "maashoom",
+    "puxtoon",
+    "Ustaaz",
+    "DaakTar",
+    "halik",
+]);
 
 const persons: T.Person[] = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
@@ -92,9 +92,10 @@ type VerbGameLevel = {
     level: 1 | 2,
     type: "presentVerb" | "subjunctiveVerb"
         | "futureVerb" | "imperative" | "intransitivePerfectivePast"
-        | "intransitiveImperfectivePast" | "transitivePerfectivePast" | "transitiveImperfectivePast";
+        | "intransitiveImperfectivePast" | "transitivePerfectivePast" | "transitiveImperfectivePast"
+        | "allPast" | "habitualPast";
 }
-type VerbPoolName = "basic" | "transitivePast" | "intransitivePast";
+type VerbPoolName = "basic" | "transitivePast" | "intransitivePast" | "mixedPast";
 
 function selectVerbPool({ type }: VerbGameLevel): VerbPoolName {
     return type === "presentVerb"
@@ -111,8 +112,10 @@ function selectVerbPool({ type }: VerbGameLevel): VerbPoolName {
         ? "intransitivePast"
         : type === "transitiveImperfectivePast"
         ? "transitivePast"
-        // : type === "transitivePerfectivePast"
-        : "transitivePast";
+        : type === "transitivePerfectivePast"
+        ? "transitivePast"
+        // : type === "habitualPast" || type === "allPast"
+        : "mixedPast";
 }
 
 // TODO: Level where you create the formulas (seperate file)
@@ -132,6 +135,7 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
         basic: makePool(verbs, 15),
         transitivePast: makePool(transitivePastVerbs, 15),
         intransitivePast: makePool(intransitivePastVerbs, 15),
+        mixedPast: makePool([...transitivePastVerbs, ...intransitivePastVerbs], 15),
     };
     const oneVerb: T.VerbEntry = verbPools[selectVerbPool(level)]();
     const getVerb = level.level === 1
@@ -145,7 +149,7 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
             number: n.numberCanChange ? randFromArray(["singular", "plural"]) : n.number,
         };
     }
-    function makeRandomVPS(l: T.VerbTense | T.ImperativeTense): T.VPSelectionComplete {
+    function makeRandomVPS(tense: T.VerbTense | T.ImperativeTense): T.VPSelectionComplete {
         function personToNPSelection(p: T.Person): T.NPSelection {
             if (isThirdPerson(p)) {
                 return {
@@ -175,10 +179,6 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
         do {
             servant = randomPerson();
         } while (isInvalidSubjObjCombo(king, servant));
-        // const tense = (l === "allIdentify" || l === "allProduce")
-        //     ? randFromArray(tenses)
-        //     : l;
-        const tense = l;
         return makeVPS({
             verb,
             king: personToNPSelection(king),
@@ -212,6 +212,11 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
         const [answer, setAnswer] = useState<string>("");
         const [withBa, setWithBa] = useState<boolean>(false);
         const handleInput = ({ target: { value }}: React.ChangeEvent<HTMLInputElement>) => {
+            if (value === "به " || value === "به ") {
+                setWithBa(true);
+                setAnswer("");
+                return;
+            }
             setAnswer(value);
         }
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -388,7 +393,12 @@ function levelToDescription({ type }: VerbGameLevel): string {
         ? "continuous past transitive"
         : type === "transitivePerfectivePast"
         ? "simple past transitive"
-        : "imperfective imperative or perfective imperative";
+        : type === "imperative"
+        ? "imperfective imperative or perfective imperative"
+        : type === "allPast"
+        ? "past tense"
+        // : type === "habitualPast"
+        : "habitual past";
 }
 
 function levelToTense({ type }: VerbGameLevel): T.VerbTense | T.ImperativeTense {
@@ -400,10 +410,19 @@ function levelToTense({ type }: VerbGameLevel): T.VerbTense | T.ImperativeTense 
         ? randFromArray(["perfectiveFuture", "imperfectiveFuture"])
         : type === "imperative"
         ? randFromArray(["perfectiveImperative", "imperfectiveImperative"])
-        : type.includes("ImperfectivePast")
+        : (type === "intransitiveImperfectivePast" || type === "transitiveImperfectivePast")
         ? "imperfectivePast"
-        // : level.includes("perfectivePast")
-        : "perfectivePast";
+        : (type === "intransitivePerfectivePast" || type === "transitivePerfectivePast")
+        ? "perfectivePast"
+        : type === "habitualPast"
+        ? randFromArray(["habitualPerfectivePast", "habitualImperfectivePast"])
+        // : type === "allPast"
+        : randFromArray([
+            "perfectivePast",
+            "imperfectivePast",
+            "habitualPerfectivePast",
+            "habitualImperfectivePast",
+        ]);
 }
 
 function makeVPS({ verb, king, servant, tense, defaultTransitivity }: {

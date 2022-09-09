@@ -208,7 +208,7 @@ export const transitivePerfectivePastVerbGame2 = makeGameRecord({
 });
 export const transitiveImperfectivePastVerbGame1 = makeGameRecord({
     title: "Write the transitive continuous past verb (one)",
-    id: "transitive-imperfective-past-verbs-write",
+    id: "transitive-imperfective-past-verbs-write-1",
     link: "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
     level: { level: 1, type :"transitiveImperfectivePast" },
     SubCore: VerbGame,
@@ -218,6 +218,34 @@ export const transitiveImperfectivePastVerbGame2 = makeGameRecord({
     id: "transitive-imperfective-past-verbs-write-2",
     link: "/verbs/past-verbs/#past-tense-with-transitive-verbs-",
     level: { level: 2, type :"transitiveImperfectivePast" },
+    SubCore: VerbGame,
+});
+export const habitualPastVerbGame1 = makeGameRecord({
+    title: "Write the habitual past verb (one)",
+    id: "habitual-past-verbs-write-1",
+    link: "/verbs/past-verbs/#habitual-past-tenses",
+    level: { level: 1, type : "habitualPast" },
+    SubCore: VerbGame,
+});
+export const habitualPastVerbGame2 = makeGameRecord({
+    title: "Write the habitual past verb (mix)",
+    id: "habitual-past-verbs-write-2",
+    link: "/verbs/past-verbs/#habitual-past-tenses",
+    level: { level: 2, type: "habitualPast" },
+    SubCore: VerbGame,
+});
+export const allPastVerbGame1 = makeGameRecord({
+    title: "Write the past verb (one)",
+    id: "all-past-verbs-write-1",
+    link: "/verbs/past-verbs/",
+    level: { level: 1, type : "allPast" },
+    SubCore: VerbGame,
+});
+export const allPastVerbGame2 = makeGameRecord({
+    title: "Write past verb (mix)",
+    id: "all-past-verbs-write-2",
+    link: "/verbs/past-verbs/",
+    level: { level: 2, type: "allPast" },
     SubCore: VerbGame,
 });
 
@@ -265,9 +293,20 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             transitiveImperfectivePastVerbGame2,
             transitivePerfectivePastVerbGame1,
             transitivePerfectivePastVerbGame2,
+            habitualPastVerbGame1,
+            habitualPastVerbGame2,
+            allPastVerbGame1,
+            allPastVerbGame2,
         ],
-    }
+    },
 ];
+
+// check to make sure we have no duplicate game keys
+games.forEach(({ items }) => {
+    const allAreUnique = (arr: unknown[]) => arr.length === new Set(arr).size;
+    const ids = items.map(x => x.id);
+    if (!allAreUnique(ids)) throw new Error("duplicate game key");
+})
 
 export default games;
 

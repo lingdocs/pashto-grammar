@@ -8,6 +8,7 @@
 
 module.exports = [
 	1527814617, // نیول - to take
+	1527812447, // akhistul
 	1527811872, // اچول - to put, pour, drop, throw, put on
 	1527817298, // اخیستل - to take, buy, purchase, receive; to shave, cut with scissors
 	1527816127, // اړول - to turn over, flip over; convert, change; to move over to, establish oneself in a new spot; divert, turn away, hijack

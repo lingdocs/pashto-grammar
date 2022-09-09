@@ -64,7 +64,7 @@ function ChapterDisplay({ chapter, user, handleClick, expanded }: {
                         </div>
                     </div>
                     <SmoothCollapse expanded={open}>
-                        <Game inChapter={false} />
+                        {open && <Game inChapter={false} />}
                     </SmoothCollapse>
                 </div>
             })}
