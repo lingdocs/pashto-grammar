@@ -3,6 +3,7 @@ import VerbGame from "./sub-cores/VerbGame";
 import GenderGame from "./sub-cores/GenderGame";
 import UnisexNounGame from "./sub-cores/UnisexNounGame";
 import EquativeSituations from "./sub-cores/EquativeSituations";
+import VerbSituations from "./sub-cores/VerbSituations";
 import EquativeIdentify from "./sub-cores/EquativeIdentify";
 
 // NOUNS
@@ -235,18 +236,39 @@ export const habitualPastVerbGame2 = makeGameRecord({
     SubCore: VerbGame,
 });
 export const allPastVerbGame1 = makeGameRecord({
-    title: "Write the past verb (one)",
+    title: "Write the past verb - all past tenses (one)",
     id: "all-past-verbs-write-1",
     link: "/verbs/past-verbs/",
     level: { level: 1, type : "allPast" },
     SubCore: VerbGame,
 });
 export const allPastVerbGame2 = makeGameRecord({
-    title: "Write past verb (mix)",
+    title: "Write past verb - all past tenses (mix)",
     id: "all-past-verbs-write-2",
     link: "/verbs/past-verbs/",
     level: { level: 2, type: "allPast" },
     SubCore: VerbGame,
+});
+export const allVerbGame1 = makeGameRecord({
+    title: "Write verb - all tenses (one)",
+    id: "all-verbs-write-1",
+    link: "/verbs/master-chart/",
+    level: { level: 1, type : "allPast" },
+    SubCore: VerbGame,
+});
+export const allVerbGame2 = makeGameRecord({
+    title: "Write verb - all tenses (mix)",
+    id: "all-verbs-write-2",
+    link: "/verbs/master-chart/",
+    level: { level: 2, type: "allPast" },
+    SubCore: VerbGame,
+});
+export const verbSituationsGame = makeGameRecord({
+    title: "Choose the right verb tense for the situation",
+    id: "verb-tense-situations",
+    link: "/verbs/verbs-intro/",
+    level: "situations",
+    SubCore: VerbSituations,
 });
 
 const games: { chapter: string, items: GameRecord[] }[] = [
@@ -297,6 +319,9 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             habitualPastVerbGame2,
             allPastVerbGame1,
             allPastVerbGame2,
+            allVerbGame1,
+            allVerbGame2,
+            verbSituationsGame,
         ],
     },
 ];
@@ -305,6 +330,8 @@ const games: { chapter: string, items: GameRecord[] }[] = [
 games.forEach(({ items }) => {
     const allAreUnique = (arr: unknown[]) => arr.length === new Set(arr).size;
     const ids = items.map(x => x.id);
+    const title = items.map(x => x.title);
+    if (!allAreUnique(title)) throw new Error("duplicate game title");
     if (!allAreUnique(ids)) throw new Error("duplicate game key");
 })
 

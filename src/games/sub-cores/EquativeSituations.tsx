@@ -1,5 +1,6 @@
 import GameCore from "../GameCore";
 import {
+    humanReadableEquativeTense,
     Types as T,
 } from "@lingdocs/pashto-inflector";
 import { makePool } from "../../lib/pool";
@@ -18,43 +19,43 @@ const timeLimit = 100;
 
 const situations: Situation[] = [
     {
-        description: <>A is B, for sure, right now</>,
+        description: "A is B, for sure, right now",
         tense: ["present"],
     },
     {
-        description: <>A is <em>probably</em> B, right now</>,
+        description: "A is probably B, right now",
         tense: ["future"],
     },
     {
-        description: <>A will be B in the future</>,
+        description: "A will be B in the future",
         tense: ["future"],
     },
     {
-        description: <>We can assume that A is most likely B</>,
+        description: "We can assume that A is most likely B",
         tense: ["future"],
     },
     {
-        description: <>You <em>know</em> A is B, currently</>,
+        description: "You know A is B, currently",
         tense: ["present"],
     },
     {
-        description: <>A tends to be B</>,
+        description: "A tends to be B",
         tense: ["habitual"],
     },
     {
-        description: <>A is usually B</>,
+        description: "A is usually B",
         tense: ["habitual"],
     },
     {
-        description: <>A is generally B</>,
+        description: "A is generally B",
         tense: ["habitual"],
     },
     {
-        description: <>A is B, right now</>,
+        description: "A is B, right now",
         tense: ["present"],
     },
     {
-        description: <>A is always B, as a matter of habit</>,
+        description: "A is always B, as a matter of habit",
         tense: ["present"],
     },
     {
@@ -151,7 +152,7 @@ export default function EquativeSituations({ inChapter, id, link, level }: { inC
                             className="btn btn-outline-secondary mb-3"
                             onClick={() => handleTenseClick(t)}
                         >
-                            {humanReadableTense(t)}
+                            {humanReadableEquativeTense(t)}
                         </button>
                     </div>)}
                 </div>
@@ -182,18 +183,7 @@ function DisplayCorrectAnswer({ question }: { question: Question }): JSX.Element
     //     {possibleCorrect.map(humanReadableTense).join(" or ")}
     // </div>)
     return <div>
-        {question.tense.map(humanReadableTense).join(" or ")}
+        {question.tense.map(humanReadableEquativeTense).join(" or ")}
     </div>;
 }
 
-function humanReadableTense(tense: T.EquativeTense | "allProduce"): string {
-    return tense === "allProduce"
-        ? ""
-        : tense === "pastSubjunctive"
-        ? "past subjunctive"
-        : tense === "wouldBe"
-        ? `"would be"`
-        : tense === "wouldHaveBeen"
-        ? `"would have been"`
-        : tense;
-}

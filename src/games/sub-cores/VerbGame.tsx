@@ -93,9 +93,9 @@ type VerbGameLevel = {
     type: "presentVerb" | "subjunctiveVerb"
         | "futureVerb" | "imperative" | "intransitivePerfectivePast"
         | "intransitiveImperfectivePast" | "transitivePerfectivePast" | "transitiveImperfectivePast"
-        | "allPast" | "habitualPast";
+        | "allPast" | "habitualPast" | "allTenses";
 }
-type VerbPoolName = "basic" | "transitivePast" | "intransitivePast" | "mixedPast";
+type VerbPoolName = "basic" | "transitivePast" | "intransitivePast" | "mixedPast" | "mixedAll";
 
 function selectVerbPool({ type }: VerbGameLevel): VerbPoolName {
     return type === "presentVerb"
@@ -114,8 +114,9 @@ function selectVerbPool({ type }: VerbGameLevel): VerbPoolName {
         ? "transitivePast"
         : type === "transitivePerfectivePast"
         ? "transitivePast"
-        // : type === "habitualPast" || type === "allPast"
-        : "mixedPast";
+        : type === "habitualPast" || type === "allPast"
+        ? "mixedPast"
+        : "mixedAll";
 }
 
 // TODO: Level where you create the formulas (seperate file)
@@ -136,6 +137,7 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
         transitivePast: makePool(transitivePastVerbs, 15),
         intransitivePast: makePool(intransitivePastVerbs, 15),
         mixedPast: makePool([...transitivePastVerbs, ...intransitivePastVerbs], 15),
+        mixedAll: makePool([...verbs, ...transitivePastVerbs, ...intransitivePastVerbs], 15),
     };
     const oneVerb: T.VerbEntry = verbPools[selectVerbPool(level)]();
     const getVerb = level.level === 1
@@ -274,8 +276,12 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
     }
     
     function Instructions() {
+        const desc = levelToDescription(level);
         return <div>
-            <p className="lead">Write the {levelToDescription(level)} verb to complete the phrase</p>
+            <p className="lead">
+                Write the {desc} verb to complete the phrase
+                {desc ? "" : " (all tenses)"}
+            </p>
         </div>
     }
 
@@ -397,8 +403,10 @@ function levelToDescription({ type }: VerbGameLevel): string {
         ? "imperfective imperative or perfective imperative"
         : type === "allPast"
         ? "past tense"
-        // : type === "habitualPast"
-        : "habitual past";
+        : type === "habitualPast"
+        ? "habitual past"
+        // : type === "allTenses"
+        : "";
 }
 
 function levelToTense({ type }: VerbGameLevel): T.VerbTense | T.ImperativeTense {
