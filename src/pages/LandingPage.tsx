@@ -53,7 +53,7 @@ const LandingPage = () => {
   return <>
     <main className="col bg-faded py-3 d-flex flex-column">
         <h1>LingDocs Pashto Grammar</h1>
-        <p className="lead">Explore the wonderful language of Pashto you can</p>
+        <p className="lead">Explore the wonderful language of Pashto</p>
         {content.map((block) => (
             <Link to={block.link} className="plain-link">
                 <div className="card clickable my-2" style={{ maxWidth: "600px"}}>
