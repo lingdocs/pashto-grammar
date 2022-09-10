@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "../components/Link";
 import Footer from "../components/Footer";
 
 const content: {
@@ -56,7 +56,7 @@ const LandingPage = () => {
         <p className="lead">Explore the wonderful language of Pashto</p>
         {content.map((block) => (
             <Link to={block.link} className="plain-link">
-                <div className="card clickable my-2" style={{ maxWidth: "600px"}}>
+                <div className="card clickable my-2 plain-link" style={{ maxWidth: "600px"}}>
                     <div className="card-body">
                         <h2 className="card-title">{block.title}</h2>
                         <h5 className="card-subtitle mb-2 text-muted">{block.subTitle}</h5>

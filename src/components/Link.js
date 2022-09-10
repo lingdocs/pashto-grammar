@@ -24,6 +24,9 @@ export default function L(props) {
             style={props.style}
         >{props.children}</HashLink>;
     }
+    if (toA.startsWith("http")) {
+        return <a href={toA} style={props.style} className={props.className}>{props.children}</a>
+    }
     // If it's a regular link return the regular router linker
-    return <Link to={toA} style={props.style}>{props.children}</Link>;
+    return <Link to={toA} style={props.style} className={props.className}>{props.children}</Link>;
 }; 
