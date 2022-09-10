@@ -5,6 +5,7 @@ import UnisexNounGame from "./sub-cores/UnisexNounGame";
 import EquativeSituations from "./sub-cores/EquativeSituations";
 import VerbSituations from "./sub-cores/VerbSituations";
 import EquativeIdentify from "./sub-cores/EquativeIdentify";
+import VerbFormulas from "./sub-cores/VerbFormulas";
 
 // NOUNS
 export const nounGenderGame1 = makeGameRecord({
@@ -270,6 +271,13 @@ export const verbSituationsGame = makeGameRecord({
     level: "situations",
     SubCore: VerbSituations,
 });
+export const verbFormulasGame = makeGameRecord({
+    title: "Choose the verb tense formula",
+    id: "verb-tense-formulas",
+    link: "/verbs/master-chart/",
+    level: "all",
+    SubCore: VerbFormulas,
+});
 
 const games: { chapter: string, items: GameRecord[] }[] = [
     {
@@ -322,6 +330,7 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             allVerbGame1,
             allVerbGame2,
             verbSituationsGame,
+            verbFormulasGame,
         ],
     },
 ];

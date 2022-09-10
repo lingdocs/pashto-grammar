@@ -1,4 +1,5 @@
 import { randFromArray } from "@lingdocs/pashto-inflector";
+import equal from "fast-deep-equal";
 
 /**
  * 
@@ -22,7 +23,7 @@ export function makePool<P>(poolBase: P[], removalLaxity = 0): () => P {
         if (shouldStillKeepIt()) {
             return pick;
         }
-        const index = pool.findIndex(v => matches(v, pick))
+        const index = pool.findIndex(v => equal(v, pick))
         if (index === -1) throw new Error("could not find pick from pool");
         pool.splice(index, 1);
         // If the pool is empty, reset it
@@ -33,9 +34,4 @@ export function makePool<P>(poolBase: P[], removalLaxity = 0): () => P {
     }
     return pickRandomFromPool;
 }
-
-function matches(a: unknown, b: unknown): boolean {
-    return JSON.stringify(a) === JSON.stringify(b);
-}
-
 
