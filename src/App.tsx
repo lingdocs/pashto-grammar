@@ -15,6 +15,7 @@ import { content } from "./content/index";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import TableOfContentsPage from "./pages/TableOfContentsPage";
+import LandingPage from "./pages/LandingPage";
 import AccountPage from "./pages/AccountPage";
 import { useEffect } from "react";
 import { isProd } from "./lib/isProd";
@@ -62,6 +63,9 @@ function App(props: RouteComponentProps) {
           />
           <Switch>
             <Route path="/" exact>
+              <LandingPage />
+            </Route>
+            <Route path="/table-of-contents" exact>
               <TableOfContentsPage />
             </Route>
             {chapters.map((chapter: any) => (

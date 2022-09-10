@@ -29,6 +29,14 @@ function Sidebar({ content, navOpen, setNavOpen, pathname }) {
                 { "side-nav-closed": !navOpen }
             )}>
                 <nav className="sticky-on-big flex-column align-items-start">
+                        <Link to="/table-of-contents" style={{ textDecoration: "none", color: "inherit" }} onClick={() => setNavOpen(false)}>
+                            <div className={classNames(
+                                "side-nav-item",
+                                { "side-nav-item-selected": pathname === "/table-of-contents" }
+                            )}>
+                                Table of Contents
+                            </div>
+                        </Link>
                         {content.map((item) => (
                             item.content
                             ? (
