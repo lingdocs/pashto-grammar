@@ -9,20 +9,22 @@ import {
 import { makePool } from "../../lib/pool";
 import { CSSProperties, useEffect, useState } from "react";
 import classNames from "classnames";
+import { isImperativeTense } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
 
-const amount = 10;
-const timeLimit = 60;
+const amount = 12;
+const timeLimit = 125;
 
 type StemRoot = "imperfective stem" | "perfective stem" | "imperfective root" | "perfective root";
 type Ending = "present" | "past" | "imperative"; 
 type Formula = {
     ba: boolean,
+    mu: boolean,
     stemRoot: StemRoot,
     ending: Ending,
 };
 
 type Question = {
-    tense: T.VerbTense,
+    tense: T.VerbTense | T.ImperativeTense | "negative imperative",
     formula: Formula,
 }
 
@@ -31,6 +33,7 @@ const questions: Question[] = [
         tense: "presentVerb",
         formula: {
             ba: false,
+            mu: false,
             stemRoot: "imperfective stem",
             ending: "present",
         },
@@ -39,6 +42,7 @@ const questions: Question[] = [
         tense: "subjunctiveVerb",
         formula: {
             ba: false,
+            mu: false,
             stemRoot: "perfective stem",
             ending: "present",
         },
@@ -47,6 +51,7 @@ const questions: Question[] = [
         tense: "imperfectiveFuture",
         formula: {
             ba: true,
+            mu: false,
             stemRoot: "imperfective stem",
             ending: "present",
         },
@@ -55,6 +60,7 @@ const questions: Question[] = [
         tense: "perfectiveFuture",
         formula: {
             ba: true,
+            mu: false,
             stemRoot: "perfective stem",
             ending: "present",
         },
@@ -63,6 +69,7 @@ const questions: Question[] = [
         tense: "imperfectivePast",
         formula: {
             ba: false,
+            mu: false,
             stemRoot: "imperfective root",
             ending: "past",
         },
@@ -71,6 +78,7 @@ const questions: Question[] = [
         tense: "perfectivePast",
         formula: {
             ba: false,
+            mu: false,
             stemRoot: "perfective root",
             ending: "past",
         },
@@ -79,6 +87,7 @@ const questions: Question[] = [
         tense: "habitualImperfectivePast",
         formula: {
             ba: true,
+            mu: false,
             stemRoot: "imperfective root",
             ending: "past",
         },
@@ -87,10 +96,38 @@ const questions: Question[] = [
         tense: "habitualPerfectivePast",
         formula: {
             ba: true,
+            mu: false,
             stemRoot: "perfective root",
             ending: "past",
         },
     },
+    {
+        tense: "perfectiveImperative",
+        formula: {
+            ba: false,
+            mu: false,
+            stemRoot: "perfective stem",
+            ending: "imperative",
+        },
+    },
+    {
+        tense: "imperfectiveImperative",
+        formula: {
+            ba: false,
+            mu: false,
+            stemRoot: "imperfective stem",
+            ending: "imperative",
+        },
+    },
+    {
+        tense: "negative imperative",
+        formula: {
+            ba: false,
+            mu: true,
+            stemRoot: "imperfective stem",
+            ending: "imperative",
+        },
+    }
 ];
 
 export default function VerbFormulas({ inChapter, id, link, level }: { inChapter: boolean, id: string, link: string, level: "all" }) {
@@ -101,7 +138,6 @@ export default function VerbFormulas({ inChapter, id, link, level }: { inChapter
     function Instructions() {
         return <p className="lead">Pick the formula for each verb tense</p>;
     }
-
     return <GameCore
         inChapter={inChapter}
         studyLink={link}
@@ -117,18 +153,23 @@ export default function VerbFormulas({ inChapter, id, link, level }: { inChapter
 
 function Display({ question, callback }: QuestionDisplayProps<Question>) {
     const [ba, setBa] = useState<boolean>(false);
+    const [mu, setMu] = useState<boolean>(false);
     const [stemRoot, setStemRoot] = useState<StemRoot | "">("");
     const [ending, setEnding] = useState<Ending | "">("");
     useEffect(() => {
         setBa(false);
         setStemRoot("");
         setEnding("");
+        setMu(false);
     }, [question]);
     const canSubmit = !!(stemRoot && ending);
+    const showMu = question.tense === "negative imperative" || isImperativeTense(question.tense); 
     function handleSubmit() {
         const { formula } = question;
         callback(
             (ba === formula.ba)
+            &&
+            (mu === formula.mu)
             &&
             (stemRoot === formula.stemRoot)
             &&
@@ -138,13 +179,14 @@ function Display({ question, callback }: QuestionDisplayProps<Question>) {
     return <div>
         <div className="my-4" style={{ maxWidth: "300px", margin: "0 auto" }}>
             <p className="lead">
-                {humanReadableVerbForm(question.tense)}
+                {humanReadableT(question.tense)}
             </p>
         </div>
         <div className="text-center mb-2">
-            <BaPicker hasBa={ba} onChange={setBa} />
-            <RootsAndStemsPicker stemRoot={stemRoot} onChange={setStemRoot} />
-            <EndingPicker ending={ending} onChange={setEnding} />
+            <BaPicker value={ba} onChange={setBa} />
+            {showMu && <MuPicker value={mu} onChange={setMu} />}
+            <RootsAndStemsPicker value={stemRoot} onChange={setStemRoot} />
+            <EndingPicker value={ending} onChange={setEnding} />
             <button
                 className="btn btn-primary my-2"
                 disabled={!canSubmit}
@@ -153,12 +195,30 @@ function Display({ question, callback }: QuestionDisplayProps<Question>) {
                 Submit
             </button>
         </div>
-        <samp>{canSubmit ? printFormula({ ba, stemRoot, ending }) : " "}</samp>
+        <samp>{printFormula({ ba, stemRoot, ending, mu })}</samp>
     </div>
 }
 
-function printFormula(f: Formula): string {
-    return `${f.ba ? "ba + " : ""}${f.stemRoot} + ${f.ending} ending`;
+function humanReadableT(tense: T.VerbTense | T.ImperativeTense | "negative imperative"): string {
+    if (tense === "negative imperative") {
+        return tense;
+    }
+    return humanReadableVerbForm(tense);
+}
+
+function printFormula({ mu, ba, stemRoot, ending }: {
+    mu: boolean,
+    ba: boolean,
+    stemRoot: StemRoot | "",
+    ending: Ending | "",
+}): string {
+    const elements = [
+        mu ? "mu" : undefined,
+        ba ? "ba" : undefined,
+        stemRoot,
+        ending ? `${ending} ending` : undefined,
+    ].filter(x => x) as string[];
+    return elements.join(" + ");
 }
 
 function DisplayCorrectAnswer({ question }: { question: Question }): JSX.Element {
@@ -167,7 +227,7 @@ function DisplayCorrectAnswer({ question }: { question: Question }): JSX.Element
     </div>;
 }
 
-function EndingPicker({ onChange, ending }: { ending: Ending | "", onChange: (e: Ending | "") => void }) {
+function EndingPicker({ onChange, value }: { value: Ending | "", onChange: (e: Ending | "") => void }) {
     const options: { label: string, value: Ending }[] = [
         { label: "Present", value: "present" },
         { label: "Past", value: "past" },
@@ -187,7 +247,7 @@ function EndingPicker({ onChange, ending }: { ending: Ending | "", onChange: (e:
                     className={classNames(
                         "btn",
                          "btn-outline-secondary",
-                        { active: ending === option.value },
+                        { active: value === option.value },
                     )}
                     onClick={() => handleClick(option.value)}
                 >
@@ -198,13 +258,13 @@ function EndingPicker({ onChange, ending }: { ending: Ending | "", onChange: (e:
     </div>;
 }
 
-function BaPicker({ onChange, hasBa }: { hasBa: boolean, onChange: (b: boolean) => void }) {
+function BaPicker({ onChange, value }: { value: boolean, onChange: (b: boolean) => void }) {
     return <div className="form-check my-3" style={{ fontSize: "larger" }}>
         <input
             id="baCheckbox"
             className="form-check-input"
             type="checkbox"
-            checked={hasBa}
+            checked={value}
             onChange={e => onChange(e.target.checked)}
         />
         <label className="form-check-label text-muted" htmlFor="baCheckbox">
@@ -213,7 +273,22 @@ function BaPicker({ onChange, hasBa }: { hasBa: boolean, onChange: (b: boolean) 
     </div>
 }
 
-function RootsAndStemsPicker({ onChange, stemRoot }: { stemRoot: StemRoot | "", onChange: (s: StemRoot | "" ) => void }) {
+function MuPicker({ onChange, value }: { value: boolean, onChange: (b: boolean) => void }) {
+    return <div className="form-check my-3" style={{ fontSize: "larger" }}>
+        <input
+            id="baCheckbox"
+            className="form-check-input"
+            type="checkbox"
+            checked={value}
+            onChange={e => onChange(e.target.checked)}
+        />
+        <label className="form-check-label text-muted" htmlFor="baCheckbox">
+            with <InlinePs opts={opts}>{{ p: "مه", f: "mú" }}</InlinePs>
+        </label>
+    </div>
+}
+
+function RootsAndStemsPicker({ onChange, value }: { value: StemRoot | "", onChange: (s: StemRoot | "" ) => void }) {
     const colClass = "col col-md-5 px-0 mb-1";
     const rowClass = "row justify-content-between";
     const title: CSSProperties = {
@@ -225,7 +300,7 @@ function RootsAndStemsPicker({ onChange, stemRoot }: { stemRoot: StemRoot | "", 
         background: "rgba(255, 227, 10, 0.6)",
     };
     function handleStemRootClick(s: StemRoot) {
-        onChange(stemRoot === s ? "" : s);
+        onChange(value === s ? "" : s);
     }
     return <div className="verb-info" style={{
         textAlign: "center",
@@ -254,24 +329,24 @@ function RootsAndStemsPicker({ onChange, stemRoot }: { stemRoot: StemRoot | "", 
                 </div>
             </div>
             <div className={rowClass}>
-                <div className={colClass} style={stemRoot === "imperfective stem" ? highlight : {}}>
+                <div className={colClass} style={value === "imperfective stem" ? highlight : {}}>
                     <div className="clickable" style={title} onClick={() => handleStemRootClick("imperfective stem")}>
                         <div>Imperfective Stem</div>
                     </div>
                 </div>
-                <div className={colClass} style={stemRoot === "perfective stem" ? highlight : {}}>
+                <div className={colClass} style={value === "perfective stem" ? highlight : {}}>
                     <div className="clickable" style={title} onClick={() => handleStemRootClick("perfective stem")}>
                         <div>Perfective Stem</div>
                     </div>
                 </div>
             </div>
             <div className={rowClass}>
-                <div className={colClass} style={stemRoot === "imperfective root" ? highlight : {}}>
+                <div className={colClass} style={value === "imperfective root" ? highlight : {}}>
                     <div className="clickable" style={title} onClick={() => handleStemRootClick("imperfective root")}>
                         <div>Imperfective Root</div>
                     </div>
                 </div>
-                <div className={colClass} style={stemRoot === "perfective root" ? highlight : {}}>
+                <div className={colClass} style={value === "perfective root" ? highlight : {}}>
                     <div>
                         <div className="clickable" style={title} onClick={() => handleStemRootClick("perfective root")}>
                             <div>Perfective Root</div>
