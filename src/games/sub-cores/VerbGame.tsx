@@ -35,6 +35,7 @@ import { baParticle } from "@lingdocs/pashto-inflector/dist/lib/grammar-units";
 import { intransitivePastVerbs } from "../../content/verbs/basic-present-verbs";
 import { makePool } from "../../lib/pool";
 import { wordQuery } from "../../words/words";
+import { isImperativeTense } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
 
 const kidsColor = "#017BFE";
 
@@ -198,7 +199,7 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
             VP,
             { removeKing: false, shrinkServant: false },
             true,
-            { ba: true, verb: true },
+            { ba: true, verb: true, negative: true },
         );
         const phrase = {
             ps: compiled.ps,
@@ -329,7 +330,9 @@ function QuestionDisplay({ question, userAnswer }: {
                 {x}
             </div>)}
         </div>}
-        <div>{humanReadableVerbForm(v.block.tense)}</div>
+        <div>{(isImperativeTense(v.block.tense) && v.block.negative)
+            ? "Negative Imperative"
+            : humanReadableVerbForm(v.block.tense)}</div>
     </div>;
 }
 
@@ -451,6 +454,9 @@ function makeVPS({ verb, king, servant, tense, defaultTransitivity }: {
         ...vps,
         verb: {
             ...vps.verb,
+            negative: isImperativeTense(tense)
+                ? randFromArray([false, false, true])
+                : false,
             transitivity,
             tense,
         },
@@ -479,10 +485,17 @@ function makeVPS({ verb, king, servant, tense, defaultTransitivity }: {
 
 function getVerbPs({ blocks }: T.VPRendered): T.PsString[] {
     const { perfectiveHead, verb } = blockUtils.getVerbAndHeadFromBlocks(blocks);
-    if (!perfectiveHead) {
-        return flattenLengths(verb.block.ps);
+    const mU = blocks[0].find(b => b.block.type === "negative" && b.block.imperative);
+    function vBase() {
+        if (!perfectiveHead) {
+            return flattenLengths(verb.block.ps);
+        }
+        return flattenLengths(verb.block.ps).map(r => concatPsString(perfectiveHead.ps, r));
     }
-    return flattenLengths(verb.block.ps).map(r => concatPsString(perfectiveHead.ps, r));
+    if (mU) {
+        return vBase().map(b => concatPsString({ p: "مه", f: "mÚ" }, " ", b));
+    }
+    return vBase();
 }
 
 function verbHasBa({ blocks }: T.VPRendered): boolean {
