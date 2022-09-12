@@ -32,12 +32,18 @@ export const words = [
     ...nouns.filter(tp.isUnisexNounEntry),
     ...adjectives,
 ];
+export const femNouns = nouns.filter(tp.isFemNounEntry);
+import {
+    inflectionPatternsGame1,
+    inflectionPatternsGame2,
+} from "../../games/games";
+import GameDisplay from "../../games/GameDisplay";
 
 In the <Link to="/inflection/inflection-intro/">previous chapter</Link> we talked about **why** words inflect. Now we will explain **how** words inflect. What actualy happens to them? How do they change?
 
 Like many things in Pashto, inflection can seem mysterious and intimidating. Why do the words change so much, and how!? 😩 But, we'll see that there are just a few basic patterns that the words follow, and it's not so scary or confusing after all.
 
-Below are the **5 basic patterns for inflecting** nouns and adjectives. Notice how all these patterns work with both masculine and feminine genders.
+Below are the **6 basic patterns for inflecting** nouns and adjectives. Notice how all these patterns work with both masculine and feminine genders.
 
 Don't worry about memorizing them all perfectly to start. Instead keep looking back and use them as guides to help you as you get familiar with the inflections over time.
 
@@ -92,11 +98,19 @@ These are also a little irregular but instead of lengthening the 1st masculine i
 <InflectionCarousel items={startingWord(
     words.filter(tp.isPattern5Entry),
     "غل",
-)} />  
+)} /> 
+
+## 6. Inanimate feminine nouns ending in ي - ee
+
+There is one more pattern which only works for **inanimate feminine nouns ending in <InlinePs opts={opts} ps={{ p: "ي", f: "ee", e: "" }} />**.
+
+<InflectionCarousel items={startingWord(femNouns.filter(tp.isPattern6FemEntry), "آزادي")} />
+
+Animate nouns like <InlinePs opts={opts} ps={{ p: "بي بي", f: "beebee", e: "grandmother" }} /> will not inflect like this, and masculine nouns like <InlinePs ps={{ p: "قاضي", f: "qaazee", e: "judge" }} opts={opts} /> also will not inflect.
 
 ## Not all words inflect
 
-It's important to know that *not all words can be inflected*. If a word doesn't fit into one of these 5 patterns, you can't inflect it. For example, if an adjective ends in an <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> in the masculine form, you can't inflect it because it doesn't fit any of the patterns above. 🙅‍♂️
+It's important to know that *not all words can be inflected*. If a word doesn't fit into one of these 6 patterns, you can't inflect it. For example, if an adjective ends in an <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> in the masculine form, you can't inflect it because it doesn't fit any of the patterns above. 🙅‍♂️
 
 <Examples opts={opts}>{[
     { p: "خفه", f: "khufa", e: "sad", sub: "...is also sad because it can't inflect like all the other words 😢" },
@@ -210,3 +224,7 @@ But these words will *always* use the first inflection for the plural.
         e: "This is **the Pashtuns'** custom"
     },
 ])}</Examples>
+
+<GameDisplay record={inflectionPatternsGame1} />
+
+<GameDisplay record={inflectionPatternsGame2} />

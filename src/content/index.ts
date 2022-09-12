@@ -101,8 +101,6 @@ import * as directionalPronouns from "!babel-loader!@lingdocs/mdx-loader!./prono
 import * as inflectionIntro from "!babel-loader!@lingdocs/mdx-loader!./inflection/inflection-intro.mdx";
 // @ts-ignore
 import * as inflectionPatterns from "!babel-loader!@lingdocs/mdx-loader!./inflection/inflection-patterns.mdx";
-// @ts-ignore
-import * as feminineInflection from "!babel-loader!@lingdocs/mdx-loader!./inflection/feminine-inflection.mdx";
 
 // @ts-ignore
 import * as sandwiches from "!babel-loader!@lingdocs/mdx-loader!./sandwiches/sandwiches.mdx";
@@ -359,10 +357,6 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
             {
                 import: inflectionPatterns,
                 slug: "inflection-patterns",
-            },
-            {
-                import: feminineInflection,
-                slug: "feminine-inflection",
             },
         ],
     },

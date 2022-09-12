@@ -6,6 +6,7 @@ import EquativeSituations from "./sub-cores/EquativeSituations";
 import VerbSituations from "./sub-cores/VerbSituations";
 import EquativeIdentify from "./sub-cores/EquativeIdentify";
 import VerbFormulas from "./sub-cores/VerbFormulas";
+import InflectionPatterns from "./sub-cores/InflectionPatterns";
 
 // NOUNS
 export const nounGenderGame1 = makeGameRecord({
@@ -28,6 +29,22 @@ export const unisexNounGame = makeGameRecord({
     link: "/nouns/nouns-unisex/",
     level: undefined,
     SubCore: UnisexNounGame,
+});
+
+// INFLECTIONS
+export const inflectionPatternsGame1 = makeGameRecord({
+    title: "Identify the inflection pattern (Level 1)",
+    id: "inflection-patterns-1",
+    link: "/inflection/inflection-patterns/",
+    level: 1,
+    SubCore: InflectionPatterns,
+});
+export const inflectionPatternsGame2 = makeGameRecord({
+    title: "Identify the inflection pattern (Level 2)",
+    id: "inflection-patterns-2",
+    link: "/inflection/inflection-patterns/",
+    level: 2,
+    SubCore: InflectionPatterns,
 });
 
 // EQUATIVES
@@ -286,6 +303,13 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             nounGenderGame1,
             nounGenderGame2,
             unisexNounGame,
+        ],
+    },
+    {
+        chapter: "Inflection",
+        items: [
+            inflectionPatternsGame1,
+            inflectionPatternsGame2,
         ],
     },
     {
