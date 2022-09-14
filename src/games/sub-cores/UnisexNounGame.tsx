@@ -48,9 +48,6 @@ export default function UnisexNounGame({ id, link, inChapter }: { inChapter: boo
     }
     
     function Display({ question, callback }: QuestionDisplayProps<Question>) {
-        function flipGender(g: T.Gender): T.Gender {
-            return g === "masc" ? "fem" : "masc";
-        }
         const [answer, setAnswer] = useState<string>("");
         const infOut = inflectWord(question.entry);
         if (!infOut) return <div>WORD ERROR</div>;
@@ -141,3 +138,7 @@ export default function UnisexNounGame({ id, link, inChapter }: { inChapter: boo
         Instructions={Instructions}
     />
 };
+
+function flipGender(g: T.Gender): T.Gender {
+    return g === "masc" ? "fem" : "masc";
+}
