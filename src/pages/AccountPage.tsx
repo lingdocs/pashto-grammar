@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useUser } from "../user-context";
 import { signOut } from "@lingdocs/lingdocs-main";
 const providers: ("google" | "twitter" | "github")[] = ["google", "twitter", "github"];
@@ -80,6 +80,7 @@ function AccountPage() {
             </div>
         }
         </div>
+        <p className="mt-4 text-center small"><a href="/privacy">privacy policy</a></p>
     </main>;
 }
 

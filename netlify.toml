@@ -1,0 +1,3 @@
+[build]
+  command = "node scripts/get-words.js && yarn build"
+  publish = "build/"

@@ -22,6 +22,7 @@ import { isProd } from "./lib/isProd";
 
 import ReactGA from "react-ga";
 import { useUser } from "./user-context";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 const chapters = content.reduce((chapters, item) => (
   item.content
     ? [...chapters, item]
@@ -64,6 +65,9 @@ function App(props: RouteComponentProps) {
           <Switch>
             <Route path="/" exact>
               <LandingPage />
+            </Route>
+            <Route path="/privacy" exact>
+              <PrivacyPolicy />
             </Route>
             <Route path="/table-of-contents" exact>
               <TableOfContentsPage />
