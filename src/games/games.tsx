@@ -7,6 +7,8 @@ import VerbSituations from "./sub-cores/VerbSituations";
 import EquativeIdentify from "./sub-cores/EquativeIdentify";
 import VerbFormulas from "./sub-cores/VerbFormulas";
 import InflectionPatterns from "./sub-cores/InflectionPatterns";
+import InflectionsWriting from "./sub-cores/InflectionsWriting";
+
 
 // NOUNS
 export const nounGenderGame1 = makeGameRecord({
@@ -32,6 +34,48 @@ export const unisexNounGame = makeGameRecord({
 });
 
 // INFLECTIONS
+export const inflectionTableGame1 = makeGameRecord({
+    title: `Write the inflections - Pattern #1`,
+    id: "write-inflections-1",
+    link: "/inflection/inflection-patterns/#1-basic",
+    level: 1,
+    SubCore: InflectionsWriting,
+});
+export const inflectionTableGame2 = makeGameRecord({
+    title: `Write the inflections - Pattern #2`,
+    id: "write-inflections-2",
+    link: "/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-ی---ey",
+    level: 2,
+    SubCore: InflectionsWriting,
+});
+export const inflectionTableGame3 = makeGameRecord({
+    title: `Write the inflections - Pattern #3`,
+    id: "write-inflections-3",
+    link: "/inflection/inflection-patterns/#3-words-ending-in-a-stressed-ی---éy",
+    level: 3,
+    SubCore: InflectionsWriting,
+});
+export const inflectionTableGame4 = makeGameRecord({
+    title: `Write the inflections - Pattern #4`,
+    id: "write-inflections-4",
+    link: "/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern",
+    level: 4,
+    SubCore: InflectionsWriting,
+});
+export const inflectionTableGame5 = makeGameRecord({
+    title: `Write the inflections - Pattern #5`,
+    id: "write-inflections-5",
+    link: "/inflection/inflection-patterns/#5-shorter-words-that-squish",
+    level: 5,
+    SubCore: InflectionsWriting,
+});
+export const inflectionTableGame6 = makeGameRecord({
+    title: `Write the inflections - Pattern #6`,
+    id: "write-inflections-6",
+    link: "/inflection/inflection-patterns/#6-inanimate-feminine-nouns-ending-in-ي---ee",
+    level: 6,
+    SubCore: InflectionsWriting,
+});
 export const inflectionPatternsGame1 = makeGameRecord({
     title: "Identify the inflection pattern (Level 1)",
     id: "inflection-patterns-1",
@@ -308,6 +352,12 @@ const games: { chapter: string, items: GameRecord[] }[] = [
     {
         chapter: "Inflection",
         items: [
+            inflectionTableGame1,
+            inflectionTableGame2,
+            inflectionTableGame3,
+            inflectionTableGame4,
+            inflectionTableGame5,
+            inflectionTableGame6,
             inflectionPatternsGame1,
             inflectionPatternsGame2,
         ],
@@ -363,8 +413,8 @@ const games: { chapter: string, items: GameRecord[] }[] = [
 games.forEach(({ items }) => {
     const allAreUnique = (arr: unknown[]) => arr.length === new Set(arr).size;
     const ids = items.map(x => x.id);
-    const title = items.map(x => x.title);
-    if (!allAreUnique(title)) throw new Error("duplicate game title");
+    const titles = items.map(x => x.title);
+    if (!allAreUnique(titles)) throw new Error("duplicate game title");
     if (!allAreUnique(ids)) throw new Error("duplicate game key");
 })
 

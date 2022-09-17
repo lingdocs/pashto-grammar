@@ -50,7 +50,7 @@ type GameReducerAction = {
 } | {
     type: "timeout",
 } | {
-    type: "show answer",
+    type: "toggle show answer",
 } | {
     type: "skip",
 }
@@ -176,12 +176,12 @@ function GameCore<Question>({ inChapter, getQuestion, amount, Display, DisplayCo
                 showAnswer: false,
             };
         }
-        if (action.type === "show answer") {
-            if (gs.mode === "practice" && gs.justStruck) {
+        if (action.type === "toggle show answer") {
+            if (gs.mode === "practice") {
                 return {
                     ...gs,
                     justStruck: false,
-                    showAnswer: true,
+                    showAnswer: !gs.showAnswer,
                 };
             }
             return gs;
@@ -310,13 +310,12 @@ function GameCore<Question>({ inChapter, getQuestion, amount, Display, DisplayCo
                         question={state.current}
                         callback={(correct) => dispatch({ type: "handle question response", payload: { correct }})}
                     />}
-                    {(state.mode === "practice" && state.justStruck) && <div className="my-3">
-                        <button className="btn btn-sm btn-secondary" onClick={() => dispatch({ type: "show answer" })}>
-                            Show Answer
+                    {(state.mode === "practice" && (state.justStruck || state.showAnswer)) && <div className="my-3">
+                        <button className="btn btn-sm btn-secondary" onClick={() => dispatch({ type: "toggle show answer" })}>
+                            {state.showAnswer ? "Hide" : "Show"} Answer
                         </button>
                     </div>}
                     {(state.showAnswer && state.mode === "practice") && <div className="my-2">
-                        <div>The correct answer was:</div>
                         <div className="my-1">
                             <DisplayCorrectAnswer question={state.current} />
                         </div>
