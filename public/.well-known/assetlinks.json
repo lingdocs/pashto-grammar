@@ -1,0 +1,11 @@
+[
+    {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.lingdocs.pashto.grammar",
+        "sha256_cert_fingerprints":
+          ["8F:E6:6E:5E:A4:8B:BA:45:21:DF:E0:58:54:A0:9E:AE:E6:75:68:81:F9:92:15:F2:E0:21:DA:C9:72:0B:5F:FC"]
+      }
+    }
+]
