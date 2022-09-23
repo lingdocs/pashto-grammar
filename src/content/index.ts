@@ -120,8 +120,12 @@ import * as games from "!babel-loader!@lingdocs/mdx-loader!./games.mdx";
 
 // @ts-ignore
 import * as pronounPicker from "!babel-loader!@lingdocs/mdx-loader!./practice-tools/pronoun-picker.mdx";
+
 // @ts-ignore
 import * as phraseBuilder from "!babel-loader!@lingdocs/mdx-loader!./phrase-builder.mdx";
+
+// @ts-ignore
+import * as dictionary from "!babel-loader!@lingdocs/mdx-loader!./dictionary.mdx";
 
 type ChapterSection = {
     import: any,
@@ -408,11 +412,11 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
                 import: pronounPicker,
                 slug: "pronoun-picker",
             },
-            {
-                import: phraseBuilder,
-                slug: "phrase-builder",
-            },
         ],
+    },
+    {
+        slug: "Dictionary",
+        import: dictionary,
     },
 ];
 
