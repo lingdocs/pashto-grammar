@@ -6,6 +6,7 @@ import {
     standardizePhonetics,
     flattenLengths,
 } from "@lingdocs/pashto-inflector";
+import { removeAShort } from "./misc-helpers";
 
 export function getPercentageDone(current: number, total: number): number {
     return Math.round(
@@ -22,12 +23,14 @@ export function getPercentageDone(current: number, total: number): number {
  * @param answer - the correct answer in phonetics
  */
 export function compareF(input: string, answer: string): boolean {
-    return input === (hasAccents(input) ? answer : removeAccents(answer));
+    const inp = removeAShort(input);
+    const ans = removeAShort(answer);
+    return inp === (hasAccents(inp) ? ans : removeAccents(ans));
 }
 
 export function comparePs(input: string, answer: T.SingleOrLengthOpts<T.PsString | T.PsString[]>): boolean {
     if ("long" in answer) {
-        return comparePs(input, flattenLengths(answer))
+        return comparePs(input, flattenLengths(answer));
     }
     if (Array.isArray(answer)) {
         return answer.some(a => comparePs(input, a));

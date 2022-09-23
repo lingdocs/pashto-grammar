@@ -33,7 +33,7 @@ const content: {
         title: "Experiment with the Phrase Builder 🧪",
         subTitle: "Interactive Phrase Structure Analysis",
         description: "Build your own phrases in the interactive phrase builder. See how the words change and interact as you explore different tenses and forms.",
-        link: "/practice-tools/phrase-builder/",
+        link: "/phrase-builder/",
         linkDescription: "Phrase Builder",
     },
 ];

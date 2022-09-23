@@ -6,6 +6,7 @@ import {
     Types as T,
 } from "@lingdocs/pashto-inflector";
 import { categorize } from "../lib/categorize";
+import { removeAShort } from "../lib/misc-helpers";
 
 
 // TODO: BIG ISSUE WITH THE LOC ADVERBS BEING LUMPED INTO THE ADVERBS!
@@ -36,6 +37,9 @@ export function wordQuery(
     category: "nouns" | "adjectives" | "adverbs" | "locativeAdverbs" | "verbs",
     w: string[],
 ): T.NounEntry[] | T.AdjectiveEntry[] | T.AdverbEntry[] | T.LocativeAdverbEntry[] | T.VerbEntry[] {
+    function queryRemoveAccents(s: string): string {
+        return removeAShort(removeAccents(s));
+    } 
     if (category === "verbs") {
         return w.map(word => {
             const l = words[category];
@@ -46,11 +50,11 @@ export function wordQuery(
     }
     function vMatches(x: T.VerbEntry, y: string) {
         return (y === x.entry.p) 
-            || (removeAccents(y) === removeAccents(removeFVarients(x.entry.f)));
+            || (queryRemoveAccents(y) === queryRemoveAccents(removeFVarients(x.entry.f)));
     }
     function wMatches(x: T.DictionaryEntry, y: string) {
         return (y === x.p) 
-            || (removeAccents(y) === removeAccents(removeFVarients(x.f)));
+            || (queryRemoveAccents(y) === queryRemoveAccents(removeFVarients(x.f)));
     }
     return w.map(word => {
         const l = words[category];

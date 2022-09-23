@@ -62,15 +62,16 @@ export function categorize<I, X extends Record<string, I[]>>(
   // go through each item in the array and add it to the category based on
   // the first predicate it matches
   arr.forEach((item) => {
+    let placed: boolean = false;
     for (const p of Object.keys(preds)) {
       // @ts-ignore
       if ((preds[p] !== "leftovers") && preds[p](item)) {
         o[p].push(item);
-        return;
+        placed = true;
       }
     }
     // doesn't fit a predicate, add it to the leftovers
-    if (leftoverKey) {
+    if (!placed && leftoverKey) {
       o[leftoverKey].push(item);
     }
   });

@@ -16,8 +16,6 @@ import * as presentEquative from "!babel-loader!@lingdocs/mdx-loader!./equatives
 import * as habitualEquative from "!babel-loader!@lingdocs/mdx-loader!./equatives/habitual-equative.mdx";
 // @ts-ignore
 import * as otherEquatives from "!babel-loader!@lingdocs/mdx-loader!./equatives/other-equatives.mdx";
-// @ts-ignore
-import * as equativeExplorer from "!babel-loader!@lingdocs/mdx-loader!./equatives/equative-explorer.mdx";
 
 // @ts-ignore
 import * as nounsGender from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-gender.mdx";
@@ -123,7 +121,7 @@ import * as games from "!babel-loader!@lingdocs/mdx-loader!./games.mdx";
 // @ts-ignore
 import * as pronounPicker from "!babel-loader!@lingdocs/mdx-loader!./practice-tools/pronoun-picker.mdx";
 // @ts-ignore
-import * as phraseBuilder from "!babel-loader!@lingdocs/mdx-loader!./practice-tools/phrase-builder.mdx";
+import * as phraseBuilder from "!babel-loader!@lingdocs/mdx-loader!./phrase-builder.mdx";
 
 type ChapterSection = {
     import: any,
@@ -145,6 +143,10 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
         slug: "games",
     },
     {
+        import: phraseBuilder,
+        slug: "phrase-builder",
+    },
+    {
         heading: "Equatives",
         subdirectory: "equatives",
         chapters: [
@@ -159,10 +161,6 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
             {
                 import: otherEquatives,
                 slug: "other-equatives",
-            },
-            {
-                import: equativeExplorer,
-                slug: "equative-explorer",
             },
         ],
     },
