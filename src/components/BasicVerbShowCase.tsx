@@ -236,7 +236,9 @@ function tenseToStem(t: T.VerbTense | T.ImperativeTense | T.PerfectTense): "impe
         : t === "habitualPerfectivePast"
         ? "perfective root"
         : t === "imperfectiveImperative"
-        ? "imperfective root"
+        ? "imperfective stem"
+        : t === "perfectiveImperative"
+        ? "perfective stem"
         : t.endsWith("Perfect")
         ? "past participle"
         : "perfective root";
