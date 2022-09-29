@@ -493,7 +493,7 @@ function getVerbPs({ blocks }: T.VPRendered): T.PsString[] {
         return flattenLengths(verb.block.ps).map(r => concatPsString(perfectiveHead.ps, r));
     }
     if (mU) {
-        return vBase().map(b => concatPsString({ p: "مه", f: "mÚ" }, " ", b));
+        return vBase().map(b => concatPsString({ p: "مه", f: "mú" }, " ", b));
     }
     return vBase();
 }
