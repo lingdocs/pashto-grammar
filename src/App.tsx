@@ -44,6 +44,13 @@ function App(props: RouteComponentProps) {
   }
   useEffect(() => {
     logAnalytics();
+    if (props.location.pathname === "/") {
+      if (localStorage.getItem("visitedOnce")) {
+        props.history.replace("/table-of-contents");
+      } else {
+        localStorage.setItem("visitedOnce", "true");
+      }
+    }
     // eslint-disable-next-line
   }, []);
   useEffect(() => {
