@@ -2,7 +2,7 @@ import GameCore from "../GameCore";
 import {
     humanReadableVerbForm,
     Types as T,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import { makePool } from "../../lib/pool";
 
 const tenses: T.VerbTense[] = [

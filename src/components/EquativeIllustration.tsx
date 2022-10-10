@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
     ButtonSelect,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 
 export function EquativeIllustration() {
     const [choice, setChoice] = useState<"p" | "f" | "e">("f");

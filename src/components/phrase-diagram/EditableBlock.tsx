@@ -2,7 +2,7 @@ import {
     Types as T,
     NPPicker,
     APPicker,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import {
     useEffect,
     useRef,

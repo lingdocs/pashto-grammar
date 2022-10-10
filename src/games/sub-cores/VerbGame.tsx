@@ -27,15 +27,15 @@ import {
     blank,
     kidsBlank,
     isPashtoScript,
-} from "@lingdocs/pashto-inflector";
-import { isPastTense, isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
+} from "@lingdocs/ps-react";
+import { isPastTense, isThirdPerson } from "@lingdocs/ps-react";
 import { maybeShuffleArray } from "../../lib/shuffle-array";
-import { getVerbFromBlocks } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/blocks-utils";
-import { baParticle } from "@lingdocs/pashto-inflector/dist/lib/grammar-units";
+import { getVerbFromBlocks } from "@lingdocs/ps-react/dist/lib/src/phrase-building/blocks-utils";
+import { baParticle } from "@lingdocs/ps-react/dist/lib/src/grammar-units";
 import { intransitivePastVerbs } from "../../content/verbs/basic-present-verbs";
 import { makePool } from "../../lib/pool";
 import { wordQuery } from "../../words/words";
-import { isImperativeTense } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
+import { isImperativeTense } from "@lingdocs/ps-react/dist/lib/src/type-predicates";
 
 const kidsColor = "#017BFE";
 

@@ -12,13 +12,13 @@ import {
     isPastTense,
     getPassiveRootsAndStems,
     getAbilityRootsAndStems,
-} from "@lingdocs/pashto-inflector";
-import { isImperativeTense, isPerfectTense } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
+} from "@lingdocs/ps-react";
+import { isImperativeTense, isPerfectTense } from "@lingdocs/ps-react/dist/lib/src/type-predicates";
 import { useState } from "react";
 import Carousel from "./Carousel";
 import { basicVerbs, intransitivePastVerbs } from "../content/verbs/basic-present-verbs";
-import { getLength } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
-import { isThirdPerson } from "@lingdocs/pashto-inflector/dist/lib/phrase-building/vp-tools";
+import { getLength } from "@lingdocs/ps-react/dist/lib/src/p-text-helpers";
+import { isThirdPerson } from "@lingdocs/ps-react";
 
 function BasicVerbShowCase({ opts, tense, passive, ability }: {
     opts: T.TextOptions,

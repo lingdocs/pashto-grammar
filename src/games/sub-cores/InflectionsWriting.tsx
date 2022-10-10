@@ -6,13 +6,13 @@ import {
     defaultTextOptions as opts,
     firstVariation,
     inflectWord,
-    humanReadableInflectionPattern,
+    HumanReadableInflectionPattern,
     isUnisexSet,
     InflectionsTable,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import { makePool } from "../../lib/pool";
 import { nouns, adjectives } from "../../words/words";
-import { isAdverbEntry } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
+import { isAdverbEntry } from "@lingdocs/ps-react/dist/lib/src/type-predicates";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { comparePs } from "../../lib/game-utils";
 
@@ -85,7 +85,7 @@ export default function InflectionsWriting({ inChapter, id, link, level }: {
     
     function Instructions() {
         return <div>
-            <p className="lead">Complete the inflections for the <strong>{humanReadableInflectionPattern(level, opts)}</strong> pattern word</p>
+            <p className="lead">Complete the inflections for the <strong>{HumanReadableInflectionPattern(level, opts)}</strong> pattern word</p>
         </div>
     }
 

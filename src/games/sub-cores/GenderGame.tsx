@@ -11,7 +11,7 @@ import {
     typePredicates as tp,
     firstVariation,
     randFromArray,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import { nouns } from "../../words/words";
 import { categorize } from "../../lib/categorize";
 

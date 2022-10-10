@@ -5,11 +5,11 @@ import {
     InlinePs,
     grammarUnits,
     defaultTextOptions as opts,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import { makePool } from "../../lib/pool";
 import { CSSProperties, useEffect, useState } from "react";
 import classNames from "classnames";
-import { isImperativeTense } from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
+import { isImperativeTense } from "@lingdocs/ps-react/dist/lib/src/type-predicates";
 
 const amount = 12;
 const timeLimit = 125;

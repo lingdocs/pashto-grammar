@@ -1,6 +1,6 @@
 // https://stackoverflow.com/a/2450976
 
-import { randFromArray } from "@lingdocs/pashto-inflector";
+import { randFromArray } from "@lingdocs/ps-react";
 
 function shuffleArray<T>(arr: Readonly<Array<T>>): Array<T> {
     let currentIndex = arr.length, temporaryValue, randomIndex;

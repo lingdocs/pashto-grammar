@@ -1,6 +1,5 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
-// const { readDictionary } = require("@lingdocs/pashto-inflector");
 const path = require("path");
 const wordsPath = path.join(".", "src", "words");
 const wordsFile = "raw-words.ts";

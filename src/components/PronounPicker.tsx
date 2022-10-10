@@ -4,7 +4,7 @@ import {
     Types as T,
     ButtonSelect,
     useStickyState,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 
 const gColors = {
     masc: "LightSkyBlue",

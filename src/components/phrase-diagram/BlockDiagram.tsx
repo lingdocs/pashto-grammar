@@ -5,7 +5,7 @@ import {
     NPBlock,
     APBlock,
     getEnglishFromRendered,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 
 function BlockDiagram({ opts, children }: {
     opts: T.TextOptions,

@@ -1,7 +1,7 @@
 import {
     Types as T,
     Examples,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 
 
 function Chart({ titleRow, children, opts }: {

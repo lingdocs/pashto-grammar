@@ -12,7 +12,7 @@ import {
     flattenLengths,
     InlinePs,
     grammarUnits,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import { randomEPSPool } from "./makeRandomEPS";
 
 const kidsColor = "#017BFE";

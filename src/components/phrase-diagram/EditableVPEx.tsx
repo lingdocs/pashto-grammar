@@ -3,7 +3,7 @@ import {
     VPDisplay,
     VPPicker,
     vpsReducer,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import entryFeeder from "../../lib/entry-feeder";
 import { useState } from "react";
 import ReactGA from "react-ga";

@@ -5,10 +5,10 @@ import {
     Examples,
     defaultTextOptions as opts,
     firstVariation,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import { makePool } from "../../lib/pool";
 import { nouns, adjectives } from "../../words/words";
-import * as tp from "@lingdocs/pashto-inflector/dist/lib/type-predicates";
+import * as tp from "@lingdocs/ps-react/dist/lib/src/type-predicates";
 
 const amount = 20;
 const timeLimit = 150;

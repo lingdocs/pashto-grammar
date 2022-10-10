@@ -18,7 +18,7 @@ import {
 import {
     randFromArray,
     Types,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import ReactGA from "react-ga";
 import { isProd } from "../lib/isProd";
 import autoAnimate from "@formkit/auto-animate";

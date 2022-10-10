@@ -1,4 +1,4 @@
-import { useStickyState } from "@lingdocs/pashto-inflector";
+import { useStickyState } from "@lingdocs/ps-react";
 import {
     Types as T,
     ButtonSelect,
@@ -6,7 +6,7 @@ import {
     defaultTextOptions as opts,
     EntrySelect,
     VPExplorer,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import { useEffect } from "react";
 import entryFeeder from "../lib/entry-feeder";
 

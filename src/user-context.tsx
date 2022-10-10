@@ -6,7 +6,7 @@ import {
 } from "@lingdocs/lingdocs-main";
 import {
   useStickyState,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import { CronJob } from "cron";
 import { postSavedResults } from "./lib/game-results";
 

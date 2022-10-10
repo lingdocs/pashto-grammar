@@ -1,4 +1,4 @@
-import { randFromArray } from "@lingdocs/pashto-inflector";
+import { randFromArray } from "@lingdocs/ps-react";
 import equal from "fast-deep-equal";
 
 /**

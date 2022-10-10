@@ -12,7 +12,7 @@ import {
     firstVariation,
     typePredicates as tp,
     randFromArray,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import { nouns } from "../../words/words";
 import { intoPatterns } from "../../lib/categorize";
 

@@ -1,6 +1,6 @@
 import {
     Types as T,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 
 type SandwichInfo = {
     pre?: T.PsString,

@@ -4,7 +4,7 @@ import {
     removeFVarients,
     typePredicates as tp,
     Types as T,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import { categorize } from "../lib/categorize";
 import { removeAShort } from "../lib/misc-helpers";
 

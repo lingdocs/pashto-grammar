@@ -7,7 +7,7 @@ import {
     defaultTextOptions as opts,
     getEnglishWord,
     Types as T,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 
 function InflectionCarousel({ items }: { items: (T.NounEntry | T.AdjectiveEntry)[] }) {
     if (!items.length) {

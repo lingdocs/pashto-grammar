@@ -3,7 +3,7 @@ import {
   // super weird, need to es-lint disable this this
   // eslint-disable-next-line
   Types as T,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 const {
   isPattern1Entry,
   isPattern2Entry,

@@ -6,8 +6,8 @@ import {
     randFromArray,
     renderEP,
     compileEP,
-} from "@lingdocs/pashto-inflector";
-import { psStringEquals } from "@lingdocs/pashto-inflector/dist/lib/p-text-helpers";
+} from "@lingdocs/ps-react";
+import { psStringEquals } from "@lingdocs/ps-react";
 import { randomEPSPool } from "./makeRandomEPS";
 import { useEffect, useState } from "react";
 import classNames from "classnames";

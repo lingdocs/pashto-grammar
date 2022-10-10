@@ -3,7 +3,7 @@ import {
     typePredicates as tp,
     makeNounSelection,
     randFromArray,
-} from "@lingdocs/pashto-inflector";
+} from "@lingdocs/ps-react";
 import { makePool } from "../../lib/pool";
 import { wordQuery } from "../../words/words";
 
