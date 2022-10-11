@@ -47,7 +47,6 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
             },
             body: JSON.stringify(toSend),
         }).then(res => res.json()).then(res => {
-            console.log(res);
             if (res.ok) {
                 setFeedbackStatus("sent");
             } else {
