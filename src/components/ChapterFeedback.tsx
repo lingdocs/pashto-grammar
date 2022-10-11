@@ -30,7 +30,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
                 console.error("couldn't send chapter feedback");
             });
         }   
-    });
+    }, []);
     function handleSendFeedback() {
         const toSend = {
             chapter,
