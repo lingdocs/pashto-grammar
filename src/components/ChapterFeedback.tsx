@@ -19,7 +19,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
     }
     useEffect(() => {
         return () => {
-            if (rating === undefined) return;
+            if (rating === undefined || feedbackStatus === "sent") return;
             fetch("https://account.lingdocs.com/feedback", {
                 method: "PUT",
                 credentials: "include",
