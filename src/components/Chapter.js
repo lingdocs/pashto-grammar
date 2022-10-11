@@ -8,6 +8,7 @@
 
 import TableOfContents from "./TableOfContents";
 import Footer from "./Footer";
+import ChapterFeedback from "./ChapterFeedback";
 
 const Chapter = ({ children: chapter }) => {
   const Content = chapter.content;
@@ -33,6 +34,7 @@ const Chapter = ({ children: chapter }) => {
         </div>
         <Content />
       </div>
+      <ChapterFeedback chapter={chapter.path} />
       <Footer chapter={chapter} />
     </main>
     {!chapter.frontMatter.fullWidth && <TableOfContents tableOfContents={chapter.tableOfContents} />}

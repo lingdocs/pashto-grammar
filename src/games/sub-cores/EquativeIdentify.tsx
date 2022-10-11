@@ -40,7 +40,6 @@ export default function EquativeIdentify({ inChapter, id, link, level }: { inCha
     };
     
     function Display({ question, callback }: QuestionDisplayProps<Question>) {
-        console.log({ question });
         const [selected, setSelected] = useState<T.EquativeTense[]>([]);
         useEffect(() => {
             setSelected([]);

@@ -7,8 +7,6 @@ import {
     adverbs,
 } from "../words/words";
 
-console.log({ locativeAdverbs });
-
 const entryFeeder: T.EntryFeeder = {
     nouns,
     verbs,
