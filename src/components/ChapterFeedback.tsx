@@ -10,7 +10,7 @@ const ratings = [
 function ChapterFeedback({ chapter }: { chapter: string }) {
     const [rating, setRating] = useState<number | undefined>(undefined);
     const [feedback, setFeedback] = useState<string>("");
-    const [feedbackSent, setFeedbackSent] = useState<boolean>(false);
+    const [feedbackStatus, setFeedbackStatus] = useState<"unsent" | "sending" | "sent">("unsent")
     function handleRatingClick(v: number) {
         setRating(o => o === v ? undefined : v);
     }
@@ -23,7 +23,9 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ feedback: "", rating }),
-            })
+            }).catch(() => {
+                console.error("couldn't send chapter feedback");
+            });
         }   
     });
     function handleSendFeedback() {
@@ -32,6 +34,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
             feedback,
             rating,
         };
+        setFeedbackStatus("sending");
         fetch("https://account.lingdocs.com/feedback", {
             method: "PUT",
             credentials: "include",
@@ -42,16 +45,17 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
         }).then(res => res.json()).then(res => {
             console.log(res);
             if (res.ok) {
-                setFeedbackSent(true);
+                setFeedbackStatus("sent");
             } else {
+                setFeedbackStatus("unsent");
                 alert("error sending feedback");
             }
         }).catch(() => {
+            setFeedbackStatus("unsent");
             alert("connect to the internet to send feedback");
-            setFeedbackSent(true);
         });
     }
-    if (feedbackSent) {
+    if (feedbackStatus === "sent") {
         return <div>
             <hr/>
             <div className="d-flex flex-row justify-content-center align-items-center" style={{ height: "6rem" }}>
@@ -90,8 +94,13 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
                         onChange={e => setFeedback(e.target.value)}
                     />
                 </div>
-                <div className="text-right">
-                    <button className="btn btn-sm btn-primary" onClick={handleSendFeedback}>Send</button>
+                <div className="d-flex flex-row justify-content-end align-items-center">
+                    {feedbackStatus === "sending" && <div className="mr-3">
+                        <samp>sending...</samp>
+                    </div>}
+                    <div>
+                        <button className="btn btn-sm btn-primary" onClick={handleSendFeedback}>Send</button>
+                    </div>
                 </div>
             </div>}
         </div>
