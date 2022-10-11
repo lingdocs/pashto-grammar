@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useUser } from "../user-context";
 
 const ratings = [
     { value: 0, emoji: "😭" },
@@ -8,7 +9,9 @@ const ratings = [
 ]
 
 function ChapterFeedback({ chapter }: { chapter: string }) {
+    const { user } = useUser();
     const [rating, setRating] = useState<number | undefined>(undefined);
+    const [anonymous, setAnonymous] = useState<boolean>(false);
     const [feedback, setFeedback] = useState<string>("");
     const [feedbackStatus, setFeedbackStatus] = useState<"unsent" | "sending" | "sent">("unsent")
     function handleRatingClick(v: number) {
@@ -33,6 +36,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
             chapter,
             feedback,
             rating,
+            anonymous,
         };
         setFeedbackStatus("sending");
         fetch("https://account.lingdocs.com/feedback", {
@@ -85,23 +89,42 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
             </div>
             {rating !== undefined && <div style={{ maxWidth: "30rem", margin: "0 auto" }}>
                 <div className="form-group">
-                    <label htmlFor="exampleFormControlTextarea1" className="text-left">Feedback:</label>
+                    <label htmlFor="feedbackText" className="text-left">Feedback:</label>
                     <textarea
                         className="form-control"
-                        id="exampleFormControlTextarea1"
+                        id="feedbackText"
                         rows={3}
                         value={feedback}
                         onChange={e => setFeedback(e.target.value)}
                     />
                 </div>
-                <div className="d-flex flex-row justify-content-end align-items-center">
-                    {feedbackStatus === "sending" && <div className="mr-3">
-                        <samp>sending...</samp>
-                    </div>}
+                <div className="d-flex flex-row justify-content-between align-items-center">
+                    <div className="small">
+                        {(user && !anonymous)
+                            ? `Feedback will be sent as ${user.name}`
+                            : `Feedback will be anonymous`}
+                    </div>
                     <div>
-                        <button className="btn btn-sm btn-primary" onClick={handleSendFeedback}>Send</button>
+                        {feedbackStatus === "sending" && <div className="mr-3">
+                            <samp>sending...</samp>
+                        </div>}
+                        <div>
+                            <button className="btn btn-sm btn-primary" onClick={handleSendFeedback}>Send</button>
+                        </div>
                     </div>
                 </div>
+                {user && <div className="form-check small">
+                    <input
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={anonymous}
+                        onChange={e => setAnonymous(e.target.checked)}
+                        id="anonymounCheck"
+                    />
+                    <label className="form-check-label" htmlFor="anonymousCheck">
+                        keep feedback anonymouns
+                    </label>
+                </div>}
             </div>}
         </div>
     </div>;
