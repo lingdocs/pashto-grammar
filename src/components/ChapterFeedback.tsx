@@ -67,7 +67,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
     if (feedbackStatus === "sent") {
         return <div>
             <hr/>
-            <div className="d-flex flex-row justify-content-center align-items-center" style={{ height: "6rem" }}>
+            <div className="d-flex flex-row justify-content-center align-items-center my-3" style={{ height: "6rem" }}>
                 <div className="lead">Thanks for your feedback!</div>
             </div>
             <hr/>
@@ -75,7 +75,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
     }
     return <div>
         <hr />
-        <div>
+        <div className="my-4">
             <div className="text-center">Was this chapter helpful?</div>
             <div className="d-flex flex-row align-items-center justify-content-center">
                 {ratings.map(({ value, emoji }) => (
