@@ -104,7 +104,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
                             ? `Feedback will be sent as ${user.name}`
                             : `Feedback will be anonymous`}
                     </div>
-                    <div>
+                    <div className="d-flex flex-row">
                         {feedbackStatus === "sending" && <div className="mr-3">
                             <samp>sending...</samp>
                         </div>}
