@@ -15,10 +15,17 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
         setRating(o => o === v ? undefined : v);
     }
     useEffect(() => {
-     return () => {
-        // send face feedback if exists
-     }   
-    })
+        return () => {
+            fetch("https://account.lingdocs.com/feedback", {
+                method: "PUT",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ feedback: "", rating }),
+            })
+        }   
+    });
     function handleSendFeedback() {
         const toSend = {
             chapter,
