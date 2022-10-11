@@ -19,6 +19,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
     }
     useEffect(() => {
         return () => {
+            if (rating === undefined) return;
             fetch("https://account.lingdocs.com/feedback", {
                 method: "PUT",
                 credentials: "include",
@@ -100,10 +101,10 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
                 <div className="d-flex flex-row justify-content-between align-items-center">
                     <div className="small">
                         {(user && !anonymous)
-                            ? `Feedback will be sent as ${user.name}`
+                            ? `Feedback will be sent as "${user.name}"`
                             : `Feedback will be anonymous`}
                     </div>
-                    <div className="d-flex flex-row">
+                    <div className="d-flex flex-row align-items-center">
                         {feedbackStatus === "sending" && <div className="mr-3">
                             <samp>sending...</samp>
                         </div>}
@@ -121,7 +122,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
                         id="anonymounCheck"
                     />
                     <label className="form-check-label" htmlFor="anonymousCheck">
-                        keep feedback anonymouns
+                        stay anonymouns
                     </label>
                 </div>}
             </div>}
