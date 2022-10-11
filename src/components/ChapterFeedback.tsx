@@ -99,6 +99,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
                     <textarea
                         className="form-control"
                         id="feedbackText"
+                        placeholder="Share more or leave blank"
                         rows={3}
                         value={feedback}
                         onChange={e => setFeedback(e.target.value)}
