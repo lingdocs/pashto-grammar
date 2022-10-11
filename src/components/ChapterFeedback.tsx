@@ -70,6 +70,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
             <div className="d-flex flex-row justify-content-center align-items-center" style={{ height: "6rem" }}>
                 <div className="lead">Thanks for your feedback!</div>
             </div>
+            <hr/>
         </div>
     }
     return <div>
@@ -132,6 +133,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
                 </div>}
             </div>}
         </div>
+        <hr />
     </div>;
 }
 
