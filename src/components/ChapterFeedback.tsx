@@ -43,6 +43,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
             feedback,
             rating,
             anonymous,
+            ts: Date.now(),
         };
         setFeedbackStatus("sending");
         fetch("https://account.lingdocs.com/feedback", {
