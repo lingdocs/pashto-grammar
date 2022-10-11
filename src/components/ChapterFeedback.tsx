@@ -17,21 +17,26 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
     function handleRatingClick(v: number) {
         setRating(o => o === v ? undefined : v);
     }
-    useEffect(() => {
-        return () => {
-            if (rating === undefined || feedbackStatus === "sent") return;
-            fetch("https://account.lingdocs.com/feedback", {
-                method: "PUT",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ feedback: "", rating }),
-            }).catch(() => {
-                console.error("couldn't send chapter feedback");
-            });
-        }   
-    }, []);
+    // automatic sending of emoji click feedback if someone leaves the chapter without
+    // filling in and sending the feedback textbox
+    // not doing this yet because not sure if it's a clean setup like "componentWillUnmount"
+    // or if it unecessarily unmounts and re-renders
+    // useEffect(() => {
+    //     return () => {
+    //         if (rating === undefined || feedbackStatus === "sent") return;
+    //         fetch("https://account.lingdocs.com/feedback", {
+    //             method: "PUT",
+    //             credentials: "include",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({ feedback: "", rating }),
+    //         }).catch(() => {
+    //             console.error("couldn't send chapter feedback");
+    //         });
+    //     }
+    //     // eslint-disable-next-line  
+    // }, []);
     function handleSendFeedback() {
         const toSend = {
             chapter,
