@@ -38,7 +38,7 @@ function Footer({ chapter }) {
     return (
       <footer className="footer mt-auto pb-2">
         <div className="copyright text-muted my-4 text-center">
-          <small>© <a href="https://www.lingdocs.com/">lingdocs.com</a> {new Date().getFullYear()} - <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></small>
+          <small>© <a rel="author" href="https://www.lingdocs.com/">lingdocs.com</a> {new Date().getFullYear()} - <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> - <a href="https://github.com/lingdocs/pashto-grammar">source</a></small>
         </div>
         {chapter &&
             <div className="d-flex justify-content-between">
