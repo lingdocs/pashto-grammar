@@ -13,6 +13,9 @@ import Link from "../../components/Link";
 import EditableBlock, {
     EditIcon,
 } from "../../components/phrase-diagram/EditableBlock";
+import EditableVPEx from "../../components/phrase-diagram/EditableVPEx";
+import EditableEPEx from "../../components/phrase-diagram/EditableEPEx";
+import { EP, VP } from "../../components/terms-links.tsx";
 
 Another building block we have in Pashto phrases in the **AP (Adverb Phrase)**. Adverb Phrases are used to give more information about the phrase in terms of time, manner, place, degree, etc.
 
@@ -44,6 +47,22 @@ An adverb is a word or expression that modifies the time, manner, place, etc. of
         },
     }
 }</EditableBlock>
+
+#### Note on inflecting adverbs
+
+Adverbs don't normally inflect, but they *will inflect* if they are words that can also be used as an adjective.
+
+Notice how the adverb <InlinePs opts={opts} ps={{ p: "ستړی", f: "stúRey", e: "tired" }} /> inflects depending on who is sitting in this example:
+
+<EditableEPEx opts={opts} hideOmitSubject>{
+    {"blocks":[{"key":0.23089213205851067,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.3252190155472441,"block":{"type":"AP","selection":{"type":"adverb","entry":{"ts":1527812558,"i":6352,"p":"دلته","f":"dălta","g":"dalta","e":"here","c":"loc. adv."}}}},{"key":0.015377073636430039,"block":{"type":"AP","selection":{"type":"adverb","entry":{"ts":1527815306,"i":7722,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj. / adv."}}}}],"predicate":{"type":"Complement","Complement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815106,"i":13461,"p":"ناست","f":"naast","g":"naast","e":"sitting, seated","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
+}</EditableEPEx>
+
+When an adverb can also be used as an adjective it will inflect to agree with:
+ - With <EP text="EPs" />: the subject
+ - With <VP text="VPs" />: the object, or if there's no object NP, the subject
+
+
 
 ### Sandwich 🥪
 
