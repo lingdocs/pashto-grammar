@@ -24,60 +24,29 @@ const allAdverbTsS = adverbTsFiles.flatMap(fileName => [
     ...require(path.join("..", adverbCollectionPath, fileName))
 ]).filter((v, i, a) => a.findIndex(x => x === v) === i);
 
+const allTs = [...allVerbTsS, ...allAdverbTsS, ...allNounAdjTsS];
 console.log("getting words from dictionary...");
 
-fetch(process.env.LINGDOCS_DICTIONARY_URL + ".json").then(res => res.json()).then(data => {
-  const { entries } = data;
-  // MAKE VERBS FILE
-  const allWords = [
-      ...getVerbsFromTsS(entries),
-      ...getNounsAdjsFromTsS(entries),
-    ];
+fetch("https://account.lingdocs.com/dictionary/entries", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ ids: allTs }),
+}).then(res => res.json()).then(data => {
   const content = `
 // @ts-ignore
-const words: Word[] = ${JSON.stringify(allWords)};
+const words: Word[] = ${JSON.stringify(data.results)};
 export default words;`;
   fs.writeFileSync(path.join(wordsPath, wordsFile), content);
+  const missingEc = data.results.filter(x => "entry" in x && !x.entry.ec);
+  if (missingEc.length) {
+    console.log("verbs missing ec");
+    console.log(missingEc);
+  }
+  if (data.notFound.length) {
+    console.log("entries not found:");
+    console.log(data.notFound);
+  }
 });
 
-function getVerbsFromTsS(entries) {
-    const missingEc = [];
-    const toReturn = allVerbTsS.map(ts => {
-        const entry = entries.find(x => ts === x.ts);
-        if (!entry) {
-            console.log("couldn't find ts", ts);
-            return undefined;
-        }
-        if (!entry.ec) {
-            missingEc.push(entry.ts);
-        }
-        if (entry.c && entry.c.includes("comp.")) {
-            const complement = entries.find(x => entry.l === x.ts);
-            return {
-                entry,
-                complement,
-            };
-        }
-        return { entry };
-    }).filter(x => x);
-    if (missingEc.length !== 0) {
-        console.log("Verbs missing ec:", missingEc);
-    }
-    return toReturn;
-}
-
-function getNounsAdjsFromTsS(entries) {
-    const b = [...allNounAdjTsS, ...allAdverbTsS].map(ts => {
-        const entry = entries.find(x => ts === x.ts);
-        if (!entry) {
-            console.log("couldn't find ts", ts);
-            return undefined;
-        }
-        // const firstWord = entry.e.split(",")[0].split(";")[0].split("(")[0].trim();
-        // console.log(firstWord, entry.f, entry.ts);
-        // if (firstWord.contains(" ")) console.log("SPACE PRESENT");
-        return entry;
-    }).filter(x => x);
-    return b;
-    // console.log(b.length, "number of nouns/adjs");
-}
