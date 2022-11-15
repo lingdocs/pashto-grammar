@@ -214,7 +214,9 @@ function GameCore<Question>({ inChapter, getQuestion, amount, Display, DisplayCo
         }
     }
     function punish() {
-        navigator.vibrate(errorVibration);
+        if (navigator.vibrate) {
+            navigator.vibrate(errorVibration);
+        }
     }
     function handleResult(done: boolean) {
         const result: AT.TestResult = {
