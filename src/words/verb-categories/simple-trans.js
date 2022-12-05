@@ -28,7 +28,7 @@ module.exports = [
 	1527815165,// پېژندل - to recognize, know, meet
 	1527813405,// تړل - to connect, tie, bind, close
 	1527813394,// ټاکل - to select, appoint
-	1527813755,// ځورول - to bother, irritate, torture, distress, vex, grind on
+	1527820418,// ځورول - to bother, irritate, torture, distress, vex, grind on
 	1527814586,// چلول - to drive, operate, handle, put forward, circulate
 	1527816564,// چیچل - to bite, chew, grind (teeth), clench (teeth), sting
 	1527812790,// خوړل - to eat, to bite
