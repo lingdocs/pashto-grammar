@@ -415,7 +415,7 @@ const contentTree: (ChapterSection | ChaptersSection)[] = [
         ],
     },
     {
-        slug: "Dictionary",
+        slug: "dictionary",
         import: dictionary,
     },
 ];

@@ -1068,7 +1068,7 @@ module.exports = [
 { ts: 1527817475, e: `of the forest, jungle, wild` }, // ځنګلي - dzungulee
 { ts: 1577408901204, e: `knee` }, // ځنګون - dzangóon
 { ts: 1527818253, e: `youth` }, // ځواني - dzwaanee
-{ ts: 1527813755, e: `to bother, irritate, torture, distress, vex, grind on` }, // ځورول - dzawrawul
+{ ts: 1527820418, e: `to bother, irritate, torture, distress, vex, grind on` }, // ځورول - dzawrawul
 { ts: 1527820112, e: `hanging` }, // ځوړند - dzwáRund
 { ts: 1527811496, e: `birth` }, // ځوکړه - dzokRa
 { ts: 1527811477, e: `birth` }, // ځېږنه - dzeGuna
