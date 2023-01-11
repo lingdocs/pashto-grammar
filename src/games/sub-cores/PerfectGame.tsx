@@ -81,58 +81,48 @@ const persons: T.Person[] = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
 ];
 
-const secondPersons = [
-    T.Person.SecondSingMale,
-    T.Person.SecondSingFemale,
-    T.Person.SecondPlurMale,
-    T.Person.SecondPlurFemale,
-];
-
-type VerbGameLevel = {
+type PerfectGameLevel = {
     /* 1 is just a single verb, 2 picks a random verb for every question */
-    level: 1 | 2,
-    type: "presentVerb" | "subjunctiveVerb"
-        | "futureVerb" | "imperative" | "intransitivePerfectivePast"
-        | "intransitiveImperfectivePast" | "transitivePerfectivePast" | "transitiveImperfectivePast"
-        | "allPast" | "habitualPast" | "allTenses";
+    level: 1 | 2, 
+    type: "intransitive" | "transitive-intransitive" | "all-tenses",
 }
 type VerbPoolName = "basic" | "transitivePast" | "intransitivePast" | "mixedPast" | "mixedAll";
 
-function selectVerbPool({ type }: VerbGameLevel): VerbPoolName {
-    return type === "presentVerb"
-        ? "basic"
-        : type === "futureVerb"
-        ? "basic"
-        : type === "subjunctiveVerb"
-        ? "basic"
-        : type === "imperative"
-        ? "basic"
-        : type === "intransitiveImperfectivePast"
-        ? "intransitivePast"
-        : type === "intransitivePerfectivePast"
-        ? "intransitivePast"
-        : type === "transitiveImperfectivePast"
-        ? "transitivePast"
-        : type === "transitivePerfectivePast"
-        ? "transitivePast"
-        : type === "habitualPast" || type === "allPast"
-        ? "mixedPast"
-        : "mixedAll";
+type LevelInfo = {
+    description: string | JSX.Element,
+    tense: T.PerfectTense | "allTenses",
+    pool: VerbPoolName,
 }
+
+const levelInfos: Record<PerfectGameLevel["type"], LevelInfo> = {
+    "intransitive": {
+        description: "present perfect form of the verb",
+        tense: "presentPerfect",
+        pool: "intransitivePast",
+    },
+    "transitive-intransitive": {
+        description: "present perfect form of the verb",
+        tense: "presentPerfect",
+        pool: "mixedPast",
+    },
+    "all-tenses": {
+        description: "correct perfect form of the verb",
+        tense: "allTenses",
+        pool: "mixedPast",
+    },
+} 
 
 // TODO: Level where you create the formulas (seperate file)
 // level where you choose the right situation
 
-const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
+const VerbGame: GameSubCore<PerfectGameLevel> = ({ id, link, level, inChapter }: {
     inChapter: boolean,
     id: string,
     link: string,
-    level: VerbGameLevel,
+    level: PerfectGameLevel,
  }) => {
-    const personPool = makePool(level.type === "imperative"
-        ? secondPersons
-        : persons
-    );
+    const levelInfo = levelInfos[level.type];
+    const personPool = makePool(persons);
     const verbPools: Record<VerbPoolName, () => T.VerbEntry> = {
         basic: makePool(verbs, 15),
         transitivePast: makePool(transitivePastVerbs, 15),
@@ -140,10 +130,15 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
         mixedPast: makePool([...transitivePastVerbs, ...intransitivePastVerbs], 15),
         mixedAll: makePool([...verbs, ...transitivePastVerbs, ...intransitivePastVerbs], 15),
     };
-    const oneVerb: T.VerbEntry = verbPools[selectVerbPool(level)]();
+    const tensePool = makePool<T.PerfectTense>([
+        "presentPerfect", "pastPerfect", "subjunctivePerfect", "habitualPerfect",
+        "pastPerfect", "futurePerfect", "wouldBePerfect", "pastSubjunctivePerfect",
+        "wouldHaveBeenPerfect",
+    ]);
+    const oneVerb: T.VerbEntry = verbPools[levelInfo.pool]();
     const getVerb = level.level === 1
         ? () => oneVerb
-        : () => verbPools[selectVerbPool(level)]();
+        : () => verbPools[levelInfo.pool]();
     function makeRandomNoun(): T.NounSelection {
         const n = makeNounSelection(randFromArray(nouns), undefined);
         return {
@@ -152,7 +147,7 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
             number: n.numberCanChange ? randFromArray(["singular", "plural"]) : n.number,
         };
     }
-    function makeRandomVPS(tense: T.VerbTense | T.ImperativeTense): T.VPSelectionComplete {
+    function makeRandomVPS(tense: T.PerfectTense): T.VPSelectionComplete {
         function personToNPSelection(p: T.Person): T.NPSelection {
             if (isThirdPerson(p)) {
                 return {
@@ -193,13 +188,16 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
         });
     }
     function getQuestion(): Question {
-        const VPS = makeRandomVPS(levelToTense(level));
+        const VPS = makeRandomVPS(levelInfo.tense === "allTenses"
+            ? tensePool()
+            : levelInfo.tense
+        );
         const VP = renderVP(VPS);
         const compiled = compileVP(
             VP,
             { removeKing: false, shrinkServant: false },
             true,
-            { ba: true, verb: true, negative: true },
+            { ba: levelInfo.tense === "allTenses", verb: true, negative: true },
         );
         const phrase = {
             ps: compiled.ps,
@@ -234,13 +232,13 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
         // useEffect(() => {
         //     if (level === "allProduce") setWithBa(false);
         // }, [question]);
-        return <div>
+        return <div> 
             <QuestionDisplay question={question} userAnswer={{
                 withBa,
                 answer,
             }} />
             <form onSubmit={handleSubmit}>
-                <div className="form-check mt-1">
+                {level.type === "all-tenses" && <div className="form-check mt-1">
                     <input
                         id="baCheckbox"
                         className="form-check-input"
@@ -251,7 +249,7 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
                     <label className="form-check-label text-muted" htmlFor="baCheckbox">
                         with <InlinePs opts={opts}>{grammarUnits.baParticle}</InlinePs> in the <span style={{ color: kidsColor }}>kids' section</span>
                     </label>
-                </div>
+                </div>}
                 <div className="my-1" style={{ maxWidth: "200px", margin: "0 auto" }}>
                     <input
                         type="text"
@@ -277,7 +275,7 @@ const VerbGame: GameSubCore<VerbGameLevel> = ({ id, link, level, inChapter }: {
     }
     
     function Instructions() {
-        const desc = levelToDescription(level);
+        const desc = levelInfo.description;
         return <div>
             <p className="lead">
                 Write the {desc} verb to complete the phrase
@@ -317,8 +315,11 @@ function QuestionDisplay({ question, userAnswer }: {
         : "stative" in infoV
         ? infoV.stative
         : infoV;
-    return <div className="mb-3">
-        <div className="mb-2">{vEntry.p} - {removeFVarients(vEntry.f)} "{getEnglishVerb(vEntry)}"</div>
+    return <div className="mb-3 mt-2">
+        <div className="mb-2">
+            <div>{vEntry.p} - {removeFVarients(vEntry.f)} <span className="text-muted">{vEntry.c}</span></div>
+            <div>"{getEnglishVerb(vEntry)}"</div>
+        </div>
         <details style={{ marginBottom: 0 }}>
             <summary>🌳 Show roots and stems</summary>
             <RootsAndStems info={info} textOptions={defaultTextOptions} />
@@ -330,9 +331,7 @@ function QuestionDisplay({ question, userAnswer }: {
                 {x}
             </div>)}
         </div>}
-        <div>{(isImperativeTense(v.block.tense) && v.block.negative)
-            ? "Negative Imperative"
-            : humanReadableVerbForm(v.block.tense)}</div>
+        <div>{humanReadableVerbForm(v.block.tense)}</div>
     </div>;
 }
 
@@ -386,61 +385,11 @@ function addUserAnswer(a: { withBa: boolean, answer: string }, ps: T.PsString): 
     return addAnswer(addBa(ps));
 }
 
-
-function levelToDescription({ type }: VerbGameLevel): string {
-    return type === "presentVerb"
-        ? "present"
-        : type === "subjunctiveVerb"
-        ? "subjunctive"
-        : type === "futureVerb"
-        ? "imperfective future or perfective future"
-        : type === "intransitivePerfectivePast"
-        ? "simple past intransitive"
-        : type === "intransitiveImperfectivePast"
-        ? "continuous past intransitive"
-        : type === "transitiveImperfectivePast"
-        ? "continuous past transitive"
-        : type === "transitivePerfectivePast"
-        ? "simple past transitive"
-        : type === "imperative"
-        ? "imperfective imperative or perfective imperative"
-        : type === "allPast"
-        ? "past tense"
-        : type === "habitualPast"
-        ? "habitual past"
-        // : type === "allTenses"
-        : "";
-}
-
-function levelToTense({ type }: VerbGameLevel): T.VerbTense | T.ImperativeTense {
-    return type === "presentVerb"
-        ? type
-        : type === "subjunctiveVerb"
-        ? type
-        : type === "futureVerb"
-        ? randFromArray(["perfectiveFuture", "imperfectiveFuture"])
-        : type === "imperative"
-        ? randFromArray(["perfectiveImperative", "imperfectiveImperative"])
-        : (type === "intransitiveImperfectivePast" || type === "transitiveImperfectivePast")
-        ? "imperfectivePast"
-        : (type === "intransitivePerfectivePast" || type === "transitivePerfectivePast")
-        ? "perfectivePast"
-        : type === "habitualPast"
-        ? randFromArray(["habitualPerfectivePast", "habitualImperfectivePast"])
-        // : type === "allPast"
-        : randFromArray([
-            "perfectivePast",
-            "imperfectivePast",
-            "habitualPerfectivePast",
-            "habitualImperfectivePast",
-        ]);
-}
-
 function makeVPS({ verb, king, servant, tense, defaultTransitivity }: {
     verb: T.VerbEntry,
     king: T.NPSelection,
     servant: T.NPSelection,
-    tense: T.VerbTense | T.ImperativeTense,
+    tense: T.PerfectTense,
     defaultTransitivity: "transitive" | "grammatically transitive"
 }): T.VPSelectionComplete {
     const vps = makeVPSelectionState(verb);

@@ -8,6 +8,7 @@ import EquativeIdentify from "./sub-cores/EquativeIdentify";
 import VerbFormulas from "./sub-cores/VerbFormulas";
 import InflectionPatterns from "./sub-cores/InflectionPatterns";
 import InflectionsWriting from "./sub-cores/InflectionsWriting";
+import PerfectVerbsIntransitive from "./sub-cores/PerfectGame";
 
 
 // NOUNS
@@ -35,42 +36,42 @@ export const unisexNounGame = makeGameRecord({
 
 // INFLECTIONS
 export const inflectionTableGame1 = makeGameRecord({
-    title: `Write the inflections - Pattern #1`,
+    title: "Write the inflections - Pattern #1",
     id: "write-inflections-1",
     link: "/inflection/inflection-patterns/#1-basic",
     level: 1,
     SubCore: InflectionsWriting,
 });
 export const inflectionTableGame2 = makeGameRecord({
-    title: `Write the inflections - Pattern #2`,
+    title: "Write the inflections - Pattern #2",
     id: "write-inflections-2",
     link: "/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-ی---ey",
     level: 2,
     SubCore: InflectionsWriting,
 });
 export const inflectionTableGame3 = makeGameRecord({
-    title: `Write the inflections - Pattern #3`,
+    title: "Write the inflections - Pattern #3",
     id: "write-inflections-3",
     link: "/inflection/inflection-patterns/#3-words-ending-in-a-stressed-ی---éy",
     level: 3,
     SubCore: InflectionsWriting,
 });
 export const inflectionTableGame4 = makeGameRecord({
-    title: `Write the inflections - Pattern #4`,
+    title: "Write the inflections - Pattern #4",
     id: "write-inflections-4",
     link: "/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern",
     level: 4,
     SubCore: InflectionsWriting,
 });
 export const inflectionTableGame5 = makeGameRecord({
-    title: `Write the inflections - Pattern #5`,
+    title: "Write the inflections - Pattern #5",
     id: "write-inflections-5",
     link: "/inflection/inflection-patterns/#5-shorter-words-that-squish",
     level: 5,
     SubCore: InflectionsWriting,
 });
 export const inflectionTableGame6 = makeGameRecord({
-    title: `Write the inflections - Pattern #6`,
+    title: "Write the inflections - Pattern #6",
     id: "write-inflections-6",
     link: "/inflection/inflection-patterns/#6-inanimate-feminine-nouns-ending-in-ي---ee",
     level: 6,
@@ -340,6 +341,61 @@ export const verbFormulasGame = makeGameRecord({
     SubCore: VerbFormulas,
 });
 
+export const intransitivePresentPerfectGameOne = makeGameRecord({
+    title: "Write the present perfect verb - intransitive (one)",
+    id: "present-perfect-intransitive-one",
+    link: "/verbs/perfect-verbs-intro/",
+    level: {
+        level: 1,
+        type: "intransitive",
+    },
+    SubCore: PerfectVerbsIntransitive,
+});
+
+export const intransitivePresentPerfectGameMix = makeGameRecord({
+    title: "Write the present perfect verb - intransitive (mix)",
+    id: "present-perfect-intransitive-mix",
+    link: "/verbs/perfect-verbs-intro/",
+    level: {
+        level: 2,
+        type: "intransitive",
+    },
+    SubCore: PerfectVerbsIntransitive,
+});
+
+export const presentPerfectGame = makeGameRecord({
+    title: "Write the present perfect verb - transitive/intransitive mix",
+    id: "present-perfect",
+    link: "/verbs/perfect-verbs-intro/",
+    level: {
+        level: 2,
+        type: "transitive-intransitive",
+    },
+    SubCore: PerfectVerbsIntransitive,
+});
+
+export const perfectGameOne = makeGameRecord({
+    title: "Write the perfect verb - all perfect tenses (one verb)",
+    id: "all-perfect-one",
+    link: "/verbs/all-perfect-verbs/",
+    level: {
+        level: 1,
+        type: "all-tenses",
+    },
+    SubCore: PerfectVerbsIntransitive,
+});
+
+export const perfectGameMix = makeGameRecord({
+    title: "Write the perfect verb - all perfect tenses (mix)",
+    id: "all-perfect-mix",
+    link: "/verbs/all-perfect-verbs/",
+    level: {
+        level: 2,
+        type: "all-tenses",
+    },
+    SubCore: PerfectVerbsIntransitive,
+});
+
 const games: { chapter: string, items: GameRecord[] }[] = [
     {
         chapter: "Nouns",
@@ -405,6 +461,16 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             allVerbGame2,
             verbSituationsGame,
             verbFormulasGame,
+        ],
+    },
+    {
+        chapter: "Perfect Verbs",
+        items: [
+            intransitivePresentPerfectGameOne,
+            intransitivePresentPerfectGameMix,
+            presentPerfectGame,
+            perfectGameOne,
+            perfectGameMix,
         ],
     },
 ];
