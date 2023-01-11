@@ -40,7 +40,7 @@ import { isImperativeTense } from "@lingdocs/ps-react/dist/lib/src/type-predicat
 const kidsColor = "#017BFE";
 
 const amount = 12;
-const timeLimit = 140;
+const timeLimit = 160;
 
 type Question = {
     rendered: T.VPRendered,
