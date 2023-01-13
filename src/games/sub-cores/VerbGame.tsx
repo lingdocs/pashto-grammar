@@ -350,22 +350,7 @@ function DisplayCorrectAnswer({ question }: { question: Question }): JSX.Element
         <div><strong>{verbHasBa(question.rendered) ? "with" : "without"}</strong> a <InlinePs opts={opts}>{grammarUnits.baParticle}</InlinePs> in the kids' section.</div>
     </div>;
 }
-// function modExs(exs: T.PsString[], withBa: boolean): { p: JSX.Element, f: JSX.Element }[] {
-//     return exs.map(ps => {
-//         if (!ps.p.includes(" ___ ")) {
-//             return {
-//                 p: <>{ps.p}</>,
-//                 f: <>{ps.f}</>,
-//             };
-//         }
-//         const splitP = ps.p.split(" ___ ");
-//         const splitF = ps.f.split(" ___ ");
-//         return {
-//             p: <>{splitP[0]} <span style={{ color: kidsColor }}>{withBa ? "به" : "__"}</span> {splitP[1]}</>,
-//             f: <>{splitF[0]} <span style={{ color: kidsColor }}>{withBa ? "ba" : "__"}</span> {splitF[1]}</>,
-//         };
-//     });
-// }
+
 
 function addUserAnswer(a: { withBa: boolean, answer: string }, ps: T.PsString): T.PsString {
     function addBa(x: T.PsString) {

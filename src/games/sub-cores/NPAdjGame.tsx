@@ -1,19 +1,14 @@
 import GameCore from "../GameCore";
 import {
     Types as T,
-    Examples,
-    defaultTextOptions as opts,
-    firstVariation,
     renderNPSelection,
     getEnglishFromRendered,
-    removeFVarients,
     concatPsString,
-    getInflectionPattern,
-    HumanReadableInflectionPattern,
 } from "@lingdocs/ps-react";
 import { makeNPAdjGenerator } from "../../lib/np-adj-generator";
 import { useState } from "react";
 import { comparePs } from "../../lib/game-utils";
+import WordCard from "../../components/WordCard";
 
 const amount = 15;
 const timeLimit = 230;
@@ -37,9 +32,6 @@ const NPAdjWriting: GameSubCore<Level> = ({ inChapter, id, link, level }: {
     level: Level,
 }) => {
     const npPool = makeNPAdjGenerator();
-
-    // todo زړې ډاکټرې should work!
-    // feminineplural space issue
 
     function getQuestion(): Question {
         const np = npPool();
@@ -150,43 +142,6 @@ function DisplayCorrectAnswer({ question }: { question: Question }): JSX.Element
                 ]
             )), [] as JSX.Element[])}
         </div>
-    </div>;
-}
-
-function WordCard({ showHint, entry, selection }: {
-    showHint: boolean
-} & ({
-    entry: T.AdjectiveEntry,
-    selection: undefined,
-} | {
-    entry: T.NounEntry,
-    selection: T.NounSelection,
-})) {
-    const e = removeFVarients(entry);
-    return <div className="card ml-2" style={{ minWidth: "10rem"}}>
-        <div className="card-body" style={{ padding: "0.75rem" }}>
-            <Examples opts={opts}>{[
-                {
-                    p: e.p,
-                    f: e.f,
-                    e: `${firstVariation(e.e)} - ${e.c}`,
-                }
-            ]}</Examples>
-            {selection && <div style={{ marginTop: "-0.75rem"}}>                                
-                {selection.genderCanChange && selection.gender === "fem"
-                    && <span style={{ margin: "0 0.2rem" }}><strong>feminine</strong></span>}
-                {selection.numberCanChange && selection.number === "plural"
-                    && <span style={{ marginLeft: "0 0.2rem" }}><strong>plural</strong></span>}
-            </div>}
-            {showHint && <EntryCategoryTip entry={entry} />}
-        </div>
-    </div>;
-}
-
-function EntryCategoryTip({ entry }: { entry: T.AdjectiveEntry | T.NounEntry }) {
-    const pattern = getInflectionPattern(entry);
-    return <div className="badge bg-light small">
-        {HumanReadableInflectionPattern(pattern, opts)}
     </div>;
 }
 

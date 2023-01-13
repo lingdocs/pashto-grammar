@@ -2726,10 +2726,10 @@
     rambda "^6.7.0"
     react-select "^5.2.2"
 
-"@lingdocs/ps-react@^5.3.1":
-  version "5.3.1"
-  resolved "https://npm.lingdocs.com/@lingdocs%2fps-react/-/ps-react-5.3.1.tgz#a8836d00df5ca884d8b26dd4caae7c720269ce26"
-  integrity sha512-JY0BQLnxKNjxqHlf7uvmH2ehmbbPvGoWdcxK68ZEZbwbXP0WXHmyFUji6hB9oRHtwrE8MS7guVX0e3/eZTolEA==
+"@lingdocs/ps-react@^5.3.3":
+  version "5.3.3"
+  resolved "https://npm.lingdocs.com/@lingdocs%2fps-react/-/ps-react-5.3.3.tgz#05066c27059b5133dc0028d733d6dddfbfc9f9b0"
+  integrity sha512-qsX9iRqSc62JGDuBNvddfZgX3Skk5MM8XtuaydnyK3A7LZrP9VuiJZ0+k6zvi2shi+Gg52aAEPJstEieycBKrA==
   dependencies:
     "@formkit/auto-animate" "^1.0.0-beta.3"
     classnames "^2.2.6"

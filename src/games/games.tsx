@@ -10,6 +10,7 @@ import InflectionPatterns from "./sub-cores/InflectionPatterns";
 import InflectionsWriting from "./sub-cores/InflectionsWriting";
 import PerfectVerbsIntransitive from "./sub-cores/PerfectGame";
 import NPAdjWriting from "./sub-cores/NPAdjGame";
+import EPAdjGame from "./sub-cores/EPAdjGame";
 
 
 // NOUNS
@@ -398,8 +399,22 @@ export const perfectGameMix = makeGameRecord({
 });
 
 // ADJECTIVES
+export const epWithAdjectivesHints = makeGameRecord({
+    title: "Write the adjective to match the subject (with inf. pattern hints)",
+    id: "adjective-predicate-hints",
+    link: "/inflection/inflection-patterns/",
+    level: "hints",
+    SubCore: EPAdjGame,
+});
+export const epWithAdjectives = makeGameRecord({
+    title: "Write the predicate adjective to match the subject",
+    id: "adjective-predicate",
+    link: "/inflection/inflection-patterns/",
+    level: "no-hints",
+    SubCore: EPAdjGame,
+});
 export const npWithAdjectivesHints = makeGameRecord({
-    title: "Write the adjective and noun togehter (with inflection hints)",
+    title: "Write the adjective and noun togehter (with inf. pattern hints)",
     id: "adjective-nps-hints",
     link: "/phrase-structure/np/",
     level: "hints",
@@ -493,6 +508,8 @@ const games: { chapter: string, items: GameRecord[] }[] = [
     {
         chapter: "Adjectives",
         items: [
+            epWithAdjectivesHints,
+            epWithAdjectives,
             npWithAdjectivesHints,
             npWithAdjectivesNoHints,
         ],

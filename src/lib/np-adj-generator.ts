@@ -58,7 +58,6 @@ const adjectives = wordQuery("adjectives", [
     "droond",
     "loomRey",
     "Roond",
-    "droond",
     "prot",
     "soR",
     "post",
