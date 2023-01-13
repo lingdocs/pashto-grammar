@@ -12,7 +12,6 @@ module.exports = [
     1527818402, // اتلولي - atalwalée
     1527814060, // اساني - asaanee
     1527821293, // امادګي - amaadagee
-    1527819502, // باچهي - baachahee
     1527820035, // باداري - baadaaree
     1527817732, // بدبختي - badbakhtee
     1588786872582, // بدنامي - badnaamee

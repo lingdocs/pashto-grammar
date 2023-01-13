@@ -28,7 +28,8 @@ export function compareF(input: string, answer: string): boolean {
     return inp === (hasAccents(inp) ? ans : removeAccents(ans));
 }
 
-export function comparePs(input: string, answer: T.SingleOrLengthOpts<T.PsString | T.PsString[]>): boolean {
+export function comparePs(inputRaw: string, answer: T.SingleOrLengthOpts<T.PsString | T.PsString[]>): boolean {
+    const input = inputRaw.replace(/\s+/g, " ");
     if ("long" in answer) {
         return comparePs(input, flattenLengths(answer));
     }

@@ -143,7 +143,7 @@ function DisplayCorrectAnswer({ question }: { question: Question }): JSX.Element
                 [
                     ...accum,
                     ...i > 0 ? [<span className="text-muted"> or </span>] : [],
-                    <span>{curr.p}</span>,
+                    <span key={i}>{curr.p}</span>,
                 ]
             )), [] as JSX.Element[])}
         </div>

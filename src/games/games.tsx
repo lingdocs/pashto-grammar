@@ -9,6 +9,7 @@ import VerbFormulas from "./sub-cores/VerbFormulas";
 import InflectionPatterns from "./sub-cores/InflectionPatterns";
 import InflectionsWriting from "./sub-cores/InflectionsWriting";
 import PerfectVerbsIntransitive from "./sub-cores/PerfectGame";
+import NPAdjWriting from "./sub-cores/NPAdjGame";
 
 
 // NOUNS
@@ -396,6 +397,22 @@ export const perfectGameMix = makeGameRecord({
     SubCore: PerfectVerbsIntransitive,
 });
 
+// ADJECTIVES
+export const npWithAdjectivesHints = makeGameRecord({
+    title: "Write the adjective and noun togehter (with inflection hints)",
+    id: "adjective-nps-hints",
+    link: "/phrase-structure/np/",
+    level: "hints",
+    SubCore: NPAdjWriting,
+});
+export const npWithAdjectivesNoHints = makeGameRecord({
+    title: "Write the adjective and noun togehter",
+    id: "adjective-nps-no-hints",
+    link: "/phrase-structure/np/",
+    level: "no-hints",
+    SubCore: NPAdjWriting,
+});
+
 const games: { chapter: string, items: GameRecord[] }[] = [
     {
         chapter: "Nouns",
@@ -471,6 +488,13 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             presentPerfectGame,
             perfectGameOne,
             perfectGameMix,
+        ],
+    },
+    {
+        chapter: "Adjectives",
+        items: [
+            npWithAdjectivesHints,
+            npWithAdjectivesNoHints,
         ],
     },
 ];
