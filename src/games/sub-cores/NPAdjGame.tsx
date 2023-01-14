@@ -3,6 +3,11 @@ import {
     Types as T,
     renderNPSelection,
     getEnglishFromRendered,
+    randFromArray,
+    getPashtoFromRendered,
+    renderAPSelection,
+    InlinePs,
+    defaultTextOptions as opts,
     concatPsString,
 } from "@lingdocs/ps-react";
 import { makeNPAdjGenerator } from "../../lib/np-adj-generator";
@@ -14,12 +19,82 @@ const amount = 15;
 const timeLimit = 230;
 
 type Question = {
-    selection: T.NPSelection,
+    selection: T.NPSelection | T.APSelection,
     answer: T.PsString[],
     english: string,
 };
 
-type Level = "hints" | "no-hints";
+type Level = "hints" | "no-hints" | "sandwiches";
+
+export const sandwiches: T.Sandwich[] = [
+    {
+        type: "sandwich",
+        before: { p: "له", f: "la" },
+        after: { p: "نه", f: "na" },
+        e: "from",
+    },
+    {
+        type: "sandwich",
+        before: { p: "له", f: "la" },
+        after: { p: "څخه", f: "tsuxa" },
+        e: "from",
+    },
+    {
+        type: "sandwich",
+        before: { p: "له", f: "la" },
+        after: { p: "سره", f: "sara" },
+        e: "with",
+    },
+    {
+        type: "sandwich",
+        before: undefined,
+        after: { p: "ته", f: "ta" },
+        e: "to",
+    },
+    {
+        type: "sandwich",
+        before: { p: "د", f: "du" },
+        after: { p: "لپاره", f: "lapaara" },
+        e: "for",
+    },
+    {
+        type: "sandwich",
+        before: { p: "د", f: "du" },
+        after: { p: "په څانګ", f: "pu tsaang" },
+        e: "beside",
+    },
+    // {
+    //     type: "sandwich",
+    //     before: { p: "په", f: "pu" },
+    //     after: { p: "کې", f: "ke" },
+    //     e: "in",
+    // },
+    {
+        type: "sandwich",
+        before: { p: "د", f: "du" },
+        after: { p: "لاندې", f: "laande" },
+        e: "under",
+    },
+    {
+        type: "sandwich",
+        before: { p: "د", f: "du" },
+        after: { p: "په شان", f: "pu shaan" },
+        e: "like",
+    },
+    {
+        type: "sandwich",
+        before: { p: "د", f: "du" },
+        after: { p: "غوندې", f: "ghwunde" },
+        e: "like",
+    },
+    // {
+    //     type: "sandwich",
+    //     before: { p: "د", f: "du" },
+    //     after: { p: "په اړه", f: "pu aRa" },
+    //     e: "about",
+    // },
+];
+
 
 // LEVELS
 //  - without plurals
@@ -35,18 +110,20 @@ const NPAdjWriting: GameSubCore<Level> = ({ inChapter, id, link, level }: {
 
     function getQuestion(): Question {
         const np = npPool();
-        const rendered = renderNPSelection(np, false, false, "subject", "none", false);
-        const renderedAdj: T.Rendered<T.AdjectiveSelection> | undefined = rendered.selection.adjectives && rendered.selection.adjectives[0];
-        if (!renderedAdj) {
-            throw new Error("error getting rendered adjective");
-        }
-        const answer = renderedAdj.ps.flatMap((adjPs) => (
-            rendered.selection.ps.map((nounPs) => (
-                concatPsString(adjPs, " ", nounPs)
-            ))
-        ));
+        const selection: T.NPSelection | T.APSelection = level === "sandwiches"
+            ? {
+                type: "AP",
+                selection: {
+                    ...randFromArray(sandwiches),
+                    inside: np,
+                },
+            } : np;
+        const rendered: T.Rendered<T.NPSelection> | T.Rendered<T.APSelection> = selection.type === "AP"
+            ? renderAPSelection(selection, 0) // WOULD BE CLEANER IF THIS WAS JUST A PURE SANDWICH, NOT AT AP
+            : renderNPSelection(np, false, false, "subject", "none", false);
+        const answer = getPashtoFromRendered(rendered, false);
         return {
-            selection: np,
+            selection,
             answer,
             english: getEnglishFromRendered(rendered) || "ERROR",
         };
@@ -62,20 +139,29 @@ const NPAdjWriting: GameSubCore<Level> = ({ inChapter, id, link, level }: {
             }
             callback(correct);
         }
-        if (question.selection.type !== "NP" || question.selection.selection.type !== "noun") {
-            throw new Error("QUESTION ERROR");
+        if (!(
+            (question.selection.type === "AP" && question.selection.selection.type === "sandwich" && question.selection.selection.inside.selection.type === "noun")
+            ||
+            (question.selection.type === "NP" && question.selection.selection.type === "noun")
+        )) {
+            throw new Error("QUESTION ERROR - BAD SELECTION")
         }
-        const nounEntry = question.selection.selection.entry;
-        const adjEntry: T.AdjectiveEntry | undefined = question.selection.selection.adjectives[0]?.entry;
+        const nounSelection: T.NounSelection = question.selection.type === "AP"
+            ? question.selection.selection.inside.selection as T.NounSelection // ts being dumb
+            : question.selection.selection;
+        const adjEntry: T.AdjectiveEntry | undefined = nounSelection.adjectives[0]?.entry;
         if (!adjEntry) {
             throw new Error("QUESTION ERROR - MISSING ADJECTIVE");
         }
         const handleInput = ({ target: { value }}: React.ChangeEvent<HTMLInputElement>) => {
             setAnswer(value);
         }
+        const sandwich = question.selection.type === "AP"
+            ? question.selection.selection
+            : undefined;
         return <div>
             <div className="my-2" style={{ maxWidth: "300px", margin: "0 auto" }}>
-                <div className="d-flex flex-row justify-content-center">
+                <div className="d-flex flex-row justify-content-center" style={{ gap: "1rem"}}>
                     <WordCard
                         showHint={level === "hints"}
                         entry={adjEntry}
@@ -83,10 +169,15 @@ const NPAdjWriting: GameSubCore<Level> = ({ inChapter, id, link, level }: {
                     />
                     <WordCard
                         showHint={level === "hints"}
-                        entry={nounEntry}
-                        selection={question.selection.selection}
+                        entry={nounSelection.entry}
+                        selection={nounSelection}
                     />
                 </div>
+                {sandwich && <div className="mt-2">
+                    <InlinePs opts={opts}>
+                        {concatPsString(sandwich.before, " ... ", sandwich.after)}
+                    </InlinePs>
+                </div>}
                 <div className="my-3 h5">
                     {question.english}
                 </div>
@@ -113,7 +204,7 @@ const NPAdjWriting: GameSubCore<Level> = ({ inChapter, id, link, level }: {
     
     function Instructions() {
         return <div>
-            <p className="lead">Write the adjective and noun together with the proper inflections.</p>
+            <p className="lead">Write the {level === "sandwiches" ? "sandwich including the" : ""} adjective and noun together with the proper inflections.</p>
         </div>
     }
 

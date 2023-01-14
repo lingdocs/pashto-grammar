@@ -29,7 +29,10 @@ export function compareF(input: string, answer: string): boolean {
 }
 
 export function comparePs(inputRaw: string, answer: T.SingleOrLengthOpts<T.PsString | T.PsString[]>): boolean {
-    const input = inputRaw.replace(/\s+/g, " ");
+    function cleanSpaces(s: string): string {
+        return s.replace(/\s+/g, " ");
+    }
+    const input = cleanSpaces(inputRaw);
     if ("long" in answer) {
         return comparePs(input, flattenLengths(answer));
     }
@@ -39,5 +42,5 @@ export function comparePs(inputRaw: string, answer: T.SingleOrLengthOpts<T.PsStr
     const stand = standardizePhonetics(
         standardizePashto(input)
     ).trim();
-    return stand === answer.p || compareF(stand, answer.f);
+    return stand === cleanSpaces(answer.p) || compareF(stand, cleanSpaces(answer.f));
 }

@@ -427,6 +427,13 @@ export const npWithAdjectivesNoHints = makeGameRecord({
     level: "no-hints",
     SubCore: NPAdjWriting,
 });
+export const npWithAdjectivesInSandwiches = makeGameRecord({
+    title: "Write the adjective and noun togehter in sandwiches 🥪",
+    id: "adjective-nps-in-sandwiches",
+    link: "/phrase-structure/ap/#sandwich-",
+    level: "sandwiches",
+    SubCore: NPAdjWriting,
+});
 
 const games: { chapter: string, items: GameRecord[] }[] = [
     {
@@ -512,6 +519,7 @@ const games: { chapter: string, items: GameRecord[] }[] = [
             epWithAdjectives,
             npWithAdjectivesHints,
             npWithAdjectivesNoHints,
+            npWithAdjectivesInSandwiches,
         ],
     },
 ];
