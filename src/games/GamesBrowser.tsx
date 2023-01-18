@@ -95,7 +95,7 @@ function getPercentageComplete(
 ): "not logged in" | number {
     if (!tests) return "not logged in";
     const chapterTestIds = chapter.items.map(gr => gr.id);
-    const userCompletedIds = tests.map(t => t.id);
+    const userCompletedIds = tests.filter(t => t.done).map(t => t.id);
     
     const required = chapterTestIds.length;
     const completed = chapterTestIds
