@@ -15,8 +15,8 @@ import { comparePs } from "../../lib/game-utils";
 import WordCard from "../../components/WordCard";
 import { makeSandwich } from "../../lib/block-generators/sandwich-generator";
 
-const amount = 14;
-const timeLimit = 275;
+const amount = 16;
+const timeLimit = 270;
 
 type Question = {
     selection: T.NPSelection | T.APSelection,
