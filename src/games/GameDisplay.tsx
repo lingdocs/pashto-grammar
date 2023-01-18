@@ -6,7 +6,7 @@ function GameDisplay({ record: { title, Game, id } }: { record: GameRecord }) {
         // TODO: Or if it's in the locally stored (unposted test results)
         (t.done === true) && (t.id === id)
     ));
-    console.log({ id, completed });
+    console.log({ id, completed, tests: user?.tests });
     return <div>
         <div className="d-flex flex-row justify-content-between align-items-center">
             <div>
