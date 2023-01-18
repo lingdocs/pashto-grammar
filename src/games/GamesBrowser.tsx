@@ -49,7 +49,7 @@ function ChapterDisplay({ chapter, user, handleClick, expanded }: {
         </div>
         <SmoothCollapse expanded={expanded}>
             {chapter.items.map(({ id, title, Game }) => {
-                const done = user && user.tests.some(t => t.id === id);
+                const done = user?.tests.some(t => t.done && t.id === id);
                 const open = opened === id;
                 return <div key={id}>
                     <div className="d-flex flex-row justify-content-between align-items-center">

@@ -2,11 +2,7 @@ import { useUser } from "../user-context";
 
 function GameDisplay({ record: { title, Game, id } }: { record: GameRecord }) {
     const { user } = useUser();
-    const completed = user?.tests.some((t) => (
-        // TODO: Or if it's in the locally stored (unposted test results)
-        (t.done === true) && (t.id === id)
-    ));
-    console.log({ id, completed, tests: user?.tests });
+    const completed = user?.tests.some((t) => t.done && t.id === id);
     return <div>
         <div className="d-flex flex-row justify-content-between align-items-center">
             <div>
