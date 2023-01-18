@@ -4,8 +4,8 @@ import {
     makeAdjectiveSelection,
     randFromArray,
 } from "@lingdocs/ps-react";
-import { makePool } from "./pool";
-import { wordQuery } from "../words/words";
+import { makePool } from "../pool";
+import { wordQuery } from "../../words/words";
 
 const nouns = wordQuery("nouns", [
     "saRey",
@@ -35,6 +35,7 @@ const nouns = wordQuery("nouns", [
 
 const adjectives = wordQuery("adjectives", [
     "muR",
+    "jzwundey",
     "sheen",
     "soor",
     "rixtooney",
@@ -50,6 +51,7 @@ const adjectives = wordQuery("adjectives", [
     "koochney",
     "wroostey",
     "pradey",
+    "treew",
     "zoR",
     "moR",
     "treekh",
@@ -69,9 +71,10 @@ const adjectives = wordQuery("adjectives", [
     "kooN",
     "koG",
     "zeeG",
+    "naast",
 ]);
 
-export function makeNPAdjGenerator(avoidPlurals?: boolean): () => T.NPSelection {
+export function makeNPAdjGenerator(pluralsLevel: "none" | "low" | "high"): () => T.NPSelection {
     const nounPool = makePool(nouns);
     const adjPool = makePool(adjectives);
 
@@ -80,8 +83,8 @@ export function makeNPAdjGenerator(avoidPlurals?: boolean): () => T.NPSelection 
         const selection: T.NounSelection = {
             ...ns,
             adjectives: [makeAdjectiveSelection(adjPool())],
-            ...(ns.numberCanChange && !avoidPlurals) ? {
-                number: randFromArray(["singular", "plural", "plural", "plural", "singular"]),
+            ...(ns.numberCanChange && pluralsLevel !== "none") ? {
+                number: randFromArray(pluralsLevel === "high" ? ["singular", "plural", "plural", "plural", "singular"] : ["singular", "plural", "singular"]),
             } : {},
             ...ns.genderCanChange ? {
                 gender: randFromArray(["masc", "fem", "fem", "fem", "masc"]),

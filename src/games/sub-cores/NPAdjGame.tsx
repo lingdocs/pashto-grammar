@@ -3,20 +3,20 @@ import {
     Types as T,
     renderNPSelection,
     getEnglishFromRendered,
-    randFromArray,
     getPashtoFromRendered,
     renderAPSelection,
     InlinePs,
     defaultTextOptions as opts,
     concatPsString,
 } from "@lingdocs/ps-react";
-import { makeNPAdjGenerator } from "../../lib/np-adj-generator";
+import { makeNPAdjGenerator } from "../../lib/block-generators/np-adj-generator";
 import { useState } from "react";
 import { comparePs } from "../../lib/game-utils";
 import WordCard from "../../components/WordCard";
+import { makeSandwich } from "../../lib/block-generators/sandwich-generator";
 
-const amount = 15;
-const timeLimit = 230;
+const amount = 14;
+const timeLimit = 275;
 
 type Question = {
     selection: T.NPSelection | T.APSelection,
@@ -26,98 +26,18 @@ type Question = {
 
 type Level = "hints" | "no-hints" | "sandwiches";
 
-export const sandwiches: T.Sandwich[] = [
-    {
-        type: "sandwich",
-        before: { p: "له", f: "la" },
-        after: { p: "نه", f: "na" },
-        e: "from",
-    },
-    {
-        type: "sandwich",
-        before: { p: "له", f: "la" },
-        after: { p: "څخه", f: "tsuxa" },
-        e: "from",
-    },
-    {
-        type: "sandwich",
-        before: { p: "له", f: "la" },
-        after: { p: "سره", f: "sara" },
-        e: "with",
-    },
-    {
-        type: "sandwich",
-        before: undefined,
-        after: { p: "ته", f: "ta" },
-        e: "to",
-    },
-    {
-        type: "sandwich",
-        before: { p: "د", f: "du" },
-        after: { p: "لپاره", f: "lapaara" },
-        e: "for",
-    },
-    {
-        type: "sandwich",
-        before: { p: "د", f: "du" },
-        after: { p: "په څانګ", f: "pu tsaang" },
-        e: "beside",
-    },
-    // {
-    //     type: "sandwich",
-    //     before: { p: "په", f: "pu" },
-    //     after: { p: "کې", f: "ke" },
-    //     e: "in",
-    // },
-    {
-        type: "sandwich",
-        before: { p: "د", f: "du" },
-        after: { p: "لاندې", f: "laande" },
-        e: "under",
-    },
-    {
-        type: "sandwich",
-        before: { p: "د", f: "du" },
-        after: { p: "په شان", f: "pu shaan" },
-        e: "like",
-    },
-    {
-        type: "sandwich",
-        before: { p: "د", f: "du" },
-        after: { p: "غوندې", f: "ghwunde" },
-        e: "like",
-    },
-    // {
-    //     type: "sandwich",
-    //     before: { p: "د", f: "du" },
-    //     after: { p: "په اړه", f: "pu aRa" },
-    //     e: "about",
-    // },
-];
-
-
-// LEVELS
-//  - without plurals
-//  - with inflection category hinting
-
 const NPAdjWriting: GameSubCore<Level> = ({ inChapter, id, link, level }: {
     inChapter: boolean,
     id: string,
     link: string,
     level: Level,
 }) => {
-    const npPool = makeNPAdjGenerator();
+    const npPool = makeNPAdjGenerator(level === "sandwiches" ? "low" : "high");
 
     function getQuestion(): Question {
         const np = npPool();
         const selection: T.NPSelection | T.APSelection = level === "sandwiches"
-            ? {
-                type: "AP",
-                selection: {
-                    ...randFromArray(sandwiches),
-                    inside: np,
-                },
-            } : np;
+            ? makeSandwich(np) : np;
         const rendered: T.Rendered<T.NPSelection> | T.Rendered<T.APSelection> = selection.type === "AP"
             ? renderAPSelection(selection, 0) // WOULD BE CLEANER IF THIS WAS JUST A PURE SANDWICH, NOT AT AP
             : renderNPSelection(np, false, false, "subject", "none", false);

@@ -10,6 +10,11 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
+/* html, body {
+    font-family: monospace;
+    unicode-range: U+0600-06FF;
+} */
+
 .ais-SearchBox { margin: 1em 0; }
 
 .table-of-contents {
