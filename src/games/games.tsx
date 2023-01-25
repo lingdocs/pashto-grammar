@@ -414,21 +414,21 @@ export const epWithAdjectives = makeGameRecord({
     SubCore: EPAdjGame,
 });
 export const npWithAdjectivesHints = makeGameRecord({
-    title: "Write the adjective and noun togehter (with inf. pattern hints)",
+    title: "Write the adjective and noun together (with inf. pattern hints)",
     id: "adjective-nps-hints",
     link: "/phrase-structure/np/",
     level: "hints",
     SubCore: NPAdjWriting,
 });
 export const npWithAdjectivesNoHints = makeGameRecord({
-    title: "Write the adjective and noun togehter",
+    title: "Write the adjective and noun together",
     id: "adjective-nps-no-hints",
     link: "/phrase-structure/np/",
     level: "no-hints",
     SubCore: NPAdjWriting,
 });
 export const npWithAdjectivesInSandwiches = makeGameRecord({
-    title: "Write the adjective and noun togehter in sandwiches 🥪",
+    title: "Write the adjective and noun together in sandwiches 🥪",
     id: "adjective-nps-in-sandwiches",
     link: "/phrase-structure/ap/#sandwich-",
     level: "sandwiches",
