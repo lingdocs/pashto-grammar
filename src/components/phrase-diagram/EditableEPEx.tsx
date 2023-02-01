@@ -25,7 +25,7 @@ function EditableEPEx({ children, opts, hideOmitSubject, noEdit }: { children: T
         if (isProd && !(user?.admin)) {
             ReactGA.event({
                 category: "Example",
-                action: "edit EPex",
+                action: `edit EPex - ${window.location.pathname}`,
                 label: "edit EPex"
             });
         }

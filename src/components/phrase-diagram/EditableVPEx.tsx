@@ -34,7 +34,7 @@ function EditableVPEx({ children, opts, formChoice, noEdit, length, mode, sub, a
         if (isProd && !(user?.admin)) {
             ReactGA.event({
                 category: "Example",
-                action: "edit VPex",
+                action: `edit VPex - ${window.location.pathname}`,
                 label: "edit VPex"
             });
         }
