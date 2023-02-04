@@ -95,7 +95,7 @@ export default defineConfig({
               "type": "image/png"
           }
         ],
-        "start_url": ".",
+        "start_url": "./table-of-contents",
         "display": "minimal-ui",
         "theme_color": "#DEE1E6",
         "background_color": "#ffffff"
