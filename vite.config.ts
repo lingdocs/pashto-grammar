@@ -43,7 +43,7 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 5242880,
       },
       includeAssets: [
-        "**/*",
+        "**/*.(js|html|svg|png|jpg|jpeg|eot|woff|woff2|ttf",
       ],
       manifest: {
         "short_name": "Pashto Grammar",
