@@ -81,68 +81,80 @@ For Pashto learners, having a choice between the perfective and imperfective imp
     <tbody>
         <tr>
             <td>
-                <Examples opts={opts}>{psmd([
-                    {
-                        p: "وریژې **خوره**",
-                        f: "wreejze **khorá**",
-                        e: "Eat rice",
-                        sub: "(in general, it's good for you)",
-                    },
-                ])}</Examples>
+                <Examples opts={opts}>
+                    {psmd([
+                        {
+                            p: "وریژې **خوره**",
+                            f: "wreejze **khorá**",
+                            e: "Eat rice",
+                            sub: "(in general, it's good for you)",
+                        },
+                    ])}
+                </Examples>
             </td>
             <td>
-                <Examples opts={opts}>{psmd([
-                    {
-                        p: "وریژې **وخوره**",
-                        f: "wreejze **óokhora**",
-                        e: "Eat rice",
-                        sub: "(one time)",
-                    },
-                ])}</Examples>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <Examples opts={opts}>{psmd([
-                    {
-                        p: "د کلي عکسونه راته **لېږه**!",
-                        f: "du kulee aksoona raa-ta **leGá**!",
-                        e: "Send me pictures of the village!",
-                        sub: "(send me pictures every once and awhile)",    
-                    },
-                ])}</Examples>
-            </td>
-            <td>
-                <Examples opts={opts}>{psmd([
-                    {
-                        p: "د کلي عکسونه راته **ولېږه**!",
-                        f: "du kulee aksoona raa-ta **óoleGa**!",
-                        e: "Send me pictures of the village!",
-                        sub: "(send me a bunch of pictures in one clump, at one time)",
-                    },
-                ])}</Examples>
+                <Examples opts={opts}>
+                    {psmd([
+                        {
+                            p: "وریژې **وخوره**",
+                            f: "wreejze **óokhora**",
+                            e: "Eat rice",
+                            sub: "(one time)",
+                        },
+                    ])}
+                </Examples>
             </td>
         </tr>
         <tr>
             <td>
-                <Examples opts={opts}>{psmd([
-                    {
-                        p: "تاسو هلته **کېنئ**",
-                        f: "taaso halta **kenéyy**",
-                        e: "You sit there",
-                        sub: "(in general, whenever you come)"
-                    },
-                ])}</Examples>
+                <Examples opts={opts}>
+                    {psmd([
+                        {
+                            p: "د کلي عکسونه راته **لېږه**!",
+                            f: "du kulee aksoona raa-ta **leGá**!",
+                            e: "Send me pictures of the village!",
+                            sub: "(send me pictures every once and awhile)",    
+                        },
+                    ])}
+                </Examples>
             </td>
             <td>
-                <Examples opts={opts}>{psmd([
-                    {
-                        p: "تاسو هلته **کېنئ**",
-                        f: "taaso halta **kéneyy**",
-                        e: "You sit there",
-                        sub: "(one time, in one instance sit)"
-                    },
-                ])}</Examples>
+                <Examples opts={opts}>
+                    {psmd([
+                        {
+                            p: "د کلي عکسونه راته **ولېږه**!",
+                            f: "du kulee aksoona raa-ta **óoleGa**!",
+                            e: "Send me pictures of the village!",
+                            sub: "(send me a bunch of pictures in one clump, at one time)",
+                        },
+                    ])}
+                </Examples>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <Examples opts={opts}>
+                    {psmd([
+                        {
+                            p: "تاسو هلته **کېنئ**",
+                            f: "taaso halta **kenéyy**",
+                            e: "You sit there",
+                            sub: "(in general, whenever you come)"
+                        },
+                    ])}
+                </Examples>
+            </td>
+            <td>
+                <Examples opts={opts}>
+                    {psmd([
+                        {
+                            p: "تاسو هلته **کېنئ**",
+                            f: "taaso halta **kéneyy**",
+                            e: "You sit there",
+                            sub: "(one time, in one instance sit)"
+                        },
+                    ])}
+                </Examples>
             </td>
         </tr>
     </tbody>
@@ -169,14 +181,18 @@ You will notice there are only two <Link to="/verbs/verb-endings/#imperative-ver
     <tbody>
       <tr>
         <td>
-            <Examples opts={opts}>{psmd([
-                { p: "ته راځه!", f: "tu raadzá!", e: "You come!" }
-            ])}</Examples>
+            <Examples opts={opts}>
+                {psmd([
+                    { p: "ته راځه!", f: "tu raadzá!", e: "You come!" }
+                ])}
+            </Examples>
         </td>
         <td>
-            <Examples opts={opts}>{psmd([
-                { p: "تاسو راځئ!", f: "taaso radzéyy!", e: "You (pl.) come!" },
-            ])}</Examples>
+            <Examples opts={opts}>
+                {psmd([
+                    { p: "تاسو راځئ!", f: "taaso radzéyy!", e: "You (pl.) come!" },
+                ])}
+            </Examples>
         </td>
       </tr>
     </tbody>
@@ -197,11 +213,13 @@ You will notice there are only two <Link to="/verbs/verb-endings/#imperative-ver
 
 With this form, you can't specify whether you're talking about about the action in a <i className="fas fa-camera" /> perfective or <i className="fas fa-video" /> imperfective way. You're just saying "don't do it!", either one time or in general.
 
-<Examples opts={opts}>{[
-    { p: "مه راځه!", f: "mú raadza", e: "Don't come!" },
-    { p: "وریژې مه خوره!", f: "wreejze mú khora!", e: "Don't eat rice!" },
-    { p: "عکسونه راته مه لېږه!", f: "aksoona raa-ta mú leGa!", e: "Don't send me pictures!" },
-    { p: "تاسو هلته مه کېنئ!", f: "taaso halta mú keneyy!", e: "Don't sit there!" },
-]}</Examples>
+<Examples opts={opts}>
+    {[
+        { p: "مه راځه!", f: "mú raadza", e: "Don't come!" },
+        { p: "وریژې مه خوره!", f: "wreejze mú khora!", e: "Don't eat rice!" },
+        { p: "عکسونه راته مه لېږه!", f: "aksoona raa-ta mú leGa!", e: "Don't send me pictures!" },
+        { p: "تاسو هلته مه کېنئ!", f: "taaso halta mú keneyy!", e: "Don't sit there!" },
+    ]}
+</Examples>
 
 Just like with the negative particle <InlinePs opts={opts} ps={{ p: "نه", f: "nú" }} /> that we used with other verb forms, the negative <InlinePs opts={opts} ps={{ p: "مه", f: "mú" }} /> marker also takes over the accent of the verb.

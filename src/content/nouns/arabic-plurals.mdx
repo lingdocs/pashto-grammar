@@ -30,30 +30,36 @@ For now, see if you can notice some of the basic patterns.
 
 Some of the words change drastically:
 
-<ArabicPluralTable>{[
-    [{p:"حال", f:"haal", e:"condition"}, {p:"احوال", f:"ahwaal", e:"conditions"}],
-    [{p:"لفظ", f:"lafz", e:"word"}, {p:"الفاظ", f:"alfaaz", e:"words"}],
-    [{p:"مکتب", f:"maktab", e:"school"}, {p:"مکاتب", f:"makaatib", e:"schools"}],
-    [{p:"نبي", f:"nabee", e:"prophet"}, {p:"انبیا", f:"ambiyáa", e:"prophets"}],
-    [{p:"فرد",f:"fard", e:"person"},{p:"افراد", f:"afráad", e:"people"}],
-    [{p:"قانون", f:"qaanóon", e:"law"},{p:"قوانین", f:"qawaanéen", e:"laws"}],
-]}</ArabicPluralTable>
+<ArabicPluralTable>
+    {[
+        [{p:"حال", f:"haal", e:"condition"}, {p:"احوال", f:"ahwaal", e:"conditions"}],
+        [{p:"لفظ", f:"lafz", e:"word"}, {p:"الفاظ", f:"alfaaz", e:"words"}],
+        [{p:"مکتب", f:"maktab", e:"school"}, {p:"مکاتب", f:"makaatib", e:"schools"}],
+        [{p:"نبي", f:"nabee", e:"prophet"}, {p:"انبیا", f:"ambiyáa", e:"prophets"}],
+        [{p:"فرد",f:"fard", e:"person"},{p:"افراد", f:"afráad", e:"people"}],
+        [{p:"قانون", f:"qaanóon", e:"law"},{p:"قوانین", f:"qawaanéen", e:"laws"}],
+    ]}
+</ArabicPluralTable>
 
 Some add an <InlinePs opts={opts} ps={{ p: "ات", f: "áat" }} /> on the end:
 
-<ArabicPluralTable>{[
-    [{p:"توجیه", f:"tawjeeh", e:"justification"}, {p:"توجیهات", f:"tawjeehaat", e:"justifications"}],
-    [{p:"ملاحظه", f:"mUlaahiza", e:"consideration"}, {p:"ملاحظات", f:"mUlaahizaat", e:"considerations"}]
-]}</ArabicPluralTable>
+<ArabicPluralTable>
+    {[
+        [{p:"توجیه", f:"tawjeeh", e:"justification"}, {p:"توجیهات", f:"tawjeehaat", e:"justifications"}], 
+        [{p:"ملاحظه", f:"mUlaahiza", e:"consideration"}, {p:"ملاحظات", f:"mUlaahizaat", e:"considerations"}]
+    ]}
+</ArabicPluralTable>
 
 And some add an <InlinePs opts={opts} ps={{ p: "ین", f: "éen" }} /> on the end:
 
-<ArabicPluralTable>{[
-    [{p:"مجاهد", f:"mUjaahíd", e:"religious warrior"}, {p:"مجاهدین", f:"mUjaahidéen", e:"religious warriors"}],
-    [{p:"متحد", f:"mUtahíd", e:"ally/allied"}, {p:"متحدین", f:"mUtahidéen", e:"allies"}],
-    [{p:"معتاد", f:"mUtáad", e:"addict"}, {p:"معتادین", f:"mUtaadéen", e:"addicts"}],
-    [{p:"مهاجر", f:"mUhaajir", e:"immigrant"}, {p:"مهاجرین", f:"mUhaajiréen", e:"immigrants"}],
-]}</ArabicPluralTable>
+<ArabicPluralTable>
+    {[
+        [{p:"مجاهد", f:"mUjaahíd", e:"religious warrior"}, {p:"مجاهدین", f:"mUjaahidéen", e:"religious warriors"}],
+        [{p:"متحد", f:"mUtahíd", e:"ally/allied"}, {p:"متحدین", f:"mUtahidéen", e:"allies"}],
+        [{p:"معتاد", f:"mUtáad", e:"addict"}, {p:"معتادین", f:"mUtaadéen", e:"addicts"}],
+        [{p:"مهاجر", f:"mUhaajir", e:"immigrant"}, {p:"مهاجرین", f:"mUhaajiréen", e:"immigrants"}],
+    ]}
+</ArabicPluralTable>
 
 ## Notes
 
@@ -61,44 +67,48 @@ And some add an <InlinePs opts={opts} ps={{ p: "ین", f: "éen" }} /> on the en
 
 Once a word is put into it's special Arabic plural form, it's always a *masculine plural* (based on the consonant ending) even if the singular version of the word was feminine.
 
-<ArabicPluralTable>{[
-    [
-        {p:"ملاحظه", f:"mUlaahiza", e:"consideration (f.)", sub: "feminine", gender: "f"},
-        {p:"ملاحظات", f:"mUlaahizaat", e:"considerations (m. pl.)", sub: "masculine", gender: "m"},
-    ],
-    [
-        {p:"تجربه", f:"tajraba", e:"experience (f.)", sub: "feminine", gender: "f"},
-        {p:"تجارب", f:"tajaarab", e:"experiences (m. pl.)", sub: "masculine", gender: "m"},
-    ],
-    [
-        {p:"لفظ", f:"lafz", e:"word (m.)", sub: "masculine", gender: "m"}, 
-        {p:"الفاظ", f:"alfaaz", e:"words (m. pl.)", sub: "masculine", gender: "m"},
-    ],
-    [
-        {p:"قبیله", f:"qabeela", e:"tribe (f.)", sub: "feminine", gender: "f"},
-        {p:"قبایل", f:"qabaayul", e:"tribes (m. pl.)", sub: "masculine", gender: "m"},
-    ],
-]}</ArabicPluralTable>
+<ArabicPluralTable>
+    {[
+        [
+            {p:"ملاحظه", f:"mUlaahiza", e:"consideration (f.)", sub: "feminine", gender: "f"},
+            {p:"ملاحظات", f:"mUlaahizaat", e:"considerations (m. pl.)", sub: "masculine", gender: "m"},
+        ],
+        [
+            {p:"تجربه", f:"tajraba", e:"experience (f.)", sub: "feminine", gender: "f"},
+            {p:"تجارب", f:"tajaarab", e:"experiences (m. pl.)", sub: "masculine", gender: "m"},
+        ],
+        [
+            {p:"لفظ", f:"lafz", e:"word (m.)", sub: "masculine", gender: "m"}, 
+            {p:"الفاظ", f:"alfaaz", e:"words (m. pl.)", sub: "masculine", gender: "m"},
+        ],
+        [
+            {p:"قبیله", f:"qabeela", e:"tribe (f.)", sub: "feminine", gender: "f"},
+            {p:"قبایل", f:"qabaayul", e:"tribes (m. pl.)", sub: "masculine", gender: "m"},
+        ],
+    ]}
+</ArabicPluralTable>
 
 ### Arabic Plurals are Not Always Used
 
 For many words, people may either use the regular Pashto plural endings or the special Arabic form. Here are a couple examples of words that are often said either way.
 
-<Table opts={opts} headRow={["Singular", "Arabic Plural", "Pashto Plural"]}>{[
-    [
-        {p:"مکتب", f:"maktab", e:"school"},
-        {p:"مکاتب", f:"makáatib", e:"schools"},
-        {p:"مکتبونه", f:"maktaboona", e:"schools"},
-    ],
-    [
-        {p:"مهاجر", f:"mUhaajir", e:"immigrant"},
-        {p:"مهاجرین", f:"mUhaajiréen", e:"immigrants"},
-        {p:"مهاجران", f:"mUhaajiráan", e:"immigrants"},
-    ],
-    [
-        {p:"رابطه", f:"raabitá", e:"connection"},
-        {p:"روابط", f:"rawáabit", e:"connections"},
-        {p:"رابطې", f:"raabité", e:"connections"},
-    ],
-]}</Table>
+<Table opts={opts} headRow={["Singular", "Arabic Plural", "Pashto Plural"]}>
+    {[
+        [
+            {p:"مکتب", f:"maktab", e:"school"},
+            {p:"مکاتب", f:"makáatib", e:"schools"},
+            {p:"مکتبونه", f:"maktaboona", e:"schools"},
+        ],
+        [
+            {p:"مهاجر", f:"mUhaajir", e:"immigrant"},
+            {p:"مهاجرین", f:"mUhaajiréen", e:"immigrants"},
+            {p:"مهاجران", f:"mUhaajiráan", e:"immigrants"},
+        ],
+        [
+            {p:"رابطه", f:"raabitá", e:"connection"},
+            {p:"روابط", f:"rawáabit", e:"connections"},
+            {p:"رابطې", f:"raabité", e:"connections"},
+        ],
+    ]}
+</Table>
 

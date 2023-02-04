@@ -7,7 +7,6 @@ import {
     InlinePs,
     Examples,
     makeNounSelection,
-    role
 } from "@lingdocs/ps-react";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
@@ -27,7 +26,7 @@ export function KingIcon() {
 
 export function ServantIcon() {
     return <i className="mx-1 fas fa-male" />;
-};
+}
 
 <div className="alert alert-warning" role="alert">
     <strong>Note:</strong> This is a bit of a longer section. Go through it in small parts if you need to, but it's <em>super important</em> to understand if you want to keep your sanity in learning Pashto (This will help you understand past tense etc.)
@@ -39,9 +38,11 @@ In <Link to="/phrase-structure/ep/">the last section</Link> we learned how to bu
 
 For example, if I say:
 
-<Examples opts={opts}>{psmd([
-    { p: "زه وریژي **خورم**", f: "zu wrijze **khorum**", e: "I am eating rice" }
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        { p: "زه وریژي **خورم**", f: "zu wrijze **khorum**", e: "I am eating rice" }
+    ])}
+</Examples>
 
 This is a **VP** built with the verb <InlinePs opts={opts} ps={{ p: "خوړل", f: "khoRul", e: "to eat" }} />.
 
@@ -82,17 +83,23 @@ We'll call the subject is the **king** <KingIcon /> of the phrase because it con
 
 Check out the following examples. Click on the <i className="fas fa-cubes" /> to see the structure of the phrase in blocks. Click on the <EditIcon /> to change the subject and see how the verb changes with it.
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.6249110810530165,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.1526649374428386,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3655,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.6249110810530165,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.1526649374428386,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3655,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.09496144009475649,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.9212151213586337,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813994,"i":11586,"p":"لوېدل","f":"lwedul","g":"lwedul","e":"to fall, to tumble, go down, settle","c":"v. intrans.","ec":"fall,falls,falling,fell,fallen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.09496144009475649,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.9212151213586337,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813994,"i":11586,"p":"لوېدل","f":"lwedul","g":"lwedul","e":"to fall, to tumble, go down, settle","c":"v. intrans.","ec":"fall,falls,falling,fell,fallen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.16198632970883398,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.48028409958746776,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527814025,"i":5482,"p":"ختل","f":"khatul","g":"khatul","e":"to climb, ascend, rise, go up; to fall out, to fall off, to leave/dissapear; to turn out to be ...; to give a sentence (in law)","c":"v. intrans.","psp":"خېژ","psf":"khejz","tppp":"خوت","tppf":"khot","ec":"climb"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.16198632970883398,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.48028409958746776,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527814025,"i":5482,"p":"ختل","f":"khatul","g":"khatul","e":"to climb, ascend, rise, go up; to fall out, to fall off, to leave/dissapear; to turn out to be ...; to give a sentence (in law)","c":"v. intrans.","psp":"خېژ","psf":"khejz","tppp":"خوت","tppf":"khot","ec":"climb"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
 Notice how **the subject never inflects**. Whether it's past or present tense, the structure stays the same with these intransitive verbs. The subject doesn't inflect and the subject is **king** <KingIcon />.
 
@@ -130,23 +137,31 @@ We have a **subject NP** that we'll call the **king** <KingIcon /> of the phrase
 
 We also have an **object NP** that we'll call the **servant** <ServantIcon /> of the phrase. When we learn about shortening VPs we'll learn more about what the **servant** role means, but for now we can just know that *the king controls the verb endings, not the servant*.
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.5938378036848799,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.15215428186176383,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812525,"i":4741,"p":"چای","f":"chaay","g":"chaay","e":"tea","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527817750,"i":7843,"p":"سکل","f":"skul","g":"skul","e":"to drink","c":"v. trans.","ec":"drink,drinks,drinking,drank,drank"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.5938378036848799,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.15215428186176383,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812525,"i":4741,"p":"چای","f":"chaay","g":"chaay","e":"tea","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527817750,"i":7843,"p":"سکل","f":"skul","g":"skul","e":"to drink","c":"v. trans.","ec":"drink,drinks,drinking,drank,drank"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.4930268563050435,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.43336925620044653,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815251,"i":7804,"p":"سړی","f":"saRéy","g":"saRey","e":"man","c":"n. m.","ec":"man","ep":"men"},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14480,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.4930268563050435,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.43336925620044653,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815251,"i":7804,"p":"سړی","f":"saRéy","g":"saRey","e":"man","c":"n. m.","ec":"man","ep":"men"},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14480,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
 Go ahead and play around with these examples by pressing the <i className="fas fa-cubes" /> and <EditIcon /> buttons. Notice how the subject and object do not inflect, and the verb always agrees with the subject <KingIcon />. But here's where things will get a *little* weird... **If you use a 1st or 2nd person pronoun as an object, it *will* inflect.**
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.20670111338657748,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.05531784420548824,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.20670111338657748,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.05531784420548824,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.20670111338657748,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}},{"key":0.05531784420548824,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.20670111338657748,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}},{"key":0.05531784420548824,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
 Any other kind of object will not inflect. It's just the 1st and 2nd person pronouns that get inflected. If this seems insane, there are actually a lot of languages that behave differently with 1st and 2nd person pronouns - after all they are a little more "personal" and so they behave different.
 
@@ -181,9 +196,11 @@ This is where things start to get *really* weird. With past tense transitive ver
 
 Look at this sentence for example:
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.4930268563050435,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.43336925620044653,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14480,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.4930268563050435,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.43336925620044653,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14480,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
 The subject (the child) is the servant <ServantIcon /> and the object (me) is the king <KingIcon />!  For learners who aren't used to this new structure this can sound like "I hit the child", but no, this sentence means that <strong>The child</strong> <ServantIcon /> hit <strong>me</strong> <KingIcon />.
 
@@ -191,17 +208,23 @@ This kind of craziness where the verb lines up with the object is called [ergati
 
 The other thing that happens in that **the subject always inflects** and the **the object does NOT inflect**.
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.2277679800763388,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.9330508471129377,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.2277679800763388,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.9330508471129377,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.2277679800763388,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9330508471129377,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.2277679800763388,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9330508471129377,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.2277679800763388,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9330508471129377,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.2277679800763388,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9330508471129377,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
 Go ahead and play with the examples above. See if you can follow what's happening with the structure.
  - The subject <ServantIcon /> gets inflected
@@ -245,13 +268,17 @@ Here's a little chart to summarize the three structures:
 
 Usually people will say the subject before the object, but very often for emphasis or variety people will say object first, then subject. The word order isn't fixed like it is in English. Both of these sentences are correct.
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.2277679800763388,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.9330508471129377,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.2277679800763388,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.9330508471129377,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.9330508471129377,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2277679800763388,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.9330508471129377,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2277679800763388,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
 ### Grammatically Transitive Verbs
 
@@ -259,9 +286,11 @@ With some verbs transitive like <InlinePs opts={opts} ps={{ p: "اورېدل", f
 
 For example if you say "I looked towards you":
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.26083971448537757,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.6566544874522231,"block":{"type":"AP","selection":{"type":"sandwich","after":{"p":"ته","f":"ta"},"e":"to","inside":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}},{"key":0.9879794193752598,"block":{"type":"objectSelection","selection":10}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812751,"i":10020,"p":"کتل","f":"katul","g":"katul","e":"to look, see, watch, examine; to meet with","c":"v. trans./gramm. trans.","psp":"ګور","psf":"gor","tppp":"کوت","tppf":"kot","ec":"look"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"grammatically transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.26083971448537757,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.6566544874522231,"block":{"type":"AP","selection":{"type":"sandwich","after":{"p":"ته","f":"ta"},"e":"to","inside":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}},{"key":0.9879794193752598,"block":{"type":"objectSelection","selection":10}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812751,"i":10020,"p":"کتل","f":"katul","g":"katul","e":"to look, see, watch, examine; to meet with","c":"v. trans./gramm. trans.","psp":"ګور","psf":"gor","tppp":"کوت","tppf":"kot","ec":"look"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"grammatically transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
 This is **a transitive verb, but there's no spoken object in this phrase**. There's just a subject (I) and a verb (looked) and then a <Link to="/phrase-structure/ap">AP</Link> explaining the direction that I looked. (Some people might talk about there being an *indirect object* but we will never use that term when talking about Pashto, because it's super confusing. In Pashto there can only be one object in a phrase, and it's just a direct object.)
 
@@ -269,9 +298,11 @@ Whenever this happens **the object is considered to be 3rd person masculine plur
 
 This is most probably often seen in phrases like
 
-<Examples opts={opts}>{
-    { p: "ما ووایل چې...", f: "maa óowayul che...", e: "I said, (bla bla bla)" }
-}</Examples>
+<Examples opts={opts}>
+    {
+        { p: "ما ووایل چې...", f: "maa óowayul che...", e: "I said, (bla bla bla)" }
+    }
+</Examples>
 
 Here we're using the transitive verb <InlinePs opts={opts} ps={{ p: "وایل", f: "waayul", e: "to say" }} /> but we don't have a specific object, so again, we pretend there's a 3rd pers. masc. plur. object that we're not mentioning.
 
@@ -286,14 +317,20 @@ Then, things get a little weirder because there are a number of verbs that don't
 
 In Pashto, these verbs are transitive, and they use that same **unspoken 3rd person masculine plural object**. So we would say:
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.35312598076336044,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.5518799172071212,"block":{"type":"objectSelection","selection":10}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812717,"i":7351,"p":"ژړل","f":"jzaRul","g":"jzaRul","e":"to cry","c":"v. gramm. trans.","psp":"ژاړ","psf":"jzaaR","ec":"cry"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"grammatically transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.35312598076336044,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.5518799172071212,"block":{"type":"objectSelection","selection":10}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812717,"i":7351,"p":"ژړل","f":"jzaRul","g":"jzaRul","e":"to cry","c":"v. gramm. trans.","psp":"ژاړ","psf":"jzaaR","ec":"cry"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"grammatically transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
-<EditableVPEx opts={opts}>{
-    {"blocks":[{"key":0.35312598076336044,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.5518799172071212,"block":{"type":"objectSelection","selection":10}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812717,"i":7351,"p":"ژړل","f":"jzaRul","g":"jzaRul","e":"to cry","c":"v. gramm. trans.","psp":"ژاړ","psf":"jzaaR","ec":"cry"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"grammatically transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.35312598076336044,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.5518799172071212,"block":{"type":"objectSelection","selection":10}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812717,"i":7351,"p":"ژړل","f":"jzaRul","g":"jzaRul","e":"to cry","c":"v. gramm. trans.","psp":"ژاړ","psf":"jzaaR","ec":"cry"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"grammatically transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>
 
-<EditableVPEx opts={opts}>{
-{"blocks":[{"key":0.8502946722618807,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.900190674491598,"block":{"type":"objectSelection","selection":10}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812767,"i":5692,"p":"خندل","f":"khandul","g":"khandul","e":"to laugh","c":"v. gramm. trans.","psp":"خاند","psf":"khaand","ec":"laugh"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"grammatically transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-}</EditableVPEx>
+<EditableVPEx opts={opts}>
+    {
+        {"blocks":[{"key":0.8502946722618807,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.900190674491598,"block":{"type":"objectSelection","selection":10}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812767,"i":5692,"p":"خندل","f":"khandul","g":"khandul","e":"to laugh","c":"v. gramm. trans.","psp":"خاند","psf":"khaand","ec":"laugh"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"grammatically transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
+    }
+</EditableVPEx>

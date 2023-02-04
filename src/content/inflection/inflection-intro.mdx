@@ -2,16 +2,7 @@
 title: Intro to Inflection
 ---
 
-<!-- 
 
-Copyright (c) 2021 lingdocs.com 
-
-The content of the chapters/book is licensed by a
-Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
-https://creativecommons.org/licenses/by-sa/4.0/
-https://creativecommons.org/licenses/by-sa/4.0/legalcode
-    
--->
 
 import {
     defaultTextOptions as opts,
@@ -21,7 +12,7 @@ import {
 import Carousel from "../../components/Carousel";
 import Table from "../../components/Table";
 import InlineInflectionButton from "../../components/InlineInflectionButton";
-import Formula from "../../components/formula/Formula.js";
+import Formula from "../../components/formula/Formula";
 import catInflectionGif from "../../images/cat-inflection.gif";
 
 export const singleInflectionHeadRow = [
@@ -57,28 +48,34 @@ If we think of a word as a little button <InlineInflectionButton />, then we can
 
 ### Inflecting for Reason #1 - Plural
 
-<Table headRow={singleInflectionHeadRow} opts={opts}>{[
-    [{p:"سړی", f:"saRey", e:"man"}, {p:"سړي", f:"saRee", e:"men"}],
-    [{p:"ښځه", f:"xudza", e:"woman"}, {p:"ښځې", f:"xudze", e:"women"}],
-]}</Table>
+<Table headRow={singleInflectionHeadRow} opts={opts}>
+    {[
+        [{p:"سړی", f:"saRey", e:"man"}, {p:"سړي", f:"saRee", e:"men"}],
+        [{p:"ښځه", f:"xudza", e:"woman"}, {p:"ښځې", f:"xudze", e:"women"}],
+    ]}
+</Table>
 
 ### Inflecting for Reason #2 - Sandwich
 
 Let's attach a little <InlinePs opts={opts} ps={{p:"د ...", f:"du ...", e:"'s, of, possessive"}} /> sandwich to the same words and watch what happens.
 
-<Table headRow={singleInflectionHeadRow} opts={opts}>{[
-    [{p:"سړی", f:"saRey", e:"man"}, {p:"د سړي نوم څه دی؟", f:"du saRee noom tsu dey?", e:"What's the man's name?"}],
-    [{p:"ښځه", f:"xudza", e:"woman"}, {p:"د ښځې نوم څه دی؟", f:"du xudze noom tsu dey?", e:"What's the woman's name?"}],
-]}</Table>
+<Table headRow={singleInflectionHeadRow} opts={opts}>
+    {[
+        [{p:"سړی", f:"saRey", e:"man"}, {p:"د سړي نوم څه دی؟", f:"du saRee noom tsu dey?", e:"What's the man's name?"}],
+        [{p:"ښځه", f:"xudza", e:"woman"}, {p:"د ښځې نوم څه دی؟", f:"du xudze noom tsu dey?", e:"What's the woman's name?"}],
+    ]}
+</Table>
 
 ### Inflecting for Reason #3 - Subject of a transitive past tense verb
 
 If a word is the subject of a past tense transitive verb, we also inflect it.
 
-<Table headRow={singleInflectionHeadRow} opts={opts}>{[
-    [{p:"سړی", f:"saRey", e:"man"}, {p:"سړي ډوډۍ وخوړه", f:"saRee DoDuy óokhoRa", e:"The man ate food."}],
-    [{p:"ښځه", f:"xudza", e:"woman"}, {p:"ښځې ډوډۍ وخوړه", f:"xudze DoDuy óokhoRa", e:"The woman ate food."}],
-]}</Table>
+<Table headRow={singleInflectionHeadRow} opts={opts}>
+    {[
+        [{p:"سړی", f:"saRey", e:"man"}, {p:"سړي ډوډۍ وخوړه", f:"saRee DoDuy óokhoRa", e:"The man ate food."}],
+        [{p:"ښځه", f:"xudza", e:"woman"}, {p:"ښځې ډوډۍ وخوړه", f:"xudze DoDuy óokhoRa", e:"The woman ate food."}],
+    ]}
+</Table>
 
 Notice how for all these reasons, the exact same thing happened to the words. 
 
@@ -103,34 +100,36 @@ Once a word gets inflected, you can push or bend it even further a second time. 
         <div className="mr-2"><InlineInflectionButton inflection={2} /></div>
         <div className="align-self-center">2nd Inflection</div>
     </div>,
-]} opts={opts}>{[
-    [
-        {p:"سړی", f:"saRey", e:"man"}, 
-        {p:"سړي", f:"saRee"}, 
-        {p:"سړیو", f:"saRiyo"},
-    ],
-    [
-        {p:"ښځه", f:"xudza", e:"woman"}, 
-        {p:"ښځې", f:"xudze"}, {p:"ښځو", f:"xudzo"}
-    ],
-    [
-        {p:"دا سړی پښتون دی", f:"daa saRey puxtoon dey", e:"That man is a Pashtun", sub:"no reason to inflect"},
-        {p:"هغوي سړي دي", f:"haghwee saRee dee", e:"They are men", sub:"inflect for plural"},
-        {p:"د سړیو کور هلته دی", f:"du saRiyo kor halta dey", e:"The men's house is there", sub:"inflect for plural and sandwich"},
-    ],
-    [
-        null,
-        {p:"د سړي کور هلته دی", f:"du saRee kor halta dey", e:"The man's house is there", sub:"inflect for sandwich"},
-        null,
-    ],
-    [
-        {p:"دا ښځه پښتنه ده", f:"daa xudza puxtana da", e:"That woman is a Pashtun", sub:"no reason to inflect"},
-        {p:"هغوي ښځې دي", f:"haghwee xudze dee", e:"They are women", sub:"inflect for plural"},
-        {p:"د ښځو کور هلته دی", f:"du xudzo kor halta dey", e:"The ladies' house is there", sub:"inflect for plural and sandwich"},
-    ],
-    [
-        null,
-        {p:"د ښځې کور هلته دی", f:"du xudze kor halta dey", e:"The woman's house is there", sub:"inflect for sandwich"},
-        null,
-    ],
-]}</Table>
+]} opts={opts}>
+    {[
+        [
+            {p:"سړی", f:"saRey", e:"man"}, 
+            {p:"سړي", f:"saRee"}, 
+            {p:"سړیو", f:"saRiyo"},
+        ],
+        [
+            {p:"ښځه", f:"xudza", e:"woman"}, 
+            {p:"ښځې", f:"xudze"}, {p:"ښځو", f:"xudzo"}
+        ],
+        [
+            {p:"دا سړی پښتون دی", f:"daa saRey puxtoon dey", e:"That man is a Pashtun", sub:"no reason to inflect"},
+            {p:"هغوي سړي دي", f:"haghwee saRee dee", e:"They are men", sub:"inflect for plural"},
+            {p:"د سړیو کور هلته دی", f:"du saRiyo kor halta dey", e:"The men's house is there", sub:"inflect for plural and sandwich"},
+        ],
+        [
+            null,
+            {p:"د سړي کور هلته دی", f:"du saRee kor halta dey", e:"The man's house is there", sub:"inflect for sandwich"},
+            null,
+        ],
+        [
+            {p:"دا ښځه پښتنه ده", f:"daa xudza puxtana da", e:"That woman is a Pashtun", sub:"no reason to inflect"},
+            {p:"هغوي ښځې دي", f:"haghwee xudze dee", e:"They are women", sub:"inflect for plural"},
+            {p:"د ښځو کور هلته دی", f:"du xudzo kor halta dey", e:"The ladies' house is there", sub:"inflect for plural and sandwich"},
+        ],
+        [
+            null,
+            {p:"د ښځې کور هلته دی", f:"du xudze kor halta dey", e:"The woman's house is there", sub:"inflect for sandwich"},
+            null,
+        ],
+    ]}
+</Table>

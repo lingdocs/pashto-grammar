@@ -1,4 +1,4 @@
-module.exports = [
+export default [
     1527812449, // هلته - hálta, álta
     1527813043, // بې له ټاله - be la Taala
     1527823145, // بېرون - beróon
@@ -499,4 +499,4 @@ module.exports = [
     1527823755, // دوباره - doobáara
     1527815475, // جبري - jabree
     1527816771, // لنډ مهال - lanDmahaal
-];    
+];

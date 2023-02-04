@@ -7,7 +7,7 @@
  */
 
 import { useState } from "react";
-import { Route, withRouter, Switch, RouteComponentProps } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import Page404 from "./pages/404";
 import Chapter from "./components/Chapter";
@@ -34,8 +34,9 @@ if (isProd) {
   ReactGA.set({ anonymizeIp: true });
 }
 
-function App(props: RouteComponentProps) {
+function App(props: any) {
   const [navOpen, setNavOpen] = useState(false);
+  const navigate = useNavigate();
   const { user } = useUser();
   function logAnalytics() {
     if (isProd && !(user?.admin)) {
@@ -44,9 +45,9 @@ function App(props: RouteComponentProps) {
   }
   useEffect(() => {
     logAnalytics();
-    if (props.location.pathname === "/") {
+    if (window.location.pathname === "/") {
       if (localStorage.getItem("visitedOnce")) {
-        props.history.replace("/table-of-contents");
+        navigate("/table-of-contents", { replace: true })
       } else {
         localStorage.setItem("visitedOnce", "true");
       }
@@ -57,7 +58,7 @@ function App(props: RouteComponentProps) {
     window.scroll(0, 0);
     logAnalytics();
     // eslint-disable-next-line
-  }, [props.location.pathname]);
+  }, [window.location.pathname]);
   return (
     <>
       <Header setNavOpen={setNavOpen} />
@@ -67,32 +68,38 @@ function App(props: RouteComponentProps) {
             content={content}
             navOpen={navOpen}
             setNavOpen={setNavOpen}
-            pathname={props.location.pathname}
+            pathname={window.location.pathname}
           />
-          <Switch>
-            <Route path="/" exact>
-              <LandingPage />
-            </Route>
-            <Route path="/privacy" exact>
-              <PrivacyPolicy />
-            </Route>
-            <Route path="/table-of-contents" exact>
-              <TableOfContentsPage />
-            </Route>
+          <Routes>
+            <Route
+              path="/"
+              element={<LandingPage />}
+            />
+            <Route
+              path="/privacy"
+              element={<PrivacyPolicy />}
+            />
+            <Route
+              path="/table-of-contents"
+              element={<TableOfContentsPage />}
+            />
             {chapters.map((chapter: any) => (
-              <Route key={chapter.path} path={chapter.path}>
-                <Chapter>{chapter}</Chapter>
-              </Route>
+              <Route
+                key={chapter.path}
+                path={chapter.path}
+                element={<Chapter>{chapter}</Chapter>}
+              />
             ))}
-            <Route path="/account" exact>
-              <AccountPage />
-            </Route>
-            <Route component={Page404} />
-          </Switch>
+            <Route
+              path="/account"
+              element={<AccountPage />}
+            />
+            <Route path="*" element={<Page404 />} />
+          </Routes>
         </div>
       </div>
     </> 
   );
 }
 
-export default withRouter(App);
+export default App;

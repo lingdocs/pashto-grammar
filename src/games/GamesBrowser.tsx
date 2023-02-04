@@ -2,6 +2,7 @@ import { useState } from "react";
 import games from "./games";
 import { useUser } from "../user-context";
 import Link from "../components/Link";
+// @ts-ignore
 import SmoothCollapse from "react-smooth-collapse";
 import {
     AT,

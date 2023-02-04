@@ -1,6 +1,6 @@
 import Markdown from "markdown-to-jsx";
 
-export default function psmd(input) {
+export default function psmd(input: any): any {
     if (Array.isArray(input)) {
         return input.map(psmd);
     }

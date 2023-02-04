@@ -2,21 +2,9 @@
 title: Present Equative
 ---
 
-<!-- 
-
-Copyright (c) 2021 lingdocs.com 
-
-The content of the chapters/book is licensed by a
-Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
-https://creativecommons.org/licenses/by-sa/4.0/
-https://creativecommons.org/licenses/by-sa/4.0/legalcode
-    
--->
-
-import EquativeFormChoice from "../../components/EquativeFormChoice";
+import Link from "../../components/Link";
 import Carousel from "../../components/Carousel";
 import { useState } from "react";
-import Link from "../../components/Link";
 import {
     grammarUnits,
     Examples,
@@ -30,6 +18,7 @@ import {
 } from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
 import psmd from "../../lib/psmd";
+import EquativeFormChoice from "../../components/EquativeFormChoice";
 
 ## Present Equative Form
 
@@ -86,25 +75,24 @@ Flip through the following examples and notice how the equative changes dependin
 
 ## Examples 
 
-<Examples opts={defaultTextOptions}>{[
-    { p: "هغه ماشوم دی", f: "haghá mashóom dey", e: "He is a child" },
+<Examples opts={defaultTextOptions} ex={[
     { p: "هغوي ماشومان دي", f: "haghwée mashoomáan dee", e: "They are children" },
     { p: "ته ډاکټر یې؟", f: "tu DakTár ye?", e: "Are you a doctor?" },
     { p: "تاسو ډاکټران یئ؟", f: "taaso DakTaráan yeyy?", e: "Are you (pl.) doctors?" },
     { p: "دا ستا کور دی", f: "daa staa kor dey", e: "That's your house" },
     { p: "دا ستا کورونه دي", f: "daa staa koróona dee", e: "Those are your houses" },
-]}</Examples>
+]} />
 
 Notice how the equative agrees with the subject, but also how the complement can inflect (change) depending on the gender and number. We'll understand more about how this works when we look at *inflection*.
 
-<Examples opts={defaultTextOptions}>{[
+<Examples opts={defaultTextOptions} ex={[
     { p: "زه ستړی یم", f: "zu stúRey yum", e: "I (m.) am tired 👨"},
     { p: "زه ستړې یم", f: "zu stúRe yum", e: "I (f.) am tired 👩"},
     { p: "ته پښتون یې؟", f: "tu puxtoon ye?", e: "Are you (m.) a Pashtun?" },
     { p: "ته پښتنه یې؟", f: "tu puxtana ye?", e: "Are you (f.) a Pashtun?" },
     { p: "تاسو پښتانه یې؟", f: "taaso puxtaanu yeyy?", e: "Are you (m. pl.) Pashtuns?" },
     { p: "تاسو پښتنې یې؟", f: "taaso puxtane yeyy?", e: "Are you (f. pl.) Pashtuns?" },
-]}</Examples>
+]} />
 
 Note: To understand why/how these words are changing, you will need to read up on *inflection*. 
 
@@ -112,15 +100,15 @@ Note: To understand why/how these words are changing, you will need to read up o
 
 When you're asking a question, all you have to do is change the intonation. You don't have to change the word order like you do in English.
 
-<Examples opts={defaultTextOptions}>{[
+<Examples opts={defaultTextOptions} ex={[
     { p: "ته پښتون یې.", f: "tu puxtoon ye.", e: "You (m.) are a Pashtun." },
     { p: "ته پښتون یې؟", f: "tu puxtoon ye?", e: "Are you (m.) a Pashtun?" },
-]}</Examples>
+]} />
 
 **99.9% of the time the equative will go at the end of the sentence.** But in poetry the order often gets flipped around. You can also flip the order around to make an emphatic point.
 
-<Examples opts={defaultTextOptions}>{[
+<Examples opts={defaultTextOptions} ex={[
     { p: "خو ته یې افعان", f: "kho tu ye afgháan", e: "But you are Afghan!" }
-]}</Examples>
+]} />
 
 <GameDisplay record={equativeGamePresent} />

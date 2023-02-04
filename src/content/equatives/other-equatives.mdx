@@ -2,17 +2,6 @@
 title: Other Equatives
 ---
 
-<!-- 
-
-Copyright (c) 2021 lingdocs.com 
-
-The content of the chapters/book is licensed by a
-Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
-https://creativecommons.org/licenses/by-sa/4.0/
-https://creativecommons.org/licenses/by-sa/4.0/legalcode
-    
--->
-
 import {
     addToForm,
     defaultTextOptions as opts,
@@ -25,6 +14,7 @@ import {
 } from "@lingdocs/ps-react";
 import psmd from "../../lib/psmd";
 import EquativeFormChoice from "../../components/EquativeFormChoice";
+import WithTailChoice from "./WithTailChoice";
 import Formula from "../../components/formula/Formula";
 import Link from "../../components/Link";
 import {
@@ -46,13 +36,15 @@ The subjunctive equative is used to talk about something being something when th
 - a purpose
 - statement of whether it should or shouldn't be
 
-<Examples opts={opts}>{[
-    psmd({
-        p: "امید لرم چې خوشحاله **وي**",
-        f: "Umeed larum che khosháala **wee**",
-        e: "I hope he **is** happy",
-    }),
-]}</Examples>
+<Examples opts={opts}>
+    {[
+        psmd({
+            p: "امید لرم چې خوشحاله **وي**",
+            f: "Umeed larum che khosháala **wee**",
+            e: "I hope he **is** happy",
+        }),
+    ]}
+</Examples>
 
 <EquativeFormChoice 
     forms={{
@@ -81,76 +73,86 @@ The subjunctive equative is used to talk about something being something when th
 
 The subjunctive is used in clauses that express a purpose or an aim of something being something.
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "زه به درته سندره وایم، چې ته خوشحاله **وې**",
-        f: "zu ba taa ta sandura waayum, che tu khoshaala **we**.",
-        e: "I'll sing to you, so that you'll **be** happy.",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "زه به درته سندره وایم، چې ته خوشحاله **وې**",
+            f: "zu ba taa ta sandura waayum, che tu khoshaala **we**.",
+            e: "I'll sing to you, so that you'll **be** happy.",
+        },
+    ])}
+</Examples>
 
 #### Judgement/obligation
 
 The subjunctive form can be used to talk about it being being good or bad, necessary, or required that something is something.
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "هغوي باید په ښووونځي کې **وي**",
-        f: "hagwee baayad pu xowoondzee ke **wee**.",
-        e: "They have to be in school.",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "هغوي باید په ښووونځي کې **وي**",
+            f: "hagwee baayad pu xowoondzee ke **wee**.",
+            e: "They have to be in school.",
+        },
+    ])}
+</Examples>
 
 #### Desire
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "امید لرم چې هلته **وي**",
-        f: "Umeed larum che halta **wee**.",
-        e: "I hope they're there.",
-    },
-    {
-        p: "هغه غواړي چې مونږ په کور کې **وو**",
-        f: "haghá ghwaaRee che moonG pu kor ke **woo**.",
-        e: "He wants us to be home.",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "امید لرم چې هلته **وي**",
+            f: "Umeed larum che halta **wee**.",
+            e: "I hope they're there.",
+        },
+        {
+            p: "هغه غواړي چې مونږ په کور کې **وو**",
+            f: "haghá ghwaaRee che moonG pu kor ke **woo**.",
+            e: "He wants us to be home.",
+        },
+    ])}
+</Examples>
 
 #### Conditions
 
 The subjunctive form is also used to talk about conditions or possibilities. *If A = B, then...* or *It could be that A = B ...*
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "که دوکان کې وریژې **وي** نو وایې خله",
-        f: "ku dokaan ke wrejze **wee**, no waa-ye-khla",
-        e: "If there's rice in the store, buy it",
-    },
-    {
-        p: "کېدی شي چې ډوډۍ تیاره **وي**",
-        f: "kedey shee che DoDúy tayaara **wee**",
-        e: "The food could be ready",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "که دوکان کې وریژې **وي** نو وایې خله",
+            f: "ku dokaan ke wrejze **wee**, no waa-ye-khla",
+            e: "If there's rice in the store, buy it",
+        },
+        {
+            p: "کېدی شي چې ډوډۍ تیاره **وي**",
+            f: "kedey shee che DoDúy tayaara **wee**",
+            e: "The food could be ready",
+        },
+    ])}
+</Examples>
 
 #### Important Note on Common Use:
 
 This is the standard/written form of the subjunctive equative. However in many dialects you will find that people use the same forms as the <Link to="/equative/habitual-equative">habitual equative</Link> when speaking. For example:
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "هغه غواړي چې مونږ په کور کې **وو**",
-        f: "haghá ghwaaRee che moonG pu kor ke **woo**.",
-        e: "He wants us to be home.",
-        sub: "proper / standard",
-    },
-    {
-        p: "هغه غواړي چې مونږ په کور کې **یو**",
-        f: "haghá ghwaaRee che moonG pu kor ke **yoo**.",
-        e: "He wants us to be home.",
-        sub: "often spoken / colloquial",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "هغه غواړي چې مونږ په کور کې **وو**",
+            f: "haghá ghwaaRee che moonG pu kor ke **woo**.",
+            e: "He wants us to be home.",
+            sub: "proper / standard",
+        },
+        {
+            p: "هغه غواړي چې مونږ په کور کې **یو**",
+            f: "haghá ghwaaRee che moonG pu kor ke **yoo**.",
+            e: "He wants us to be home.",
+            sub: "often spoken / colloquial",
+        },
+    ])}
+</Examples>
 
 <GameDisplay record={equativeGameSubjunctive} />
 
@@ -205,28 +207,30 @@ This is used for:
 
 #### Examples
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "زه **به** په کور کې **یم**.",
-        f: "zu **ba** pu kor ke **yum**.",
-        e: "I **will be** at home.",
-    },
-    {
-        p: "مونږ **به** ستړي **یو**",
-        f: "moonG ba stúRee **yoo**.",
-        e: "We **will be** tired.",
-    },
-    {
-        p: "ډوډۍ **به** تیاره **وي**.",
-        f: "DoDúy **ba** tayáara **wee**.",
-        e: "The food **will be** ready.",
-    },
-    {
-        p: "تاسو **به** وږي **یئ**، که نه؟",
-        f: "taaso **ba** wuGee **yeyy**, ku nu?",
-        e: "You**'ll be** hungry, won't you?",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "زه **به** په کور کې **یم**.",
+            f: "zu **ba** pu kor ke **yum**.",
+            e: "I **will be** at home.",
+        },
+        {
+            p: "مونږ **به** ستړي **یو**",
+            f: "moonG ba stúRee **yoo**.",
+            e: "We **will be** tired.",
+        },
+        {
+            p: "ډوډۍ **به** تیاره **وي**.",
+            f: "DoDúy **ba** tayáara **wee**.",
+            e: "The food **will be** ready.",
+        },
+        {
+            p: "تاسو **به** وږي **یئ**، که نه؟",
+            f: "taaso **ba** wuGee **yeyy**, ku nu?",
+            e: "You**'ll be** hungry, won't you?",
+        },
+    ])}
+</Examples>
 
 <GameDisplay record={equativeGameFuture} />
 
@@ -265,33 +269,35 @@ It is usually used in the short form.
 
 ### Examples
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "ته چېرته **وې**؟",
-        f: "tu cherta **we**?",
-        e: "Where **were** you?",
-    },
-    {
-        p: "زه په کور کې **وم**.",
-        f: "zu pu kor ke **wum**.",
-        e: "I **was** at home.",
-    },
-    {
-        p: "هغه ډېر ستړی **و**.",
-        f: "haghá Der stúRey **wo**.",
-        e: "He **was** very tired.",
-    },
-    {
-        p: "هغه ډېره ستړې **وه**.",
-        f: "haghá Déra stúRe **wa**.",
-        e: "She **was** very tired.",
-    },
-    {
-        p: "مونږ خفه **وو**",
-        f: "moonG khúfa **woo**.",
-        e: "We **were** sad.",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "ته چېرته **وې**؟",
+            f: "tu cherta **we**?",
+            e: "Where **were** you?",
+        },
+        {
+            p: "زه په کور کې **وم**.",
+            f: "zu pu kor ke **wum**.",
+            e: "I **was** at home.",
+        },
+        {
+            p: "هغه ډېر ستړی **و**.",
+            f: "haghá Der stúRey **wo**.",
+            e: "He **was** very tired.",
+        },
+        {
+            p: "هغه ډېره ستړې **وه**.",
+            f: "haghá Déra stúRe **wa**.",
+            e: "She **was** very tired.",
+        },
+        {
+            p: "مونږ خفه **وو**",
+            f: "moonG khúfa **woo**.",
+            e: "We **were** sad.",
+        },
+    ])}
+</Examples>
 
 <GameDisplay record={equativeGamePast} />
 
@@ -351,38 +357,44 @@ Like the <Link to="#past-equative">past equative</Link> that it's based on, it's
 
 #### Presuming something about the past
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "ته **به** خبر **وې** که نه؟",
-        f: "tu **ba** khabúr **we**, ka na?.",
-        e: "You would have known, wouldn't you?",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "ته **به** خبر **وې** که نه؟",
+            f: "tu **ba** khabúr **we**, ka na?.",
+            e: "You would have known, wouldn't you?",
+        },
+    ])}
+</Examples>
 
 #### Habitual Past
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "زه **به** هر سهار هلته **وم**",
-        f: "zu **ba** hăr saháar halta **wum**",
-        e: "I would be there every morning",
-    },
-    {
-        p: "زما مور **به** دلته ناسته **وه**.",
-        f: "zmaa mor **ba** dalta naasta **wa**.",
-        e: "My mom would be sitting here.", 
-    }
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "زه **به** هر سهار هلته **وم**",
+            f: "zu **ba** hăr saháar halta **wum**",
+            e: "I would be there every morning",
+        },
+        {
+            p: "زما مور **به** دلته ناسته **وه**.",
+            f: "zmaa mor **ba** dalta naasta **wa**.",
+            e: "My mom would be sitting here.", 
+        }
+    ])}
+</Examples>
 
 #### Hypothetical outcome
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "که خوب مې نه وای کړی، زه **به** ستړی **وم**.",
-        f: "ku khob me nu waay kúRey, zu **ba** stúRey **wum**.",
-        e: "If I hadn't slept, I **would have been** tired.",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "که خوب مې نه وای کړی، زه **به** ستړی **وم**.",
+            f: "ku khob me nu waay kúRey, zu **ba** stúRey **wum**.",
+            e: "If I hadn't slept, I **would have been** tired.",
+        },
+    ])}
+</Examples>
 
 <GameDisplay record={equativeGameWouldBe} />
 
@@ -403,94 +415,55 @@ Because this is based on the the non-inflecting tail, *it doesn't change at all,
     <InlinePs opts={opts} ps={{ p: "و", f: "w" }} /> + non-inflecting tail
 </Formula>
 
-export function WithTailChoice(props) {
-    const [choice, setChoice] = React.useState("aay");
-    const waay = concatPsString(
-        {p: "و", f: "w"},
-        choice === "aay" ? { p: "ای", f: "aay" } : { p: "ی", f: "ey" },
-    );
-    return (
-        <div>
-            <div className="text-center my-3">
-                <div className="text-muted mb-1">
-                    <small>The spelling/pronunciation of the non-inflecting tail can vary based on dialect</small>
-                </div>
-                <ButtonSelect
-                    options={[
-                        { label: <InlinePs opts={opts} ps={{ p: "ای", f: "aay" }} />, value: "aay" },
-                        { label: <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} />, value: "ey" },
-                    ]}
-                    value={choice}
-                    handleChange={(p) => setChoice(p)}
-                />
-            </div>
-            <EquativeFormChoice
-                forms={{
-                    sentence: !props.ba ? {
-                        displayForm: concatPsString(
-                            { p: "کاشکې ... ...", f: "kaashke ... ..."}, " ",
-                            waay, { p: "!", f: "!" },
-                        ),
-                        english: [[["If only ... was/were ...!"]]],
-                    } : {
-                        displayForm: concatPsString(
-                            { p: "به ...", f: "ba ..." }, " ", waay,
-                        ),
-                        english: [[["... would have been ..."]]],
-                    },
-                    pure: {
-                        displayForm: !props.ba ? waay : concatPsString(grammarUnits.baParticle, " ", waay),
-                    },
-                }}
-                opts={opts}
-            />
-        </div>
-    );
-}
-
-<WithTailChoice />
+<WithTailChoice opts={opts} ba={false} />
 
 ### Examples
 
 #### If A were B 
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "که زه ستا پر ځای **وای**",
-        f: "ku zu staa pur dzaay **waay**",
-        e: "If I **were** in your place",
-    },
-    {
-        p: "که مونږ خبر **وای**، نه راتلو.",
-        f: "ku moonG khabúr **waay**, nú raatloo.",
-        e: "If had known, we wouldn't have come.",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "که زه ستا پر ځای **وای**",
+            f: "ku zu staa pur dzaay **waay**",
+            e: "If I **were** in your place",
+        },
+        {
+            p: "که مونږ خبر **وای**، نه راتلو.",
+            f: "ku moonG khabúr **waay**, nú raatloo.",
+            e: "If had known, we wouldn't have come.",
+        },
+    ])}
+</Examples>
 
 #### You wish A were B
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "**کاشکې ته دلته **وای!",
-        f: "kaashke tu dălta **waay**!",
-        e: "If only you were here!",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "**کاشکې ته دلته **وای!",
+            f: "kaashke tu dălta **waay**!",
+            e: "If only you were here!",
+        },
+    ])}
+</Examples>
 
 #### A should have been B
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "د باید دلته **وای**!",
-        f: "tu baayad dălta **waay**!",
-        e: "You should have been here!",
-    },
-    {
-        p: "د باید دلته **وای**",
-        f: "tu baayad dălta **waay**",
-        e: "You had to be here",
-    },
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "د باید دلته **وای**!",
+            f: "tu baayad dălta **waay**!",
+            e: "You should have been here!",
+        },
+        {
+            p: "د باید دلته **وای**",
+            f: "tu baayad dălta **waay**",
+            e: "You had to be here",
+        },
+    ])}
+</Examples>
 
 
 <GameDisplay record={equativeGamePastSubjunctive} />
@@ -506,7 +479,7 @@ This is used to talk about:
     <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="#past-subjunctive">past subjunctive</Link>
 </Formula>
 
-<WithTailChoice ba />
+<WithTailChoice opts={opts} ba={true} />
 
 <GameDisplay record={equativeGameWouldHaveBeen} />
 

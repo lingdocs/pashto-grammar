@@ -2,27 +2,16 @@
 title: Pronouns
 ---
 
-<!-- 
-
-Copyright (c) 2021 lingdocs.com 
-
-The content of the chapters/book is licensed by a
-Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
-https://creativecommons.org/licenses/by-sa/4.0/
-https://creativecommons.org/licenses/by-sa/4.0/legalcode
-    
--->
-
-
 import {
     defaultTextOptions,
     grammarUnits,
     VerbTable,
     ButtonSelect,
 } from "@lingdocs/ps-react";
+import { useState } from "react";
 
 export function PronounInflectionChoice({ pronouns, far }) {
-    const [choice, setChoice] = React.useState("plain");
+    const [choice, setChoice] = useState("plain");
     const english = {
         plain: [
             ["I", "we"],

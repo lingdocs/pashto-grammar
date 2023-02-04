@@ -8,9 +8,15 @@
 
 import { HashLink } from 'react-router-hash-link';
 import { Link } from "react-router-dom";
+import type { CSSProperties } from 'react';
 // import scrollWithOffset from "../../lib/scroll-with-offset.js";
 
-export default function L(props) {
+export default function L(props: {
+    to: string,
+    style?: CSSProperties,
+    children: string | JSX.Element,
+    className?: string,
+}) {
     const { to } = props || "";
     const toA = (to.includes("#") && to.split("#")[0] === window.location.pathname)
         ? ("#" + to.split("#")[1])

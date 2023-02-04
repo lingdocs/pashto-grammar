@@ -24,29 +24,34 @@ An AP is either:
 - an adverb, or
 - a sandwich
 
+
 ### Adverb
 
 An adverb is a word or expression that modifies the time, manner, place, etc. of a phrase.
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "AP",
-        selection: {
-            type: "adverb",
-            entry: {"ts":1527815160,"i":2394,"p":"پرون","f":"paroon","g":"paroon","e":"yesterday","c":"adv."},
-        },
+        {
+            type: "AP",
+            selection: {
+                type: "adverb",
+                entry: {"ts":1527815160,"i":2394,"p":"پرون","f":"paroon","g":"paroon","e":"yesterday","c":"adv."},
+            },
+        }
     }
-}</EditableBlock>
+</EditableBlock>
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "AP",
-        selection: {
-            type: "adverb",
-            entry: {"ts":1527819967,"i":5428,"p":"خامخا","f":"khaamakhaa","g":"khaamakhaa","e":"definitely, for sure, whether someone wants or not, willy-nilly (this last use more in Urdu)","c":"adv."},
-        },
+        {
+            type: "AP",
+            selection: {
+                type: "adverb",
+                entry: {"ts":1527819967,"i":5428,"p":"خامخا","f":"khaamakhaa","g":"khaamakhaa","e":"definitely, for sure, whether someone wants or not, willy-nilly (this last use more in Urdu)","c":"adv."},
+            },
+        }
     }
-}</EditableBlock>
+</EditableBlock>
 
 #### Note on inflecting adverbs
 
@@ -54,9 +59,11 @@ Adverbs don't normally inflect, but they *will inflect* if they are words that c
 
 Notice how the adverb <InlinePs opts={opts} ps={{ p: "ستړی", f: "stúRey", e: "tired" }} /> inflects depending on who is sitting in this example:
 
-<EditableEPEx opts={opts} hideOmitSubject>{
-    {"blocks":[{"key":0.23089213205851067,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.3252190155472441,"block":{"type":"AP","selection":{"type":"adverb","entry":{"ts":1527812558,"i":6352,"p":"دلته","f":"dălta","g":"dalta","e":"here","c":"loc. adv."}}}},{"key":0.015377073636430039,"block":{"type":"AP","selection":{"type":"adverb","entry":{"ts":1527815306,"i":7722,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj. / adv."}}}}],"predicate":{"type":"Complement","Complement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815106,"i":13461,"p":"ناست","f":"naast","g":"naast","e":"sitting, seated","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
-}</EditableEPEx>
+<EditableEPEx opts={opts} hideOmitSubject>
+    {
+        {"blocks":[{"key":0.23089213205851067,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.3252190155472441,"block":{"type":"AP","selection":{"type":"adverb","entry":{"ts":1527812558,"i":6352,"p":"دلته","f":"dălta","g":"dalta","e":"here","c":"loc. adv."}}}},{"key":0.015377073636430039,"block":{"type":"AP","selection":{"type":"adverb","entry":{"ts":1527815306,"i":7722,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj. / adv."}}}}],"predicate":{"type":"Complement","Complement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815106,"i":13461,"p":"ناست","f":"naast","g":"naast","e":"sitting, seated","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
+    }
+</EditableEPEx>
 
 When an adverb can also be used as an adjective it will inflect to agree with:
  - With <EP text="EPs" />: the subject
@@ -70,65 +77,69 @@ In English we have have [prepositions](https://en.wikipedia.org/wiki/Preposition
 
 These "sandwiches" are also used as an adverb to give more information for the phrase. They take an <Link to="/phrase-structure/np/">NP</Link> in the middle. For example if we want to say "in the house" we take the sandwich <InlinePs opts={opts} ps={{ p: "په ... کې", f: "pu ... ke", e: "in" }} /> and put the NP <InlinePs opts={opts} ps={{ p: "کور", f: "kor", e: "house" }} /> inside of it.
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "AP",
-        selection: {
-            type: "sandwich",
-            before: { p: "په", f: "pu" },
-            after: { p: "کې", f: "ke" },
-            e: "in",
-            inside: {
-                type: "NP",
-                selection: {
-                    type: "noun",
-                    entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
-                    gender: "masc",
-                    genderCanChange: false,
-                    number: "singular",
-                    numberCanChange: true,
-                    adjectives: [],
-                    possesor: undefined,
+        {
+            type: "AP",
+            selection: {
+                type: "sandwich",
+                before: { p: "په", f: "pu" },
+                after: { p: "کې", f: "ke" },
+                e: "in",
+                inside: {
+                    type: "NP",
+                    selection: {
+                        type: "noun",
+                        entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
+                        gender: "masc",
+                        genderCanChange: false,
+                        number: "singular",
+                        numberCanChange: true,
+                        adjectives: [],
+                        possesor: undefined,
+                    },
                 },
             },
-        },
+        }
     }
-}</EditableBlock>
+</EditableBlock>
 
 Because the inside of a sandwich is an <Link to="/phrase-structure/np/">NP</Link> we can also spice it up by adding adjectives.
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "AP",
-        selection: {
-            type: "sandwich",
-            before: { p: "په", f: "pu" },
-            after: { p: "کې", f: "ke" },
-            e: "in",
-            inside: {
-                type: "NP",
-                selection: {
-                    type: "noun",
-                    entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
-                    gender: "masc",
-                    genderCanChange: false,
-                    number: "singular",
-                    numberCanChange: true,
-                    adjectives: [{
-                        type: "adjective",
-                        entry: {"ts":1527812625,"i":9128,"p":"غټ","f":"ghuT, ghaT","g":"ghuT,ghaT","e":"big, fat","c":"adj."},
-                    }],
-                    possesor: undefined,
+        {
+            type: "AP",
+            selection: {
+                type: "sandwich",
+                before: { p: "په", f: "pu" },
+                after: { p: "کې", f: "ke" },
+                e: "in",
+                inside: {
+                    type: "NP",
+                    selection: {
+                        type: "noun",
+                        entry: {"ts":1527812828,"i":10539,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},
+                        gender: "masc",
+                        genderCanChange: false,
+                        number: "singular",
+                        numberCanChange: true,
+                        adjectives: [{
+                            type: "adjective",
+                            entry: {"ts":1527812625,"i":9128,"p":"غټ","f":"ghuT, ghaT","g":"ghuT,ghaT","e":"big, fat","c":"adj."},
+                        }],
+                        possesor: undefined,
+                    },
                 },
             },
-        },
+        }
     }
-}</EditableBlock>
+</EditableBlock>
 
 We can also add a possesor it hangs outside of the sandwich. All together it's still all considered one AP block though.
 
-<EditableBlock opts={opts}>{
-    {
+<EditableBlock opts={opts}>
+    {{
         type: "AP",
         selection: {
             type: "sandwich",
@@ -167,13 +178,13 @@ We can also add a possesor it hangs outside of the sandwich. All together it's s
                 },
             },
         },
-    }
-}</EditableBlock>
+    }}
+</EditableBlock>
 
 Here's another example using the sandwich <InlinePs opts={opts} ps={{ p: "سره", f: "sara", e: "with" }} />:
 
-<EditableBlock opts={opts}>{
-    {
+<EditableBlock opts={opts}>
+    {{
         type: "AP",
         selection: {
             type: "sandwich",
@@ -204,7 +215,7 @@ Here's another example using the sandwich <InlinePs opts={opts} ps={{ p: "سره
                 },
             },
         },
-    }
-}</EditableBlock>
+    }}
+</EditableBlock>
 
 Notice how when we put the word <InlinePs opts={opts} ps={{ p: "ملګری", f: "malgúrey", e: "friend" }} /> inside the sandwich it <Link to="/inflection/inflection-intro/">inflects</Link>. You <strong>always inflect the inside of the sandwich</strong> except for <Link to="/inflection/inflection-patterns/#exceptions">two exceptions</Link>.

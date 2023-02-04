@@ -8,124 +8,124 @@
 
 /* eslint-disable import/no-webpack-loader-syntax */
 // @ts-ignore
-import * as intro from "!babel-loader!@lingdocs/mdx-loader!./intro.mdx";
+import * as intro from "./intro.mdx";
 
 // @ts-ignore
-import * as presentEquative from "!babel-loader!@lingdocs/mdx-loader!./equatives/present-equative.mdx";
+import * as presentEquative from "./equatives/present-equative.mdx";
 // @ts-ignore
-import * as habitualEquative from "!babel-loader!@lingdocs/mdx-loader!./equatives/habitual-equative.mdx";
+import * as habitualEquative from "./equatives/habitual-equative.mdx";
 // @ts-ignore
-import * as otherEquatives from "!babel-loader!@lingdocs/mdx-loader!./equatives/other-equatives.mdx";
+import * as otherEquatives from "./equatives/other-equatives.mdx";
 
 // @ts-ignore
-import * as nounsGender from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-gender.mdx";
+import * as nounsGender from "./nouns/nouns-gender.mdx";
 // @ts-ignore
-import * as nounsUnisex from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-unisex.mdx";
+import * as nounsUnisex from "./nouns/nouns-unisex.mdx";
 // @ts-ignore
-import * as nounsPlural from "!babel-loader!@lingdocs/mdx-loader!./nouns/nouns-plural.mdx";
+import * as nounsPlural from "./nouns/nouns-plural.mdx";
 // @ts-ignore
-import * as arabicPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/arabic-plurals.mdx";
+import * as arabicPlurals from "./nouns/arabic-plurals.mdx";
 // @ts-ignore
-import * as bundledPlurals from "!babel-loader!@lingdocs/mdx-loader!./nouns/bundled-plurals.mdx";
+import * as bundledPlurals from "./nouns/bundled-plurals.mdx";
 
 // @ts-ignore
-import * as BlocksAndKids from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/blocks-and-kids.mdx";
+import * as BlocksAndKids from "./phrase-structure/blocks-and-kids.mdx";
 // @ts-ignore
-import * as NPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/np.mdx";
+import * as NPIntro from "./phrase-structure/np.mdx";
 // @ts-ignore
-import * as APIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/ap.mdx";
+import * as APIntro from "./phrase-structure/ap.mdx";
 // @ts-ignore
-import * as EPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/ep.mdx";
+import * as EPIntro from "./phrase-structure/ep.mdx";
 // @ts-ignore
-import * as VPIntro from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/vp.mdx";
+import * as VPIntro from "./phrase-structure/vp.mdx";
 // @ts-ignore
-import * as Complement from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/complement.mdx";
+import * as Complement from "./phrase-structure/complement.mdx";
 // @ts-ignore
-import * as ShorteningVPs from "!babel-loader!@lingdocs/mdx-loader!./phrase-structure/shortening-vps.mdx";
+import * as ShorteningVPs from "./phrase-structure/shortening-vps.mdx";
 
 // @ts-ignore
-import * as verbAspect from "!babel-loader!@lingdocs/mdx-loader!./verbs/verb-aspect.mdx";
+import * as verbAspect from "./verbs/verb-aspect.mdx";
 // @ts-ignore
-import * as verbsIntro from "!babel-loader!@lingdocs/mdx-loader!./verbs/verbs-intro.mdx";
+import * as verbsIntro from "./verbs/verbs-intro.mdx";
 // @ts-ignore
-import * as presentVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/present-verbs.mdx";
+import * as presentVerbs from "./verbs/present-verbs.mdx";
 // @ts-ignore
-import * as subjunctiveVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/subjunctive-verbs.mdx";
+import * as subjunctiveVerbs from "./verbs/subjunctive-verbs.mdx";
 // @ts-ignore
-import * as futureVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/future-verbs.mdx";
+import * as futureVerbs from "./verbs/future-verbs.mdx";
 // @ts-ignore
-import * as imperativeVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/imperative-verbs.mdx";
+import * as imperativeVerbs from "./verbs/imperative-verbs.mdx";
 // @ts-ignore
-import * as verbEndings from "!babel-loader!@lingdocs/mdx-loader!./verbs/verb-endings.mdx";
+import * as verbEndings from "./verbs/verb-endings.mdx";
 // @ts-ignore
-import * as negativeVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/negative.mdx";
+import * as negativeVerbs from "./verbs/negative.mdx";
 // @ts-ignore
-import * as rootsAndStems from "!babel-loader!@lingdocs/mdx-loader!./verbs/roots-and-stems.mdx";
+import * as rootsAndStems from "./verbs/roots-and-stems.mdx";
 // @ts-ignore
-import * as pastVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/past-verbs.mdx";
+import * as pastVerbs from "./verbs/past-verbs.mdx";
 // @ts-ignore
-import * as perfectVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./verbs/perfect-verbs-intro.mdx";
+import * as perfectVerbsIntro from "./verbs/perfect-verbs-intro.mdx";
 // @ts-ignore
-import * as allPerfectVerbs from "!babel-loader!@lingdocs/mdx-loader!./verbs/all-perfect-verbs.mdx";
+import * as allPerfectVerbs from "./verbs/all-perfect-verbs.mdx";
 // @ts-ignore
-import * as passiveVoice from "!babel-loader!@lingdocs/mdx-loader!./verbs/passive-voice.mdx";
+import * as passiveVoice from "./verbs/passive-voice.mdx";
 // @ts-ignore
-import * as ability from "!babel-loader!@lingdocs/mdx-loader!./verbs/ability.mdx";
+import * as ability from "./verbs/ability.mdx";
 // @ts-ignore
-import * as masterChart from "!babel-loader!@lingdocs/mdx-loader!./verbs/master-chart.mdx";
+import * as masterChart from "./verbs/master-chart.mdx";
 
 // @ts-ignore
-import * as compoundVerbsIntro from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/intro.mdx";
+import * as compoundVerbsIntro from "./compound-verbs/intro.mdx";
 // @ts-ignore
-import * as helperVerbs from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/helper-verbs.mdx";
+import * as helperVerbs from "./compound-verbs/helper-verbs.mdx";
 // @ts-ignore
-import * as stativeCompounds from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/stative-compounds.mdx";
+import * as stativeCompounds from "./compound-verbs/stative-compounds.mdx";
 // @ts-ignore
-import * as dynamicCompounds from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/dynamic-compounds.mdx";
+import * as dynamicCompounds from "./compound-verbs/dynamic-compounds.mdx";
 // @ts-ignore
-import * as moreOnCompounds from "!babel-loader!@lingdocs/mdx-loader!./compound-verbs/more-on-compounds.mdx";
+import * as moreOnCompounds from "./compound-verbs/more-on-compounds.mdx";
 
 // @ts-ignore
-import * as introToParticiples from "!babel-loader!@lingdocs/mdx-loader!./participles/intro.mdx";
+import * as introToParticiples from "./participles/intro.mdx";
 
 // @ts-ignore
-import * as pronounsBasic from "!babel-loader!@lingdocs/mdx-loader!./pronouns/pronouns-basic.mdx";
+import * as pronounsBasic from "./pronouns/pronouns-basic.mdx";
 // @ts-ignore
-import * as pronounsMini from "!babel-loader!@lingdocs/mdx-loader!./pronouns/pronouns-mini.mdx";
+import * as pronounsMini from "./pronouns/pronouns-mini.mdx";
 // @ts-ignore
-import * as directionalPronouns from "!babel-loader!@lingdocs/mdx-loader!./pronouns/pronouns-directional.mdx"; 
+import * as directionalPronouns from "./pronouns/pronouns-directional.mdx"; 
 
 // @ts-ignore
-import * as inflectionIntro from "!babel-loader!@lingdocs/mdx-loader!./inflection/inflection-intro.mdx";
+import * as inflectionIntro from "./inflection/inflection-intro.mdx";
 // @ts-ignore
-import * as inflectionPatterns from "!babel-loader!@lingdocs/mdx-loader!./inflection/inflection-patterns.mdx";
+import * as inflectionPatterns from "./inflection/inflection-patterns.mdx";
 
 // @ts-ignore
-import * as sandwiches from "!babel-loader!@lingdocs/mdx-loader!./sandwiches/sandwiches.mdx";
+import * as sandwiches from "./sandwiches/sandwiches.mdx";
 
 // @ts-ignore
-import * as phonetics from "!babel-loader!@lingdocs/mdx-loader!./writing/phonetics.mdx";
+import * as phonetics from "./writing/phonetics.mdx";
 // @ts-ignore
-import * as diacritics from "!babel-loader!@lingdocs/mdx-loader!./writing/diacritics.mdx";
+import * as diacritics from "./writing/diacritics.mdx";
 // @ts-ignore
-import * as theFiveYeys from "!babel-loader!@lingdocs/mdx-loader!./writing/the-five-yeys.mdx";
+import * as theFiveYeys from "./writing/the-five-yeys.mdx";
 // @ts-ignore
-import * as typingIssues from "!babel-loader!@lingdocs/mdx-loader!./writing/typing-issues.mdx";
+import * as typingIssues from "./writing/typing-issues.mdx";
 
 // @ts-ignore
-import * as unrealConditionals from "!babel-loader!@lingdocs/mdx-loader!./recipes/unreal-conditionals.mdx";
+import * as unrealConditionals from "./recipes/unreal-conditionals.mdx";
 
 // @ts-ignore
-import * as games from "!babel-loader!@lingdocs/mdx-loader!./games.mdx";
+import * as games from "./games.mdx";
 
 // @ts-ignore
-import * as pronounPicker from "!babel-loader!@lingdocs/mdx-loader!./practice-tools/pronoun-picker.mdx";
+import * as pronounPicker from "./practice-tools/pronoun-picker.mdx";
 
 // @ts-ignore
-import * as phraseBuilder from "!babel-loader!@lingdocs/mdx-loader!./phrase-builder.mdx";
+import * as phraseBuilder from "./phrase-builder.mdx";
 
 // @ts-ignore
-import * as dictionary from "!babel-loader!@lingdocs/mdx-loader!./dictionary.mdx";
+import * as dictionary from "./dictionary.mdx";
 
 type ChapterSection = {
     import: any,
@@ -427,7 +427,7 @@ export const content = contentTree.map((item) => {
             slug: chp.slug,
             content: chp.import.default,
             frontMatter: chp.import.frontMatter,
-            tableOfContents: chp.import.tableOfContents(),
+            tableOfContents: chp.import.tableOfContents,
         };
     }
     return ("import" in item)

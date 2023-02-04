@@ -24,75 +24,81 @@ A noun phrase (NP) in Pashto is one of the following three things:
 
 A **noun** is a word that we use to identify people, places, things, or ideas. One of these words by itself it forms a NP, one of the basic building blocks.
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "NP",
-        selection: {
-            type: "noun",
-            entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
-            gender: "masc",
-            genderCanChange: false,
-            number: "singular",
-            numberCanChange: true,
-            adjectives: [],
-            possesor: undefined,
-        },
+        {
+            type: "NP",
+            selection: {
+                type: "noun",
+                entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [],
+                possesor: undefined,
+            },
+        }
     }
-}</EditableBlock> 
+</EditableBlock> 
 
 #### Adding adjectives
 
 We can also **extend our noun by adding *adjectives***. Let's add the *adjective* <InlinePs opts={opts} ps={{ p: "زوړ", f: "zoR", e: "old" }} /> to our NP.
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "NP",
-        selection: {
-            type: "noun",
-            entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
-            gender: "masc",
-            genderCanChange: false,
-            number: "singular",
-            numberCanChange: true,
-            adjectives: [{
-                type: "adjective",
-                entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
-            }],
-            possesor: undefined,
+        {
+            type: "NP",
+            selection: {
+                type: "noun",
+                entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [{
+                    type: "adjective",
+                    entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
+                }],
+                possesor: undefined,
+            }
         }
     }
-}</EditableBlock>
+</EditableBlock>
 
 Now we have two words, but it's still **one NP**, one building block. We can add as many adjectives as we want, and it still stays as one single building block. Click on the <EditIcon /> icon below to try adding or removing more adjectives.
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "NP",
-        selection: {
-            type: "noun",
-            entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
-            gender: "masc",
-            genderCanChange: false,
-            number: "singular",
-            numberCanChange: true,
-            adjectives: [
-                {
-                    type: "adjective",
-                    entry: {"ts":1527812625,"i":9119,"p":"غټ","f":"ghuT, ghaT","g":"ghuT,ghaT","e":"big, fat","c":"adj."},
-                },
-                {
-                    type: "adjective",
-                    entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
-                },
-                {
-                    type: "adjective",
-                    entry: {"ts":1578329248464,"i":7542,"p":"سپین","f":"speen","g":"speen","e":"white (fig. clear, honest, beautiful)","c":"adj."},
-                },
-            ],
-            possesor: undefined,
+        {
+            type: "NP",
+            selection: {
+                type: "noun",
+                entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [
+                    {
+                        type: "adjective",
+                        entry: {"ts":1527812625,"i":9119,"p":"غټ","f":"ghuT, ghaT","g":"ghuT,ghaT","e":"big, fat","c":"adj."},
+                    },
+                    {
+                        type: "adjective",
+                        entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
+                    },
+                    {
+                        type: "adjective",
+                        entry: {"ts":1578329248464,"i":7542,"p":"سپین","f":"speen","g":"speen","e":"white (fig. clear, honest, beautiful)","c":"adj."},
+                    },
+                ],
+                possesor: undefined,
+            }
         }
     }
-}</EditableBlock>
+</EditableBlock>
 
 It's important to note that the adjective will <Link to="/inflection/inflection-patterns/">inflect</Link> according to the noun it's attached to.
 
@@ -100,92 +106,96 @@ It's important to note that the adjective will <Link to="/inflection/inflection-
 
 We can also add a **possesor** by adding another NP <Link to="/sandwiches/sandwiches/">sandwiched</Link> in with a <InlinePs opts={opts} ps={{ p: "د", f: "du", e: "of"}} />. (Notice that the word sandwiched in there will <Link to="/inflection/inflection-intro/">inflect</Link> if possible.) Now we have a NP inside of an NP, but it's still all **one NP** or **one building block**. 
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "NP",
-        selection: {
-            type: "noun",
-            entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
-            gender: "masc",
-            genderCanChange: false,
-            number: "singular",
-            numberCanChange: true,
-            adjectives: [
-                {
-                    type: "adjective",
-                    entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
-                },
-            ],
-            possesor: {
-                shrunken: false,
-                np: {
-                    type: "NP",
-                    selection: {
-                        type: "noun",
-                        entry: {"ts":1527812881,"i":11694,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},
-                        gender: "masc",
-                        genderCanChange: true,
-                        number: "singular",
-                        numberCanChange: true,
-                        adjectives: [],
-                    }
+        {
+            type: "NP",
+            selection: {
+                type: "noun",
+                entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [
+                    {
+                        type: "adjective",
+                        entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
+                    },
+                ],
+                possesor: {
+                    shrunken: false,
+                    np: {
+                        type: "NP",
+                        selection: {
+                            type: "noun",
+                            entry: {"ts":1527812881,"i":11694,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},
+                            gender: "masc",
+                            genderCanChange: true,
+                            number: "singular",
+                            numberCanChange: true,
+                            adjectives: [],
+                        }
+                    },
                 },
             },
-        },
+        }
     }
-}</EditableBlock>
+</EditableBlock>
 
 If our possesor is a noun, we can add a possesor to *it*. Try clicking the <EditIcon /> icon below and adding possesors to the possesors, you can go forever! 🤯
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "NP",
-        selection: {
-            type: "noun",
-            entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
-            gender: "masc",
-            genderCanChange: false,
-            number: "singular",
-            numberCanChange: true,
-            adjectives: [
-                {
-                    type: "adjective",
-                    entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
-                },
-            ],
-            possesor: {
-                shrunken: false,
-                np: {
-                    type: "NP",
-                    selection: {
-                        type: "noun",
-                        entry: {"ts":1527812881,"i":11694,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},
-                        gender: "masc",
-                        genderCanChange: true,
-                        number: "singular",
-                        numberCanChange: true,
-                        adjectives: [],
-                        possesor: {
-                            shrunken: false,
-                            np: {
-                                type: "NP",
-                                selection: {
-                                    type: "noun",
-                                    entry: {"ts":1527815177,"i":2530,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m."},
-                                    gender: "masc",
-                                    genderCanChange: false,
-                                    number: "singular",
-                                    numberCanChange: true,
-                                    adjectives: [],
+        {
+            type: "NP",
+            selection: {
+                type: "noun",
+                entry: {"ts":1527812817,"i":9999,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [
+                    {
+                        type: "adjective",
+                        entry: {"ts":1527815451,"i":7245,"p":"زوړ","f":"zoR","g":"zoR","e":"old","c":"adj. irreg.","infap":"زاړه","infaf":"zaaRu","infbp":"زړ","infbf":"zaR"},
+                    },
+                ],
+                possesor: {
+                    shrunken: false,
+                    np: {
+                        type: "NP",
+                        selection: {
+                            type: "noun",
+                            entry: {"ts":1527812881,"i":11694,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},
+                            gender: "masc",
+                            genderCanChange: true,
+                            number: "singular",
+                            numberCanChange: true,
+                            adjectives: [],
+                            possesor: {
+                                shrunken: false,
+                                np: {
+                                    type: "NP",
+                                    selection: {
+                                        type: "noun",
+                                        entry: {"ts":1527815177,"i":2530,"p":"پلار","f":"plaar","g":"plaar","e":"father","c":"n. m."},
+                                        gender: "masc",
+                                        genderCanChange: false,
+                                        number: "singular",
+                                        numberCanChange: true,
+                                        adjectives: [],
+                                    },
                                 },
                             },
                         },
                     },
                 },
             },
-        },
+        }
     }
-}</EditableBlock>
+</EditableBlock>
 
 A possesor can have another possesor which can have another posseser and so-on and on *forever*. The nerdy word for this phenomenon where things reference/repeat themselves is [recursion](https://en.wikipedia.org/wiki/Recursion). 🤓
 
@@ -205,27 +215,31 @@ A pronoun is a word like "I", "you", "us", "them" that signifies a person or thi
 
 You can't add any adjectives or possesors to pronouns in Pashto. They just stand on their own as an NP.
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "NP",
-        selection: {
-            type: "pronoun",
-            person: 0,
-            distance: "far",
+        {
+            type: "NP",
+            selection: {
+                type: "pronoun",
+                person: 0,
+                distance: "far",
+            }
         }
     }
-}</EditableBlock>
+</EditableBlock>
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "NP",
-        selection: {
-            type: "pronoun",
-            person: 11,
-            distance: "far",
-        },
+        {
+            type: "NP",
+            selection: {
+                type: "pronoun",
+                person: 11,
+                distance: "far",
+            },
+        }
     }
-}</EditableBlock>
+</EditableBlock>
 
 ### Participle
 
@@ -234,102 +248,114 @@ In Pashto you can use the infinitive form of a verb as a participle, meaning you
 - "to write" or
 - "writing"
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "NP",
-        selection: {
-            type: "participle",
-            verb: {
-                entry: {"ts":1527812856,"i":11617,"p":"لیکل","f":"leekul","g":"leekul","e":"to write","c":"v. trans./gramm. trans.","ec":"write,writes,writing,wrote,written"},
-            },
+        {
+            type: "NP",
+            selection: {
+                type: "participle",
+                verb: {
+                    entry: {"ts":1527812856,"i":11617,"p":"لیکل","f":"leekul","g":"leekul","e":"to write","c":"v. trans./gramm. trans.","ec":"write,writes,writing,wrote,written"},
+                },
+            }
         }
     }
-}</EditableBlock>
+</EditableBlock>
 
 Then we can use this NP just like we would any other noun in a sentence.
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "زه **لیکل** غواړم.",
-        f: "zu **leekúl** ghwaaRum.",
-        e: "I want **to write**",
-        sub: "'to write' - used as an object",
-    },
-    {
-        p: "**لیکل** سخت دي.",
-        f: "**leekúl** sakht dee.",
-        e: "**Writing** is dificult",
-        sub: "'writing' - used as a subject", 
-    }
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "زه **لیکل** غواړم.",
+            f: "zu **leekúl** ghwaaRum.",
+            e: "I want **to write**",
+            sub: "'to write' - used as an object",
+        },
+        {
+            p: "**لیکل** سخت دي.",
+            f: "**leekúl** sakht dee.",
+            e: "**Writing** is dificult",
+            sub: "'writing' - used as a subject", 
+        },
+    ])}
+</Examples>
 
 The important thing to know about these kinds of NPs (participles) is that they are *always* considered **masculine plural**.
 
 Notice how in the example above we said
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "**لیکل** سخت دي.",
-        f: "**leekúl** sakht dee.",
-        e: "**Writing** is dificult",
-        sub: "'writing' - is *masculine plural*", 
-    }
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "**لیکل** سخت دي.",
+            f: "**leekúl** sakht dee.",
+            e: "**Writing** is dificult",
+            sub: "'writing' - is *masculine plural*", 
+        }
+    ])}
+</Examples>
 
 We could *not* say 
 
-<Examples opts={opts}>{psmd([
-    {
-        p: "**لیکل** سخت دی. ❌",
-        f: "**leekúl** sakht dey. ❌",
-        e: "**Writing** is dificult",
-    }
-])}</Examples>
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "**لیکل** سخت دی. ❌",
+            f: "**leekúl** sakht dey. ❌",
+            e: "**Writing** is dificult",
+        },
+    ])}
+</Examples>
 
 We can also **add subjects or objects** to the participle by <Link to="/sandwiches/sandwiches/">sandwiching</Link> them in with a possesive <InlinePs opts={opts} ps={{ p: "د", f: "du", e: "of" }} />.
 
 For example, if we take the participle <InlinePs opts={opts} ps={{ p: "وهل", f: "wahúl", e: "to hit / hitting" }} />
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "NP",
-        selection: {
-            type: "participle",
-            verb: {
-                entry: {"ts":1527815399,"i":14463,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"},
-            },
+        {
+            type: "NP",
+            selection: {
+                type: "participle",
+                verb: {
+                    entry: {"ts":1527815399,"i":14463,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"},
+                },
+            }
         }
     }
-}</EditableBlock>
+</EditableBlock>
 
 And we can add the word <InlinePs opts={opts} ps={{ p: "ماشومان", f: "maashoomaan", e: "children" }} /> by sandwiching it in like we did with the possesor, we get
 
-<EditableBlock opts={opts}>{
+<EditableBlock opts={opts}>
     {
-        type: "NP",
-        selection: {
-            type: "participle",
-            verb: {
-                entry: {"ts":1527815399,"i":14463,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"},
-            },
-            possesor: {
-                shrunken: false,
-                np: {
-                    type: "NP",
-                    selection: {
-                        type: "noun",
-                        entry: {"ts":1527812881,"i":11694,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},
-                        gender: "masc",
-                        genderCanChange: true,
-                        number: "plural",
-                        numberCanChange: true,
-                        adjectives: [],
+        {
+            type: "NP",
+            selection: {
+                type: "participle",
+                verb: {
+                    entry: {"ts":1527815399,"i":14463,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"},
+                },
+                possesor: {
+                    shrunken: false,
+                    np: {
+                        type: "NP",
+                        selection: {
+                            type: "noun",
+                            entry: {"ts":1527812881,"i":11694,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},
+                            gender: "masc",
+                            genderCanChange: true,
+                            number: "plural",
+                            numberCanChange: true,
+                            adjectives: [],
+                        },
                     },
                 },
             },
-        },
+        }
     }
-}</EditableBlock>
+</EditableBlock>
 
 The noun we just attached can be a subject *or* an object of the participle. You just have to know from context. So this NP can mean either:
 
@@ -338,11 +364,13 @@ The noun we just attached can be a subject *or* an object of the participle. You
 
 And we can use this NP block as noun in a sentence.
 
-<Examples opts={opts}>{psmd([{
-    p: "**د ماشومانو وهل** ښه نه دي.",
-    f: "**du maashoomaano wahul** xu nu dee.",
-    e: "**Hitting children** is bad.",
-}])}</Examples>
+<Examples opts={opts}>
+    {psmd([{
+        p: "**د ماشومانو وهل** ښه نه دي.",
+        f: "**du maashoomaano wahul** xu nu dee.",
+        e: "**Hitting children** is bad.",
+    }])}
+</Examples>
 
 ## Overview
 
@@ -357,8 +385,8 @@ An **NP** is one of the following:
 
 Notice how NPs can contain other NPs, and therefore go on foreeeever. So you could have like 50 words packed together and it would all be **one single NP**, **one building block** in a sentence.
 
-<!-- ## NP Playground
+{/* ## NP Playground
 
 Now try making your own NPs from scratch! 👩‍🍳 See if you can make really big ones like "hitting my good old friend's brother's father's big dog."
 
-<NPPlayground opts={opts} /> -->
+<NPPlayground opts={opts} /> */}
