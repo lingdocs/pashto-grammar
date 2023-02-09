@@ -137,288 +137,291 @@ type ChaptersSection = {
     chapters: ChapterSection[],
 };
 
-const contentTree: (ChapterSection | ChaptersSection)[] = [
+// for the super hacky sitemap generator to work this array needs to be
+// - in valid JSON and surrounded by these comments 
+// - the import statements have to be at the top of the objects in a seperate line
+export const contentTree: (ChapterSection | ChaptersSection)[] = /* content-tree */[
     {
-        import: intro,
-        slug: "intro",
+        "import": intro,
+        "slug": "intro"
     },
     {
-        import: games,
-        slug: "games",
+        "import": games,
+        "slug": "games"
     },
     {
-        import: phraseBuilder,
-        slug: "phrase-builder",
+        "import": phraseBuilder,
+        "slug": "phrase-builder"
     },
     {
-        heading: "Equatives",
-        subdirectory: "equatives",
-        chapters: [
+        "heading": "Equatives",
+        "subdirectory": "equatives",
+        "chapters": [
             {
-                import: presentEquative,
-                slug: "present-equative",
+                "import": presentEquative,
+                "slug": "present-equative"
             },
             {
-                import: habitualEquative,
-                slug: "habitual-equative",
+                "import": habitualEquative,
+                "slug": "habitual-equative"
             },
             {
-                import: otherEquatives,
-                slug: "other-equatives",
-            },
-        ],
+                "import": otherEquatives,
+                "slug": "other-equatives"
+            }
+        ]
     },
     {
-        heading: "Nouns",
-        subdirectory: "nouns",
-        chapters: [
+        "heading": "Nouns",
+        "subdirectory": "nouns",
+        "chapters": [
             {
-                import: nounsGender,
-                slug: "nouns-gender",
+                "import": nounsGender,
+                "slug": "nouns-gender"
             },
             {
-                import: nounsUnisex,
-                slug: "nouns-unisex",
+                "import": nounsUnisex,
+                "slug": "nouns-unisex"
             },
             {
-                import: nounsPlural,
-                slug: "nouns-plural",
+                "import": nounsPlural,
+                "slug": "nouns-plural"
             },
             {
-                import: arabicPlurals,
-                slug: "arabic-plurals",
+                "import": arabicPlurals,
+                "slug": "arabic-plurals"
             },
             {
-                import: bundledPlurals,
-                slug: "bundled-plurals",
-            },
-        ],
+                "import": bundledPlurals,
+                "slug": "bundled-plurals"
+            }
+        ]
     },
     {
-        heading: "Phrase Structure 🧱",
-        subdirectory: "phrase-structure",
-        chapters: [
+        "heading": "Phrase Structure 🧱",
+        "subdirectory": "phrase-structure",
+        "chapters": [
             {
-                import: BlocksAndKids,
-                slug: "blocks-and-kids",
+                "import": BlocksAndKids,
+                "slug": "blocks-and-kids"
             },
             {
-                import: NPIntro,
-                slug: "np",
+                "import": NPIntro,
+                "slug": "np"
             },
             {
-                import: APIntro,
-                slug: "ap",
+                "import": APIntro,
+                "slug": "ap"
             },
             {
-                import: EPIntro,
-                slug: "ep",
+                "import": EPIntro,
+                "slug": "ep"
             },
             {
-                import: VPIntro,
-                slug: "vp",
+                "import": VPIntro,
+                "slug": "vp"
             },
             {
-                import: Complement,
-                slug: "complement",
+                "import": Complement,
+                "slug": "complement"
             },
             {
-                import: ShorteningVPs,
-                slug: "shortening-vps",
-            },
-        ],
+                "import": ShorteningVPs,
+                "slug": "shortening-vps"
+            }
+        ]
     },
     {
-        heading: "Verbs",
-        subdirectory: "verbs",
-        chapters: [
+        "heading": "Verbs",
+        "subdirectory": "verbs",
+        "chapters": [
             {
-                import: verbsIntro,
-                slug: "verbs-intro",
+                "import": verbsIntro,
+                "slug": "verbs-intro"
             },
             {
-                import: verbAspect,
-                slug: "verb-aspect",
+                "import": verbAspect,
+                "slug": "verb-aspect"
             },
             {
-                import: rootsAndStems,
-                slug: "roots-and-stems",
+                "import": rootsAndStems,
+                "slug": "roots-and-stems"
             },
             {
-                import: presentVerbs,
-                slug: "present-verbs",
+                "import": presentVerbs,
+                "slug": "present-verbs"
             },
             {
-                import: subjunctiveVerbs,
-                slug: "subjunctive-verbs",
+                "import": subjunctiveVerbs,
+                "slug": "subjunctive-verbs"
             },
             {
-                import: futureVerbs,
-                slug: "future-verbs",
+                "import": futureVerbs,
+                "slug": "future-verbs"
             },
             {
-                import: imperativeVerbs,
-                slug: "imperative-verbs",
+                "import": imperativeVerbs,
+                "slug": "imperative-verbs"
             },
             {
-                import: pastVerbs,
-                slug: "past-verbs",
+                "import": pastVerbs,
+                "slug": "past-verbs"
             },
             {
-                import: perfectVerbsIntro,
-                slug: "perfect-verbs-intro",
+                "import": perfectVerbsIntro,
+                "slug": "perfect-verbs-intro"
             },
             {
-                import: allPerfectVerbs,
-                slug: "all-perfect-verbs",
+                "import": allPerfectVerbs,
+                "slug": "all-perfect-verbs"
             },
             {
-                import: negativeVerbs,
-                slug: "negative-verbs",
+                "import": negativeVerbs,
+                "slug": "negative-verbs"
             },
             {
-                import: ability,
-                slug: "ability",
+                "import": ability,
+                "slug": "ability"
             },
             {
-                import: passiveVoice,
-                slug: "passive-voice",
+                "import": passiveVoice,
+                "slug": "passive-voice"
             },
             {
-                import: verbEndings,
-                slug: "verb-endings",
+                "import": verbEndings,
+                "slug": "verb-endings"
             },
             {
-                import: masterChart,
-                slug: "master-chart",
-            },
-        ],
+                "import": masterChart,
+                "slug": "master-chart"
+            }
+        ]
     },
     {
-        heading: "Compound Verbs",
-        subdirectory: "compound-verbs",
-        chapters: [
+        "heading": "Compound Verbs",
+        "subdirectory": "compound-verbs",
+        "chapters": [
             {
-                import: compoundVerbsIntro,
-                slug: "intro",
+                "import": compoundVerbsIntro,
+                "slug": "intro"
             },
             {
-                import: helperVerbs,
-                slug: "helper-verbs",
+                "import": helperVerbs,
+                "slug": "helper-verbs"
             },
             {
-                import: stativeCompounds,
-                slug: "stative-compounds",
+                "import": stativeCompounds,
+                "slug": "stative-compounds"
             },
             {
-                import: dynamicCompounds,
-                slug: "dynamic-compounds",
+                "import": dynamicCompounds,
+                "slug": "dynamic-compounds"
             },
             {
-                import: moreOnCompounds,
-                slug: "more-on-compounds",
-            },
-        ],
+                "import": moreOnCompounds,
+                "slug": "more-on-compounds"
+            }
+        ]
     },
     {
-        heading: "Participles",
-        subdirectory: "participles",
-        chapters: [
+        "heading": "Participles",
+        "subdirectory": "participles",
+        "chapters": [
             {
-                import: introToParticiples,
-                slug: "intro",
-            },
-        ],
+                "import": introToParticiples,
+                "slug": "intro"
+            }
+        ]
     },
     {
-        heading: "Pronouns",
-        subdirectory: "pronouns",
-        chapters: [
+        "heading": "Pronouns",
+        "subdirectory": "pronouns",
+        "chapters": [
             {
-                import: pronounsBasic,
-                slug: "pronouns-basic",
+                "import": pronounsBasic,
+                "slug": "pronouns-basic"
             },
             {
-                import: pronounsMini,
-                slug: "pronouns-mini",
+                "import": pronounsMini,
+                "slug": "pronouns-mini"
             },
             {
-                import: directionalPronouns,
-                slug: "pronouns-directional",
-            },
-        ],
+                "import": directionalPronouns,
+                "slug": "pronouns-directional"
+            }
+        ]
     },
     {
-        heading: "Inflection 🔘",
-        subdirectory: "inflection",
-        chapters: [
+        "heading": "Inflection 🔘",
+        "subdirectory": "inflection",
+        "chapters": [
             {
-                import: inflectionIntro,
-                slug: "inflection-intro",
+                "import": inflectionIntro,
+                "slug": "inflection-intro"
             },
             {
-                import: inflectionPatterns,
-                slug: "inflection-patterns",
-            },
-        ],
+                "import": inflectionPatterns,
+                "slug": "inflection-patterns"
+            }
+        ]
     },
     {
-        heading: "Sandwiches 🥪",
-        subdirectory: "sandwiches",
-        chapters: [
+        "heading": "Sandwiches 🥪",
+        "subdirectory": "sandwiches",
+        "chapters": [
             {
-                import: sandwiches,
-                slug: "sandwiches",
-            },
-        ],
+                "import": sandwiches,
+                "slug": "sandwiches"
+            }
+        ]
     },
     {
-        heading: "Writing 🖊",
-        subdirectory: "writing",
-        chapters: [
+        "heading": "Writing 🖊",
+        "subdirectory": "writing",
+        "chapters": [
             {
-                import: phonetics,
-                slug: "phonetics",
+                "import": phonetics,
+                "slug": "phonetics"
             },
             {
-                import: diacritics,
-                slug: "diacritics",
+                "import": diacritics,
+                "slug": "diacritics"
             },
             {
-                import: theFiveYeys,
-                slug: "the-five-yeys",
+                "import": theFiveYeys,
+                "slug": "the-five-yeys"
             },
             {
-                import: typingIssues,
-                slug: "typing-issues",
-            },
-        ],
+                "import": typingIssues,
+                "slug": "typing-issues"
+            }
+        ]
     },
     {
-        heading: "Recipes 👩‍🍳",
-        subdirectory: "recipes",
-        chapters: [
+        "heading": "Recipes 👩‍🍳",
+        "subdirectory": "recipes",
+        "chapters": [
             {
-                import: unrealConditionals,
-                slug: "unreal-conditionals",
-            },
-        ],
+                "import": unrealConditionals,
+                "slug": "unreal-conditionals"
+            }
+        ]
     },
     {
-        heading: "Practice Tools 🔧",
-        subdirectory: "practice-tools",
-        chapters: [
+        "heading": "Practice Tools 🔧",
+        "subdirectory": "practice-tools",
+        "chapters": [
             {
-                import: pronounPicker,
-                slug: "pronoun-picker",
-            },
-        ],
+                "import": pronounPicker,
+                "slug": "pronoun-picker"
+            }
+        ]
     },
     {
-        slug: "dictionary",
-        import: dictionary,
-    },
-];
+        "import": dictionary,
+        "slug": "dictionary"
+    }
+]/* content-tree */;
 
 export const content = contentTree.map((item) => {
     function prepareChapter(chp: any, subdir?: any) {

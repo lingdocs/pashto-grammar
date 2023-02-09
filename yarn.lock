@@ -2356,6 +2356,11 @@ escape-string-regexp@^5.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-5.0.0.tgz#4683126b500b61762f2dbebace1806e8be31b1c8"
   integrity sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==
 
+esprima@2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/esprima/-/esprima-2.4.1.tgz#83059c751e9e9c41d228a41aaa1eef0ccce384ba"
+  integrity sha512-oQ5niex1XEkpjZhmW1zsozCG515481U0s+A1n6xU9usjkLSy7ZDvfuaAR+CKAKujczvEy7sOPIiX/GO+MZPk8Q==
+
 estree-util-attach-comments@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/estree-util-attach-comments/-/estree-util-attach-comments-2.1.1.tgz#ee44f4ff6890ee7dfb3237ac7810154c94c63f84"
@@ -3271,6 +3276,13 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+loose-json@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/loose-json/-/loose-json-1.1.2.tgz#e86186d087c7ff81bc74067febfeaa747e1384e3"
+  integrity sha512-PzphlTCZdoR/cfXWN6TOKwxk9MibQmmQO6Rj4fblas+IbIWUwXhnad7E7qnWOE6ZuMZhwpmLWIUWiVy9C6UiMQ==
+  dependencies:
+    esprima "2.4.1"
 
 lottie-web@^5.5.7:
   version "5.10.2"
