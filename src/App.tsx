@@ -19,10 +19,10 @@ import LandingPage from "./pages/LandingPage";
 import AccountPage from "./pages/AccountPage";
 import { useEffect } from "react";
 import { isProd } from "./lib/isProd";
-
 import ReactGA from "react-ga";
 import { useUser } from "./user-context";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+
 const chapters = content.reduce((chapters, item) => (
   item.content
     ? [...chapters, item]
