@@ -22,10 +22,10 @@ import { isProd } from "./lib/isProd";
 import ReactGA from "react-ga";
 import { useUser } from "./user-context";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import algoliasearch from "algoliasearch";
+// import algoliasearch from "algoliasearch";
 
-const client = algoliasearch('M5GQZF38JA', '1e3b529b909acf72fde1515f520f3913');
-const index = client.initIndex('netlify_150beb8b-aae1-4cef-a05c-2add5d8904f7_master_all');
+// const client = algoliasearch('M5GQZF38JA', '1e3b529b909acf72fde1515f520f3913');
+// const index = client.initIndex('netlify_150beb8b-aae1-4cef-a05c-2add5d8904f7_master_all');
 
 const chapters = content.reduce((chapters, item) => (
   item.content
@@ -38,9 +38,9 @@ if (isProd) {
   ReactGA.set({ anonymizeIp: true });
 }
 
-function App(props: any) {
+function App() {
   const [navOpen, setNavOpen] = useState(false);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const { user } = useUser();
   function logAnalytics() {
@@ -64,16 +64,16 @@ function App(props: any) {
     logAnalytics();
     // eslint-disable-next-line
   }, [window.location.pathname]);
-  function handleSearch(s: string) {
-    setSearch(s);
-    index.search(s, {
-      attributesToSnippet: [
-        "content:20",
-      ],
-    }).then(({ hits }) => {
-      console.log(hits);
-    });
-  }
+  // function handleSearch(s: string) {
+  //   setSearch(s);
+  //   index.search(s, {
+  //     attributesToSnippet: [
+  //       "content:20",
+  //     ],
+  //   }).then(({ hits }) => {
+  //     console.log(hits);
+  //   });
+  // }
   return (
     <>
       <Header setNavOpen={setNavOpen} />
@@ -85,7 +85,7 @@ function App(props: any) {
             setNavOpen={setNavOpen}
             pathname={window.location.pathname}
           />
-          <input type="text" onChange={e => handleSearch(e.target.value)} value={search} />
+          {/* <input type="text" onChange={e => handleSearch(e.target.value)} value={search} /> */}
           <Routes>
             <Route
               path="/"
