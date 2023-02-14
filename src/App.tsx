@@ -22,10 +22,7 @@ import { isProd } from "./lib/isProd";
 import ReactGA from "react-ga";
 import { useUser } from "./user-context";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-// import algoliasearch from "algoliasearch";
-
-// const client = algoliasearch('M5GQZF38JA', '1e3b529b909acf72fde1515f520f3913');
-// const index = client.initIndex('netlify_150beb8b-aae1-4cef-a05c-2add5d8904f7_master_all');
+import SearchPage from "./pages/SearchPage";
 
 const chapters = content.reduce((chapters, item) => (
   item.content
@@ -64,32 +61,25 @@ function App() {
     logAnalytics();
     // eslint-disable-next-line
   }, [window.location.pathname]);
-  // function handleSearch(s: string) {
-  //   setSearch(s);
-  //   index.search(s, {
-  //     attributesToSnippet: [
-  //       "content:20",
-  //     ],
-  //   }).then(({ hits }) => {
-  //     console.log(hits);
-  //   });
-  // }
   return (
     <>
       <Header setNavOpen={setNavOpen} />
       <div className="container-fluid">
-        <div className="main-row row">
+        <div className="main-row row" style={{ minHeight: "calc(100vh - 62px)" }}>
           <Sidebar
             content={content}
             navOpen={navOpen}
             setNavOpen={setNavOpen}
             pathname={window.location.pathname}
           />
-          {/* <input type="text" onChange={e => handleSearch(e.target.value)} value={search} /> */}
           <Routes>
             <Route
               path="/"
               element={<LandingPage />}
+            />
+            <Route
+              path="/search"
+              element={<SearchPage />}
             />
             <Route
               path="/privacy"
