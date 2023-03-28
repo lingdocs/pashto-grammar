@@ -73,6 +73,8 @@ import * as passiveVoice from "./verbs/passive-voice.mdx";
 import * as ability from "./verbs/ability.mdx";
 // @ts-ignore
 import * as masterChart from "./verbs/master-chart.mdx";
+// @ts-ignore
+import * as jussive from "./verbs/jussive.mdx";
 
 // @ts-ignore
 import * as compoundVerbsIntro from "./compound-verbs/intro.mdx";
@@ -282,6 +284,10 @@ export const contentTree: (ChapterSection | ChaptersSection)[] = /* content-tree
             {
                 "import": ability,
                 "slug": "ability"
+            },
+            {
+                "import": jussive,
+                "slug": "jussive",
             },
             {
                 "import": passiveVoice,

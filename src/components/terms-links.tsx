@@ -59,3 +59,19 @@ export function KingIcon() {
 export function ServantIcon() {
     return <i className="mx-1 fas fa-male" />;
 };
+
+export function Servant({ text }: { text: string }) {
+    return <Link to="/phrase-structure/vp/"><ServantIcon />{` `}{text || "servant"}</Link>;
+}
+
+export function King({ text }: { text: string }) {
+    return <Link to="/phrase-structure/vp/"><KingIcon />{` `}{text || "king"}</Link>;
+}
+
+export function Perfective({ text }: { text: string }) {
+    return <Link to="/verbs/verb-aspect/#perfective-aspect"><Camera />{` `}{text || "perfective"}</Link>;
+}
+
+export function Imperfective({ text }: { text: string }) {
+    return <Link to="/verbs/verb-aspect/#imperfective-aspect"><Video />{` `}{text || "imperfective"}</Link>
+}

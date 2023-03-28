@@ -1,0 +1,341 @@
+---
+title: Jussive and Blessings 🤲
+---
+
+import {
+    defaultTextOptions as opts,
+    Examples,
+    InlinePs,
+    grammarUnits,
+    RootsAndStems,
+    getVerbInfo,
+    removeFVarients,
+} from "@lingdocs/ps-react";
+import {
+    Perfective,
+    Imperfective,
+    Servant,
+    MiniPronoun,
+} from "../../components/terms-links";
+import Formula from "../../components/formula/Formula";
+import Link from "../../components/Link";
+import { BlockTerm, KidsSection, PerfectiveHead, VP } from "../../components/terms-links.tsx";
+import deCowboys from "./de-cowboys.jpg";
+import deMuCowboysOk from "./de-mu-cowboys-ok.jpg";
+import deMuCowboysNotOk from "./de-mu-cowboys-not-ok.jpg";
+import psmd from "../../lib/psmd";
+
+export const De = (props) => <InlinePs opts={opts}>{{ p: "دې", f: "de", e: props.e || undefined }}</InlinePs>;
+export const MU = (props) => <InlinePs opts={opts}>{{ p: "مو", f: "mU", e: props.e || undefined }}</InlinePs>;
+
+In Pashto the [jussive form](https://en.wikipedia.org/wiki/Jussive_mood) is used to make orders or commands directed towards the 3rd person. This is also used for blessings and curses.
+
+In English we would say something like "May he...", "Let them...", "May God..."
+
+## The jussive دې form
+
+<Formula>
+    jussive <De /> +{` `}
+    <Link to="/verbs/present-verbs/">Present</Link> or <Link to="/verbs/subjunctive-verbs/">Subjunctive</Link> verb
+</Formula>
+
+The jussive <De /> is a particle that goes in the <Link to="/phrase-structure/blocks-and-kids/#the-kids-section">kids' section</Link>. And it is **not to be confused with the 2nd person <MiniPronoun /> <De />!**
+
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "هغه دې راشي",
+            f: "hagha de ráashee",
+            e: "Let him come / he should come",
+            sub: "jussive دې + subjunctive verb",
+        },
+        {
+            p: "را دې شي",
+            f: "ráa-de-shee",
+            e: "Let him come / he should come",
+            sub: "jussive دې + subjunctive verb (shortened)",
+        },
+        {
+            p: "خدای دې شفا ورکړي",
+            f: "khUdaay de shifaa wárkRee",
+            e: "May God give him health",
+            sub: "jussive دې + subjunctive verb",
+        },
+        {
+            p: "خدای دې مونږ له مرضۍ نه ساتي",
+            f: "khUdaay de moonG la marizúy na saatée",
+            e: "May God keep us from sickness",
+            sub: "jussive دې + present verb",
+        },
+    ])}
+</Examples>
+
+Notice how you can use either:
+
+- the <Perfective /> subjunctive for one-time or instantaneous sense
+- the <Imperfective /> present for on on-going or continuous sense
+
+You can also use the <Link to="/equatives/other-equatives/#subjunctive-equative">subjunctive equative</Link>. For example:
+
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "ټولو ته مبارک وي",
+            f: "Tolo ta mUbaarak wee",
+            e: "Congratulations to everyone (may it be blessed to everyone)",
+            sub: "jussive دې + subjunctive equative",
+        }
+    ])}
+</Examples>
+
+## When it conflicts with the mini-pronoun دې
+
+Earlier we mentioned that this jussive particle <De /> is **not to be confused with the 2nd person <Link to="\/pronouns/pronouns-mini/">mini-pronoun</Link> <De />.**
+
+So what happens when we need to use both in a sentence?? They both go in the <Link to="/phrase-structure/blocks-and-kids/">kids' section</Link>, but we can't have two <De />'s in there. We can't ever say, "<InlinePs opts={opts} ps={{ p: "دې دې", f: "de de" }} />."
+
+<img
+    src={deCowboys}
+    alt={`دې particles as cowboys saying, "This town aint big enough for the two of us...`}
+    className="img-fluid mb-3"
+    style={{ maxWidth: "600px" }}
+/>
+
+First let's look at an example without this دې conflict:
+
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "خدای دې تا وبخښي",
+            f: "khUdaay de taa óobakhxee",
+            e: "May God forgive you",
+            sub: "jussive دې + subjunctive",
+        }
+    ])}
+</Examples>
+
+In this example <InlinePs opts={opts}>{{ p: "تا", f: "taa", e: "you" }}</InlinePs> is the <Servant /> so we can <Link to="/phrase-structure/shortening-vps/">🪄 shrink it</Link> into a <MiniPronoun /> <De />.
+
+But now we've got the problem of the two <InlinePs opts={opts}>{{ p: "دې", f: "de", e: "you" }}</InlinePs> particles. We can't say this:
+
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "❌ خدای دې دې وبخښي ❌",
+            f: "❌ khUdaay de de óobakhxee ❌",
+            e: "May God forgive you",
+        },
+    ])}
+</Examples>
+
+So here's the solution in Pashto... 🥁 Instead we **get rid of the jussive <De /> and use a 2nd person singular <Link to="/verbs/imperative-verbs/">imperative</Link> form.**
+
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "خدای دې وبخښه",
+            f: "khUdaay de óobakhxa",
+            e: "May God forgive you",
+            sub: "دې as a *mini-pronoun* + imperative verb",
+        },
+    ])}
+</Examples>
+
+This is interesting, because normally we only use that imperative form when making commands to a **a 2nd person singular** (ie. "you"), but because we lost the ability to use the jussive <De />, we are using to make a *3rd person jussive phrase*.
+
+Here are more examples of how we use this to resolve the <InlinePs opts={opts}>{{ p: "دې دې", f: "de de" }}</InlinePs> conflict:
+
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "خدای دې تا له مرضۍ نه ساتي",
+            f: "khUdaay de taa la marazúy na saatée",
+            e: "May God keep you from sickness",
+            sub: "jussive دې + full تا pronoun + present verb",
+        },
+        {
+            p: "❌ خدای دې دې له مرضۍ نه ساتي ❌",
+            f: "❌ khUdaay de de la marazúy na saatée ❌",
+            e: "May God keep you from sickness",
+            sub: "jussive دې + mini-pronoun دې (CONFLICT!)",
+        },
+        {
+            p: "خدای دې له مرضۍ نه ساته",
+            f: "khUdaa de la marazúy na saatá",
+            e: "May God keep you from sickness",
+            sub: "mini-pronoun دې + imperfective imperative",
+        },
+        {
+            p: "الله دې تا په خیر ورسوي",
+            f: "allah de taa pu kheyr óorasawee",
+            e: "May God deliver you safely.",
+            sub: "jussive دې + full تا pronoun + subjunctive verb",
+        },
+        {
+            p: "❌ الله دې دې په خیر ورسوي ❌",
+            f: "❌ allah de de pu kheyr óorasawee ❌",
+            e: "May God deliver you safely.",
+            sub: "jussive دې + mini-pronoun دې (CONFLICT!)",
+        },
+        {
+            p: "الله دې په خیر ورسوه",
+            f: "allah de pu kheyr óorasawa",
+            e: "May God deliver you safely.",
+            sub: "mini-pronoun دې + perfective imperative",
+        },
+    ])}
+</Examples>
+
+Remember that mini-pronouns can come from either shrunken servants or shrunken possessives. The same thing happens when resolving conflicts with <De /> when it comes from a shrunken possessive.
+
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "خدای دې ستا ارمان پوره کړي",
+            f: "khUdaay de staa armáan póora kRee",
+            e: "May God fulfill your desire",
+            sub: "jussive دې + subjunctive",
+        },
+        {
+            p: "خدای دې ارمان پوره کړه",
+            f: "khUdaay de armáan póora kRa",
+            e: "May God fulfill your desire",
+            sub: "mini-pronoun دې + imperfective imperative",
+        },
+        {
+            p: "ستا زوی دې لوی شي",
+            f: "staa zooy de looy shee",
+            e: "May your son grow big",
+            sub: "jussive دې + subjunctive",
+        },
+        {
+            p: "زوی دې لوی شه",
+            f: "zooy de looy sha",
+            e: "May your son grow big",
+            sub: "mini-pronoun دې + imperfective imperative",
+        },
+    ])}
+</Examples>
+
+## When it conflicts with the mini-pronoun مو
+
+Things get a little more interesting when the jussive <De /> clashes with the <MiniPronoun /> <MU />. What happens depends on whether <MU /> is:
+ - <MU e="us/our - 1st person plural" />, or
+ - <MU e="you/your - 2nd person plural" />
+
+### With مو as 2nd person plural
+
+<img
+    src={deMuCowboysNotOk}
+    className="img-fluid mb-3"
+    style={{ maxWidth: "600px" }}
+/> 
+
+Just like you can't say <InlinePs opts={opts}>{{ p: "دې دې", f: "de de" }}</InlinePs>, you also can't have the jussive <De /> together with the second person plural <MU e="you, your" />.
+
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "❌ خدای مو دې له مرضۍ نه ساتي ❌",
+            f: "❌ khUdaay mU de la marazúy na saatée ❌",
+            e: "May God keep you (pl.) from sickness",
+            sub: "jussive دې + second pers. mini-pronoun مو",
+        },
+        {
+            p: "خدای مو له مرضۍ نه ساته",
+            f: "khUdaa mU la marazúy na saatá",
+            e: "May God keep you (pl.) from sickness",
+            sub: "second pers. pl. mini-pronoun مو + imperfective imperative",
+        },
+        {
+            p: "❌ الله مو دې په خیر ورسوي ❌",
+            f: "❌ allah mU de pu kheyr óorasawee ❌",
+            e: "May God deliver you safely.",
+            sub: "jussive دې + second pers. mini-pronoun مو",
+        },
+        {
+            p: "الله مو په خیر ورسوه",
+            f: "allah mU pu kheyr óorasawa",
+            e: "May God deliver you (pl.) safely.",
+            sub: "second pers. pl. mini-pronoun مو + perfective imperative",
+        },
+        {
+            p: "خدای دې ستاسو ارمان پوره کړي",
+            f: "khUdaay de staaso armáan póora kRee",
+            e: "May God fulfill your (pl.) desire",
+            sub: "jussive دې + subjunctive",
+        },
+        {
+            p: "خدای مو ارمان پوره کړه",
+            f: "khUdaay mU armáan póora kRa",
+            e: "May God fulfill your (pl.) desire",
+            sub: "second pers. pl. mini-pronoun مو + perfective imperative",
+        },
+        {
+            p: "ستاسو زوی دې لوی شي",
+            f: "staaso zooy de looy shee",
+            e: "May your (pl.) son grow big",
+            sub: "jussive دې + subjunctive",
+        },
+        {
+            p: "زوی مو لوی شه",
+            f: "zooy mU looy sha",
+            e: "May your son grow big",
+            sub: "second pers. pl. mini-pronoun مو + perfective imperative",
+        },
+    ])}
+</Examples>
+
+### with مو as 1st person plural
+
+<img
+    src={deMuCowboysOk}
+    className="img-fluid mb-3"
+    style={{ maxWidth: "600px" }}
+/>
+
+But if the is a 1st person plural pronoun, then it *can* co-exist with the jussive <De />.
+
+<Examples opts={opts}>
+    {psmd([
+        {
+            p: "خدای دې مو له مرضۍ نه ساتي",
+            f: "khUdaa de mU la marazúy na saatée",
+            e: "May God keep us from sickness",
+            sub: "first pers. pl. mini-pronoun مو + present",
+        },
+        {
+            p: "الله دې مو په خیر ورسوي",
+            f: "allah de mU pu kheyr óorasawee",
+            e: "May God deliver use safely.",
+            sub: "first pers. pl. mini-pronoun مو + subjunctive",
+        },
+        {
+            p: "خدای دې زمونږ ارمان پوره کړي",
+            f: "khUdaay de zmoonG armáan póora kRee",
+            e: "May God fulfill our desire",
+            sub: "first pers. pl. mini-pronoun مو + subjunctive",
+        },
+        {
+            p: "خدای دې مو ارمان پوره کړي",
+            f: "khUdaay de mU armáan póora kRee",
+            e: "May God fulfill our desire",
+            sub: "first pers. pl. mini-pronoun مو + subjunctive",
+        },
+        {
+            p: "زمونږ زوی دې لوی شي",
+            f: "zmoonG zooy de looy shee",
+            e: "May our son grow big",
+            sub: "jussive دې + subjunctive",
+        },
+        {
+            p: "زوی دې مو لوی شي",
+            f: "zooy de mU looy shee",
+            e: "May our son grow big",
+            sub: "first pers. pl. mini-pronoun مو + subjunctive",
+        },
+    ])}
+</Examples>
+
+Notice for all these examples we never use the 2nd person imperative form, because we are still able to use the jussive <De />.
+
