@@ -287,7 +287,7 @@ export const contentTree: (ChapterSection | ChaptersSection)[] = /* content-tree
             },
             {
                 "import": jussive,
-                "slug": "jussive",
+                "slug": "jussive"
             },
             {
                 "import": passiveVoice,
