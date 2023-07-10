@@ -101,11 +101,11 @@ We can use **any possible** combination of these 3 choices, giving us:
 Here's a chart of every possible combination of these choices, giving us all the basic verb forms:
 
 <div style={{ overflowX: "auto", marginBottom: "1em" }}>
-    <table class="table table-bordered table-striped" style={{ minWidth: "500px" }}>
+    <table class="table table-bordered table-striped" style={{ minWidth: "425px" }}>
     <thead>
         <tr>
         <th>form</th>
-        <th scope="col">has 'ba'</th>
+        <th scope="col">Has 'ba'</th>
         <th scope="col">Imperfective / Perfective</th>
         <th scope="col">Stem / Root</th>
         </tr>
@@ -114,20 +114,22 @@ Here's a chart of every possible combination of these choices, giving us all the
         {tenseData.map((t) => (
             <tr>
                 <td>{t[0]}</td>
-                <td>{t[1] ? "Y" : "N"}</td>
-                <td>{t[2] ? "Imperfective" : "Perfective"}</td>
-                <td>{t[3] ? "Stem" : "Root"}</td>
+                <td>{t[1] ? "yes" : "no"}</td>
+                <td>{t[2] ? <div><Video />{` `}imperfective</div> : <div><Camera />{` `}perfective</div>}</td>
+                <td>{t[3] ? "stem" : "root"}</td>
             </tr>
         ))}
     </tbody>
     </table>
 </div>
 
-Try the combinations yourself!
+Hit the switches to try the combinations yourself!
 
 <SwitchPlayground />
 
 ## Imperative Forms
+
+Imperative forms are slightly different...
 
 <table class="table table-bordered">
   <thead>
@@ -167,11 +169,13 @@ Try the combinations yourself!
 
 ## Perfect Verb Forms
 
+Perfect verb forms are built with:
+
 <div className="my-3">
     <samp>past participle + equative</samp>
 </div>
 
-Any of the <Link to="/equatives/other-equatives/#overview-of-8-equatives">8 equatives</Link> may be used. Equative may be left out with the present perfect form.
+Any of the <Link to="/equatives/other-equatives/#overview-of-8-equatives">8 equatives</Link> may be used to form 8 different <Link to="/verbs/all-perfect-verbs/">perfect froms</Link>. Equative may be left out with the present perfect form.
 
 ## Ability Verb Forms
 

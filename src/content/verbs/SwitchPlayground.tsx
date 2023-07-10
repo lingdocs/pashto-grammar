@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { tenseData } from "./tense-data";
+import Media from "react-media";
 
 function SwitchPlayground() {
   const [state, setState] = useState<[boolean, boolean, boolean]>([false, false, false]);
@@ -44,33 +45,39 @@ function Switch({ state, toggle, label }: { label: [string, string], state: bool
   const border = "solid 2px black";
   return <div>
     <div>{label[0]}</div>
-    <div className="clickable" onClick={toggle} style={{
-      border,
-      height: "8rem",
-      borderRadius,
-      position: "relative",
+    <Media queries={{
+      small: "(max-width: 599px)",
     }}>
-      <div style={{
-        border,
-        borderRadius,
-        height: "50%",
-        width: "25%",
-        top: "50%",
-        transform: "translateY(-50%) translateX(150%)",
-        position: "absolute",
-      }}>
-        <div
-          style={{
+      {matches => (
+        <div className="clickable" onClick={toggle} style={{
+          border,
+          height: matches.small ? "6rem" : "9rem",
+          borderRadius,
+          position: "relative",
+        }}>
+          <div style={{
             border,
             borderRadius,
-            width: "50%",
-            top: state ? "75%" : "25%",
-            transform: "translateY(-50%) translateX(55%)",
+            height: "50%",
+            width: "33%",
+            top: "50%",
+            transform: "translateY(-50%) translateX(105%)",
             position: "absolute",
-          }}
-        />
-      </div>
-    </div>
+          }}>
+            <div
+              style={{
+                border,
+                borderRadius,
+                width: "50%",
+                top: state ? "75%" : "25%",
+                transform: "translateY(-50%) translateX(55%)",
+                position: "absolute",
+              }}
+            />
+          </div>
+        </div>
+      )}
+    </Media>
     <div>{label[1]}</div>
   </div>
 }
