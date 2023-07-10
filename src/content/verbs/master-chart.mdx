@@ -2,11 +2,18 @@
 title: Verb Forms Master Chart
 ---
 
+import {
+    defaultTextOptions as opts,
+    InlinePs,
+} from "@lingdocs/ps-react";
 import { Camera, Video } from "../../components/terms-links";
 import Link from "../../components/Link";
-import GameDisplay from "../../games/GameDisplay";
+import Image from "../../components/Image";
+import switches from "./switches.jpg";
+import { tenseData } from "./tense-data";
+import SwitchPlayground from "./SwitchPlayground";
 
-## Basic Verb Tenses
+## Basic Verb Forms
 
 <table class="table table-bordered">
   <thead>
@@ -75,51 +82,50 @@ import GameDisplay from "../../games/GameDisplay";
   </tbody>
 </table>
 
-<details>
-    <summary>simplified</summary>
+### Verb formulas as three choices:
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">For each aspect</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        <td>
-            <div>Present/Subjunctive</div>
-            <div>
-                <samp>stem + present ending</samp>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div>Future</div>
-            <div>
-                <samp>ba + above</samp>
-            </div>
-        </td>
-    </tr>
-    <tr className="table-active">
-        <td>
-            <div>Past</div>
-            <div>
-                <samp>root + past ending</samp>
-            </div>
-        </td>
-    </tr>
-    <tr className="table-active">
-        <td>
-            <div>Habitual Past</div>
-            <div>
-                <samp>ba + above</samp>
-            </div>
-        </td>
-    </tr>
-  </tbody>
-</table>
-</details>
+There's another way to look at the possible verb forms. Whenever we make a verb form we have three choices:
+
+1. root (past) or stem (non-past)
+2. imperfective or perfective form
+3. with <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> or without
+
+<Image src={switches} />
+
+We can use **any possible** combination of these 3 choices, giving us:
+
+<p className="text-center">
+    <samp>2 x 2 x 2 = 8 verb forms</samp>
+</p>
+
+Here's a chart of every possible combination of these choices, giving us all the basic verb forms:
+
+<div style={{ overflowX: "auto", marginBottom: "1em" }}>
+    <table class="table table-bordered table-striped" style={{ minWidth: "500px" }}>
+    <thead>
+        <tr>
+        <th>form</th>
+        <th scope="col">has 'ba'</th>
+        <th scope="col">Imperfective / Perfective</th>
+        <th scope="col">Stem / Root</th>
+        </tr>
+    </thead>
+    <tbody>
+        {tenseData.map((t) => (
+            <tr>
+                <td>{t[0]}</td>
+                <td>{t[1] ? "Y" : "N"}</td>
+                <td>{t[2] ? "Imperfective" : "Perfective"}</td>
+                <td>{t[3] ? "Stem" : "Root"}</td>
+            </tr>
+        ))}
+    </tbody>
+    </table>
+</div>
+
+Try the combinations yourself!
+
+<SwitchPlayground />
 
 ## Imperative Forms
 
@@ -169,8 +175,8 @@ Any of the <Link to="/equatives/other-equatives/#overview-of-8-equatives">8 equa
 
 ## Ability Verb Forms
 
-Same formulas as <Link to="/verbs/master-chart/#basic-verb-tenses">basic verb tenses</Link> but with the <Link to="/verbs/ability/#making-the-ability-roots-and-stems">ability roots and stems</Link>.
+Same formulas as <Link to="/verbs/master-chart/#basic-verb-forms">basic verb forms</Link> but with the <Link to="/verbs/ability/#making-the-ability-roots-and-stems">ability roots and stems</Link>.
 
 ## Passive Verb Forms
 
-Same formulas as the <Link to="/verbs/master-chart/#basic-verb-tenses">basic verb tenses</Link> and <Link to="/verbs/master-chart/#perfect-verb-forms">perfect verb forms</Link>, but with the <Link to="/verbs/passive-voice/#making-passive-roots-and-stems">passive roots and stems</Link>.
+Same formulas as the <Link to="/verbs/master-chart/#basic-verb-forms">basic verb forms</Link> and <Link to="/verbs/master-chart/#perfect-verb-forms">perfect verb forms</Link>, but with the <Link to="/verbs/passive-voice/#making-passive-roots-and-stems">passive roots and stems</Link>.
