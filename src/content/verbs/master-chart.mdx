@@ -2,82 +2,82 @@
 title: Verb Forms Master Chart
 ---
 
-import {
-    defaultTextOptions as opts,
-    InlinePs,
-} from "@lingdocs/ps-react";
+import { defaultTextOptions as opts, InlinePs } from "@lingdocs/ps-react";
 import { Camera, Video } from "../../components/terms-links";
 import Link from "../../components/Link";
 import Image from "../../components/Image";
 import switches from "./switches.jpg";
-import { tenseData } from "./tense-data";
-import SwitchPlayground from "./SwitchPlayground";
+import VerbFormsTruthTable from "./VerbFormsTruthTable";
 
 ## Basic Verb Forms
 
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col"><Video /> Imperfective</th>
-      <th scope="col"><Camera /> Perfective</th>
+      <th scope="col">
+        <Video /> Imperfective
+      </th>
+      <th scope="col">
+        <Camera /> Perfective
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-        <td>
-            <div>Present</div>
-            <div>
-                <samp>imperfective stem + present ending</samp>
-            </div>
-        </td>
-        <td>
-            <div>Subjunctive</div>
-            <div>
-                <samp>perfective stem + present ending</samp>
-            </div>
-        </td>
+      <td>
+        <div>Present</div>
+        <div>
+          <samp>imperfective stem + present ending</samp>
+        </div>
+      </td>
+      <td>
+        <div>Subjunctive</div>
+        <div>
+          <samp>perfective stem + present ending</samp>
+        </div>
+      </td>
     </tr>
     <tr>
-        <td>
-            <div>Imperfective Future</div>
-            <div>
-                <samp>ba + Present</samp>
-            </div>
-        </td>
-        <td>
-            <div>Perfective Future</div>
-            <div>
-                <samp>ba + Subjunctive</samp>
-            </div>
-        </td>
+      <td>
+        <div>Imperfective Future</div>
+        <div>
+          <samp>ba + Present</samp>
+        </div>
+      </td>
+      <td>
+        <div>Perfective Future</div>
+        <div>
+          <samp>ba + Subjunctive</samp>
+        </div>
+      </td>
     </tr>
     <tr className="table-active">
-        <td>
-            <div>Continuous Past</div>
-            <div>
-                <samp>imperfective root + past ending</samp>
-            </div>
-        </td>
-        <td>
-            <div>Simple Past</div>
-            <div>
-                <samp>perfective root + past ending</samp>
-            </div>
-        </td>
+      <td>
+        <div>Continuous Past</div>
+        <div>
+          <samp>imperfective root + past ending</samp>
+        </div>
+      </td>
+      <td>
+        <div>Simple Past</div>
+        <div>
+          <samp>perfective root + past ending</samp>
+        </div>
+      </td>
     </tr>
     <tr className="table-active">
-        <td>
-            <div>Habitual Continuous Past</div>
-            <div>
-                <samp>ba + Continuous Past</samp>
-            </div>
-        </td>
-        <td>
-            <div>Habitual Simple Past</div>
-            <div>
-                <samp>ba + Simple Past</samp>
-            </div>
-        </td>
+      <td>
+        <div>Habitual Continuous Past</div>
+        <div>
+          <samp>ba + Continuous Past</samp>
+        </div>
+      </td>
+      <td>
+        <div>Habitual Simple Past</div>
+        <div>
+          <samp>ba + Simple Past</samp>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -95,74 +95,53 @@ There's another way to look at the possible verb forms. Whenever we make a verb 
 We can use **any possible** combination of these 3 choices, giving us:
 
 <p className="text-center">
-    <samp>2 x 2 x 2 = 8 verb forms</samp>
+  <samp>2 x 2 x 2 = 8 verb forms</samp>
 </p>
 
 Here's a chart of every possible combination of these choices, giving us all the basic verb forms:
 
-<div style={{ overflowX: "auto", marginBottom: "1em" }}>
-    <table class="table table-bordered table-striped" style={{ minWidth: "425px" }}>
-    <thead>
-        <tr>
-        <th>form</th>
-        <th scope="col">Has 'ba'</th>
-        <th scope="col">Imperfective / Perfective</th>
-        <th scope="col">Stem / Root</th>
-        </tr>
-    </thead>
-    <tbody>
-        {tenseData.map((t) => (
-            <tr>
-                <td>{t[0]}</td>
-                <td>{t[1] ? "yes" : "no"}</td>
-                <td>{t[2] ? <div><Video />{` `}imperfective</div> : <div><Camera />{` `}perfective</div>}</td>
-                <td>{t[3] ? "root" : "stem"}</td>
-            </tr>
-        ))}
-    </tbody>
-    </table>
-</div>
-
-Hit the switches to try the combinations yourself!
-
-<SwitchPlayground />
+<VerbFormsTruthTable />
 
 ## Imperative Forms
 
-Imperative forms are slightly different...
+Imperative forms are different and use the <Link to="/verbs/verb-endings/#imperative-verb-endings">imperative endings</Link>
 
 <table class="table table-bordered">
   <thead>
     <tr>
-    <th></th>
-      <th scope="col"><Video /> Imperfective</th>
-      <th scope="col"><Camera /> Perfective</th>
+      <th></th>
+      <th scope="col">
+        <Video /> Imperfective
+      </th>
+      <th scope="col">
+        <Camera /> Perfective
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-        <td>Pos.</td>
-        <td>
-            <div>Imperfective Imperative</div>
-            <div>
-                <samp>imperfective stem + imperative ending</samp>
-            </div>
-        </td>
-        <td>
-            <div>Perfective Imperative</div>
-            <div>
-                <samp>perfective stem + imperative ending</samp>
-            </div>
-        </td>
+      <td>Pos.</td>
+      <td>
+        <div>Imperfective Imperative</div>
+        <div>
+          <samp>imperfective stem + imperative ending</samp>
+        </div>
+      </td>
+      <td>
+        <div>Perfective Imperative</div>
+        <div>
+          <samp>perfective stem + imperative ending</samp>
+        </div>
+      </td>
     </tr>
     <tr>
-        <td>Neg.</td>
-        <td colspan="2" className="text-center">
-            <div>Negative Imperative</div>
-            <div>
-                <samp>مه - mú + imperfective stem + imperative ending</samp>
-            </div>
-        </td>
+      <td>Neg.</td>
+      <td colspan="2" className="text-center">
+        <div>Negative Imperative</div>
+        <div>
+          <samp>مه - mú + imperfective stem + imperative ending</samp>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -172,7 +151,7 @@ Imperative forms are slightly different...
 Perfect verb forms are built with:
 
 <div className="my-3">
-    <samp>past participle + equative</samp>
+  <samp>past participle + equative</samp>
 </div>
 
 Any of the <Link to="/equatives/other-equatives/#overview-of-8-equatives">8 equatives</Link> may be used to form 8 different <Link to="/verbs/all-perfect-verbs/">perfect froms</Link>. Equative may be left out with the present perfect form.
