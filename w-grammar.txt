@@ -1,0 +1,29 @@
+Metaproductions
+
+PERSON :: 0 .. 11
+
+Hyper-rules
+
+s ()
+  => es
+  => vs
+
+es (subj: PERSON)
+  => np(subj), adj(subj), eq(subj)
+es (subj: PERSON, pred: PERSON)
+  => np(subj), np(pred), eq(pred)
+
+vs ()
+  => vs-intrans
+  => vs-trans-past
+  => vs-trans-non-past
+
+vs-trans-non-past (subj: PERSON, obj: PERSON)
+  => np(subj), np(obj), v-trans-non-past(subj, obj)
+  => np(obj), np(subj), v-trans-non-past(subj, obj)
+
+vs-trans-past (subj: PERSON, obj: PERSON)
+  => np(subj), np(obj), v-trans-past(obj, obj)
+  => np(obj), np(subj), v-trans-past(obj, obj)
+
+vs-intrans-past (subj: PERSON) => np(subj), v-intrans(subj)

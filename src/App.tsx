@@ -19,19 +19,19 @@ import LandingPage from "./pages/LandingPage";
 import AccountPage from "./pages/AccountPage";
 import { useEffect } from "react";
 import { isProd } from "./lib/isProd";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import { useUser } from "./user-context";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import SearchPage from "./pages/SearchPage";
 
-const chapters = content.reduce((chapters, item) => (
-  item.content
-    ? [...chapters, item]
-    : [...chapters, ...item.chapters]
-), []);
+const chapters = content.reduce(
+  (chapters, item) =>
+    item.content ? [...chapters, item] : [...chapters, ...item.chapters],
+  []
+);
 
 if (isProd) {
-  ReactGA.initialize("UA-196576671-2");
+  ReactGA.initialize("387148608");
   ReactGA.set({ anonymizeIp: true });
 }
 
@@ -41,15 +41,18 @@ function App() {
   const navigate = useNavigate();
   const { user } = useUser();
   function logAnalytics() {
-    if (isProd && !(user?.admin)) {
-      ReactGA.pageview(window.location.pathname);
-    };
+    if (isProd && !user?.admin) {
+      ReactGA.send({
+        hitType: "pageview",
+        page: window.location.pathname,
+      });
+    }
   }
   useEffect(() => {
     logAnalytics();
     if (window.location.pathname === "/") {
       if (localStorage.getItem("visitedOnce")) {
-        navigate("/table-of-contents", { replace: true })
+        navigate("/table-of-contents", { replace: true });
       } else {
         localStorage.setItem("visitedOnce", "true");
       }
@@ -65,7 +68,10 @@ function App() {
     <>
       <Header setNavOpen={setNavOpen} />
       <div className="container-fluid">
-        <div className="main-row row" style={{ minHeight: "calc(100vh - 62px)" }}>
+        <div
+          className="main-row row"
+          style={{ minHeight: "calc(100vh - 62px)" }}
+        >
           <Sidebar
             content={content}
             navOpen={navOpen}
@@ -73,18 +79,9 @@ function App() {
             pathname={window.location.pathname}
           />
           <Routes>
-            <Route
-              path="/"
-              element={<LandingPage />}
-            />
-            <Route
-              path="/search"
-              element={<SearchPage />}
-            />
-            <Route
-              path="/privacy"
-              element={<PrivacyPolicy />}
-            />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route
               path="/table-of-contents"
               element={<TableOfContentsPage />}
@@ -96,15 +93,12 @@ function App() {
                 element={<Chapter>{chapter}</Chapter>}
               />
             ))}
-            <Route
-              path="/account"
-              element={<AccountPage />}
-            />
+            <Route path="/account" element={<AccountPage />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </div>
       </div>
-    </> 
+    </>
   );
 }
 
