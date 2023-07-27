@@ -3,70 +3,73 @@ title: Past Tense 😱
 ---
 
 import {
-    defaultTextOptions as opts,
-    Examples,
-    InlinePs,
+  defaultTextOptions as opts,
+  Examples,
+  InlinePs,
 } from "@lingdocs/ps-react";
-import { KidsSection, VP, KingIcon, ServantIcon } from "../../components/terms-links";
+import {
+  KidsSection,
+  KingIcon,
+  ServantIcon,
+} from "../../components/terms-links";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
 import verbTreePastPresent from "./verb-tree-past-present.svg";
 import verbTreeImperfectivePerfective from "./verb-tree-imperfective-perfective.svg";
 import simplePast from "./simple-past-in-reality.svg";
-import continuousPast from "./continuous-past-in-reality.svg";
 import habitualSimplePast from "./habitual-simple-past.svg";
 import habitualContinuousPast from "./habitual-continuous-past.svg";
 import unoReverseMeme from "./uno-reverse-meme.jpg";
-import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+import EditableVPEx from "../../components/phrase-diagram/EditableVPEx";
 import BasicVerbShowCase from "../../components/BasicVerbShowCase";
 import {
-    intransitiveImperfectivePastVerbGame1,
-    intransitiveImperfectivePastVerbGame2,
-    intransitivePerfectivePastVerbGame1,
-    intransitivePerfectivePastVerbGame2,
-    transitiveImperfectivePastVerbGame1,
-    transitiveImperfectivePastVerbGame2,
-    transitivePerfectivePastVerbGame1,
-    transitivePerfectivePastVerbGame2,
-    habitualPastVerbGame1,
-    habitualPastVerbGame2,
+  intransitiveImperfectivePastVerbGame1,
+  intransitiveImperfectivePastVerbGame2,
+  intransitivePerfectivePastVerbGame1,
+  intransitivePerfectivePastVerbGame2,
+  transitiveImperfectivePastVerbGame1,
+  transitiveImperfectivePastVerbGame2,
+  transitivePerfectivePastVerbGame1,
+  transitivePerfectivePastVerbGame2,
+  habitualPastVerbGame1,
+  habitualPastVerbGame2,
 } from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
 
-Past tense verbs in Pashto are famous for being very difficult and confusing for the learner. Thankfully there are some very simple rules that we can learn, and with a little practice (ok, a *lot* of practice) you'll find there's nothing scary about the past tense in Pashto at all.
+Past tense verbs in Pashto are famous for being very difficult and confusing for the learner. Thankfully there are some very simple rules that we can learn, and with a little practice (ok, a _lot_ of practice) you'll find there's nothing scary about the past tense in Pashto at all.
 
 Now that we're making past tense verbs, we will be using the **bottom half** of the <Link to="/verbs/roots-and-stems/">roots and stems</Link> tree.
 
 <div style={{ maxWidth: "350px", margin: "0 auto 2rem auto" }}>
-    <img src={verbTreePastPresent} alt="" className="img-fluid" />
+  <img src={verbTreePastPresent} alt="" className="img-fluid" />
 </div>
 
 And when we use these roots we will have to choose between the <i className="fas fa-video" /> imperfective and <i className="fas fa-camera" /> perfective aspects on the left and right sides.
 
 <div style={{ maxWidth: "350px", margin: "0 auto 2rem auto" }}>
-    <img src={verbTreeImperfectivePerfective} alt="" className="img-fluid" />
+  <img src={verbTreeImperfectivePerfective} alt="" className="img-fluid" />
 </div>
 
 We'll use the **imperfective and perfective roots** to make two past tense verb forms:
 
 1. The simple (<i className="fas fa-camera" /> perfective) past
-    - one time, complete actions
-2. The continuous (<i className="fas fa-video" />  imperfective) past
-    - continuous, ongoing, unfinished in the past
+   - one time, complete actions
+2. The continuous (<i className="fas fa-video" /> imperfective) past
+   - continuous, ongoing, unfinished in the past
 
-Then, we will see something very simple that, because it's often unknown or misunderstood, really trips people up when learning Pashto. <Link to="/phrase-structure/vp/">The phrase structure totally changes depending on what type of verb we are using</Link>. The whole setup of a sentence will change depending on whether we're using: 
+Then, we will see something very simple that, because it's often unknown or misunderstood, really trips people up when learning Pashto. <Link to="/phrase-structure/vp/">The phrase structure totally changes depending on what type of verb we are using</Link>. The whole setup of a sentence will change depending on whether we're using:
 
 1. Intransitive verbs
-    - verbs with no object
+   - verbs with no object
 2. Transitive verbs
-    - verbs that have an object
+   - verbs that have an object
 
 **First we'll introduce the two forms (simple and continuous past) using intransitive verbs**, and then later we'll see how things change when we use transitive verbs. Let's go!
 
 ## Past tense with intransitive verbs 😀
 
-We'll start by looking at the *intransitive* verbs in the past tense because it's simpler. We have no object, the subject is the king <KingIcon /> that controls the verb, and there's no weird inflection going on.
+We'll start by looking at the _intransitive_ verbs in the past tense because it's simpler. We have no object, the subject is the king <KingIcon /> that controls the verb, and there's no weird inflection going on.
 
 ### Simple Past
 
@@ -75,30 +78,30 @@ The simple past tense is used for **single, one-time, complete actions**. It's a
 It uses the <i className="fas fa-camera" /> **perfective root** because it's looking at the event in the perfective aspect, as a complete whole.
 
 <div className="text-center">
-    <img src={simplePast} alt="" className="img-fluid" />
+  <img src={simplePast} alt="" className="img-fluid" />
 </div>
 
 <Formula>
-    Perfective root +{` `}
-    <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
+  Perfective root +{` `}
+  <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
 </Formula>
 
 <BasicVerbShowCase opts={opts} tense="perfectivePast" />
 
-Notice how when you can use the *short or the long* version of the roots.
+Notice how when you can use the _short or the long_ version of the roots.
 
 ##### A special use of the simple past
 
 The simple past tense is also used with <InlinePs opts={opts} ps={{ p: "چې...", f: "che..." }} /> clauses to talk about **if/when something happens in the future**.
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "چې ستا ملګری **پیدا شو**، نو ما خبر کړه.",
-            f: "ku staa malgúrey **peydaa sho**, no maa khabur kRa.",
-            e: "If/when you friend shows up, let me know.",
-        },
-    ])}
+  {psmd([
+    {
+      p: "چې ستا ملګری **پیدا شو**، نو ما خبر کړه.",
+      f: "ku staa malgúray **paydaa sho**, no maa khabur kRa.",
+      e: "If/when you friend shows up, let me know.",
+    },
+  ])}
 </Examples>
 
 <GameDisplay record={intransitivePerfectivePastVerbGame1} />
@@ -112,14 +115,14 @@ The continuous past tense is used for:
 - actions that were ongoing, in progress or repeated in the past
 - actions that were going to happen (but didn't)
 - actions that "would" happen
-    - as in they *would* happen *if* ...
-    - or as in they would happen regularly/habitually in the past
+  - as in they _would_ happen _if_ ...
+  - or as in they would happen regularly/habitually in the past
 
 The continuous past uses the <i className="fas fa-video" /> **imperfective root** because it's looking at the event in the imperfective aspect, and seeing the action as in progress, ongoing, or incompleted. It's often used to set the background for other events, as in: <InlinePs opts={opts} ps={{ p: "زه کور ته تلم چې...", f: "zu kor ta tlum che...", e: "I was going home when..." }} />
 
 <Formula>
-    Imperfective root +{` `}
-    <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
+  Imperfective root +{` `}
+  <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
 </Formula>
 
 <BasicVerbShowCase opts={opts} tense="imperfectivePast" />
@@ -133,7 +136,7 @@ The continuous past uses the <i className="fas fa-video" /> **imperfective root*
 Here's where things get interesting. **With past tense transitive verbs, the roles of king and servant are reversed!** With past tense transitive verbs in Pashto:
 
 - The **object** is the **king** <KingIcon /> of the phrase
-    - The *object* commands the verb!
+  - The _object_ commands the verb!
 - The **subject** is the **servant** <ServantIcon /> of the phrase
 
 Also, another weird thing that happens is that the **subject** is inflected.
@@ -142,7 +145,11 @@ Also, another weird thing that happens is that the **subject** is inflected.
 - The **object** does NOT get inflected
 
 <div className="text-center mb-4">
-    <img src={unoReverseMeme} alt="uno reverse meme with pashto transitive past tense" className="img-fluid" />
+  <img
+    src={unoReverseMeme}
+    alt="uno reverse meme with pashto transitive past tense"
+    className="img-fluid"
+  />
 </div>
 
 This isn't just some insanity unique to Pashto. In linguistics it's known as [ergative alignment](https://en.wikipedia.org/wiki/Ergative%E2%80%93absolutive_alignment). And in Pashto this seemingly "backwards" <Link to="/phrase-structure/vp/">phrase structure</Link> hits us whenever we use a past tense transitive verb.
@@ -152,32 +159,272 @@ The tenses (simple and continous past) stay the same and the formulas for making
 ### Examples with simple past
 
 <Formula>
-    Perfective root +{` `}
-    <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
+  Perfective root +{` `}
+  <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
 </Formula>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.03311699983526872,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9335532893306246,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11610,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.03311699983526872,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9335532893306246,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11610,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.03311699983526872,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9335532893306246,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":10,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11610,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.03311699983526872,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9335532893306246,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 10, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11610,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.021807382558673538,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11709,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.03701805628286148,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14483,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.021807382558673538,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812881,
+                i: 11709,
+                p: "ماشوم",
+                f: "maashoom",
+                g: "maashoom",
+                e: "child, kid",
+                c: "n. m. anim. unisex",
+                ec: "child",
+                ep: "children",
+              },
+              gender: "masc",
+              genderCanChange: true,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.03701805628286148,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815399,
+          i: 14483,
+          p: "وهل",
+          f: "wahul",
+          g: "wahul",
+          e: "to hit",
+          c: "v. trans.",
+          tppp: "واهه",
+          tppf: "waahu",
+          ec: "hit,hits,hitting,hit,hit",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.7215647271503056,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.5243897934182491,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812564,"i":6538,"p":"ډوډۍ","f":"DoDúy","g":"DoDuy","e":"bread, food, meal","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812790,"i":5795,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.7215647271503056,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.5243897934182491,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812564,
+                i: 6538,
+                p: "ډوډۍ",
+                f: "DoDúy",
+                g: "DoDuy",
+                e: "bread, food, meal",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812790,
+          i: 5795,
+          p: "خوړل",
+          f: "khoRul",
+          g: "khoRul",
+          e: "to eat, to bite",
+          c: "v. trans.",
+          psp: "خور",
+          psf: "khor",
+          tppp: "خوړ",
+          tppf: "khoR",
+          ec: "eat,eats,eating,ate,eaten",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <GameDisplay record={transitivePerfectivePastVerbGame1} />
@@ -187,32 +434,272 @@ The tenses (simple and continous past) stay the same and the formulas for making
 ### Examples with continous past
 
 <Formula>
-    Imperfective root +{` `}
-    <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
+  Imperfective root +{` `}
+  <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
 </Formula>
 
 <EditableVPEx opts={opts} long>
-    {
-        {"blocks":[{"key":0.03311699983526872,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9335532893306246,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11610,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.03311699983526872,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9335532893306246,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11610,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} long>
-    {
-        {"blocks":[{"key":0.03311699983526872,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9335532893306246,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":10,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11610,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.03311699983526872,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9335532893306246,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 10, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11610,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} long>
-    {
-        {"blocks":[{"key":0.021807382558673538,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11709,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.03701805628286148,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14483,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.021807382558673538,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812881,
+                i: 11709,
+                p: "ماشوم",
+                f: "maashoom",
+                g: "maashoom",
+                e: "child, kid",
+                c: "n. m. anim. unisex",
+                ec: "child",
+                ep: "children",
+              },
+              gender: "masc",
+              genderCanChange: true,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.03701805628286148,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815399,
+          i: 14483,
+          p: "وهل",
+          f: "wahul",
+          g: "wahul",
+          e: "to hit",
+          c: "v. trans.",
+          tppp: "واهه",
+          tppf: "waahu",
+          ec: "hit,hits,hitting,hit,hit",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} long>
-    {
-        {"blocks":[{"key":0.7215647271503056,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.5243897934182491,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812564,"i":6538,"p":"ډوډۍ","f":"DoDúy","g":"DoDuy","e":"bread, food, meal","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812790,"i":5795,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.7215647271503056,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.5243897934182491,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812564,
+                i: 6538,
+                p: "ډوډۍ",
+                f: "DoDúy",
+                g: "DoDuy",
+                e: "bread, food, meal",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812790,
+          i: 5795,
+          p: "خوړل",
+          f: "khoRul",
+          g: "khoRul",
+          e: "to eat, to bite",
+          c: "v. trans.",
+          psp: "خور",
+          psf: "khor",
+          tppp: "خوړ",
+          tppf: "khoR",
+          ec: "eat,eats,eating,ate,eaten",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <GameDisplay record={transitiveImperfectivePastVerbGame1} />
@@ -221,31 +708,43 @@ The tenses (simple and continous past) stay the same and the formulas for making
 
 ## Habitual Past Tenses
 
-You can add a <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> to either the simple or continuous past to talk about a <strong>habitually recurring action in the past</strong>. (Remember the <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> always goes in the <KidsSection />.) The difference between the two habitual tenses *is slight*, and depends on how we view the events.
+You can add a <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> to either the simple or continuous past to talk about a <strong>habitually recurring action in the past</strong>. (Remember the <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> always goes in the <KidsSection />.) The difference between the two habitual tenses _is slight_, and depends on how we view the events.
 
 - Habitual Simple Past <i className="fas fa-camera" />
-    - an event that occured and finished habitually/repeatedly
+  - an event that occured and finished habitually/repeatedly
 - Habitual Continuous Past <i className="fas fa-video" />
-    - an event that happened habitually/repeatedly as a process or ongoing activity
+  - an event that happened habitually/repeatedly as a process or ongoing activity
 
 ### Habitual Simple Past
 
 With the habitual simple past (AKA habitual perfective past), we are talking about an action that was habitually repeated in the past, but we look at each event as a complete action, kind of like recurring snapshots taken with a camera. <i className="fas fa-camera" />
 
 <div className="text-center">
-    <img src={habitualSimplePast} alt="" className="img-fluid" />
+  <img src={habitualSimplePast} alt="" className="img-fluid" />
 </div>
 
 <Formula>
-    به - ba +{` `}
-    <Link to="/verbs/past-verbs/#simple-past-i-classnamefas-fa-camera-">simple past</Link>
+  به - ba +{` `}
+  <Link to="/verbs/past-verbs/#simple-past-i-classnamefas-fa-camera-">
+    simple past
+  </Link>
 </Formula>
 
 <Examples opts={opts}>
-    {[
-        { p: "ما به ناوخته ډوډۍ وخوړله", f: "maa ba naawakhta DoDuy óokhoRula", e: "I would eat late", sub: "I would repeatedly/habitually eat my meals at a late time - thinking of eating the meal as a complete event that got done" },
-        { p: "مونږ به دلته کېناستو", f: "moonG ba dalta kénaastoo", e: "We would sit down here", sub: "We would repeatedly/habitually sit down at this spot - thinking of the sitting down as a one-time action we did each time" }
-    ]}
+  {[
+    {
+      p: "ما به ناوخته ډوډۍ وخوړله",
+      f: "maa ba naawakhta DoDuy óokhoRula",
+      e: "I would eat late",
+      sub: "I would repeatedly/habitually eat my meals at a late time - thinking of eating the meal as a complete event that got done",
+    },
+    {
+      p: "مونږ به دلته کېناستو",
+      f: "moonG ba dalta kénaastoo",
+      e: "We would sit down here",
+      sub: "We would repeatedly/habitually sit down at this spot - thinking of the sitting down as a one-time action we did each time",
+    },
+  ]}
 </Examples>
 
 ### Habitual Continuous Past
@@ -253,32 +752,50 @@ With the habitual simple past (AKA habitual perfective past), we are talking abo
 With the habitual continuous past (AKA habitual imperfective past), we are talking about an action that was habitually repeated in the past, but we look at each event as an activity that was ongoing or happening, kind of like a a collection of video clips. <i className="fas fas-video" />
 
 <div className="text-center">
-    <img src={habitualContinuousPast} alt="" className="img-fluid" />
+  <img src={habitualContinuousPast} alt="" className="img-fluid" />
 </div>
 
 <Formula>
-    به - ba +{` `}
-    <Link to="/verbs/past-verbs/#continuous-past-i-classnamefas-fa-video-">continuous past</Link>
+  به - ba +{` `}
+  <Link to="/verbs/past-verbs/#continuous-past-i-classnamefas-fa-video-">
+    continuous past
+  </Link>
 </Formula>
 
 <Examples opts={opts}>
-    {[
-        { p: "ما به ناوخته ډوډۍ خوړله", f: "maa ba naawakhta DoDuy khoRúla", e: "I would eat late", sub: "I would repeatedly/habitually eat my meals at a late time - thinking of eating as a process that happened repeatedly" },
-        { p: "مونږ به دلته کېناستو", f: "moonG ba dalta kenaastóo", e: "We would sit down here", sub: "We would repeatedly/habitually sit down at this spot - thinking of the sitting down as an activity / process where we would sit together and spend time here habitually" }
-    ]}
+  {[
+    {
+      p: "ما به ناوخته ډوډۍ خوړله",
+      f: "maa ba naawakhta DoDuy khoRúla",
+      e: "I would eat late",
+      sub: "I would repeatedly/habitually eat my meals at a late time - thinking of eating as a process that happened repeatedly",
+    },
+    {
+      p: "مونږ به دلته کېناستو",
+      f: "moonG ba dalta kenaastóo",
+      e: "We would sit down here",
+      sub: "We would repeatedly/habitually sit down at this spot - thinking of the sitting down as an activity / process where we would sit together and spend time here habitually",
+    },
+  ]}
 </Examples>
 
 The habitual continuous past is **also used to say what would happen if some condition were true.**
 
 <Examples opts={opts}>
-    {psmd([
-        { p: "**که ته دلته وای، **مونږ به ډوډۍ خوړله", f: "ku tu dalta waay, **moonG ba DoDuy khoRúla**", e: "If you were here, **we would eat food**." },
-        { p: "**که زه ستړې نه وای، **پارک ته به تلم", f: "ku zu stuRe nu waay, **paark ta ba tlum**", e: "If I (f.) wasn't tired, **I would go to the park**." }
-    ])}
+  {psmd([
+    {
+      p: "**که ته دلته وای، **مونږ به ډوډۍ خوړله",
+      f: "ku tu dalta waay, **moonG ba DoDuy khoRúla**",
+      e: "If you were here, **we would eat food**.",
+    },
+    {
+      p: "**که زه ستړې نه وای، **پارک ته به تلم",
+      f: "ku zu stuRe nu waay, **paark ta ba tlum**",
+      e: "If I (f.) wasn't tired, **I would go to the park**.",
+    },
+  ])}
 </Examples>
 
 <GameDisplay record={habitualPastVerbGame1} />
 
 <GameDisplay record={habitualPastVerbGame2} />
-
-

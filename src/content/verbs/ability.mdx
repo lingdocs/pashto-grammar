@@ -3,24 +3,34 @@ title: Ability
 ---
 
 import {
-    defaultTextOptions as opts,
-    Examples,
-    InlinePs,
-    RootsAndStems,
-    conjugateVerb,
-    getVerbInfo,
-    getAbilityRootsAndStems,
-    removeFVarients,
+  defaultTextOptions as opts,
+  Examples,
+  InlinePs,
+  RootsAndStems,
+  conjugateVerb,
+  getVerbInfo,
+  getAbilityRootsAndStems,
+  removeFVarients,
 } from "@lingdocs/ps-react";
 import GoingStems from "./GoingStems";
-import { KidsSection, VP, KingIcon, ServantIcon, Camera, Video, BlocksIcon } from "../../components/terms-links";
+import {
+  KidsSection,
+  VP,
+  KingIcon,
+  ServantIcon,
+  Camera,
+  Video,
+  BlocksIcon,
+} from "../../components/terms-links";
 import Carousel from "../../components/Carousel";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import Image from "../../components/Image";
 import Formula from "../../components/formula/Formula";
 import VideoPlayer from "../../components/VideoPlayer";
-import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+import EditableVPEx, {
+  EditIcon,
+} from "../../components/phrase-diagram/EditableVPEx";
 import BasicVerbShowCase from "../../components/BasicVerbShowCase";
 import abilityCopy from "./verb-tree-ability-roots-copy.svg";
 import halfKedul from "./verb-tree-half-kedul.svg";
@@ -29,17 +39,123 @@ import shwaayEverything from "./shwaay-everything.jpg";
 
 We use "ability" verb forms to talk about the ability of a verb to happen. For example:
 
-
 <EditableVPEx opts={opts} length="long">
-  {
-    {"blocks":[{"key":0.7144630314236184,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.3237406469603912,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.7144630314236184,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.3237406469603912,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11624,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-  {
-    {"blocks":[{"key":0.22382799925273678,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.8844517944804815,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815216,"i":6642,"p":"راتلل","f":"raatlúl","g":"raatlul","e":"to come","c":"v. intrans. irreg.","psp":"راځ","psf":"raadz","ssp":"راش","ssf":"ráash","prp":"راغلل","prf":"ráaghlul","pprtp":"راغلی","pprtf":"raaghúley","tppp":"راغی","tppf":"ráaghey","noOo":true,"separationAtP":2,"separationAtF":3,"ec":"come,comes,coming,came,come"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.22382799925273678,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.8844517944804815,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815216,
+          i: 6642,
+          p: "راتلل",
+          f: "raatlúl",
+          g: "raatlul",
+          e: "to come",
+          c: "v. intrans. irreg.",
+          psp: "راځ",
+          psf: "raadz",
+          ssp: "راش",
+          ssf: "ráash",
+          prp: "راغلل",
+          prf: "ráaghlul",
+          pprtp: "راغلی",
+          pprtf: "raaghúlay",
+          tppp: "راغی",
+          tppf: "ráaghay",
+          noOo: true,
+          separationAtP: 2,
+          separationAtF: 3,
+          ec: "come,comes,coming,came,come",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: true,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ## Making the ability roots and stems
@@ -47,27 +163,31 @@ We use "ability" verb forms to talk about the ability of a verb to happen. For e
 To make these "ability" forms we will need to modify the 🌳 <Link to="/verbs/roots-and-stems/">roots and stems</Link> of the verb.
 
 1. Use the roots for the stems as well
-2. Add a tail <InlinePs opts={opts} ps={{ p: "ی", f: "ey", e: "" }} /> or <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} />
-3. Add the *perfective* <Camera /> roots and stems of <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />
+2. Add a tail <InlinePs opts={opts} ps={{ p: "ی", f: "ay", e: "" }} /> or <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} />
+3. Add the _perfective_ <Camera /> roots and stems of <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />
 
 <div className="mb-3">
-    <div
-        className="d-flex flex-row align-items-center justify-content-center"
-        style={{ overflowX: "auto", maxWidth: "700px" }}
-    >
-        <div>
-            <img src={abilityCopy} style={{ maxWidth: "275px" }} />
-        </div>
-        <div style={{ fontSize: "2.5rem" }} className="mx-3">+</div>
-        <div className="text-center" style={{ minWidth: "3rem" }}>
-            <div>ی - ey /</div>
-            <div>ای - aay</div>
-        </div>
-        <div style={{ fontSize: "2.5rem" }} className="mx-3">+</div>
-        <div>
-            <img src={halfKedul} style={{ maxWidth: "115px" }} />
-        </div>
+  <div
+    className="d-flex flex-row align-items-center justify-content-center"
+    style={{ overflowX: "auto", maxWidth: "700px" }}
+  >
+    <div>
+      <img src={abilityCopy} style={{ maxWidth: "275px" }} />
     </div>
+    <div style={{ fontSize: "2.5rem" }} className="mx-3">
+      +
+    </div>
+    <div className="text-center" style={{ minWidth: "3rem" }}>
+      <div>ی - ay /</div>
+      <div>ای - aay</div>
+    </div>
+    <div style={{ fontSize: "2.5rem" }} className="mx-3">
+      +
+    </div>
+    <div>
+      <img src={halfKedul} style={{ maxWidth: "115px" }} />
+    </div>
+  </div>
 </div>
 
 Have a look through these verbs and notice how the same formula is always used to make the "ability" roots and stems.
@@ -81,37 +201,227 @@ We can uses these ability roots and stems just like we did with regular verb ten
 ### Present Ability
 
 <Formula>
-    Imperfective Ability Stem + <Link to="/verbs/verb-endings/">Present Ending</Link>
+  Imperfective Ability Stem +{" "}
+  <Link to="/verbs/verb-endings/">Present Ending</Link>
 </Formula>
 
 <EditableVPEx opts={opts} length="long">
-  {
-    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.9964782089704867,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.31048352641551924,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11624,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-  {
-    {"blocks":[{"key":0.2966992402794464,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.6487943718280598,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813680,"i":9231,"p":"غږېدل","f":"ghuGedul, ghaGedul","g":"ghugedul,ghagedul","e":"to speak, talk, converse, sing","c":"v. intrans.","ec":"speak,speaks,speaking,spoke,spoken"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.2966992402794464,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 4, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.6487943718280598,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527813680,
+          i: 9231,
+          p: "غږېدل",
+          f: "ghuGedul, ghaGedul",
+          g: "ghugedul,ghagedul",
+          e: "to speak, talk, converse, sing",
+          c: "v. intrans.",
+          ec: "speak,speaks,speaking,spoke,spoken",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ### Subjunctive Ability
 
 <Formula>
-    Perfective Ability Stem + <Link to="/verbs/verb-endings/">Present Ending</Link>
+  Perfective Ability Stem +{" "}
+  <Link to="/verbs/verb-endings/">Present Ending</Link>
 </Formula>
 
 <EditableVPEx opts={opts} length="long">
-  {
-    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.9964782089704867,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.31048352641551924,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11624,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "subjunctiveVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-  {
-    {"blocks":[{"key":0.2966992402794464,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.6487943718280598,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813680,"i":9231,"p":"غږېدل","f":"ghuGedul, ghaGedul","g":"ghugedul,ghagedul","e":"to speak, talk, converse, sing","c":"v. intrans.","ec":"speak,speaks,speaking,spoke,spoken"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.2966992402794464,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 4, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.6487943718280598,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527813680,
+          i: 9231,
+          p: "غږېدل",
+          f: "ghuGedul, ghaGedul",
+          g: "ghugedul,ghagedul",
+          e: "to speak, talk, converse, sing",
+          c: "v. intrans.",
+          ec: "speak,speaks,speaking,spoke,spoken",
+        },
+      },
+      verbTense: "subjunctiveVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ### Future Ability
@@ -119,37 +429,226 @@ We can uses these ability roots and stems just like we did with regular verb ten
 #### Imperfective Future Ability
 
 <Formula>
-    به - ba + <Link to="/verbs/ability/#present-ability">Present Ability</Link>
+  به - ba + <Link to="/verbs/ability/#present-ability">Present Ability</Link>
 </Formula>
 
 <EditableVPEx opts={opts} length="long">
-  {
-    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.9964782089704867,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.31048352641551924,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11624,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectiveFuture",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-  {
-    {"blocks":[{"key":0.2966992402794464,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.6487943718280598,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813680,"i":9231,"p":"غږېدل","f":"ghuGedul, ghaGedul","g":"ghugedul,ghagedul","e":"to speak, talk, converse, sing","c":"v. intrans.","ec":"speak,speaks,speaking,spoke,spoken"}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.2966992402794464,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 4, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.6487943718280598,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527813680,
+          i: 9231,
+          p: "غږېدل",
+          f: "ghuGedul, ghaGedul",
+          g: "ghugedul,ghagedul",
+          e: "to speak, talk, converse, sing",
+          c: "v. intrans.",
+          ec: "speak,speaks,speaking,spoke,spoken",
+        },
+      },
+      verbTense: "imperfectiveFuture",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 #### Perfective Future Ability
 
 <Formula>
-    به - ba + <Link to="/verbs/ability/#subjunctive-ability">Subjunctive Ability</Link>
+  به - ba +{" "}
+  <Link to="/verbs/ability/#subjunctive-ability">Subjunctive Ability</Link>
 </Formula>
 
 <EditableVPEx opts={opts} length="long">
-  {
-    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.9964782089704867,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.31048352641551924,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11624,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "perfectiveFuture",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-  {
-    {"blocks":[{"key":0.2966992402794464,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.6487943718280598,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813680,"i":9231,"p":"غږېدل","f":"ghuGedul, ghaGedul","g":"ghugedul,ghagedul","e":"to speak, talk, converse, sing","c":"v. intrans.","ec":"speak,speaks,speaking,spoke,spoken"}},"verbTense":"perfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.2966992402794464,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 4, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.6487943718280598,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527813680,
+          i: 9231,
+          p: "غږېدل",
+          f: "ghuGedul, ghaGedul",
+          g: "ghugedul,ghagedul",
+          e: "to speak, talk, converse, sing",
+          c: "v. intrans.",
+          ec: "speak,speaks,speaking,spoke,spoken",
+        },
+      },
+      verbTense: "perfectiveFuture",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ### Past Ability
@@ -159,13 +658,96 @@ The past ability in Pashto is interesting because just like with the regular pas
 #### Simple Past Ability
 
 <Formula>
-    Perfective Ability Root + <Link to="/verbs/verb-endings/">Past Ending</Link>
+  Perfective Ability Root + <Link to="/verbs/verb-endings/">Past Ending</Link>
 </Formula>
 
-<EditableVPEx opts={opts} length="long" sub="I was able to get out of the house in one particular instance">
-  {
-    {"blocks":[{"key":0.5272874508102714,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2225650273784472,"block":{"type":"AP","selection":{"type":"sandwich","before":{"p":"له","f":"la"},"after":{"p":"څخه","f":"tsuxa"},"e":"from","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812828,"i":10557,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}},{"key":0.15630811214184237,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527823376,"i":14220,"p":"وتل","f":"watul","g":"watul","e":"to go out, exit, leave, emerge","c":"v. intrans. irreg.","psp":"وځ","psf":"oodz","tppp":"واته","tppf":"waatu","ec":"go,goes,going,went,gone","ep":"out"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+<EditableVPEx
+  opts={opts}
+  length="long"
+  sub="I was able to get out of the house in one particular instance"
+>
+  {{
+    blocks: [
+      {
+        key: 0.5272874508102714,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2225650273784472,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            before: { p: "له", f: "la" },
+            after: { p: "څخه", f: "tsuxa" },
+            e: "from",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527812828,
+                  i: 10557,
+                  p: "کور",
+                  f: "kor",
+                  g: "kor",
+                  e: "house, home",
+                  c: "n. m.",
+                },
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [],
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.15630811214184237,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527823376,
+          i: 14220,
+          p: "وتل",
+          f: "watul",
+          g: "watul",
+          e: "to go out, exit, leave, emerge",
+          c: "v. intrans. irreg.",
+          psp: "وځ",
+          psf: "oodz",
+          tppp: "واته",
+          tppf: "waatu",
+          ec: "go,goes,going,went,gone",
+          ep: "out",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 This means that I was able to get out of the house **in one instance** or **at one point in time**. We're looking at the past ability from the perfective <Camera /> aspect, and saying that in one particular snapshot of time I was able to do something.
@@ -173,138 +755,681 @@ This means that I was able to get out of the house **in one instance** or **at o
 #### Continuous Past Ability
 
 <Formula>
-    Imperfective Ability Root + <Link to="/verbs/verb-endings/">Past Ending</Link>
+  Imperfective Ability Root + <Link to="/verbs/verb-endings/">Past Ending</Link>
 </Formula>
 
-<EditableVPEx opts={opts} length="long" sub="I was able to leave the house whenever I wanted to">
-  {
-    {"blocks":[{"key":0.5272874508102714,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2225650273784472,"block":{"type":"AP","selection":{"type":"sandwich","before":{"p":"له","f":"la"},"after":{"p":"څخه","f":"tsuxa"},"e":"from","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812828,"i":10557,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}},{"key":0.15630811214184237,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527823376,"i":14220,"p":"وتل","f":"watul","g":"watul","e":"to go out, exit, leave, emerge","c":"v. intrans. irreg.","psp":"وځ","psf":"oodz","tppp":"واته","tppf":"waatu","ec":"go,goes,going,went,gone","ep":"out"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+<EditableVPEx
+  opts={opts}
+  length="long"
+  sub="I was able to leave the house whenever I wanted to"
+>
+  {{
+    blocks: [
+      {
+        key: 0.5272874508102714,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2225650273784472,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            before: { p: "له", f: "la" },
+            after: { p: "څخه", f: "tsuxa" },
+            e: "from",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527812828,
+                  i: 10557,
+                  p: "کور",
+                  f: "kor",
+                  g: "kor",
+                  e: "house, home",
+                  c: "n. m.",
+                },
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [],
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.15630811214184237,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527823376,
+          i: 14220,
+          p: "وتل",
+          f: "watul",
+          g: "watul",
+          e: "to go out, exit, leave, emerge",
+          c: "v. intrans. irreg.",
+          psp: "وځ",
+          psf: "oodz",
+          tppp: "واته",
+          tppf: "waatu",
+          ec: "go,goes,going,went,gone",
+          ep: "out",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
-This is a *very different statement*, meaning that I had the ability to leave the house in an ongoing sense. It means that **I had the ability to leave the house whenever I wanted to**. We're looking at the ability from the imperfective <Video /> aspect. 
+This is a _very different statement_, meaning that I had the ability to leave the house in an ongoing sense. It means that **I had the ability to leave the house whenever I wanted to**. We're looking at the ability from the imperfective <Video /> aspect.
 
 #### With transitive verbs
 
-Ability verbs will follow the same <Link to="/phrase-structure/vp/#3-vp-structures">VP structure</Link> as other verbs, so with past tense ability verbs the object is king. <KingIcon /> 
+Ability verbs will follow the same <Link to="/phrase-structure/vp/#3-vp-structures">VP structure</Link> as other verbs, so with past tense ability verbs the object is king. <KingIcon />
 
-<EditableVPEx opts={opts} sub="SIMPLE PAST ABILITY - I was able to see you in one instance" length="long">
-  {
-    {"blocks":[{"key":0.1914245855622032,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.10810428860719257,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+<EditableVPEx
+  opts={opts}
+  sub="SIMPLE PAST ABILITY - I was able to see you in one instance"
+  length="long"
+>
+  {{
+    blocks: [
+      {
+        key: 0.1914245855622032,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.10810428860719257,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11624,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
-<EditableVPEx opts={opts} sub="CONTINUOUS PAST ABILITY - I was able to see you in an ongoing or repeated sense" length="long">
-  {
-    {"blocks":[{"key":0.1914245855622032,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.10810428860719257,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+<EditableVPEx
+  opts={opts}
+  sub="CONTINUOUS PAST ABILITY - I was able to see you in an ongoing or repeated sense"
+  length="long"
+>
+  {{
+    blocks: [
+      {
+        key: 0.1914245855622032,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.10810428860719257,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11624,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 #### With habitual past
 
 Of course we can also use the habitual past forms with ability, simply by adding <InlinePs opts={opts} ps={{ p: "به", f: "ba", e: "" }} /> as we would with the regular verb forms.
 
-<EditableVPEx opts={opts} sub="HABITUAL SIMPLE PAST ABILITY - I was able to see you repeatedly in single instances" length="long">
-  {
-    {"blocks":[{"key":0.1914245855622032,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.10810428860719257,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"habitualPerfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+<EditableVPEx
+  opts={opts}
+  sub="HABITUAL SIMPLE PAST ABILITY - I was able to see you repeatedly in single instances"
+  length="long"
+>
+  {{
+    blocks: [
+      {
+        key: 0.1914245855622032,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.10810428860719257,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11624,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "habitualPerfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
-<EditableVPEx opts={opts} sub="HABITUAL CONTINUOUS PAST ABILITY - I was able to see you repeatedly, in an ongoing sense" length="long">
-  {
-    {"blocks":[{"key":0.1914245855622032,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.10810428860719257,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"habitualImperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+<EditableVPEx
+  opts={opts}
+  sub="HABITUAL CONTINUOUS PAST ABILITY - I was able to see you repeatedly, in an ongoing sense"
+  length="long"
+>
+  {{
+    blocks: [
+      {
+        key: 0.1914245855622032,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.10810428860719257,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11624,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "habitualImperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ## Exceptions
 
-With <Link to="/compound-verbs/stative-compounds/#intransitive-stative-compounds">intransitive stative compound verbs</Link> we can't use the perfective roots because it would be awkward doubling up the <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /> helper verbs. For example, you can't say <InlinePs opts={opts} ps={{ p: "❌ داخل شولی شوم ❌", f: "❌ daakhil shwuley shwum ❌", e: "I was able to enter" }} /> because <InlinePs opts={opts} ps={{ p: "❌ شولی شوم ❌", f: "❌ shwuley shwum ❌", e: "I was able to enter" }} /> is just... no.
+With <Link to="/compound-verbs/stative-compounds/#intransitive-stative-compounds">intransitive stative compound verbs</Link> we can't use the perfective roots because it would be awkward doubling up the <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /> helper verbs. For example, you can't say <InlinePs opts={opts} ps={{ p: "❌ داخل شولی شوم ❌", f: "❌ daakhil shwulay shwum ❌", e: "I was able to enter" }} /> because <InlinePs opts={opts} ps={{ p: "❌ شولی شوم ❌", f: "❌ shwulay shwum ❌", e: "I was able to enter" }} /> is just... no.
 
 So for the ability roots and stems of <Link to="/compound-verbs/stative-compounds/#intransitive-stative-compounds">intransitive stative compound verbs</Link> we just <strong>use the imperfective roots and stems <Video /> for both sides</strong>.
 
 <RootsAndStems
   textOptions={opts}
-  info={getAbilityRootsAndStems(getVerbInfo(
-    {"ts":1527816735,"i":5983,"p":"داخلېدل","f":"daakhiledul","g":"daakhiledul","e":"to enter, go in; to be included; to be enrolled","c":"v. stat. comp. intrans.","l":1527816727,"ec":"enter"},
-    {"ts":1527816727,"i":5979,"p":"داخل","f":"daakhil","g":"daakhil","e":"entering, internal, included; participation","c":"adj. / n. m."},
-  ))}
+  info={getAbilityRootsAndStems(
+    getVerbInfo(
+      {
+        ts: 1527816735,
+        i: 5983,
+        p: "داخلېدل",
+        f: "daakhiledul",
+        g: "daakhiledul",
+        e: "to enter, go in; to be included; to be enrolled",
+        c: "v. stat. comp. intrans.",
+        l: 1527816727,
+        ec: "enter",
+      },
+      {
+        ts: 1527816727,
+        i: 5979,
+        p: "داخل",
+        f: "daakhil",
+        g: "daakhil",
+        e: "entering, internal, included; participation",
+        c: "adj. / n. m.",
+      }
+    )
+  )}
 />
 
 This means that when someone says:
 
 <EditableVPEx opts={opts}>
-  {
-    {"blocks":[{"key":0.411085695548967,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9034337400391925,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527816735,"i":5983,"p":"داخلېدل","f":"daakhiledul","g":"daakhiledul","e":"to enter, go in; to be included; to be enrolled","c":"v. stat. comp. intrans.","l":1527816727,"ec":"enter"},"complement":{"ts":1527816727,"i":5979,"p":"داخل","f":"daakhil","g":"daakhil","e":"entering, internal, included; participation","c":"adj. / n. m."}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":"stative","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.411085695548967,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9034337400391925,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527816735,
+          i: 5983,
+          p: "داخلېدل",
+          f: "daakhiledul",
+          g: "daakhiledul",
+          e: "to enter, go in; to be included; to be enrolled",
+          c: "v. stat. comp. intrans.",
+          l: 1527816727,
+          ec: "enter",
+        },
+        complement: {
+          ts: 1527816727,
+          i: 5979,
+          p: "داخل",
+          f: "daakhil",
+          g: "daakhil",
+          e: "entering, internal, included; participation",
+          c: "adj. / n. m.",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "intransitive",
+      isCompound: "stative",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 They could be talking about it in a imperfective <Video /> sense (I was able to enter whenever I wanted to) or a perfective <Camera /> sense. (I was able to enter in one instance) Both are exactly the same with these kinds of verbs.
 
 The same thing goes for the <InlinePs opts={opts} ps={{ p: "تلل", f: "tlul", e: "to go" }} /> verbs:
 
- - <InlinePs opts={opts} ps={{ p: "تلل", f: "tlul", e: "to go" }} /> 
- - <InlinePs opts={opts} ps={{ p: "راتلل", f: "raatlúl", e: "to come" }} />
- - <InlinePs opts={opts} ps={{ p: "درتلل", f: "dartlúl", e: "to go - to second person" }} />
- - <InlinePs opts={opts} ps={{ p: "ورتلل", f: "wartlúl", e: "to go - to third person" }} />
+- <InlinePs opts={opts} ps={{ p: "تلل", f: "tlul", e: "to go" }} />{" "}
+- <InlinePs opts={opts} ps={{ p: "راتلل", f: "raatlúl", e: "to come" }} />
+- <InlinePs
+    opts={opts}
+    ps={{ p: "درتلل", f: "dartlúl", e: "to go - to second person" }}
+  />
+- <InlinePs
+    opts={opts}
+    ps={{ p: "ورتلل", f: "wartlúl", e: "to go - to third person" }}
+  />
 
-These ones will also **use the imperfective roots and stems on both sides**, because you can't say something like <InlinePs opts={opts} ps={{ p: "❌ زه لاړلی شوم ❌", f: "❌ zu laaRúley shwum ❌", e: "I was able to go" }} />. You have to use the imperfective stems and roots and say <InlinePs opts={opts} ps={{ p: "زه تللی شوم", f: "zu tlúley shwum", e: "I was able to go" }} />, regardless of the aspect.
-
+These ones will also **use the imperfective roots and stems on both sides**, because you can't say something like <InlinePs opts={opts} ps={{ p: "❌ زه لاړلی شوم ❌", f: "❌ zu laaRúlay shwum ❌", e: "I was able to go" }} />. You have to use the imperfective stems and roots and say <InlinePs opts={opts} ps={{ p: "زه تللی شوم", f: "zu tlúlay shwum", e: "I was able to go" }} />, regardless of the aspect.
 
 <GoingStems />
 
 ## Variations
 
-As we mentioned before we can either use <InlinePs opts={opts} ps={{ p: "ی", f: "ey", e: "" }} /> or <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} /> for the tail in these ability roots and stems. We can also use the long or short forms of the roots. This means that there are a lot of possible ways to make these verb forms. For example:
+As we mentioned before we can either use <InlinePs opts={opts} ps={{ p: "ی", f: "ay", e: "" }} /> or <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} /> for the tail in these ability roots and stems. We can also use the long or short forms of the roots. This means that there are a lot of possible ways to make these verb forms. For example:
 
 <EditableVPEx opts={opts} allVariations>
-  {
-    {"blocks":[{"key":0.42309512632682345,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":10,"distance":"far"}}}},{"key":0.3537180592163174,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3666,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.42309512632682345,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 10, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.3537180592163174,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815348,
+          i: 3666,
+          p: "تلل",
+          f: "tlul",
+          g: "tlul",
+          e: "to go",
+          c: "v. intrans. irreg.",
+          psp: "ځ",
+          psf: "dz",
+          ssp: "لاړ ش",
+          ssf: "láaR sh",
+          prp: "لاړ",
+          prf: "láaR",
+          ec: "go,goes,going,went,gone",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ## Notes on blocks and the negative
 
 If you look up at the blocks <BlocksIcon /> in the examples above you'll notice that the verb is actually made up of two parts:
 
-<BasicBlocks large blocks={[
+<BasicBlocks
+  large
+  blocks={[
     {
-        inside: "leedúley",
-        bottom: <div>
-            <div>Verb</div>
-            <div>&nbsp;</div>
-        </div>,
+      inside: "leedúlay",
+      bottom: (
+        <div>
+          <div>Verb</div>
+          <div>&nbsp;</div>
+        </div>
+      ),
     },
     {
-        inside: "shee",
-        bottom: <div>
-            <div>Ability</div>
-            <div>Auxilary Verb</div>
-        </div>,
+      inside: "shee",
+      bottom: (
+        <div>
+          <div>Ability</div>
+          <div>Auxilary Verb</div>
+        </div>
+      ),
     },
-]} />
+  ]}
+/>
 
 These two parts switch places when the negative is used.
 
 <EditableVPEx opts={opts} length="long">
-  {
-    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.9964782089704867,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 4, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.31048352641551924,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11624,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} length="long">
-  {
-    {"blocks":[{"key":0.9964782089704867,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}},{"key":0.31048352641551924,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11624,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"modal","transitivity":"transitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-  }
+  {{
+    blocks: [
+      {
+        key: 0.9964782089704867,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 4, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.31048352641551924,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11624,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "modal",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: true,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
-But you can still say the negative *without swapping the blocks* if you want to sound emphatic.
+But you can still say the negative _without swapping the blocks_ if you want to sound emphatic.
 
 <Examples opts={opts}>
   {[
     {
-        p: "هغه تا لیدلی نه شي",
-        f: "haghá taa leedúley nu shee",
-        e: "He/it (m.) can't see you.",
+      p: "هغه تا لیدلی نه شي",
+      f: "haghá taa leedúlay nu shee",
+      e: "He/it (m.) can't see you.",
     },
   ]}
 </Examples>
@@ -315,7 +1440,7 @@ You may notice that some ability statements can feel a bit tricky, especially wh
 
 ### Wildcard ending with the past tense
 
-In colloquial/informal *spoken* Pashto, people often **use a wildcard** <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} /> ending <strong>when making past tense ability statements with transitive verbs</strong>. Instead of bothering to make the verb agree with the king <KingIcon /> they will often just throw an <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} /> an the end and be done with it.
+In colloquial/informal _spoken_ Pashto, people often **use a wildcard** <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} /> ending <strong>when making past tense ability statements with transitive verbs</strong>. Instead of bothering to make the verb agree with the king <KingIcon /> they will often just throw an <InlinePs opts={opts} ps={{ p: "ای", f: "aay", e: "" }} /> an the end and be done with it.
 
 <table class="table">
   <thead>
@@ -326,60 +1451,59 @@ In colloquial/informal *spoken* Pashto, people often **use a wildcard** <InlineP
   </thead>
   <tbody>
     <tr>
-        <td>
-            <Examples opts={opts}>
-              {[
-                {
-                    p: "ما هغه لیدلی شوه",
-                    f: "maa hagha leedúley shwa",
-                    e: "I was able to see her",
-                },
-              ]}
-            </Examples>
-        </td>
-        <td>
-            <Examples opts={opts}>
-              {[
-                {
-                    p: "ما هغه لیدلی شوای",
-                    f: "maa hagha leedúley shwaay",
-                    e: "I was able to see her",
-                },
-              ]}
-            </Examples>
-        </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "ما هغه لیدلی شوه",
+              f: "maa hagha leedúlay shwa",
+              e: "I was able to see her",
+            },
+          ]}
+        </Examples>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "ما هغه لیدلی شوای",
+              f: "maa hagha leedúlay shwaay",
+              e: "I was able to see her",
+            },
+          ]}
+        </Examples>
+      </td>
     </tr>
     <tr>
-        <td>
-            <Examples opts={opts}>
-              {[
-                {
-                    p: "ما ته لیدلی شوې",
-                    f: "maa tu leedúley shwe",
-                    e: "I was able to see you",
-                },
-              ]}
-            </Examples>
-        </td>
-        <td>
-            <Examples opts={opts}>
-              {[
-                {
-                    p: "ما ته لیدلی شوای",
-                    f: "maa tu leedúley shwaay",
-                    e: "I was able to see you",
-                },
-              ]}
-            </Examples>
-        </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "ما ته لیدلی شوې",
+              f: "maa tu leedúlay shwe",
+              e: "I was able to see you",
+            },
+          ]}
+        </Examples>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "ما ته لیدلی شوای",
+              f: "maa tu leedúlay shwaay",
+              e: "I was able to see you",
+            },
+          ]}
+        </Examples>
+      </td>
     </tr>
   </tbody>
 </table>
 
-As a learner try to also be able to say the proper past tense endings, because people won't *always* use this shortcut. You don't exactly wanna be like...
+As a learner try to also be able to say the proper past tense endings, because people won't _always_ use this shortcut. You don't exactly wanna be like...
 
 <Image src={shwaayEverything} maxWidth="400px" />
-
 
 ### Using کول - kawul "to do" + subjunctive
 
@@ -388,16 +1512,16 @@ Another extremely common thing to do is to make ability statements using the ver
 <Examples opts={opts}>
   {[
     {
-        p: "زه کولی شم چې تا سره لاړ شم",
-        f: "zu kawuley shum che taa sara laaR shum",
-        e: "I can go with you",
-        sub: "Lit. I can do (present) - that - I go with you (subjunctive)",
+      p: "زه کولی شم چې تا سره لاړ شم",
+      f: "zu kawulay shum che taa sara laaR shum",
+      e: "I can go with you",
+      sub: "Lit. I can do (present) - that - I go with you (subjunctive)",
     },
     {
-        p: "مونږ څنګه کولی شو چې پخه هندواڼه وپېژنو؟",
-        f: "moonG tsunga kawúley shoo che pakha hindwaaNa óopejzenoo?",
-        e: "How can we recognize a ripe watermelon?",
-        sub: "Lit. How can we do (present) - that - We recognize a ripe watermelon (subjunctive)",
+      p: "مونږ څنګه کولی شو چې پخه هندواڼه وپېژنو؟",
+      f: "moonG tsunga kawúlay shoo che pakha hindwaaNa óopejzenoo?",
+      e: "How can we recognize a ripe watermelon?",
+      sub: "Lit. How can we do (present) - that - We recognize a ripe watermelon (subjunctive)",
     },
   ]}
 </Examples>
@@ -407,33 +1531,33 @@ Here <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to do" }} /> is u
 <Examples opts={opts}>
   {[
     {
-        p: "ما کولی شو چې بېرته راوګرځم",
-        f: "maa kawuley shoo che berta raa-óo-gurdzum",
-        e: "I was able to turn back (whenever I wanted to - ongoing sense)",
-        sub: "Lit. I was able to do (continuous past) - that - I turn back (subjunctive)",
+      p: "ما کولی شو چې بېرته راوګرځم",
+      f: "maa kawulay shoo che berta raa-óo-gurdzum",
+      e: "I was able to turn back (whenever I wanted to - ongoing sense)",
+      sub: "Lit. I was able to do (continuous past) - that - I turn back (subjunctive)",
     },
     {
-        p: "ما وکولی شو چې بېرته راوګرځم",
-        f: "maa óokawuley shoo che berta raa-óo-gurdzum",
-        e: "I was able to turn back (at one point in time - momentary sense)",
-        sub: "Lit. I was able to do (simple continuous past) - that - I turn back (subjunctive)",
+      p: "ما وکولی شو چې بېرته راوګرځم",
+      f: "maa óokawulay shoo che berta raa-óo-gurdzum",
+      e: "I was able to turn back (at one point in time - momentary sense)",
+      sub: "Lit. I was able to do (simple continuous past) - that - I turn back (subjunctive)",
     },
     {
-        p: "د افغانستان لوبډلې وکولی شو چې د بلې لوبډلې ته ماته ورکړي",
-        f: "du afghaanistaan lobDúle óokawuley shoo che du bule lobDúle ta maata wárkRee",
-        e: "Afghanistan's team was able to defeat the other team",
-        sub: "Lit. Afghanistan's team was able to (simple past) - that - They beat the other team (subjunctive)",
+      p: "د افغانستان لوبډلې وکولی شو چې د بلې لوبډلې ته ماته ورکړي",
+      f: "du afghaanistaan lobDúle óokawulay shoo che du bule lobDúle ta maata wárkRee",
+      e: "Afghanistan's team was able to defeat the other team",
+      sub: "Lit. Afghanistan's team was able to (simple past) - that - They beat the other team (subjunctive)",
     },
     {
-        p: "ما ونه شو کولی په وخت کې تا ته ځواب درکړم",
-        f: "maa oo-nú-shoo kawuley pu wakht ke taa ta dzawaab dár-kRum.",
-        e: "I wasn't able to answer you in time",
-        sub: "Lit. I was not able to do (simple past) - that I answer you in time (subjunctive)",
+      p: "ما ونه شو کولی په وخت کې تا ته ځواب درکړم",
+      f: "maa oo-nú-shoo kawulay pu wakht ke taa ta dzawaab dár-kRum.",
+      e: "I wasn't able to answer you in time",
+      sub: "Lit. I was not able to do (simple past) - that I answer you in time (subjunctive)",
     },
   ]}
 </Examples>
 
-This kind of sentence structure is likely *a direct influnce* of Farsi, and is probably heard more in Afghanistan. It is easier to say because you just have to now how to say <InlinePs opts={opts} ps={{ p: "زه کولی شم", f: "zu kawuley shum", e: "I can do..." }} /> in all the tenses and then no matter what tense you're using, you just use a <Link to="/verbs/subjunctive-verbs/">subjunctive verb</Link> for the next clause.
+This kind of sentence structure is likely _a direct influnce_ of Farsi, and is probably heard more in Afghanistan. It is easier to say because you just have to now how to say <InlinePs opts={opts} ps={{ p: "زه کولی شم", f: "zu kawulay shum", e: "I can do..." }} /> in all the tenses and then no matter what tense you're using, you just use a <Link to="/verbs/subjunctive-verbs/">subjunctive verb</Link> for the next clause.
 
 <table class="table">
   <thead>
@@ -446,20 +1570,16 @@ This kind of sentence structure is likely *a direct influnce* of Farsi, and is p
   <tbody>
     <tr>
       <td>
-        <Video /> Present 
+        <Video /> Present
       </td>
       <td>
         <Examples opts={opts}>
-          {[
-            { p: "زه کولی شم", f: "zu kawúley shum", e: "I can" },
-          ]}
+          {[{ p: "زه کولی شم", f: "zu kawúlay shum", e: "I can" }]}
         </Examples>
       </td>
       <td>
         <Examples opts={opts}>
-          {[
-            { p: "زه نه شم کولی", f: "zu nú shum kawúley", e: "I can't" },
-          ]}
+          {[{ p: "زه نه شم کولی", f: "zu nú shum kawúlay", e: "I can't" }]}
         </Examples>
       </td>
     </tr>
@@ -469,15 +1589,17 @@ This kind of sentence structure is likely *a direct influnce* of Farsi, and is p
       </td>
       <td>
         <Examples opts={opts}>
-          {[
-            { p: "زه وکولی شم", f: "zu óokawuley shum", e: "that I can" },
-          ]}
+          {[{ p: "زه وکولی شم", f: "zu óokawulay shum", e: "that I can" }]}
         </Examples>
       </td>
       <td>
         <Examples opts={opts}>
           {[
-            { p: "زه ونه شم کولی", f: "zu oo-nú-shum kawuley", e: "that I can't" },
+            {
+              p: "زه ونه شم کولی",
+              f: "zu oo-nú-shum kawulay",
+              e: "that I can't",
+            },
           ]}
         </Examples>
       </td>
@@ -489,14 +1611,22 @@ This kind of sentence structure is likely *a direct influnce* of Farsi, and is p
       <td>
         <Examples opts={opts}>
           {[
-            { p: "زه به کولی شم", f: "zu ba kawúley shum", e: "I will be able to" },
+            {
+              p: "زه به کولی شم",
+              f: "zu ba kawúlay shum",
+              e: "I will be able to",
+            },
           ]}
         </Examples>
       </td>
       <td>
         <Examples opts={opts}>
           {[
-            { p: "زه به نه شم کولی", f: "zu ba nú shum kawúley", e: "I won't be able to" },
+            {
+              p: "زه به نه شم کولی",
+              f: "zu ba nú shum kawúlay",
+              e: "I won't be able to",
+            },
           ]}
         </Examples>
       </td>
@@ -508,14 +1638,22 @@ This kind of sentence structure is likely *a direct influnce* of Farsi, and is p
       <td>
         <Examples opts={opts}>
           {[
-            { p: "زه به وکولی شم", f: "zu ba óokawuley shum", e: "I will be able to" },
+            {
+              p: "زه به وکولی شم",
+              f: "zu ba óokawulay shum",
+              e: "I will be able to",
+            },
           ]}
         </Examples>
       </td>
       <td>
         <Examples opts={opts}>
           {[
-            { p: "زه به ونه شم کولی", f: "zu ba oo-nú shum kawuley", e: "I won't be able to" },
+            {
+              p: "زه به ونه شم کولی",
+              f: "zu ba oo-nú shum kawulay",
+              e: "I won't be able to",
+            },
           ]}
         </Examples>
       </td>
@@ -527,14 +1665,22 @@ This kind of sentence structure is likely *a direct influnce* of Farsi, and is p
       <td>
         <Examples opts={opts}>
           {[
-            { p: "ما کولی شو", f: "maa kawúley shoo", e: "I was able to (ongoing)" }
+            {
+              p: "ما کولی شو",
+              f: "maa kawúlay shoo",
+              e: "I was able to (ongoing)",
+            },
           ]}
         </Examples>
       </td>
       <td>
         <Examples opts={opts}>
           {[
-            { p: "ما نه شو کولی", f: "maa nú shoo kawúley", e: "I wasn't able to (ongoing)" }
+            {
+              p: "ما نه شو کولی",
+              f: "maa nú shoo kawúlay",
+              e: "I wasn't able to (ongoing)",
+            },
           ]}
         </Examples>
       </td>
@@ -546,14 +1692,22 @@ This kind of sentence structure is likely *a direct influnce* of Farsi, and is p
       <td>
         <Examples opts={opts}>
           {[
-            { p: "ما وکولی شو", f: "maa óokawuley shoo", e: "I was able to (one time)" }
+            {
+              p: "ما وکولی شو",
+              f: "maa óokawulay shoo",
+              e: "I was able to (one time)",
+            },
           ]}
         </Examples>
       </td>
       <td>
         <Examples opts={opts}>
           {[
-            { p: "ما ونه شو وکولی", f: "maa oo-nú-shoo kawuley", e: "I wasn't able to (one time)" }
+            {
+              p: "ما ونه شو وکولی",
+              f: "maa oo-nú-shoo kawulay",
+              e: "I wasn't able to (one time)",
+            },
           ]}
         </Examples>
       </td>
@@ -565,14 +1719,22 @@ This kind of sentence structure is likely *a direct influnce* of Farsi, and is p
       <td>
         <Examples opts={opts}>
           {[
-            { p: "ما به کولی شو", f: "maa ba kawúley shoo", e: "I would be able to" }
+            {
+              p: "ما به کولی شو",
+              f: "maa ba kawúlay shoo",
+              e: "I would be able to",
+            },
           ]}
         </Examples>
       </td>
       <td>
         <Examples opts={opts}>
           {[
-            { p: "ما به نه شو کولی", f: "maa ba nú shoo kawúley", e: "I wouldn't be able to" }
+            {
+              p: "ما به نه شو کولی",
+              f: "maa ba nú shoo kawúlay",
+              e: "I wouldn't be able to",
+            },
           ]}
         </Examples>
       </td>
@@ -584,14 +1746,22 @@ This kind of sentence structure is likely *a direct influnce* of Farsi, and is p
       <td>
         <Examples opts={opts}>
           {[
-            { p: "ما به وکولی شو", f: "maa ba óokawuley shoo", e: "I would be able to" }
+            {
+              p: "ما به وکولی شو",
+              f: "maa ba óokawulay shoo",
+              e: "I would be able to",
+            },
           ]}
         </Examples>
       </td>
       <td>
         <Examples opts={opts}>
           {[
-            { p: "ما به ونه شو کولی", f: "maa ba oo-nú-shoo kawúley", e: "I wouldn't be able to" }
+            {
+              p: "ما به ونه شو کولی",
+              f: "maa ba oo-nú-shoo kawúlay",
+              e: "I wouldn't be able to",
+            },
           ]}
         </Examples>
       </td>

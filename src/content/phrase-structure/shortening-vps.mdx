@@ -3,27 +3,24 @@ title: Shortening VPs
 ---
 
 import {
-    defaultTextOptions as opts,
-    InlinePs,
-    Examples,
-    makeNounSelection,
+  defaultTextOptions as opts,
+  InlinePs,
+  Examples,
 } from "@lingdocs/ps-react";
-import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
-import EquativeIllustration from "../../components/EquativeIllustration";
-import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
-import BasicBlocks from "../../components/BasicBlocks";
-import InlineInflectionButton from "../../components/InlineInflectionButton";
+import EditableVPEx, {
+  EditIcon,
+} from "../../components/phrase-diagram/EditableVPEx";
 import VPStructureSummary from "./vp-structure.svg";
 import { KidsSection } from "../../components/terms-links";
 import VideoPlayer from "../../components/VideoPlayer";
 
 export function KingIcon() {
-    return <i className="mx-1 fas fa-crown" />;
+  return <i className="mx-1 fas fa-crown" />;
 }
 
 export function ServantIcon() {
-    return <i className="mx-1 fas fa-male" />;
+  return <i className="mx-1 fas fa-male" />;
 }
 
 <VideoPlayer src="https://www.youtube.com/watch?v=0B-hrsnCk50&t=1s&ab_channel=LingDocs" />
@@ -31,15 +28,25 @@ export function ServantIcon() {
 Pashto has a very special way of shortening <Link to="/phrase-structure/vp">VP</Link>s. In a language like English if we want to say "I saw her," we can only say, "I saw her." But in Pashto there are many ways to shorten and to say this.
 
 <Examples opts={opts}>
-    {[
-        { p: "ما هغه ولیده", f: "maa haghá óoleeda", e: "I saw her", sub: "full form" },
-        { p: "ما ولیده", f: "maa óoleeda", e: "I saw her", sub: "short form #1" },
-        { p: "هغه مې ولیده", f: "haghá me óoleeda", e: "I saw her", sub: "short form #2" },
-        { p: "ومې لیده", f: "óo-me leeda", e: "I saw her", sub: "short form #3" },
-    ]}
+  {[
+    {
+      p: "ما هغه ولیده",
+      f: "maa haghá óoleeda",
+      e: "I saw her",
+      sub: "full form",
+    },
+    { p: "ما ولیده", f: "maa óoleeda", e: "I saw her", sub: "short form #1" },
+    {
+      p: "هغه مې ولیده",
+      f: "haghá me óoleeda",
+      e: "I saw her",
+      sub: "short form #2",
+    },
+    { p: "ومې لیده", f: "óo-me leeda", e: "I saw her", sub: "short form #3" },
+  ]}
 </Examples>
 
-So what is going on here? 🧐  This is another behaviour of Pashto that can seem very illogical or confusing to the learner. Thankfully though, there's a very clear rule about how these phrases are shortened up.
+So what is going on here? 🧐 This is another behaviour of Pashto that can seem very illogical or confusing to the learner. Thankfully though, there's a very clear rule about how these phrases are shortened up.
 
 In Pashto [pronouns can be dropped](https://en.wikipedia.org/wiki/Pro-drop_language) when the verb agrees with them. When the verb doesn't agree with them, they can be shrunken into <Link to="/pronouns/pronouns-mini/">mini-pronouns</Link>.
 
@@ -53,19 +60,23 @@ In the previous chapter on <Link to="/phrase-structure/vp">VP structure</Link> w
 The king and servant swap roles between the subject and object, depending on what kind of verb we're using.
 
 - with intransitive verbs 🛴
-    - the **subject** is the king <KingIcon />
-    - (there is no servant)
+  - the **subject** is the king <KingIcon />
+  - (there is no servant)
 - with non-past transitive verbs 🚲
-    - the **subject** is the king <KingIcon />
-    - the **object** is the servant <ServantIcon />
+  - the **subject** is the king <KingIcon />
+  - the **object** is the servant <ServantIcon />
 - with past-tense transitive verbs 🚲🤪
-    - the **subject** is the servant <ServantIcon />
-    - the **object** is the king <KingIcon />
+  - the **subject** is the servant <ServantIcon />
+  - the **object** is the king <KingIcon />
 
 Or if you want to see it in our little review chart...
 
 <div className="text-center mb-3">
-    <img className="img-fluid" src={VPStructureSummary} alt={"VP structure in Pashto with past tense"} />
+  <img
+    className="img-fluid"
+    src={VPStructureSummary}
+    alt={"VP structure in Pashto with past tense"}
+  />
 </div>
 
 ## The Rule
@@ -73,7 +84,10 @@ Or if you want to see it in our little review chart...
 So, now that we've reviewed the roles of **king** <KingIcon /> and **servant** <ServantIcon /> all we need to know is one simple rule.
 
 <div style={{ fontSize: "larger" }}>
-    <blockquote>To shorten a VP, you can <strong>Kill the King</strong> <KingIcon /> and <strong>Shrink the Servant</strong> <ServantIcon /></blockquote>
+  <blockquote>
+    To shorten a VP, you can <strong>Kill the King</strong> <KingIcon /> and{" "}
+    <strong>Shrink the Servant</strong> <ServantIcon />
+  </blockquote>
 </div>
 
 This is a litle memory aid to help us remember the two things that we can do to any VP phrase.
@@ -88,9 +102,61 @@ This is a litle memory aid to help us remember the two things that we can do to 
 Now we can look at some examples to see how this works. Let's take a very simple sentence:
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.13415526513680676,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2455033196459333,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.13415526513680676,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2455033196459333,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11608,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 This is a <Link to="/vp/#2-with-non-past-transitive-verbs-">present-tense transitive</Link> phrase. See if you can figure out what the king <KingIcon /> and servant <ServantIcon /> are in this sentence, then click on the <i className="fas fa-cubes" /> to see what they are.
@@ -98,25 +164,181 @@ This is a <Link to="/vp/#2-with-non-past-transitive-verbs-">present-tense transi
 Got it? So now we know we can **kill the king**. Since the king controls the verb, we can just leave it out.
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.13415526513680676,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2455033196459333,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":true,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.13415526513680676,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2455033196459333,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11608,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: true, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 The other thing we can do is we can **shrink the servant** 🪄 and turn it into a <Link to="/pronouns/pronouns-mini/">mini-pronoun</Link>. The servant here is <InlinePs opts={opts} ps={{ p: "تا", f: "taa", e: "you - 2nd. pers. sing." }} /> so it will get shrunk into the 2nd pers. sing. <Link to="/pronouns/pronouns-mini/">mini-pronoun</Link>, <InlinePs opts={opts} ps={{ p: "دې", f: "de" }} />. Because it's a little mini-pronoun 👶 it has to go in the <KidsSection />. (After the first block)
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.13415526513680676,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2455033196459333,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":true}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.13415526513680676,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2455033196459333,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11608,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: true },
+  }}
 </EditableVPEx>
 
-Now if we want to make our sentence *really* short we can **kill the king** *and* **shrink the servant**.
+Now if we want to make our sentence _really_ short we can **kill the king** _and_ **shrink the servant**.
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.13415526513680676,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2455033196459333,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":true,"shrinkServant":true}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.13415526513680676,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2455033196459333,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11608,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: true, shrinkServant: true },
+  }}
 </EditableVPEx>
 
 It's very important to remember to play by the rules. You can **kill the king** and **shrink the servant** but you cannot kill the servant or shrink the king! 🙅‍♂ (That's another mistake that Pashto learners make a lot!)
@@ -128,33 +350,241 @@ Let's try another example with a <Link to="/phrase-structure/vp/#3-with-past-ten
 Here's the same phrase but using a continuous past verb. Take a second and identify the king and the servant in the phrase below, and then check by clicking on the <i className="fas fa-cubes" />.
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.13415526513680676,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2455033196459333,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.13415526513680676,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2455033196459333,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11608,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
-Let's go ahead and **kill the king**, which in this case is the *subject*.
+Let's go ahead and **kill the king**, which in this case is the _subject_.
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.13415526513680676,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2455033196459333,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":true,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.13415526513680676,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2455033196459333,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11608,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: true, shrinkServant: false },
+  }}
 </EditableVPEx>
 
-Looks quite different, but we're still following the same rule. Now let's **shrink the servant**. 🪄 This time the servant is the *object* <InlinePs opts={opts} ps={{ p: "ما", f: "maa", e: "I - 1st pers. sing." }} /> so it will get shrunk into the 1nd pers. sing. <Link to="/pronouns/pronouns-mini/">mini-pronoun</Link>, <InlinePs opts={opts} ps={{ p: "مې", f: "me" }} /> and go in the <KidsSection />.
+Looks quite different, but we're still following the same rule. Now let's **shrink the servant**. 🪄 This time the servant is the _object_ <InlinePs opts={opts} ps={{ p: "ما", f: "maa", e: "I - 1st pers. sing." }} /> so it will get shrunk into the 1nd pers. sing. <Link to="/pronouns/pronouns-mini/">mini-pronoun</Link>, <InlinePs opts={opts} ps={{ p: "مې", f: "me" }} /> and go in the <KidsSection />.
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.13415526513680676,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2455033196459333,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":true}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.13415526513680676,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2455033196459333,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11608,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: true },
+  }}
 </EditableVPEx>
 
-And of course we can do both **kill the king** and **shrink the servant**. 
+And of course we can do both **kill the king** and **shrink the servant**.
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.13415526513680676,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.2455033196459333,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":true,"shrinkServant":true}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.13415526513680676,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2455033196459333,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11608,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: true, shrinkServant: true },
+  }}
 </EditableVPEx>
 
 Notice how our shortened sentences look completely different from the present-tense version above, but they follow the exact same two rules for shortening with the king and servant. This all feels like mental gymnastics to the learner, but Pashtuns will very casually use all these different forms of shortening depending on what they want to emphasize or the flow of conversation.
@@ -164,43 +594,361 @@ Notice how our shortened sentences look completely different from the present-te
 Let's look at another example with an <Link to="/vp/#1-with-intransitive-verbs-">intransitive verb</Link>.
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.2392487764665734,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.6268130996406576,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3655,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.2392487764665734,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.6268130996406576,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815348,
+          i: 3655,
+          p: "تلل",
+          f: "tlul",
+          g: "tlul",
+          e: "to go",
+          c: "v. intrans. irreg.",
+          psp: "ځ",
+          psf: "dz",
+          ssp: "لاړ ش",
+          ssf: "láaR sh",
+          prp: "لاړ",
+          prf: "láaR",
+          ec: "go,goes,going,went,gone",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
-The **king** <KingIcon /> of this sentence is the *subject* <InlinePs opts={opts} ps={{ p: "زه", f: "zu", e: "I" }} />. So we can **kill the king** and leave that out.
+The **king** <KingIcon /> of this sentence is the _subject_ <InlinePs opts={opts} ps={{ p: "زه", f: "zu", e: "I" }} />. So we can **kill the king** and leave that out.
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.2392487764665734,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.6268130996406576,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815348,"i":3655,"p":"تلل","f":"tlul","g":"tlul","e":"to go","c":"v. intrans. irreg.","psp":"ځ","psf":"dz","ssp":"لاړ ش","ssf":"láaR sh","prp":"لاړ","prf":"láaR","ec":"go,goes,going,went,gone"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":true,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.2392487764665734,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.6268130996406576,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815348,
+          i: 3655,
+          p: "تلل",
+          f: "tlul",
+          g: "tlul",
+          e: "to go",
+          c: "v. intrans. irreg.",
+          psp: "ځ",
+          psf: "dz",
+          ssp: "لاړ ش",
+          ssf: "láaR sh",
+          prp: "لاړ",
+          prf: "láaR",
+          ec: "go,goes,going,went,gone",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: true, shrinkServant: false },
+  }}
 </EditableVPEx>
 
-Notice that we cannot **shrink the servant** because there is no servant in a VP with an intransitive verb. The learner is often tempted to shrink the king into a mini-pronoun, but that is *not allowed!* 🙅‍♂️
+Notice that we cannot **shrink the servant** because there is no servant in a VP with an intransitive verb. The learner is often tempted to shrink the king into a mini-pronoun, but that is _not allowed!_ 🙅‍♂️
 
 ### Other examples
 
 Try shortening these other examples. Notice how the <KidsSection /> (after the first block), and the <KidsSection /> changes depending on what's in the phrase. If we start the phrase with an <Link to="/phrase-structure/ap">AP</Link> the mini pronoun will fall right after that first AP. Try shrinking this sentence all the way (click on "both") and see what happens.
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.5372523258610236,"block":{"type":"AP","selection":{"type":"sandwich","before":{"p":"په","f":"pu"},"after":{"p":"کې","f":"ke"},"e":"in","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815151,"i":2140,"p":"پارک","f":"paark","g":"paark","e":"park","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}},{"key":0.44012482066169145,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.8184810526278858,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.5372523258610236,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            before: { p: "په", f: "pu" },
+            after: { p: "کې", f: "ke" },
+            e: "in",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527815151,
+                  i: 2140,
+                  p: "پارک",
+                  f: "paark",
+                  g: "paark",
+                  e: "park",
+                  c: "n. m.",
+                },
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [],
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.44012482066169145,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.8184810526278858,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11608,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 Or if a phrase is using a <Link to="/verbs/verb-aspect/">perfective verb</Link>, then the <Link to="/verbs/roots-and-stems/#about-the-split-in-the-perfective-side">front part of the verb can split off</Link> into a seperate block. This puts the kids' section in an interesting place... see what happens when you hit "both" for this phrase.
 
 <EditableVPEx formChoice opts={opts}>
-    {
-        {"blocks":[{"key":0.44012482066169145,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.8184810526278858,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11608,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.44012482066169145,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.8184810526278858,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11608,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 Go ahead, click on the <EditIcon /> and try making your own phrases and shrinking them.
 
 <EditableVPEx formChoice opts={opts}>
-    {
-            {"blocks":[{"key":0.9914022242777141,"block":{"type":"AP","selection":{"type":"adverb","entry":{"ts":1527815160,"i":2394,"p":"پرون","f":"paroon","g":"paroon","e":"yesterday","c":"adv."}}}},{"key":0.35863341169816,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11707,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"fem","genderCanChange":true,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.028227454947787223,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14480,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.9914022242777141,
+        block: {
+          type: "AP",
+          selection: {
+            type: "adverb",
+            entry: {
+              ts: 1527815160,
+              i: 2394,
+              p: "پرون",
+              f: "paroon",
+              g: "paroon",
+              e: "yesterday",
+              c: "adv.",
+            },
+          },
+        },
+      },
+      {
+        key: 0.35863341169816,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812881,
+                i: 11707,
+                p: "ماشوم",
+                f: "maashoom",
+                g: "maashoom",
+                e: "child, kid",
+                c: "n. m. anim. unisex",
+                ec: "child",
+                ep: "children",
+              },
+              gender: "fem",
+              genderCanChange: true,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.028227454947787223,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815399,
+          i: 14480,
+          p: "وهل",
+          f: "wahul",
+          g: "wahul",
+          e: "to hit",
+          c: "v. trans.",
+          tppp: "واهه",
+          tppf: "waahu",
+          ec: "hit,hits,hitting,hit,hit",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>

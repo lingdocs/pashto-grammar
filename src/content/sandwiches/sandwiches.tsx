@@ -1,152 +1,485 @@
-import {
-    Types as T,
-} from "@lingdocs/ps-react";
+import { Types as T } from "@lingdocs/ps-react";
 
 type SandwichInfo = {
-    pre?: T.PsString,
-    post?: T.PsString,
-    e: string,
-    examples: (T.PsJSX | T.PsString)[]
-}
+  pre?: T.PsString;
+  post?: T.PsString;
+  e: string;
+  examples: (T.PsJSX | T.PsString)[];
+};
 
 const sandwiches: SandwichInfo[] = [
-    {
-        pre: {p: "په", f: "pu"},
-        post: {p: "کې", f: "ke"},
-        e: "in / at",
-        examples: [
-            {
-                p: <>زه <u><strong>په</strong> کور <strong>کې</strong></u> یم</>,
-                f: <>zu <u><strong>pu</strong> kor <strong>ke</strong></u> yum</>,
-                e: <>I'm <u><strong>at</strong> home</u></>,
-            },
-            {
-                p: <>هغه <u><strong>په</strong> پارک <strong>کې</strong></u> دی</>,
-                f: <>haghá <u><strong>pu</strong> paark <strong>ke</strong></u> dey</>,
-                e: <>He's <u><strong>in</strong> the park</u></>,
-            },
-            {
-                p: <>مونږ <u><strong>په</strong> افغانستان <strong>کې</strong></u> اوسېږو</>,
-                f: <>moonG <u><strong>pu</strong> afghaanistaan <strong>ke</strong></u> oseGoo</>,
-                e: <>We live <u><strong>in</strong> Afghanistan</u></>,
-            },
-        ],
-    },
-    {
-        post: { p: "ته", f: "ta" },
-        e: "to / towards",
-        examples: [
-            {
-                p: <>زه <u><strong>ښار</strong> ته</u> ځم</>,    
-                f: <>zu <u><strong>xaar</strong> ta</u> dzum</>,
-                e: <>I'm going <u><strong>to</strong> the city</u></>,
-            },
-            {
-                p: <><u><strong>ما</strong> ته</u> وګوره</>,
-                f: <><u><strong>maa</strong> ta</u> óogora</>,
-                e: <>Look <u>at <strong>me</strong></u></>,
-            },
-        ],
-    },
-    {
-        pre: { p: "د", f: "du" },
-        e: "of / 's",
-        examples: [
-            {
-                p: <><u><strong>د</strong> یوسف</u> کور هلته دی</>,
-                f: <><u><strong>du</strong> yoosuf</u> kor halta dey</>,
-                e: <><u>Yousuf<strong>'s</strong></u> house is there</>,
-            },
-            {
-                p: <>مونږ <u><strong>د</strong> پېشور</u> یو</>,
-                f: <>moonG <u><strong>du</strong> pexawar</u> yoo</>,
-                e: <>We are <u><strong>of</strong> Peshawer</u> (ie. We are from Peshawer)</>,
-            },
-            {
-                p: <>دا خوراک <u><strong>د</strong> خوړلو</u> نه دی</>,
-                f: <>daa khoraak <u><strong>du</strong> khoRulo</u> nu dey</>,
-                e: <>That food is not <u>of eating</u> (ie. It's unfit for eating)</>,
-            },
-        ],
-    },
-    // TODO: ADD په سره
-    {
-        pre: { p: "له", f: "la" },
-        post: { p: "سره", f: "sara" },
-        e: "with",
-        examples: [
-            {
-                p: <>هغه <u><strong>له</strong> احمد <strong>سره</strong></u> دی</>,
-                f: <>haghá <u><strong>la</strong> ahmad <strong>sara</strong></u> dey</>,
-                e: <>He is <u><strong>with</strong> Ahmed</u>.</>,
-            },
-            {
-                p: <>ته <u><strong>له</strong> ما <strong>سره</strong></u> ځې؟</>,
-                f: <>tu <u><strong>la</strong> maa <strong>sara</strong></u> dze?</>,
-                e: <>Will you go <u><strong>with</strong> me</u>?</>,
-            },
-        ],
-    },
-    {
-        pre: { p: "د", f: "du" },
-        post: { p: "دپاره", f: "dupaara" },
-        e: "for",
-        examples: [
-            {
-                p: <>دا <u><strong>د</strong> هغې <strong>دپاره</strong></u> دی</>,
-                f: <>daa <u><strong>du</strong> haghé <strong>dupaara</strong></u> dey</>,
-                e: <>This is <u><strong>for</strong> her</u></>,
-            },
-        ],
-    },
-    {
-        pre: { p: "پر", f: "pur" },
-        post: { p: "باندې", f: "baande" },
-        e: "on",
-        examples: [
-            {
-                p: <>کتاب <u><strong>پر</strong> مېز <strong>باندې</strong></u> دی</>,
-                f: <>kitáab <u><strong>pur</strong> mez <strong>baande</strong></u> dey</>,
-                e: <>The book is <u><strong>on</strong> the table</u></>,
-            },
-        ],
-    },
-    {
-        pre: { p: "د", f: "du" },
-        post: { p: "په اړه", f: "pu aRa" },
-        e: "about / concerning",
-        examples: [
-            {
-                p: <><u><strong>د</strong> تعلیم <strong>په اړه</strong></u> خبرې کوو</>,
-                f: <><u><strong>du</strong> taleem <strong>pu aRa</strong></u> khabure kawoo</>,
-                e: <>We are talking <u><strong>about</strong> education</u></>,
-            },
-        ],
-    },
-    {
-        pre: { p: "د", f: "du" },
-        post: { p: "په بارې کې", f: "pu baare ke" },
-        e: "about / concerning",
-        examples: [
-            {
-                p: <><u><strong>د</strong> تعلیم <strong>په بارې کې</strong></u> خبرې کوو</>,
-                f: <><u><strong>du</strong> taleem <strong>pu baare ke</strong></u> khabure kawoo</>,
-                e: <>We are talking <u><strong>about</strong> education</u></>,
-            },
-        ],
-    },
-    {
-        pre: { p: "پر", f: "pur" },
-        post: { p: "سربېره", f: "sărbera" },
-        e: "in addition to, along with",
-        examples: [
-            {
-                p: <><u><strong>پر</strong> وچکالۍ <strong>سربېره</strong></u> دلته جنګ هم شته</>,
-                f: <><u><strong>pur</strong> wuchkaaluy <strong>sărbera</strong></u> dălta jang hum shta</>,
-                e: <><u><strong>In addition to</strong> drought</u>, there is also war here</>,
-            },
-        ],
-    },
+  {
+    pre: { p: "په", f: "pu" },
+    post: { p: "کې", f: "ke" },
+    e: "in / at",
+    examples: [
+      {
+        p: (
+          <>
+            زه{" "}
+            <u>
+              <strong>په</strong> کور <strong>کې</strong>
+            </u>{" "}
+            یم
+          </>
+        ),
+        f: (
+          <>
+            zu{" "}
+            <u>
+              <strong>pu</strong> kor <strong>ke</strong>
+            </u>{" "}
+            yum
+          </>
+        ),
+        e: (
+          <>
+            I'm{" "}
+            <u>
+              <strong>at</strong> home
+            </u>
+          </>
+        ),
+      },
+      {
+        p: (
+          <>
+            هغه{" "}
+            <u>
+              <strong>په</strong> پارک <strong>کې</strong>
+            </u>{" "}
+            دی
+          </>
+        ),
+        f: (
+          <>
+            haghá{" "}
+            <u>
+              <strong>pu</strong> paark <strong>ke</strong>
+            </u>{" "}
+            day
+          </>
+        ),
+        e: (
+          <>
+            He's{" "}
+            <u>
+              <strong>in</strong> the park
+            </u>
+          </>
+        ),
+      },
+      {
+        p: (
+          <>
+            مونږ{" "}
+            <u>
+              <strong>په</strong> افغانستان <strong>کې</strong>
+            </u>{" "}
+            اوسېږو
+          </>
+        ),
+        f: (
+          <>
+            moonG{" "}
+            <u>
+              <strong>pu</strong> afghaanistaan <strong>ke</strong>
+            </u>{" "}
+            oseGoo
+          </>
+        ),
+        e: (
+          <>
+            We live{" "}
+            <u>
+              <strong>in</strong> Afghanistan
+            </u>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    post: { p: "ته", f: "ta" },
+    e: "to / towards",
+    examples: [
+      {
+        p: (
+          <>
+            زه{" "}
+            <u>
+              <strong>ښار</strong> ته
+            </u>{" "}
+            ځم
+          </>
+        ),
+        f: (
+          <>
+            zu{" "}
+            <u>
+              <strong>xaar</strong> ta
+            </u>{" "}
+            dzum
+          </>
+        ),
+        e: (
+          <>
+            I'm going{" "}
+            <u>
+              <strong>to</strong> the city
+            </u>
+          </>
+        ),
+      },
+      {
+        p: (
+          <>
+            <u>
+              <strong>ما</strong> ته
+            </u>{" "}
+            وګوره
+          </>
+        ),
+        f: (
+          <>
+            <u>
+              <strong>maa</strong> ta
+            </u>{" "}
+            óogora
+          </>
+        ),
+        e: (
+          <>
+            Look{" "}
+            <u>
+              at <strong>me</strong>
+            </u>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    pre: { p: "د", f: "du" },
+    e: "of / 's",
+    examples: [
+      {
+        p: (
+          <>
+            <u>
+              <strong>د</strong> یوسف
+            </u>{" "}
+            کور هلته دی
+          </>
+        ),
+        f: (
+          <>
+            <u>
+              <strong>du</strong> yoosuf
+            </u>{" "}
+            kor halta day
+          </>
+        ),
+        e: (
+          <>
+            <u>
+              Yousuf<strong>'s</strong>
+            </u>{" "}
+            house is there
+          </>
+        ),
+      },
+      {
+        p: (
+          <>
+            مونږ{" "}
+            <u>
+              <strong>د</strong> پېشور
+            </u>{" "}
+            یو
+          </>
+        ),
+        f: (
+          <>
+            moonG{" "}
+            <u>
+              <strong>du</strong> pexawar
+            </u>{" "}
+            yoo
+          </>
+        ),
+        e: (
+          <>
+            We are{" "}
+            <u>
+              <strong>of</strong> Peshawer
+            </u>{" "}
+            (ie. We are from Peshawer)
+          </>
+        ),
+      },
+      {
+        p: (
+          <>
+            دا خوراک{" "}
+            <u>
+              <strong>د</strong> خوړلو
+            </u>{" "}
+            نه دی
+          </>
+        ),
+        f: (
+          <>
+            daa khoraak{" "}
+            <u>
+              <strong>du</strong> khoRulo
+            </u>{" "}
+            nu day
+          </>
+        ),
+        e: (
+          <>
+            That food is not <u>of eating</u> (ie. It's unfit for eating)
+          </>
+        ),
+      },
+    ],
+  },
+  // TODO: ADD په سره
+  {
+    pre: { p: "له", f: "la" },
+    post: { p: "سره", f: "sara" },
+    e: "with",
+    examples: [
+      {
+        p: (
+          <>
+            هغه{" "}
+            <u>
+              <strong>له</strong> احمد <strong>سره</strong>
+            </u>{" "}
+            دی
+          </>
+        ),
+        f: (
+          <>
+            haghá{" "}
+            <u>
+              <strong>la</strong> ahmad <strong>sara</strong>
+            </u>{" "}
+            day
+          </>
+        ),
+        e: (
+          <>
+            He is{" "}
+            <u>
+              <strong>with</strong> Ahmed
+            </u>
+            .
+          </>
+        ),
+      },
+      {
+        p: (
+          <>
+            ته{" "}
+            <u>
+              <strong>له</strong> ما <strong>سره</strong>
+            </u>{" "}
+            ځې؟
+          </>
+        ),
+        f: (
+          <>
+            tu{" "}
+            <u>
+              <strong>la</strong> maa <strong>sara</strong>
+            </u>{" "}
+            dze?
+          </>
+        ),
+        e: (
+          <>
+            Will you go{" "}
+            <u>
+              <strong>with</strong> me
+            </u>
+            ?
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    pre: { p: "د", f: "du" },
+    post: { p: "دپاره", f: "dupaara" },
+    e: "for",
+    examples: [
+      {
+        p: (
+          <>
+            دا{" "}
+            <u>
+              <strong>د</strong> هغې <strong>دپاره</strong>
+            </u>{" "}
+            دی
+          </>
+        ),
+        f: (
+          <>
+            daa{" "}
+            <u>
+              <strong>du</strong> haghé <strong>dupaara</strong>
+            </u>{" "}
+            day
+          </>
+        ),
+        e: (
+          <>
+            This is{" "}
+            <u>
+              <strong>for</strong> her
+            </u>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    pre: { p: "پر", f: "pur" },
+    post: { p: "باندې", f: "baande" },
+    e: "on",
+    examples: [
+      {
+        p: (
+          <>
+            کتاب{" "}
+            <u>
+              <strong>پر</strong> مېز <strong>باندې</strong>
+            </u>{" "}
+            دی
+          </>
+        ),
+        f: (
+          <>
+            kitáab{" "}
+            <u>
+              <strong>pur</strong> mez <strong>baande</strong>
+            </u>{" "}
+            day
+          </>
+        ),
+        e: (
+          <>
+            The book is{" "}
+            <u>
+              <strong>on</strong> the table
+            </u>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    pre: { p: "د", f: "du" },
+    post: { p: "په اړه", f: "pu aRa" },
+    e: "about / concerning",
+    examples: [
+      {
+        p: (
+          <>
+            <u>
+              <strong>د</strong> تعلیم <strong>په اړه</strong>
+            </u>{" "}
+            خبرې کوو
+          </>
+        ),
+        f: (
+          <>
+            <u>
+              <strong>du</strong> taleem <strong>pu aRa</strong>
+            </u>{" "}
+            khabure kawoo
+          </>
+        ),
+        e: (
+          <>
+            We are talking{" "}
+            <u>
+              <strong>about</strong> education
+            </u>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    pre: { p: "د", f: "du" },
+    post: { p: "په بارې کې", f: "pu baare ke" },
+    e: "about / concerning",
+    examples: [
+      {
+        p: (
+          <>
+            <u>
+              <strong>د</strong> تعلیم <strong>په بارې کې</strong>
+            </u>{" "}
+            خبرې کوو
+          </>
+        ),
+        f: (
+          <>
+            <u>
+              <strong>du</strong> taleem <strong>pu baare ke</strong>
+            </u>{" "}
+            khabure kawoo
+          </>
+        ),
+        e: (
+          <>
+            We are talking{" "}
+            <u>
+              <strong>about</strong> education
+            </u>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    pre: { p: "پر", f: "pur" },
+    post: { p: "سربېره", f: "sărbera" },
+    e: "in addition to, along with",
+    examples: [
+      {
+        p: (
+          <>
+            <u>
+              <strong>پر</strong> وچکالۍ <strong>سربېره</strong>
+            </u>{" "}
+            دلته جنګ هم شته
+          </>
+        ),
+        f: (
+          <>
+            <u>
+              <strong>pur</strong> wuchkaaluy <strong>sărbera</strong>
+            </u>{" "}
+            dălta jang hum shta
+          </>
+        ),
+        e: (
+          <>
+            <u>
+              <strong>In addition to</strong> drought
+            </u>
+            , there is also war here
+          </>
+        ),
+      },
+    ],
+  },
 ];
 
 export default sandwiches;
@@ -204,7 +537,7 @@ export default sandwiches;
                 p: {
                     before: {p:"دا وړاندېز", f:"daa wRaandez"},
                     mid: {p:"شرط", f:"shart"},
-                    after: {p:"کړی دی", f:"kuRey dey"},
+                    after: {p:"کړی دی", f:"kuRay day"},
                 },
                 e: {
                     before: "He's made that offer ",
@@ -245,7 +578,7 @@ export default sandwiches;
             {
                 p: {
                     before: {p:"", f:""},
-                    mid: {p:"درېو کالو", f:"dreyo kaalo"},
+                    mid: {p:"درېو کالو", f:"dre`yo kaalo"},
                     after: {p:"کار کوم", f:"kaar kawum"},
                 },
                 e: {
@@ -267,7 +600,7 @@ export default sandwiches;
                 p: {
                     before: {p:"کتاب", f:"kitaab"},
                     mid: {p:"مېز", f:"mez"},
-                    after: {p:"دی", f:"dey"},
+                    after: {p:"دی", f:"day"},
                 },
                 e: {
                     before: "The book is ",
@@ -288,7 +621,7 @@ export default sandwiches;
                 p: {
                     before: {p:"کتاب", f:"kitaab"},
                     mid: {p:"مېز", f:"mez"},
-                    after: {p:"دی", f:"dey"},
+                    after: {p:"دی", f:"day"},
                 },
                 e: {
                     before: "The book is ",

@@ -2,12 +2,7 @@
 title: Unisex Nouns
 ---
 
-import {
-    Examples,
-    InlinePs,
-    defaultTextOptions as opts,
-} from "@lingdocs/ps-react";
-import Table from "../../components/Table";
+import { InlinePs, defaultTextOptions as opts } from "@lingdocs/ps-react";
 import Link from "../../components/Link";
 import GenderTable from "../../components/GenderTable";
 import { unisexNounGame } from "../../games/games";
@@ -23,203 +18,213 @@ To make the male and female forms you just follow the <Link to="/inflection/infl
 
 Just like with other words following the <Link to="/inflection/inflection-patterns/#1-basic">basic pattern</Link>, you add an <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} /> on the end to make them feminine.
 
-<GenderTable rows={[
+<GenderTable
+  rows={[
     {
-        masc: {
-            ex: { p: "ډاکټر", f: "DakTár", e: "male doctor 👨‍⚕️" },
-        },
-        fem: {
-            ex: { p: "ډاکټره", f: "DakTára", e: "female doctor 👩‍⚕️" },
-        },
+      masc: {
+        ex: { p: "ډاکټر", f: "DakTár", e: "male doctor 👨‍⚕️" },
+      },
+      fem: {
+        ex: { p: "ډاکټره", f: "DakTára", e: "female doctor 👩‍⚕️" },
+      },
     },
     {
-        masc: {
-            ex: {p:"نرس", f:"nurs", e:"male nurse"},
-        },  
-        fem: {
-            ex: {p: "نرسه", f:"nursa", e: "female nurse" },
-        },
+      masc: {
+        ex: { p: "نرس", f: "nurs", e: "male nurse" },
+      },
+      fem: {
+        ex: { p: "نرسه", f: "nursa", e: "female nurse" },
+      },
     },
     {
-        masc: {
-            ex: { p: "اتل", f: "atal", e: "male hero" },
-        },
-        fem: {
-            ex: { p: "اتله", f: "atala", e: "female hero" },
-        },
+      masc: {
+        ex: { p: "اتل", f: "atal", e: "male hero" },
+      },
+      fem: {
+        ex: { p: "اتله", f: "atala", e: "female hero" },
+      },
     },
-]} />
+  ]}
+/>
 
-### 2. Words ending in an unstressed ی - ey
+### 2. Words ending in an unstressed ی - ay
 
-The feminine form the <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} /> on the end becomes <InlinePs opts={opts} ps={{ p: "ې", f: "e" }} />. See <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ey--">pattern</Link>.
+The feminine form the <InlinePs opts={opts} ps={{ p: "ی", f: "ay" }} /> on the end becomes <InlinePs opts={opts} ps={{ p: "ې", f: "e" }} />. See <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-inlineps-optsopts-ps-p-ی-f-ay--">pattern</Link>.
 
-<GenderTable rows={[
+<GenderTable
+  rows={[
     {
-        masc: {
-            ex: {
-                p: "ملګری",
-                f: "malgúrey",
-                e: "male friend 👦",
-            },
+      masc: {
+        ex: {
+          p: "ملګری",
+          f: "malgúray",
+          e: "male friend 👦",
         },
-        fem: {
-            ex: {
-                p: "ملګرې",
-                f: "malgúre",
-                e: "female friend 👧",
-            },
+      },
+      fem: {
+        ex: {
+          p: "ملګرې",
+          f: "malgúre",
+          e: "female friend 👧",
         },
+      },
     },
     {
-        masc: {
-            ex: {p: "ښوونکی", f:"xUwóonkey", e: "male teacher 👨‍🏫" },
-        },
-        fem: {
-            ex: { p: "ښوونکې", f: "xUwóonke", e: "female teacher 👩‍🏫" },
-        },
+      masc: {
+        ex: { p: "ښوونکی", f: "xUwóonkay", e: "male teacher 👨‍🏫" },
+      },
+      fem: {
+        ex: { p: "ښوونکې", f: "xUwóonke", e: "female teacher 👩‍🏫" },
+      },
     },
-]} />
+  ]}
+/>
 
-### 3. Words ending in a stressed ی - éy
+### 3. Words ending in a stressed ی - áy
 
-If the accent comes on the end of the word, the femine form is a little different. With these words the <InlinePs opts={opts} ps={{ p: "ی", f: "éy" }} /> on the end becomes <InlinePs opts={opts} ps={{ p: "ۍ", f: "úy" }} />. See <Link to="/inflection/inflection-patterns/#3-words-ending-in-a-stressed-inlineps-optsopts-ps-p-ی-f-éy--">pattern</Link>.
+If the accent comes on the end of the word, the femine form is a little different. With these words the <InlinePs opts={opts} ps={{ p: "ی", f: "áy" }} /> on the end becomes <InlinePs opts={opts} ps={{ p: "ۍ", f: "úy" }} />. See <Link to="/inflection/inflection-patterns/#3-words-ending-in-a-stressed-inlineps-optsopts-ps-p-ی-f-áy--">pattern</Link>.
 
-<GenderTable rows={[
+<GenderTable
+  rows={[
     {
-        masc: {
-            ex: {
-                p: "پاکستانی",
-                f: "paakistaanéy",
-                e: "A Pakistani man",
-            },
+      masc: {
+        ex: {
+          p: "پاکستانی",
+          f: "paakistaanáy",
+          e: "A Pakistani man",
         },
-        fem: {
-            ex: {
-                p: "پاکستانۍ",
-                f: "paakistaanúy",
-                e: "A Pakistani woman",
-            },
+      },
+      fem: {
+        ex: {
+          p: "پاکستانۍ",
+          f: "paakistaanúy",
+          e: "A Pakistani woman",
         },
+      },
     },
     {
-        masc: {
-            ex: {p: "لمسی", f: "lmaséy", e: "grandson 👦"},
-        },
-        fem: {
-            ex: {p: "لمسۍ", f: "lmasúy", e: "granddaughter 👧"},
-        },
+      masc: {
+        ex: { p: "لمسی", f: "lmasáy", e: "grandson 👦" },
+      },
+      fem: {
+        ex: { p: "لمسۍ", f: "lmasúy", e: "granddaughter 👧" },
+      },
     },
-]} />
+  ]}
+/>
 
 ### 4. Words with the "Pashtoon" pattern
 
 See <Link to="/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern">pattern</Link>.
 
-<GenderTable rows={[
+<GenderTable
+  rows={[
     {
-        masc: {
-            ex: {
-                p: "پښتون",
-                f: "puxtóon",
-                e: "a male Pashtun",
-            },
+      masc: {
+        ex: {
+          p: "پښتون",
+          f: "puxtóon",
+          e: "a male Pashtun",
         },
-        fem: {
-            ex: {
-                p: "پښتنه",
-                f: "puxtaná",
-                e: "a female Pashtun",
-            },
+      },
+      fem: {
+        ex: {
+          p: "پښتنه",
+          f: "puxtaná",
+          e: "a female Pashtun",
         },
+      },
     },
     {
-        masc: {
-            ex: {
-                p: "شپون",
-                f: "shpoon",
-                e: "male shepherd",
-            },
+      masc: {
+        ex: {
+          p: "شپون",
+          f: "shpoon",
+          e: "male shepherd",
         },
-        fem: {
-            ex: {
-                p: "شپنه",
-                f: "shpaná",
-                e: "female shepherd",
-            },
-        }
+      },
+      fem: {
+        ex: {
+          p: "شپنه",
+          f: "shpaná",
+          e: "female shepherd",
+        },
+      },
     },
     {
-        masc: {
-            ex: {
-                p: "مېلمه",
-                f: "melmá",
-                e: "a male guest",
-            },
+      masc: {
+        ex: {
+          p: "مېلمه",
+          f: "melmá",
+          e: "a male guest",
         },
-        fem: {
-            ex: {
-                p: "مېلمنه",
-                f: "melmaná",
-                e: "a female guest",
-            },
+      },
+      fem: {
+        ex: {
+          p: "مېلمنه",
+          f: "melmaná",
+          e: "a female guest",
         },
+      },
     },
     {
-        masc: {
-            ex: {
-                p: "کوربه",
-                f: "korbá",
-                e: "male host",
-            },
+      masc: {
+        ex: {
+          p: "کوربه",
+          f: "korbá",
+          e: "male host",
         },
-        fem: {
-            ex: {
-                p: "کوربنه",
-                f: "korbaná",
-                e: "female host",
-            },
-        }
-    }
-]} />
+      },
+      fem: {
+        ex: {
+          p: "کوربنه",
+          f: "korbaná",
+          e: "female host",
+        },
+      },
+    },
+  ]}
+/>
 
 ### 5. Shorter words that squish
 
 See <Link to="/inflection/inflection-patterns/#5-shorter-words-that-squish">pattern</Link>.
 
-<GenderTable rows={[
+<GenderTable
+  rows={[
     {
-        masc: {
-            ex: {
-                p: "غل",
-                f: "ghul",
-                e: "male thief",
-            },
+      masc: {
+        ex: {
+          p: "غل",
+          f: "ghul",
+          e: "male thief",
         },
-        fem: {
-            ex: {
-                p: "غله",
-                f: "ghla",
-                e: "female thief",
-            },
-        }
+      },
+      fem: {
+        ex: {
+          p: "غله",
+          f: "ghla",
+          e: "female thief",
+        },
+      },
     },
     {
-        masc: {
-            ex: {
-                p: "خر",
-                f: "khur",
-                e: "male donkey",
-            },
+      masc: {
+        ex: {
+          p: "خر",
+          f: "khur",
+          e: "male donkey",
         },
-        fem: {
-            ex: {
-                p: "خره",
-                f: "khra",
-                e: "female donkey",
-            },
-        }
-    }
-]} />
+      },
+      fem: {
+        ex: {
+          p: "خره",
+          f: "khra",
+          e: "female donkey",
+        },
+      },
+    },
+  ]}
+/>
 
 <GameDisplay record={unisexNounGame} />

@@ -3,17 +3,14 @@ title: Dynamic Compounds
 ---
 
 import {
-    defaultTextOptions as opts,
-    Examples,
-    InlinePs,
-    RootsAndStems,
-    getVerbInfo,
+  defaultTextOptions as opts,
+  Examples,
+  InlinePs,
 } from "@lingdocs/ps-react";
-import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead, Camera, Video, Complement, BlockTerm, BlocksIcon } from "../../components/terms-links";
+import { KingIcon } from "../../components/terms-links";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
-import Formula from "../../components/formula/Formula";
-import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+import EditableVPEx from "../../components/phrase-diagram/EditableVPEx";
 import VideoPlayer from "../../components/VideoPlayer";
 import BasicBlocks from "../../components/BasicBlocks";
 import Image from "../../components/Image";
@@ -23,16 +20,19 @@ import helperVerbsSummaryChartDynamic from "./helper-verbs-summary-chart-dynamic
 
 Dynamic compounds are actually a lot simpler than <Link to="/compound-verbs/stative-compounds/">stative compounds</Link>. They're just made up of an helper verb--often <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to do" }} />--and an action (noun) that gets done.
 
-<BasicBlocks large blocks={[
+<BasicBlocks
+  large
+  blocks={[
     {
-        bottom: "Noun",
-        inside: "Action",
+      bottom: "Noun",
+      inside: "Action",
     },
     "plus",
     {
-        bottom: "Helper Verb",
+      bottom: "Helper Verb",
     },
-]} />
+  ]}
+/>
 
 For helper verbs, we will use the **dynamic** <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "" }} /> / <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "" }} /> verbs, as well as some others.
 
@@ -40,68 +40,633 @@ For helper verbs, we will use the **dynamic** <InlinePs opts={opts} ps={{ p: "ک
 
 ## Transitive Dynamic Compounds
 
-Most of the time you will see dynamic compounds that are *transitive*. And the great thing about them is that they **bring their own object with them!** The noun that comes along with the compound is always the object of the phrase. For example the dynamic compound verb <InlinePs opts={opts} ps={{ p: "کار کول", f: "kaar kawul", e: "to work" }} /> is made up of these two parts.
+Most of the time you will see dynamic compounds that are _transitive_. And the great thing about them is that they **bring their own object with them!** The noun that comes along with the compound is always the object of the phrase. For example the dynamic compound verb <InlinePs opts={opts} ps={{ p: "کار کول", f: "kaar kawul", e: "to work" }} /> is made up of these two parts.
 
-<BasicBlocks large blocks={[
+<BasicBlocks
+  large
+  blocks={[
     {
-        bottom: "Noun",
-        inside: <div>
-            <div>کار</div>
-            <div>work</div>
-        </div>,
+      bottom: "Noun",
+      inside: (
+        <div>
+          <div>کار</div>
+          <div>work</div>
+        </div>
+      ),
     },
     "+",
     {
-        bottom: "Helper Verb",
-        inside: <div>
-            <div>کول</div>
-            <div>to do</div>
-        </div>,
+      bottom: "Helper Verb",
+      inside: (
+        <div>
+          <div>کول</div>
+          <div>to do</div>
+        </div>
+      ),
     },
-]} />
+  ]}
+/>
 
 Then when we use this in a phrase we see that **the noun in the compound functions as the object of the phrase**.
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.8044672663678827,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.10318373385739488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9890,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812732,"i":9892,"p":"کار کول","f":"kaar kawul","g":"kaarkawul","e":"to work","c":"v. dyn. comp. trans.","l":1527822084,"ec":"work"},"complement":{"ts":1527822084,"i":9890,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."}},"dynAuxVerb":{"entry":{"i":10058,"ts":1527812752,"g":"","p":"کول","f":"kawul","e":"to do (an action or activity)","c":"v. trans. irreg. dyn. aux.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8044672663678827,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.10318373385739488,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527822084,
+                i: 9890,
+                p: "کار",
+                f: "kaar",
+                g: "kaar",
+                e: "work, job, business, stuff to do",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812732,
+          i: 9892,
+          p: "کار کول",
+          f: "kaar kawul",
+          g: "kaarkawul",
+          e: "to work",
+          c: "v. dyn. comp. trans.",
+          l: 1527822084,
+          ec: "work",
+        },
+        complement: {
+          ts: 1527822084,
+          i: 9890,
+          p: "کار",
+          f: "kaar",
+          g: "kaar",
+          e: "work, job, business, stuff to do",
+          c: "n. m.",
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          i: 10058,
+          ts: 1527812752,
+          g: "",
+          p: "کول",
+          f: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans. irreg. dyn. aux.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 There's no strange welding or squishing or any of that business that we saw with stative compounds. All we have is a block for the object that is included in the compound, and helper verb.
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.8044672663678827,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.10318373385739488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9890,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812732,"i":9892,"p":"کار کول","f":"kaar kawul","g":"kaarkawul","e":"to work","c":"v. dyn. comp. trans.","l":1527822084,"ec":"work"},"complement":{"ts":1527822084,"i":9890,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."}},"dynAuxVerb":{"entry":{"i":10058,"ts":1527812752,"g":"","p":"کول","f":"kawul","e":"to do (an action or activity)","c":"v. trans. irreg. dyn. aux.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8044672663678827,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.10318373385739488,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527822084,
+                i: 9890,
+                p: "کار",
+                f: "kaar",
+                g: "kaar",
+                e: "work, job, business, stuff to do",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812732,
+          i: 9892,
+          p: "کار کول",
+          f: "kaar kawul",
+          g: "kaarkawul",
+          e: "to work",
+          c: "v. dyn. comp. trans.",
+          l: 1527822084,
+          ec: "work",
+        },
+        complement: {
+          ts: 1527822084,
+          i: 9890,
+          p: "کار",
+          f: "kaar",
+          g: "kaar",
+          e: "work, job, business, stuff to do",
+          c: "n. m.",
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          i: 10058,
+          ts: 1527812752,
+          g: "",
+          p: "کول",
+          f: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans. irreg. dyn. aux.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 And now we see that <InlinePs opts={opts} ps={{ p: "کول", f: "kawul", e: "to do" }} /> takes an <InlinePs opts={opts} ps={{ p: "و", f: "óo", e: "" }} /> prefix, just like normal verbs. So whenever you see <InlinePs opts={opts} ps={{ p: "کول", f: "kawul" }} /> with an <InlinePs opts={opts} ps={{ p: "و", f: "óo", e: "" }} /> prefix, you know it's a dynamic compound, and not stative.
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.5608245556287987,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.47307113655502064,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815184,"i":2782,"p":"پوښتنه","f":"poxtuna","g":"poxtuna","e":"question","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527817312,"i":2783,"p":"پوښتنه کول","f":"poxtuna kawul","g":"poxtunakawul","e":"to ask","c":"v. dyn. comp. trans.","l":1527815184,"ec":"ask"},"complement":{"ts":1527815184,"i":2782,"p":"پوښتنه","f":"poxtuna","g":"poxtuna","e":"question","c":"n. f."}},"dynAuxVerb":{"entry":{"i":10058,"ts":1527812752,"g":"","p":"کول","f":"kawul","e":"to do (an action or activity)","c":"v. trans. irreg. dyn. aux.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true}},"verbTense":"perfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.5608245556287987,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 5, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.47307113655502064,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815184,
+                i: 2782,
+                p: "پوښتنه",
+                f: "poxtuna",
+                g: "poxtuna",
+                e: "question",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527817312,
+          i: 2783,
+          p: "پوښتنه کول",
+          f: "poxtuna kawul",
+          g: "poxtunakawul",
+          e: "to ask",
+          c: "v. dyn. comp. trans.",
+          l: 1527815184,
+          ec: "ask",
+        },
+        complement: {
+          ts: 1527815184,
+          i: 2782,
+          p: "پوښتنه",
+          f: "poxtuna",
+          g: "poxtuna",
+          e: "question",
+          c: "n. f.",
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          i: 10058,
+          ts: 1527812752,
+          g: "",
+          p: "کول",
+          f: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans. irreg. dyn. aux.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+        },
+      },
+      verbTense: "perfectiveFuture",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 Remember that with these compounds the **object is always the noun that comes in the compound**, so with the past tense the verb will always agree with this object. (In past tense transitive verbs, <Link to="/phrase-structure/vp/#3-with-past-tense-transitive-verbs-">the object is king</Link> <KingIcon />)
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.5608245556287987,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.47307113655502064,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815184,"i":2782,"p":"پوښتنه","f":"poxtuna","g":"poxtuna","e":"question","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527817312,"i":2783,"p":"پوښتنه کول","f":"poxtuna kawul","g":"poxtunakawul","e":"to ask","c":"v. dyn. comp. trans.","l":1527815184,"ec":"ask"},"complement":{"ts":1527815184,"i":2782,"p":"پوښتنه","f":"poxtuna","g":"poxtuna","e":"question","c":"n. f."}},"dynAuxVerb":{"entry":{"i":10058,"ts":1527812752,"g":"","p":"کول","f":"kawul","e":"to do (an action or activity)","c":"v. trans. irreg. dyn. aux.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.5608245556287987,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 5, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.47307113655502064,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815184,
+                i: 2782,
+                p: "پوښتنه",
+                f: "poxtuna",
+                g: "poxtuna",
+                e: "question",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527817312,
+          i: 2783,
+          p: "پوښتنه کول",
+          f: "poxtuna kawul",
+          g: "poxtunakawul",
+          e: "to ask",
+          c: "v. dyn. comp. trans.",
+          l: 1527815184,
+          ec: "ask",
+        },
+        complement: {
+          ts: 1527815184,
+          i: 2782,
+          p: "پوښتنه",
+          f: "poxtuna",
+          g: "poxtuna",
+          e: "question",
+          c: "n. f.",
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          i: 10058,
+          ts: 1527812752,
+          g: "",
+          p: "کول",
+          f: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans. irreg. dyn. aux.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.5608245556287987,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.47307113655502064,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815184,"i":2782,"p":"پوښتنه","f":"poxtuna","g":"poxtuna","e":"question","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527817312,"i":2783,"p":"پوښتنه کول","f":"poxtuna kawul","g":"poxtunakawul","e":"to ask","c":"v. dyn. comp. trans.","l":1527815184,"ec":"ask"},"complement":{"ts":1527815184,"i":2782,"p":"پوښتنه","f":"poxtuna","g":"poxtuna","e":"question","c":"n. f."}},"dynAuxVerb":{"entry":{"i":10058,"ts":1527812752,"g":"","p":"کول","f":"kawul","e":"to do (an action or activity)","c":"v. trans. irreg. dyn. aux.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.5608245556287987,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 5, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.47307113655502064,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815184,
+                i: 2782,
+                p: "پوښتنه",
+                f: "poxtuna",
+                g: "poxtuna",
+                e: "question",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527817312,
+          i: 2783,
+          p: "پوښتنه کول",
+          f: "poxtuna kawul",
+          g: "poxtunakawul",
+          e: "to ask",
+          c: "v. dyn. comp. trans.",
+          l: 1527815184,
+          ec: "ask",
+        },
+        complement: {
+          ts: 1527815184,
+          i: 2782,
+          p: "پوښتنه",
+          f: "poxtuna",
+          g: "poxtuna",
+          e: "question",
+          c: "n. f.",
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          i: 10058,
+          ts: 1527812752,
+          g: "",
+          p: "کول",
+          f: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans. irreg. dyn. aux.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.5608245556287987,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.47307113655502064,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815184,"i":2782,"p":"پوښتنه","f":"poxtuna","g":"poxtuna","e":"question","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527817312,"i":2783,"p":"پوښتنه کول","f":"poxtuna kawul","g":"poxtunakawul","e":"to ask","c":"v. dyn. comp. trans.","l":1527815184,"ec":"ask"},"complement":{"ts":1527815184,"i":2782,"p":"پوښتنه","f":"poxtuna","g":"poxtuna","e":"question","c":"n. f."}},"dynAuxVerb":{"entry":{"i":10058,"ts":1527812752,"g":"","p":"کول","f":"kawul","e":"to do (an action or activity)","c":"v. trans. irreg. dyn. aux.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.5608245556287987,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 6, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.47307113655502064,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815184,
+                i: 2782,
+                p: "پوښتنه",
+                f: "poxtuna",
+                g: "poxtuna",
+                e: "question",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527817312,
+          i: 2783,
+          p: "پوښتنه کول",
+          f: "poxtuna kawul",
+          g: "poxtunakawul",
+          e: "to ask",
+          c: "v. dyn. comp. trans.",
+          l: 1527815184,
+          ec: "ask",
+        },
+        complement: {
+          ts: 1527815184,
+          i: 2782,
+          p: "پوښتنه",
+          f: "poxtuna",
+          g: "poxtuna",
+          e: "question",
+          c: "n. f.",
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          i: 10058,
+          ts: 1527812752,
+          g: "",
+          p: "کول",
+          f: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans. irreg. dyn. aux.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "perfect",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ### Using other helper verbs
@@ -109,57 +674,324 @@ Remember that with these compounds the **object is always the noun that comes in
 There are a lot of dynamic compounds that use help verbs like <InlinePs opts={opts} ps={{ p: "وهل", f: "wahúl", e: "to hit" }} />, <InlinePs opts={opts} ps={{ p: "خوړل", f: "khoRúl", e: "to eat" }} />, <InlinePs opts={opts} ps={{ p: "ساتل", f: "saatúl", e: "" }} /> and a bunch of others.
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.2282887799187998,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.09221260732991587,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815805,"i":12827,"p":"منډه","f":"múnDa","g":"munDa","e":"run, running","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[],"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812939,"i":12830,"p":"منډې وهل","f":"munDe wahul","g":"munDewahul","e":"to run","c":"v. dyn. comp. trans. sing. or plur.","l":1527815805,"ec":"run,runs,running,ran,run"},"complement":{"ts":1527815805,"i":12827,"p":"منډه","f":"múnDa","g":"munDa","e":"run, running","c":"n. f."}},"dynAuxVerb":{"entry":{"ts":1527815399,"p":"وهل","f":"wahul","g":"","e":"to hit","c":"v. trans.","i":12183,"tppp":"واهه","tppf":"waahu"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.2282887799187998,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 6, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.09221260732991587,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815805,
+                i: 12827,
+                p: "منډه",
+                f: "múnDa",
+                g: "munDa",
+                e: "run, running",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812939,
+          i: 12830,
+          p: "منډې وهل",
+          f: "munDe wahul",
+          g: "munDewahul",
+          e: "to run",
+          c: "v. dyn. comp. trans. sing. or plur.",
+          l: 1527815805,
+          ec: "run,runs,running,ran,run",
+        },
+        complement: {
+          ts: 1527815805,
+          i: 12827,
+          p: "منډه",
+          f: "múnDa",
+          g: "munDa",
+          e: "run, running",
+          c: "n. f.",
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          ts: 1527815399,
+          p: "وهل",
+          f: "wahul",
+          g: "",
+          e: "to hit",
+          c: "v. trans.",
+          i: 12183,
+          tppp: "واهه",
+          tppf: "waahu",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 That's literally, "We're hitting (verb) runs (object)"
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.2282887799187998,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.09221260732991587,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815805,"i":12827,"p":"منډه","f":"múnDa","g":"munDa","e":"run, running","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[],"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812939,"i":12830,"p":"منډې وهل","f":"munDe wahul","g":"munDewahul","e":"to run","c":"v. dyn. comp. trans. sing. or plur.","l":1527815805,"ec":"run,runs,running,ran,run"},"complement":{"ts":1527815805,"i":12827,"p":"منډه","f":"múnDa","g":"munDa","e":"run, running","c":"n. f."}},"dynAuxVerb":{"entry":{"ts":1527815399,"p":"وهل","f":"wahul","g":"","e":"to hit","c":"v. trans.","i":12183,"tppp":"واهه","tppf":"waahu"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.2282887799187998,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 6, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.09221260732991587,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815805,
+                i: 12827,
+                p: "منډه",
+                f: "múnDa",
+                g: "munDa",
+                e: "run, running",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812939,
+          i: 12830,
+          p: "منډې وهل",
+          f: "munDe wahul",
+          g: "munDewahul",
+          e: "to run",
+          c: "v. dyn. comp. trans. sing. or plur.",
+          l: 1527815805,
+          ec: "run,runs,running,ran,run",
+        },
+        complement: {
+          ts: 1527815805,
+          i: 12827,
+          p: "منډه",
+          f: "múnDa",
+          g: "munDa",
+          e: "run, running",
+          c: "n. f.",
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          ts: 1527815399,
+          p: "وهل",
+          f: "wahul",
+          g: "",
+          e: "to hit",
+          c: "v. trans.",
+          i: 12183,
+          tppp: "واهه",
+          tppf: "waahu",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.12190484642898336,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":10,"distance":"far"}}}},{"key":0.4307469889296207,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527819087,"i":11684,"p":"ماته","f":"maata","g":"maata","e":"defeat","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"dynamicComplement":true}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527819089,"i":11685,"p":"ماته خوړل","f":"maata khoRul","g":"maatakhoRul","e":"to be defeated, beaten by someone","c":"v. dyn. comp. trans.","l":1527819087,"ec":"be","ep":"defeated"},"complement":{"ts":1527819087,"i":11684,"p":"ماته","f":"maata","g":"maata","e":"defeat","c":"n. f."}},"dynAuxVerb":{"entry":{"ts":1527812790,"p":"خوړل","f":"khoRul","g":"","e":"to eat, to bite","c":"v. trans.","i":4769,"psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":"dynamic","voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.12190484642898336,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 10, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.4307469889296207,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527819087,
+                i: 11684,
+                p: "ماته",
+                f: "maata",
+                g: "maata",
+                e: "defeat",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527819089,
+          i: 11685,
+          p: "ماته خوړل",
+          f: "maata khoRul",
+          g: "maatakhoRul",
+          e: "to be defeated, beaten by someone",
+          c: "v. dyn. comp. trans.",
+          l: 1527819087,
+          ec: "be",
+          ep: "defeated",
+        },
+        complement: {
+          ts: 1527819087,
+          i: 11684,
+          p: "ماته",
+          f: "maata",
+          g: "maata",
+          e: "defeat",
+          c: "n. f.",
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          ts: 1527812790,
+          p: "خوړل",
+          f: "khoRul",
+          g: "",
+          e: "to eat, to bite",
+          c: "v. trans.",
+          i: 4769,
+          psp: "خور",
+          psf: "khor",
+          tppp: "خوړ",
+          tppf: "khoR",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 Or literally, they ate (verb) defeat. (object)
 
 ### Attaching other actors
 
-We'll notice that these compounds include an object, and in Pashto **there can be one object in a sentence**. So what do we do when we have a verb like <InlinePs opts={opts} ps={{ p: "خدمت کول", f: "khidmat kawul", e: "to serve" }} /> but we want to say that we're serving *someone* (another object?)
+We'll notice that these compounds include an object, and in Pashto **there can be one object in a sentence**. So what do we do when we have a verb like <InlinePs opts={opts} ps={{ p: "خدمت کول", f: "khidmat kawul", e: "to serve" }} /> but we want to say that we're serving _someone_ (another object?)
 
-Well we have to attach the object to the phrase either as a possesor to the noun, or as an AP/Sandwich in the phrase. (Some might call this an *indirect object* but we'll avoid that term because it probably creates extra confusion.)
+Well we have to attach the object to the phrase either as a possesor to the noun, or as an AP/Sandwich in the phrase. (Some might call this an _indirect object_ but we'll avoid that term because it probably creates extra confusion.)
 
-For instance if we want to say "I will serve *the people*" we have to say something like "I will do service *of the people*" 
+For instance if we want to say "I will serve _the people_" we have to say something like "I will do service _of the people_"
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "زه به **د خلکو خدمت** کوم",
-            f: "zu ba **du khalko khidmat** kawum",
-            e: "I will serve the people",
-            sub: "lit. I will do the service (object) of the people",
-        },
-    ])}
+  {psmd([
+    {
+      p: "زه به **د خلکو خدمت** کوم",
+      f: "zu ba **du khalko khidmat** kawum",
+      e: "I will serve the people",
+      sub: "lit. I will do the service (object) of the people",
+    },
+  ])}
 </Examples>
 
-If we want to use <InlinePs opts={opts} ps={{ p: "پوښتڼه کول", f: "poxtuna kawul", e: "to ask" }} /> say "I asked <em>you</em>", well we already have <InlinePs opts={opts} ps={{ p: "پوښټنه", f: "poxtuna", e: "" }} /> as the object, so we have to say "I did a question (object) *from you* (sandwich)."
+If we want to use <InlinePs opts={opts} ps={{ p: "پوښتڼه کول", f: "poxtuna kawul", e: "to ask" }} /> say "I asked <em>you</em>", well we already have <InlinePs opts={opts} ps={{ p: "پوښټنه", f: "poxtuna", e: "" }} /> as the object, so we have to say "I did a question (object) _from you_ (sandwich)."
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "ما **تا نه** پوښتنه وکړه",
-            f: "maa **taa na** poxtuna óokRa",
-            e: "I asked you",
-            sub: "lit. I did a question (object) **from you**",
-        },
-    ])}
+  {psmd([
+    {
+      p: "ما **تا نه** پوښتنه وکړه",
+      f: "maa **taa na** poxtuna óokRa",
+      e: "I asked you",
+      sub: "lit. I did a question (object) **from you**",
+    },
+  ])}
 </Examples>
 
 ## Intransitive Dynamic Compounds
@@ -169,31 +1001,30 @@ If a dynamic compound was made with <InlinePs opts={opts} ps={{ p: "کول", f: 
 For example:
 
 <Examples opts={opts}>
-    {[
-        {
-            p: "ما کار وکړ",
-            f: "maa kaar óokuR",
-            e: "I worked",
-            sub: "Transitive - with کول (to do)"
-        },
-        {
-            p: "کار وشو",
-            f: "kaar óosho",
-            e: "The work happened",
-            sub: "Intransitive - with کېدل (to happen)",
-        },
-        {
-            p: "هغوي پوښتنې کوي",
-            f: "haghwee poxtúne kawee",
-            e: "They are asking questions",
-            sub: "Transitive - with کول (to do)",
-        },
-        {
-            p: "پوښتنې کېږي",
-            f: "poxtúne kéGee",
-            e: "Questions are being asked",
-            sub: "Intransitive - with کېدل (to happen)",
-        },
-    ]}
+  {[
+    {
+      p: "ما کار وکړ",
+      f: "maa kaar óokuR",
+      e: "I worked",
+      sub: "Transitive - with کول (to do)",
+    },
+    {
+      p: "کار وشو",
+      f: "kaar óosho",
+      e: "The work happened",
+      sub: "Intransitive - with کېدل (to happen)",
+    },
+    {
+      p: "هغوي پوښتنې کوي",
+      f: "haghwee poxtúne kawee",
+      e: "They are asking questions",
+      sub: "Transitive - with کول (to do)",
+    },
+    {
+      p: "پوښتنې کېږي",
+      f: "poxtúne kéGee",
+      e: "Questions are being asked",
+      sub: "Intransitive - with کېدل (to happen)",
+    },
+  ]}
 </Examples>
-

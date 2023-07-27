@@ -3,9 +3,9 @@ title: 📽 Present
 ---
 
 import {
-    defaultTextOptions as opts,
-    Examples,
-    InlinePs,
+  defaultTextOptions as opts,
+  Examples,
+  InlinePs,
 } from "@lingdocs/ps-react";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
@@ -13,15 +13,12 @@ import Formula from "../../components/formula/Formula";
 import realityGraph from "./reality-graph.svg";
 import presentTime from "./present-time.svg";
 import BasicVerbShowCase from "./../../components/BasicVerbShowCase";
-import {
-    presentVerbGame1,
-    presentVerbGame2,
-} from "../../games/games";
+import { presentVerbGame1, presentVerbGame2 } from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
 
 The first verb form we'll learn is the **present**. This will be the first tool in our toolbox of verb forms. 🧰 With each verb form we'll learn two things:
 
-1. 🧪 How to make it  
+1. 🧪 How to make it
 2. 🔨 When to use it
 
 ## How to make it
@@ -29,7 +26,7 @@ The first verb form we'll learn is the **present**. This will be the first tool 
 As with all verb forms, the **present form** is made by following a very simple formula which is the same for every single verb.
 
 <Formula>
-    Imperfective Stem + <Link to="/verbs/verb-endings/">Present Ending</Link>
+  Imperfective Stem + <Link to="/verbs/verb-endings/">Present Ending</Link>
 </Formula>
 
 The <Link to="/verbs/verb-endings/">present ending</Link> will change according to what the subject is. Have a look through the verbs below and see how the present form follows the same formula for all of them. 👇
@@ -52,13 +49,13 @@ You use this form to talk about something that:
 So if we think of a graph of reality like this,
 
 <div className="text-center">
-    <img src={realityGraph} alt="" className="img-fluid" />
+  <img src={realityGraph} alt="" className="img-fluid" />
 </div>
 
-The **present form** would look something like this: 
+The **present form** would look something like this:
 
 <div className="text-center">
-    <img src={presentTime} alt="" className="img-fluid" />
+  <img src={presentTime} alt="" className="img-fluid" />
 </div>
 
 Here are some examples of how the present form is used in different situations:
@@ -66,71 +63,69 @@ Here are some examples of how the present form is used in different situations:
 ### Happens generally
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "مونږ هره ورځ چای **سکو**.",
-            f: "moonG hăra wradz chaay **skoo**.",
-            e: "We **drink** tea every day.",
-        },
-        {
-            p: "زما پلار پتلون **اغوندي**.",
-            f: "zmaa plaar patloon **aghondee**.",
-            e: "My dad **wears** pants."
-        },
-        {
-            p: "زه په عربي **نه پوهېږم**.",
-            f: "zu pu arabee **nú poheGum**.",
-            e: "I **don't understand** Arabic.",
-        },
-        {
-            p: "ته له مرګه **وېرېږې**؟",
-            f: "tu la marga **weréGe**?",
-            e: "**Are** you **afraid** of death?"
-        },
-    ])}
+  {psmd([
+    {
+      p: "مونږ هره ورځ چای **سکو**.",
+      f: "moonG hăra wradz chaay **skoo**.",
+      e: "We **drink** tea every day.",
+    },
+    {
+      p: "زما پلار پتلون **اغوندي**.",
+      f: "zmaa plaar patloon **aghondee**.",
+      e: "My dad **wears** pants.",
+    },
+    {
+      p: "زه په عربي **نه پوهېږم**.",
+      f: "zu pu arabee **nú poheGum**.",
+      e: "I **don't understand** Arabic.",
+    },
+    {
+      p: "ته له مرګه **وېرېږې**؟",
+      f: "tu la marga **weréGe**?",
+      e: "**Are** you **afraid** of death?",
+    },
+  ])}
 </Examples>
 
 ### Is currently happening
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "نن شپه ستوري **ځلېږي**.",
-            f: "nun shpa storee **dzaléGee**.",
-            e: "The stars **are shining** tonight.",
-        },
-        {
-            p: "زه بازار ته **ځم**.",
-            f: "zu baazaar ta **dzum**.",
-            e: "I'm **going** to the bazaar."
-        },
-        {
-            p: "هغوي اوس ډوډۍ **خوري**",
-            f: "haghwee oos DoDuy **khoree**.",
-            e: "They are **eating** food now.",
-        },
-        {
-            p: "ته څه **کوې**؟",
-            f: "tu tsu **kawe**?",
-            e: "What **are** you **doing**?"
-        },
-    ])}
+  {psmd([
+    {
+      p: "نن شپه ستوري **ځلېږي**.",
+      f: "nun shpa storee **dzaléGee**.",
+      e: "The stars **are shining** tonight.",
+    },
+    {
+      p: "زه بازار ته **ځم**.",
+      f: "zu baazaar ta **dzum**.",
+      e: "I'm **going** to the bazaar.",
+    },
+    {
+      p: "هغوي اوس ډوډۍ **خوري**",
+      f: "haghwee oos DoDuy **khoree**.",
+      e: "They are **eating** food now.",
+    },
+    {
+      p: "ته څه **کوې**؟",
+      f: "tu tsu **kawe**?",
+      e: "What **are** you **doing**?",
+    },
+  ])}
 </Examples>
 
 ### Is definately about to happen
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "**هغه نن **راځي.",
-            f: "haghá nun **raadzée**.",
-            e: "**He's coming** today.",
-        },
-    ])}
+  {psmd([
+    {
+      p: "**هغه نن **راځي.",
+      f: "haghá nun **raadzée**.",
+      e: "**He's coming** today.",
+    },
+  ])}
 </Examples>
 
 <GameDisplay record={presentVerbGame1} />
 
 <GameDisplay record={presentVerbGame2} />
-
-

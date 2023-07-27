@@ -1,12 +1,8 @@
 ---
-title: 📽 Verb Aspect 📸 
+title: 📽 Verb Aspect 📸
 ---
 
-import {
-    defaultTextOptions as opts,
-    Examples,
-    InlinePs,
-} from "@lingdocs/ps-react";
+import { defaultTextOptions as opts, Examples } from "@lingdocs/ps-react";
 import psmd from "../../lib/psmd";
 import imperfectiveTimeline from "./imperfective-time.svg";
 import perfectiveTimeline from "./perfective-time.svg";
@@ -15,18 +11,24 @@ Pashto verbs express actions by looking at them from two different [aspects](htt
 
 ## Introducing the Two Aspects
 
-The aspects can be thought of as two different *perspectives* or *ways of looking* at an action:
+The aspects can be thought of as two different _perspectives_ or _ways of looking_ at an action:
 
 <table className="table">
   <thead>
     <tr>
-      <th scope="col"><i className="fas fa-video" /> Imperfective</th>
-      <th scope="col"><i className="fas fa-camera" /> Perfective</th>
+      <th scope="col">
+        <i className="fas fa-video" /> Imperfective
+      </th>
+      <th scope="col">
+        <i className="fas fa-camera" /> Perfective
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Looking from inside at ongoing or repeated event - think of a video</td>
+      <td>
+        Looking from inside at ongoing or repeated event - think of a video
+      </td>
       <td>Looking from outside at single, whole event - think of a photo</td>
     </tr>
   </tbody>
@@ -34,27 +36,43 @@ The aspects can be thought of as two different *perspectives* or *ways of lookin
 
 ### Imperfective Aspect
 
-The imperfective <i className="fas fa-video" />  aspect is used for looking at the action as a process that's continuous or repeating over time, kind of like a video.
+The imperfective <i className="fas fa-video" /> aspect is used for looking at the action as a process that's continuous or repeating over time, kind of like a video.
 
 <div className="text-center">
-    <img className="img-fluid mb-2" src={imperfectiveTimeline} alt="imperfective aspect in time" />
+  <img
+    className="img-fluid mb-2"
+    src={imperfectiveTimeline}
+    alt="imperfective aspect in time"
+  />
 </div>
 
 For example:
 
 <Examples opts={opts}>
   {psmd([
-    { p: `ما ډوډۍ **خوړله**`, f: `maa DoDuy **khoRúla**`, e: "I was eating food" },
-    { p: `زه په پارک کې **ګرځېدم**`, f: `zu pu paark ke **gurdzedúm**`, e: "I was walking in the park" },
+    {
+      p: `ما ډوډۍ **خوړله**`,
+      f: `maa DoDuy **khoRúla**`,
+      e: "I was eating food",
+    },
+    {
+      p: `زه په پارک کې **ګرځېدم**`,
+      f: `zu pu paark ke **gurdzedúm**`,
+      e: "I was walking in the park",
+    },
   ])}
 </Examples>
 
 ### Perfective Aspect
 
-The perfective <i className="fas fa-camera" />  aspect is used for looking at the action as a complete whole, without thinking about repititon or the flow of time, kind of like a photo.
+The perfective <i className="fas fa-camera" /> aspect is used for looking at the action as a complete whole, without thinking about repititon or the flow of time, kind of like a photo.
 
 <div className="text-center">
-    <img className="img-fluid mb-2" src={perfectiveTimeline} alt="perfective aspect in time" />
+  <img
+    className="img-fluid mb-2"
+    src={perfectiveTimeline}
+    alt="perfective aspect in time"
+  />
 </div>
 
 For example:
@@ -62,43 +80,65 @@ For example:
 <Examples opts={opts}>
   {psmd([
     { p: `ما ډوډۍ **وخوړله**`, f: `maa DoDuy **óokhoRula**`, e: "I ate food" },
-    { p: `زه په پارک کې **وګرځېدم**`, f: `zu pu paark ke **óogurdzedum**`, e: "I took a walk in the park" },
+    {
+      p: `زه په پارک کې **وګرځېدم**`,
+      f: `zu pu paark ke **óogurdzedum**`,
+      e: "I took a walk in the park",
+    },
   ])}
 </Examples>
 
 ## Pashto Uses Aspects Everywhere!
 
-As we saw in the examples above, in English we are used to using these two different aspects with the past tense. But **Pashto uses these two aspects for almost *everything!*** This is very import to remember and it takes a while for learners to get used to.
+As we saw in the examples above, in English we are used to using these two different aspects with the past tense. But **Pashto uses these two aspects for almost _everything!_** This is very import to remember and it takes a while for learners to get used to.
 
 For example, when making commands in Pashto we have to choose which aspect we are talking about. In English we can only say "clean your room!" But in Pashto we have to think, are we talking about a one-time request to get something done (perfective <i className="fas fa-camera" />), or asking someone to work on something as on ongoing, repeated thing (imperfective <i className="fas fa-video" />)?
 
 <table className="table" style={{ tableLayout: "fixed" }}>
   <thead>
     <tr>
-      <th scope="col"><i className="fas fa-video fa-lg" /> Imperfective</th>
-      <th scope="col"><i className="fas fa-camera fa-lg" /> Perfective</th>
+      <th scope="col">
+        <i className="fas fa-video fa-lg" /> Imperfective
+      </th>
+      <th scope="col">
+        <i className="fas fa-camera fa-lg" /> Perfective
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-        <td>
-            <Examples opts={opts}>
-              {psmd([
-                { p: `خبله کوټه **صفا کوه**!`, f: `khpula koTa **safaa kawa**`, e: "Clean your room!" },
-              ])}
-            </Examples>
-        </td>
-        <td>
-            <Examples opts={opts}>
-              {psmd([
-                { p: `خبله کوټه **صفا کړه**!`, f: `khpula koTa **safaa kRa**!`, e: "Clean your room!" },
-              ])}
-            </Examples>
-        </td>
+      <td>
+        <Examples opts={opts}>
+          {psmd([
+            {
+              p: `خبله کوټه **صفا کوه**!`,
+              f: `khpula koTa **safaa kawa**`,
+              e: "Clean your room!",
+            },
+          ])}
+        </Examples>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {psmd([
+            {
+              p: `خبله کوټه **صفا کړه**!`,
+              f: `khpula koTa **safaa kRa**!`,
+              e: "Clean your room!",
+            },
+          ])}
+        </Examples>
+      </td>
     </tr>
     <tr>
-      <td>"Do it generally, or get going on it." (Asking someone to clean their room as an ongoing or repeated task.)</td>
-      <td>"Just get it done, once." (Asking someone to clean their room as a one-time task. Just get it done, once.)</td>
+      <td>
+        "Do it generally, or get going on it." (Asking someone to clean their
+        room as an ongoing or repeated task.)
+      </td>
+      <td>
+        "Just get it done, once." (Asking someone to clean their room as a
+        one-time task. Just get it done, once.)
+      </td>
     </tr>
   </tbody>
 </table>
@@ -108,30 +148,47 @@ Or when talking about things in the future tense, we face the same choice of asp
 <table className="table" style={{ tableLayout: "fixed" }}>
   <thead>
     <tr>
-      <th scope="col"><i className="fas fa-video fa-lg" /> Imperfective</th>
-      <th scope="col"><i className="fas fa-camera fa-lg" /> Perfective</th>
+      <th scope="col">
+        <i className="fas fa-video fa-lg" /> Imperfective
+      </th>
+      <th scope="col">
+        <i className="fas fa-camera fa-lg" /> Perfective
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-        <td>
-            <Examples opts={opts}>
-              {psmd([
-                { p: `مونږ به **کېنو** او **خبرې کوو**`, f: `moonG ba **keenóo** aw **khabure kawoo**`, e: "We'll sit and talk" },
-              ])}
-            </Examples>
-        </td>
-        <td>
-            <Examples opts={opts}>
-              {psmd([
-                { p: `مونږ به **کېنو** او **خبرې وکړو**`, f: `moonG ba **kéenoo** aw **khabure ookRoo**`, e: "We'll sit and talk" },
-              ])}
-            </Examples>
-        </td>
+      <td>
+        <Examples opts={opts}>
+          {psmd([
+            {
+              p: `مونږ به **کېنو** او **خبرې کوو**`,
+              f: `moonG ba **keenóo** aw **khabure kawoo**`,
+              e: "We'll sit and talk",
+            },
+          ])}
+        </Examples>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {psmd([
+            {
+              p: `مونږ به **کېنو** او **خبرې وکړو**`,
+              f: `moonG ba **kéenoo** aw **khabure ookRoo**`,
+              e: "We'll sit and talk",
+            },
+          ])}
+        </Examples>
+      </td>
     </tr>
     <tr>
-      <td>We'll have a process of sitting and talking together (this will happen repeatedly or will take time)</td>
-      <td>We'll sit down and have a talk (a one time event, thought of as a whole)</td>
+      <td>
+        We'll have a process of sitting and talking together (this will happen
+        repeatedly or will take time)
+      </td>
+      <td>
+        We'll sit down and have a talk (a one time event, thought of as a whole)
+      </td>
     </tr>
   </tbody>
 </table>
@@ -141,29 +198,44 @@ Even when talking about ability in the past tense, you still have to choose an a
 <table className="table" style={{ tableLayout: "fixed" }}>
   <thead>
     <tr>
-      <th scope="col"><i className="fas fa-video fa-lg" /> Imperfective</th>
-      <th scope="col"><i className="fas fa-camera fa-lg" /> Perfective</th>
+      <th scope="col">
+        <i className="fas fa-video fa-lg" /> Imperfective
+      </th>
+      <th scope="col">
+        <i className="fas fa-camera fa-lg" /> Perfective
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-        <td>
-            <Examples opts={opts}>
-              {psmd([
-                { p: `هغه له کوره **وتلی شوه**`, f: `haghá la kora **watuley shwa**`, e: "She was able to leave the house." },
-              ])}
-            </Examples>
-        </td>
-        <td>
-            <Examples opts={opts}>
-              {psmd([
-                { p: `هغه له کوره **ووتلی شوه**`, f: `haghá la kora **óowatuley shwa**`, e: "She was able to leave the house." },
-              ])}
-            </Examples>
-        </td>
+      <td>
+        <Examples opts={opts}>
+          {psmd([
+            {
+              p: `هغه له کوره **وتلی شوه**`,
+              f: `haghá la kora **watulay shwa**`,
+              e: "She was able to leave the house.",
+            },
+          ])}
+        </Examples>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {psmd([
+            {
+              p: `هغه له کوره **ووتلی شوه**`,
+              f: `haghá la kora **óowatulay shwa**`,
+              e: "She was able to leave the house.",
+            },
+          ])}
+        </Examples>
+      </td>
     </tr>
     <tr>
-      <td>She had permission to go and could go whenever she wanted, repeatedly or in general.</td>
+      <td>
+        She had permission to go and could go whenever she wanted, repeatedly or
+        in general.
+      </td>
       <td>In one particular instance, she was able to get out of the house.</td>
     </tr>
   </tbody>

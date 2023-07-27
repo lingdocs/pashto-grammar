@@ -3,26 +3,53 @@ title: Passive Voice
 ---
 
 import {
-    defaultTextOptions as opts,
-    Examples,
-    InlinePs,
-    RootsAndStems,
-    conjugateVerb,
-    getVerbInfo,
-    getPassiveRootsAndStems,
+  defaultTextOptions as opts,
+  Examples,
+  InlinePs,
+  RootsAndStems,
+  getVerbInfo,
+  getPassiveRootsAndStems,
 } from "@lingdocs/ps-react";
-import { KidsSection, VP, KingIcon, ServantIcon, Camera, Video } from "../../components/terms-links";
-import psmd from "../../lib/psmd";
+import { KingIcon, Camera, Video } from "../../components/terms-links";
 import Link from "../../components/Link";
 import Image from "../../components/Image";
 import Formula from "../../components/formula/Formula";
 import VideoPlayer from "../../components/VideoPlayer";
-import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+import EditableVPEx from "../../components/phrase-diagram/EditableVPEx";
 import BasicVerbShowCase from "../../components/BasicVerbShowCase";
 import passiveRootsCopy from "./verb-tree-passive-roots-copy.svg";
-export const leedulInfo = getVerbInfo({"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"});
+export const leedulInfo = getVerbInfo({
+  ts: 1527812275,
+  i: 11623,
+  p: "لیدل",
+  f: "leedul",
+  g: "leedul",
+  e: "to see",
+  c: "v. trans.",
+  psp: "وین",
+  psf: "ween",
+  tppp: "لید",
+  tppf: "leed",
+  ec: "see,sees,seeing,saw,seen",
+});
 export const passiveLeedulInfo = getPassiveRootsAndStems(leedulInfo);
-export const kedulStatInfo = getVerbInfo({"ts":1581086654898,"i":10706,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"});
+export const kedulStatInfo = getVerbInfo({
+  ts: 1581086654898,
+  i: 10706,
+  p: "کېدل",
+  f: "kedul",
+  g: "kedul",
+  e: "to become _____",
+  c: "v. intrans. irreg.",
+  ssp: "ش",
+  ssf: "sh",
+  prp: "شول",
+  prf: "shwul",
+  pprtp: "شوی",
+  pprtf: "shúway",
+  noOo: true,
+  ec: "become",
+});
 
 <VideoPlayer src="https://www.youtube.com/watch?v=iaVbnx5FQps" />
 
@@ -37,76 +64,76 @@ Transitive verbs in Pashto can be used in the [passive voice](https://en.wikiped
   </thead>
   <tbody>
     <tr>
-        <td>
-            <Examples opts={opts}>
-                {[
-                    {
-                        p: "زه کتاب لیکم",
-                        f: "zu kitáab leekúm",
-                        e: "I (subject) am writing a book (object)",
-                    },
-                ]}
-            </Examples>
-        </td>
-        <td>
-            <Examples opts={opts}>
-                {[
-                    {
-                        p: "کتاب لیکل کېږي",
-                        f: "kitáab leekul kéGee",
-                        e: "A book (subject) is being written",
-                    },
-                ]}
-            </Examples>
-        </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "زه کتاب لیکم",
+              f: "zu kitáab leekúm",
+              e: "I (subject) am writing a book (object)",
+            },
+          ]}
+        </Examples>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "کتاب لیکل کېږي",
+              f: "kitáab leekul kéGee",
+              e: "A book (subject) is being written",
+            },
+          ]}
+        </Examples>
+      </td>
     </tr>
     <tr>
-        <td>
-            <Examples opts={opts}>
-                {[
-                    {
-                        p: "هغوي پښټو وايي",
-                        f: "haghwée puxto waayee",
-                        e: "They (subject) are speaking Pashto (object)",
-                    },
-                ]}
-            </Examples>
-        </td>
-        <td>
-            <Examples opts={opts}>
-                {[
-                    {
-                        p: "پښتو وایل کېږي",
-                        f: "puxto waayul kéGee",
-                        e: "Pashto (subject) is spoken",
-                    },
-                ]}
-            </Examples>
-        </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغوي پښټو وايي",
+              f: "haghwée puxto waayee",
+              e: "They (subject) are speaking Pashto (object)",
+            },
+          ]}
+        </Examples>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "پښتو وایل کېږي",
+              f: "puxto waayul kéGee",
+              e: "Pashto (subject) is spoken",
+            },
+          ]}
+        </Examples>
+      </td>
     </tr>
     <tr>
-        <td>
-            <Examples opts={opts}>
-                {[
-                    {
-                        p: "ما ډوډۍ وخوړله",
-                        f: "maa DoDúy óokhoRula",
-                        e: "I (subject) ate food (object)",
-                    }
-                ]}
-            </Examples>
-        </td>
-        <td>
-            <Examples opts={opts}>
-                {[
-                    {
-                        p: "ډوډۍ وخوړل شوه",
-                        f: "DoDúy óokhoRul shwa",
-                        e: "Food (subject) was eaten",
-                    },
-                ]}
-            </Examples>
-        </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "ما ډوډۍ وخوړله",
+              f: "maa DoDúy óokhoRula",
+              e: "I (subject) ate food (object)",
+            },
+          ]}
+        </Examples>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "ډوډۍ وخوړل شوه",
+              f: "DoDúy óokhoRul shwa",
+              e: "Food (subject) was eaten",
+            },
+          ]}
+        </Examples>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -121,20 +148,22 @@ This can be done in two simple steps: 👨‍🍳
 2. Add the roots and stems form <Link to="/compound-verbs/helper-verbs/#کېدل---to-become"><InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /></Link>
 
 <div className="mb-3">
-    <div
-        className="d-flex flex-row align-items-center justify-content-center"
-        style={{ overflowX: "auto", maxWidth: "700px" }}
-    >
-        <div>
-        <img src={passiveRootsCopy} style={{ maxWidth: "275px" }} />
-        </div>
-        <div style={{ fontSize: "2.5rem" }} className="mx-3">+</div>
-        <div className="text-center" style={{ minWidth: "8rem" }}>
-            <div>کېدل - kedúl</div>
-            <div>"to become"</div>
-            <div>roots and stems</div>
-        </div>
+  <div
+    className="d-flex flex-row align-items-center justify-content-center"
+    style={{ overflowX: "auto", maxWidth: "700px" }}
+  >
+    <div>
+      <img src={passiveRootsCopy} style={{ maxWidth: "275px" }} />
     </div>
+    <div style={{ fontSize: "2.5rem" }} className="mx-3">
+      +
+    </div>
+    <div className="text-center" style={{ minWidth: "8rem" }}>
+      <div>کېدل - kedúl</div>
+      <div>"to become"</div>
+      <div>roots and stems</div>
+    </div>
+  </div>
 </div>
 
 ### 1. Use the long form of the roots
@@ -143,121 +172,116 @@ First we need to take the **long form** of the roots on the bottom and copy thes
 
 - Use the imperfective <Video /> root for the imperfective stem
 - Use the perfective <Camera /> root for the perfective stem
-- Use the imperfective <Video /> root for the past participle  
+- Use the imperfective <Video /> root for the past participle
 
 <Image src={passiveRootsCopy} maxWidth="350px" />
 
 For example, with the verb <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedúl", e: "to see" }} /> we have roots and stems like this in the active voice:
 
-<RootsAndStems
-    textOptions={opts}
-    info={leedulInfo}
-/>
+<RootsAndStems textOptions={opts} info={leedulInfo} />
 
 So let's use **the long form of the roots** and also copy them to for the stems and the past participle...
 
 <RootsAndStems
-    textOptions={opts}
-    noTails
-    info={{
-    "entry": {
-        "entry": {
-            "ts": 1527812275,
-            "i": 11623,
-            "p": "لیدل",
-            "f": "leedul",
-            "g": "leedul",
-            "e": "to see",
-            "c": "v. trans.",
-            "psp": "وین",
-            "psf": "ween",
-            "tppp": "لید",
-            "tppf": "leed",
-            "ec": "see,sees,seeing,saw,seen"
-        }
+  textOptions={opts}
+  noTails
+  info={{
+    entry: {
+      entry: {
+        ts: 1527812275,
+        i: 11623,
+        p: "لیدل",
+        f: "leedul",
+        g: "leedul",
+        e: "to see",
+        c: "v. trans.",
+        psp: "وین",
+        psf: "ween",
+        tppp: "لید",
+        tppf: "leed",
+        ec: "see,sees,seeing,saw,seen",
+      },
     },
-    "transitivity": "transitive",
-    "yulEnding": false,
-    "root": {
-        "imperfective": {
-            "p": "لیدل",
-            "f": "leedúl"
+    transitivity: "transitive",
+    yulEnding: false,
+    root: {
+      imperfective: {
+        p: "لیدل",
+        f: "leedúl",
+      },
+      perfective: {
+        p: "ولیدل",
+        f: "óoleedul",
+      },
+      perfectiveSplit: [
+        {
+          p: "و",
+          f: "óo",
         },
-        "perfective": {
-            "p": "ولیدل",
-            "f": "óoleedul"
+        {
+          p: "لیدل",
+          f: "leedul",
         },
-        "perfectiveSplit": [
-            {
-                "p": "و",
-                "f": "óo"
-            },
-            {
-                "p": "لیدل",
-                "f": "leedul"
-            },
-        ],
+      ],
     },
-    "stem": {
-        "imperfective": {
-            "p": "لیدل",
-            "f": "leedúl"
+    stem: {
+      imperfective: {
+        p: "لیدل",
+        f: "leedúl",
+      },
+      perfective: {
+        p: "ولیدل",
+        f: "óoleedul",
+      },
+      perfectiveSplit: [
+        {
+          p: "و",
+          f: "óo",
         },
-        "perfective": {
-            "p": "ولیدل",
-            "f": "óoleedul"
+        {
+          p: "لیدل",
+          f: "leedul",
         },
-        "perfectiveSplit": [
-            {
-                "p": "و",
-                "f": "óo"
-            },
-            {
-                "p": "لیدل",
-                "f": "leedul"
-            },
-        ],
+      ],
     },
-    "participle": {
-        "past": {
-            "p": "لیدل",
-            "f": "leedúl"
-        },
-        "present": {
-            "p": "لیدونکی",
-            "f": "leedóonkey"
-        }
+    participle: {
+      past: {
+        p: "لیدل",
+        f: "leedúl",
+      },
+      present: {
+        p: "لیدونکی",
+        f: "leedóonkay",
+      },
     },
-    "idiosyncraticThirdMascSing": {
-        "imperfective": {
-            "p": "لید",
-            "f": "leed"
-        },
-        "perfective": {
-            "p": "ولید",
-            "f": "óoleed"
-        }
+    idiosyncraticThirdMascSing: {
+      imperfective: {
+        p: "لید",
+        f: "leed",
+      },
+      perfective: {
+        p: "ولید",
+        f: "óoleed",
+      },
     },
-    "type": "simple"
-}} />
+    type: "simple",
+  }}
+/>
 
 ### 2. Add the helper verb کېدل - to become
 
 And then we take the roots and stems for <Link to="/compound-verbs/helper-verbs/#کېدل---to-become"><InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} /></Link>
 
-<RootsAndStems
-    textOptions={opts}
-    info={kedulStatInfo}
-/>
+<RootsAndStems textOptions={opts} info={kedulStatInfo} />
 
 And add that to our roots and stems we made in <Link to="/verbs/passive-voice/#1-use-the-long-form-of-the-roots">the previous step</Link>.
 
-<div className="text-center lead">Passive Roots/Stems of <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedúl", e: "to see" }} /></div>
+<div className="text-center lead">
+  Passive Roots/Stems of{" "}
+  <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedúl", e: "to see" }} />
+</div>
 
-<RootsAndStems
-    textOptions={opts}
-    info={passiveLeedulInfo}
-/>
+<RootsAndStems textOptions={opts} info={passiveLeedulInfo} />
 
 **Note on accent**: Except for in the perfective aspect, the helper verb takes over the accent and the roots/stems from the previous step lose their accents.
 
@@ -267,7 +291,7 @@ Try flipping through these other verbs and see how the the active stems are tran
 
 ## Using passive roots and stems
 
-Once we've made our <Link to="/verbs/passive-verbs/#how-to-make-passive-forms">passive roots and stems</Link> we can use them follow *the same verb formulas* to build all the same verb tenses, just in the passive voice.
+Once we've made our <Link to="/verbs/passive-verbs/#how-to-make-passive-forms">passive roots and stems</Link> we can use them follow _the same verb formulas_ to build all the same verb tenses, just in the passive voice.
 
 **Important note:** With the passive voice, we don't have an object anymore, so these phrases will follow the <Link to="/phrase-structure/vp/#1-with-intransitive-verbs-">phrase structure for intransitive verbs</Link>. (The subject will always be <KingIcon />)
 
@@ -278,23 +302,70 @@ Let's try making different tenses with the passive roots and stems we just made 
 To make the <Link to="/verbs/present-verbs/">present tense</Link> we use the formula:
 
 <Formula>
-    Passive Imperfective Stem + <Link to="/verbs/verb-endings/">Present Ending</Link>
+  Passive Imperfective Stem +{" "}
+  <Link to="/verbs/verb-endings/">Present Ending</Link>
 </Formula>
 
-So now we can use the *imperfective stem* of these passive roots and stems:
+So now we can use the _imperfective stem_ of these passive roots and stems:
 
 <RootsAndStems
-    textOptions={opts}
-    info={passiveLeedulInfo}
-    highlighted={["imperfective stem"]}
+  textOptions={opts}
+  info={passiveLeedulInfo}
+  highlighted={["imperfective stem"]}
 />
 
 and say something like:
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.519783070125974,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9491826191102801,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11623,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ### Subjunctive
@@ -302,23 +373,70 @@ and say something like:
 For the <Link to="/verbs/subjunctive-verbs/">subjunctive</Link> we use the formula:
 
 <Formula>
-    Passive Perfective Stem + <Link to="/verbs/verb-endings/">Present Ending</Link>
+  Passive Perfective Stem +{" "}
+  <Link to="/verbs/verb-endings/">Present Ending</Link>
 </Formula>
 
-So let's take our passive *perfective stem*:
+So let's take our passive _perfective stem_:
 
 <RootsAndStems
-    textOptions={opts}
-    info={passiveLeedulInfo}
-    highlighted={["perfective stem"]}
+  textOptions={opts}
+  info={passiveLeedulInfo}
+  highlighted={["perfective stem"]}
 />
 
 and say...
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.519783070125974,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9491826191102801,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11623,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "subjunctiveVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ### Future
@@ -326,17 +444,109 @@ and say...
 We could do this same process for the future tense, using the imperfective and perfective roots to make the imperfective future,
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.519783070125974,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9491826191102801,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11623,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectiveFuture",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 and the perfective future:
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.519783070125974,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9491826191102801,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11623,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "perfectiveFuture",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ### Past
@@ -344,47 +554,139 @@ and the perfective future:
 Again, same thing for the past tense verbs. The <Link to="/verbs/past-verbs/">simple past</Link> is made with the formula:
 
 <Formula>
-    Passive Perfective root +{` `}
-    <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
+  Passive Perfective root +{` `}
+  <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
 </Formula>
 
-So we can grab the *perfective root*:
+So we can grab the _perfective root_:
 
 <RootsAndStems
-    textOptions={opts}
-    info={passiveLeedulInfo}
-    highlighted={["perfective root"]}
+  textOptions={opts}
+  info={passiveLeedulInfo}
+  highlighted={["perfective root"]}
 />
 
 and make a phrase like,
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.519783070125974,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9491826191102801,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11623,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 The <Link to="/verbs/past-verbs/#continuous-past">continuous past</Link> is made with the formula:
 
 <Formula>
-    Passive …Imperfective root +{` `}
-    <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
+  Passive …Imperfective root +{` `}
+  <Link to="/verbs/verb-endings/#past-verb-endings">Past verb ending</Link>
 </Formula>
 
-So we can grab the *imperfective root*:
+So we can grab the _imperfective root_:
 
 <RootsAndStems
-    textOptions={opts}
-    info={passiveLeedulInfo}
-    highlighted={["imperfective root"]}
+  textOptions={opts}
+  info={passiveLeedulInfo}
+  highlighted={["imperfective root"]}
 />
 
 and make a phrase like,
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.519783070125974,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9491826191102801,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11623,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ### Perfect
@@ -392,15 +694,107 @@ and make a phrase like,
 Also same thing for making perfect forms, just follow <Link to="/verbs/perfect-verbs-intro/#how-to-make-perfect-tenses-">the same formula as we learned before</Link>. (<samp>Past participle + Equative</samp>)
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.519783070125974,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9491826191102801,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11623,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "perfect",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.519783070125974,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9491826191102801,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"pastPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.519783070125974,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9491826191102801,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11623,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "perfect",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 So we see that to make verb forms in the passive forms we **follow all the same formulas as we did with the active voice**, but just using these new <Link to="/verbs/passive-voice#making-passive-roots-and-stems">passive roots and stems</Link>.
@@ -408,39 +802,403 @@ So we see that to make verb forms in the passive forms we **follow all the same 
 ## Examples
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.9602675508776706,"block":{"type":"AP","selection":{"type":"sandwich","before":{"p":"په","f":"pu"},"after":{"p":"کې","f":"ke"},"e":"in","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527813371,"i":4488,"p":"جنګ","f":"jang","g":"jang","e":"war, fight, battle","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}},{"key":0.6084120330077722,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812342,"i":5677,"p":"خلک","f":"khalk","g":"khalk","e":"people, nation, populace","c":"n. m. pl."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":false,"adjectives":[]}}}},{"key":0.6207988383591703,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527814862,"i":14386,"p":"وژل","f":"wajzul","g":"wajzul","e":"to kill, slaughter","c":"v. trans. irreg.","psp":"وژن","psf":"wajzn","tppp":"واژه","tppf":"waajzu","ec":"kill"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.9602675508776706,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            before: { p: "په", f: "pu" },
+            after: { p: "کې", f: "ke" },
+            e: "in",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527813371,
+                  i: 4488,
+                  p: "جنګ",
+                  f: "jang",
+                  g: "jang",
+                  e: "war, fight, battle",
+                  c: "n. m.",
+                },
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [],
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.6084120330077722,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812342,
+                i: 5677,
+                p: "خلک",
+                f: "khalk",
+                g: "khalk",
+                e: "people, nation, populace",
+                c: "n. m. pl.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: false,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.6207988383591703,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527814862,
+          i: 14386,
+          p: "وژل",
+          f: "wajzul",
+          g: "wajzul",
+          e: "to kill, slaughter",
+          c: "v. trans. irreg.",
+          psp: "وژن",
+          psf: "wajzn",
+          tppp: "واژه",
+          tppf: "waajzu",
+          ec: "kill",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.09499027095492818,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812881,"i":11724,"p":"ماشوم","f":"maashoom","g":"maashoom","e":"child, kid","c":"n. m. anim. unisex","ec":"child","ep":"children"},"gender":"masc","genderCanChange":true,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.24736204820633723,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527815399,"i":14504,"p":"وهل","f":"wahul","g":"wahul","e":"to hit","c":"v. trans.","tppp":"واهه","tppf":"waahu","ec":"hit,hits,hitting,hit,hit"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":true,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.09499027095492818,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812881,
+                i: 11724,
+                p: "ماشوم",
+                f: "maashoom",
+                g: "maashoom",
+                e: "child, kid",
+                c: "n. m. anim. unisex",
+                ec: "child",
+                ep: "children",
+              },
+              gender: "masc",
+              genderCanChange: true,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.24736204820633723,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815399,
+          i: 14504,
+          p: "وهل",
+          f: "wahul",
+          g: "wahul",
+          e: "to hit",
+          c: "v. trans.",
+          tppp: "واهه",
+          tppf: "waahu",
+          ec: "hit,hits,hitting,hit,hit",
+        },
+      },
+      verbTense: "subjunctiveVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: true,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.8608555765714412,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10025,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.43067271280035535,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812856,"i":11645,"p":"لیکل","f":"leekul","g":"leekul","e":"to write, draw","c":"v. trans./gramm. trans.","ec":"write,writes,writing,wrote,written"}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8608555765714412,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812817,
+                i: 10025,
+                p: "کتاب",
+                f: "kitáab",
+                g: "kitaab",
+                e: "book",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.43067271280035535,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812856,
+          i: 11645,
+          p: "لیکل",
+          f: "leekul",
+          g: "leekul",
+          e: "to write, draw",
+          c: "v. trans./gramm. trans.",
+          ec: "write,writes,writing,wrote,written",
+        },
+      },
+      verbTense: "imperfectiveFuture",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.9691831828667705,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.4630278152792826,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527813755,"i":4672,"p":"ځورول","f":"dzawrawul","g":"dzawrawul","e":"to bother, irritate, torture, distress, vex, grind on","c":"v. trans.","ec":"bother"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.9691831828667705,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.4630278152792826,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527813755,
+          i: 4672,
+          p: "ځورول",
+          f: "dzawrawul",
+          g: "dzawrawul",
+          e: "to bother, irritate, torture, distress, vex, grind on",
+          c: "v. trans.",
+          ec: "bother",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.026534404872279982,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1658541389964,"i":2531,"p":"پکوړه","f":"pakóRa","g":"pakoRa","e":"pakora","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.6023163696948342,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812790,"i":5805,"p":"خوړل","f":"khoRul","g":"khoRul","e":"to eat, to bite","c":"v. trans.","psp":"خور","psf":"khor","tppp":"خوړ","tppf":"khoR","ec":"eat,eats,eating,ate,eaten"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"passive","negative":true,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.026534404872279982,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1658541389964,
+                i: 2531,
+                p: "پکوړه",
+                f: "pakóRa",
+                g: "pakoRa",
+                e: "pakora",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.6023163696948342,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812790,
+          i: 5805,
+          p: "خوړل",
+          f: "khoRul",
+          g: "khoRul",
+          e: "to eat, to bite",
+          c: "v. trans.",
+          psp: "خور",
+          psf: "khor",
+          tppp: "خوړ",
+          tppf: "khoR",
+          ec: "eat,eats,eating,ate,eaten",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: true,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.2484268002388179,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.697085951161708,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812275,"i":11623,"p":"لیدل","f":"leedul","g":"leedul","e":"to see","c":"v. trans./gramm. trans.","psp":"وین","psf":"ween","tppp":"لید","tppf":"leed","ec":"see,sees,seeing,saw,seen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"passive","negative":false,"canChangeTransitivity":true,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.2484268002388179,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.697085951161708,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812275,
+          i: 11623,
+          p: "لیدل",
+          f: "leedul",
+          g: "leedul",
+          e: "to see",
+          c: "v. trans./gramm. trans.",
+          psp: "وین",
+          psf: "ween",
+          tppp: "لید",
+          tppf: "leed",
+          ec: "see,sees,seeing,saw,seen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "perfect",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "passive",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 ## Difference between passive and intransitive
@@ -450,75 +1208,78 @@ It's easy to confuse the **passive voice of transitive verbs** and **intransitiv
 For example, using the intransitive verb <InlinePs opts={opts} ps={{ p: "پخېدل", f: "pakhedúl", e: "to be cooked" }} /> we can say:
 
 <Examples opts={opts}>
-    {[
-        {
-            p: "پلاو پخېږي",
-            f: "pulaaw pakhéGee",
-            e: "The pulaw is cooking",
-            sub: "It's sitting in the pot, boiling and becoming ready 🤤",
-        },
-    ]}
+  {[
+    {
+      p: "پلاو پخېږي",
+      f: "pulaaw pakhéGee",
+      e: "The pulaw is cooking",
+      sub: "It's sitting in the pot, boiling and becoming ready 🤤",
+    },
+  ]}
 </Examples>
 
 With the **intrnansitive verb**, we're just describing the cooking process that the pulaw is going through.
 
-But if we use the **passive voice of the transitive verb** <InlinePs opts={opts} ps={{ p: "پخول", f: "pakhawul", e: "to cook" }} />, then we get a *slightly* different meaning. Then we are saying that it is *being cooked*, ie. there is some unmentioned actor working on it.
+But if we use the **passive voice of the transitive verb** <InlinePs opts={opts} ps={{ p: "پخول", f: "pakhawul", e: "to cook" }} />, then we get a _slightly_ different meaning. Then we are saying that it is _being cooked_, ie. there is some unmentioned actor working on it.
 
 <Examples opts={opts}>
-    {[
-        {
-            p: "پلاو پخول کېږي",
-            f: "pulaaw pakhawul kéGee",
-            e: "The pulaw is being cooked",
-            sub: "Someone is cooking it / it's being worked on 👨‍🍳",
-        },
-    ]}
+  {[
+    {
+      p: "پلاو پخول کېږي",
+      f: "pulaaw pakhawul kéGee",
+      e: "The pulaw is being cooked",
+      sub: "Someone is cooking it / it's being worked on 👨‍🍳",
+    },
+  ]}
 </Examples>
 
 ## Passive Voice in Dialects
 
-It many Pashto dialects--especially those spoken in Pakistan--people add a <InlinePs opts={opts} ps={{ p: "ی", f: "ey", e: "" }} /> tail on the end of the roots used in the passive form. For example, <strong>in standard Afghan Pashto</strong> with the recipe we described the verb <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedul", e: "to see" }} /> has the following roots and stems:
+It many Pashto dialects--especially those spoken in Pakistan--people add a <InlinePs opts={opts} ps={{ p: "ی", f: "ay", e: "" }} /> tail on the end of the roots used in the passive form. For example, <strong>in standard Afghan Pashto</strong> with the recipe we described the verb <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedul", e: "to see" }} /> has the following roots and stems:
 
 <div className="text-center lead">
-    <div>Passive Roots/Stems of <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedul", e: "to see" }} /></div>
-    <div>in standard Afghan Pashto</div>
+  <div>
+    Passive Roots/Stems of{" "}
+    <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedul", e: "to see" }} />
+  </div>
+  <div>in standard Afghan Pashto</div>
+</div>
+
+<RootsAndStems textOptions={opts} info={passiveLeedulInfo} />
+
+But in other dialects the roots and stems have a <InlinePs opts={opts} ps={{ p: "ی", f: "ay", e: "" }} /> tail added in so they look like this:
+
+<div className="text-center lead">
+  <div>
+    Passive Roots/Stems of{" "}
+    <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedul", e: "to see" }} />
+  </div>
+  <div>in dialects using the tails on passive</div>
 </div>
 
 <RootsAndStems
-    textOptions={opts}
-    info={passiveLeedulInfo}
-/>
-
-But in other dialects the roots and stems have a <InlinePs opts={opts} ps={{ p: "ی", f: "ey", e: "" }} /> tail added in so they look like this:
-
-<div className="text-center lead">
-    <div>Passive Roots/Stems of <InlinePs opts={opts} ps={{ p: "لیدل", f: "leedul", e: "to see" }} /></div>
-    <div>in dialects using the tails on passive</div>
-</div>
-
-<RootsAndStems
-    textOptions={opts}
-    info={getPassiveRootsAndStems(leedulInfo, true)}
+  textOptions={opts}
+  info={getPassiveRootsAndStems(leedulInfo, true)}
 />
 
 Here are some examples using this kind of dialect:
 
 <Examples opts={opts}>
-    {[
-        {
-            p: "کتاب لیکلی کېږي",
-            f: "kitaab leekuley kéGee",
-            e: "(a/the) book is being written",
-        },
-        {
-            p: "ته ولیدلی شوې",
-            f: "tu óoleeduley shwe",
-            e: "You were seen",
-        },
-        {
-            p: "ته لیدلی شوی یې",
-            f: "tu leeduley shúwey ye",
-            e: "You (m.) have been seen",
-        },
-    ]}
+  {[
+    {
+      p: "کتاب لیکلی کېږي",
+      f: "kitaab leekulay kéGee",
+      e: "(a/the) book is being written",
+    },
+    {
+      p: "ته ولیدلی شوې",
+      f: "tu óoleedulay shwe",
+      e: "You were seen",
+    },
+    {
+      p: "ته لیدلی شوی یې",
+      f: "tu leedulay shúway ye",
+      e: "You (m.) have been seen",
+    },
+  ]}
 </Examples>

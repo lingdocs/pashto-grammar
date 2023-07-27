@@ -3,24 +3,18 @@ title: Imperative
 ---
 
 import {
-    defaultTextOptions as opts,
-    Examples,
-    InlinePs,
-    removeFVarients,
+  defaultTextOptions as opts,
+  Examples,
+  InlinePs,
 } from "@lingdocs/ps-react";
 import psmd from "../../lib/psmd";
-import Carousel from "../../components/Carousel";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
 import { verbs } from "../../words/words";
-import shuffleArray from "../../lib/shuffle-array";
 import imperfectiveImperative from "./imperfective-imperative.svg";
 import perfectiveImperative from "./perfective-imperative.svg";
 import BasicVerbShowCase from "../../components/BasicVerbShowCase";
-import {
-    imperativeVerbGame1,
-    imperativeVerbGame2,
-} from "../../games/games";
+import { imperativeVerbGame1, imperativeVerbGame2 } from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
 
 The imperative form is used for **giving commands** (telling people to do things).
@@ -30,18 +24,23 @@ There are two forms of the imperative:
 1. <i className="fas fa-video" /> Imperfective Imperative
 2. <i className="fas fa-camera" /> Perfective Imperative
 
-export const basicVerbs = verbs.filter((v) => !v.entry.c?.includes("gramm. trans."));
+export const basicVerbs = verbs.filter(
+  (v) => !v.entry.c?.includes("gramm. trans.")
+);
 
 ## Imperfective Imperative
 
 <Formula name="Imperfective Imperative">
-    Imperfective Stem + <Link to="/verbs/verb-endings/#imperative-verb-endings">Imperative Ending</Link>
+  Imperfective Stem +{" "}
+  <Link to="/verbs/verb-endings/#imperative-verb-endings">
+    Imperative Ending
+  </Link>
 </Formula>
 
 The <i className="fas fa-video" /> **imperfective imperative** is used when you want to tell someone to something repeatedly, in general, or if you're wanting them to get going on action that will be ongoing.
 
 <div className="text-center">
-    <img src={imperfectiveImperative} alt="" className="img-fluid" />
+  <img src={imperfectiveImperative} alt="" className="img-fluid" />
 </div>
 
 <BasicVerbShowCase opts={opts} tense="imperfectiveImperative" />
@@ -49,126 +48,141 @@ The <i className="fas fa-video" /> **imperfective imperative** is used when you 
 ## Perfective Imperative
 
 <Formula name="Perfective Imperative">
-    Perfective Stem + <Link to="/verbs/verb-endings/#imperative-verb-endings">Imperative Ending</Link>
+  Perfective Stem +{" "}
+  <Link to="/verbs/verb-endings/#imperative-verb-endings">
+    Imperative Ending
+  </Link>
 </Formula>
 
-The <i className="fas fa-camera" /> **perfective imperative** is used when you want to tell someone to do something is a one time, complete action. You are not thinking of the action as a process or as something that will be repeated, you are just telling the person to *get the action done*.
+The <i className="fas fa-camera" /> **perfective imperative** is used when you want to tell someone to do something is a one time, complete action. You are not thinking of the action as a process or as something that will be repeated, you are just telling the person to _get the action done_.
 
 <div className="text-center">
-    <img src={perfectiveImperative} alt="" className="img-fluid" />
+  <img src={perfectiveImperative} alt="" className="img-fluid" />
 </div>
 
 <BasicVerbShowCase opts={opts} tense="perfectiveImperative" />
 
 ## Using Imperatives
 
-For Pashto learners, having a choice between the perfective and imperfective imperatives is *not* something we are accustomed to. And so, it takes a lot of time to get used to the difference, and to choose the right form while speaking.
+For Pashto learners, having a choice between the perfective and imperfective imperatives is _not_ something we are accustomed to. And so, it takes a lot of time to get used to the difference, and to choose the right form while speaking.
 
 <div className="my-3" style={{ overflowX: "auto" }}>
   <table className="table">
     <thead>
       <tr>
         <th scope="col">
-            <div><i className="fas fa-video" /> Imperfective</div>
-            <div><samp>w/ imperfective stem</samp></div>
+          <div>
+            <i className="fas fa-video" /> Imperfective
+          </div>
+          <div>
+            <samp>w/ imperfective stem</samp>
+          </div>
         </th>
         <th scope="col">
-            <div><i className="fas fa-camera" /> Perfective</div>
-            <div><samp>w/ perfective stem</samp></div>
+          <div>
+            <i className="fas fa-camera" /> Perfective
+          </div>
+          <div>
+            <samp>w/ perfective stem</samp>
+          </div>
         </th>
       </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>
-                <Examples opts={opts}>
-                    {psmd([
-                        {
-                            p: "وریژې **خوره**",
-                            f: "wreejze **khorá**",
-                            e: "Eat rice",
-                            sub: "(in general, it's good for you)",
-                        },
-                    ])}
-                </Examples>
-            </td>
-            <td>
-                <Examples opts={opts}>
-                    {psmd([
-                        {
-                            p: "وریژې **وخوره**",
-                            f: "wreejze **óokhora**",
-                            e: "Eat rice",
-                            sub: "(one time)",
-                        },
-                    ])}
-                </Examples>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <Examples opts={opts}>
-                    {psmd([
-                        {
-                            p: "د کلي عکسونه راته **لېږه**!",
-                            f: "du kulee aksoona raa-ta **leGá**!",
-                            e: "Send me pictures of the village!",
-                            sub: "(send me pictures every once and awhile)",    
-                        },
-                    ])}
-                </Examples>
-            </td>
-            <td>
-                <Examples opts={opts}>
-                    {psmd([
-                        {
-                            p: "د کلي عکسونه راته **ولېږه**!",
-                            f: "du kulee aksoona raa-ta **óoleGa**!",
-                            e: "Send me pictures of the village!",
-                            sub: "(send me a bunch of pictures in one clump, at one time)",
-                        },
-                    ])}
-                </Examples>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <Examples opts={opts}>
-                    {psmd([
-                        {
-                            p: "تاسو هلته **کېنئ**",
-                            f: "taaso halta **kenéyy**",
-                            e: "You sit there",
-                            sub: "(in general, whenever you come)"
-                        },
-                    ])}
-                </Examples>
-            </td>
-            <td>
-                <Examples opts={opts}>
-                    {psmd([
-                        {
-                            p: "تاسو هلته **کېنئ**",
-                            f: "taaso halta **kéneyy**",
-                            e: "You sit there",
-                            sub: "(one time, in one instance sit)"
-                        },
-                    ])}
-                </Examples>
-            </td>
-        </tr>
+      <tr>
+        <td>
+          <Examples opts={opts}>
+            {psmd([
+              {
+                p: "وریژې **خوره**",
+                f: "wreejze **khorá**",
+                e: "Eat rice",
+                sub: "(in general, it's good for you)",
+              },
+            ])}
+          </Examples>
+        </td>
+        <td>
+          <Examples opts={opts}>
+            {psmd([
+              {
+                p: "وریژې **وخوره**",
+                f: "wreejze **óokhora**",
+                e: "Eat rice",
+                sub: "(one time)",
+              },
+            ])}
+          </Examples>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <Examples opts={opts}>
+            {psmd([
+              {
+                p: "د کلي عکسونه راته **لېږه**!",
+                f: "du kulee aksoona raa-ta **leGá**!",
+                e: "Send me pictures of the village!",
+                sub: "(send me pictures every once and awhile)",
+              },
+            ])}
+          </Examples>
+        </td>
+        <td>
+          <Examples opts={opts}>
+            {psmd([
+              {
+                p: "د کلي عکسونه راته **ولېږه**!",
+                f: "du kulee aksoona raa-ta **óoleGa**!",
+                e: "Send me pictures of the village!",
+                sub: "(send me a bunch of pictures in one clump, at one time)",
+              },
+            ])}
+          </Examples>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <Examples opts={opts}>
+            {psmd([
+              {
+                p: "تاسو هلته **کېنئ**",
+                f: "taaso halta **kenéy**",
+                e: "You sit there",
+                sub: "(in general, whenever you come)",
+              },
+            ])}
+          </Examples>
+        </td>
+        <td>
+          <Examples opts={opts}>
+            {psmd([
+              {
+                p: "تاسو هلته **کېنئ**",
+                f: "taaso halta **kéney**",
+                e: "You sit there",
+                sub: "(one time, in one instance sit)",
+              },
+            ])}
+          </Examples>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
 
-Notice how the in the perfective form *the accent is always on the front* because it's based on the <Link to="/verbs/roots-and-stems/">perfective stem</Link>. 
+Notice how the in the perfective form _the accent is always on the front_ because it's based on the <Link to="/verbs/roots-and-stems/">perfective stem</Link>.
 
 ### Singular and Plural
 
 You will notice there are only two <Link to="/verbs/verb-endings/#imperative-verb-endings">imperative endings</Link>:
 
- - <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> - used for addressing a singular 2nd person <InlinePs opts={opts} ps={{ p: "ته", f: "tu", e: "you" }} />
- - <InlinePs opts={opts} ps={{ p: "ـئ", f: "-eyy" }} /> - used for addressing a plural 2nd person <InlinePs opts={opts} ps={{ p: "تاسو", f: "taaso", e: "you" }} />, either because you're talking to a group of people, or you're being extra respectful with one person.
+- <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> - used for addressing a singular
+  2nd person <InlinePs opts={opts} ps={{ p: "ته", f: "tu", e: "you" }} />
+- <InlinePs opts={opts} ps={{ p: "ـئ", f: "-ey" }} /> - used for addressing a plural
+  2nd person <InlinePs opts={opts} ps={{ p: "تاسو", f: "taaso", e: "you" }} />,
+  either because you're talking to a group of people, or you're being extra
+  respectful with one person.
 
 <div className="my-3" style={{ overflowX: "auto" }}>
   <table className="table">
@@ -181,18 +195,16 @@ You will notice there are only two <Link to="/verbs/verb-endings/#imperative-ver
     <tbody>
       <tr>
         <td>
-            <Examples opts={opts}>
-                {psmd([
-                    { p: "ته راځه!", f: "tu raadzá!", e: "You come!" }
-                ])}
-            </Examples>
+          <Examples opts={opts}>
+            {psmd([{ p: "ته راځه!", f: "tu raadzá!", e: "You come!" }])}
+          </Examples>
         </td>
         <td>
-            <Examples opts={opts}>
-                {psmd([
-                    { p: "تاسو راځئ!", f: "taaso radzéyy!", e: "You (pl.) come!" },
-                ])}
-            </Examples>
+          <Examples opts={opts}>
+            {psmd([
+              { p: "تاسو راځئ!", f: "taaso radzéy!", e: "You (pl.) come!" },
+            ])}
+          </Examples>
         </td>
       </tr>
     </tbody>
@@ -205,21 +217,32 @@ You will notice there are only two <Link to="/verbs/verb-endings/#imperative-ver
 
 ## Negative Imperatives
 
-**In the negative form of commands** (ie. *"Don't ____"*), **the aspect choice dissapears**. There is no imperfective/perfective option with negative imperatives, there's only one form.
+**In the negative form of commands** (ie. _"Don't \_\_\_\_"_), **the aspect choice dissapears**. There is no imperfective/perfective option with negative imperatives, there's only one form.
 
 <Formula name="Negative Imperative">
-    <InlinePs opts={opts} ps={{ p: "مه", f: "mú" }} /> + <Link to="/verbs/imperative-verbs/#imperfective-imperative">Imperfective Imperative</Link>
+  <InlinePs opts={opts} ps={{ p: "مه", f: "mú" }} /> +{" "}
+  <Link to="/verbs/imperative-verbs/#imperfective-imperative">
+    Imperfective Imperative
+  </Link>
 </Formula>
 
 With this form, you can't specify whether you're talking about about the action in a <i className="fas fa-camera" /> perfective or <i className="fas fa-video" /> imperfective way. You're just saying "don't do it!", either one time or in general.
 
 <Examples opts={opts}>
-    {[
-        { p: "مه راځه!", f: "mú raadza", e: "Don't come!" },
-        { p: "وریژې مه خوره!", f: "wreejze mú khora!", e: "Don't eat rice!" },
-        { p: "عکسونه راته مه لېږه!", f: "aksoona raa-ta mú leGa!", e: "Don't send me pictures!" },
-        { p: "تاسو هلته مه کېنئ!", f: "taaso halta mú keneyy!", e: "Don't sit there!" },
-    ]}
+  {[
+    { p: "مه راځه!", f: "mú raadza", e: "Don't come!" },
+    { p: "وریژې مه خوره!", f: "wreejze mú khora!", e: "Don't eat rice!" },
+    {
+      p: "عکسونه راته مه لېږه!",
+      f: "aksoona raa-ta mú leGa!",
+      e: "Don't send me pictures!",
+    },
+    {
+      p: "تاسو هلته مه کېنئ!",
+      f: "taaso halta mú keney!",
+      e: "Don't sit there!",
+    },
+  ]}
 </Examples>
 
 Just like with the negative particle <InlinePs opts={opts} ps={{ p: "نه", f: "nú" }} /> that we used with other verb forms, the negative <InlinePs opts={opts} ps={{ p: "مه", f: "mú" }} /> marker also takes over the accent of the verb.

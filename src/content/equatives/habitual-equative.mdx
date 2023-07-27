@@ -3,90 +3,85 @@ title: Habitual Equative
 ---
 
 import {
-    addToForm,
-    defaultTextOptions,
-    grammarUnits,
-    Examples,
-    concatPsString,
-    InlinePs,
+  addToForm,
+  defaultTextOptions,
+  grammarUnits,
+  Examples,
 } from "@lingdocs/ps-react";
 import psmd from "../../lib/psmd";
-import Markdown from "markdown-to-jsx";
 import EquativeFormChoice from "../../components/EquativeFormChoice";
 import Link from "../../components/Link";
 export const opts = defaultTextOptions;
 import grassBeWet from "../../images/grass-be-wet.jpg";
-import {
-    equativeGameHabitual,
-} from "../../games/games";
+import { equativeGameHabitual } from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
 
-In the last section we looked at the <Link to="/equatives/present-equative/">present equative</Link>, which we use to say something *is* something currently, or is categorically, always something. What if we want to say that something *tends to be something* or *is habitually something*?
+In the last section we looked at the <Link to="/equatives/present-equative/">present equative</Link>, which we use to say something _is_ something currently, or is categorically, always something. What if we want to say that something _tends to be something_ or _is habitually something_?
 
 ## Habitual Equative Form
 
-<EquativeFormChoice 
-    forms={{
-        sentence: {
-            displayForm: addToForm(
-                [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
-                grammarUnits.equativeEndings.habitual,
-            ),
-            english: [
-                ["I am ...", "We are ..."],
-                ["I am ...", "We are ..."],
-                ["You are ...", "You are ..."],
-                ["You are ...", "You are ..."],
-                ["He/she/it is ...", "They are ..."],
-                ["He/she/it is ...", "They are ..."],
-            ],
-        },
-        pure: {
-            displayForm: grammarUnits.equativeEndings.habitual,
-        },
-    }}
-    opts={opts}
+<EquativeFormChoice
+  forms={{
+    sentence: {
+      displayForm: addToForm(
+        [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
+        grammarUnits.equativeEndings.habitual
+      ),
+      english: [
+        ["I am ...", "We are ..."],
+        ["I am ...", "We are ..."],
+        ["You are ...", "You are ..."],
+        ["You are ...", "You are ..."],
+        ["He/she/it is ...", "They are ..."],
+        ["He/she/it is ...", "They are ..."],
+      ],
+    },
+    pure: {
+      displayForm: grammarUnits.equativeEndings.habitual,
+    },
+  }}
+  opts={opts}
 />
 
 This form is used to say that something is something (A = B) **habitually, generally, or repeatedly**.
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "سحار کې چمن لوند **وي**",
-            f: "saháar ke chaman loond **wee**",
-            e: "The grass **is** wet in the morning. (generally, habitually)",
-        },
-        {
-            p: "هغه تر ماښامه پورې په دوکان کې **وي**",
-            f: "haghá tur maaxaama pore pu dookáan ke **wee**",
-            e: "He's in the shop until evening. (generally, habitually)",
-        },
-        { 
-            p: "اتو بجو نه بعد دوکان بند **وي**.",
-            f: "atu bajo na bad dookáan band **wee**",
-            e: "The shop is closed after 8 o'clock. (generally, habitually)",
-        },
-    ])}
+  {psmd([
+    {
+      p: "سحار کې چمن لوند **وي**",
+      f: "saháar ke chaman loond **wee**",
+      e: "The grass **is** wet in the morning. (generally, habitually)",
+    },
+    {
+      p: "هغه تر ماښامه پورې په دوکان کې **وي**",
+      f: "haghá tur maaxaama pore pu dookáan ke **wee**",
+      e: "He's in the shop until evening. (generally, habitually)",
+    },
+    {
+      p: "اتو بجو نه بعد دوکان بند **وي**.",
+      f: "atu bajo na bad dookáan band **wee**",
+      e: "The shop is closed after 8 o'clock. (generally, habitually)",
+    },
+  ])}
 </Examples>
 
-⚠ **Warning**: For English speakers **it take some time to get used to choosing between the *present* and *habitual* equatives**. Standard English uses the same form for both, but in Pashto the forms change!
+⚠ **Warning**: For English speakers **it take some time to get used to choosing between the _present_ and _habitual_ equatives**. Standard English uses the same form for both, but in Pashto the forms change!
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "دوکان بند **دی**.",
-            f: "dookáan band **dey**.",
-            e: "The shop **is** closed. (right now, at this moment)",
-            sub: "1. Present Form"
-        },
-        {
-            p: "دوکان هر وخت بند **وي**",
-            f: "dookáan hăr wakht band **wee**",
-            e: "The shop **is** always closed. (generally, every day)",
-            sub: "2. Habitual Form"
-        },
-    ])}
+  {psmd([
+    {
+      p: "دوکان بند **دی**.",
+      f: "dookáan band **day**.",
+      e: "The shop **is** closed. (right now, at this moment)",
+      sub: "1. Present Form",
+    },
+    {
+      p: "دوکان هر وخت بند **وي**",
+      f: "dookáan hăr wakht band **wee**",
+      e: "The shop **is** always closed. (generally, every day)",
+      sub: "2. Habitual Form",
+    },
+  ])}
 </Examples>
 
 In English, we just say "is" in both situations. But **in Pashto, you have to pick between the two forms**. Use the present form for things that are something in the moment, and use the habitual form for things are generally or habitually something.
@@ -96,46 +91,78 @@ Interestingly, there is also a separate [habitual equative](https://en.wikipedia
 <img className="img-fluid mb-4" src={grassBeWet} />
 
 <div style={{ overflowX: "auto" }}>
-        <table className="table" style={{ minWidth: "400px" }}>
-            <thead>
-                <tr>
-                    <th scope="col">Form</th>
-                    <th scope="col">Standard English</th>
-                    <th scope="col">AAVE</th>
-                    <th scope="col">Pashto</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">Present</th>
-                    <td>
-                        <div>The grass <strong>is</strong> wet</div>
-                        <div className="small text-muted">right now</div>
-                    </td>
-                    <td>The grass <strong>is</strong> wet</td>
-                    <td>
-                        <Examples opts={opts}>
-                            {[
-                                { p: <>چمن لوند <strong>دی</strong></>, f: <>chaman loond <strong>dey</strong></> },
-                            ]}
-                        </Examples>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Habitual</th>
-                    <td>
-                        <div>The grass <strong>is</strong> wet in the morning</div>
-                        <div className="small text-muted">generally</div>
-                    </td>
-                    <td>The grass <strong>be</strong> wet in the morning</td>
-                    <td>
-                        <Examples opts={opts}>
-                            {[{ p: <>په سحار کې چمن لوند <strong>وي</strong></>, f: <>pu sahaar ke chaman loond <strong>wee</strong></> }]}
-                        </Examples>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+  <table className="table" style={{ minWidth: "400px" }}>
+    <thead>
+      <tr>
+        <th scope="col">Form</th>
+        <th scope="col">Standard English</th>
+        <th scope="col">AAVE</th>
+        <th scope="col">Pashto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Present</th>
+        <td>
+          <div>
+            The grass <strong>is</strong> wet
+          </div>
+          <div className="small text-muted">right now</div>
+        </td>
+        <td>
+          The grass <strong>is</strong> wet
+        </td>
+        <td>
+          <Examples opts={opts}>
+            {[
+              {
+                p: (
+                  <>
+                    چمن لوند <strong>دی</strong>
+                  </>
+                ),
+                f: (
+                  <>
+                    chaman loond <strong>day</strong>
+                  </>
+                ),
+              },
+            ]}
+          </Examples>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Habitual</th>
+        <td>
+          <div>
+            The grass <strong>is</strong> wet in the morning
+          </div>
+          <div className="small text-muted">generally</div>
+        </td>
+        <td>
+          The grass <strong>be</strong> wet in the morning
+        </td>
+        <td>
+          <Examples opts={opts}>
+            {[
+              {
+                p: (
+                  <>
+                    په سحار کې چمن لوند <strong>وي</strong>
+                  </>
+                ),
+                f: (
+                  <>
+                    pu sahaar ke chaman loond <strong>wee</strong>
+                  </>
+                ),
+              },
+            ]}
+          </Examples>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <GameDisplay record={equativeGameHabitual} />

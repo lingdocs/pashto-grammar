@@ -4,20 +4,15 @@ title: Present Equative
 
 import Link from "../../components/Link";
 import Carousel from "../../components/Carousel";
-import { useState } from "react";
 import {
-    grammarUnits,
-    Examples,
-    defaultTextOptions,
-    ButtonSelect,
-    addToForm,
-    InlinePs,
+  grammarUnits,
+  Examples,
+  defaultTextOptions,
+  addToForm,
+  InlinePs,
 } from "@lingdocs/ps-react";
-import {
-    equativeGamePresent,
-} from "../../games/games";
+import { equativeGamePresent } from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
-import psmd from "../../lib/psmd";
 import EquativeFormChoice from "../../components/EquativeFormChoice";
 
 ## Present Equative Form
@@ -29,86 +24,154 @@ Here are the **present equative endings** that you have to use depending on the 
 
 Not that this is **only for making statements about what is currently or 100% true**. If something tends to be true, or is habitually true, then you will need to use the <Link to="/equatives/habitual-equative">habitual equative</Link>.
 
-<EquativeFormChoice 
-    forms={{
-        sentence: {
-            displayForm: addToForm(
-                [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
-                grammarUnits.equativeEndings.present,
-            ),
-            english: [
-                ["I am ...", "We are ..."],
-                ["I am ...", "We are ..."],
-                ["You are ...", "You are ..."],
-                ["You are ...", "You are ..."],
-                ["He/it is ...", "They are ..."],
-                ["She/it is ...", "They are ..."],
-            ],
-        },
-        pure: {
-            displayForm: grammarUnits.equativeEndings.present,
-        }
-    }}
-    opts={defaultTextOptions}
+<EquativeFormChoice
+  forms={{
+    sentence: {
+      displayForm: addToForm(
+        [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
+        grammarUnits.equativeEndings.present
+      ),
+      english: [
+        ["I am ...", "We are ..."],
+        ["I am ...", "We are ..."],
+        ["You are ...", "You are ..."],
+        ["You are ...", "You are ..."],
+        ["He/it is ...", "They are ..."],
+        ["She/it is ...", "They are ..."],
+      ],
+    },
+    pure: {
+      displayForm: grammarUnits.equativeEndings.present,
+    },
+  }}
+  opts={defaultTextOptions}
 />
 
-**Note**: in colloquial speech with some dialects, people will use <InlinePs opts={defaultTextOptions} ps={{ p: "ده", f: "da" }} /> for both masculine and feminine subjects. 
+**Note**: in colloquial speech with some dialects, people will use <InlinePs opts={defaultTextOptions} ps={{ p: "ده", f: "da" }} /> for both masculine and feminine subjects.
 
 Flip through the following examples and notice how the equative changes depending on the subject.
 
-<Carousel 
-    items={[
-        { title: "1st pers. sing.", ex: { p: "زه خوشحاله یم", f: "zu khosháala yum", e: "I am happy" }},
-        { title: "2nd pers. sing.", ex: { p: "ته خوشحاله یې", f: "tu khosháala ye", e: "You are happy" }},
-        { title: "3rd pers. sing. masc.", ex: { p: "هغه خوشحاله دی", f: "haghá khosháala dey", e: "He is happy" }},
-        { title: "3rd pers. sing. fem.", ex: { p: "پلوشه خوشحاله ده", f: "pulwasha khosháala da", e: "Pulwasha is happy" }},
-        { title: "1st pers. plur. masc.", ex: { p: "مونږ خوشحاله یو", f: "moonG khosháala yoo", e: "We are happy" }},
-        { title: "2nd pers. plur.", ex: { p: "تاسو خوشحاله یئ", f: "taaso khosháala yeyy", e: "You (pl.) are happy" }},
-        { title: "3rd pers. plur.", ex: { p: "ماشومان خوشحاله دي", f: "maashoomáan khosháala dee", e: "The children are happy" }},
-        { title: "3rd pers. plur.", ex: { p: "دوي خوشحاله دي", f: "dwee khosháala dee", e: "They are happy" }},
-    ]} 
-    render={(item) => ({
-        title: item.title,
-        body: <Examples opts={defaultTextOptions}>{[item.ex]}</Examples>,
-    })}
+<Carousel
+  items={[
+    {
+      title: "1st pers. sing.",
+      ex: { p: "زه خوشحاله یم", f: "zu khosháala yum", e: "I am happy" },
+    },
+    {
+      title: "2nd pers. sing.",
+      ex: { p: "ته خوشحاله یې", f: "tu khosháala ye", e: "You are happy" },
+    },
+    {
+      title: "3rd pers. sing. masc.",
+      ex: { p: "هغه خوشحاله دی", f: "haghá khosháala day", e: "He is happy" },
+    },
+    {
+      title: "3rd pers. sing. fem.",
+      ex: {
+        p: "پلوشه خوشحاله ده",
+        f: "pulwasha khosháala da",
+        e: "Pulwasha is happy",
+      },
+    },
+    {
+      title: "1st pers. plur. masc.",
+      ex: { p: "مونږ خوشحاله یو", f: "moonG khosháala yoo", e: "We are happy" },
+    },
+    {
+      title: "2nd pers. plur.",
+      ex: {
+        p: "تاسو خوشحاله یئ",
+        f: "taaso khosháala yey",
+        e: "You (pl.) are happy",
+      },
+    },
+    {
+      title: "3rd pers. plur.",
+      ex: {
+        p: "ماشومان خوشحاله دي",
+        f: "maashoomáan khosháala dee",
+        e: "The children are happy",
+      },
+    },
+    {
+      title: "3rd pers. plur.",
+      ex: { p: "دوي خوشحاله دي", f: "dwee khosháala dee", e: "They are happy" },
+    },
+  ]}
+  render={(item) => ({
+    title: item.title,
+    body: <Examples opts={defaultTextOptions}>{[item.ex]}</Examples>,
+  })}
 />
 
-## Examples 
+## Examples
 
-<Examples opts={defaultTextOptions} ex={[
-    { p: "هغوي ماشومان دي", f: "haghwée mashoomáan dee", e: "They are children" },
+<Examples
+  opts={defaultTextOptions}
+  ex={[
+    {
+      p: "هغوي ماشومان دي",
+      f: "haghwée mashoomáan dee",
+      e: "They are children",
+    },
     { p: "ته ډاکټر یې؟", f: "tu DakTár ye?", e: "Are you a doctor?" },
-    { p: "تاسو ډاکټران یئ؟", f: "taaso DakTaráan yeyy?", e: "Are you (pl.) doctors?" },
-    { p: "دا ستا کور دی", f: "daa staa kor dey", e: "That's your house" },
-    { p: "دا ستا کورونه دي", f: "daa staa koróona dee", e: "Those are your houses" },
-]} />
+    {
+      p: "تاسو ډاکټران یئ؟",
+      f: "taaso DakTaráan yey?",
+      e: "Are you (pl.) doctors?",
+    },
+    { p: "دا ستا کور دی", f: "daa staa kor day", e: "That's your house" },
+    {
+      p: "دا ستا کورونه دي",
+      f: "daa staa koróona dee",
+      e: "Those are your houses",
+    },
+  ]}
+/>
 
-Notice how the equative agrees with the subject, but also how the complement can inflect (change) depending on the gender and number. We'll understand more about how this works when we look at *inflection*.
+Notice how the equative agrees with the subject, but also how the complement can inflect (change) depending on the gender and number. We'll understand more about how this works when we look at _inflection_.
 
-<Examples opts={defaultTextOptions} ex={[
-    { p: "زه ستړی یم", f: "zu stúRey yum", e: "I (m.) am tired 👨"},
-    { p: "زه ستړې یم", f: "zu stúRe yum", e: "I (f.) am tired 👩"},
+<Examples
+  opts={defaultTextOptions}
+  ex={[
+    { p: "زه ستړی یم", f: "zu stúRay yum", e: "I (m.) am tired 👨" },
+    { p: "زه ستړې یم", f: "zu stúRe yum", e: "I (f.) am tired 👩" },
     { p: "ته پښتون یې؟", f: "tu puxtoon ye?", e: "Are you (m.) a Pashtun?" },
     { p: "ته پښتنه یې؟", f: "tu puxtana ye?", e: "Are you (f.) a Pashtun?" },
-    { p: "تاسو پښتانه یې؟", f: "taaso puxtaanu yeyy?", e: "Are you (m. pl.) Pashtuns?" },
-    { p: "تاسو پښتنې یې؟", f: "taaso puxtane yeyy?", e: "Are you (f. pl.) Pashtuns?" },
-]} />
+    {
+      p: "تاسو پښتانه یې؟",
+      f: "taaso puxtaanu yey?",
+      e: "Are you (m. pl.) Pashtuns?",
+    },
+    {
+      p: "تاسو پښتنې یې؟",
+      f: "taaso puxtane yey?",
+      e: "Are you (f. pl.) Pashtuns?",
+    },
+  ]}
+/>
 
-Note: To understand why/how these words are changing, you will need to read up on *inflection*. 
+Note: To understand why/how these words are changing, you will need to read up on _inflection_.
 
 ## Notes on word order
 
 When you're asking a question, all you have to do is change the intonation. You don't have to change the word order like you do in English.
 
-<Examples opts={defaultTextOptions} ex={[
+<Examples
+  opts={defaultTextOptions}
+  ex={[
     { p: "ته پښتون یې.", f: "tu puxtoon ye.", e: "You (m.) are a Pashtun." },
     { p: "ته پښتون یې؟", f: "tu puxtoon ye?", e: "Are you (m.) a Pashtun?" },
-]} />
+  ]}
+/>
 
 **99.9% of the time the equative will go at the end of the sentence.** But in poetry the order often gets flipped around. You can also flip the order around to make an emphatic point.
 
-<Examples opts={defaultTextOptions} ex={[
-    { p: "خو ته یې افعان", f: "kho tu ye afgháan", e: "But you are Afghan!" }
-]} />
+<Examples
+  opts={defaultTextOptions}
+  ex={[
+    { p: "خو ته یې افعان", f: "kho tu ye afgháan", e: "But you are Afghan!" },
+  ]}
+/>
 
 <GameDisplay record={equativeGamePresent} />

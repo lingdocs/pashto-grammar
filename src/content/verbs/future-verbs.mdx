@@ -3,9 +3,9 @@ title: Future
 ---
 
 import {
-    defaultTextOptions as opts,
-    Examples,
-    InlinePs,
+  defaultTextOptions as opts,
+  Examples,
+  InlinePs,
 } from "@lingdocs/ps-react";
 import { KidsSection } from "../../components/terms-links";
 import cousins from "./cousins.png";
@@ -15,10 +15,7 @@ import Formula from "../../components/formula/Formula";
 import imperfectiveFuture from "./imperfective-future-graph.svg";
 import perfectiveFuture from "./perfective-future-graph.svg";
 import BasicVerbShowCase from "../../components/BasicVerbShowCase";
-import {
-    futureVerbGame1,
-    futureVerbGame2,
-} from "../../games/games";
+import { futureVerbGame1, futureVerbGame2 } from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
 
 There are two kinds of future forms in Pashto:
@@ -28,15 +25,15 @@ There are two kinds of future forms in Pashto:
 
 ## Imperfective Future
 
-This is used to talk about something happening in the future, while thinking of the event as an ongoing or recurring event. It can also be used to stress the certainty of the event happening. 
+This is used to talk about something happening in the future, while thinking of the event as an ongoing or recurring event. It can also be used to stress the certainty of the event happening.
 
 <div className="text-center">
-    <img src={imperfectiveFuture} alt="" className="img-fluid" />
+  <img src={imperfectiveFuture} alt="" className="img-fluid" />
 </div>
 
 <Formula>
-    <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> +{` `}
-    <Link to="/verbs/present-verbs/">Present</Link>
+  <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> +{` `}
+  <Link to="/verbs/present-verbs/">Present</Link>
 </Formula>
 
 <BasicVerbShowCase opts={opts} tense="imperfectiveFuture" />
@@ -45,15 +42,15 @@ Notice that the <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> goes in the
 
 ## Perfective Future
 
-This is used to talk about something happening in the future, while thinking of the event *as a whole* or as a one time event. It can also be used when there is a little less certainty that the event will happen.
+This is used to talk about something happening in the future, while thinking of the event _as a whole_ or as a one time event. It can also be used when there is a little less certainty that the event will happen.
 
 <div className="text-center">
-    <img src={perfectiveFuture} alt="" className="img-fluid" />
+  <img src={perfectiveFuture} alt="" className="img-fluid" />
 </div>
 
 <Formula>
-    <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> +{` `}
-    <Link to="/verbs/subjunctive-verbs/">Subjunctive</Link>
+  <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> +{` `}
+  <Link to="/verbs/subjunctive-verbs/">Subjunctive</Link>
 </Formula>
 
 <BasicVerbShowCase opts={opts} tense="perfectiveFuture" />

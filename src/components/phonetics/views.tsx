@@ -34,7 +34,8 @@ const views: {
       <div>
         <p>
           Long vowels are <strong>always written</strong> in Pashto script. When
-          long vowels come at the beginning of a word, they are prefixed with a letter alef (ا).
+          long vowels come at the beginning of a word, they are prefixed with a
+          letter alef (ا).
         </p>
         <p>for example:</p>
         <ul>
@@ -46,8 +47,9 @@ const views: {
           </li>
         </ul>
         <p>
-          Note: When ey - ی or ee - ي are written in the middle of a word, both appear as ـیـ.
-          To differentiate ee - ي from ey - ی you can (optionally) add a ◌ِ diacritic. (eg. شِین - sheen)
+          Note: When ay - ی or ee - ي are written in the middle of a word, both
+          appear as ـیـ. To differentiate ee - ي from ay - ی you can
+          (optionally) add a ◌ِ diacritic. (eg. شِین - sheen)
         </p>
       </div>
     ),

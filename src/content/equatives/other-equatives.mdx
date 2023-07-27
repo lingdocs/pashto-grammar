@@ -3,14 +3,11 @@ title: Other Equatives
 ---
 
 import {
-    addToForm,
-    defaultTextOptions as opts,
-    grammarUnits,
-    VerbFormDisplay,
-    ButtonSelect,
-    concatPsString,
-    InlinePs,
-    Examples,
+  addToForm,
+  defaultTextOptions as opts,
+  grammarUnits,
+  InlinePs,
+  Examples,
 } from "@lingdocs/ps-react";
 import psmd from "../../lib/psmd";
 import EquativeFormChoice from "../../components/EquativeFormChoice";
@@ -18,12 +15,12 @@ import WithTailChoice from "./WithTailChoice";
 import Formula from "../../components/formula/Formula";
 import Link from "../../components/Link";
 import {
-    equativeGameSubjunctive,
-    equativeGameFuture,
-    equativeGamePast,
-    equativeGameWouldBe,
-    equativeGamePastSubjunctive,
-    equativeGameWouldHaveBeen,
+  equativeGameSubjunctive,
+  equativeGameFuture,
+  equativeGamePast,
+  equativeGameWouldBe,
+  equativeGamePastSubjunctive,
+  equativeGameWouldHaveBeen,
 } from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
 import { KidsSection } from "../../components/terms-links";
@@ -31,42 +28,43 @@ import { KidsSection } from "../../components/terms-links";
 ## Subjunctive Equative
 
 The subjunctive equative is used to talk about something being something when the statement involves:
+
 - a hypothetical condition
 - a wish, desire, hope
 - a purpose
 - statement of whether it should or shouldn't be
 
 <Examples opts={opts}>
-    {[
-        psmd({
-            p: "امید لرم چې خوشحاله **وي**",
-            f: "Umeed larum che khosháala **wee**",
-            e: "I hope he **is** happy",
-        }),
-    ]}
+  {[
+    psmd({
+      p: "امید لرم چې خوشحاله **وي**",
+      f: "Umeed larum che khosháala **wee**",
+      e: "I hope he **is** happy",
+    }),
+  ]}
 </Examples>
 
-<EquativeFormChoice 
-    forms={{
-        sentence: {
-            displayForm: addToForm(
-                [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
-                grammarUnits.equativeEndings.subjunctive,
-            ),
-            english: [
-                ["I am ...", "We are ..."],
-                ["I am ...", "We are ..."],
-                ["You are ...", "You are ..."],
-                ["You are ...", "You are ..."],
-                ["He/she/it is ...", "They are ..."],
-                ["He/she/it is ...", "They are ..."],
-            ],
-        },
-        pure: {
-            displayForm: grammarUnits.equativeEndings.subjunctive,
-        },
-    }}
-    opts={opts}
+<EquativeFormChoice
+  forms={{
+    sentence: {
+      displayForm: addToForm(
+        [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
+        grammarUnits.equativeEndings.subjunctive
+      ),
+      english: [
+        ["I am ...", "We are ..."],
+        ["I am ...", "We are ..."],
+        ["You are ...", "You are ..."],
+        ["You are ...", "You are ..."],
+        ["He/she/it is ...", "They are ..."],
+        ["He/she/it is ...", "They are ..."],
+      ],
+    },
+    pure: {
+      displayForm: grammarUnits.equativeEndings.subjunctive,
+    },
+  }}
+  opts={opts}
 />
 
 #### Purpose
@@ -74,13 +72,13 @@ The subjunctive equative is used to talk about something being something when th
 The subjunctive is used in clauses that express a purpose or an aim of something being something.
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "زه به درته سندره وایم، چې ته خوشحاله **وې**",
-            f: "zu ba taa ta sandura waayum, che tu khoshaala **we**.",
-            e: "I'll sing to you, so that you'll **be** happy.",
-        },
-    ])}
+  {psmd([
+    {
+      p: "زه به درته سندره وایم، چې ته خوشحاله **وې**",
+      f: "zu ba taa ta sandura waayum, che tu khoshaala **we**.",
+      e: "I'll sing to you, so that you'll **be** happy.",
+    },
+  ])}
 </Examples>
 
 #### Judgement/obligation
@@ -88,49 +86,49 @@ The subjunctive is used in clauses that express a purpose or an aim of something
 The subjunctive form can be used to talk about it being being good or bad, necessary, or required that something is something.
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "هغوي باید په ښووونځي کې **وي**",
-            f: "hagwee baayad pu xowoondzee ke **wee**.",
-            e: "They have to be in school.",
-        },
-    ])}
+  {psmd([
+    {
+      p: "هغوي باید په ښووونځي کې **وي**",
+      f: "hagwee baayad pu xowoondzee ke **wee**.",
+      e: "They have to be in school.",
+    },
+  ])}
 </Examples>
 
 #### Desire
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "امید لرم چې هلته **وي**",
-            f: "Umeed larum che halta **wee**.",
-            e: "I hope they're there.",
-        },
-        {
-            p: "هغه غواړي چې مونږ په کور کې **وو**",
-            f: "haghá ghwaaRee che moonG pu kor ke **woo**.",
-            e: "He wants us to be home.",
-        },
-    ])}
+  {psmd([
+    {
+      p: "امید لرم چې هلته **وي**",
+      f: "Umeed larum che halta **wee**.",
+      e: "I hope they're there.",
+    },
+    {
+      p: "هغه غواړي چې مونږ په کور کې **وو**",
+      f: "haghá ghwaaRee che moonG pu kor ke **woo**.",
+      e: "He wants us to be home.",
+    },
+  ])}
 </Examples>
 
 #### Conditions
 
-The subjunctive form is also used to talk about conditions or possibilities. *If A = B, then...* or *It could be that A = B ...*
+The subjunctive form is also used to talk about conditions or possibilities. _If A = B, then..._ or _It could be that A = B ..._
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "که دوکان کې وریژې **وي** نو وایې خله",
-            f: "ku dokaan ke wrejze **wee**, no waa-ye-khla",
-            e: "If there's rice in the store, buy it",
-        },
-        {
-            p: "کېدی شي چې ډوډۍ تیاره **وي**",
-            f: "kedey shee che DoDúy tayaara **wee**",
-            e: "The food could be ready",
-        },
-    ])}
+  {psmd([
+    {
+      p: "که دوکان کې وریژې **وي** نو وایې خله",
+      f: "ku dokaan ke wrejze **wee**, no waa-ye-khla",
+      e: "If there's rice in the store, buy it",
+    },
+    {
+      p: "کېدی شي چې ډوډۍ تیاره **وي**",
+      f: "keday shee che DoDúy tayaara **wee**",
+      e: "The food could be ready",
+    },
+  ])}
 </Examples>
 
 #### Important Note on Common Use:
@@ -138,20 +136,20 @@ The subjunctive form is also used to talk about conditions or possibilities. *If
 This is the standard/written form of the subjunctive equative. However in many dialects you will find that people use the same forms as the <Link to="/equative/habitual-equative">habitual equative</Link> when speaking. For example:
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "هغه غواړي چې مونږ په کور کې **وو**",
-            f: "haghá ghwaaRee che moonG pu kor ke **woo**.",
-            e: "He wants us to be home.",
-            sub: "proper / standard",
-        },
-        {
-            p: "هغه غواړي چې مونږ په کور کې **یو**",
-            f: "haghá ghwaaRee che moonG pu kor ke **yoo**.",
-            e: "He wants us to be home.",
-            sub: "often spoken / colloquial",
-        },
-    ])}
+  {psmd([
+    {
+      p: "هغه غواړي چې مونږ په کور کې **وو**",
+      f: "haghá ghwaaRee che moonG pu kor ke **woo**.",
+      e: "He wants us to be home.",
+      sub: "proper / standard",
+    },
+    {
+      p: "هغه غواړي چې مونږ په کور کې **یو**",
+      f: "haghá ghwaaRee che moonG pu kor ke **yoo**.",
+      e: "He wants us to be home.",
+      sub: "often spoken / colloquial",
+    },
+  ])}
 </Examples>
 
 <GameDisplay record={equativeGameSubjunctive} />
@@ -164,72 +162,73 @@ This is used for:
 2. To guess or surmise about something being something (now or in the future). ("I'll be...")
 
 <Formula>
-    <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="/equatives/habitual-equative/">habitual equative</Link>
+  <InlinePs opts={opts} ps={grammarUnits.baParticle} /> +{" "}
+  <Link to="/equatives/habitual-equative/">habitual equative</Link>
 </Formula>
 
 <div className="small">
-    Note: The <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> goes in the <KidsSection />.
+  Note: The <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> goes in the{" "}
+  <KidsSection />.
 </div>
 
 <EquativeFormChoice
-    forms={{
-        sentence: {
-            displayForm: addToForm([
-                    grammarUnits.pronouns.far.plain,
-                    " ",
-                    grammarUnits.baParticle,
-                    " ",
-                    { p: "...", f: "..." },
-                    " ",
-                ],
-                grammarUnits.equativeEndings.habitual,
-            ),
-            english: [
-                ["I will be ...", "We will be ..."],
-                ["I will be ...", "We will be ..."],
-                ["You will be ...", "You will be ..."],
-                ["You will be ...", "You will be ..."],
-                ["He/she/it will be ...", "They will be ..."],
-                ["He/she/it will be ...", "They will be ..."],
-            ],
-        },
-        pure: {
-            displayForm: addToForm([
-                grammarUnits.baParticle,
-                " ",
-                { p: "...", f: "..." },
-                " ",
-            ], grammarUnits.equativeEndings.habitual)
-        },
-    }}
-    opts={opts}
+  forms={{
+    sentence: {
+      displayForm: addToForm(
+        [
+          grammarUnits.pronouns.far.plain,
+          " ",
+          grammarUnits.baParticle,
+          " ",
+          { p: "...", f: "..." },
+          " ",
+        ],
+        grammarUnits.equativeEndings.habitual
+      ),
+      english: [
+        ["I will be ...", "We will be ..."],
+        ["I will be ...", "We will be ..."],
+        ["You will be ...", "You will be ..."],
+        ["You will be ...", "You will be ..."],
+        ["He/she/it will be ...", "They will be ..."],
+        ["He/she/it will be ...", "They will be ..."],
+      ],
+    },
+    pure: {
+      displayForm: addToForm(
+        [grammarUnits.baParticle, " ", { p: "...", f: "..." }, " "],
+        grammarUnits.equativeEndings.habitual
+      ),
+    },
+  }}
+  opts={opts}
 />
 
 #### Examples
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "زه **به** په کور کې **یم**.",
-            f: "zu **ba** pu kor ke **yum**.",
-            e: "I **will be** at home.",
-        },
-        {
-            p: "مونږ **به** ستړي **یو**",
-            f: "moonG ba stúRee **yoo**.",
-            e: "We **will be** tired.",
-        },
-        {
-            p: "ډوډۍ **به** تیاره **وي**.",
-            f: "DoDúy **ba** tayáara **wee**.",
-            e: "The food **will be** ready.",
-        },
-        {
-            p: "تاسو **به** وږي **یئ**، که نه؟",
-            f: "taaso **ba** wuGee **yeyy**, ku nu?",
-            e: "You**'ll be** hungry, won't you?",
-        },
-    ])}
+  {psmd([
+    {
+      p: "زه **به** په کور کې **یم**.",
+      f: "zu **ba** pu kor ke **yum**.",
+      e: "I **will be** at home.",
+    },
+    {
+      p: "مونږ **به** ستړي **یو**",
+      f: "moonG ba stúRee **yoo**.",
+      e: "We **will be** tired.",
+    },
+    {
+      p: "ډوډۍ **به** تیاره **وي**.",
+      f: "DoDúy **ba** tayáara **wee**.",
+      e: "The food **will be** ready.",
+    },
+    {
+      p: "تاسو **به** وږي **یئ**، که نه؟",
+      f: "taaso **ba** wuGee **yey**, ku nu?",
+      e: "You**'ll be** hungry, won't you?",
+    },
+  ])}
 </Examples>
 
 <GameDisplay record={equativeGameFuture} />
@@ -241,62 +240,63 @@ This is used to say that something was something in the past. ("I was...")
 It is usually used in the short form.
 
 <Formula>
-    <InlinePs opts={opts} ps={{ p: "ول", f: "wul" }} /> + <Link to="/verbs/verb-endings/#past-verb-endings">past verb endings</Link>
+  <InlinePs opts={opts} ps={{ p: "ول", f: "wul" }} /> +{" "}
+  <Link to="/verbs/verb-endings/#past-verb-endings">past verb endings</Link>
 </Formula>
 
 <EquativeFormChoice
-    forms={{
-        sentence: {
-            displayForm: addToForm([
-                grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
-                grammarUnits.equativeEndings.past,
-            ),
-            english: [
-                ["I was ...", "We were ..."],
-                ["I was ...", "We were ..."],
-                ["You were ...", "You were ..."],
-                ["You were ...", "You were ..."],
-                ["He/it was ...", "They were ..."],
-                ["She/it was ...", "They were ..."],
-            ],
-        },
-        pure: {
-            displayForm: grammarUnits.equativeEndings.past,
-        },
-    }}
-    opts={opts}
+  forms={{
+    sentence: {
+      displayForm: addToForm(
+        [grammarUnits.pronouns.far.plain, " ", { p: "...", f: "..." }, " "],
+        grammarUnits.equativeEndings.past
+      ),
+      english: [
+        ["I was ...", "We were ..."],
+        ["I was ...", "We were ..."],
+        ["You were ...", "You were ..."],
+        ["You were ...", "You were ..."],
+        ["He/it was ...", "They were ..."],
+        ["She/it was ...", "They were ..."],
+      ],
+    },
+    pure: {
+      displayForm: grammarUnits.equativeEndings.past,
+    },
+  }}
+  opts={opts}
 />
 
 ### Examples
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "ته چېرته **وې**؟",
-            f: "tu cherta **we**?",
-            e: "Where **were** you?",
-        },
-        {
-            p: "زه په کور کې **وم**.",
-            f: "zu pu kor ke **wum**.",
-            e: "I **was** at home.",
-        },
-        {
-            p: "هغه ډېر ستړی **و**.",
-            f: "haghá Der stúRey **wo**.",
-            e: "He **was** very tired.",
-        },
-        {
-            p: "هغه ډېره ستړې **وه**.",
-            f: "haghá Déra stúRe **wa**.",
-            e: "She **was** very tired.",
-        },
-        {
-            p: "مونږ خفه **وو**",
-            f: "moonG khúfa **woo**.",
-            e: "We **were** sad.",
-        },
-    ])}
+  {psmd([
+    {
+      p: "ته چېرته **وې**؟",
+      f: "tu cherta **we**?",
+      e: "Where **were** you?",
+    },
+    {
+      p: "زه په کور کې **وم**.",
+      f: "zu pu kor ke **wum**.",
+      e: "I **was** at home.",
+    },
+    {
+      p: "هغه ډېر ستړی **و**.",
+      f: "haghá Der stúRay **wo**.",
+      e: "He **was** very tired.",
+    },
+    {
+      p: "هغه ډېره ستړې **وه**.",
+      f: "haghá Déra stúRe **wa**.",
+      e: "She **was** very tired.",
+    },
+    {
+      p: "مونږ خفه **وو**",
+      f: "moonG khúfa **woo**.",
+      e: "We **were** sad.",
+    },
+  ])}
 </Examples>
 
 <GameDisplay record={equativeGamePast} />
@@ -304,6 +304,7 @@ It is usually used in the short form.
 ## "Would be" Equative
 
 This is used to:
+
 - say A was B habitually/repeatedly in past
 - to presume or guess about A being B in the past
 - or to talk about the outcome of hypothetical conditions
@@ -312,45 +313,46 @@ This is used to:
 Like the <Link to="#past-equative">past equative</Link> that it's based on, it's usually used with the short form.
 
 <Formula>
-    <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="#past-equative">past equative</Link>
+  <InlinePs opts={opts} ps={grammarUnits.baParticle} /> +{" "}
+  <Link to="#past-equative">past equative</Link>
 </Formula>
 
 <div className="small">
-    Note: The <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> goes in the <KidsSection />.
+  Note: The <InlinePs opts={opts} ps={{ p: "به", f: "ba" }} /> goes in the{" "}
+  <KidsSection />.
 </div>
 
 <EquativeFormChoice
-    forms={{
-        sentence: {
-            displayForm: addToForm([
-                    grammarUnits.pronouns.far.plain,
-                    " ",
-                    grammarUnits.baParticle,
-                    " ",
-                    { p: "...", f: "..." },
-                    " ",
-                ],
-                grammarUnits.equativeEndings.past,
-            ),
-            english: [
-                ["I'll be ...", "We'll be ..."],
-                ["I'll be ...", "We'll be ..."],
-                ["You'll be ...", "You'll be ..."],
-                ["You'll be ...", "You'll be ..."],
-                ["He/she/it'll be ...", "They'll be ..."],
-                ["He/she/it'll be ...", "They'll be ..."],
-            ],
-        },
-        pure: {
-            displayForm: addToForm([
-                grammarUnits.baParticle,
-                " ",
-                { p: "...", f: "..." },
-                " ",
-            ], grammarUnits.equativeEndings.past)
-        }
-    }}
-    opts={opts}
+  forms={{
+    sentence: {
+      displayForm: addToForm(
+        [
+          grammarUnits.pronouns.far.plain,
+          " ",
+          grammarUnits.baParticle,
+          " ",
+          { p: "...", f: "..." },
+          " ",
+        ],
+        grammarUnits.equativeEndings.past
+      ),
+      english: [
+        ["I'll be ...", "We'll be ..."],
+        ["I'll be ...", "We'll be ..."],
+        ["You'll be ...", "You'll be ..."],
+        ["You'll be ...", "You'll be ..."],
+        ["He/she/it'll be ...", "They'll be ..."],
+        ["He/she/it'll be ...", "They'll be ..."],
+      ],
+    },
+    pure: {
+      displayForm: addToForm(
+        [grammarUnits.baParticle, " ", { p: "...", f: "..." }, " "],
+        grammarUnits.equativeEndings.past
+      ),
+    },
+  }}
+  opts={opts}
 />
 
 ### Examples
@@ -358,42 +360,42 @@ Like the <Link to="#past-equative">past equative</Link> that it's based on, it's
 #### Presuming something about the past
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "ته **به** خبر **وې** که نه؟",
-            f: "tu **ba** khabúr **we**, ka na?.",
-            e: "You would have known, wouldn't you?",
-        },
-    ])}
+  {psmd([
+    {
+      p: "ته **به** خبر **وې** که نه؟",
+      f: "tu **ba** khabúr **we**, ka na?.",
+      e: "You would have known, wouldn't you?",
+    },
+  ])}
 </Examples>
 
 #### Habitual Past
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "زه **به** هر سهار هلته **وم**",
-            f: "zu **ba** hăr saháar halta **wum**",
-            e: "I would be there every morning",
-        },
-        {
-            p: "زما مور **به** دلته ناسته **وه**.",
-            f: "zmaa mor **ba** dalta naasta **wa**.",
-            e: "My mom would be sitting here.", 
-        }
-    ])}
+  {psmd([
+    {
+      p: "زه **به** هر سهار هلته **وم**",
+      f: "zu **ba** hăr saháar halta **wum**",
+      e: "I would be there every morning",
+    },
+    {
+      p: "زما مور **به** دلته ناسته **وه**.",
+      f: "zmaa mor **ba** dalta naasta **wa**.",
+      e: "My mom would be sitting here.",
+    },
+  ])}
 </Examples>
 
 #### Hypothetical outcome
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "که خوب مې نه وای کړی، زه **به** ستړی **وم**.",
-            f: "ku khob me nu waay kúRey, zu **ba** stúRey **wum**.",
-            e: "If I hadn't slept, I **would have been** tired.",
-        },
-    ])}
+  {psmd([
+    {
+      p: "که خوب مې نه وای کړی، زه **به** ستړی **وم**.",
+      f: "ku khob me nu waay kúRay, zu **ba** stúRay **wum**.",
+      e: "If I hadn't slept, I **would have been** tired.",
+    },
+  ])}
 </Examples>
 
 <GameDisplay record={equativeGameWouldBe} />
@@ -403,68 +405,67 @@ Like the <Link to="#past-equative">past equative</Link> that it's based on, it's
 This is used to talk about:
 
 - If A were hypothetically B but it isn't
-    - also if A *had been* hypothetically B, but it isn't
+  - also if A _had been_ hypothetically B, but it isn't
 - If you wish A were B
 - If A should have been B
 - A had to be B (it was necessary/good for A to be B)
 - In prayers and blessings (in some dialects)
 
-Because this is based on the the non-inflecting tail, *it doesn't change at all, no matter what the subject is*.
+Because this is based on the the non-inflecting tail, _it doesn't change at all, no matter what the subject is_.
 
 <Formula>
-    <InlinePs opts={opts} ps={{ p: "و", f: "w" }} /> + non-inflecting tail
+  <InlinePs opts={opts} ps={{ p: "و", f: "w" }} /> + non-inflecting tail
 </Formula>
 
 <WithTailChoice opts={opts} ba={false} />
 
 ### Examples
 
-#### If A were B 
+#### If A were B
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "که زه ستا پر ځای **وای**",
-            f: "ku zu staa pur dzaay **waay**",
-            e: "If I **were** in your place",
-        },
-        {
-            p: "که مونږ خبر **وای**، نه راتلو.",
-            f: "ku moonG khabúr **waay**, nú raatloo.",
-            e: "If had known, we wouldn't have come.",
-        },
-    ])}
+  {psmd([
+    {
+      p: "که زه ستا پر ځای **وای**",
+      f: "ku zu staa pur dzaay **waay**",
+      e: "If I **were** in your place",
+    },
+    {
+      p: "که مونږ خبر **وای**، نه راتلو.",
+      f: "ku moonG khabúr **waay**, nú raatloo.",
+      e: "If had known, we wouldn't have come.",
+    },
+  ])}
 </Examples>
 
 #### You wish A were B
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "**کاشکې ته دلته **وای!",
-            f: "kaashke tu dălta **waay**!",
-            e: "If only you were here!",
-        },
-    ])}
+  {psmd([
+    {
+      p: "**کاشکې ته دلته **وای!",
+      f: "kaashke tu dălta **waay**!",
+      e: "If only you were here!",
+    },
+  ])}
 </Examples>
 
 #### A should have been B
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "د باید دلته **وای**!",
-            f: "tu baayad dălta **waay**!",
-            e: "You should have been here!",
-        },
-        {
-            p: "د باید دلته **وای**",
-            f: "tu baayad dălta **waay**",
-            e: "You had to be here",
-        },
-    ])}
+  {psmd([
+    {
+      p: "د باید دلته **وای**!",
+      f: "tu baayad dălta **waay**!",
+      e: "You should have been here!",
+    },
+    {
+      p: "د باید دلته **وای**",
+      f: "tu baayad dălta **waay**",
+      e: "You had to be here",
+    },
+  ])}
 </Examples>
-
 
 <GameDisplay record={equativeGamePastSubjunctive} />
 
@@ -476,7 +477,8 @@ This is used to talk about:
 - A should have been B, or it would have been good if A would have been B
 
 <Formula>
-    <InlinePs opts={opts} ps={grammarUnits.baParticle} /> + <Link to="#past-subjunctive">past subjunctive</Link>
+  <InlinePs opts={opts} ps={grammarUnits.baParticle} /> +{" "}
+  <Link to="#past-subjunctive">past subjunctive</Link>
 </Formula>
 
 <WithTailChoice opts={opts} ba={true} />
@@ -485,17 +487,26 @@ This is used to talk about:
 
 ## Overview of 8 Equatives
 
-<h5>1. <Link to="/equatives/present-equative/">Present Equative</Link></h5>
+<h5>
+  1. <Link to="/equatives/present-equative/">Present Equative</Link>
+</h5>
 
 - A is B currently
 - A is B categorically, definately
 
-<h5>2. <Link to="/equatives/habitual-equative/">Habitual Equative</Link></h5>
+<h5>
+  2. <Link to="/equatives/habitual-equative/">Habitual Equative</Link>
+</h5>
 
 - A is B habitually, repeatedly, generally
 - A tends to be B
 
-<h5>3.<Link to="/equatives/other-equatives/#subjunctive-equative">Subjunctive Equative</Link></h5>
+<h5>
+  3.
+  <Link to="/equatives/other-equatives/#subjunctive-equative">
+    Subjunctive Equative
+  </Link>
+</h5>
 
 - One desires or wants A to be B
 - A should/must be B (judgement)
@@ -503,31 +514,51 @@ This is used to talk about:
 - if A is B
 - ...so that A is B (purpose)
 
-<h5>4. <Link to="/equatives/other-equatives/#future-equative">Future Equative</Link></h5>
+<h5>
+  4.{" "}
+  <Link to="/equatives/other-equatives/#future-equative">Future Equative</Link>
+</h5>
 
 - A will be B
 - presuming or guessing that A will be B
 
-<h5>5. <Link to="/equatives/other-equatives/#past-equative">Past Equative</Link></h5>
+<h5>
+  5. <Link to="/equatives/other-equatives/#past-equative">Past Equative</Link>
+</h5>
 
 - A was B
 - (if) A turns out to be B
 
-<h5>6. <Link to="/equatives/other-equatives/#would-be-equative">"Would be" Equative</Link></h5>
+<h5>
+  6.{" "}
+  <Link to="/equatives/other-equatives/#would-be-equative">
+    "Would be" Equative
+  </Link>
+</h5>
 
 - A was B habitually
 - Presuming or guessing that A was B
 - A would have been B (as the result of a hypothetical outcome)
 - A should have been B
 
-<h5>7. <Link to="/equatives/other-equatives/#past-subjunctive">Past Subjunctive Equative</Link></h5>
+<h5>
+  7.{" "}
+  <Link to="/equatives/other-equatives/#past-subjunctive">
+    Past Subjunctive Equative
+  </Link>
+</h5>
 
 - A should have been B
 - A had to be B (it was necessary/good for A to be B)
 - If A were B (unreal conditional)...
 - I wish/if only A were B!
 
-<h5>8. <Link to="/equatives/other-equatives/#would-have-been-equative">"Would have been" Equative</Link></h5>
+<h5>
+  8.{" "}
+  <Link to="/equatives/other-equatives/#would-have-been-equative">
+    "Would have been" Equative
+  </Link>
+</h5>
 
 - (given some hypothetical condition) A would have been B
 

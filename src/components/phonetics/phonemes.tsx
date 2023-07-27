@@ -105,7 +105,7 @@ export const letters: IAlphabet = {
 
 export const diacritics = {
   zwar: "َ",
-  zwarakey: "ٙ",
+  zwarakay: "ٙ",
   zer: "ِ",
   pesh: "ُ",
   sukun: "ْ",
@@ -116,30 +116,28 @@ export const diacritics = {
   fathahan: "ً",
 };
 
-export type PhonemeExample = (
-  T.PsString &
-  {
-    pHighlight: number[][],
-    fHighlight: number[][],
-    a?: string,
-    audio?: { externalLink: string },
-});
+export type PhonemeExample = T.PsString & {
+  pHighlight: number[][];
+  fHighlight: number[][];
+  a?: string;
+  audio?: { externalLink: string };
+};
 
 export type Phoneme = {
-  phoneme: string,
-  a?: string,
-  quickExplanation: string | JSX.Element,
-  specialConsonant?: boolean,
-  shortVowel?: boolean,
-  longVowel?: boolean,
-  addAlefToStart?: boolean,
-  fiveYs?: boolean,
-  canBeIgnored?: boolean,
-  ipa: any,
-  onlyOnEnd?: boolean,
-  endingLetter?: ILetter,
-  examples: PhonemeExample[],
-} & ({ possibleLetters: ILetter[] } | { diacritic: string })
+  phoneme: string;
+  a?: string;
+  quickExplanation: string | JSX.Element;
+  specialConsonant?: boolean;
+  shortVowel?: boolean;
+  longVowel?: boolean;
+  addAlefToStart?: boolean;
+  fiveYs?: boolean;
+  canBeIgnored?: boolean;
+  ipa: any;
+  onlyOnEnd?: boolean;
+  endingLetter?: ILetter;
+  examples: PhonemeExample[];
+} & ({ possibleLetters: ILetter[] } | { diacritic: string });
 
 export const phonemes = [
   // consonants
@@ -567,9 +565,9 @@ export const phonemes = [
     examples: [
       {
         p: "وږی",
-        f: "wuGey",
+        f: "wuGay",
         e: "hungry",
-        a: "wuggey",
+        a: "wuggay",
         pHighlight: [[1, 1]],
         fHighlight: [[2, 2]],
       },
@@ -824,8 +822,7 @@ export const phonemes = [
     quickExplanation: "l with back of tongue higher up",
     ipa: {
       letter: "l",
-      link:
-        "https://en.wikipedia.org/wiki/Voiced_dental,_alveolar_and_postalveolar_lateral_approximants#Voiced_alveolar_lateral_approximant",
+      link: "https://en.wikipedia.org/wiki/Voiced_dental,_alveolar_and_postalveolar_lateral_approximants#Voiced_alveolar_lateral_approximant",
     },
     examples: [
       {
@@ -833,8 +830,14 @@ export const phonemes = [
         f: "leekul",
         e: "to write",
         a: "leekul",
-        pHighlight: [[0, 0], [3, 3]],
-        fHighlight: [[0, 0], [5, 5]],
+        pHighlight: [
+          [0, 0],
+          [3, 3],
+        ],
+        fHighlight: [
+          [0, 0],
+          [5, 5],
+        ],
       },
     ],
   },
@@ -940,8 +943,8 @@ export const phonemes = [
     examples: [
       {
         p: "وږی",
-        f: "wuGey",
-        a: "wuggey",
+        f: "wuGay",
+        a: "wuggay",
         e: "hungry",
         pHighlight: [[0, 0]],
         fHighlight: [[0, 0]],
@@ -994,9 +997,9 @@ export const phonemes = [
     examples: [
       {
         p: "سَړی",
-        f: "saRey",
+        f: "saRay",
         e: "man",
-        a: "sarrey",
+        a: "sarray",
         pHighlight: [[1, 1]],
         fHighlight: [[1, 1]],
       },
@@ -1059,7 +1062,7 @@ export const phonemes = [
   {
     phoneme: "u",
     shortVowel: true,
-    diacritic: diacritics.zwarakey,
+    diacritic: diacritics.zwarakay,
     quickExplanation: (
       <>
         shwa sound similar to u in b<strong>u</strong>d
@@ -1200,11 +1203,7 @@ export const phonemes = [
     longVowel: true,
     fiveYs: true,
     addAlefToStart: true,
-    quickExplanation: (
-      <>
-        close to ee in b<strong>ee</strong> but more open
-      </>
-    ),
+    quickExplanation: <>'ee' sound but with mouth slightly more open</>,
     ipa: {
       letter: "e",
     },
@@ -1220,15 +1219,15 @@ export const phonemes = [
     ],
   },
   {
-    phoneme: "ey",
-    a: "ey",
+    phoneme: "ay",
+    a: "ay",
     possibleLetters: [letters.naareenaYe],
     longVowel: true,
     fiveYs: true,
     addAlefToStart: true,
     quickExplanation: (
       <>
-        similar to ay in d<strong>ay</strong>
+        short 'a' sound + y. similar to ay in d<strong>ay</strong>
       </>
     ),
     ipa: {
@@ -1237,32 +1236,31 @@ export const phonemes = [
     examples: [
       {
         p: "سړی",
-        f: "saRey",
+        f: "saRay",
         e: "man",
-        a: "saRey",
+        a: "saRay",
         pHighlight: [[2, 2]],
         fHighlight: [[3, 4]],
       },
     ],
   },
   {
-    phoneme: "eyy",
-    a: "eyy",
+    phoneme: "ey",
+    a: "ey",
     possibleLetters: [letters.faailiyaYe],
     longVowel: true,
     fiveYs: true,
     onlyOnEnd: true,
-    quickExplanation:
-      "Close or the same as 'uy'. Starts with a ‘ey’ sound and glides into an ‘ee’ at the end",
+    quickExplanation: "‘e’ sound + y",
     ipa: {
       letter: "əi",
     },
     examples: [
       {
         p: "کښېنئ",
-        f: "kxeneyy",
+        f: "kxeney",
         e: "please sit",
-        a: "kxeneyy",
+        a: "kxeney",
         pHighlight: [[4, 4]],
         fHighlight: [[4, 6]],
       },
@@ -1274,8 +1272,7 @@ export const phonemes = [
     possibleLetters: [letters.xudzeenaYe],
     longVowel: true,
     fiveYs: true,
-    quickExplanation:
-      "Starts with a ‘u’ (schwa) sound and glides into an ‘ee’ at the end",
+    quickExplanation: "‘u’ (schwa) sound + y",
     ipa: {
       letter: "əi",
     },

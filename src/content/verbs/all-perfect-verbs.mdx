@@ -3,182 +3,196 @@ title: All Perfect Forms
 ---
 
 import {
-    defaultTextOptions as opts,
-    Examples,
-    InlinePs,
-    Pashto,
-    Phonetics,
+  defaultTextOptions as opts,
+  Examples,
+  InlinePs,
+  Pashto,
+  Phonetics,
 } from "@lingdocs/ps-react";
-import { KidsSection, VP, EP, Camera, Video, KingIcon } from "../../components/terms-links";
+import {
+  KidsSection,
+  VP,
+  EP,
+  Camera,
+  Video,
+  KingIcon,
+} from "../../components/terms-links";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import Formula from "../../components/formula/Formula";
-import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+import EditableVPEx, {
+  EditIcon,
+} from "../../components/phrase-diagram/EditableVPEx";
 import BasicVerbShowCase from "../../components/BasicVerbShowCase";
 import perfectDogMeme from "./perfect-dog-meme.jpg";
 import chemistryPerfect from "./chemistry-perfect.jpg";
 import BasicBlocks from "../../components/BasicBlocks";
 import GameDisplay from "../../games/GameDisplay";
-import {
-    perfectGameOne,
-    perfectGameMix,
-} from "../../games/games";
+import { perfectGameOne, perfectGameMix } from "../../games/games";
 
-In the previous chapter we explained how [perfect](https://en.wikipedia.org/wiki/Perfect_(grammar)) forms are made by combining the <Link to="/verbs/roots-and-stems/#the-past-participle">past participle</Link> of a verb with an equative.
+In the previous chapter we explained how [perfect](<https://en.wikipedia.org/wiki/Perfect_(grammar)>) forms are made by combining the <Link to="/verbs/roots-and-stems/#the-past-participle">past participle</Link> of a verb with an equative.
 
 <div style={{ maxWidth: "350px", margin: "0 auto 2rem auto" }}>
-    <img src={chemistryPerfect} alt="" className="img-fluid" />
+  <img src={chemistryPerfect} alt="" className="img-fluid" />
 </div>
 
 <Formula>
-    <Link to="/verbs/roots-and-stems/#the-past-participle">Verb Past Participle</Link> +{` `}
-    Equative = Perfect
+  <Link to="/verbs/roots-and-stems/#the-past-participle">
+    Verb Past Participle
+  </Link>
+  {` + `}
+  Equative = Perfect
 </Formula>
 
 The nice thing about perfects is that we can use <Link to="/equatives/other-equatives/#overview-of-8-equatives">any of the 8 equatives</Link>. This gives use a huge amount of expressive power to talk about whether something has happened, had happened, will have happened, might have happened, would have happened, what you wish would have happened etc. etc.
 
 <div style={{ margin: "0 auto 2rem auto" }}>
-    <img src={perfectDogMeme} alt="" className="img-fluid" />
+  <img src={perfectDogMeme} alt="" className="img-fluid" />
 </div>
 
-With the power of perfect forms, we can inject our <VP text="verb phrases" /> with all the meanings of the <Link to="/equatives/other-equatives/#overview-of-8-equatives">8 different equative tenses</Link>. 
+With the power of perfect forms, we can inject our <VP text="verb phrases" /> with all the meanings of the <Link to="/equatives/other-equatives/#overview-of-8-equatives">8 different equative tenses</Link>.
 
 ## Present Perfect
 
 <Formula>
-    Verb Past Participle +{` `}
-    Present Equative
+  Verb Past Participle +{` `}
+  Present Equative
 </Formula>
 
-The present perfect is used to talk about events that have happened in the past and therefore have an effect on *the current situation*, now.
+The present perfect is used to talk about events that have happened in the past and therefore have an effect on _the current situation_, now.
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "ما ډوډۍ خوړلې ده",
-            f: "maa DoDúy khoRule da",
-            e: "I have eaten food",
-            sub: "I am full **now**",
-        },
-        {
-            p: "زه کابل ته تللی یم",
-            f: "zu kaabul ta tlúley yum",
-            e: "I've gone to Kabul",
-            sub: "I've gone there so I'm over there **now** / I **currently** have the experience of having travelled there."
-        },
-        {
-            p: "هغې ته نه یې لیدلې",
-            f: "haghé tu nú ye leedúle",
-            e: "She hasn't seen you (f.)",
-            sub: "She **currently** does not have the experience of seeing you",
-        },
-    ])}
+  {psmd([
+    {
+      p: "ما ډوډۍ خوړلې ده",
+      f: "maa DoDúy khoRule da",
+      e: "I have eaten food",
+      sub: "I am full **now**",
+    },
+    {
+      p: "زه کابل ته تللی یم",
+      f: "zu kaabul ta tlúlay yum",
+      e: "I've gone to Kabul",
+      sub: "I've gone there so I'm over there **now** / I **currently** have the experience of having travelled there.",
+    },
+    {
+      p: "هغې ته نه یې لیدلې",
+      f: "haghé tu nú ye leedúle",
+      e: "She hasn't seen you (f.)",
+      sub: "She **currently** does not have the experience of seeing you",
+    },
+  ])}
 </Examples>
 
 ### Without the equative
 
-Often the equative is left out with the present equative. 
+Often the equative is left out with the present equative.
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "تا ډوډۍ **خوړلې**؟",
-            f: "taa DoDuy **khoRúle**?",
-            e: "Have you eaten food?",
-        },
-        {
-            p: "مونږ دغه پلاوي سره **کتلي**",
-            f: "moonG dagha plaawee sara **katúlee**",
-            e: "We've met with that delegation",
-        },
-    ])}
+  {psmd([
+    {
+      p: "تا ډوډۍ **خوړلې**؟",
+      f: "taa DoDuy **khoRúle**?",
+      e: "Have you eaten food?",
+    },
+    {
+      p: "مونږ دغه پلاوي سره **کتلي**",
+      f: "moonG dagha plaawee sara **katúlee**",
+      e: "We've met with that delegation",
+    },
+  ])}
 </Examples>
 
 ## Habitual Perfect
 
 <Formula>
-    Verb Past Participle +{` `}
-    Habitual Equative
+  Verb Past Participle +{` `}
+  Habitual Equative
 </Formula>
 
-The habitual perfect is used to talk about events that are habitually/generally found to be completed, so they tend to have an affect on the situation over and over again, in a habitual fashion. 
+The habitual perfect is used to talk about events that are habitually/generally found to be completed, so they tend to have an affect on the situation over and over again, in a habitual fashion.
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "ماشومان په دې وخت کې مکتب ته تللي وي",
-            f: "maashoomáan pu de wakht ke maktab ta tlúlee wee",
-            e: "The kids tend to be gone to school at this time",
-            sub: "At this time **usually** the kids are gone to school",
-        },
-        {
-            p: "په اختر کې ډېر خلک دلته راغلي وي",
-            f: "pu akhtar ke Der khalk dălta raaghúlee wee",
-            e: "On the holiday usually lots of people come/show up here",
-            sub: "People have a **habit** of arriving here on the holiday - you will **usually** see them here then",
-        },
-    ])}
+  {psmd([
+    {
+      p: "ماشومان په دې وخت کې مکتب ته تللي وي",
+      f: "maashoomáan pu de wakht ke maktab ta tlúlee wee",
+      e: "The kids tend to be gone to school at this time",
+      sub: "At this time **usually** the kids are gone to school",
+    },
+    {
+      p: "په اختر کې ډېر خلک دلته راغلي وي",
+      f: "pu akhtar ke Der khalk dălta raaghúlee wee",
+      e: "On the holiday usually lots of people come/show up here",
+      sub: "People have a **habit** of arriving here on the holiday - you will **usually** see them here then",
+    },
+  ])}
 </Examples>
 
 ## Subjunctive Perfect
 
 <Formula>
-    Verb Past Participle +{` `}
-    Subjunctive Equative
+  Verb Past Participle +{` `}
+  Subjunctive Equative
 </Formula>
 
-The subjunctive perfect is used to talk about things being done in a *subjunctive* way, i.e.:
- - *wanting* something to be done
- - saying that something *should/must* be done
- - saying that something is *possibly* done
- - saying *if* something is done
- - saying a purpose, i.e. ...**so that** something will be done
+The subjunctive perfect is used to talk about things being done in a _subjunctive_ way, i.e.:
+
+- _wanting_ something to be done
+- saying that something _should/must_ be done
+- saying that something is _possibly_ done
+- saying _if_ something is done
+- saying a purpose, i.e. ...**so that** something will be done
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "کېدای شي چې **راغلی وي**",
-            f: "kedaay shee che **raaghuley wee**",
-            e: "It's possible that he's arrived",
-        },
-        {
-            p: "چې خفه شوی نه وې",
-            f: "che khufa shúwey nú we",
-            e: "I hope you haven't become sad",
-            sub: "I don't want you to have gotten upset",
-        },
-    ])}
+  {psmd([
+    {
+      p: "کېدای شي چې **راغلی وي**",
+      f: "kedaay shee che **raaghulay wee**",
+      e: "It's possible that he's arrived",
+    },
+    {
+      p: "چې خفه شوی نه وې",
+      f: "che khufa shúway nú we",
+      e: "I hope you haven't become sad",
+      sub: "I don't want you to have gotten upset",
+    },
+  ])}
 </Examples>
 
 ## Future Perfect
 
 <Formula>
-    Verb Past Participle +{` `}
-    Future Equative
+  Verb Past Participle +{` `}
+  Future Equative
 </Formula>
 
 The future equative is used to either to:
 
 <ol style={{ listStyleType: "upper-alpha" }}>
-    <li>say that something <em>will be done</em> in the <strong>future</strong></li>
-    <li>guess/presume that something is done <strong>now</strong></li>
+  <li>
+    say that something <em>will be done</em> in the <strong>future</strong>
+  </li>
+  <li>
+    guess/presume that something is done <strong>now</strong>
+  </li>
 </ol>
 
 #### A. Say something will be done in the future
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "سبا به پېښور ته تللې وي",
-            f: "sabaa ba pexawar ta tlúle wee",
-            e: "Tomorrow she will have gone to Peshawer",
-        },
-        {
-            p: "دوه کاله بعد به ما پښتو ښه زده کړې وي",
-            f: "dwa kaala bad ba maa puxto xa zda kúRe wee",
-            e: "After two years I will have learned Pashto well.",
-        }
-    ])}
+  {psmd([
+    {
+      p: "سبا به پېښور ته تللې وي",
+      f: "sabaa ba pexawar ta tlúle wee",
+      e: "Tomorrow she will have gone to Peshawer",
+    },
+    {
+      p: "دوه کاله بعد به ما پښتو ښه زده کړې وي",
+      f: "dwa kaala bad ba maa puxto xa zda kúRe wee",
+      e: "After two years I will have learned Pashto well.",
+    },
+  ])}
 </Examples>
 
 Notice that even though you might be talking about future events, for the <Link to="/phrase-structure/vp/">phrase structure</Link> this is still considered past tense, because **all perfects are considered past tense**.
@@ -188,28 +202,28 @@ Notice that even though you might be talking about future events, for the <Link 
 It is 👉 **extremely common and useful** 👈 to use the future equative to make guesses or presumptions about events being done currently. This is often used in conversation to throw out guesses or estimates, or even ask questions about what might have happened.
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "تا به دا کتاب لیدلی وي",
-            f: "taa ba daa kitaab leedúley wee",
-            e: "You've probably seen this book",
-        },
-        {
-            p: "هغه به کابل ته تللی وي",
-            f: "haghá ba kaabul ta tlúley wee",
-            e: "He's probably gone to Kabul",
-        },
-        {
-            p: "تا به ډوډۍ نه وي خوړلې",
-            f: "taa ba DoDuy nu wee khoRúle",
-            e: "I betcha you haven't eaten",
-        },
-        {
-            p: "بازار کې خو به دې لیملی یم",
-            f: "baazaar ke kho ba de leedúley yum",
-            e: "Well surely you will have seen me in the bazar",
-        },
-    ])}
+  {psmd([
+    {
+      p: "تا به دا کتاب لیدلی وي",
+      f: "taa ba daa kitaab leedúlay wee",
+      e: "You've probably seen this book",
+    },
+    {
+      p: "هغه به کابل ته تللی وي",
+      f: "haghá ba kaabul ta tlúlay wee",
+      e: "He's probably gone to Kabul",
+    },
+    {
+      p: "تا به ډوډۍ نه وي خوړلې",
+      f: "taa ba DoDuy nu wee khoRúle",
+      e: "I betcha you haven't eaten",
+    },
+    {
+      p: "بازار کې خو به دې لیملی یم",
+      f: "baazaar ke kho ba de leedúlay yum",
+      e: "Well surely you will have seen me in the bazar",
+    },
+  ])}
 </Examples>
 
 With this form of perfect people often add an emphatic <InlinePs opts={opts} ps={{ p: "خو", f: "kho" }} /> in the <KidsSection />.
@@ -217,37 +231,37 @@ With this form of perfect people often add an emphatic <InlinePs opts={opts} ps=
 ## Past Perfect
 
 <Formula>
-    Verb Past Participle +{` `}
-    Past Equative
+  Verb Past Participle +{` `}
+  Past Equative
 </Formula>
 
 The past perfect is used to say that an event **had been done in the past**. For instance, if you are explaining some events in that past, you can use this to that some event **had been done** back at that point in time.
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "تا هغه مخکې **لیدلی و**؟",
-            f: "taa haghá mukhke **leedúley wo**?",
-            e: "Had you seen him before?",
-        },
-        {
-            p: "دوي ما ته د ډوډۍ ست کاو، خوي ما ډوډۍ **خوړلې وه**",
-            f: "dwee maa ta du DoDúy sat kaawu, kho maa DoDúy **khoRule wa**",
-            e: "They were inviting me to eat, but I **had eaten**",
-        },
-        {
-            p: "زه ستا کور ته راغلم، خو ته بازار ته **تللی وې**",
-            f: "zu staa kor ta ráaghlum, kho tu baazaar ta **tlúley we**.",
-            e: "I came to your house, but you **had gone** to the bazar.",
-        },
-    ])}
+  {psmd([
+    {
+      p: "تا هغه مخکې **لیدلی و**؟",
+      f: "taa haghá mukhke **leedúlay wo**?",
+      e: "Had you seen him before?",
+    },
+    {
+      p: "دوي ما ته د ډوډۍ ست کاو، خوي ما ډوډۍ **خوړلې وه**",
+      f: "dwee maa ta du DoDúy sat kaawu, kho maa DoDúy **khoRule wa**",
+      e: "They were inviting me to eat, but I **had eaten**",
+    },
+    {
+      p: "زه ستا کور ته راغلم، خو ته بازار ته **تللی وې**",
+      f: "zu staa kor ta ráaghlum, kho tu baazaar ta **tlúlay we**.",
+      e: "I came to your house, but you **had gone** to the bazar.",
+    },
+  ])}
 </Examples>
 
 ## "Would be" Perfect
 
 <Formula>
-    Verb Past Participle +{` `}
-    "Would be" Equative
+  Verb Past Participle +{` `}
+  "Would be" Equative
 </Formula>
 
 Just like the <Link to="/equatives/other-equatives/#would-be-equative">"would be" equative</Link>, the "would be" perfect can be used to talk about:
@@ -258,25 +272,25 @@ Just like the <Link to="/equatives/other-equatives/#would-be-equative">"would be
 - to say that an event should have happened
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "هغه به مخکې دلته راغلې وه.",
-            f: "haghá ba mukhke dălta raaghúle wa",
-            e: "She had probably come here before",
-        },
-        {
-            p: "که زه خبر وای، نو **زه به راغلی وم**.",
-            f: "ku zu khabúr waay, no **zu ba raaghúley wum**.",
-            e: "If I had known, I (m.) would have come.",
-        }
-    ])}
+  {psmd([
+    {
+      p: "هغه به مخکې دلته راغلې وه.",
+      f: "haghá ba mukhke dălta raaghúle wa",
+      e: "She had probably come here before",
+    },
+    {
+      p: "که زه خبر وای، نو **زه به راغلی وم**.",
+      f: "ku zu khabúr waay, no **zu ba raaghúlay wum**.",
+      e: "If I had known, I (m.) would have come.",
+    },
+  ])}
 </Examples>
 
 ## Past Subjunctive Perfect
 
 <Formula>
-    Verb Past Participle +{` `}
-    "Past Subjunctive" Equative
+  Verb Past Participle +{` `}
+  "Past Subjunctive" Equative
 </Formula>
 
 Just like the <Link to="/equatives/other-equatives/#past-subjunctive">past subjunctive equative</Link>, the past subjunctive perfect is used to say:
@@ -286,60 +300,60 @@ Just like the <Link to="/equatives/other-equatives/#past-subjunctive">past subju
 - If an event should have been done/was necessary in the past
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "ته باید وختي راغلی وای",
-            f: "tu baayad wakhtee raaghúley waay",
-            e: "You (m.) should have come early",
-        },
-        {
-            p: "ته باید وختي راغلې وای",
-            f: "tu baayad wakhtee raaghúle waay",
-            e: "You (f.) should have come early",
-        },
-        {
-            p: "پرون ما کار کړی وای",
-            f: "paróon maa kaar kúRey waay",
-            e: "Yesterday I had to work",
-        },
-        {
-            p: "که ما ډوډۍ نه وای خوړلې...",
-            f: "ku maa DoDúy nu waay khóRule...",
-            e: "If I hadn't eaten food...",
-        },
-        {
-            p: "کاشکې ما دا پیسې نه وای اخستې",
-            f: "kaashke maa daa peyse nu waay akhíste",
-            e: "I wish I hadn't taken that money!",
-        },
-    ])}
+  {psmd([
+    {
+      p: "ته باید وختي راغلی وای",
+      f: "tu baayad wakhtee raaghúlay waay",
+      e: "You (m.) should have come early",
+    },
+    {
+      p: "ته باید وختي راغلې وای",
+      f: "tu baayad wakhtee raaghúle waay",
+      e: "You (f.) should have come early",
+    },
+    {
+      p: "پرون ما کار کړی وای",
+      f: "paróon maa kaar kúRay waay",
+      e: "Yesterday I had to work",
+    },
+    {
+      p: "که ما ډوډۍ نه وای خوړلې...",
+      f: "ku maa DoDúy nu waay khóRule...",
+      e: "If I hadn't eaten food...",
+    },
+    {
+      p: "کاشکې ما دا پیسې نه وای اخستې",
+      f: "kaashke maa daa payse nu waay akhíste",
+      e: "I wish I hadn't taken that money!",
+    },
+  ])}
 </Examples>
 
 ## "Would have been" Perfect
 
 <Formula>
-    Verb Past Participle +{` `}
-    "Would have been" Equative
+  Verb Past Participle +{` `}
+  "Would have been" Equative
 </Formula>
 
 Just like the <Link to="/equatives/other-equatives/#would-have-been-equative">"would have been" equative</Link>, the "would have been" perfect is used to say:
 
-- If some hypothetical condition were true, an event *would have been* done
+- If some hypothetical condition were true, an event _would have been_ done
 - Some event should have been done, it would have been good if some event was done
 
 <Examples opts={opts}>
-    {psmd([
-        {
-            p: "که ما پیسې درلودای، نو **نوي کالي به مې اخستي وای**",
-            f: "ku maa peyse darlodaay, no **nuwee kaalee ba me akhiste waay**",
-            e: "If I had money, **I would have bought new clothes**",
-        },
-        {
-            p: "نو ته به راغلې وای که نه!",
-            f: "no tu ba raaghúle waay ku nu!",
-            e: "Ah, you (f.) should have come!",
-        },
-    ])}
+  {psmd([
+    {
+      p: "که ما پیسې درلودای، نو **نوي کالي به مې اخستي وای**",
+      f: "ku maa payse darlodaay, no **nuwee kaalee ba me akhiste waay**",
+      e: "If I had money, **I would have bought new clothes**",
+    },
+    {
+      p: "نو ته به راغلې وای که نه!",
+      f: "no tu ba raaghúle waay ku nu!",
+      e: "Ah, you (f.) should have come!",
+    },
+  ])}
 </Examples>
 
 <GameDisplay record={perfectGameOne} />

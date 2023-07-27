@@ -3,32 +3,34 @@ title: Helper Verbs (کول / کېدل)
 ---
 
 import {
-    defaultTextOptions as opts,
-    Examples,
-    InlinePs,
-    RootsAndStems,
-    getVerbInfo,
+  defaultTextOptions as opts,
+  InlinePs,
+  RootsAndStems,
+  getVerbInfo,
 } from "@lingdocs/ps-react";
-import { KidsSection, VP, KingIcon, ServantIcon, PerfectiveHead, Camera, Video, Complement, BlocksIcon } from "../../components/terms-links";
-import psmd from "../../lib/psmd";
+import {
+  PerfectiveHead,
+  Camera,
+  Video,
+  Complement,
+  BlocksIcon,
+} from "../../components/terms-links";
 import Link from "../../components/Link";
-import Formula from "../../components/formula/Formula";
-import EditableVPEx, { EditIcon } from "../../components/phrase-diagram/EditableVPEx";
+import EditableVPEx, {
+  EditIcon,
+} from "../../components/phrase-diagram/EditableVPEx";
 import helperVerbsSummaryChart from "./helper-verbs-summary-chart.svg";
-import welding from "./welding.svg";
-import separateBlocks from "./separate.svg";
 import VideoPlayer from "../../components/VideoPlayer";
 
 export function RootsAndStemsDisplay(props) {
-    return <div className="mb-4">
-        <div className="text-center">
-            <InlinePs opts={opts} ps={props.label} />
-        </div>
-        <RootsAndStems
-            textOptions={opts}
-            info={getVerbInfo(props.entry)}
-        />
+  return (
+    <div className="mb-4">
+      <div className="text-center">
+        <InlinePs opts={opts} ps={props.label} />
+      </div>
+      <RootsAndStems textOptions={opts} info={getVerbInfo(props.entry)} />
     </div>
+  );
 }
 
 Pashto uses a number of helper verbs (auxillary verbs) to form compounds.
@@ -36,13 +38,13 @@ Pashto uses a number of helper verbs (auxillary verbs) to form compounds.
 The most important ones are these four:
 
 - Intransitive
-    - <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} />
-    - <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become ___" }} />
+  - <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} />
+  - <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become ___" }} />
 - Transitive
-    - <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to do ___" }} />
-    - <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make ___ ___" }} />
+  - <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to do ___" }} />
+  - <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make ___ ___" }} />
 
-Wait, how are these *four* verbs, and not *two*?? 🤔🤔 Don't the pairs look exactly the same? When you look at this you may feel like this lady does in this video. 
+Wait, how are these _four_ verbs, and not _two_?? 🤔🤔 Don't the pairs look exactly the same? When you look at this you may feel like this lady does in this video.
 
 <VideoPlayer url="https://www.youtube.com/watch?v=5YG6tlxv4eU" />
 
@@ -59,46 +61,452 @@ There's a big difference between <InlinePs opts={opts} ps={{ p: "کېدل", f: "
 We use this verb when we're talking about an action/event **happening**. Notice that the roots and stems are pretty irregular.
 
 <RootsAndStemsDisplay
-    entry={{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}}
-    label={{ p: "کېدل", f: "kedúl", e: "to happen" }}
+  entry={{
+    ts: 1527812754,
+    i: 10696,
+    p: "کېدل",
+    f: "kedul",
+    g: "kedul",
+    e: "to happen, occur",
+    c: "v. intrans. irreg.",
+    ssp: "وش",
+    ssf: "óosh",
+    prp: "وشول",
+    prf: "óoshwul",
+    pprtp: "شوی",
+    pprtf: "shúway",
+    diacExcept: true,
+    ec: "happen",
+  }}
+  label={{ p: "کېدل", f: "kedúl", e: "to happen" }}
 />
 
 Here are some example phrases uses this verb. Try to identify the which roots/stems the examples use and figure out the tense. You can click on the <EditIcon /> to see the tense and what formula was used. Try playing around with these phrases, and watch how they work with the blocks.
 
 <EditableVPEx opts={opts} formChoice>
-    {
-        {"blocks":[{"key":0.7004599909397782,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9886,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.9564388674146864,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.7004599909397782,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527822084,
+                i: 9886,
+                p: "کار",
+                f: "kaar",
+                g: "kaar",
+                e: "work, job, business, stuff to do",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.9564388674146864,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812754,
+          i: 10696,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to happen, occur",
+          c: "v. intrans. irreg.",
+          ssp: "وش",
+          ssf: "óosh",
+          prp: "وشول",
+          prf: "óoshwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          diacExcept: true,
+          ec: "happen",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} formChoice>
-    {
-        {"blocks":[{"key":0.7004599909397782,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9886,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.9564388674146864,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"imperfectiveFuture","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.7004599909397782,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527822084,
+                i: 9886,
+                p: "کار",
+                f: "kaar",
+                g: "kaar",
+                e: "work, job, business, stuff to do",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.9564388674146864,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812754,
+          i: 10696,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to happen, occur",
+          c: "v. intrans. irreg.",
+          ssp: "وش",
+          ssf: "óosh",
+          prp: "وشول",
+          prf: "óoshwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          diacExcept: true,
+          ec: "happen",
+        },
+      },
+      verbTense: "imperfectiveFuture",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} formChoice>
-    {
-        {"blocks":[{"key":0.7004599909397782,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815166,"i":2937,"p":"پېښه","f":"péxa","g":"pexa","e":"event, occurance, happeing, case","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.9564388674146864,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.7004599909397782,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815166,
+                i: 2937,
+                p: "پېښه",
+                f: "péxa",
+                g: "pexa",
+                e: "event, occurance, happeing, case",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.9564388674146864,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812754,
+          i: 10696,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to happen, occur",
+          c: "v. intrans. irreg.",
+          ssp: "وش",
+          ssf: "óosh",
+          prp: "وشول",
+          prf: "óoshwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          diacExcept: true,
+          ec: "happen",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} formChoice>
-    {
-        {"blocks":[{"key":0.8938126585721999,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812907,"i":13121,"p":"مېله","f":"mela","g":"mela","e":"picnic, feast, celebration","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.3685906255385354,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8938126585721999,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812907,
+                i: 13121,
+                p: "مېله",
+                f: "mela",
+                g: "mela",
+                e: "picnic, feast, celebration",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.3685906255385354,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812754,
+          i: 10696,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to happen, occur",
+          c: "v. intrans. irreg.",
+          ssp: "وش",
+          ssf: "óosh",
+          prp: "وشول",
+          prf: "óoshwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          diacExcept: true,
+          ec: "happen",
+        },
+      },
+      verbTense: "subjunctiveVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} formChoice>
-    {
-        {"blocks":[{"key":0.8938126585721999,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812907,"i":13121,"p":"مېله","f":"mela","g":"mela","e":"picnic, feast, celebration","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}},{"key":0.3685906255385354,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8938126585721999,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812907,
+                i: 13121,
+                p: "مېله",
+                f: "mela",
+                g: "mela",
+                e: "picnic, feast, celebration",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.3685906255385354,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812754,
+          i: 10696,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to happen, occur",
+          c: "v. intrans. irreg.",
+          ssp: "وش",
+          ssf: "óosh",
+          prp: "وشول",
+          prf: "óoshwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          diacExcept: true,
+          ec: "happen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} formChoice>
-    {
-        {"blocks":[{"key":0.8938126585721999,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812907,"i":13121,"p":"مېله","f":"mela","g":"mela","e":"picnic, feast, celebration","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}},{"key":0.3685906255385354,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812754,"i":10696,"p":"کېدل","f":"kedul","g":"kedul","e":"to happen, occur","c":"v. intrans. irreg.","ssp":"وش","ssf":"óosh","prp":"وشول","prf":"óoshwul","pprtp":"شوی","pprtf":"shúwey","diacExcept":true,"ec":"happen"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8938126585721999,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812907,
+                i: 13121,
+                p: "مېله",
+                f: "mela",
+                g: "mela",
+                e: "picnic, feast, celebration",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+      {
+        key: 0.3685906255385354,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812754,
+          i: 10696,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to happen, occur",
+          c: "v. intrans. irreg.",
+          ssp: "وش",
+          ssf: "óosh",
+          prp: "وشول",
+          prf: "óoshwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          diacExcept: true,
+          ec: "happen",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 To summarize about this verb <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} />:
@@ -112,16 +520,97 @@ To summarize about this verb <InlinePs opts={opts} ps={{ p: "کېدل", f: "ked�
 Here's another verb that looks exactly the same at first, but we'll soon find out that it is quite different. First of all, we'll notice that the roots and stems are different. On the perfective side, there's no <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix, no <PerfectiveHead />!
 
 <RootsAndStemsDisplay
-    entry={{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become"}}
-    label={{ p: "کېدل", f: "kedúl", e: "to become" }}
+  entry={{
+    ts: 1581086654898,
+    i: 10697,
+    p: "کېدل",
+    f: "kedul",
+    g: "kedul",
+    e: "to become _____",
+    c: "v. intrans. irreg.",
+    ssp: "ش",
+    ssf: "sh",
+    prp: "شول",
+    prf: "shwul",
+    pprtp: "شوی",
+    pprtf: "shúway",
+    noOo: true,
+    ec: "become",
+  }}
+  label={{ p: "کېدل", f: "kedúl", e: "to become" }}
 />
 
-And this verb has a completely different meaning as well. We're not talking about something happening, **we're talking about something *becoming* \_\_\_\_**. The subject is changed into a state of being \_\_\_\_. And that \_\_\_\_ is what we'll call a **complement**. For example, in the phrase:
+And this verb has a completely different meaning as well. We're not talking about something happening, **we're talking about something _becoming_ \_\_\_\_**. The subject is changed into a state of being \_\_\_\_. And that \_\_\_\_ is what we'll call a **complement**. For example, in the phrase:
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812798,"i":5645,"p":"خفه","f":"khufa","g":"khufa","e":"sad, upset, angry; choked, suffocated","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8034429811171007,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.19673719282869384,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1581086654898,
+          i: 10697,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to become _____",
+          c: "v. intrans. irreg.",
+          ssp: "ش",
+          ssf: "sh",
+          prp: "شول",
+          prf: "shwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          noOo: true,
+          ec: "become",
+          ep: "_____",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527812798,
+          i: 5645,
+          p: "خفه",
+          f: "khufa",
+          g: "khufa",
+          e: "sad, upset, angry; choked, suffocated",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 We have:
@@ -129,18 +618,148 @@ We have:
 - A **subject**: <InlinePs opts={opts} ps={{ p: "زه", f: "zu", e: "I" }} />
 - A **complement**: <InlinePs opts={opts} ps={{ p: "خفه", f: "khufa", e: "sad" }} />
 
-So with this verb we add a <Complement /> - something that the subject is *becoming*.
+So with this verb we add a <Complement /> - something that the subject is _becoming_.
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527812792,"i":5826,"p":"خوشاله","f":"khoshaala","g":"khoshaala","e":"happy, glad","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8034429811171007,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 5, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.19673719282869384,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1581086654898,
+          i: 10697,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to become _____",
+          c: "v. intrans. irreg.",
+          ssp: "ش",
+          ssf: "sh",
+          prp: "شول",
+          prf: "shwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          noOo: true,
+          ec: "become",
+          ep: "_____",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527812792,
+          i: 5826,
+          p: "خوشاله",
+          f: "khoshaala",
+          g: "khoshaala",
+          e: "happy, glad",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8034429811171007,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.19673719282869384,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1581086654898,
+          i: 10697,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to become _____",
+          c: "v. intrans. irreg.",
+          ssp: "ش",
+          ssf: "sh",
+          prp: "شول",
+          prf: "shwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          noOo: true,
+          ec: "become",
+          ep: "_____",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 Notice how the **if the <Complement /> is an adjective in will inflect according to the subject**.
@@ -148,36 +767,296 @@ Notice how the **if the <Complement /> is an adjective in will inflect according
 Also notice how the complement actually gets <Link to="/compound-verbs/stative-compounds/#welding-">welded together</Link> with the verb when we're not using the perfective <Camera />. Check out the blocks <BlocksIcon />.
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8034429811171007,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.19673719282869384,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1581086654898,
+          i: 10697,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to become _____",
+          c: "v. intrans. irreg.",
+          ssp: "ش",
+          ssf: "sh",
+          prp: "شول",
+          prf: "shwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          noOo: true,
+          ec: "become",
+          ep: "_____",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":6,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8034429811171007,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 6, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.19673719282869384,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1581086654898,
+          i: 10697,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to become _____",
+          c: "v. intrans. irreg.",
+          ssp: "ش",
+          ssf: "sh",
+          prp: "شول",
+          prf: "shwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          noOo: true,
+          ec: "become",
+          ep: "_____",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 When we get start using the perfective aspect <Camera /> of this verb, we notice that it starts looking really different from <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} />.
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8034429811171007,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.19673719282869384,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1581086654898,
+          i: 10697,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to become _____",
+          c: "v. intrans. irreg.",
+          ssp: "ش",
+          ssf: "sh",
+          prp: "شول",
+          prf: "shwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          noOo: true,
+          ec: "become",
+          ep: "_____",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 Notice how now there's no <InlinePs opts={opts} ps={{ p: "و", f: "óo" }} /> prefix! Instead the complement stays seperate from the verb and fills in an holds the same place as a <PerfectiveHead /> would in a different verb. Have a look at the blocks <BlocksIcon />.
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.8034429811171007,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}},{"key":0.19673719282869384,"block":{"type":"objectSelection","selection":"none"}}],"verb":{"type":"verb","verb":{"entry":{"ts":1581086654898,"i":10697,"p":"کېدل","f":"kedul","g":"kedul","e":"to become _____","c":"v. intrans. irreg.","ssp":"ش","ssf":"sh","prp":"شول","prf":"shwul","pprtp":"شوی","pprtf":"shúwey","noOo":true,"ec":"become","ep":"_____"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"intransitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":false,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.8034429811171007,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 5, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.19673719282869384,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1581086654898,
+          i: 10697,
+          p: "کېدل",
+          f: "kedul",
+          g: "kedul",
+          e: "to become _____",
+          c: "v. intrans. irreg.",
+          ssp: "ش",
+          ssf: "sh",
+          prp: "شول",
+          prf: "shwul",
+          pprtp: "شوی",
+          pprtf: "shúway",
+          noOo: true,
+          ec: "become",
+          ep: "_____",
+        },
+      },
+      verbTense: "subjunctiveVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: true,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 To summarize about this verb <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />
 
-- It's intransitive and takes:  
+- It's intransitive and takes:
   - a **subject** (something this is changed)
   - a <Complement /> (a word that describes the change)
 - The complement is welded together with the verb <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} /> when we're not using the perfective <Camera />.
@@ -187,65 +1066,578 @@ To summarize about this verb <InlinePs opts={opts} ps={{ p: "کېدل", f: "ked�
 
 ### کول - to do
 
-The verb <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to do" }} /> is like the transitive brother of <Link to="/compound-verbs/helper-verbs/#کېدل---to-happen"><InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} /></Link>. It's also used to talk about actions happening but this one takes a subject *and* an object.
+The verb <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to do" }} /> is like the transitive brother of <Link to="/compound-verbs/helper-verbs/#کېدل---to-happen"><InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} /></Link>. It's also used to talk about actions happening but this one takes a subject _and_ an object.
 
-- a **subject** - the *doer* of the action
-- an **object** - the *action/activity* the subject does
+- a **subject** - the _doer_ of the action
+- an **object** - the _action/activity_ the subject does
 
 <RootsAndStemsDisplay
-    entry={{"ts":1527812752,"i":10630,"p":"کول","f":"kawul","g":"kawul","e":"to do (an action or activity)","c":"v. trans./gramm. trans.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true,"ec":"do,does,doing,did,done"}}
-    label={{ p: "کول", f: "kawul", e: "to do" }}
+  entry={{
+    ts: 1527812752,
+    i: 10630,
+    p: "کول",
+    f: "kawul",
+    g: "kawul",
+    e: "to do (an action or activity)",
+    c: "v. trans./gramm. trans.",
+    ssp: "وکړ",
+    ssf: "óokR",
+    prp: "وکړل",
+    prf: "óokRul",
+    pprtp: "کړی",
+    pprtf: "kúRay",
+    diacExcept: true,
+    ec: "do,does,doing,did,done",
+  }}
+  label={{ p: "کول", f: "kawul", e: "to do" }}
 />
 
-Like its brother <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} />, this verb also has an <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix as a <PerfectiveHead />. 
+Like its brother <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} />, this verb also has an <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix as a <PerfectiveHead />.
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.9944733199260127,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9445085317003405,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9886,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812752,"i":10630,"p":"کول","f":"kawul","g":"kawul","e":"to do (an action or activity)","c":"v. trans./gramm. trans.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true,"ec":"do,does,doing,did,done"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.9944733199260127,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9445085317003405,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527822084,
+                i: 9886,
+                p: "کار",
+                f: "kaar",
+                g: "kaar",
+                e: "work, job, business, stuff to do",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812752,
+          i: 10630,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.9944733199260127,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9445085317003405,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9886,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812752,"i":10630,"p":"کول","f":"kawul","g":"kawul","e":"to do (an action or activity)","c":"v. trans./gramm. trans.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true,"ec":"do,does,doing,did,done"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.9944733199260127,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9445085317003405,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527822084,
+                i: 9886,
+                p: "کار",
+                f: "kaar",
+                g: "kaar",
+                e: "work, job, business, stuff to do",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812752,
+          i: 10630,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "subjunctiveVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.9944733199260127,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9445085317003405,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9886,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812752,"i":10630,"p":"کول","f":"kawul","g":"kawul","e":"to do (an action or activity)","c":"v. trans./gramm. trans.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true,"ec":"do,does,doing,did,done"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.9944733199260127,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9445085317003405,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527822084,
+                i: 9886,
+                p: "کار",
+                f: "kaar",
+                g: "kaar",
+                e: "work, job, business, stuff to do",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812752,
+          i: 10630,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: true,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.9944733199260127,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9445085317003405,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9886,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812752,"i":10630,"p":"کول","f":"kawul","g":"kawul","e":"to do (an action or activity)","c":"v. trans./gramm. trans.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true,"ec":"do,does,doing,did,done"}},"verbTense":"subjunctiveVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.9944733199260127,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9445085317003405,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527822084,
+                i: 9886,
+                p: "کار",
+                f: "kaar",
+                g: "kaar",
+                e: "work, job, business, stuff to do",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812752,
+          i: 10630,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "subjunctiveVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: true,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} length="short">
-    {
-        {"blocks":[{"key":0.9944733199260127,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9445085317003405,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9886,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812752,"i":10630,"p":"کول","f":"kawul","g":"kawul","e":"to do (an action or activity)","c":"v. trans./gramm. trans.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true,"ec":"do,does,doing,did,done"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.9944733199260127,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9445085317003405,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527822084,
+                i: 9886,
+                p: "کار",
+                f: "kaar",
+                g: "kaar",
+                e: "work, job, business, stuff to do",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812752,
+          i: 10630,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.9944733199260127,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9445085317003405,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9886,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812752,"i":10630,"p":"کول","f":"kawul","g":"kawul","e":"to do (an action or activity)","c":"v. trans./gramm. trans.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true,"ec":"do,does,doing,did,done"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.9944733199260127,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9445085317003405,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527822084,
+                i: 9886,
+                p: "کار",
+                f: "kaar",
+                g: "kaar",
+                e: "work, job, business, stuff to do",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812752,
+          i: 10630,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts} length="long">
-    {
-        {"blocks":[{"key":0.9944733199260127,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.9445085317003405,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527822084,"i":9886,"p":"کار","f":"kaar","g":"kaar","e":"work, job, business, stuff to do","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527812752,"i":10630,"p":"کول","f":"kawul","g":"kawul","e":"to do (an action or activity)","c":"v. trans./gramm. trans.","ssp":"وکړ","ssf":"óokR","prp":"وکړل","prf":"óokRul","pprtp":"کړی","pprtf":"kúRey","diacExcept":true,"ec":"do,does,doing,did,done"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.9944733199260127,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.9445085317003405,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527822084,
+                i: 9886,
+                p: "کار",
+                f: "kaar",
+                g: "kaar",
+                e: "work, job, business, stuff to do",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527812752,
+          i: 10630,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "perfect",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 To summarize about this verb <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to happen" }} />:
 
 - It's transitive, so it takes:
-    - a subject (the doer of the action)
-    - an object (the action/activity the subject does)
+  - a subject (the doer of the action)
+  - an object (the action/activity the subject does)
 - It has a <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix as a <PerfectiveHead />
 - We will use it for **dynamic** compounds, because it talks about doing an action/activity
 
@@ -268,8 +1660,24 @@ The subject "you" put the object "me" into a new state: "hungry"
 Have a look at the roots and stems for <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} />
 
 <RootsAndStemsDisplay
-    entry={{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made"}}
-    label={{ p: "کول", f: "kawul", e: "to make" }}
+  entry={{
+    ts: 1579015359582,
+    i: 10631,
+    p: "کول",
+    f: "kawul",
+    g: "kawul",
+    e: 'to make ____ ____ (as in "He\'s making me angry.")',
+    c: "v. trans. irreg.",
+    ssp: "کړ",
+    ssf: "kR",
+    prp: "کړل",
+    prf: "kRul",
+    pprtp: "کړی",
+    pprtf: "kúRay",
+    noOo: true,
+    ec: "make,makes,making,made,made",
+  }}
+  label={{ p: "کول", f: "kawul", e: "to make" }}
 />
 
 Like its brother <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to become" }} />, this verb also <strong>has no <InlinePs opts={opts} ps={{ p: "و", f: "oo", e: "" }} /> prefix</strong>. Instead we will use the <Complement /> in the exact same way.
@@ -280,60 +1688,628 @@ Like its brother <InlinePs opts={opts} ps={{ p: "کېدل", f: "kedúl", e: "to 
   - keep the <Complement />separate, sitting as a <PerfectiveHead /> in front of the verb
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.049217458592629715,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.7895952701078488,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1579015359582,
+          i: 10631,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: 'to make ____ ____ (as in "He\'s making me angry.")',
+          c: "v. trans. irreg.",
+          ssp: "کړ",
+          ssf: "kR",
+          prp: "کړل",
+          prf: "kRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          noOo: true,
+          ec: "make,makes,making,made,made",
+          ep: "_____",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"presentVerb","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.049217458592629715,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.7895952701078488,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1579015359582,
+          i: 10631,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: 'to make ____ ____ (as in "He\'s making me angry.")',
+          c: "v. trans. irreg.",
+          ssp: "کړ",
+          ssf: "kR",
+          prp: "کړل",
+          prf: "kRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          noOo: true,
+          ec: "make,makes,making,made,made",
+          ep: "_____",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 Notice how **if the <Complement /> is an adjective it will inflect according the object**.
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.049217458592629715,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.7895952701078488,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1579015359582,
+          i: 10631,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: 'to make ____ ____ (as in "He\'s making me angry.")',
+          c: "v. trans. irreg.",
+          ssp: "کړ",
+          ssf: "kR",
+          prp: "کړل",
+          prf: "kRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          noOo: true,
+          ec: "make,makes,making,made,made",
+          ep: "_____",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.049217458592629715,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.7895952701078488,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1579015359582,
+          i: 10631,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: 'to make ____ ____ (as in "He\'s making me angry.")',
+          c: "v. trans. irreg.",
+          ssp: "کړ",
+          ssf: "kR",
+          prp: "کړل",
+          prf: "kRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          noOo: true,
+          ec: "make,makes,making,made,made",
+          ep: "_____",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.049217458592629715,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.7895952701078488,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1579015359582,
+          i: 10631,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: 'to make ____ ____ (as in "He\'s making me angry.")',
+          c: "v. trans. irreg.",
+          ssp: "کړ",
+          ssf: "kR",
+          prp: "کړل",
+          prf: "kRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          noOo: true,
+          ec: "make,makes,making,made,made",
+          ep: "_____",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "perfect",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 Notice how with the imperfective/past participle the <Complement />is welded together with the verb, but with the perfective it's separate.
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"perfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.049217458592629715,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.7895952701078488,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1579015359582,
+          i: 10631,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: 'to make ____ ____ (as in "He\'s making me angry.")',
+          c: "v. trans. irreg.",
+          ssp: "کړ",
+          ssf: "kR",
+          prp: "کړل",
+          prf: "kRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          noOo: true,
+          ec: "make,makes,making,made,made",
+          ep: "_____",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: true,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.049217458592629715,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.7895952701078488,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1579015359582,
+          i: 10631,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: 'to make ____ ____ (as in "He\'s making me angry.")',
+          c: "v. trans. irreg.",
+          ssp: "کړ",
+          ssf: "kR",
+          prp: "کړل",
+          prf: "kRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          noOo: true,
+          ec: "make,makes,making,made,made",
+          ep: "_____",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: true,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 <EditableVPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.049217458592629715,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}},{"key":0.7895952701078488,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1579015359582,"i":10631,"p":"کول","f":"kawul","g":"kawul","e":"to make ____ ____ (as in \"He's making me angry.\")","c":"v. trans. irreg.","ssp":"کړ","ssf":"kR","prp":"کړل","prf":"kRul","pprtp":"کړی","pprtf":"kúRey","noOo":true,"ec":"make,makes,making,made,made","ep":"_____"}},"verbTense":"imperfectivePast","perfectTense":"presentPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"perfect","transitivity":"transitive","isCompound":false,"voice":"active","negative":true,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"externalComplement":{"type":"complement","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7598,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}},"form":{"removeKing":false,"shrinkServant":false}}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.049217458592629715,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.7895952701078488,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1579015359582,
+          i: 10631,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: 'to make ____ ____ (as in "He\'s making me angry.")',
+          c: "v. trans. irreg.",
+          ssp: "کړ",
+          ssf: "kR",
+          prp: "کړل",
+          prf: "kRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          noOo: true,
+          ec: "make,makes,making,made,made",
+          ep: "_____",
+        },
+      },
+      verbTense: "imperfectivePast",
+      perfectTense: "presentPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "perfect",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: true,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    externalComplement: {
+      type: "complement",
+      selection: {
+        type: "adjective",
+        entry: {
+          ts: 1527815306,
+          i: 7598,
+          p: "ستړی",
+          f: "stúRay",
+          g: "stuRay",
+          e: "tired",
+          c: "adj.",
+        },
+      },
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
 </EditableVPEx>
 
 To summarize about this verb <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl", e: "to make" }} />:
 
-- It's intransitive and takes:  
+- It's intransitive and takes:
   - a **subject** (something that is acting on the object)
   - an **object** (something that is changed)
   - a <Complement /> (a word that describes the change)
@@ -345,5 +2321,9 @@ To summarize about this verb <InlinePs opts={opts} ps={{ p: "کول", f: "kawúl
 We learned a lot about these four special verbs. Let's summarize it all in a neat little chart that shows how they're related...
 
 <div className="text-center">
-    <img src={helperVerbsSummaryChart} alt="Pashto helper verbs summary chart" className="img-fluid" />
+  <img
+    src={helperVerbsSummaryChart}
+    alt="Pashto helper verbs summary chart"
+    className="img-fluid"
+  />
 </div>

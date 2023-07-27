@@ -7,8 +7,8 @@ import Link from "../../components/Link";
 import { translatePhonetics } from "@lingdocs/ps-react";
 
 export const exText = {
-    p: "دا خو ډېره ښه خبره ده چې ټول په پښتو کې لیکلی شي.",
-    f: "daa kho Dera xa khabura da che Tol pu puxto ke leekuley shee",
+  p: "دا خو ډېره ښه خبره ده چې ټول په پښتو کې لیکلی شي.",
+  f: "daa kho Dera xa khabura da che Tol pu puxto ke leekulay shee",
 };
 
 Although Pashto is written using the Arabic script, it is often written with latin-based phonetics in dictionaries or other places to show more information about how to pronounce the vowels of the word, or to show where the emphasis of the word is placed.
@@ -21,9 +21,7 @@ There have been many of different systems or conventions for writing Pashto in p
 
 ##### In Pashto
 
-<p dir="rtl">
-    {exText.p}
-</p>
+<p dir="rtl">{exText.p}</p>
 
 ##### In LingDocs Pashto Phonetics
 
@@ -31,10 +29,12 @@ There have been many of different systems or conventions for writing Pashto in p
 
 ##### In IPA
 
-<p>{translatePhonetics(exText.f, {
+<p>
+  {translatePhonetics(exText.f, {
     system: "ipa",
     dialect: "standard",
-})}</p>
+  })}
+</p>
 
 A couple of things to note about this system:
 

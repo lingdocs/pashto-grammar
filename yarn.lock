@@ -1377,13 +1377,14 @@
     rambda "^6.7.0"
     react-select "^5.2.2"
 
-"@lingdocs/ps-react@^5.7.13":
-  version "5.7.13"
-  resolved "https://npm.lingdocs.com/@lingdocs%2fps-react/-/ps-react-5.7.13.tgz#04ff75abdbda04a2ae26407eeb996055238105d3"
-  integrity sha512-zhyEzcuc6M4rf7Vl4bByiNIvcPq7czO4MIuLvnByv6v2uOJtf1k5lF4VpXhsZf6Zw/1sYvPQBqh2BGTuZPKH1Q==
+"@lingdocs/ps-react@^6.0.2":
+  version "6.0.2"
+  resolved "https://npm.lingdocs.com/@lingdocs%2fps-react/-/ps-react-6.0.2.tgz#712f7620e1aa30d0ec1e1f7d0118be660cb4e01c"
+  integrity sha512-QuMOzdY45tXvL18BrykoP9x+NWl6sUQCQp1HRp+Q17jtf7oS55LGryQhZJMhom/A61NMvztYh5hiP+xoivQgUw==
   dependencies:
     "@formkit/auto-animate" "^1.0.0-beta.3"
     classnames "^2.2.6"
+    fp-ts "^2.16.0"
     jsurl2 "^2.1.0"
     lz-string "^1.4.4"
     pbf "^3.2.1"
@@ -2668,6 +2669,11 @@ format@^0.2.0:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/format/-/format-0.2.2.tgz#d6170107e9efdc4ed30c9dc39016df942b5cb58b"
   integrity sha512-wzsgA6WOq+09wrU1tsJ09udeR/YZRaeArL9e1wPbFg3GG2yDnC2ldKpxs4xunpFF9DgqCqOIra3bc1HWrJ37Ww==
+
+fp-ts@^2.16.0:
+  version "2.16.1"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.16.1.tgz#6abc401ce42b65364ca8f0b0d995c5840c68a930"
+  integrity sha512-by7U5W8dkIzcvDofUcO42yl9JbnHTEDBrzu3pt5fKT+Z4Oy85I21K80EYJYdjQGC2qum4Vo55Ag57iiIK4FYuA==
 
 framesync@^4.0.0, framesync@^4.0.1:
   version "4.1.0"

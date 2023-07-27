@@ -4,107 +4,133 @@ title: Pronoun Picker
 
 import PronounPicker from "../../components/PronounPicker";
 import {
-    defaultTextOptions as opts,
-    InlinePs,
-    ButtonSelect,
-    randomPerson,
-    randomSubjObj,
-    isInvalidSubjObjCombo,
+  defaultTextOptions as opts,
+  InlinePs,
+  ButtonSelect,
+  randomPerson,
+  randomSubjObj,
+  isInvalidSubjObjCombo,
 } from "@lingdocs/ps-react";
 import { useState } from "react";
 
 export function RPicker() {
-    // TODO: Pull this into a type safe file
-    const startSubjObj = randomSubjObj();
-    const [subject, setSubject] = useState({ type: "pronoun", pronounType: "far", person: startSubjObj.subj });
-    const [object, setObject] = useState({ type: "pronoun", pronounType: "far", person: startSubjObj.obj });
-    const [mode, setMode] = useState("single");
-    function handleSetSubject(incoming) {
-        if (mode !== "single" && isInvalidSubjObjCombo(incoming.person, object.person)) {
-            alert("That combination of pronouns is not allowed");
-            return;
-            // let newP = 0;
-            // do {
-            //     newP = randomPerson();
-            // } while (isInvalidSubjObjCombo(newP, object.person));
-            // return setSubject({ ...incoming, person: newP });
-        }
-        return setSubject(incoming);
+  // TODO: Pull this into a type safe file
+  const startSubjObj = randomSubjObj();
+  const [subject, setSubject] = useState({
+    type: "pronoun",
+    pronounType: "far",
+    person: startSubjObj.subj,
+  });
+  const [object, setObject] = useState({
+    type: "pronoun",
+    pronounType: "far",
+    person: startSubjObj.obj,
+  });
+  const [mode, setMode] = useState("single");
+  function handleSetSubject(incoming) {
+    if (
+      mode !== "single" &&
+      isInvalidSubjObjCombo(incoming.person, object.person)
+    ) {
+      alert("That combination of pronouns is not allowed");
+      return;
+      // let newP = 0;
+      // do {
+      //     newP = randomPerson();
+      // } while (isInvalidSubjObjCombo(newP, object.person));
+      // return setSubject({ ...incoming, person: newP });
     }
-    function handleSetObject(incoming) {
-        if (isInvalidSubjObjCombo(subject.person, incoming.person)) {
-            alert("That combination of pronouns is not allowed");
-            return;
-            // let newP = 0;
-            // do {
-            //     newP = randomPerson();
-            // } while (isInvalidSubjObjCombo(newP, subject.person));
-            // return setObject({ ...incoming, person: newP });
-        }
-        return setObject(incoming);
+    return setSubject(incoming);
+  }
+  function handleSetObject(incoming) {
+    if (isInvalidSubjObjCombo(subject.person, incoming.person)) {
+      alert("That combination of pronouns is not allowed");
+      return;
+      // let newP = 0;
+      // do {
+      //     newP = randomPerson();
+      // } while (isInvalidSubjObjCombo(newP, subject.person));
+      // return setObject({ ...incoming, person: newP });
     }
-    function setRandomSubjObj() {
-        const { subj, obj } = randomSubjObj();
-        setSubject(s => ({
-            ...s,
-            person: subj,
-        }));
-        setObject(s => ({
-            ...s,
-            person: obj,
-        }));
+    return setObject(incoming);
+  }
+  function setRandomSubjObj() {
+    const { subj, obj } = randomSubjObj();
+    setSubject((s) => ({
+      ...s,
+      person: subj,
+    }));
+    setObject((s) => ({
+      ...s,
+      person: obj,
+    }));
+  }
+  function handleRandom() {
+    if (mode === "single") {
+      const person = randomPerson(subject.person);
+      setSubject((s) => ({
+        ...s,
+        person,
+      }));
+    } else {
+      setRandomSubjObj();
     }
-    function handleRandom() {
-        if (mode === "single") {
-            const person = randomPerson(subject.person);
-            setSubject(s => ({
-                ...s,
-                person,
-            }));
-        } else {
-            setRandomSubjObj();
-        }
+  }
+  function handleModeChange(m) {
+    if (m === "subjObj") {
+      setRandomSubjObj();
     }
-    function handleModeChange(m) {
-        if (m === "subjObj") {
-            setRandomSubjObj();
-        }
-        setMode(m);
-    }
-    return <div className="text-center">
-        <div className="mb-4">
-            <ButtonSelect
-                options={[{
-                    label: "Single",
-                    value: "single"
-                }, {
-                    label: "Subj. / Obj.",
-                    value: "subjObj",
-                }]}
-                value={mode}
-                handleChange={handleModeChange}
+    setMode(m);
+  }
+  return (
+    <div className="text-center">
+      <div className="mb-4">
+        <ButtonSelect
+          options={[
+            {
+              label: "Single",
+              value: "single",
+            },
+            {
+              label: "Subj. / Obj.",
+              value: "subjObj",
+            },
+          ]}
+          value={mode}
+          handleChange={handleModeChange}
+        />
+      </div>
+      <div className="row">
+        <div
+          className="col my-2"
+          style={{ maxWidth: "375px", margin: "0 auto" }}
+        >
+          {mode === "subjObj" && <h5>Subject</h5>}
+          <PronounPicker pronoun={subject} onChange={handleSetSubject} />
+        </div>
+        {mode === "subjObj" && (
+          <div
+            className="col my-2"
+            style={{ maxWidth: "375px", margin: "0 auto" }}
+          >
+            <h5>Object</h5>
+            <PronounPicker
+              pronoun={object}
+              onChange={handleSetObject}
+              isObject
             />
-        </div>
-        <div className="row">
-            <div className="col my-2" style={{ maxWidth: "375px", margin: "0 auto" }}>
-                {mode === "subjObj" && <h5>Subject</h5>}
-                <PronounPicker pronoun={subject} onChange={handleSetSubject} />
-            </div>
-            {mode === "subjObj" && 
-                <div className="col my-2" style={{ maxWidth: "375px", margin: "0 auto" }}>
-                    <h5>Object</h5>
-                    <PronounPicker pronoun={object} onChange={handleSetObject} isObject />
-                </div>
-            }
-        </div>
-        <button className="btn btn-lg btn-primary mt-2">
-            <i class="fas fa-random" onClick={handleRandom} />
-        </button>
-    </div>;
+          </div>
+        )}
+      </div>
+      <button className="btn btn-lg btn-primary mt-2">
+        <i class="fas fa-random" onClick={handleRandom} />
+      </button>
+    </div>
+  );
 }
 
 Use this pronoun picker to help you drill different sentences. Choose different pronouns to drill a friend, or press the <i class="fas fa-random"></i> button to get a random selection.
 
 <div className="mt-4">
-    <RPicker />
+  <RPicker />
 </div>

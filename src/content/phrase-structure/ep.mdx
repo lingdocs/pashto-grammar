@@ -3,25 +3,26 @@ title: EPs
 ---
 
 import {
-    defaultTextOptions as opts,
-    InlinePs,
-    Examples,
-    makeNounSelection,
+  defaultTextOptions as opts,
+  InlinePs,
+  Examples,
 } from "@lingdocs/ps-react";
 import psmd from "../../lib/psmd";
 import Link from "../../components/Link";
 import EquativeIllustration from "../../components/EquativeIllustration";
-import EditableEPEx, { EditIcon } from "../../components/phrase-diagram/EditableEPEx";
-import BasicBlocks from "../../components/BasicBlocks"
+import EditableEPEx, {
+  EditIcon,
+} from "../../components/phrase-diagram/EditableEPEx";
+import BasicBlocks from "../../components/BasicBlocks";
 
-**There is no "to be" verb in Pashto**. 🤯 Let that sink in for a second. There's no infinitive "to be" form. You can't say "It's good *to be* here."  We can't use "to be" as a verb and make normal verb phrases like we do in other languages.
+**There is no "to be" verb in Pashto**. 🤯 Let that sink in for a second. There's no infinitive "to be" form. You can't say "It's good _to be_ here." We can't use "to be" as a verb and make normal verb phrases like we do in other languages.
 
 In Pashto, we use a special structure called an **equative phrase (EP)** when we talk about something being something.
 
 Basically with an equative phrase we have three main parts:
 
 - **"A"** a subject (the thing we are talking about)
-- **"B"** a predicate (what the thing *is*)
+- **"B"** a predicate (what the thing _is_)
 - **"="** an equative at the end to join them together
 
 Notice how the word order is different than it is in English.
@@ -30,18 +31,25 @@ Notice how the word order is different than it is in English.
 
 There are two ways to build an equative phrase:
 
-1. <Link to="/phrase-structure/np/">NP</Link> + <Link to="/phrase-structure/ep/#whats-an-ep-complement">Complement</Link> + Equative
-2. <Link to="/phrase-structure/np/">NP</Link> + <Link to="/phrase-structure/np/">NP</Link> + Equative 
+1. <Link to="/phrase-structure/np/">NP</Link> + <Link to="/phrase-structure/ep/#whats-an-ep-complement">
+     Complement
+   </Link> + Equative
+2. <Link to="/phrase-structure/np/">NP</Link> + <Link to="/phrase-structure/np/">
+     NP
+   </Link> + Equative{" "}
 
-The equative will **always agree with the last NP** in the phrase. So for #1 it will agree with the *subject* and for #2 it will agree with the *predicate*.
+The equative will **always agree with the last NP** in the phrase. So for #1 it will agree with the _subject_ and for #2 it will agree with the _predicate_.
 
 ## 1. NP + Complement
 
-<BasicBlocks large blocks={[
+<BasicBlocks
+  large
+  blocks={[
     { bottom: "NP", inside: "A", top: "Subject" },
     { bottom: "Comp.", inside: "B", top: "Predicate" },
     { bottom: "Equative", inside: "=" },
-]} />
+  ]}
+/>
 
 This is the most common phrase you will see for describing what a subject is. With this kind of phrase we use an <Link to="/phrase-structure/ep/#whats-an-ep-complement">EP complement</Link> to describe the subject <Link to="/phrase-structure/np/">NP</Link>.
 
@@ -61,15 +69,77 @@ Let's look at some examples using each of these kinds of complements. Click on t
 An adjective is a word that describes what the subject is like. Notice that if possible, it will inflect to agree with the subject.
 
 <EditableEPEx opts={opts} hideOmitSubject>
-    {
-        {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}}],"predicate":{"type":"Complement","Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7595,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "EQComp",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527815306,
+            i: 7595,
+            p: "ستړی",
+            f: "stúRay",
+            g: "stuRay",
+            e: "tired",
+            c: "adj.",
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
 </EditableEPEx>
 
 <EditableEPEx opts={opts} hideOmitSubject>
-    {
-        {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":2,"distance":"far"}}}}],"predicate":{"type":"Complement","Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527812792,"i":5823,"p":"خوشاله","f":"khoshaala","g":"khoshaala","e":"happy, glad","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 2, distance: "far" },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "EQComp",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527812792,
+            i: 5823,
+            p: "خوشاله",
+            f: "khoshaala",
+            g: "khoshaala",
+            e: "happy, glad",
+            c: "adj.",
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
 </EditableEPEx>
 
 #### With a location adverb
@@ -77,15 +147,77 @@ An adjective is a word that describes what the subject is like. Notice that if p
 A location adverb is a word that describes the location of the subject. Don't worry, it doesn't inflect.
 
 <EditableEPEx opts={opts} hideOmitSubject>
-    {
-        {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":10,"distance":"far"}}}}],"predicate":{"type":"Complement","Complement":{"type":"EQComp","selection":{"type":"loc. adv.","entry":{"ts":1527812558,"i":6251,"p":"دلته","f":"dălta","g":"dalta","e":"here","c":"loc. adv."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 10, distance: "far" },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "EQComp",
+        selection: {
+          type: "loc. adv.",
+          entry: {
+            ts: 1527812558,
+            i: 6251,
+            p: "دلته",
+            f: "dălta",
+            g: "dalta",
+            e: "here",
+            c: "loc. adv.",
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
 </EditableEPEx>
 
 <EditableEPEx opts={opts} hideOmitSubject>
-    {
-        {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}}],"predicate":{"type":"Complement","Complement":{"type":"EQComp","selection":{"type":"loc. adv.","entry":{"ts":1527812449,"i":13954,"p":"هلته","f":"hálta, álta","g":"halta,alta","e":"there","c":"loc. adv."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 5, distance: "far" },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "EQComp",
+        selection: {
+          type: "loc. adv.",
+          entry: {
+            ts: 1527812449,
+            i: 13954,
+            p: "هلته",
+            f: "hálta, álta",
+            g: "halta,alta",
+            e: "there",
+            c: "loc. adv.",
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
 </EditableEPEx>
 
 #### With a sandwich
@@ -93,75 +225,356 @@ A location adverb is a word that describes the location of the subject. Don't wo
 You can also use any kind of sandwich to describe the subject of an EP.
 
 <EditableEPEx opts={opts} hideOmitSubject>
-    {
-        {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"predicate":{"type":"Complement","Complement":{"type":"EQComp","selection":{"type":"sandwich","before":{"p":"له","f":"la"},"after":{"p":"سره","f":"sara"},"e":"with","inside":{"type":"NP","selection":{"type":"pronoun","person":3,"distance":"far"}}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "EQComp",
+        selection: {
+          type: "sandwich",
+          before: { p: "له", f: "la" },
+          after: { p: "سره", f: "sara" },
+          e: "with",
+          inside: {
+            type: "NP",
+            selection: { type: "pronoun", person: 3, distance: "far" },
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
 </EditableEPEx>
 
 <EditableEPEx opts={opts} hideOmitSubject>
-    {
-        {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":4,"distance":"far"}}}}],"predicate":{"type":"Complement","Complement":{"type":"EQComp","selection":{"type":"sandwich","before":{"p":"په","f":"pu"},"after":{"p":"کې","f":"ke"},"e":"in","inside":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812828,"i":10540,"p":"کور","f":"kor","g":"kor","e":"house, home","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 4, distance: "far" },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "EQComp",
+        selection: {
+          type: "sandwich",
+          before: { p: "په", f: "pu" },
+          after: { p: "کې", f: "ke" },
+          e: "in",
+          inside: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812828,
+                i: 10540,
+                p: "کور",
+                f: "kor",
+                g: "kor",
+                e: "house, home",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
 </EditableEPEx>
 
 #### With a complement noun
 
-In Pashto there are a lot of [compound verbs](https://www.lingdocs.com/blog/pashto-compound-verbs) that use *nouns* as the complement. For example, to become angry <InlinePs opts={opts} ps={{ p: "غوسه کېدل", f: "ghwUsa kedul", e: "to become angry" }} /> uses the complement <InlinePs opts={opts} ps={{ p: "غوسه", f: "ghWusa", e: "anger" }} />. This complement noun can also be used with an equative, for instance.
+In Pashto there are a lot of [compound verbs](https://www.lingdocs.com/blog/pashto-compound-verbs) that use _nouns_ as the complement. For example, to become angry <InlinePs opts={opts} ps={{ p: "غوسه کېدل", f: "ghwUsa kedul", e: "to become angry" }} /> uses the complement <InlinePs opts={opts} ps={{ p: "غوسه", f: "ghWusa", e: "anger" }} />. This complement noun can also be used with an equative, for instance.
 
 <Examples opts={opts}>
-    {psmd([
-        { p: "هغه **غوسه** دی", f: "hagha **ghwUsa** dey", e: "He is **angry**" },
-    ])}
+  {psmd([
+    { p: "هغه **غوسه** دی", f: "hagha **ghwUsa** day", e: "He is **angry**" },
+  ])}
 </Examples>
 
 In English it would [sound funny](https://www.youtube.com/shorts/U7X7cEh5au8) to say "I am anger," but in Pashto it's normal. These complement nouns get treated almost as if they were adjectives. Except...
 
-You will notice how when people use these complement nouns with equatives they *don't inflect* based on the subject. For instance you could ask if someone is resting using the word <InlinePs opts={opts} ps={{ p: "استرحات", f: "istiraháat", e: "rest" }} /> from the compound verb <InlinePs opts={opts} ps={{ p: "استرحات کول", f: "istirahaat kawul", e: "to rest" }} />.
+You will notice how when people use these complement nouns with equatives they _don't inflect_ based on the subject. For instance you could ask if someone is resting using the word <InlinePs opts={opts} ps={{ p: "استرحات", f: "istiraháat", e: "rest" }} /> from the compound verb <InlinePs opts={opts} ps={{ p: "استرحات کول", f: "istirahaat kawul", e: "to rest" }} />.
 
 <Examples opts={opts}>
-    {psmd([
-        { p: "ته استرحات یې؟", f: "tu istirahaat ye?", e: "Are you (m.) **resting**?" },
-        { p: "ته استرحات یې؟", f: "tu istirahaat ye?", e: "Are you (f.) **resting**?" },
-    ])}
+  {psmd([
+    {
+      p: "ته استرحات یې؟",
+      f: "tu istirahaat ye?",
+      e: "Are you (m.) **resting**?",
+    },
+    {
+      p: "ته استرحات یې؟",
+      f: "tu istirahaat ye?",
+      e: "Are you (f.) **resting**?",
+    },
+  ])}
 </Examples>
 
 You don't inflect the <InlinePs opts={opts} ps={{ p: "استرحات", f: "istiraháat", e: "rest" }} /> because it's a noun, not an adjective.
 
-It's not always that straightforward though. Some complement nouns get used so much they get treated (by some people) as adjectives and *will* inflect. A good example of this is the <InlinePs opts={opts} ps={{ p: "خبر", f: "khabur", e: "news" }} /> in <InlinePs opts={opts} ps={{ p: "خبرېدل", f: "khabredul", e: "to become aware of" }} />. Some people will inflect it, and some people won't.
+It's not always that straightforward though. Some complement nouns get used so much they get treated (by some people) as adjectives and _will_ inflect. A good example of this is the <InlinePs opts={opts} ps={{ p: "خبر", f: "khabur", e: "news" }} /> in <InlinePs opts={opts} ps={{ p: "خبرېدل", f: "khabredul", e: "to become aware of" }} />. Some people will inflect it, and some people won't.
 
 <Examples opts={opts}>
-    {psmd([
-        { p: "زه **خبر** یم", f: "zu **khabúr** yum", e: "I (f.) am aware", sub: "not inflected" },
-        { p: "زه **خبره** یم", f: "zu **khabúra** yum", e: "I (f.) am aware", sub: "inflected" },
-    ])}
+  {psmd([
+    {
+      p: "زه **خبر** یم",
+      f: "zu **khabúr** yum",
+      e: "I (f.) am aware",
+      sub: "not inflected",
+    },
+    {
+      p: "زه **خبره** یم",
+      f: "zu **khabúra** yum",
+      e: "I (f.) am aware",
+      sub: "inflected",
+    },
+  ])}
 </Examples>
 
 ## 2. NP + NP
 
-<BasicBlocks large blocks={[
+<BasicBlocks
+  large
+  blocks={[
     { bottom: "NP", inside: "A", top: "Subject" },
     { bottom: "NP", inside: "B", top: "Predicate" },
     { bottom: "Equative", inside: "=" },
-]} />
+  ]}
+/>
 
 Sometimes you need to say that an <Link to="/phrase-structure/np/">NP</Link> is an <Link to="/phrase-structure/np/">NP</Link>. <strong>The equative always agrees with the <em>last</em> <Link to="/phrase-structure/np/">NP</Link></strong>.
 
 <EditableEPEx opts={opts} hideOmitSubject>
-    {
-        {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10010,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}}}],"predicate":{"type":"NP","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527819521,"i":5824,"p":"خوشالي","f":"khoshaalee","g":"khoshaalee","e":"happiness (خوشحالي)","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812817,
+                i: 10010,
+                p: "کتاب",
+                f: "kitáab",
+                g: "kitaab",
+                e: "book",
+                c: "n. m.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "NP",
+      NP: {
+        type: "NP",
+        selection: {
+          type: "noun",
+          entry: {
+            ts: 1527819521,
+            i: 5824,
+            p: "خوشالي",
+            f: "khoshaalee",
+            g: "khoshaalee",
+            e: "happiness (خوشحالي)",
+            c: "n. f.",
+          },
+          gender: "fem",
+          genderCanChange: false,
+          number: "singular",
+          numberCanChange: true,
+          adjectives: [],
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
 </EditableEPEx>
 
 <EditableEPEx opts={opts} hideOmitSubject>
-    {
-        {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527819521,"i":5824,"p":"خوشالي","f":"khoshaalee","g":"khoshaalee","e":"happiness (خوشحالي)","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"predicate":{"type":"NP","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10010,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527819521,
+                i: 5824,
+                p: "خوشالي",
+                f: "khoshaalee",
+                g: "khoshaalee",
+                e: "happiness (خوشحالي)",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "NP",
+      NP: {
+        type: "NP",
+        selection: {
+          type: "noun",
+          entry: {
+            ts: 1527812817,
+            i: 10010,
+            p: "کتاب",
+            f: "kitáab",
+            g: "kitaab",
+            e: "book",
+            c: "n. m.",
+          },
+          gender: "masc",
+          genderCanChange: false,
+          number: "plural",
+          numberCanChange: true,
+          adjectives: [],
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
 </EditableEPEx>
 
 <EditableEPEx opts={opts} hideOmitSubject>
-    {
-        {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812903,"i":13128,"p":"مینه","f":"meena","g":"meena","e":"love","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"predicate":{"type":"NP","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815268,"i":8554,"p":"شی","f":"shey","g":"shey","e":"thing","c":"n. m.","ppp":"شیان، شیونه","ppf":"sheyáan, sheyóona"},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527812796,"i":8655,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."}}]}},"Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7595,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812903,
+                i: 13128,
+                p: "مینه",
+                f: "meena",
+                g: "meena",
+                e: "love",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "NP",
+      NP: {
+        type: "NP",
+        selection: {
+          type: "noun",
+          entry: {
+            ts: 1527815268,
+            i: 8554,
+            p: "شی",
+            f: "shay",
+            g: "shay",
+            e: "thing",
+            c: "n. m.",
+            ppp: "شیان، شیونه",
+            ppf: "shayáan, shayóona",
+          },
+          gender: "masc",
+          genderCanChange: false,
+          number: "singular",
+          numberCanChange: true,
+          adjectives: [
+            {
+              type: "adjective",
+              entry: {
+                ts: 1527812796,
+                i: 8655,
+                p: "ښه",
+                f: "xu",
+                g: "xu",
+                e: "good",
+                c: "adj.",
+              },
+            },
+          ],
+        },
+      },
+      Complement: {
+        type: "EQComp",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527815306,
+            i: 7595,
+            p: "ستړی",
+            f: "stúRay",
+            g: "stuRay",
+            e: "tired",
+            c: "adj.",
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
 </EditableEPEx>
 
 ## Adding APs
@@ -169,9 +582,94 @@ Sometimes you need to say that an <Link to="/phrase-structure/np/">NP</Link> is 
 You can add as many <Link to="/phrase-structure/ap/">APs</Link> as you like to a phrase. For example if we wanted to say that the weather is good <strong>here</strong> we can add the <Link to="/phrase-structure/ap/">AP</Link> <InlinePs opts={opts} ps={{ p: "دلته", f: "dălta", e: "here - adverb" }} />.
 
 <EditableEPEx opts={opts} hideOmitSubject>
-    {
-        {"blocks":[{"key":0.925654634890972,"block":{"type":"AP","selection":{"type":"adverb","entry":{"ts":1527812558,"i":6251,"p":"دلته","f":"dălta","g":"dalta","e":"here","c":"loc. adv."}}}},{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812672,"i":14045,"p":"هوا","f":"hawaa","g":"hawaa","e":"air, atmosphere; weather","c":"n. f."},"gender":"fem","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[]}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10010,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}},"Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527812796,"i":8655,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":false}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.925654634890972,
+        block: {
+          type: "AP",
+          selection: {
+            type: "adverb",
+            entry: {
+              ts: 1527812558,
+              i: 6251,
+              p: "دلته",
+              f: "dălta",
+              g: "dalta",
+              e: "here",
+              c: "loc. adv.",
+            },
+          },
+        },
+      },
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812672,
+                i: 14045,
+                p: "هوا",
+                f: "hawaa",
+                g: "hawaa",
+                e: "air, atmosphere; weather",
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      NP: {
+        type: "NP",
+        selection: {
+          type: "noun",
+          entry: {
+            ts: 1527812817,
+            i: 10010,
+            p: "کتاب",
+            f: "kitáab",
+            g: "kitaab",
+            e: "book",
+            c: "n. m.",
+          },
+          gender: "masc",
+          genderCanChange: false,
+          number: "plural",
+          numberCanChange: true,
+          adjectives: [],
+        },
+      },
+      Complement: {
+        type: "EQComp",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527812796,
+            i: 8655,
+            p: "ښه",
+            f: "xu",
+            g: "xu",
+            e: "good",
+            c: "adj.",
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
 </EditableEPEx>
 
 Try adding clicking the <EditIcon /> and adding other <Link to="/phrase-structure/ap/">APs</Link> to this or other examples above.
@@ -181,13 +679,115 @@ Try adding clicking the <EditIcon /> and adding other <Link to="/phrase-structur
 If it's obvious who/what you're talking about you can always leave out the subject.
 
 <EditableEPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":5,"distance":"far"}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10010,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}},"Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527812796,"i":8655,"p":"ښه","f":"xu","g":"xu","e":"good","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":true}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 5, distance: "far" },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      NP: {
+        type: "NP",
+        selection: {
+          type: "noun",
+          entry: {
+            ts: 1527812817,
+            i: 10010,
+            p: "کتاب",
+            f: "kitáab",
+            g: "kitaab",
+            e: "book",
+            c: "n. m.",
+          },
+          gender: "masc",
+          genderCanChange: false,
+          number: "plural",
+          numberCanChange: true,
+          adjectives: [],
+        },
+      },
+      Complement: {
+        type: "EQComp",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527812796,
+            i: 8655,
+            p: "ښه",
+            f: "xu",
+            g: "xu",
+            e: "good",
+            c: "adj.",
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: true,
+  }}
 </EditableEPEx>
 
 <EditableEPEx opts={opts}>
-    {
-        {"blocks":[{"key":0.0539623363055568,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":1,"distance":"far"}}}}],"predicate":{"type":"Complement","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":10010,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","c":"n. m."},"gender":"masc","genderCanChange":false,"number":"plural","numberCanChange":true,"adjectives":[]}},"Complement":{"type":"EQComp","selection":{"type":"adjective","entry":{"ts":1527815306,"i":7595,"p":"ستړی","f":"stúRey","g":"stuRey","e":"tired","c":"adj."}}}},"equative":{"tense":"present","negative":false},"omitSubject":true}
-    }
+  {{
+    blocks: [
+      {
+        key: 0.0539623363055568,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      NP: {
+        type: "NP",
+        selection: {
+          type: "noun",
+          entry: {
+            ts: 1527812817,
+            i: 10010,
+            p: "کتاب",
+            f: "kitáab",
+            g: "kitaab",
+            e: "book",
+            c: "n. m.",
+          },
+          gender: "masc",
+          genderCanChange: false,
+          number: "plural",
+          numberCanChange: true,
+          adjectives: [],
+        },
+      },
+      Complement: {
+        type: "EQComp",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527815306,
+            i: 7595,
+            p: "ستړی",
+            f: "stúRay",
+            g: "stuRay",
+            e: "tired",
+            c: "adj.",
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: true,
+  }}
 </EditableEPEx>

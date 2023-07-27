@@ -3,28 +3,24 @@ title: Nouns and Gender
 ---
 
 import {
-    defaultTextOptions as opts,
-    InlinePs,
-    Examples,
-    firstVariation,
+  defaultTextOptions as opts,
+  InlinePs,
+  firstVariation,
 } from "@lingdocs/ps-react";
 import genderColors from "../../lib/gender-colors";
 import GenderTable from "../../components/GenderTable";
 import Link from "../../components/Link";
 export const femColor = genderColors.f;
 export const mascColor = genderColors.m;
-import {
-    nounGenderGame1,
-    nounGenderGame2,
-} from "../../games/games";
+import { nounGenderGame1, nounGenderGame2 } from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
 
 export const Masc = () => (
-    <span style={{ backgroundColor: mascColor }}>masculine</span>
+  <span style={{ backgroundColor: mascColor }}>masculine</span>
 );
 
 export const Fem = () => (
-    <span style={{ backgroundColor: femColor }}>feminine</span>
+  <span style={{ backgroundColor: femColor }}>feminine</span>
 );
 
 All nouns in Pashto are either <Masc /> or <Fem />. Thankfully, you can pretty much always tell the gender of a word by its ending.
@@ -33,77 +29,82 @@ All nouns in Pashto are either <Masc /> or <Fem />. Thankfully, you can pretty m
 
 **<span style={{ backgroundColor: mascColor }}>Masculine</span> words end in:**
 
- - a consonant
- - <InlinePs opts={opts} ps={{ p: "ی", f: "ey" }} />
- - <InlinePs opts={opts} ps={{ p: "ـه", f: "u" }} />
- - <InlinePs opts={opts} ps={{ p: "وی", f: "ooy" }} /> or <InlinePs opts={opts} ps={{ p: "ای", f: "aay" }} />
+- a consonant
+- <InlinePs opts={opts} ps={{ p: "ی", f: "ay" }} />
+- <InlinePs opts={opts} ps={{ p: "ـه", f: "u" }} />
+- <InlinePs opts={opts} ps={{ p: "وی", f: "ooy" }} /> or <InlinePs
+    opts={opts}
+    ps={{ p: "ای", f: "aay" }}
+  />
 
 **<span style={{ backgroundColor: femColor }}>Feminine</span> words end in:**
 
- - all the other vowels (<InlinePs opts={opts} ps={{ p: "ا", f: "aa" }} />, <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} />, <InlinePs opts={opts} ps={{ p: "ي", f: "ee" }} />, <InlinePs opts={opts} ps={{ p: "ۍ", f: "uy" }} />, etc.)
+- all the other vowels (<InlinePs opts={opts} ps={{ p: "ا", f: "aa" }} />, <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} />, <InlinePs opts={opts} ps={{ p: "ي", f: "ee" }} />, <InlinePs opts={opts} ps={{ p: "ۍ", f: "uy" }} />, etc.)
 
-<GenderTable rows={[
+<GenderTable
+  rows={[
     {
-        masc: {
-            ending: "any consonant",
-            ex: { p: "کور", f: "kor", e: "house" },
-        },
-        fem: {
-            ending: { p: "ه", f: "a" },
-            ex: { p: "ښځه", f: "xudza", e: "woman" },
-        },
+      masc: {
+        ending: "any consonant",
+        ex: { p: "کور", f: "kor", e: "house" },
+      },
+      fem: {
+        ending: { p: "ه", f: "a" },
+        ex: { p: "ښځه", f: "xudza", e: "woman" },
+      },
     },
     {
-        masc: {
-            ending: { p: "ی", f: "ey" },
-            ex: {p:"سړی", f:"saRey", e:"man"},
-        }, 
-        fem: {
-            ending: { p: "ا", f: "aa" },
-            ex: {p:"جزا", f:"jăzaa", e:"punishment"},
-        },
+      masc: {
+        ending: { p: "ی", f: "ay" },
+        ex: { p: "سړی", f: "saRay", e: "man" },
+      },
+      fem: {
+        ending: { p: "ا", f: "aa" },
+        ex: { p: "جزا", f: "jăzaa", e: "punishment" },
+      },
     },
     {
-        masc: {
-            ending: { p: "ای", f: "aay" },
-            ex: {p:"ځای", f:"dzaay", e:"place"},
-        },
-        fem: {
-            ending: { p: "ي", f: "ee" },
-            ex: {p:"دوستي", f:"dostee", e:"friendship"},
-        },
+      masc: {
+        ending: { p: "ای", f: "aay" },
+        ex: { p: "ځای", f: "dzaay", e: "place" },
+      },
+      fem: {
+        ending: { p: "ي", f: "ee" },
+        ex: { p: "دوستي", f: "dostee", e: "friendship" },
+      },
     },
     {
-        masc: {
-            ending: { p: "ه", f: "u" },
-            ex: {p:"واده", f:"waadu", e:"marriage"},
-        }, 
-        fem: {
-            ending: { p: "ۍ", f: "uy" },
-            ex: {p:"هګۍ", f:"haguy", e:"egg"},
-        },
+      masc: {
+        ending: { p: "ه", f: "u" },
+        ex: { p: "واده", f: "waadu", e: "marriage" },
+      },
+      fem: {
+        ending: { p: "ۍ", f: "uy" },
+        ex: { p: "هګۍ", f: "haguy", e: "egg" },
+      },
     },
     {
-        masc: {
-            ending: { p:"و", f: "aw" },
-            ex: {p:"کنډو", f:"kanDáw", e:"crack"},
-        },
-        fem: { 
-            ending: { p: "و", f: "o" },
-            ex: { p:"پښتو", f:"puxto", e:"Pashto" },
-        },
+      masc: {
+        ending: { p: "و", f: "aw" },
+        ex: { p: "کنډو", f: "kanDáw", e: "crack" },
+      },
+      fem: {
+        ending: { p: "و", f: "o" },
+        ex: { p: "پښتو", f: "puxto", e: "Pashto" },
+      },
     },
     {
-        masc: {
-            ending: { p: "وی", f: "ooy" },
-            ex: {p:"سوی", f:"sooy", e:"rabbit"},
-        },
-        fem: {
-            ending: { p: "ې", f: "e" },
-            ex: {p:"ملګرې", f:"malgure", e:"female friend"},
-        },
+      masc: {
+        ending: { p: "وی", f: "ooy" },
+        ex: { p: "سوی", f: "sooy", e: "rabbit" },
+      },
+      fem: {
+        ending: { p: "ې", f: "e" },
+        ex: { p: "ملګرې", f: "malgure", e: "female friend" },
+      },
     },
-]} />
+  ]}
+/>
 
 **A couple of other things to watch out for:**
 
@@ -121,24 +122,33 @@ Some <Fem /> words have had their <InlinePs opts={opts} ps={{p:"ـه", f:"a"}} /
 Here are some other <Fem /> words that have lost their <InlinePs opts={opts} ps={{p:"ـه", f:"a"}} /> ending:
 
 export const femEndingWConsonant = [
-    { p: "لار", f: "laar", e: "road" },
-    { p: "میاشت", f: "myaasht", e: "month" },
-    { p: "غېږ", f: "gheG", e: "bosom" },
-    { p: "څنګل", f: "tsangul", e: "elbow" },
-    { p: "بړستن", f: "bRastun", e: "blanket" },
-    { p: "ږمنځ", f: "Gmundz", e: "comb" },
-    { p: "ستن", f: "stun", e: "needle" },
-    { p: "لمن", f: "lamun", e: "skirt" },
+  { p: "لار", f: "laar", e: "road" },
+  { p: "میاشت", f: "myaasht", e: "month" },
+  { p: "غېږ", f: "gheG", e: "bosom" },
+  { p: "څنګل", f: "tsangul", e: "elbow" },
+  { p: "بړستن", f: "bRastun", e: "blanket" },
+  { p: "ږمنځ", f: "Gmundz", e: "comb" },
+  { p: "ستن", f: "stun", e: "needle" },
+  { p: "لمن", f: "lamun", e: "skirt" },
 ];
 
 export function IrregularFem() {
-    return <ul>
-        {femEndingWConsonant.map((entry) => (
-            <li key={entry.p}>
-                <InlinePs opts={opts} ps={{ p: entry.p, f: firstVariation(entry.f), e: firstVariation(entry.e) }} />
-            </li>
-        ))}
-    </ul>;
+  return (
+    <ul>
+      {femEndingWConsonant.map((entry) => (
+        <li key={entry.p}>
+          <InlinePs
+            opts={opts}
+            ps={{
+              p: entry.p,
+              f: firstVariation(entry.f),
+              e: firstVariation(entry.e),
+            }}
+          />
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 <IrregularFem />
@@ -147,33 +157,35 @@ Note that some words can be said with or without an <InlinePs opts={opts} ps={{p
 
 ### Words for people
 
-Some words are used to describe people who obviously have a gender and they *totally break or ignore the rules we saw above*. For example:
+Some words are used to describe people who obviously have a gender and they _totally break or ignore the rules we saw above_. For example:
 
-<GenderTable rows={[
+<GenderTable
+  rows={[
     {
-        masc: {
-            ex: { p: "بندي", f: "bandee", e: "prisoner" },
-        },
-        fem: {
-            ex: { p: "مور", f: "mor", e: "mother" },
-        },
+      masc: {
+        ex: { p: "بندي", f: "bandee", e: "prisoner" },
+      },
+      fem: {
+        ex: { p: "مور", f: "mor", e: "mother" },
+      },
     },
     {
-        masc: {
-            ex: {p:"مېلمه", f:"melmá", e:"guest (male)"},
-        },
-        fem: {
-            ex: {p: "ترور", f:"tror", e: "aunt" },
-        },
+      masc: {
+        ex: { p: "مېلمه", f: "melmá", e: "guest (male)" },
+      },
+      fem: {
+        ex: { p: "ترور", f: "tror", e: "aunt" },
+      },
     },
     {
-        masc: {
-            ex: {p: "ماما", f:"maamáa", e: "uncle" },
-        },
-        fem: {
-            ex: { p: "خور", f: "khor", e: "sister" },
-        },
+      masc: {
+        ex: { p: "ماما", f: "maamáa", e: "uncle" },
+      },
+      fem: {
+        ex: { p: "خور", f: "khor", e: "sister" },
+      },
     },
-]} />
+  ]}
+/>
 
 <GameDisplay record={nounGenderGame2} />
