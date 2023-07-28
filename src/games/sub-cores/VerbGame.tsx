@@ -414,8 +414,8 @@ function addUserAnswer(
   function addBa(x: T.PsString) {
     if (!a.withBa) return x;
     return {
-      p: x.p.replace(kidsBlank.p, baParticle.p),
-      f: x.f.replace(kidsBlank.f, baParticle.f),
+      p: x.p.replace(kidsBlank.p, baParticle.p + " "),
+      f: x.f.replace(kidsBlank.f, baParticle.f + " "),
     };
   }
   function addAnswer(x: T.PsString): T.PsString {
