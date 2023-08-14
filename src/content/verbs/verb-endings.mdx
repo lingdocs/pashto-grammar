@@ -9,6 +9,7 @@ import {
   VerbFormDisplay,
   InlinePs,
 } from "@lingdocs/ps-react";
+import Table from "../../components/Table";
 import Link from "../../components/Link";
 
 export function addTail(form) {
@@ -42,10 +43,203 @@ These endings are added on to the ends <Link to="/verbs/roots-and-stems/">verb r
   textOptions={opts}
 />
 
-### Notes about past verb endings
+### 3rd Person Masc. Sing. Past Endings
 
-- the <InlinePs opts={opts} ps={{ p: "ـهْ", f: "u" }} /> ending is only used with the <strong>short</strong> forms of the roots. (without the <InlinePs opts={opts} ps={{ p: "ل", f: "l", e: "" }} />)
-- The **short form of the 3rd pers. masc. sing.** verbs in the past is a bit interesting. The ending is often left off (if it ends in a consanant like <InlinePs opts={opts} ps={{ p: "ولید", f: "óoleed", e: "" }} /> or is irregular like <InlinePs opts={opts} ps={{ p: "کاوه", f: "kaawú" }} /> from <InlinePs opts={opts} ps={{ p: "کول", f: "kawul" }} /> or <InlinePs opts={opts} ps={{ p: "خوت", f: "khot" }} /> from <InlinePs opts={opts} ps={{ p: "ختل", f: "khatúl" }} />
+With all of the verb endings above, you simply attach them to the ends of the roots or stems. But the **third person masculine singural** (he / it) forms of the past tense are a little tricky! You may see alot of surprising and idiosyncratic forms of verbs in the 3rd pers. masc. sing.
+
+Here are a few **rules for 3rd pers masc. singular past endings**, although you will find that there will be a lot of variations around these depending on the dialect.
+
+##### With the _long form of the roots_ (with the <InlinePs opts={opts} ps={{ p: "ل", f: "ul" }} /> on the end):
+
+- you can only use the <InlinePs opts={opts} ps={{ p: "و", f: "o" }} /> ending.
+
+<Table opts={opts}>
+  {[
+    [
+      { p: "وتل", f: "watúl", e: "to go out" },
+      {
+        p: "وتلو",
+        f: "watúlo",
+        e: "he was going out",
+        sub: "imperfective root وتل - watúl",
+      },
+    ],
+    [
+      { p: "لیدل", f: "leedúl", e: "to see" },
+      {
+        p: "ولیدلو",
+        f: "óoleedulo",
+        e: "... saw him",
+        sub: "perfective root ولیدل - óoleedul",
+      },
+    ],
+  ]}
+</Table>
+
+##### With the _short form of the roots_:
+
+- you can use the <InlinePs opts={opts} ps={{ p: "و", f: "o" }} /> ending
+
+<Table opts={opts}>
+  {[
+    [
+      { p: "وتل", f: "watúl", e: "to go out" },
+      {
+        p: "وتو",
+        f: "wató",
+        e: "he was going out",
+        sub: "imperfective root وتـ - wat-",
+      },
+    ],
+    [
+      { p: "لیدل", f: "leedúl", e: "to see" },
+      {
+        p: "ولیدو",
+        f: "óoleedo",
+        e: "... saw him",
+        sub: "perfective root ولیدـ - óoleed-",
+      },
+    ],
+  ]}
+</Table>
+
+- you can use the <InlinePs opts={opts} ps={{ p: "ـه", f: "u" }} /> ending, but if the previous vowel was a short 'a', then you need to lengthen it to <InlinePs opts={opts} ps={{ p: "ا", f: "aa" }}/>, just like with the <Link to="/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern">#4 "Pashtoon"</Link> pattern.
+
+<Table opts={opts}>
+  {[
+    [
+      { p: "وتل", f: "watúl", e: "to go out" },
+      {
+        p: "وتو",
+        f: "waatú",
+        e: "he was going out",
+        sub: "imperfective root وتـ - wat-",
+      },
+    ],
+    [
+      { p: "لیدل", f: "leedúl", e: "to see" },
+      {
+        p: "ولیدو",
+        f: "óoleedu",
+        e: "... saw him",
+        sub: "perfective root ولیدـ - óoleed-",
+      },
+    ],
+    [
+      { p: "اخیستل", f: "akheestúl", e: "to take" },
+      {
+        p: "واخیسته",
+        f: "wáakheestu",
+        e: "... took it",
+        sub: "perfective root واخیستـ - wáakheest-",
+      },
+    ],
+  ]}
+</Table>
+
+- If the short root ends in <InlinePs opts={opts} ps={{ p: "د", f: "d" }} />, <InlinePs opts={opts} ps={{ p: "ت", f: "t" }} />, or <InlinePs opts={opts} ps={{ p: "ړ", f: "R" }} />, you can _leave it with no ending at all_. But if the last vowel in the root was a short 'a', you need to lengthen it to <InlinePs opts={opts} ps={{ p: "ا", f: "aa" }} />, or <InlinePs opts={opts} ps={{ p: "و", f: "o" }} />.
+
+<Table opts={opts}>
+  {[
+    [
+      { p: "وتل", f: "watúl", e: "to go out" },
+      {
+        p: "ووت",
+        f: "wot",
+        e: "he was going out",
+        sub: "imperfective root وتـ - wat-",
+      },
+    ],
+    [
+      { p: "لیدل", f: "leedúl", e: "to see" },
+      {
+        p: "ولید",
+        f: "óoleed",
+        e: "... saw him",
+        sub: "perfective root ولیدـ - óoleed-",
+      },
+    ],
+    [
+      { p: "اخیستل", f: "akheestúl", e: "to take" },
+      {
+        p: "واخیست",
+        f: "wáakheest",
+        e: "... took it",
+        sub: "perfective root واخیستـ - wáakheest-",
+      },
+    ],
+  ]}
+</Table>
+
+- there are a bunch of idiosyncratic third person masculine singular forms that you will see for certain common verbs. Here are some examples:
+
+<Table opts={opts}>
+  {[
+    [
+      { p: "تلل", f: "tlul", e: "to go" },
+      { p: "لاړ", f: "laaR", e: "he went", sub: "perfective root لاړـ" },
+    ],
+    [
+      { p: "تلل", f: "tlul", e: "to go" },
+      { p: "ته", f: "tu", e: "he was going", sub: "imperfective root تلـ" },
+    ],
+    [
+      { p: "راتلل", f: "raatlúl", e: "to come" },
+      { p: "راغی", f: "ráaghey", e: "he came", sub: "perfective root راغ-" },
+    ],
+    [
+      { p: "راتلل", f: "raatlúl", e: "to come" },
+      {
+        p: "راته",
+        f: "raatú",
+        e: "he was coming",
+        sub: "imperfective root راتلـ",
+      },
+    ],
+    [
+      {
+        p: "کېدل",
+        f: "kedul",
+        e: "to become",
+      },
+      {
+        p: "شو",
+        f: "sho",
+        e: "he became",
+        sub: "perfective root: شوـ",
+      },
+    ],
+    [
+      {
+        p: "کېدل",
+        f: "kedul",
+        e: "to happen",
+      },
+      {
+        p: "وشو",
+        f: "óosho",
+        e: "it happened",
+        sub: "perfective root: وشوـ",
+      },
+    ],
+    [
+      {
+        p: "کېدل",
+        f: "kedul",
+        e: "to happen",
+      },
+      {
+        p: "کېده",
+        f: "kedú (never کېد - ked)",
+        e: "it would happen",
+        sub: "perfective root: کېدـ",
+      },
+    ],
+  ]}
+</Table>
+
+### Other notes about past verb endings
+
 - The **3rd pers. masc. plur.** form of verbs is the same regardless of whether the short or long roots are used.
 - In the **Kandahari dialect** some different endings are used;
   - 3rd pers. masc. sing.: <InlinePs opts={opts} ps={{ p: "ـی", f: "ay", e: "" }} />
