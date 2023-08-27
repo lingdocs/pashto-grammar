@@ -31,7 +31,7 @@ const chapters = content.reduce(
 );
 
 if (isProd) {
-  ReactGA.initialize("387148608");
+  ReactGA.initialize("G-KY970171QR");
   ReactGA.set({ anonymizeIp: true });
 }
 
