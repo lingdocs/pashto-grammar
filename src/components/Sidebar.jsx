@@ -24,7 +24,8 @@ function Sidebar({ content, navOpen, setNavOpen, pathname }) {
     }
     return (
         <>
-            <aside className={classNames(
+            <aside
+                className={classNames(
                 "side-nav col-3 col-lg-2 p-0 bg-light",
                 { "side-nav-closed": !navOpen }
             )}>
