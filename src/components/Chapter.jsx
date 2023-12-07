@@ -9,8 +9,11 @@
 import TableOfContents from "./TableOfContents";
 import Footer from "./Footer";
 import ChapterFeedback from "./ChapterFeedback";
+import { Helmet } from "react-helmet";
 
 const Chapter = ({ children: chapter }) => {
+  const title = `${chapter.frontMatter.title} | LingDocs Pashto Grammar`;
+  const url = "https://grammar.lingdocs.com" + chapter.path;
   const Content = chapter.content;
   function handleShare() {
     if (!navigator.share) {
@@ -18,12 +21,15 @@ const Chapter = ({ children: chapter }) => {
       alert("Sorry, Sharing links are not supported on your device.", chapter.path);
       return;
     }
-    navigator.share && navigator.share({
-      title: chapter.frontMatter.title +  " | LingDocs Pashto Grammar",
-      url: "https://grammar.lingdocs.com" + chapter.path,
-    });
+    navigator.share && navigator.share({ title, url });
   }
   return <>
+    <Helmet>
+      <link rel="canonical" href={url} />
+      <meta name="twitter:title" content={title} />
+      <meta name="og:title" content={title} />
+      <title>{title}</title>
+    </Helmet>
     <main className="col bg-faded py-3 d-flex flex-column" style={{ maxWidth: !chapter.frontMatter.fullWidth ? "850px" : undefined }}>
       <div className="flex-shrink-0">
         <div className="mb-2" style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>

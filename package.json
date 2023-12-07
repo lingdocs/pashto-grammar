@@ -34,6 +34,7 @@
     "react-countdown-circle-timer": "3.0.9",
     "react-dom": "^18.2.0",
     "react-ga4": "^2.1.0",
+    "react-helmet": "^6.1.0",
     "react-media": "1",
     "react-player": "2.10.1",
     "react-rewards": "1.1.2",
