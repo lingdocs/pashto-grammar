@@ -1377,10 +1377,10 @@
     rambda "^6.7.0"
     react-select "^5.2.2"
 
-"@lingdocs/ps-react@^6.0.12":
-  version "6.0.12"
-  resolved "https://npm.lingdocs.com/@lingdocs/ps-react/-/ps-react-6.0.12.tgz#526a962c06ec59bc86884936e8c5bbea43f64461"
-  integrity sha512-ncOccEYU40woDK7ChyBwtdyiIKrWqAVIlTiIeVGkKa1w6mq14P02SZFCvbqnjJ54pBIK8r0VXRj0LcYkmZn4rw==
+"@lingdocs/ps-react@^7.0.9":
+  version "7.0.9"
+  resolved "https://npm.lingdocs.com/@lingdocs/ps-react/-/ps-react-7.0.9.tgz#e4e378a37a5438674381e0258c26f7382e73a011"
+  integrity sha512-80fQRnLvTMhmwgSFxkOM5kncJqRAxcvdX3FsUYJIP+i1aC9GvPgNKq5JzBu+CBVKZByTQK9cLUv9qAZ+TOgIxw==
   dependencies:
     "@formkit/auto-animate" "^1.0.0-beta.3"
     classnames "^2.2.6"
