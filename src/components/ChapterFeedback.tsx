@@ -19,6 +19,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
   useEffect(() => {
     setFeedbackStatus("unsent");
     setFeedback("");
+    setRating(undefined);
   }, [chapter]);
   function handleRatingClick(v: number) {
     setRating((o) => (o === v ? undefined : v));
