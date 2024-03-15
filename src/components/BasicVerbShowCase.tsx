@@ -12,6 +12,7 @@ import {
   isPastTense,
   getPassiveRootsAndStems,
   getAbilityRootsAndStems,
+  getLength,
 } from "@lingdocs/ps-react";
 import {
   isImperativeTense,
@@ -23,7 +24,6 @@ import {
   basicVerbs,
   intransitivePastVerbs,
 } from "../content/verbs/basic-present-verbs";
-import { getLength } from "@lingdocs/ps-react/dist/lib/src/p-text-helpers";
 import { isThirdPerson } from "@lingdocs/ps-react";
 
 function BasicVerbShowCase({
@@ -280,8 +280,11 @@ function makeExamplePhrases(
     const selection = makeSelection(person);
     const rendered = renderVP(selection);
     const compiled = compileVP(rendered, rendered.form);
+    console.log({ rendered, compiled });
     return {
-      ps: [modifyP(getLength(compiled.ps, length)[0])],
+      ps: [
+        modifyP(getLengthTempFix(getLength(compiled.ps, "long"), length)[0]),
+      ],
       e: compiled.e
         ? modifyEnglish(compiled.e.join(" • "), tense, isThirdPerson(person))
         : "",
@@ -406,4 +409,14 @@ function createVerbTable(
       [b[5][0].e, b[5][1].e],
     ],
   };
+}
+
+function getLengthTempFix(
+  ps: T.PsString[],
+  length: "long" | "short"
+): T.PsString[] {
+  if (length === "short" && ps.length > 1) {
+    return [ps[1]];
+  }
+  return [ps[0]];
 }
