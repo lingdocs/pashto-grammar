@@ -39,7 +39,8 @@ export default defineConfig({
     }),
     VitePWA({
       workbox: {
-        globPatterns: ["**/*.(mp4|m4a)"],
+        // globPatterns: ["**/*.(mp4|m4a)"],
+        globPatterns: ["*/*.*", "*.*"],
         maximumFileSizeToCacheInBytes: 5242880,
       },
       includeAssets: ["**/*.(js|html|svg|png|jpg|jpeg|eot|woff|woff2|ttf)"],
