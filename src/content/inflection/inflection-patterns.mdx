@@ -104,13 +104,13 @@ It's important to know that _not all words can be inflected_. If a word doesn't 
 
 ## Exceptions
 
-Whatever kind of word you're using, it will always inflect for the <Link to="/inflection/inflection-intro/">three reasons</Link> that we mentioned earlier. However, there are two big exceptions.
+Whatever kind of word you're using, it will always inflect for the <Link to="/inflection/inflection-intro/">three reasons</Link> that we mentioned earlier. However, there are a few exceptions.
 
 ### Pattern 1 words in sandwiches starting with په - pu
 
-When you put a <Link to="/inflection/inflection-patterns/#1-basic">pattern 1 - basic</Link> word in a the <InlinePs opts={opts} ps={{ p: "په ... کې", f: "pu ... ke", e: "in" }} /> sandwich, **it will not use the first inflection**.
+When you put a <Link to="/inflection/inflection-patterns/#1-basic">pattern 1 - basic</Link> word in a sandwich starting with <InlinePs opts={opts} ps={{ p: "په ...", f: "pu ..." }} /> sandwich, the first inflection is optional. Some people will use it, some will not.
 
-For example, let's put the word <InlinePs opts={opts} ps={{ p: "کوټه", f: "koTa", e: "room" }} /> inside the sandwich <InlinePs opts={opts} ps={{ p: "په ... کې", f: "pu ... ke", e: "in" }} />. It doesn't inflect!
+For example:
 
 <Examples opts={opts}>
   {psmd([
@@ -118,38 +118,12 @@ For example, let's put the word <InlinePs opts={opts} ps={{ p: "کوټه", f: "k
       p: "زه **په کوټه کې** یم",
       f: "zu **pu koTa ke** yum",
       e: "I am **in the room**",
-    },
-  ])}
-</Examples>
-
-But if you make it plural, it _will_ use the second inflection. Only the first inflection is skipped.
-
-<Examples opts={opts}>
-  {psmd([
+    },   
     {
-      p: "مونږ **په کوټو کې** یو",
-      f: "moonG **pu koTo ke** yoo",
-      e: "We are **in the rooms**",
+      p: "زه **په کوټې کې** یم",
+      f: "zu **pu koTe ke** yum",
+      e: "I am **in the room**",
     },
-  ])}
-</Examples>
-
-Remember that in any other kind of sandwich, you still use the first inflection with these pattern 1 words.
-
-<Examples opts={opts}>
-  {psmd([
-    {
-      p: "زه **کوټې ته** ځم",
-      f: "zu **koTé ta** dzum",
-      e: "I'm going to the room",
-    },
-  ])}
-</Examples>
-
-Other sandwiches starting with <InlinePs opts={opts} ps={{ p: "په", f: "pu" }} /> like <InlinePs opts={opts} ps={{ p: "په ... باندې", f: "pu ... baande" }} /> are a bit flexible with these pattern 1 words. Sometimes people will inflect them and sometimes they won't.
-
-<Examples opts={opts}>
-  {psmd([
     {
       p: "هغه **په ښځه باندې** ډوډۍ پخوي",
       f: "hagha **pu xudza baande** DoDuy pakhawee",
@@ -161,6 +135,41 @@ Other sandwiches starting with <InlinePs opts={opts} ps={{ p: "په", f: "pu" }}
       f: "hagha **pu xudze baande** DoDuy pakhawee",
       e: "He gets his wife to cook the food",
       sub: "inflected",
+    },
+  ])}
+</Examples>
+
+But if you make it plural, it will always use the second inflection. Only the first inflection is skipped.
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "مونږ **په کوټو کې** یو",
+      f: "moonG **pu koTo ke** yoo",
+      e: "We are **in the rooms**",
+    },
+    {
+      p: "هغه **په ښځو باندې** ډوډۍ پخوي",
+      f: "hagha **pu xudzo baande** DoDuy pakhawee",
+      e: "He gets his wives to cook the food",
+      sub: "not inflected",
+    },
+  ])}
+</Examples>
+
+Remember that in any other kind of sandwich, you will _always_ use the first inflection with these pattern 1 words. They are only optional with sandwiches starting with <InlinePs opts={opts} ps={{ p: "په ...", f: "pu ..." }} />. 
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "زه **کوټې ته** ځم",
+      f: "zu **koTé ta** dzum",
+      e: "I'm going to the room",
+    },
+    {
+      p: "❌ زه **کوټه ته** ځم ❌",
+      f: "❌ zu **koTá ta** dzum ❌",
+      e: "I'm going to the room",
     },
   ])}
 </Examples>
