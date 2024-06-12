@@ -176,21 +176,11 @@ Remember that in any other kind of sandwich, you will _always_ use the first inf
 
 ### Pattern 4 masculine animate nouns
 
-<p>
-  <Link to="/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern">
-    Pattern 4
-  </Link>
-  {` `}
-  <strong>masculine animate nouns</strong> (ie. a person or animal) in this
-  pattern will often{` `}
-  <strong>only use the first inflection for the plural</strong>. (In some dialects
-  and formal written text though, they will still use the inflection for all three
-  reasons.)
-</p>
+Pattern 4 <strong>masculine animate nouns</strong> (ie. a person or animal) in this pattern will often<strong>only use the first inflection for the plural</strong>. Some people will use the first inflection for all three reason, but most will not.
 
 #### In sandwiches
 
-For example, if we put the the singular word <InlinePs opts={opts} ps={{ p: "پښټون", f: "puxtoon" }} /> in a sandwich, _usually_ people will not inflect it.
+For example, if we put the the masculine singular word <InlinePs opts={opts} ps={{ p: "پښټون", f: "puxtoon" }} /> in a sandwich, _usually_ people will not inflect it. But the feminine form will always inflect.
 
 <Examples opts={opts}>
   {psmd([
@@ -232,8 +222,14 @@ For example, if we put the the singular word <InlinePs opts={opts} ps={{ p: "پ�
     {
       p: "**پښتون** زه ولیدم",
       f: "**puxtoon** zu óoledum",
-      e: "The Pashtun saw me",
-      sub: "not inflected",
+      e: "The Pashtun (m.) saw me",
+      sub: "masc. not inflected",
+    },
+    {
+      p: "**پښتنې** زه ولیدم",
+      f: "**puxtané** zu óoledum",
+      e: "The Pashtun (f.) saw me",
+      sub: "inflected",
     },
     {
       p: "**پښتنو** زه ولیدم",
@@ -258,6 +254,60 @@ But these words will _always_ use the first inflection for the plural.
       p: "دا **د پښتنو** رواج دی",
       f: "daa **du puxtano** rawaaj day",
       e: "This is **the Pashtuns'** custom",
+    },
+  ])}
+</Examples>
+
+### Pattern 4 masculine animate unusual nouns
+
+There are a few words that don't perfectly fit the "Pashtoon" pattern. For example:
+
+- <InlinePs opts={opts} ps={{ p: "مېلمه", f: "melmá", e: "guest" }} />
+- <InlinePs opts={opts} ps={{ p: "کوربه", f: "korbá", e: "host" }} />
+
+When masculine, these words will only use the first inflection for plurals. They will not use the first inflection for sandwiches or for subjects of transitive past tense words. For example:
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "مېلمانه ناست دي",
+      f: "melmaanú naast dee",
+      e: "The guests are sitting",
+      sub: "masc. inflected for plural"
+    },
+    {
+      p: "د مېلمه نوم څه دی؟",
+      f: "du melmá noom tsu day?",
+      e: "What is the guest's (m.) name?",
+      sub: "masc. not inflected for sandwich"
+    },
+    {
+      p: "د مېلمنې نوم څه دی",
+      f: "du melmané noom tsu day?",
+      e: "What is the guest's (f.) name?",
+      sub: "fem. inflected for sandwich"
+    },
+    {
+      p: "مېلمنو نومونه څه دي",
+      f: "du melmanó noomoona tsu dee?",
+      e: "What are the guests' names?",
+    },
+    {
+      p: "مېلمه زه ولیدم",
+      f: "melmá zu óoleedum",
+      e: "The guest (m.) saw me",
+      sub: "masc. not inflected for subject of past-tense trans."
+    },
+    {
+      p: "مېلمنې زه ولیدم",
+      f: "melmané zu óoleedum",
+      e: "The guest (f.) saw me",
+      sub: "fem. inflected for subject of past-tense trans."
+    },
+    {
+      p: "مېلمنو زه ولیدم",
+      f: "melmano zu óoleedum",
+      e: "The guests saw me",
     },
   ])}
 </Examples>
