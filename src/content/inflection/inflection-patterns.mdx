@@ -29,7 +29,7 @@ In the <Link to="/inflection/inflection-intro/">previous chapter</Link> we talke
 
 Like many things in Pashto, inflection can seem mysterious and intimidating. Why do the words change so much, and how!? 😩 But, we'll see that there are just a few basic patterns that the words follow, and it's not so scary or confusing after all.
 
-Below are the **6 basic patterns for inflecting** nouns and adjectives. Notice how all these patterns work with both masculine and feminine genders.
+Below are the **5 (and a half) basic patterns for inflecting** nouns, participles, and adjectives. Notice how all these patterns work with both masculine and feminine genders.
 
 Don't worry about memorizing them all perfectly to start. Instead keep looking back and use them as guides to help you as you get familiar with the inflections over time.
 
@@ -44,7 +44,7 @@ These words always end in:
   items={startingWord(words.filter(tp.isPattern1Entry), "غټ")}
 />
 
-**Note:** See <Link to="/inflection/inflection-patterns/#pattern-1-words-in-sandwiches-starting-with-inlineps-optsopts-ps-p-په-f-pu--">exception</Link> below.
+**Note:** See exceptions below.
 
 ## 2. Words ending in an unstressed ی - ay
 
@@ -81,7 +81,7 @@ These are also a little irregular but instead of lengthening the 1st masculine i
   items={startingWord(words.filter(tp.isPattern5Entry), "غل")}
 />{" "}
 
-## 6. Inanimate feminine nouns ending in ي - ee
+## Extra half pattern: Inanimate feminine nouns ending in ي - ee
 
 There is one more pattern which only works for **inanimate feminine nouns ending in <InlinePs opts={opts} ps={{ p: "ي", f: "ee", e: "" }} />**.
 
@@ -89,7 +89,7 @@ There is one more pattern which only works for **inanimate feminine nouns ending
   items={startingWord(femNouns.filter(tp.isPattern6FemEntry), "آزادي")}
 />
 
-Animate nouns like <InlinePs opts={opts} ps={{ p: "بي بي", f: "beebee", e: "grandmother" }} /> will not inflect like this, and masculine nouns like <InlinePs ps={{ p: "قاضي", f: "qaazee", e: "judge" }} opts={opts} /> also will not inflect.
+Note that this pattern _only_ works with feminine, non-living nouns. Animate nouns like <InlinePs opts={opts} ps={{ p: "بي بي", f: "beebee", e: "grandmother" }} /> will not inflect like this, and masculine nouns like <InlinePs ps={{ p: "قاضي", f: "qaazee", e: "judge" }} opts={opts} /> also will not inflect. Adjectives ending in <InlinePs opts={opts} ps={{ p: "ـي", f: "ee" }} /> will also not inflect.
 
 ## Not all words inflect
 
@@ -106,7 +106,55 @@ It's important to know that _not all words can be inflected_. If a word doesn't 
   ]}
 </Examples>
 
-## Exceptions
+## Exceptions in form
+
+### Pattern 1 feminine nouns without an ـه - a ending
+
+There are a number of feminine nouns which follow the basic pattern, but are missing an <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }}> ending.
+
+For example:
+
+
+export const femEndingWConsonant = [
+  { p: "لار", f: "laar", e: "road" },
+  { p: "ورځ", f: "wradz", e: "day "},
+  { p: "میاشت", f: "myaasht", e: "month" },
+  { p: "غېږ", f: "gheG", e: "bosom" },
+  { p: "څنګل", f: "tsangul", e: "elbow" },
+  { p: "بړستن", f: "bRastun", e: "blanket" },
+  { p: "ږمنځ", f: "Gmundz", e: "comb" },
+  { p: "ستن", f: "stun", e: "needle" },
+  { p: "لمن", f: "lamun", e: "skirt" },
+  { p: "څرمن", f: "tsarmún", e: "leather" },
+  { p: "توشک", f: "toshák", e: "cushion" },
+  { p: "کنځل", f: "kundzul", e: "swear word" },
+  { p: "لوېشت", f: "lwesht", e: "span, a measurement"},
+  { p: "منګل", f: "mangúl", e: "claw" },
+  { p: "ورېځ", f: "wurédz", e: "cloud" },
+];
+
+export function IrregularFem() {
+  return (
+    <ul>
+      {femEndingWConsonant.map((entry) => (
+        <li key={entry.p}>
+          <InlinePs
+            opts={opts}
+            ps={{
+              p: entry.p,
+              f: firstVariation(entry.f),
+              e: firstVariation(entry.e),
+            }}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+<IrregularFem />
+
+## Exceptions in inflection
 
 Whatever kind of word you're using, it will always inflect for the <Link to="/inflection/inflection-intro/">three reasons</Link> that we mentioned earlier. However, there are a few exceptions.
 
