@@ -30,16 +30,25 @@ All nouns in Pashto are either <Masc /> or <Fem />. Thankfully, you can pretty m
 **<span style={{ backgroundColor: mascColor }}>Masculine</span> words end in:**
 
 - a consonant
+- 'y' and 'w' sounds such as:
+  - <InlinePs opts={opts} ps={{ p: "وی", f: "ooy" }} /> or <InlinePs
+      opts={opts}
+      ps={{ p: "ای", f: "aay" }}
+    />
+  - <InlinePs opts={opts} ps={{ p: "ی", f: "aw" }} />
 - <InlinePs opts={opts} ps={{ p: "ی", f: "ay" }} />
 - <InlinePs opts={opts} ps={{ p: "ـه", f: "u" }} />
-- <InlinePs opts={opts} ps={{ p: "وی", f: "ooy" }} /> or <InlinePs
-    opts={opts}
-    ps={{ p: "ای", f: "aay" }}
-  />
-
+- <InlinePs opts={opts} ps={{ p: "و", f: "oo" }} />
 **<span style={{ backgroundColor: femColor }}>Feminine</span> words end in:**
 
-- all the other vowels (<InlinePs opts={opts} ps={{ p: "ا", f: "aa" }} />, <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} />, <InlinePs opts={opts} ps={{ p: "ي", f: "ee" }} />, <InlinePs opts={opts} ps={{ p: "ۍ", f: "uy" }} />, etc.)
+- all the other vowels/dipthongs
+  - <InlinePs opts={opts} ps={{ p: "ا", f: "aa" }} />
+  - <InlinePs opts={opts} ps={{ p: "ي", f: "ee" }} />
+  - <InlinePs opts={opts} ps={{ p: "و", f: "o" }} />
+  - <InlinePs opts={opts} ps={{ p: "ۍ", f: "uy" }} />
+  - <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} />
+  - <InlinePs opts={opts} ps={{ p: "ـه", f: "i" }} />
+  - <InlinePs opts={opts} ps={{ p: "ـه", f: "U" }} />
 
 <GenderTable
   rows={[
@@ -85,8 +94,8 @@ All nouns in Pashto are either <Masc /> or <Fem />. Thankfully, you can pretty m
     },
     {
       masc: {
-        ending: { p: "و", f: "aw" },
-        ex: { p: "کنډو", f: "kanDáw", e: "crack" },
+        ending: { p: "و", f: "oo" },
+        ex: { p: "لاټو", f: "laaTóo", e: "spinning top" },
       },
       fem: {
         ending: { p: "و", f: "o" },
@@ -103,13 +112,24 @@ All nouns in Pashto are either <Masc /> or <Fem />. Thankfully, you can pretty m
         ex: { p: "ملګرې", f: "malgure", e: "female friend" },
       },
     },
+    {
+      masc: {
+        ending: { p: "و", f: "aw " }, 
+        ex: { p: "کنډو", f: "kanDáw", e: "crack" },
+      },
+      fem: {
+        ending: { p: "ه", f: "U" },
+        ex: { p: "توجه", f: "tawajÚ" },
+      },
+    }
   ]}
 />
 
+
 **A couple of other things to watch out for:**
 
-- Words ending in <InlinePs opts={opts} ps={{p:"و", f:"oo"}} /> can be either <Masc /> or <Fem />.
-- Words ending in <InlinePs opts={opts} ps={{ p: "ـه", f: "u" }} /> can also be <Fem /> plural, as in <InlinePs opts={opts} ps={{ p: "اوبه", f: "oobu", e: "water" }} />
+- Loanwords ending in <InlinePs opts={opts} ps={{p:"و", f:"oo"}} /> such as <InlinePs opts={opts} ps={{p:"اردو", f:"oordóo", e: "army"}} /> can be either <Masc />.
+- The word for water <InlinePs opts={opts} ps={{p:"اوبه", f:"oobú"}} /> is an exception, as it is feminine plural.
 
 <GameDisplay record={nounGenderGame1} />
 
