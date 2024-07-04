@@ -303,7 +303,6 @@ export default [
   1527812780, // ښکته - xkuta
   1586340494373, // حد اقل - had-i-aqul
   1578080952673, // دباندې - dubaande
-  1622374915074, // اغلب - aghláb
   1527813323, // خوشبختانه - khoshbakhtaana
   1527819156, // ظالمانه - zaalimaana
   1527818313, // پنځلس ورځنی - pindzúlaswradzanéy

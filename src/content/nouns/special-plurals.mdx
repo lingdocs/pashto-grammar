@@ -1,9 +1,15 @@
 ---
-title: Arabic Plural Nouns
+title: Special Plural Nouns
 ---
 
-import { InlinePs, defaultTextOptions as opts } from "@lingdocs/ps-react";
+import {
+  InlinePs,
+  defaultTextOptions as opts,
+  Examples,
+} from "@lingdocs/ps-react";
 import Table from "../../components/Table";
+import PluralTable from "./PluralTable";
+import Link from "../../components/Link";
 
 export function ArabicPluralTable({ children }) {
   return (
@@ -22,6 +28,71 @@ export function ArabicPluralTable({ children }) {
     </Table>
   );
 }
+
+## Irregular Plural Nouns
+
+Some nouns just have completely irregular plural forms.
+
+<PluralTable>
+  {[
+    [
+      { p: "خور", f: "khor", e: "sister" },
+      { p: "خویندې", f: "khwaynde", e: "sisters" },
+    ],
+    [
+      { p: "ورور", f: "wror", e: "brother" },
+      { p: "وروڼه", f: "wróoNa", e: "brothers" },
+    ],
+    [
+      { p: "نجلۍ", f: "njuluy", e: "girl" },
+      { p: "نجونې", f: "njóone", e: "girls" },
+    ],
+    [
+      { p: "مور", f: "mor", e: "mother" },
+      { p: "میندې", f: "maynde", e: "mothers" },
+    ],
+    [
+      { p: "زوی", f: "zooy", e: "son" },
+      { p: "زامن", f: "zaamun", e: "sons" },
+    ],
+    [
+      { p: "ترور", f: "tror", e: "aunt" },
+      { p: "تریندې", f: "traynde", e: "aunts" },
+    ],
+    [
+      { p: "لور", f: "loor", e: "daughter" },
+      { p: "لوڼې", f: "looNe", e: "daughters" },
+    ],
+    [
+      { p: "یور", f: "yor", e: "wife of a husbands' brother" },
+      { p: "یوڼې", f: "yooNe", e: "wives of a husband's brother" },
+    ],
+    [
+      { p: "نږور", f: "nGor", e: "daughter-in-law" },
+      { p: "نږیندې", f: "nGaynde", e: "daughter-in-laws" },
+    ],
+  ]}
+</PluralTable>
+
+## Collective Plurals
+
+Some nouns are just always considered plural, often because they are made up of a bunch of individual pieces.
+
+<Examples opts={opts}>
+  {[
+    { p: "خلک", f: "khalk", e: "people/populace (m. pl.)" },
+    { p: "اوړه", f: "ooRú", e: "flour (m. pl.)" },
+    { p: "برنج", f: "birínj", e: "rice (m. pl.)" },
+    { p: "اوبه", f: "oobú", e: "water (f. pl.)" },
+    { p: "جوار", f: "jawáar", e: "corn (m. pl.)" },
+    { p: "زهر", f: "zahur", e: "poison (m. pl.)" },
+    { p: "دروغ", f: "darógh", e: "lie, falsehood (m. pl.) " },
+    { p: "پیاز", f: "piyáaz", e: "onion (m. pl.)" },
+    { p: "سامان", f: "saamáan", e: "stuff, things (m. pl.)" },
+  ]}
+</Examples>
+
+## Arabic Plurals
 
 Pashto has many Arabic loan words, and people often **use the Arabic plural forms of these loan words**. We won't get into how plurals work in Arabic here, but you will learn to recognize and use these plural through lots of exposure.
 
@@ -95,8 +166,6 @@ And some add an <InlinePs opts={opts} ps={{ p: "ین", f: "éen" }} /> on the en
     ],
   ]}
 </ArabicPluralTable>
-
-## Notes
 
 ### Arabic Plurals are Always Masculine
 
@@ -188,3 +257,38 @@ For many words, people may either use the regular Pashto plural endings or the s
     ],
   ]}
 </Table>
+
+## Masculine nouns with feminine plurals
+
+Above we learned that **masculine nouns** that fit into the <Link to="/nouns/nouns-unisex/#1-basic">#1 basic pattern</Link>, we add the <InlinePs opts={opts} ps={{ p: "ونه", f: "óona" }} /> ending to make it plural. But there is also another interesting thing that happens in Pashto:
+
+**Masculine nouns ending in a consonant can become feminine for the plural form**. Often you will hear both forms of the plural, the regular masculine form with <InlinePs opts={opts} ps={{ p: "ونه", f: "óona" }} /> and the feminine form as well.
+
+<PluralTable>
+  {[
+    [
+      { p: "ډز", f: "Duz", e: "gunshot", sub: "(n. m.)" },
+      { p: "ډزې", f: "Dúze", e: "gunshots", sub: "(f. pl.)" },
+    ],
+    [
+      { p: "", f: "", e: "" },
+      { p: "ډزونه", f: "Duzóona", e: "gunshots", sub: "(m. pl.)" },
+    ],
+    [
+      { p: "ځل", f: "dzal", e: "time", sub: "(n. m.)" },
+      { p: "ځلې", f: "dzále", e: "times", sub: "(f. pl.)" },
+    ],
+    [
+      { p: "", f: "", e: "" },
+      { p: "ځلونه", f: "dzalóona", e: "times", sub: "(m. pl.)" },
+    ],
+    [
+      { p: "چرک", f: "chakár", e: "stroll", sub: "(n. m.)" },
+      { p: "چکرې", f: "chakáre", e: "strolls", sub: "(n. f.)" },
+    ],
+    [
+      { p: "", f: "", e: "" },
+      { p: "چکرونه", f: "chakaróona", e: "strolls", sub: "(m. pl.)" },
+    ],
+  ]}
+</PluralTable>

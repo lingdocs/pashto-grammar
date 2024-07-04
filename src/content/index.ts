@@ -24,7 +24,7 @@ import * as nounsUnisex from "./nouns/nouns-unisex.mdx";
 // @ts-ignore
 import * as nounsPlural from "./nouns/nouns-plural.mdx";
 // @ts-ignore
-import * as arabicPlurals from "./nouns/arabic-plurals.mdx";
+import * as specialPlurals from "./nouns/special-plurals.mdx";
 // @ts-ignore
 import * as bundledPlurals from "./nouns/bundled-plurals.mdx";
 
@@ -95,7 +95,7 @@ import * as pronounsBasic from "./pronouns/pronouns-basic.mdx";
 // @ts-ignore
 import * as pronounsMini from "./pronouns/pronouns-mini.mdx";
 // @ts-ignore
-import * as directionalPronouns from "./pronouns/pronouns-directional.mdx"; 
+import * as directionalPronouns from "./pronouns/pronouns-directional.mdx";
 
 // @ts-ignore
 import * as inflectionIntro from "./inflection/inflection-intro.mdx";
@@ -130,383 +130,394 @@ import * as phraseBuilder from "./phrase-builder.mdx";
 import * as dictionary from "./dictionary.mdx";
 
 type ChapterSection = {
-    import: any,
-    slug: string,
+  import: any;
+  slug: string;
 };
 type ChaptersSection = {
-    heading: string,
-    subdirectory: string,
-    chapters: ChapterSection[],
+  heading: string;
+  subdirectory: string;
+  chapters: ChapterSection[];
 };
 
 // for the super hacky sitemap generator to work this array needs to be
-// - in valid JSON and surrounded by these comments 
+// - in valid JSON and surrounded by these comments
 // - the import statements have to be at the top of the objects in a seperate line
-export const contentTree: (ChapterSection | ChaptersSection)[] = /* content-tree */[
+export const contentTree: (ChapterSection | ChaptersSection)[] =
+  /* content-tree */ [
     {
-        "import": intro,
-        "slug": "intro"
+      import: intro,
+      slug: "intro",
     },
     {
-        "import": games,
-        "slug": "games"
+      import: games,
+      slug: "games",
     },
     {
-        "import": phraseBuilder,
-        "slug": "phrase-builder"
+      import: phraseBuilder,
+      slug: "phrase-builder",
     },
     {
-        "heading": "Equatives",
-        "subdirectory": "equatives",
-        "chapters": [
-            {
-                "import": presentEquative,
-                "slug": "present-equative"
-            },
-            {
-                "import": habitualEquative,
-                "slug": "habitual-equative"
-            },
-            {
-                "import": otherEquatives,
-                "slug": "other-equatives"
-            }
-        ]
+      heading: "Equatives",
+      subdirectory: "equatives",
+      chapters: [
+        {
+          import: presentEquative,
+          slug: "present-equative",
+        },
+        {
+          import: habitualEquative,
+          slug: "habitual-equative",
+        },
+        {
+          import: otherEquatives,
+          slug: "other-equatives",
+        },
+      ],
     },
     {
-        "heading": "Nouns",
-        "subdirectory": "nouns",
-        "chapters": [
-            {
-                "import": nounsGender,
-                "slug": "nouns-gender"
-            },
-            {
-                "import": nounsUnisex,
-                "slug": "nouns-unisex"
-            },
-            {
-                "import": nounsPlural,
-                "slug": "nouns-plural"
-            },
-            {
-                "import": arabicPlurals,
-                "slug": "arabic-plurals"
-            },
-            {
-                "import": bundledPlurals,
-                "slug": "bundled-plurals"
-            }
-        ]
+      heading: "Nouns",
+      subdirectory: "nouns",
+      chapters: [
+        {
+          import: nounsGender,
+          slug: "nouns-gender",
+        },
+        {
+          import: nounsUnisex,
+          slug: "nouns-unisex",
+        },
+        {
+          import: nounsPlural,
+          slug: "nouns-plural",
+        },
+        {
+          import: specialPlurals,
+          slug: "special-plurals",
+        },
+        {
+          import: bundledPlurals,
+          slug: "bundled-plurals",
+        },
+      ],
     },
     {
-        "heading": "Phrase Structure 🧱",
-        "subdirectory": "phrase-structure",
-        "chapters": [
-            {
-                "import": BlocksAndKids,
-                "slug": "blocks-and-kids"
-            },
-            {
-                "import": NPIntro,
-                "slug": "np"
-            },
-            {
-                "import": APIntro,
-                "slug": "ap"
-            },
-            {
-                "import": EPIntro,
-                "slug": "ep"
-            },
-            {
-                "import": VPIntro,
-                "slug": "vp"
-            },
-            {
-                "import": Complement,
-                "slug": "complement"
-            },
-            {
-                "import": ShorteningVPs,
-                "slug": "shortening-vps"
-            }
-        ]
+      heading: "Phrase Structure 🧱",
+      subdirectory: "phrase-structure",
+      chapters: [
+        {
+          import: BlocksAndKids,
+          slug: "blocks-and-kids",
+        },
+        {
+          import: NPIntro,
+          slug: "np",
+        },
+        {
+          import: APIntro,
+          slug: "ap",
+        },
+        {
+          import: EPIntro,
+          slug: "ep",
+        },
+        {
+          import: VPIntro,
+          slug: "vp",
+        },
+        {
+          import: Complement,
+          slug: "complement",
+        },
+        {
+          import: ShorteningVPs,
+          slug: "shortening-vps",
+        },
+      ],
     },
     {
-        "heading": "Verbs",
-        "subdirectory": "verbs",
-        "chapters": [
-            {
-                "import": verbsIntro,
-                "slug": "verbs-intro"
-            },
-            {
-                "import": verbAspect,
-                "slug": "verb-aspect"
-            },
-            {
-                "import": rootsAndStems,
-                "slug": "roots-and-stems"
-            },
-            {
-                "import": presentVerbs,
-                "slug": "present-verbs"
-            },
-            {
-                "import": subjunctiveVerbs,
-                "slug": "subjunctive-verbs"
-            },
-            {
-                "import": futureVerbs,
-                "slug": "future-verbs"
-            },
-            {
-                "import": imperativeVerbs,
-                "slug": "imperative-verbs"
-            },
-            {
-                "import": pastVerbs,
-                "slug": "past-verbs"
-            },
-            {
-                "import": perfectVerbsIntro,
-                "slug": "perfect-verbs-intro"
-            },
-            {
-                "import": allPerfectVerbs,
-                "slug": "all-perfect-verbs"
-            },
-            {
-                "import": negativeVerbs,
-                "slug": "negative-verbs"
-            },
-            {
-                "import": ability,
-                "slug": "ability"
-            },
-            {
-                "import": jussive,
-                "slug": "jussive"
-            },
-            {
-                "import": passiveVoice,
-                "slug": "passive-voice"
-            },
-            {
-                "import": verbEndings,
-                "slug": "verb-endings"
-            },
-            {
-                "import": masterChart,
-                "slug": "master-chart"
-            }
-        ]
+      heading: "Verbs",
+      subdirectory: "verbs",
+      chapters: [
+        {
+          import: verbsIntro,
+          slug: "verbs-intro",
+        },
+        {
+          import: verbAspect,
+          slug: "verb-aspect",
+        },
+        {
+          import: rootsAndStems,
+          slug: "roots-and-stems",
+        },
+        {
+          import: presentVerbs,
+          slug: "present-verbs",
+        },
+        {
+          import: subjunctiveVerbs,
+          slug: "subjunctive-verbs",
+        },
+        {
+          import: futureVerbs,
+          slug: "future-verbs",
+        },
+        {
+          import: imperativeVerbs,
+          slug: "imperative-verbs",
+        },
+        {
+          import: pastVerbs,
+          slug: "past-verbs",
+        },
+        {
+          import: perfectVerbsIntro,
+          slug: "perfect-verbs-intro",
+        },
+        {
+          import: allPerfectVerbs,
+          slug: "all-perfect-verbs",
+        },
+        {
+          import: negativeVerbs,
+          slug: "negative-verbs",
+        },
+        {
+          import: ability,
+          slug: "ability",
+        },
+        {
+          import: jussive,
+          slug: "jussive",
+        },
+        {
+          import: passiveVoice,
+          slug: "passive-voice",
+        },
+        {
+          import: verbEndings,
+          slug: "verb-endings",
+        },
+        {
+          import: masterChart,
+          slug: "master-chart",
+        },
+      ],
     },
     {
-        "heading": "Compound Verbs",
-        "subdirectory": "compound-verbs",
-        "chapters": [
-            {
-                "import": compoundVerbsIntro,
-                "slug": "intro"
-            },
-            {
-                "import": helperVerbs,
-                "slug": "helper-verbs"
-            },
-            {
-                "import": stativeCompounds,
-                "slug": "stative-compounds"
-            },
-            {
-                "import": dynamicCompounds,
-                "slug": "dynamic-compounds"
-            },
-            {
-                "import": moreOnCompounds,
-                "slug": "more-on-compounds"
-            }
-        ]
+      heading: "Compound Verbs",
+      subdirectory: "compound-verbs",
+      chapters: [
+        {
+          import: compoundVerbsIntro,
+          slug: "intro",
+        },
+        {
+          import: helperVerbs,
+          slug: "helper-verbs",
+        },
+        {
+          import: stativeCompounds,
+          slug: "stative-compounds",
+        },
+        {
+          import: dynamicCompounds,
+          slug: "dynamic-compounds",
+        },
+        {
+          import: moreOnCompounds,
+          slug: "more-on-compounds",
+        },
+      ],
     },
     {
-        "heading": "Participles",
-        "subdirectory": "participles",
-        "chapters": [
-            {
-                "import": introToParticiples,
-                "slug": "intro"
-            }
-        ]
+      heading: "Participles",
+      subdirectory: "participles",
+      chapters: [
+        {
+          import: introToParticiples,
+          slug: "intro",
+        },
+      ],
     },
     {
-        "heading": "Pronouns",
-        "subdirectory": "pronouns",
-        "chapters": [
-            {
-                "import": pronounsBasic,
-                "slug": "pronouns-basic"
-            },
-            {
-                "import": pronounsMini,
-                "slug": "pronouns-mini"
-            },
-            {
-                "import": directionalPronouns,
-                "slug": "pronouns-directional"
-            }
-        ]
+      heading: "Pronouns",
+      subdirectory: "pronouns",
+      chapters: [
+        {
+          import: pronounsBasic,
+          slug: "pronouns-basic",
+        },
+        {
+          import: pronounsMini,
+          slug: "pronouns-mini",
+        },
+        {
+          import: directionalPronouns,
+          slug: "pronouns-directional",
+        },
+      ],
     },
     {
-        "heading": "Inflection 🔘",
-        "subdirectory": "inflection",
-        "chapters": [
-            {
-                "import": inflectionIntro,
-                "slug": "inflection-intro"
-            },
-            {
-                "import": inflectionPatterns,
-                "slug": "inflection-patterns"
-            }
-        ]
+      heading: "Inflection 🔘",
+      subdirectory: "inflection",
+      chapters: [
+        {
+          import: inflectionIntro,
+          slug: "inflection-intro",
+        },
+        {
+          import: inflectionPatterns,
+          slug: "inflection-patterns",
+        },
+      ],
     },
     {
-        "heading": "Sandwiches 🥪",
-        "subdirectory": "sandwiches",
-        "chapters": [
-            {
-                "import": sandwiches,
-                "slug": "sandwiches"
-            }
-        ]
+      heading: "Sandwiches 🥪",
+      subdirectory: "sandwiches",
+      chapters: [
+        {
+          import: sandwiches,
+          slug: "sandwiches",
+        },
+      ],
     },
     {
-        "heading": "Writing 🖊",
-        "subdirectory": "writing",
-        "chapters": [
-            {
-                "import": phonetics,
-                "slug": "phonetics"
-            },
-            {
-                "import": diacritics,
-                "slug": "diacritics"
-            },
-            {
-                "import": theFiveYeys,
-                "slug": "the-five-yeys"
-            },
-            {
-                "import": typingIssues,
-                "slug": "typing-issues"
-            }
-        ]
+      heading: "Writing 🖊",
+      subdirectory: "writing",
+      chapters: [
+        {
+          import: phonetics,
+          slug: "phonetics",
+        },
+        {
+          import: diacritics,
+          slug: "diacritics",
+        },
+        {
+          import: theFiveYeys,
+          slug: "the-five-yeys",
+        },
+        {
+          import: typingIssues,
+          slug: "typing-issues",
+        },
+      ],
     },
     {
-        "heading": "Recipes 👩‍🍳",
-        "subdirectory": "recipes",
-        "chapters": [
-            {
-                "import": unrealConditionals,
-                "slug": "unreal-conditionals"
-            }
-        ]
+      heading: "Recipes 👩‍🍳",
+      subdirectory: "recipes",
+      chapters: [
+        {
+          import: unrealConditionals,
+          slug: "unreal-conditionals",
+        },
+      ],
     },
     {
-        "heading": "Practice Tools 🔧",
-        "subdirectory": "practice-tools",
-        "chapters": [
-            {
-                "import": pronounPicker,
-                "slug": "pronoun-picker"
-            }
-        ]
+      heading: "Practice Tools 🔧",
+      subdirectory: "practice-tools",
+      chapters: [
+        {
+          import: pronounPicker,
+          slug: "pronoun-picker",
+        },
+      ],
     },
     {
-        "import": dictionary,
-        "slug": "dictionary"
-    }
-]/* content-tree */;
+      import: dictionary,
+      slug: "dictionary",
+    },
+  ]; /* content-tree */
 
-export const content = contentTree.map((item) => {
+export const content = contentTree
+  .map((item) => {
     function prepareChapter(chp: any, subdir?: any) {
-        return {
-            path: subdir ? `/${subdir}/${chp.slug}/` : `/${chp.slug}/`,
-            slug: chp.slug,
-            content: chp.import.default,
-            frontMatter: chp.import.frontMatter,
-            tableOfContents: chp.import.tableOfContents,
-        };
+      return {
+        path: subdir ? `/${subdir}/${chp.slug}/` : `/${chp.slug}/`,
+        slug: chp.slug,
+        content: chp.import.default,
+        frontMatter: chp.import.frontMatter,
+        tableOfContents: chp.import.tableOfContents,
+      };
     }
-    return ("import" in item)
-        ? prepareChapter(item)
-        : {
-            ...item,
-            chapters: item.chapters?.map((c) => {
-                return prepareChapter(c, item.subdirectory);
-            }),
+    return "import" in item
+      ? prepareChapter(item)
+      : {
+          ...item,
+          chapters: item.chapters?.map((c) => {
+            return prepareChapter(c, item.subdirectory);
+          }),
         };
-}).map((item, i, items) => {
+  })
+  .map((item, i, items) => {
     // make the next and previous page information for each chapter
     function withNextPrev(current: any, index: any, arr: any) {
-        function getInfo(x: any) {
-            return x.content
-                ? { frontMatter: x.frontMatter, path: x.path }
-                : { frontMatter: x.chapters[0].frontMatter, path: x.chapters[0].path }; // TODO: KILL THIS?
-        }
-        function getNextOutsideItem() {
+      function getInfo(x: any) {
+        return x.content
+          ? { frontMatter: x.frontMatter, path: x.path }
+          : {
+              frontMatter: x.chapters[0].frontMatter,
+              path: x.chapters[0].path,
+            }; // TODO: KILL THIS?
+      }
+      function getNextOutsideItem() {
+        // @ts-ignore
+        return items[i + 1].content
+          ? // if it's a single chapter section, get that chapter
+            items[i + 1]
+          : // if it's a section with multiple chapters, get the first chapter
             // @ts-ignore
-            return items[i+1].content
-                // if it's a single chapter section, get that chapter
-                ? items[i+1]
-                // if it's a section with multiple chapters, get the first chapter
-                // @ts-ignore
-                : items[i+1].chapters[0];
-        }
-        function getPrevOutsideItem() {
+            items[i + 1].chapters[0];
+      }
+      function getPrevOutsideItem() {
+        // @ts-ignore
+        return items[i - 1].content
+          ? // if it's a single chapter section, get that chapter
+            items[i - 1]
+          : // if it's a section with multiple chapters, get the last chapter
             // @ts-ignore
-            return items[i-1].content
-                // if it's a single chapter section, get that chapter
-                ? items[i-1]
-                // if it's a section with multiple chapters, get the last chapter
-                // @ts-ignore
-                : items[i-1].chapters[items[i-1].chapters.length - 1];
-        }
-        const next = index < arr.length - 1
-            // if there's another chapter in this section, that's the next one
-            ? arr[index+1]
-            // no? maybe there's another chapter or section in front of us
-            : (i < items.length - 1)
-            ? getNextOutsideItem()
-            : false;
-        const prev = index !== 0
-            // if there's another chapter in this section, that's the previous one
-            ? arr[index-1]
-            // no? maybe we there's a chapter or section behind us
-            : (i !== 0)
-            ? getPrevOutsideItem()
-            : false;
-        return {
-            ...current,
-            ...prev ? {
-                prev: getInfo(prev),
-            } : {},
-            ...next ? {
-                next: getInfo(next),
-            } : {},
-        };
+            items[i - 1].chapters[items[i - 1].chapters.length - 1];
+      }
+      const next =
+        index < arr.length - 1
+          ? // if there's another chapter in this section, that's the next one
+            arr[index + 1]
+          : // no? maybe there's another chapter or section in front of us
+          i < items.length - 1
+          ? getNextOutsideItem()
+          : false;
+      const prev =
+        index !== 0
+          ? // if there's another chapter in this section, that's the previous one
+            arr[index - 1]
+          : // no? maybe we there's a chapter or section behind us
+          i !== 0
+          ? getPrevOutsideItem()
+          : false;
+      return {
+        ...current,
+        ...(prev
+          ? {
+              prev: getInfo(prev),
+            }
+          : {}),
+        ...(next
+          ? {
+              next: getInfo(next),
+            }
+          : {}),
+      };
     }
     // @ts-ignore
     if (item.content) {
-        return withNextPrev(item, i, items);
+      return withNextPrev(item, i, items);
     }
     return {
-        ...item,
-        // @ts-ignore
-        chapters: item.chapters.map((chapter, j, chapters) => (
-            withNextPrev(chapter, j, chapters)
-        )),
-    }
-});
-
+      ...item,
+      // @ts-ignore
+      chapters: item.chapters.map((chapter, j, chapters) =>
+        withNextPrev(chapter, j, chapters)
+      ),
+    };
+  });
