@@ -1,7 +1,13 @@
 import Table from "../../components/Table";
 import { defaultTextOptions as opts } from "@lingdocs/ps-react";
 
-function PluralTable({ children, inflection }) {
+function PluralTable({
+  children,
+  inflection,
+}: {
+  children: any;
+  inflection: boolean;
+}) {
   return (
     <Table
       wide={false}
