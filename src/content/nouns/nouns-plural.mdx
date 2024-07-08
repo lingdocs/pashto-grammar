@@ -12,6 +12,10 @@ import mascEndingChart from "./masc-plural-ending-decision-chart.excalidraw.svg"
 import femEndingChart from "./fem-plural-ending-decision-chart.excalidraw.svg";
 import PluralTable from "./PluralTable";
 import VideoPlayer from "../../components/VideoPlayer";
+import {
+  pluralNounGame,
+} from "../../games/games";
+import GameDisplay from "../../games/GameDisplay";
 
 export const Pattern1 = () => <Link to="/nouns/nouns-unisex/#1-basic">Pattern #1</Link>;
 export const Pattern2 = () => <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-%DB%8C---ay">Pattern #2</Link>;
@@ -560,4 +564,6 @@ The <InlinePs opts={opts} ps={{ p: "انې", f: "áane" }} /> can be added to fe
     style={{ margin: "0 auto" }}
   />
 </div>
+
+<GameDisplay record={pluralNounGame} />
 

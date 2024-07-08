@@ -1,8 +1,6 @@
 export default [
   1527812449, // هلته - hálta, álta
-  1527813043, // بې له ټاله - be la Taala
   1527823145, // بېرون - beróon
-  1527811735, // هنرمندانه - hUnarmandaana
   1527813516, // څنګه - tsanga, tsunga
   1578014249199, // پکښې - pukxe
   1527821618, // احمقانه - ahmaqaana
@@ -18,10 +16,7 @@ export default [
   1527811221, // پورته - porta
   1611401028364, // جسماً - jismán
   1527815099, // نا وخته - naa wakhta
-  1527823029, // برالا - baraalaa
   1527817154, // پسې - pase
-  1527818325, // اېله - elá
-  1610796256372, // مخ په وړاندې - mukh pu wRaande
   1527819870, // په ناحقه - pu naahaqa
   1527815228, // رو - roo
   1575236274891, // دوري - dóoree
@@ -54,7 +49,6 @@ export default [
   1527823231, // په جڼه جڼه - pu jaNa jaNa
   1527812890, // معمولاً - mamoolan
   1586363985796, // روزانه - rozaaná
-  1527819008, // مطلق العنان - mUtlaq-Ul-'ináan
   1527822660, // خود به خود - khoodbakhood
   1527823364, // باوجود - baawujood
   1527820143, // پسته - pasta
@@ -71,7 +65,6 @@ export default [
   1527821224, // فقط - faqát
   1527817302, // یوځای - yodzaay
   1527820499, // عاریتاً - aariyatan
-  1527815959, // دم درحال - dam dărhaal
   1527821253, // نزدې - nizde, nazde
   1527815997, // بدبختانه - badbakhtaana
   1584688791272, // په لوی لاس - pu looy laas
@@ -147,10 +140,8 @@ export default [
   1527814710, // نژدې پر نژدې - najzde par najzde
   1527821743, // ابتداً - ibtidán
   1527817155, // پرله پسې - parlapase
-  1527818323, // ایله - eelá
   1527822464, // تقلیداً - taqleedan
   1527813650, // لکه - lăka
-  1527811618, // منحیث - minheys
   1527822465, // تقلیفاً - taqleefan
   1527817294, // پاس - paas
   1527819016, // مستقیماً - mUstaqeeman
@@ -197,7 +188,6 @@ export default [
   1527820087, // وخت ناوخت - wakhtnaawakht
   1527814163, // اخوا - akhwaa
   1527822165, // سیده - seeda
-  1527814912, // رانږدې - raanaGde
   1593176318060, // ډانګ پېیلی - Daang pe`yúley
   1527819455, // د دې له کبله - du de la kabala
   1578330078760, // بدبد - badbad, budbud
@@ -222,7 +212,6 @@ export default [
   1527811327, // صمیمانه - sameemaana
   1577390207734, // پرې - pre
   1527818716, // تدریجاً - tadreejan
-  1527822285, // کل - kUl
   1527822183, // شرعاً - sharan
   1527818276, // پرمهال - purmahaal
   1527814270, // له بده مرغه - la buda margha, la buda murgha
@@ -248,10 +237,8 @@ export default [
   1527813595, // چندان - chandaan
   1527811222, // په څېر - pu tser
   1527813692, // په خاطر - pu khaatir
-  1623688507454, // ګنګوړ - gangóR, gangwÚR
   1527820344, // په داوطلب ډول - pu daawtaláb Dawul
   1527811360, // هم مهاله - hammahaala
-  1527812498, // بلې - băle
   1586262008294, // پېټ - peT
   1527818646, // یو په دوه - yawpudwá
   1527812762, // خالي - khaalee
@@ -305,7 +292,6 @@ export default [
   1578080952673, // دباندې - dubaande
   1527813323, // خوشبختانه - khoshbakhtaana
   1527819156, // ظالمانه - zaalimaana
-  1527818313, // پنځلس ورځنی - pindzúlaswradzanéy
   1527812670, // هسې - hase
   1527818324, // په مټې - pumúTe
   1527820205, // کله ناکله - kalanaakala
@@ -313,7 +299,6 @@ export default [
   1527813688, // کوز - kooz
   1527821666, // آمرانه - aamuraana
   1527817845, // کټ مټ - kaTmaT, kuTmuT
-  1527822351, // تېر و بېر - ter-U-ber
   1527813618, // طبعاً - taban
   1527821531, // تل - tul
   1527817255, // لیرې - leere
@@ -373,8 +358,6 @@ export default [
   1527820289, // واقعاً - waaqi'an, waaqiyan
   1588786919406, // زر تر زره - zur tur zura
   1575642923868, // حتیٰ - hattaa
-  1527813261, // هله - hala
-  1593173287113, // مجمل - mUjmál
   1527815224, // رښتیا - rixtiyaa
   1594909066356, // خوا و شا - khwaa-U-shaa
   1527819344, // پسه - pása
@@ -387,9 +370,7 @@ export default [
   1527821125, // په منطقي ډول - pu mantiqee Dawul
   1527812137, // تل تر تله - tulturtula
   1527812375, // واپس - waapus
-  1527821736, // په موقت ډول - pu mUwaqqat Dawul
   1527816129, // خواره واره - khwaarawaara
-  1527812572, // د ... په شان - du … pu shaan
   1527811423, // لاندې - laande
   1527820416, // حاکمانه - haakimaana
   1527812866, // لږترلږه - luG tur luGa
@@ -407,7 +388,6 @@ export default [
   1527813061, // بې درنګه - bediranga
   1527818056, // فی الحال - filháal
   1527818654, // عین - ayn
-  1527818669, // ماشومانه - maashoomaana
   1527822765, // له واره - la waara
   1527814913, // ورنږدې - warnaGde
   1527816312, // تخمیناً - takhmeenan
@@ -419,8 +399,6 @@ export default [
   1527811244, // آن - aan
   1527816949, // هومره - hoomra
   1527821995, // اخر - akhúr, akhír
-  1527817078, // خود - khood, khwud
-  1527823176, // آخود - aakhwad
   1586626956539, // درست - drust, drast
   1527818644, // برحال - barháal
   1527815340, // تکرار - tăkraar
@@ -442,21 +420,14 @@ export default [
   1527820921, // علیحده - aleyhida, alaeyda
   1527817376, // درڅخه - dărtsukha
   1527822852, // دېخوا هاخوا - dekhwaa haakhwaa
-  1527820103, // یوموټ - yawmóoT
   1527820737, // هغسې - haghase
   1527823338, // هاغومره - haaghoomra
   1527814318, // مخکښې - mukhkxe
-  1584689070748, // نامستقیم - naamUstaqeem
-  1527821752, // ماسوا - maasiwáa
   1591382269266, // قابو - qaaboo
   1527818586, // بلا استثنیٰ - bilaaistisnaa
   1527820750, // چوټ انداز - choT andaaz, chooT andaaz ??
   1527812504, // بېرته - berta
-  1571526377164, // کډن - kaDún
   1527819764, // ماهانه - maahaaná
-  1527822366, // حق ناحق - haqnaaháq
-  1527819438, // لېرې - lere
-  1527819392, // برسېره - barséra
   1527822184, // اخلاقاً - akhlaaqan
   1527813260, // تماماً - tamaaman
   1588758935200, // وراخوا - wăraakhwaa
@@ -489,7 +460,6 @@ export default [
   1527812415, // سم دلاسه - samdulaasa
   1527823339, // هغومره - haghoomra
   1527821616, // مظلومانه - mazloomaana
-  1584691547040, // مودبانه - mUaddabaana
   1527812324, // هاسې په هاسې - haase pu haase
   1527815420, // وروسته - wroosta
   1527818595, // قدرتاً - qUdratan

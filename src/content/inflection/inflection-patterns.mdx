@@ -42,7 +42,7 @@ These words always end in:
 - **Feminine:** - <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} />
 
 <InflectionCarousel
-  items={startingWord(words.filter(tp.isPattern1Entry), "غټ")}
+  items={startingWord(words.filter(n => tp.isPattern1Entry(n) && !n.c.includes("adv.")), "غټ")}
 />
 
 **Note:** See exceptions below.

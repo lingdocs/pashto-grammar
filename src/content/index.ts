@@ -174,6 +174,20 @@ export const contentTree: (ChapterSection | ChaptersSection)[] =
         }
       ]
     },
+        {
+      "heading": "Inflection 🔘",
+      "subdirectory": "inflection",
+      "chapters": [
+        {
+          "import": inflectionIntro,
+          "slug": "inflection-intro"
+        },
+        {
+          "import": inflectionPatterns,
+          "slug": "inflection-patterns"
+        }
+      ]
+    },
     {
       "heading": "Nouns",
       "subdirectory": "nouns",
@@ -355,20 +369,6 @@ export const contentTree: (ChapterSection | ChaptersSection)[] =
         {
           "import": directionalPronouns,
           "slug": "pronouns-directional"
-        }
-      ]
-    },
-    {
-      "heading": "Inflection 🔘",
-      "subdirectory": "inflection",
-      "chapters": [
-        {
-          "import": inflectionIntro,
-          "slug": "inflection-intro"
-        },
-        {
-          "import": inflectionPatterns,
-          "slug": "inflection-patterns"
         }
       ]
     },
