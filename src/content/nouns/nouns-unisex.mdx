@@ -2,11 +2,13 @@
 title: Unisex Nouns
 ---
 
-import { InlinePs, defaultTextOptions as opts } from "@lingdocs/ps-react";
+import { InlinePs, Examples, defaultTextOptions as opts } from "@lingdocs/ps-react";
 import Link from "../../components/Link";
 import GenderTable from "../../components/GenderTable";
 import { unisexNounGame } from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
+import jewLady from "./jew-lady.png";
+import psmd from "../../lib/psmd";
 
 There are many words for people and animals in Pashto that can be used in both masculine and feminine forms.
 
@@ -228,3 +230,156 @@ See <Link to="/inflection/inflection-patterns/#5-shorter-words-that-squish">patt
 />
 
 <GameDisplay record={unisexNounGame} />
+
+## Special Feminine Forms of Nouns
+
+Gender is very important in Pashto. But there are also a lot of loan words and other words that don't fit into these five patterns. In these cases, Pashto speakers have come up a bunch of interesting ways to make masculine nouns feminine.
+
+### The feminine ending ـڼه - úNa
+
+Some words add a <InlinePs opts={opts} ps={{ p: "ـڼه", f: "úNa" }} /> on the end to make the noun into a feminine version
+
+<GenderTable
+  rows={[
+    {
+      masc: {
+        ex: {
+          p: "یهودي",
+          f: "yahoodée",
+          e: "a male Jew",
+        },
+      },
+      fem: {
+        ex: {
+          p: "یهودڼه",
+          f: "yahoodúNa",
+          e: "a female Jew",
+        },
+      },
+    },
+    {
+      masc: {
+        ex: {
+          p: "هندو",
+          f: "hindóo",
+          e: "a male Hindu",
+        },
+      },
+      fem: {
+        ex: {
+          p: "هندوڼه",
+          f: "hindwúNa",
+          e: "a female Hindu",
+        },
+      },
+    },
+    {
+      masc: {
+        ex: {
+          p: "نايي",
+          f: "naayée",
+          e: "male barber",
+        },
+      },
+      fem: {
+        ex: {
+          p: "نایڼه",
+          f: "naayúNa",
+          e: "female hairdresser or barber's wife",
+        },
+      },
+    },
+  ]}
+/>
+
+Note: Many people also say <InlinePs opts={opts} ps={{ p: "هندوه", f: "hindúwa", e: "a female Hindu" }} />.
+
+<div style={{ margin: "0 auto 2rem auto" }}>
+  <img src={jewLady} alt="" className="img-fluid" />
+</div>
+
+[Here](https://www.facebook.com/permalink.php?story_fbid=432951198248913&id=105566187654084) we can see this form being used to describe a Jewish woman.
+
+<Examples opts={opts}>
+  {psmd([{
+    p: "وروستۍ افغانه **یهودڼه** له هېواده ووته",
+    f: "wroostúy afgháana **yahoodúNa** la hewaada óowata",
+    e: "The last Afghan **(female) Jew** left the country",
+  }])}
+</Examples>
+
+Notice how the adjectives <InlinePs opts={opts} ps={{ p: "وروستۍ", f: "wroostúy", e: "last" }} />
+and <InlinePs opts={opts} ps={{ p: "افغانه", f: "afgháana", e: "Afghan" }} /> are both inflected in their plain, _female_ forms.
+
+### Changing the ending to ۍ - úy
+
+Long vowels at the ends of words can sometimes be changed to <InlinePs opts={opts} ps={{ p: "ۍ", f: "úy" }} /> to make a noun feminine.
+
+<GenderTable
+  rows={[
+    {
+      masc: {
+        ex: {
+          p: "بوډا",
+          f: "booDáa",
+          e: "old man 👴🏼",
+        },
+      },
+      fem: {
+        ex: {
+          p: "بوډۍ",
+          f: "booDúy",
+          e: "old woman 👵🏻",
+        },
+      },
+    },
+    {
+      masc: {
+        ex: {
+          p: "ملا",
+          f: "mUláa",
+          e: "mullah",
+        },
+      },
+      fem: {
+        ex: {
+          p: "ملۍ",
+          f: "mUlúy",
+          e: "said jokingly to call someone a female mullah - not possible in Islam",
+        },
+      },
+    },
+    {
+      masc: {
+        ex: {
+          p: "قاضي",
+          f: "qaazée",
+          e: "male judge 👨🏻‍⚖️",
+        },
+      },
+      fem: {
+        ex: {
+          p: "قاضۍ",
+          f: "qaazúy",
+          e: "female judge 👩🏻‍⚖️",
+        },
+      },
+    },
+    {
+      masc: {
+        ex: {
+          p: "قاري",
+          f: "qaaree",
+          e: "male Quran reciter",
+        },
+      },
+      fem: {
+        ex: {
+          p: "قارۍ",
+          f: "qaarúy",
+          e: "female Quran reciter",
+        },
+      },
+    },
+  ]}
+/>
