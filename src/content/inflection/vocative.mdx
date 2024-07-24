@@ -1,0 +1,370 @@
+---
+title: Vocative 🗣️
+---
+
+import {
+  defaultTextOptions as opts,
+  Examples,
+  InlinePs,
+} from "@lingdocs/ps-react";
+import Table from "../../components/Table";
+import Link from "../../components/Link";
+import psmd from "../../lib/psmd";
+
+The [vocative case](https://en.wikipedia.org/wiki/Vocative_case) is _another_ type of inflection that we use when we want to to call out to a noun. We don't use it in sentences, but rather we use it to address someone (or something), or call their attention.
+
+For instance:
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "سړی", f: "saRay", e: "man" },
+      { p: "ای سړیه!", f: "ay saRúya!", e: "hey man!" },
+    ],
+    [
+      { p: "ښځه", f: "xúdza", e: "woman" },
+      { p: "ای ښځې", f: "ay xúdze", e: "hey woman!" },
+    ],
+    [
+      { p: "ډاکټر", f: "DakTár", e: "doctor (m.)" },
+      { p: "ای ډاکټره", f: "ay DakTára", e: "hey doctor! (m.)" },
+    ],
+    [
+      { p: "ډاکټره", f: "DakTára", e: "doctor (f.)" },
+      { p: "ای ډاکټرې", f: "ay DakTáre", e: "hey doctor! (f.)" },
+    ],
+  ]}
+</Table>
+
+## Patterns for Vocatives
+
+Just like the <Link to="/inflection/inflection-patterns">inflections</Link> that followed five patterns, the **vocative also follows the <Link to="/inflection/inflection-patterns">five patterns</Link>**.
+
+### Vocatives with Pattern #1 Words
+
+#### Masculine
+
+For the basic, pattern #1 words and names that are masculine (words ending in a consonant or a shwa sound <InlinePs opts={opts} ps={{ p: "ـه", f: "u" }} />) we add a <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} /> ending.
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "ورور", f: "wror", e: "brother" },
+      { p: "وروره", f: "wróra", e: "Hey brother!" },
+    ],
+    [
+      { p: "ادم خان", f: "adam kháan",  e: "Adam Khan (name)" },
+      { p: "ادم خانه", f: "adam kháana", e: "Hey Adam Khan!" },
+    ],
+    [
+      { p: "استاذ", f: "Ustáaz", e: "teacher (m.)" },
+      { p: "استاذه", f: "Ustáaza", e: "Hey teacher (m.)" },
+    ],
+    [
+      { p: "ګران", f: "graan", e: "dear (m.)" },
+      { p: "ګرانه", f: "gráana", e: "dear! (m.)" },
+    ],
+  ]}
+</Table>
+
+#### Feminine
+
+For the basic, pattern #1 words and names that are feminine (words ending in a <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} />) we do the same thing as we did for the inflections we saw earlier and change the <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} /> to a <InlinePs opts={opts} ps={{ p: "ـې", f: "e" }} />.
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "ښځه", f: "xúdza", e: "woman" },
+      { p: "ښځې", f: "xúdze", e: "Hey woman!" },
+    ],
+    [
+      { p: "پلوشه", f: "palwasha",  e: "Palwasha (name)" },
+      { p: "پلوشې", f: "palwashe", e: "Hey Palwasha!" },
+    ],
+    [
+      { p: "ګل مینه", f: "gUl meena", e: "Gul Meena (name)" },
+      { p: "ګل مینې", f: "gUl meene", e: "Hey Gul Meena!" },
+    ],
+    [
+      { p: "نرسه", f: "núrsa", e: "nurse (f.)" },
+      { p: "نرسې", f: "núrse", e: "Hey nurse (f.)!" },
+    ],
+  ]}
+</Table>
+
+This includes feminine nouns <Link to="nouns/nouns-gender/#feminine-words-that-lost-their-ـه---a">that lost their <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} /></Link>:
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "ستن", f: "stun", e: "needle" },
+      { p: "ای ستنې", f: "stúne", e: "Oh needle!" },
+    ],
+  ]}
+</Table>
+
+### Vocatives with Pattern #2 Nouns
+
+#### Masculine
+
+For masculine words ending in an unstressed <InlinePs opts={opts} ps={{ p: "ـی", f: "ay" }} />, we use a <InlinePs opts={opts} ps={{ p: "ـیه", f: "iya" }} /> ending.
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "ملګری", f: "malgúray", e: "friend (m.)" },
+      { p: "ملګریه", f: "malgúriya", e: "Hey friend! (m.)" },
+    ],
+    [
+      { p: "زده کوونکی", f: "zda kawóonkay",  e: "student (m.)" },
+      { p: "زده کوونکیه", f: "zda kawóonkiya", e: "Hey student! (m.)" },
+    ],
+    [
+      { p: "ښوونکی", f: "xUwóonkay", e: "teacher (m.)" },
+      { p: "ښوونکیه", f: "xUwóonkiya", e: "Hey teacher! (m.)" },
+    ],
+  ]}
+</Table>
+
+#### Feminine
+
+Feminine words ending in an <InlinePs opts={opts} ps={{ p: "ـې", f: "e" }} /> don't change at all with the vocative.
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "ښوونکې", f: "xUwóonke", e: "teacher (f.)" },
+      { p: "ښوونکې", f: "xUwóonke", e: "Hey teacher (f.)" },
+    ],
+  ]}
+</Table>
+
+### Vocatives with Pattern #3 Nouns
+
+#### Masculine
+
+For masculine words ending in an stressed <InlinePs opts={opts} ps={{ p: "ـی", f: "áy" }} />, we use a <InlinePs opts={opts} ps={{ p: "ـیه", f: "uya" }} /> ending.
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "بریالی", f: "baryaaláy", e: "Baryaalay (name)" },
+      { p: "بریالیه", f: "baryaalúya", e: "Hey Baryaalay!" },
+    ],
+    [
+      { p: "زلمی", f: "zalmáy",  e: "young lad" },
+      { p: "زلمیه", f: "zalmúya", e: "Hey young land!" },
+    ],
+    [
+      { p: "لمسی", f: "lmasáy", e: "grandson" },
+      { p: "لمسیه", f: "lmasúya", e: "Hey grandson!" },
+    ],
+  ]}
+</Table>
+
+#### Feminine
+
+Feminine words ending in an <InlinePs opts={opts} ps={{ p: "ـۍ", f: "úy" }} /> don't change at all with the vocative.
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "سپوږمۍ", f: "spoGmúy", e: "Spogmai (name) / moon (f.)" },
+      { p: "سپوږمۍ", f: "spoGmúy", e: "Hey Spogmai!" },
+    ],
+  ]}
+</Table>
+
+### Vocatives with Pattern #4 Nouns
+
+#### Masculine
+
+For masculine words following the "Pashtun" pattern, we also just add a <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} /> like we did with the pattern #1 words above.
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "پښتون", f: "puxtóon", e: "Pashtun (m.)" },
+      { p: "پښتونه", f: "puxtóona", e: "Hey Pashtun! (m.)" },
+    ],
+    [
+      { p: "شپون", f: "shpoon",  e: "shepherd (m.)" },
+      { p: "شپونه", f: "shpóona", e: "Hey shepherd! (m.)" },
+    ],
+  ]}
+</Table>
+
+#### Feminine
+
+For feminine words following the "Pashtun" pattern, we do the <Link to="/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern">same thing we do with the inflection pattern</Link>.
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "پښتنه", f: "puxtaná", e: "Pashtun (f.)" },
+      { p: "پښتنې", f: "puxtané", e: "Hey Pashtun! (f.)" },
+    ],
+    [
+      { p: "شپنه", f: "shpaná", e: "shepherd (f.)" },
+      { p: "شپنې", f: "shpané",  e: "Hey shepherd! (f.)" },
+    ],
+  ]}
+</Table>
+
+### Vocatives with Pattern #5 Nouns
+
+#### Masculine
+
+For masculine words following the short squish pattern, we squish the word and add a <InlinePs opts={opts} ps={{ p: "ـه", f: "a" }} /> ending.
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "غل", f: "ghul", e: "thief (m.)" },
+      { p: "غله", f: "ghla", e: "Hey thief! (m.)" },
+    ],
+    [
+      { p: "خر", f: "khur", e: "donkey (m.)" },
+      { p: "خره", f: "khra",  e: "Hey donkey! (m.)" },
+    ],
+  ]}
+</Table>
+
+#### Feminine
+
+For masculine words following the short squish pattern, we do the <Link to="/inflection/inflection-patterns/#5-shorter-words-that-squish">same thing we did with the inflection pattern</Link>.
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "غله", f: "ghla", e: "thief (f.)" },
+      { p: "غلې", f: "ghle", e: "Hey thief! (f.)" },
+    ],
+    [
+      { p: "خره", f: "khra", e: "donkey (f.)" },
+      { p: "خرې", f: "khre",  e: "Hey donkey! (f.)" },
+    ],
+  ]}
+</Table>
+
+## With Feminine Animate Exception Nouns
+
+There are many animate feminine nouns used for relational terms like <InlinePs opts={opts} ps={{ p: "خور", f: "khor", e: "sister" }} /> and <InlinePs opts={opts} ps={{ p: "مور", f: "mor", e: "mother" }} />. These are feminine, they end in a consonant, and they don't inflect <Link to="/inflection/inflection-intro/">for the normal three reasons</Link>. But for the vocative, we do add a <InlinePs opts={opts} ps={{ p: "ـې", f: "e" }} /> to them!
+
+<Table headRow={["Plain", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "مور", f: "mor", e: "mother" },
+      { p: "مورې", f: "móre", e: "Hey mom!" },
+    ],
+    [
+      { p: "خور", f: "khor", e: "sister" },
+      { p: "خورې", f: "khóre",  e: "Hey sister! (f.)" },
+    ],
+  ]}
+</Table>
+
+## Vocatives with Plural
+
+Calling out to a plural noun is easy! The plural vocative is always just the **second inflection** or **inflected plural** form.
+
+<Table headRow={["Plural", "Vocative Plural 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "وروڼه", f: "wróoNa", e: "brothers" },
+      { p: "وروڼو", f: "wróoNo", e: "Hey brothers!" },
+    ],
+    [
+      { p: "استاذان", f: "Ustaazáan", e: "teachers" },
+      { p: "استاذانو", f: "Ustaazáano", e: "Hey teachers" },
+    ],
+    [
+      { p: "ملګري", f: "malgúree", e: "friends (m. pl.)" },
+      { p: "ملګریو", f: "malgúriyo", e: "Hey friends! (m. pl.)" },
+    ],
+    [
+      undefined,
+      { p: "ملګریو", f: "malgúro", e: "Hey friends! (m. pl.)" },
+    ],
+    [
+      { p: "ښځې", f: "xúdze", e: "women (f. pl.)" },
+      { p: "ښځو", f: "xúdzo", e: "Hey women! (f. pl.)" },
+    ],
+    [
+      { p: "خویندې او وروڼه", f: "khwáynde aw wrooNa", e: "brothers and sisters" },
+      { p: "سلام خویندو او وروڼو", f: "salam khwáyndo aw wróoNo", e: "Greetings brothers and sisters" },
+    ],
+    [
+      { p: "پښتانه", f: "puxtaanú", e: "Pashtuns (m. pl.)" },
+      { p: "پښتنو", f: "puxtanó", e: "Hey Pashtuns! (m. pl.)" },
+    ],
+    [
+      { p: "پښتنې", f: "puxtané", e: "Pashtuns (f. pl.)" },
+      { p: "پښتنو", f: "puxtanó", e: "Hey Pashtuns! (f. pl.)" },
+    ],
+    [
+      { p: "مېلمنې", f: "melmané", e: "guests (f. pl.)" },
+      { p: "مېلمنو", f: "melmanó", e: "Hey guests! (f. pl.)" },
+    ],
+    [
+      { p: "غله", f: "ghlu", e: "thieves (m. pl.)" },
+      { p: "غلو", f: "ghlo", e: "Hey thieves! (m. pl.)" },
+    ],
+  ]}
+</Table>
+
+## Vocatives with Adjectives
+
+Vocatives also work with adjectives, meaning you can call out to some one or some thing by describing them.
+
+<Table headRow={["Adjective", "Vocative 🗣️"]} opts={opts}>
+  {[
+    [
+      { p: "ستړی", f: "stúRay", e: "tired" },
+      { p: "ای ستړیه", f: "ay stúRiya", e: "Oh tired one!" },
+    ],
+    [
+      undefined,
+      { p: "ای له جنګه ستړیه", f: "ay la jánga stúRiya", e: "Oh you who are tired of war!" },
+    ],
+  ]}
+</Table>
+
+And **when you are attaching adjectives to nouns in the vocative case you need to inflect them as well**. Each adjective you inflect will follow it's own pattern. For example:
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "زما خوږه ملګریه",
+      f: "zmaa khóGa malgúriya",
+      e: "hey my sweet friend (m.)",
+    },
+  ])}
+</Examples>
+
+In this example <InlinePs opts={opts} ps={{ p: "خوږ", f: "khoG", e: "sweet" }} /> follows pattern #4 and <InlinePs opts={opts} ps={{ p: "ملګری", f: "malgúray", e: "friend (m.)" }} /> follows pattern #5.
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "ای زما مهربانې مورې",
+      f: "ay zmaa mihrabáane móre",
+      e: "Oh my kind mother! (f.)",
+    },
+    {
+      p: "سلام ګرانو دوستانو",
+      f: "saláam gráano dostáano",
+      e: "Greetings dear friends!",
+    },
+    {
+      p: "ای اوږدې بدې ورځې",
+      f: "ay ooGdé báde wrádze",
+      e: "Oh long, terrible day!",
+    },
+    {
+      p: "ای اوږدو بدو ورځو",
+      f: "ay ooGdó bádo wrádzo",
+      e: "Oh long, terrible days!",
+    },
+  ])}
+</Examples>

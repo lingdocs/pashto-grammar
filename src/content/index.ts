@@ -101,6 +101,8 @@ import * as directionalPronouns from "./pronouns/pronouns-directional.mdx";
 import * as inflectionIntro from "./inflection/inflection-intro.mdx";
 // @ts-ignore
 import * as inflectionPatterns from "./inflection/inflection-patterns.mdx";
+// @ts-ignore
+import * as vocative from "./inflection/vocative.mdx";
 
 // @ts-ignore
 import * as sandwiches from "./sandwiches/sandwiches.mdx";
@@ -185,6 +187,10 @@ export const contentTree: (ChapterSection | ChaptersSection)[] =
         {
           "import": inflectionPatterns,
           "slug": "inflection-patterns"
+        },
+        {
+          "import": vocative,
+          "slug": "vocative"
         }
       ]
     },
