@@ -10,7 +10,7 @@ import TableOfContents from "./TableOfContents";
 import Footer from "./Footer";
 import ChapterFeedback from "./ChapterFeedback";
 import { Helmet } from "react-helmet";
-import { Comments } from "./Remark42";
+// import { Comments } from "./Remark42";
 
 const Chapter = ({ children: chapter }) => {
   const title = `${chapter.frontMatter.title} | LingDocs Pashto Grammar`;
@@ -42,7 +42,7 @@ const Chapter = ({ children: chapter }) => {
         <Content />
       </div>
       <ChapterFeedback chapter={chapter.path} />
-      <Comments id={chapter.path} />
+      {/* <Comments id={chapter.path} /> */}
       <Footer chapter={chapter} />
     </main>
     {!chapter.frontMatter.fullWidth && <TableOfContents tableOfContents={chapter.tableOfContents} />}
