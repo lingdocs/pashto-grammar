@@ -24,7 +24,7 @@ Demonstratives are words like "this, that, these, those" that are used **to poin
 - <InlinePs opts={opts} ps={{ p: "دغه", f: "dágha", e: "this / these" }} />
 - <InlinePs opts={opts} ps={{ p: "هغه", f: "hágha", e: "that / those" }} />
 
-And these words also inflect in some interesting ways.
+And these words also inflect in some interesting ways. TLDR; See the <Link to="/pronouns/demonstratives/#overview--tables">tables at the bottom</Link>.
 
 ## The general دا - daa
 
@@ -295,3 +295,195 @@ In Pashto, demonstratives can also be used _without saying the noun_ they are po
 <EditableEPEx opts={opts} hideOmitSubject>{{"blocks":[{"key":0.23089213205851067,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":12668,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","r":4,"c":"n. m.","a":1},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"dynamicComplement":false,"genStativeComplement":false,"demonstrative":{"type":"demonstrative","demonstrative":"daa","withNoun":false}}}}}],"predicate":{"type":"NP","NP":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527812817,"i":12668,"p":"کتاب","f":"kitáab","g":"kitaab","e":"book","r":4,"c":"n. m.","a":1},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[{"type":"adjective","entry":{"ts":1527812796,"i":10981,"p":"ښه","f":"xu","g":"xu","e":"good","r":4,"c":"adj.","a":1}}],"dynamicComplement":false,"genStativeComplement":false}}},"equative":{"tense":"present","negative":false},"omitSubject":false}}</EditableEPEx>
 
 <EditableVPEx opts={opts}>{{"blocks":[{"key":0.4381654501657355,"block":{"type":"subjectSelection","selection":{"type":"NP","selection":{"type":"pronoun","person":0,"distance":"far"}}}},{"key":0.7807494707111873,"block":{"type":"objectSelection","selection":{"type":"NP","selection":{"type":"noun","entry":{"ts":1527815268,"i":10860,"p":"شی","f":"shay","g":"shay","e":"thing","r":4,"c":"n. m.","ppp":"شیان, شیونه","ppf":"shayáan, shayóona","a":1},"gender":"masc","genderCanChange":false,"number":"singular","numberCanChange":true,"adjectives":[],"dynamicComplement":false,"genStativeComplement":false,"demonstrative":{"type":"demonstrative","demonstrative":"dagha","withNoun":false}}}}}],"verb":{"type":"verb","verb":{"entry":{"ts":1527817298,"i":354,"p":"اخیستل","f":"akheestúl","g":"akheestul","e":"to take, buy, purchase, receive; to shave, cut with scissors","r":4,"c":"v. trans.","psp":"اخل","psf":"akhl","tppp":"اخیست","tppf":"akheest","ec":"take,takes,taking,took,taken","a":1}},"verbTense":"perfectiveFuture","perfectTense":"pastPerfect","imperativeTense":"imperfectiveImperative","tenseCategory":"basic","transitivity":"transitive","isCompound":false,"voice":"active","negative":false,"canChangeTransitivity":false,"canChangeVoice":true,"canChangeStatDyn":false},"form":{"removeKing":false,"shrinkServant":false}}}</EditableVPEx>
+
+## Overview / Tables
+
+<table className="table table-bordered my-4" style={{ tableLayout: "fixed", textAlign: "center" }}>
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Unisex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div>Plain</div>
+        <div>(singular or plural)</div>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دا",
+              f: "daa",
+              e: "this / these",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>In a sandwich or ergative</div>
+        <div>(singular or plural)</div>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دې",
+              f: "de",
+              e: "this / these",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table className="table table-bordered my-4" style={{ tableLayout: "fixed", textAlign: "center" }}>
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Masculine</th>
+      <th scope="col">Feminine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Plain (singular or plural)</td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغه",
+              f: "dágha",
+              e: "this / these",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>Singular and</div>
+        <div>in a sandwich or ergative</div>
+      </td>
+      <td style={{ background: genderColors.m }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغه",
+              f: "dághu",
+              e: "this",
+            },
+          ]}
+        </Examples>
+      </td>
+      <td style={{ background: genderColors.f }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغې",
+              f: "dághe",
+              e: "this",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>Double inflection</div>
+        <div>(Plural <em>and</em> in a sandwich or ergative)</div>
+      </td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغو",
+              f: "dágho",
+              e: "these",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table className="table table-bordered my-4" style={{ tableLayout: "fixed", textAlign: "center" }}>
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Masculine</th>
+      <th scope="col">Feminine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Plain (singular or plural)</td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغه",
+              f: "hágha",
+              e: "that / those",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>Singular and</div>
+        <div>in a sandwich or ergative</div>
+      </td>
+      <td style={{ background: genderColors.m }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغه",
+              f: "hághu",
+              e: "that",
+            },
+          ]}
+        </Examples>
+      </td>
+      <td style={{ background: genderColors.f }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغې",
+              f: "hághe",
+              e: "that",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>Double inflection</div>
+        <div>(Plural <em>and</em> in a sandwich or ergative)</div>
+      </td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغو",
+              f: "hágho",
+              e: "those",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Ergative here means _the subject of a past tense transitive verb_.
+
