@@ -32,7 +32,7 @@ const insertScript = (id: string, parentElement: HTMLElement) => {
   script.innerHTML = `
     var remark_config = {
       host: "https://remark42.lingdocs.com",
-      site_id: "pashto-grammar",
+      site_id: "lingdocs-pashto-grammar",
       url: "${url}",
       theme: "light",
       components: ["embed"],
