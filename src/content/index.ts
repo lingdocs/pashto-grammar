@@ -96,6 +96,8 @@ import * as pronounsBasic from "./pronouns/pronouns-basic.mdx";
 import * as pronounsMini from "./pronouns/pronouns-mini.mdx";
 // @ts-ignore
 import * as directionalPronouns from "./pronouns/pronouns-directional.mdx";
+// @ts-ignore
+import * as demonstratives from "./pronouns/demonstratives.mdx";
 
 // @ts-ignore
 import * as inflectionIntro from "./inflection/inflection-intro.mdx";
@@ -217,6 +219,28 @@ export const contentTree: (ChapterSection | ChaptersSection)[] =
         {
           "import": bundledPlurals,
           "slug": "bundled-plurals"
+        }
+      ]
+    },
+    {
+      "heading": "Pronouns",
+      "subdirectory": "pronouns",
+      "chapters": [
+        {
+          "import": pronounsBasic,
+          "slug": "pronouns-basic"
+        },
+        {
+          "import": pronounsMini,
+          "slug": "pronouns-mini"
+        },
+        {
+          "import": directionalPronouns,
+          "slug": "pronouns-directional"
+        },
+        {
+          "import": demonstratives,
+          "slug": "demonstratives"
         }
       ]
     },
@@ -357,24 +381,6 @@ export const contentTree: (ChapterSection | ChaptersSection)[] =
         {
           "import": introToParticiples,
           "slug": "intro"
-        }
-      ]
-    },
-    {
-      "heading": "Pronouns",
-      "subdirectory": "pronouns",
-      "chapters": [
-        {
-          "import": pronounsBasic,
-          "slug": "pronouns-basic"
-        },
-        {
-          "import": pronounsMini,
-          "slug": "pronouns-mini"
-        },
-        {
-          "import": directionalPronouns,
-          "slug": "pronouns-directional"
         }
       ]
     },
