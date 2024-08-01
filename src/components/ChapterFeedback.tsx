@@ -131,8 +131,8 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
             <div className="d-flex flex-row justify-content-between align-items-center">
               <div className="small">
                 {user && !anonymous
-                  ? `Private feedback will be sent as "${user.name}"`
-                  : `Private feedback will be anonymous`}
+                  ? `Your feedback is private but will be sent to the author will be sent as "${user.name}"`
+                  : `Your feedback is private and anonymous`}
               </div>
               <div className="d-flex flex-row align-items-center">
                 {feedbackStatus === "sending" && (
