@@ -27,6 +27,8 @@ import * as nounsPlural from "./nouns/nouns-plural.mdx";
 import * as specialPlurals from "./nouns/special-plurals.mdx";
 // @ts-ignore
 import * as bundledPlurals from "./nouns/bundled-plurals.mdx";
+// @ts-ignore
+import * as determiners from "./nouns/determiners.mdx";
 
 // @ts-ignore
 import * as BlocksAndKids from "./phrase-structure/blocks-and-kids.mdx";
@@ -219,6 +221,10 @@ export const contentTree: (ChapterSection | ChaptersSection)[] =
         {
           "import": bundledPlurals,
           "slug": "bundled-plurals"
+        },
+        {
+          "import": determiners,
+          "slug": "determiners"
         }
       ]
     },
