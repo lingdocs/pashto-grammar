@@ -247,10 +247,6 @@ export const contentTree: (ChapterSection | ChaptersSection)[] =
         {
           "import": directionalPronouns,
           "slug": "pronouns-directional"
-        },
-        {
-          "import": demonstratives,
-          "slug": "demonstratives"
         }
       ]
     },
