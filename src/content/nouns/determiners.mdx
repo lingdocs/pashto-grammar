@@ -6,6 +6,7 @@ import {
   Examples,
   InlinePs,
   defaultTextOptions as opts,
+  InflectionsTable,
 } from "@lingdocs/ps-react";
 import Link from "../../components/Link";
 
@@ -18,14 +19,19 @@ When used with questions, the word <InlinePs opts={opts} ps={{ p: "کوم", f: "
 <Examples opts={opts}>
   {[
     {
-      p: "کوم ځای ته څې",
-      f: "koom dzaay ta dze?",
-      e: "Which place are you going to?",
-    },
-    {
       p: "دا کوم کتاب دی؟",
       f: "daa koom kitaab day?",
       e: "Which book is this?",
+    },
+    {
+      p: "کوم خلک هلته اوسېږي؟",
+      f: "koom khalk halta oséGee?",
+      e: "Which people live there?",
+    },
+    {
+      p: "کوم ځای ته څې؟",
+      f: "koom dzaay ta dze?",
+      e: "Which place are you going to?",
     },
     {
       p: "ته د کوم ځای یې؟",
@@ -73,4 +79,73 @@ With statements, the word <InlinePs opts={opts} ps={{ p: "کوم", f: "koom" }} 
 
 The word <InlinePs opts={opts} ps={{ p: "کوم", f: "koom" }} /> inflects just like any other <Link to="/inflection/inflection-patterns/#1-basic">pattern #1 word</Link>. It will inflect to agree with the noun it is attached to. In this way, it works just like an adjective.
 
-EXAMPLES COMING SOON - 👨‍💻 (Chapter in progress)
+<div className="mb-4">
+  <InflectionsTable
+    inf={{
+      masc: [
+        [{ p: "کوم", f: "koom" }],
+        [{ p: "کوم", f: "koom" }],
+        [{ p: "کومو", f: "kóomo" }],
+      ],
+      fem: [
+        [{ p: "کومه", f: "kóoma" }],
+        [{ p: "کومې", f: "kóome" }],
+        [{ p: "کومو", f: "kóomo" }],
+      ],
+    }}
+    textOptions={opts}
+  />
+</div>
+
+<Examples opts={opts}>
+  {[
+    {
+      p: "هلته کومه ښځه ناسته ده.",
+      f: "halta kóoma xúdza náasta da",
+      e: "Some woman is sitting there.",
+      sub: "(fem. sing. plain)",
+    },
+    {
+      p: "هلته کومې ښځې ناستې دي؟",
+      f: "halta kóome xúdze naaste dee?",
+      e: "Which women are sitting there?",
+      sub: "(fem. inflected - plural)",
+    },
+    {
+      p: "له کومې ښځې سره خبرې کوې؟",
+      f: "la kóome xúdze sara khabure kawe?",
+      e: "Which woman are you talking with?",
+      sub: "(fem. sing. inflected - sandwich)",
+    },
+    {
+      p: "کومې ښځې ته ووهلې؟",
+      f: "kóome xúdze tu óowahule?",
+      e: "Which woman hit you?",
+      sub: "(fem. sing. inflected - subject of past tense trans.)",
+    },
+    {
+      p: "له کومو ښځو سره خبرې کوې؟",
+      f: "la kóomo xúdzo sara khabure kawe?",
+      e: "Which women are you talking with?",
+      sub: "(fem. double inflected - plural, sandwich)",
+    },
+    {
+      p: "کومو ښځو ته ووهلې",
+      f: "kóomo xúdzo tu óowahule?",
+      e: "Which women hit you?",
+      sub: "(fem. double inflected - plural, subject of past tense trans.)",
+    },
+    {
+      p: "دا پیسې کومو خلکو ته ځي؟",
+      f: "daa paysé kóomo khálko ta dzee?",
+      e: "Which people does that money go to?",
+      sub: "(masc. double inflected - plural, sandwich)",
+    },
+    {
+      p: "کومو ماشومانو ته ووهلې؟",
+      f: "kóomo maashoomáano tu óowahule?",
+      e: "Which children hit you?",
+      sub: "(masc. double inflected - plural, subject of past tense trans.)",
+    },
+  ]}
+</Examples>
