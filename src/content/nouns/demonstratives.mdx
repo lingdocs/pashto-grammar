@@ -1,0 +1,3930 @@
+---
+title: Demonstratives 👉
+---
+
+import {
+  defaultTextOptions as opts,
+  InlinePs,
+  firstVariation,
+  Examples,
+} from "@lingdocs/ps-react";
+import genderColors from "../../lib/gender-colors";
+import GenderTable from "../../components/GenderTable";
+import Link from "../../components/Link";
+export const femColor = genderColors.f;
+export const mascColor = genderColors.m;
+import { nounGenderGame1, nounGenderGame2 } from "../../games/games";
+import GameDisplay from "../../games/GameDisplay";
+import EditableVPEx from "../../components/phrase-diagram/EditableVPEx";
+import EditableEPEx from "../../components/phrase-diagram/EditableEPEx";
+
+Demonstratives are a special kind of <Link to="/nouns/determiners/">determiner words</Link> that are used **to point to or specify nouns**. These are are words that work like "this, that, these, those." In Pashto we use the words for demonstratives:
+
+- <InlinePs opts={opts} ps={{ p: "دا", f: "daa", e: "this / these" }} />
+- <InlinePs opts={opts} ps={{ p: "دغه", f: "dágha", e: "this / these" }} />
+- <InlinePs opts={opts} ps={{ p: "هغه", f: "hágha", e: "that / those" }} />
+
+And these words also inflect in some interesting ways. TLDR; See the <Link to="/pronouns/demonstratives/#overview--tables">tables at the bottom</Link>.
+
+## The general دا - daa
+
+The word <InlinePs opts={opts} ps={{ p: "دا", f: "daa", e: "this / these" }} /> is probably the most common demonstrative in Pashto. It's also fairly general, for pointing to people or things close by or at a medium distance. ("Distance" here can refer to the distance in conversation, not just physical distance.)
+
+The other nice thing about this useful pointer word is that **it is the same for masculine or feminine, singular or plural**!
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.016611610164032342,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815251,
+                i: 9910,
+                p: "سړی",
+                f: "saRáy",
+                g: "saRay",
+                e: "man",
+                r: 4,
+                c: "n. m.",
+                ec: "man",
+                ep: "men",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.010739460241721455,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527816016,
+                i: 3172,
+                p: "پښتو",
+                f: "puxtó, paxtó",
+                g: "puxto,paxto",
+                e: "Pashto, Pashtunwali",
+                r: 4,
+                c: "n. f.",
+                ec: "Pashto",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527817013,
+          i: 18259,
+          p: "ویل",
+          f: "wayúl",
+          g: "wayul",
+          e: "to say, to tell",
+          r: 4,
+          c: "v. trans./gramm. trans.",
+          ec: "speak,speaks,speaking,spoke,spoken",
+          a: 1,
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.016611610164032342,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812342,
+                i: 7091,
+                p: "خلک",
+                f: "khalk",
+                g: "khalk",
+                e: "people, nation, populace",
+                r: 4,
+                c: "n. m. pl.",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: false,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.010739460241721455,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527816016,
+                i: 3172,
+                p: "پښتو",
+                f: "puxtó, paxtó",
+                g: "puxto,paxto",
+                e: "Pashto, Pashtunwali",
+                r: 4,
+                c: "n. f.",
+                ec: "Pashto",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527817013,
+          i: 18259,
+          p: "ویل",
+          f: "wayúl",
+          g: "wayul",
+          e: "to say, to tell",
+          r: 4,
+          c: "v. trans./gramm. trans.",
+          ec: "speak,speaks,speaking,spoke,spoken",
+          a: 1,
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: true,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.7759356354574205,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812797,
+                i: 10936,
+                p: "ښځه",
+                f: "xúdza",
+                g: "xudza",
+                e: "woman, wife",
+                r: 4,
+                c: "n. f.",
+                ec: "woman",
+                ep: "women",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.09676861988508834,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1586551382412,
+                i: 17981,
+                p: "وریژې",
+                f: "wréejze",
+                g: "wreejze",
+                e: "rice",
+                r: 4,
+                c: "n. f. pl.",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: false,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1571859113828,
+          i: 2904,
+          p: "پخول",
+          f: "pakhawúl",
+          g: "pakhawul",
+          e: "to cook, prepare, to cause to ripen, mature",
+          r: 4,
+          c: "v. stat. comp. trans.",
+          l: 1574867531681,
+          ec: "cook",
+          a: 1,
+        },
+        complement: {
+          ts: 1574867531681,
+          i: 3512,
+          p: "پوخ",
+          f: "pokh",
+          g: "pokh",
+          e: "cooked, mature, ripe, ready, able, skillful, experienced, tried, tested, true",
+          r: 4,
+          c: "adj. irreg.",
+          infap: "پاخه",
+          infaf: "paakhu",
+          infbp: "پخ",
+          infbf: "pakh",
+          a: 1,
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "stative",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.7759356354574205,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812797,
+                i: 10936,
+                p: "ښځه",
+                f: "xúdza",
+                g: "xudza",
+                e: "woman, wife",
+                r: 4,
+                c: "n. f.",
+                ec: "woman",
+                ep: "women",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.09676861988508834,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1586551382412,
+                i: 17981,
+                p: "وریژې",
+                f: "wréejze",
+                g: "wreejze",
+                e: "rice",
+                r: 4,
+                c: "n. f. pl.",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: false,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1571859113828,
+          i: 2904,
+          p: "پخول",
+          f: "pakhawúl",
+          g: "pakhawul",
+          e: "to cook, prepare, to cause to ripen, mature",
+          r: 4,
+          c: "v. stat. comp. trans.",
+          l: 1574867531681,
+          ec: "cook",
+          a: 1,
+        },
+        complement: {
+          ts: 1574867531681,
+          i: 3512,
+          p: "پوخ",
+          f: "pokh",
+          g: "pokh",
+          e: "cooked, mature, ripe, ready, able, skillful, experienced, tried, tested, true",
+          r: 4,
+          c: "adj. irreg.",
+          infap: "پاخه",
+          infaf: "paakhu",
+          infbp: "پخ",
+          infbf: "pakh",
+          a: 1,
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "stative",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527816098,
+                i: 18172,
+                p: "ونه",
+                f: "wúna",
+                g: "wuna",
+                e: "tree; height",
+                r: 4,
+                c: "n. f.",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527812625,
+            i: 11572,
+            p: "غټ",
+            f: "ghuT, ghaT",
+            g: "ghuT,ghaT",
+            e: "big, fat",
+            r: 4,
+            c: "adj.",
+            a: 1,
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527816098,
+                i: 18172,
+                p: "ونه",
+                f: "wúna",
+                g: "wuna",
+                e: "tree; height",
+                r: 4,
+                c: "n. f.",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527812625,
+            i: 11572,
+            p: "غټ",
+            f: "ghuT, ghaT",
+            g: "ghuT,ghaT",
+            e: "big, fat",
+            r: 4,
+            c: "adj.",
+            a: 1,
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812817,
+                i: 12668,
+                p: "کتاب",
+                f: "kitáab",
+                g: "kitaab",
+                e: "book",
+                r: 4,
+                c: "n. m.",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527812625,
+            i: 11572,
+            p: "غټ",
+            f: "ghuT, ghaT",
+            g: "ghuT,ghaT",
+            e: "big, fat",
+            r: 4,
+            c: "adj.",
+            a: 1,
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812817,
+                i: 12668,
+                p: "کتاب",
+                f: "kitáab",
+                g: "kitaab",
+                e: "book",
+                r: 4,
+                c: "n. m.",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527812625,
+            i: 11572,
+            p: "غټ",
+            f: "ghuT, ghaT",
+            g: "ghuT,ghaT",
+            e: "big, fat",
+            r: 4,
+            c: "adj.",
+            a: 1,
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+### Inflecting دا - daa to دې - de
+
+In all these examples above, masculine and feminine, singular or plural, we always use <InlinePs opts={opts} ps={{ p: "دا", f: "daa" }} />. But what happens when we need to <Link to="/inflection/inflection-intro/">inflect</Link> a word because it's <Link to="/sandwiches/sandwiches/">in a sandwich</Link> or because it's <Link to="/verbs/past-verbs/#past-tense-with-transitive-verbs-">the subject of a past tense transitive verb</Link>? In that case it becomes <InlinePs opts={opts} ps={{ p: "دې", f: "de" }} />.
+
+Remember, <Link to="/inflection/inflection-intro/">normally</Link> we would inflect a word when it's plural, but not with <InlinePs opts={opts} ps={{ p: "دا", f: "daa" }} />! **we only inflect this word for _two_ reasons**:
+
+- being in a sandwich
+- being the subject of a past tense transitive verb
+
+Here are some examples of the demonstrative <InlinePs opts={opts} ps={{ p: "دا", f: "daa" }} /> being inflected because it's used for the subject of a past tense transitive verb.
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.6132085810692784,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815251,
+                i: 9910,
+                p: "سړی",
+                f: "saRáy",
+                g: "saRay",
+                e: "man",
+                r: 4,
+                c: "n. m.",
+                ec: "man",
+                ep: "men",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.47115899186288135,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815041,
+          i: 9342,
+          p: "ژړول",
+          f: "jzaRawul",
+          g: "jzaRawul",
+          e: "to make someone cry",
+          r: 4,
+          c: "v. trans.",
+          ec: "make",
+          ep: "cry",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.6132085810692784,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815251,
+                i: 9910,
+                p: "سړی",
+                f: "saRáy",
+                g: "saRay",
+                e: "man",
+                r: 4,
+                c: "n. m.",
+                ec: "man",
+                ep: "men",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.47115899186288135,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815041,
+          i: 9342,
+          p: "ژړول",
+          f: "jzaRawul",
+          g: "jzaRawul",
+          e: "to make someone cry",
+          r: 4,
+          c: "v. trans.",
+          ec: "make",
+          ep: "cry",
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.851174272757701,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812797,
+                i: 10936,
+                p: "ښځه",
+                f: "xúdza",
+                g: "xudza",
+                e: "woman, wife",
+                r: 4,
+                c: "n. f.",
+                ec: "woman",
+                ep: "women",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.9894847508739981,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812817,
+                i: 12668,
+                p: "کتاب",
+                f: "kitáab",
+                g: "kitaab",
+                e: "book",
+                r: 4,
+                c: "n. m.",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527817298,
+          i: 354,
+          p: "اخیستل",
+          f: "akheestúl",
+          g: "akheestul",
+          e: "to take, buy, purchase, receive; to shave, cut with scissors",
+          r: 4,
+          c: "v. trans.",
+          psp: "اخل",
+          psf: "akhl",
+          tppp: "اخیست",
+          tppf: "akheest",
+          ec: "take,takes,taking,took,taken",
+          a: 1,
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.851174272757701,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812797,
+                i: 10936,
+                p: "ښځه",
+                f: "xúdza",
+                g: "xudza",
+                e: "woman, wife",
+                r: 4,
+                c: "n. f.",
+                ec: "woman",
+                ep: "women",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.9894847508739981,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812817,
+                i: 12668,
+                p: "کتاب",
+                f: "kitáab",
+                g: "kitaab",
+                e: "book",
+                r: 4,
+                c: "n. m.",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527817298,
+          i: 354,
+          p: "اخیستل",
+          f: "akheestúl",
+          g: "akheestul",
+          e: "to take, buy, purchase, receive; to shave, cut with scissors",
+          r: 4,
+          c: "v. trans.",
+          psp: "اخل",
+          psf: "akhl",
+          tppp: "اخیست",
+          tppf: "akheest",
+          ec: "take,takes,taking,took,taken",
+          a: 1,
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+Notice how the nouns change depending on whether they're singular or plural. When they nouns are a subject of a past tense transitive verb _and_ plural, they use the double inflection. But there is no difference no difference in <InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "this / these" }} /> between singular and plural.
+
+And here are some examples of <InlinePs opts={opts} ps={{ p: "دا", f: "daa" }} /> being inflected because it's in a sandwich.
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.13933460170370982,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2607654032277311,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            after: { p: "ته", f: "ta" },
+            e: "to",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527814265,
+                  i: 15875,
+                  p: "مکتب",
+                  f: "maktáb",
+                  g: "maktab",
+                  e: "school",
+                  r: 4,
+                  c: "n. m.",
+                  app: "مکاتب",
+                  apf: "makaatib",
+                  a: 1,
+                },
+                gender: "masc",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [],
+                dynamicComplement: false,
+                genStativeComplement: false,
+                demonstrative: {
+                  type: "demonstrative",
+                  demonstrative: "daa",
+                  withNoun: true,
+                },
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.23805903802061423,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815348,
+          i: 4587,
+          p: "تلل",
+          f: "tlul",
+          g: "tlul",
+          e: "to go",
+          r: 4,
+          c: "v. intrans.",
+          psp: "ځ",
+          psf: "dz",
+          ssp: "لاړ ش",
+          ssf: "láaR sh",
+          prp: "لاړل",
+          prf: "láaRul",
+          separationAtP: 2,
+          separationAtF: 3,
+          ec: "go,goes,going,went,gone",
+          a: 1,
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.13933460170370982,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 6, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.2607654032277311,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            after: { p: "ته", f: "ta" },
+            e: "to",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527814265,
+                  i: 15875,
+                  p: "مکتب",
+                  f: "maktáb",
+                  g: "maktab",
+                  e: "school",
+                  r: 4,
+                  c: "n. m.",
+                  app: "مکاتب",
+                  apf: "makaatib",
+                  a: 1,
+                },
+                gender: "masc",
+                genderCanChange: false,
+                number: "plural",
+                numberCanChange: true,
+                adjectives: [],
+                dynamicComplement: false,
+                genStativeComplement: false,
+                demonstrative: {
+                  type: "demonstrative",
+                  demonstrative: "daa",
+                  withNoun: true,
+                },
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.23805903802061423,
+        block: { type: "objectSelection", selection: "none" },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815348,
+          i: 4587,
+          p: "تلل",
+          f: "tlul",
+          g: "tlul",
+          e: "to go",
+          r: 4,
+          c: "v. intrans.",
+          psp: "ځ",
+          psf: "dz",
+          ssp: "لاړ ش",
+          ssf: "láaR sh",
+          prp: "لاړل",
+          prf: "láaRul",
+          separationAtP: 2,
+          separationAtF: 3,
+          ec: "go,goes,going,went,gone",
+          a: 1,
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "intransitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: false,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.33750095093596255,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 4, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.8500623382016168,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            before: { p: "له", f: "la" },
+            after: { p: "سره", f: "sara" },
+            e: "with",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527812881,
+                  i: 14722,
+                  p: "ماشوم",
+                  f: "maashoom",
+                  g: "maashoom",
+                  e: "child, kid",
+                  r: 4,
+                  c: "n. m. anim. unisex",
+                  ec: "child",
+                  ep: "children",
+                  a: 1,
+                },
+                gender: "masc",
+                genderCanChange: true,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [],
+                dynamicComplement: false,
+                genStativeComplement: false,
+                demonstrative: {
+                  type: "demonstrative",
+                  demonstrative: "daa",
+                  withNoun: true,
+                },
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.18261823823142165,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812859,
+                i: 14462,
+                p: "لوبه",
+                f: "lóba",
+                g: "loba",
+                e: "game, match",
+                r: 4,
+                c: "n. f.",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1658280518551,
+          i: 14463,
+          p: "لوبه کول",
+          f: "loba kawul",
+          g: "lobakawul",
+          e: "to play (a game/sport/role)",
+          r: 2,
+          c: "v. dyn. comp. trans. sing. or plur.",
+          l: 1527812859,
+          ec: "play",
+        },
+        complement: {
+          ts: 1527812859,
+          i: 14462,
+          p: "لوبه",
+          f: "lóba",
+          g: "loba",
+          e: "game, match",
+          r: 4,
+          c: "n. f.",
+          a: 1,
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          ts: 1527812752,
+          i: 11033,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          r: 4,
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          separationAtP: 1,
+          separationAtF: 2,
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.33750095093596255,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 4, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.8500623382016168,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            before: { p: "له", f: "la" },
+            after: { p: "سره", f: "sara" },
+            e: "with",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527812881,
+                  i: 14722,
+                  p: "ماشوم",
+                  f: "maashoom",
+                  g: "maashoom",
+                  e: "child, kid",
+                  r: 4,
+                  c: "n. m. anim. unisex",
+                  ec: "child",
+                  ep: "children",
+                  a: 1,
+                },
+                gender: "masc",
+                genderCanChange: true,
+                number: "plural",
+                numberCanChange: true,
+                adjectives: [],
+                dynamicComplement: false,
+                genStativeComplement: false,
+                demonstrative: {
+                  type: "demonstrative",
+                  demonstrative: "daa",
+                  withNoun: true,
+                },
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.18261823823142165,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812859,
+                i: 14462,
+                p: "لوبه",
+                f: "lóba",
+                g: "loba",
+                e: "game, match",
+                r: 4,
+                c: "n. f.",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1658280518551,
+          i: 14463,
+          p: "لوبه کول",
+          f: "loba kawul",
+          g: "lobakawul",
+          e: "to play (a game/sport/role)",
+          r: 2,
+          c: "v. dyn. comp. trans. sing. or plur.",
+          l: 1527812859,
+          ec: "play",
+        },
+        complement: {
+          ts: 1527812859,
+          i: 14462,
+          p: "لوبه",
+          f: "lóba",
+          g: "loba",
+          e: "game, match",
+          r: 4,
+          c: "n. f.",
+          a: 1,
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          ts: 1527812752,
+          i: 11033,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          r: 4,
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          separationAtP: 1,
+          separationAtF: 2,
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+Again, there's no difference in the <InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "this / these" }} /> between singular and plural.
+
+But things get a little more complicated when we want to get a bit more specific with our demonstratives and use <InlinePs opts={opts} ps={{ p: "هغه", f: "hágha", e: "that / those" }} /> and <InlinePs opts={opts} ps={{ p: "دغه", f: "dágha", e: "this / these" }} />.
+
+## More specific دغه - dágha / هغه - hágha
+
+When we want to be more specific with our pointing we can use the other two demonstratives:
+
+- <InlinePs opts={opts} ps={{ p: "دغه", f: "dágha", e: "this / these" }} /> (closer)
+- <InlinePs opts={opts} ps={{ p: "هغه", f: "hágha", e: "that / those" }} /> (further)
+
+Notice that that this second one is different than the 3rd pers. sing pronoun!
+
+- <InlinePs opts={opts} ps={{ p: "هغه", f: "hágha", e: "that / those" }} /> (demonstrative)
+- <InlinePs opts={opts} ps={{ p: "هغه", f: "haghá", e: "he / she it" }} /> (pronoun)
+
+In their plain forms, these do not change from masculine to feminine.
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812817,
+                i: 12668,
+                p: "کتاب",
+                f: "kitáab",
+                g: "kitaab",
+                e: "book",
+                r: 4,
+                c: "n. m.",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "dagha",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527812796,
+            i: 10981,
+            p: "ښه",
+            f: "xu",
+            g: "xu",
+            e: "good",
+            r: 4,
+            c: "adj.",
+            a: 1,
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815175,
+                i: 3616,
+                p: "پیاله",
+                f: "piyaala",
+                g: "piyaala",
+                e: "cup, glass",
+                r: 4,
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "dagha",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1578329248464,
+            i: 9588,
+            p: "سپین",
+            f: "speen",
+            g: "speen",
+            e: "white (fig. clear, honest, beautiful)",
+            r: 4,
+            c: "adj.",
+            a: 1,
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812797,
+                i: 10936,
+                p: "ښځه",
+                f: "xúdza",
+                g: "xudza",
+                e: "woman, wife",
+                r: 4,
+                c: "n. f.",
+                ec: "woman",
+                ep: "women",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "hagha",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527817398,
+            i: 16176,
+            p: "مهربان",
+            f: "mihrabáan",
+            g: "mihrabaan",
+            e: "kind, gracious, generous, indulgent",
+            r: 4,
+            c: "adj.",
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+These demonstratives also **don't change when they're plural**:
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812817,
+                i: 12668,
+                p: "کتاب",
+                f: "kitáab",
+                g: "kitaab",
+                e: "book",
+                r: 4,
+                c: "n. m.",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "dagha",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527812796,
+            i: 10981,
+            p: "ښه",
+            f: "xu",
+            g: "xu",
+            e: "good",
+            r: 4,
+            c: "adj.",
+            a: 1,
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815175,
+                i: 3616,
+                p: "پیاله",
+                f: "piyaala",
+                g: "piyaala",
+                e: "cup, glass",
+                r: 4,
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "dagha",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1578329248464,
+            i: 9588,
+            p: "سپین",
+            f: "speen",
+            g: "speen",
+            e: "white (fig. clear, honest, beautiful)",
+            r: 4,
+            c: "adj.",
+            a: 1,
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812797,
+                i: 10936,
+                p: "ښځه",
+                f: "xúdza",
+                g: "xudza",
+                e: "woman, wife",
+                r: 4,
+                c: "n. f.",
+                ec: "woman",
+                ep: "women",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "hagha",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527817398,
+            i: 16176,
+            p: "مهربان",
+            f: "mihrabáan",
+            g: "mihrabaan",
+            e: "kind, gracious, generous, indulgent",
+            r: 4,
+            c: "adj.",
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+### Inflecting دغه - dágha / هغه - hágha
+
+**But**, here's where things get more complicated... If they are inflected because of those other two reasons:
+
+- being in a sandwich
+- being the subject of a past tense transitive verb
+
+Then the full craziness of inflections are unleashed 👇
+
+<table
+  className="table table-bordered my-4"
+  style={{ tableLayout: "fixed", textAlign: "center" }}
+>
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Masculine</th>
+      <th scope="col">Feminine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Plain (singular or plural)</td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغه",
+              f: "dágha",
+              e: "this / these",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>Singular and in a sandwich or subject of past tense trans.</td>
+      <td style={{ background: genderColors.m }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغه",
+              f: "dághu",
+              e: "this",
+            },
+          ]}
+        </Examples>
+      </td>
+      <td style={{ background: genderColors.f }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغې",
+              f: "dághe",
+              e: "this",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>Double inflection</div>
+        <div>
+          (Plural <em>and</em> in a sandwich or subject of past tense trans.)
+        </div>
+      </td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغو",
+              f: "dágho",
+              e: "these",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table
+  className="table table-bordered my-4"
+  style={{ tableLayout: "fixed", textAlign: "center" }}
+>
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Masculine</th>
+      <th scope="col">Feminine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Plain (singular or plural)</td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغه",
+              f: "hágha",
+              e: "that / those",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>Singular and in a sandwich or subject of past tense trans.</td>
+      <td style={{ background: genderColors.m }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغه",
+              f: "hághu",
+              e: "that",
+            },
+          ]}
+        </Examples>
+      </td>
+      <td style={{ background: genderColors.f }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغې",
+              f: "hághe",
+              e: "that",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>Double inflection</div>
+        <div>
+          (Plural <em>and</em> in a sandwich or subject of past tense trans.)
+        </div>
+      </td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغو",
+              f: "hágho",
+              e: "those",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Here are some examples of these words inflecting because they're singular but in a sandwich:
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815219,
+                i: 8745,
+                p: "رنګ",
+                f: "rang",
+                g: "rang",
+                e: "color, colour, style, kind; paint",
+                r: 4,
+                c: "n. m.",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              possesor: {
+                np: {
+                  type: "NP",
+                  selection: {
+                    type: "noun",
+                    entry: {
+                      ts: 1527815175,
+                      i: 3616,
+                      p: "پیاله",
+                      f: "piyaala",
+                      g: "piyaala",
+                      e: "cup, glass",
+                      r: 4,
+                      c: "n. f.",
+                    },
+                    gender: "fem",
+                    genderCanChange: false,
+                    number: "singular",
+                    numberCanChange: true,
+                    adjectives: [],
+                    dynamicComplement: false,
+                    genStativeComplement: false,
+                    demonstrative: {
+                      type: "demonstrative",
+                      demonstrative: "dagha",
+                      withNoun: true,
+                    },
+                  },
+                },
+                shrunken: false,
+              },
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527812779,
+            i: 10962,
+            p: "ښکلی",
+            f: "xkÚlay",
+            g: "xkUlay",
+            e: "beautiful",
+            r: 4,
+            c: "adj.",
+            a: 1,
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.609375515883567,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.05318323940267988,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812043,
+                i: 14630,
+                p: "لیکوال",
+                f: "leekwáal",
+                g: "leekwaal",
+                e: "writer, author",
+                r: 4,
+                c: "n. m. anim. unisex",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: true,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              possesor: {
+                np: {
+                  type: "NP",
+                  selection: {
+                    type: "noun",
+                    entry: {
+                      ts: 1527812817,
+                      i: 12668,
+                      p: "کتاب",
+                      f: "kitáab",
+                      g: "kitaab",
+                      e: "book",
+                      r: 4,
+                      c: "n. m.",
+                      a: 1,
+                    },
+                    gender: "masc",
+                    genderCanChange: false,
+                    number: "singular",
+                    numberCanChange: true,
+                    adjectives: [],
+                    dynamicComplement: false,
+                    genStativeComplement: false,
+                    demonstrative: {
+                      type: "demonstrative",
+                      demonstrative: "hagha",
+                      withNoun: true,
+                    },
+                  },
+                },
+                shrunken: false,
+              },
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815165,
+          i: 3714,
+          p: "پېژندل",
+          f: "pejzandúl",
+          g: "pejzandul",
+          e: "to recognize, know, meet (w gramm. trans)",
+          r: 4,
+          c: "v. trans. / gram. trans.",
+          psp: "پېژن",
+          psf: "pejzan",
+          tppp: "پېژاند",
+          tppf: "pejzaand",
+          ec: "know,knows,knowing,knew,known",
+          a: 1,
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.9364870596350119,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.13516192589623977,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            before: { p: "له", f: "la" },
+            after: { p: "سره", f: "sara" },
+            e: "with",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527812797,
+                  i: 10936,
+                  p: "ښځه",
+                  f: "xúdza",
+                  g: "xudza",
+                  e: "woman, wife",
+                  r: 4,
+                  c: "n. f.",
+                  ec: "woman",
+                  ep: "women",
+                  a: 1,
+                },
+                gender: "fem",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [],
+                dynamicComplement: false,
+                genStativeComplement: false,
+                demonstrative: {
+                  type: "demonstrative",
+                  demonstrative: "dagha",
+                  withNoun: true,
+                },
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.9476823051383763,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812766,
+                i: 6832,
+                p: "خبره",
+                f: "khabúra",
+                g: "khabura",
+                e: "thought, speech, idea, thing, remark",
+                r: 4,
+                c: "n. f.",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1581786710658,
+          i: 6839,
+          p: "خبرې کول",
+          f: "khabúre kawul",
+          g: "khaburekawul",
+          e: "to speak, talk, talk with",
+          r: 3,
+          c: "v. dyn. comp. trans. sing. or plur.",
+          l: 1527812766,
+          ec: "talk",
+          a: 1,
+        },
+        complement: {
+          ts: 1527812766,
+          i: 6832,
+          p: "خبره",
+          f: "khabúra",
+          g: "khabura",
+          e: "thought, speech, idea, thing, remark",
+          r: 4,
+          c: "n. f.",
+          a: 1,
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          ts: 1527812752,
+          i: 11033,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          r: 4,
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          separationAtP: 1,
+          separationAtF: 2,
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.9364870596350119,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 1, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.13516192589623977,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            before: { p: "له", f: "la" },
+            after: { p: "سره", f: "sara" },
+            e: "with",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527812797,
+                  i: 10936,
+                  p: "ښځه",
+                  f: "xúdza",
+                  g: "xudza",
+                  e: "woman, wife",
+                  r: 4,
+                  c: "n. f.",
+                  ec: "woman",
+                  ep: "women",
+                  a: 1,
+                },
+                gender: "fem",
+                genderCanChange: false,
+                number: "singular",
+                numberCanChange: true,
+                adjectives: [],
+                dynamicComplement: false,
+                genStativeComplement: false,
+                demonstrative: {
+                  type: "demonstrative",
+                  demonstrative: "dagha",
+                  withNoun: true,
+                },
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.9476823051383763,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812766,
+                i: 6832,
+                p: "خبره",
+                f: "khabúra",
+                g: "khabura",
+                e: "thought, speech, idea, thing, remark",
+                r: 4,
+                c: "n. f.",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1581786710658,
+          i: 6839,
+          p: "خبرې کول",
+          f: "khabúre kawul",
+          g: "khaburekawul",
+          e: "to speak, talk, talk with",
+          r: 3,
+          c: "v. dyn. comp. trans. sing. or plur.",
+          l: 1527812766,
+          ec: "talk",
+          a: 1,
+        },
+        complement: {
+          ts: 1527812766,
+          i: 6832,
+          p: "خبره",
+          f: "khabúra",
+          g: "khabura",
+          e: "thought, speech, idea, thing, remark",
+          r: 4,
+          c: "n. f.",
+          a: 1,
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          ts: 1527812752,
+          i: 11033,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          r: 4,
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          separationAtP: 1,
+          separationAtF: 2,
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+And here are some examples of these words inflecting because they're singular but also the subject of a past tense transitive verb.
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.3508738169298047,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812797,
+                i: 10936,
+                p: "ښځه",
+                f: "xúdza",
+                g: "xudza",
+                e: "woman, wife",
+                r: 4,
+                c: "n. f.",
+                ec: "woman",
+                ep: "women",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "dagha",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.5628310389066882,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812881,
+                i: 14722,
+                p: "ماشوم",
+                f: "maashoom",
+                g: "maashoom",
+                e: "child, kid",
+                r: 4,
+                c: "n. m. anim. unisex",
+                ec: "child",
+                ep: "children",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: true,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              possesor: {
+                np: {
+                  type: "NP",
+                  selection: { type: "pronoun", person: 1, distance: "far" },
+                },
+                shrunken: false,
+              },
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815399,
+          i: 18176,
+          p: "وهل",
+          f: "wahul",
+          g: "wahul",
+          e: "to hit",
+          r: 4,
+          c: "v. trans.",
+          tppp: "واهه",
+          tppf: "waahu",
+          ec: "hit,hits,hitting,hit,hit",
+          a: 1,
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.8170530088094552,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815251,
+                i: 9910,
+                p: "سړی",
+                f: "saRáy",
+                g: "saRay",
+                e: "man",
+                r: 4,
+                c: "n. m.",
+                ec: "man",
+                ep: "men",
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "dagha",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.805575286142499,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815175,
+                i: 3616,
+                p: "پیاله",
+                f: "piyaala",
+                g: "piyaala",
+                e: "cup, glass",
+                r: 4,
+                c: "n. f.",
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              possesor: {
+                np: {
+                  type: "NP",
+                  selection: { type: "pronoun", person: 1, distance: "far" },
+                },
+                shrunken: false,
+              },
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527817298,
+          i: 354,
+          p: "اخیستل",
+          f: "akheestúl",
+          g: "akheestul",
+          e: "to take, buy, purchase, receive; to shave, cut with scissors",
+          r: 4,
+          c: "v. trans.",
+          psp: "اخل",
+          psf: "akhl",
+          tppp: "اخیست",
+          tppf: "akheest",
+          ec: "take,takes,taking,took,taken",
+          a: 1,
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+Finally, let's look at some examples where the demonstrative is _double inflected_ because the noun is both plural _and_ inflected for another reason.
+
+**Plural and in a sandwich:**
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.033216575241004076,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 6, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.3506612320163158,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            before: { p: "له", f: "la" },
+            after: { p: "سره", f: "sara" },
+            e: "with",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527812342,
+                  i: 7091,
+                  p: "خلک",
+                  f: "khalk",
+                  g: "khalk",
+                  e: "people, nation, populace",
+                  r: 4,
+                  c: "n. m. pl.",
+                },
+                gender: "masc",
+                genderCanChange: false,
+                number: "plural",
+                numberCanChange: false,
+                adjectives: [],
+                dynamicComplement: false,
+                genStativeComplement: false,
+                demonstrative: {
+                  type: "demonstrative",
+                  demonstrative: "hagha",
+                  withNoun: true,
+                },
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.6156078340349931,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812766,
+                i: 6832,
+                p: "خبره",
+                f: "khabúra",
+                g: "khabura",
+                e: "thought, speech, idea, thing, remark",
+                r: 4,
+                c: "n. f.",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1581786710658,
+          i: 6839,
+          p: "خبرې کول",
+          f: "khabúre kawul",
+          g: "khaburekawul",
+          e: "to speak, talk, talk with",
+          r: 3,
+          c: "v. dyn. comp. trans. sing. or plur.",
+          l: 1527812766,
+          ec: "talk",
+          a: 1,
+        },
+        complement: {
+          ts: 1527812766,
+          i: 6832,
+          p: "خبره",
+          f: "khabúra",
+          g: "khabura",
+          e: "thought, speech, idea, thing, remark",
+          r: 4,
+          c: "n. f.",
+          a: 1,
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          ts: 1527812752,
+          i: 11033,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          r: 4,
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          separationAtP: 1,
+          separationAtF: 2,
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815219,
+                i: 8745,
+                p: "رنګ",
+                f: "rang",
+                g: "rang",
+                e: "color, colour, style, kind; paint",
+                r: 4,
+                c: "n. m.",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              possesor: {
+                np: {
+                  type: "NP",
+                  selection: {
+                    type: "noun",
+                    entry: {
+                      ts: 1527815175,
+                      i: 3616,
+                      p: "پیاله",
+                      f: "piyaala",
+                      g: "piyaala",
+                      e: "cup, glass",
+                      r: 4,
+                      c: "n. f.",
+                    },
+                    gender: "fem",
+                    genderCanChange: false,
+                    number: "plural",
+                    numberCanChange: true,
+                    adjectives: [],
+                    dynamicComplement: false,
+                    genStativeComplement: false,
+                    demonstrative: {
+                      type: "demonstrative",
+                      demonstrative: "dagha",
+                      withNoun: true,
+                    },
+                  },
+                },
+                shrunken: false,
+              },
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "Complement",
+      Complement: {
+        type: "complement",
+        selection: {
+          type: "adjective",
+          entry: {
+            ts: 1527812779,
+            i: 10962,
+            p: "ښکلی",
+            f: "xkÚlay",
+            g: "xkUlay",
+            e: "beautiful",
+            r: 4,
+            c: "adj.",
+            a: 1,
+          },
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+**Plural and the subject of a past tense transitive verb:**
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.3508738169298047,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812797,
+                i: 10936,
+                p: "ښځه",
+                f: "xúdza",
+                g: "xudza",
+                e: "woman, wife",
+                r: 4,
+                c: "n. f.",
+                ec: "woman",
+                ep: "women",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "dagha",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.5628310389066882,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812881,
+                i: 14722,
+                p: "ماشوم",
+                f: "maashoom",
+                g: "maashoom",
+                e: "child, kid",
+                r: 4,
+                c: "n. m. anim. unisex",
+                ec: "child",
+                ep: "children",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: true,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              possesor: {
+                np: {
+                  type: "NP",
+                  selection: { type: "pronoun", person: 1, distance: "far" },
+                },
+                shrunken: false,
+              },
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527815399,
+          i: 18176,
+          p: "وهل",
+          f: "wahul",
+          g: "wahul",
+          e: "to hit",
+          r: 4,
+          c: "v. trans.",
+          tppp: "واهه",
+          tppf: "waahu",
+          ec: "hit,hits,hitting,hit,hit",
+          a: 1,
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.41979915991647543,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812881,
+                i: 14722,
+                p: "ماشوم",
+                f: "maashoom",
+                g: "maashoom",
+                e: "child, kid",
+                r: 4,
+                c: "n. m. anim. unisex",
+                ec: "child",
+                ep: "children",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: true,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "dagha",
+                withNoun: true,
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.07096609264114995,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812817,
+                i: 12668,
+                p: "کتاب",
+                f: "kitáab",
+                g: "kitaab",
+                e: "book",
+                r: 4,
+                c: "n. m.",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              possesor: {
+                np: {
+                  type: "NP",
+                  selection: { type: "pronoun", person: 1, distance: "far" },
+                },
+                shrunken: false,
+              },
+              dynamicComplement: false,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527817298,
+          i: 354,
+          p: "اخیستل",
+          f: "akheestúl",
+          g: "akheestul",
+          e: "to take, buy, purchase, receive; to shave, cut with scissors",
+          r: 4,
+          c: "v. trans.",
+          psp: "اخل",
+          psf: "akhl",
+          tppp: "اخیست",
+          tppf: "akheest",
+          ec: "take,takes,taking,took,taken",
+          a: 1,
+        },
+      },
+      verbTense: "perfectivePast",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+## Demonstratives without the noun
+
+In Pashto, demonstratives can also be used _without saying the noun_ they are pointing to. So you can use the words <InlinePs opts={opts} ps={{ p: "دا", f: "daa", e: "this / these" }} />, <InlinePs opts={opts} ps={{ p: "دغه", f: "dágha", e: "this / these" }} />, <InlinePs opts={opts} ps={{ p: "هغه", f: "hágha", e: "that / those" }} /> without saying the noun that they are referring to.
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.033216575241004076,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 6, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.3506612320163158,
+        block: {
+          type: "AP",
+          selection: {
+            type: "sandwich",
+            before: { p: "له", f: "la" },
+            after: { p: "سره", f: "sara" },
+            e: "with",
+            inside: {
+              type: "NP",
+              selection: {
+                type: "noun",
+                entry: {
+                  ts: 1527812342,
+                  i: 7091,
+                  p: "خلک",
+                  f: "khalk",
+                  g: "khalk",
+                  e: "people, nation, populace",
+                  r: 4,
+                  c: "n. m. pl.",
+                },
+                gender: "masc",
+                genderCanChange: false,
+                number: "plural",
+                numberCanChange: false,
+                adjectives: [],
+                dynamicComplement: false,
+                genStativeComplement: false,
+                demonstrative: {
+                  type: "demonstrative",
+                  demonstrative: "hagha",
+                  withNoun: false,
+                },
+              },
+            },
+          },
+        },
+      },
+      {
+        key: 0.6156078340349931,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812766,
+                i: 6832,
+                p: "خبره",
+                f: "khabúra",
+                g: "khabura",
+                e: "thought, speech, idea, thing, remark",
+                r: 4,
+                c: "n. f.",
+                a: 1,
+              },
+              gender: "fem",
+              genderCanChange: false,
+              number: "plural",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: true,
+              genStativeComplement: false,
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1581786710658,
+          i: 6839,
+          p: "خبرې کول",
+          f: "khabúre kawul",
+          g: "khaburekawul",
+          e: "to speak, talk, talk with",
+          r: 3,
+          c: "v. dyn. comp. trans. sing. or plur.",
+          l: 1527812766,
+          ec: "talk",
+          a: 1,
+        },
+        complement: {
+          ts: 1527812766,
+          i: 6832,
+          p: "خبره",
+          f: "khabúra",
+          g: "khabura",
+          e: "thought, speech, idea, thing, remark",
+          r: 4,
+          c: "n. f.",
+          a: 1,
+        },
+      },
+      dynAuxVerb: {
+        entry: {
+          ts: 1527812752,
+          i: 11033,
+          p: "کول",
+          f: "kawul",
+          g: "kawul",
+          e: "to do (an action or activity)",
+          r: 4,
+          c: "v. trans./gramm. trans.",
+          ssp: "وکړ",
+          ssf: "óokR",
+          prp: "وکړل",
+          prf: "óokRul",
+          pprtp: "کړی",
+          pprtf: "kúRay",
+          separationAtP: 1,
+          separationAtF: 2,
+          diacExcept: true,
+          ec: "do,does,doing,did,done",
+        },
+      },
+      verbTense: "presentVerb",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: "dynamic",
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+<EditableEPEx opts={opts} hideOmitSubject>
+  {{
+    blocks: [
+      {
+        key: 0.23089213205851067,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527812817,
+                i: 12668,
+                p: "کتاب",
+                f: "kitáab",
+                g: "kitaab",
+                e: "book",
+                r: 4,
+                c: "n. m.",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "daa",
+                withNoun: false,
+              },
+            },
+          },
+        },
+      },
+    ],
+    predicate: {
+      type: "NP",
+      NP: {
+        type: "NP",
+        selection: {
+          type: "noun",
+          entry: {
+            ts: 1527812817,
+            i: 12668,
+            p: "کتاب",
+            f: "kitáab",
+            g: "kitaab",
+            e: "book",
+            r: 4,
+            c: "n. m.",
+            a: 1,
+          },
+          gender: "masc",
+          genderCanChange: false,
+          number: "singular",
+          numberCanChange: true,
+          adjectives: [
+            {
+              type: "adjective",
+              entry: {
+                ts: 1527812796,
+                i: 10981,
+                p: "ښه",
+                f: "xu",
+                g: "xu",
+                e: "good",
+                r: 4,
+                c: "adj.",
+                a: 1,
+              },
+            },
+          ],
+          dynamicComplement: false,
+          genStativeComplement: false,
+        },
+      },
+    },
+    equative: { tense: "present", negative: false },
+    omitSubject: false,
+  }}
+</EditableEPEx>
+
+<EditableVPEx opts={opts}>
+  {{
+    blocks: [
+      {
+        key: 0.4381654501657355,
+        block: {
+          type: "subjectSelection",
+          selection: {
+            type: "NP",
+            selection: { type: "pronoun", person: 0, distance: "far" },
+          },
+        },
+      },
+      {
+        key: 0.7807494707111873,
+        block: {
+          type: "objectSelection",
+          selection: {
+            type: "NP",
+            selection: {
+              type: "noun",
+              entry: {
+                ts: 1527815268,
+                i: 10860,
+                p: "شی",
+                f: "shay",
+                g: "shay",
+                e: "thing",
+                r: 4,
+                c: "n. m.",
+                ppp: "شیان, شیونه",
+                ppf: "shayáan, shayóona",
+                a: 1,
+              },
+              gender: "masc",
+              genderCanChange: false,
+              number: "singular",
+              numberCanChange: true,
+              adjectives: [],
+              dynamicComplement: false,
+              genStativeComplement: false,
+              demonstrative: {
+                type: "demonstrative",
+                demonstrative: "dagha",
+                withNoun: false,
+              },
+            },
+          },
+        },
+      },
+    ],
+    verb: {
+      type: "verb",
+      verb: {
+        entry: {
+          ts: 1527817298,
+          i: 354,
+          p: "اخیستل",
+          f: "akheestúl",
+          g: "akheestul",
+          e: "to take, buy, purchase, receive; to shave, cut with scissors",
+          r: 4,
+          c: "v. trans.",
+          psp: "اخل",
+          psf: "akhl",
+          tppp: "اخیست",
+          tppf: "akheest",
+          ec: "take,takes,taking,took,taken",
+          a: 1,
+        },
+      },
+      verbTense: "perfectiveFuture",
+      perfectTense: "pastPerfect",
+      imperativeTense: "imperfectiveImperative",
+      tenseCategory: "basic",
+      transitivity: "transitive",
+      isCompound: false,
+      voice: "active",
+      negative: false,
+      canChangeTransitivity: false,
+      canChangeVoice: true,
+      canChangeStatDyn: false,
+    },
+    form: { removeKing: false, shrinkServant: false },
+  }}
+</EditableVPEx>
+
+## Overview / Tables
+
+<table
+  className="table table-bordered my-4"
+  style={{ tableLayout: "fixed", textAlign: "center" }}
+>
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Unisex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div>Plain</div>
+        <div>(singular or plural)</div>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دا",
+              f: "daa",
+              e: "this / these",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>In a sandwich or ergative</div>
+        <div>(singular or plural)</div>
+      </td>
+      <td>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دې",
+              f: "de",
+              e: "this / these",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table
+  className="table table-bordered my-4"
+  style={{ tableLayout: "fixed", textAlign: "center" }}
+>
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Masculine</th>
+      <th scope="col">Feminine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Plain (singular or plural)</td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغه",
+              f: "dágha",
+              e: "this / these",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>Singular and</div>
+        <div>in a sandwich or ergative</div>
+      </td>
+      <td style={{ background: genderColors.m }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغه",
+              f: "dághu",
+              e: "this",
+            },
+          ]}
+        </Examples>
+      </td>
+      <td style={{ background: genderColors.f }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغې",
+              f: "dághe",
+              e: "this",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>Double inflection</div>
+        <div>
+          (Plural <em>and</em> in a sandwich or ergative)
+        </div>
+      </td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "دغو",
+              f: "dágho",
+              e: "these",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table
+  className="table table-bordered my-4"
+  style={{ tableLayout: "fixed", textAlign: "center" }}
+>
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Masculine</th>
+      <th scope="col">Feminine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Plain (singular or plural)</td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغه",
+              f: "hágha",
+              e: "that / those",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>Singular and</div>
+        <div>in a sandwich or ergative</div>
+      </td>
+      <td style={{ background: genderColors.m }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغه",
+              f: "hághu",
+              e: "that",
+            },
+          ]}
+        </Examples>
+      </td>
+      <td style={{ background: genderColors.f }}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغې",
+              f: "hághe",
+              e: "that",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div>Double inflection</div>
+        <div>
+          (Plural <em>and</em> in a sandwich or ergative)
+        </div>
+      </td>
+      <td colspan={2}>
+        <Examples opts={opts}>
+          {[
+            {
+              p: "هغو",
+              f: "hágho",
+              e: "those",
+            },
+          ]}
+        </Examples>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Ergative here means _the subject of a past tense transitive verb_.

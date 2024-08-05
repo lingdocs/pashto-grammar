@@ -29,6 +29,8 @@ import * as specialPlurals from "./nouns/special-plurals.mdx";
 import * as bundledPlurals from "./nouns/bundled-plurals.mdx";
 // @ts-ignore
 import * as determiners from "./nouns/determiners.mdx";
+// @ts-ignore
+import * as demonstratives from "./nouns/demonstratives.mdx";
 
 // @ts-ignore
 import * as BlocksAndKids from "./phrase-structure/blocks-and-kids.mdx";
@@ -98,8 +100,6 @@ import * as pronounsBasic from "./pronouns/pronouns-basic.mdx";
 import * as pronounsMini from "./pronouns/pronouns-mini.mdx";
 // @ts-ignore
 import * as directionalPronouns from "./pronouns/pronouns-directional.mdx";
-// @ts-ignore
-import * as demonstratives from "./pronouns/demonstratives.mdx";
 
 // @ts-ignore
 import * as inflectionIntro from "./inflection/inflection-intro.mdx";
@@ -225,6 +225,10 @@ export const contentTree: (ChapterSection | ChaptersSection)[] =
         {
           "import": determiners,
           "slug": "determiners"
+        },
+        {
+          "import": demonstratives,
+          "slug": "demonstratives"
         }
       ]
     },

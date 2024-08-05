@@ -1,5 +1,5 @@
 ---
-title: Determiners (کوم)
+title: Determiners
 ---
 
 import {
@@ -9,10 +9,44 @@ import {
   InflectionsTable,
 } from "@lingdocs/ps-react";
 import Link from "../../components/Link";
+import nounWithAddons from "./noun-with-addons.excalidraw.svg";
 
-Pashto uses the word <InlinePs opts={opts} ps={{ p: "کوم", f: "koom" }} /> in front of nouns to mean "which" or "some."
+<div className="text-center mb-4">
+  <img
+    src={nounWithAddons}
+    alt="example of a noun in Pashto with various add-ons and a determiner"
+    className="img-fluid"
+  />
+</div>
 
-## With questions
+[Determiners](https://en.wikipedia.org/wiki/Determiner) are words that we can put in front of nous to express which nouns we are talking about. In Pashto we can use these words like these as determiners:
+
+- <InlinePs opts={opts} ps={{ p: "کوم", f: "koom", e: "which / some" }} />
+- <InlinePs opts={opts} ps={{ p: "هر", f: "har", e: "every / each" }} />
+- <InlinePs opts={opts} ps={{ p: "ټول", f: "Tol", e: "all / the whole" }} />
+- <InlinePs opts={opts} ps={{ p: "هیڅ", f: "heets", e: "no / none" }} />
+- <InlinePs opts={opts} ps={{ p: "بل", f: "bul", e: "other" }} />
+- <InlinePs opts={opts} ps={{ p: "داسې", f: "dáase", e: "such, like this" }} />
+- <InlinePs
+    opts={opts}
+    ps={{ p: "دغسې", f: "daghase", e: "just such, just like this" }}
+  />
+- <InlinePs opts={opts} ps={{ p: "هسې", f: "háse", e: "such, like that" }} />
+- <InlinePs
+    opts={opts}
+    ps={{ p: "هغسې", f: "haghase", e: "just such, just like that" }}
+  />
+- <InlinePs opts={opts} ps={{ p: "دا", f: "daa", e: "this / these" }} />
+- <InlinePs opts={opts} ps={{ p: "دغه", f: "dágha", e: "this / these" }} />
+- <InlinePs opts={opts} ps={{ p: "هغه", f: "hágha", e: "that / those" }} />
+
+Notice that there is no definate article "the" in Pashto.
+
+In this chapter we'll look at a bunch of examples of how these determiners are used. The bottom three are special words we'll call <Link to="/nouns/demonstratives/">demonstratives</Link>, and we'll look at those in the <Link to="/nouns/demonstratives/">next chapter</Link>.
+
+## Which / some (کوم - koom)
+
+### With questions
 
 When used with questions, the word <InlinePs opts={opts} ps={{ p: "کوم", f: "koom" }} /> means "which" or "what."
 
@@ -42,7 +76,7 @@ When used with questions, the word <InlinePs opts={opts} ps={{ p: "کوم", f: "
   ]}
 </Examples>
 
-## With Statements
+### With statements
 
 With statements, the word <InlinePs opts={opts} ps={{ p: "کوم", f: "koom" }} /> means "some."
 
@@ -75,9 +109,9 @@ With statements, the word <InlinePs opts={opts} ps={{ p: "کوم", f: "koom" }} 
   ]}
 </Examples>
 
-## Determiners inflect too!
+### With inflection
 
-The word <InlinePs opts={opts} ps={{ p: "کوم", f: "koom" }} /> inflects just like any other <Link to="/inflection/inflection-patterns/#1-basic">pattern #1 word</Link>. It will inflect to agree with the noun it is attached to. In this way, it works just like an adjective.
+The word <InlinePs opts={opts} ps={{ p: "کوم", f: "koom" }} /> inflects just like any other <Link to="/inflection/inflection-patterns/#1-basic">pattern #1 word</Link>. It will inflect to agree with the noun it is attached to, just like we would with an adjective attached to a noun.
 
 <div className="mb-4">
   <InflectionsTable
@@ -149,3 +183,280 @@ The word <InlinePs opts={opts} ps={{ p: "کوم", f: "koom" }} /> inflects just 
     },
   ]}
 </Examples>
+
+## Every (هر - har)
+
+We use the word <InlinePs opts={opts} ps={{ p: "هر", f: "har", e: "every / each" }} /> when we want to talk about every one of some noun.
+
+<Examples opts={opts}>
+  {[
+    {
+      p: "هر ماشوم دلته راشي",
+      f: "har maashóom dálta ráashee",
+      e: "Every child should come here",
+    },
+    {
+      p: "دلته هر کتاب مفت دی",
+      f: "dálta har kitáab mUft day",
+      e: "Every book here is free",
+    },
+    {
+      p: "زما هر ملګری وفادار دی",
+      f: "zmaa har malgúray wafaadáar day",
+      e: "Every one of my friends is faithful",
+    },
+  ]}
+</Examples>
+
+This word also inflects just like any other <Link to="/inflection/inflection-patterns/#1-basic">pattern #1 word</Link>.
+
+<div className="mb-4">
+  <InflectionsTable
+    inf={{
+      masc: [
+        [{ p: "هر", f: "har" }],
+        [{ p: "هر", f: "har" }],
+        [{ p: "هرو", f: "haro" }],
+      ],
+      fem: [
+        [{ p: "هره", f: "hára" }],
+        [{ p: "هرې", f: "háre" }],
+        [{ p: "هرو", f: "háro" }],
+      ],
+    }}
+    textOptions={opts}
+  />
+</div>
+
+<Examples opts={opts}>
+  {[
+    {
+      p: "هره ماشومه دلته راشي",
+      f: "hára maashóoma dálta ráashee",
+      e: "Every (female) child should come here",
+      sub: "Fem. sing. plain",
+    },
+    {
+      p: "هغه هرې ښځې ته دا خبره کوي",
+      f: "haghá háre xúdze ta daa khabura kawee",
+      e: "She says that to every woman",
+      sub: "Fem. sing. inflected - sandwich",
+    },
+    {
+      p: "هرې ښځې ته تکلیف لیدلی دی",
+      f: "háre xúdze takléef leedúlay day",
+      e: "Every woman has seen difficulty",
+      sub: "Fem. sing. inflected - subj. of past tense trans.",
+    },
+    {
+      p: "دا ستونزه په هرو خلکو کې شته",
+      f: "daa stóonza pu háro khálko ke shta",
+      e: "That problem exists in every people.",
+      sub: "Double inflection - 'people' is plural and in a sandwich",
+    },
+  ]}
+</Examples>
+
+Notice that this word is usually used with singular nouns, but it can be used with plural group nouns like <InlinePs opts={opts} ps={{ p: "خلک", f: "khalk", e: "people" }} /> if we want to talk about _each_ group, each of which is plural.
+
+## All / the whole (ټول)
+
+We use the determiner word <InlinePs opts={opts} ps={{ p: "ټول", f: "Tol" }} /> to talk about all or the whole of something. This also inflects just like any other <Link to="/inflection/inflection-patterns/#1-basic">pattern #1 word</Link>.
+
+<div className="mb-4">
+  <InflectionsTable
+    inf={{
+      masc: [
+        [{ p: "ټول", f: "Tol" }],
+        [{ p: "ټول", f: "Tol" }],
+        [{ p: "ټولو", f: "Tolo" }],
+      ],
+      fem: [
+        [{ p: "ټوله", f: "Tóla" }],
+        [{ p: "ټولې", f: "Tóle" }],
+        [{ p: "ټولو", f: "Tólo" }],
+      ],
+    }}
+    textOptions={opts}
+  />
+</div>
+
+<Examples opts={opts}>
+  {[
+    {
+      p: "ټول کلی خبر شو",
+      f: "Tol kúlay khabúr sho",
+      e: "The whole village found out",
+    },
+    {
+      p: "ټوله دنیا تا پېژني",
+      f: "Tóla dUnyáa taa pejzunee",
+      e: "The whole world knows you",
+      sub: "Fem sing. plain",
+    },
+    {
+      p: "ټولې ښځې تا پېژني",
+      f: "Tóle xúdze taa pejzunee",
+      e: "All the women know you",
+      sub: "Fem inflected - plural",
+    },
+    {
+      p: "ټولو ښځو ته ولیدې",
+      f: "Tóle xúdze tu óoleede",
+      e: "All the women saw you",
+      sub: "Double inflection - plural and subj. of past tense trans.",
+    },
+    {
+      p: "دا شعر ټولو ملګرو ته ډالۍ وي",
+      f: "daa shi'r Tólo malgúro ta Daalúy wee",
+      e: "May this poem be dedicated to all friends",
+      sub: "Double inflected - plural and sandwich",
+    },
+  ]}
+</Examples>
+
+## No / none (هیڅ)
+
+We use the word <InlinePs opts={opts} ps={{ p: "هیڅ", f: "heets" }} /> or <InlinePs opts={opts} ps={{ p: "هېڅ", f: "hets" }} /> with **negative phrases** to say "no / none" of something. It's kind of like an emphasizing double negative.
+
+<Examples opts={opts}>
+  {[
+    {
+      p: "دلته هیڅ روغتون نشته",
+      f: "dálta heets roghtóon núshta",
+      e: "There's no hosptial here",
+    },
+    {
+      p: "زه هیڅ تعلیم نه لرم",
+      f: "zu heets ta'léem nu larúm",
+      e: "I don't have any education",
+    },
+    {
+      p: "له دغه سړي نه هیځ خیر نه راځي",
+      f: "la dághu saRée na heets khayr nu raadzee",
+      e: "No good comes from that man",
+    },
+    {
+      p: "هیڅ خبره نشته",
+      f: "heets khabúra nishta",
+      e: "It's nothing, no problem",
+    },
+  ]}
+</Examples>
+
+The word <InlinePs opts={opts} ps={{ p: "هیڅ", f: "heets" }} /> does _not_ inflect.
+
+## Other / another (بل)
+
+We use the determiner word <InlinePs opts={opts} ps={{ p: "بل", f: "bul" }} /> to talk about the 'other' or 'another' something or someone. This word does inflect.
+
+<div className="mb-4">
+  <InflectionsTable
+    inf={{
+      masc: [
+        [{ p: "بل", f: "bul" }],
+        [{ p: "بل", f: "bul" }],
+        [{ p: "بلو", f: "búlo" }],
+      ],
+      fem: [
+        [{ p: "بله", f: "búla" }],
+        [{ p: "بلې", f: "búle" }],
+        [{ p: "بلو", f: "búlo" }],
+      ],
+    }}
+    textOptions={opts}
+  />
+</div>
+
+<Examples opts={opts}>
+  {[
+    {
+      p: "ستا بل کور چېرته دی؟",
+      f: "staa bul kor cherta day?",
+      e: "Where's your other house",
+    },
+    {
+      p: "بلې ښځې سره خبرې کوي",
+      f: "búle xúdze sara khabúre kawee",
+      e: "She's talking with another woman",
+    },
+    {
+      p: "بلې خوا ته ورشه",
+      f: "bule khwaa ta wársha",
+      e: "Go to the other side",
+    },
+    {
+      p: "بلې ښځې زه ولیدلم",
+      f: "búle xudze ze óoleedulum",
+      e: "The other woman saw me",
+    },
+  ]}
+</Examples>
+
+## Like this / like that (داسې, دغسې, هسې, هغسې)
+
+The words <InlinePs opts={opts} ps={{ p: "داسې", f: "daase" }} /> and <InlinePs opts={opts} ps={{ p: "هسې", f: "hase" }} /> can be used to mean "such" or "like this" and "like that," respectively.
+
+<Examples opts={opts}>
+  {[
+    {
+      p: "زه داسې کتاب غواړم",
+      f: "zu dáase kitáab ghwáaRum",
+      e: "I want a book like that",
+    },
+    {
+      p: "زه داسې خلکو سره خبرې نه کوم",
+      f: "zu daase khalko sara khabúre nu kawum",
+      e: "I don't talk with such people",
+    },
+    {
+      p: "هسې سړی نه دی",
+      f: "hase saRay nu day",
+      e: "He's not that kind of guy",
+    },
+  ]}
+</Examples>
+
+**Note**: the word <InlinePs opts={opts} ps={{ p: "هسې", f: "háse" }} /> is also very, very often used as an adverb meaning "just," "for no reason," or "in vain."
+
+For an extra degree of emphasis or specificity you can use the words <InlinePs opts={opts} ps={{ p: "دغسې", f: "daghase", e: "just like this" }} /> or <InlinePs opts={opts} ps={{ p: "هغسې", f: "hagháse", e: "just like that" }} />
+
+<Examples opts={opts}>
+  {[
+    {
+      p: "زه دغسې کتاب غواړم",
+      f: "zu daghase kitáab ghwáaRum",
+      e: "I want a book just like that",
+    },
+    {
+      p: "هغسې ماشومه وه",
+      f: "haghase maashóoma wa",
+      e: "She was a child just like that",
+    },
+  ]}
+</Examples>
+
+## Mixing and matching determiners
+
+Many of these determiners can be used together, and in different orders.
+
+<Examples opts={opts}>
+  {[
+    {
+      p: "زه به دا شی کوم داسې ملګري ته ورکړم",
+      f: "zu ba daa shay koom daase malgúray ta wárkRum",
+      e: "I will give this thing to some such friend",
+    },
+    {
+      p: "ما هیڅ داسې کوم شی نه دی لیکلی",
+      f: "maa heets dáase koom shay nu day leekúlay",
+      e: "I didn't write any such thing like that",
+    },
+  ]}
+</Examples>
+
+## Other notes
+
+Usually these determiners go _before_ the quantifiers of a noun, but some of these determiners like <InlinePs opts={opts} ps={{ p: "داسې", f: "dáase" }} />, and <InlinePs opts={opts} ps={{ p: "دغسې", f: "dagháse" }} /> can go before or after the quantifier.
+
+Also note a lot of these can also function as adverbs, which function _differently_ than determiners.
