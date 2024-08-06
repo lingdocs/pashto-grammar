@@ -1597,10 +1597,10 @@
     rambda "^6.7.0"
     react-select "^5.2.2"
 
-"@lingdocs/ps-react@^7.3.2":
-  version "7.3.2"
-  resolved "https://npm.lingdocs.com/@lingdocs/ps-react/-/ps-react-7.3.2.tgz#89e8bea335751a6ca804b73538b288eccdbddc95"
-  integrity sha512-/cBZQFDdQH3l+naXWKtLx4fMreTYqFrXSvuivplbjbY1qzDaSD1Fa3AhY1bhELY7m2Ofsj3JnU2GmA+88NN+lA==
+"@lingdocs/ps-react@^7.4.1":
+  version "7.4.1"
+  resolved "https://npm.lingdocs.com/@lingdocs/ps-react/-/ps-react-7.4.1.tgz#6aff0ed4fdfcbba5904ba4242f1802fdd914d65b"
+  integrity sha512-vqLNcqlt3yqBPAhjpLMMqzBoaJZY64v1xXt8hpNgNI6NoPXGwuhqBBwR+H7k3iWbBiYGk1dizkzO7q8BLvw1kg==
   dependencies:
     "@formkit/auto-animate" "^1.0.0-beta.3"
     classnames "^2.2.6"
@@ -1609,6 +1609,7 @@
     lz-string "^1.4.4"
     pbf "^3.2.1"
     rambda "^7.3.0"
+    react-error-boundary "^4.0.13"
     react-select "^5.4.0"
 
 "@mdx-js/mdx@^2.0.0":
@@ -4775,6 +4776,13 @@ react-dom@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+react-error-boundary@^4.0.13:
+  version "4.0.13"
+  resolved "https://registry.yarnpkg.com/react-error-boundary/-/react-error-boundary-4.0.13.tgz#80386b7b27b1131c5fbb7368b8c0d983354c7947"
+  integrity sha512-b6PwbdSv8XeOSYvjt8LpgpKrZ0yGdtZokYwkwV2wlcZbxgopHX/hgPl5VgpnoVOWd868n1hktM8Qm4b+02MiLQ==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
 
 react-fast-compare@^3.0.1:
   version "3.2.0"
