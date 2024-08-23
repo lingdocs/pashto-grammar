@@ -170,9 +170,9 @@ And some add an <InlinePs opts={opts} ps={{ p: "ین", f: "éen" }} /> on the en
   ]}
 </ArabicPluralTable>
 
-### Arabic Plurals are Always Masculine
+### Arabic Plurals are Often Masculine
 
-Once a word is put into it's special Arabic plural form, it's always a _masculine plural_ (based on the consonant ending) even if the singular version of the word was feminine.
+Once a word is put into it's special Arabic plural form, it often becomes a _masculine plural_ (based on the consonant ending) even if the singular version of the word was feminine. If the Arabic plural form ends in a feminine sounding ending, though, it still remains feminine.
 
 <ArabicPluralTable>
   {[
@@ -232,6 +232,22 @@ Once a word is put into it's special Arabic plural form, it's always a _masculin
         e: "tribes (m. pl.)",
         sub: "masculine",
         gender: "m",
+      },
+    ],
+    [
+      {
+        p: "منبع",
+        f: "manbá",
+        e: "source (f.)",
+        sub: "feminine",
+        gender: "f",
+      },
+      {
+        p: "منابع",
+        f: "manaabí",
+        e: "sources (f. pl.)",
+        sub: "feminine",
+        gender: "f",
       },
     ],
   ]}
