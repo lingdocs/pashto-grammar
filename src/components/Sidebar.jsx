@@ -6,7 +6,7 @@
  *
  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import SmoothCollapse from "react-smooth-collapse";
@@ -19,17 +19,31 @@ function Sidebar({ content, navOpen, setNavOpen, pathname }) {
     ));
     const openSectionHeading = openSection ? openSection.heading : "";
     const [sectionOpen, setSectionOpen] = useState(openSectionHeading);
+    const [sidebarWidth, setSidebarWidth] = useState(200);
+    useEffect(() => {
+        const s = document.getElementById("sidebar");
+        if (s) {
+            setSidebarWidth(s.offsetWidth);
+        }
+        window.addEventListener("resize", () => {
+            const s = document.getElementById("sidebar");
+            if (s) {
+                setSidebarWidth(s.offsetWidth);
+            }
+        });
+    }, []);
     function handleHeadingClick(h) {
         setSectionOpen(h === sectionOpen ? "" : h);
     }
     return (
         <>
             <aside
+                id="sidebar"
                 className={classNames(
                 "side-nav col-3 col-lg-2 p-0 bg-light",
                 { "side-nav-closed": !navOpen }
             )}>
-                <nav className="sticky-on-big flex-column align-items-start">
+                <nav className="sticky-on-big flex-column align-items-start" style={{ width: `${sidebarWidth}px` }}>
                         <Link to="/table-of-contents" style={{ textDecoration: "none", color: "inherit" }} onClick={() => setNavOpen(false)}>
                             <div className={classNames(
                                 "side-nav-item",
