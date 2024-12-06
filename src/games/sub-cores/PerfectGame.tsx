@@ -270,8 +270,8 @@ const VerbGame: GameSubCore<PerfectGameLevel> = ({
                 className="form-check-label text-muted"
                 htmlFor="baCheckbox"
               >
-                with <InlinePs opts={opts}>{grammarUnits.baParticle}</InlinePs>{" "}
-                in the <span style={{ color: kidsColor }}>kids' section</span>
+                with <InlinePs opts={opts} ps={grammarUnits.baParticle} /> in
+                the <span style={{ color: kidsColor }}>kids' section</span>
               </label>
             </div>
           )}
@@ -352,7 +352,7 @@ function DisplayCorrectAnswer({
       </div>
       <div>
         <strong>{verbHasBa(question.rendered) ? "with" : "without"}</strong> a{" "}
-        <InlinePs opts={opts}>{grammarUnits.baParticle}</InlinePs> in the kids'
+        <InlinePs opts={opts} ps={grammarUnits.baParticle} /> in the kids'
         section.
       </div>
     </div>

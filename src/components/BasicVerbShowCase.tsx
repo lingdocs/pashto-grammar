@@ -49,12 +49,13 @@ function BasicVerbShowCase({
       render={(item) => {
         return {
           title: (
-            <InlinePs opts={opts}>
-              {{
+            <InlinePs
+              opts={opts}
+              ps={{
                 ...removeFVarients(item.entry),
                 e: undefined,
               }}
-            </InlinePs>
+            />
           ),
           body: (
             <BasicVerbChart

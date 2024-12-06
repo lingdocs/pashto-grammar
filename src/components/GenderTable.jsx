@@ -20,10 +20,10 @@ export default function GenderTable({ rows }) {
                         return <td key={`row-${i}-${gender}`} style={{ background: genderColors[gender === "masc" ? "m" : "f"] }}>
                             {item.ending && <div>
                                 {typeof item.ending === "string" ? item.ending
-                                : <InlinePs opts={opts}>{item.ending}</InlinePs>}
+                                : <InlinePs opts={opts} ps={item.ending} />}
                             </div>}
                             <div>
-                                {item.ending ? "eg. " : ""}<InlinePs opts={opts}>{item.ex}</InlinePs>
+                                {item.ending ? "eg. " : ""}<InlinePs opts={opts} ps={item.ex} />
                             </div>
                         </td>
                     })}
