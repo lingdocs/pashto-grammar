@@ -45,7 +45,7 @@ export const nouns = wordQuery("nouns", [
   "gaawanDay",
   "sakhtee",
   "dostee",
-  "aRtiyaa",
+  "aRtyaa",
   "DaakTar",
   "laas",
   "waadu",
