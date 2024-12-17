@@ -12,32 +12,17 @@ import mascEndingChart from "./masc-plural-ending-decision-chart.excalidraw.svg"
 import femEndingChart from "./fem-plural-ending-decision-chart.excalidraw.svg";
 import PluralTable from "./PluralTable";
 import VideoPlayer from "../../components/VideoPlayer";
-import { pluralNounGame } from "../../games/games";
+import {
+  pluralNounGame,
+} from "../../games/games";
 import GameDisplay from "../../games/GameDisplay";
 
-export const Pattern1 = () => (
-  <Link to="/nouns/nouns-unisex/#1-basic">Pattern #1</Link>
-);
-export const Pattern2 = () => (
-  <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-%DB%8C---ay">
-    Pattern #2
-  </Link>
-);
-export const Pattern3 = () => (
-  <Link to="/inflection/inflection-patterns/#3-words-ending-in-a-stressed-inlineps-optsopts-ps-p-ی-f-áy--">
-    Pattern #3
-  </Link>
-);
-export const Pattern4 = () => (
-  <Link to="/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern">
-    Pattern #4
-  </Link>
-);
-export const Pattern5 = () => (
-  <Link to="/inflection/inflection-patterns/#5-shorter-words-that-squish">
-    pattern #5
-  </Link>
-);
+export const Pattern1 = () => <Link to="/nouns/nouns-unisex/#1-basic">Pattern #1</Link>;
+export const Pattern2 = () => <Link to="/inflection/inflection-patterns/#2-words-ending-in-an-unstressed-%DB%8C---ay">Pattern #2</Link>;
+export const Pattern3 = () => <Link to="/inflection/inflection-patterns/#3-words-ending-in-a-stressed-inlineps-optsopts-ps-p-ی-f-áy--">Pattern #3</Link>
+export const Pattern4 = () => <Link to="/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern">Pattern #4</Link>
+export const Pattern5 = () => <Link to="/inflection/inflection-patterns/#5-shorter-words-that-squish">pattern #5</Link>;
+
 
 <VideoPlayer src="https://www.youtube.com/watch?v=4ExCIcMoeTc" />
 
@@ -59,7 +44,7 @@ If a word is plural and also needs to be inflected for some other reason, we use
 
 <PluralTable inflection>
   {[
-    [
+      [
       {
         p: "ښوونکی",
         f: "xUwóonkay",
@@ -128,12 +113,12 @@ Notice that <Pattern1 /> masculine nouns don't change for the first inflection, 
       { p: "ښوونکې", f: "xUwóonke", e: "teachers (f.)" },
       // { p: "ښوونکیو", f: "xUwóonkiyo", e: "teachers (f.)" },
     ],
-    [
+        [
       {
         p: "ګاونډۍ",
         f: "gaawanDúy",
         e: "neighbor (f.)",
-        sub: <Pattern3 />,
+        sub: <Pattern3 />
       },
       { p: "ګاونډۍ", f: "gaawanDúy", e: "neighbors (f.)" },
       // { p: "ګاونډیو", f: "gaawanDúyo", e: "neighbors (f.)" },
@@ -148,7 +133,7 @@ Notice that <Pattern1 /> masculine nouns don't change for the first inflection, 
       { p: "پښتنې", f: "puxtané", e: "Pashtuns (f.)" },
       // { p: "پښتنو", f: "puxtanó", e: "Pashtuns (f.)" },
     ],
-    [
+        [
       {
         p: "غله",
         f: "ghla",
@@ -165,8 +150,7 @@ Notice that <Pattern1 /> masculine nouns don't change for the first inflection, 
         e: "difficulty",
         sub: (
           <Link to="inflection/feminine-inflection/#feminine-nouns-ending-in-inlineps-optsopts-ps-p-ي-f-ee--">
-            inan. fem. ending in{" "}
-            <InlinePs opts={opts} ps={{ p: "ي", f: "ee" }} />
+            inan. fem. ending in <InlinePs opts={opts}>{{ p: "ي", f: "ee" }}</InlinePs>
           </Link>
         ),
       },
@@ -234,11 +218,9 @@ This ending is _usually_ used with **inanimate** things (non-living things, ie. 
     [
       { p: "واده", f: "waadú", e: "wedding" },
       {
-        p: "وادونه",
-        f: "waadóona",
-        e: "weddings",
+        p: "وادونه", f: "waadóona", e: "weddings",
       },
-    ],
+    ]
   ]}
 </PluralTable>
 
@@ -246,7 +228,7 @@ This ending is _usually_ used with **inanimate** things (non-living things, ie. 
 
 ##### With Pattern #1 Animate Nouns
 
-This ending is also used with <Pattern1 /> nouns.
+This ending is also used with <Pattern1 /> nouns. 
 
 This is _usually_ only used with animate nouns (people or animals).
 
@@ -292,8 +274,8 @@ In this case, the <InlinePs opts={opts} ps={{ p: "ی", f: "áy" }} /> gets squis
       { p: "زلمیان", f: "zalmiyáan", e: "young lads" },
     ],
     [
-      { p: "پاکستانی", f: "paakistaanáy", e: "a Pakistani (man)" },
-      { p: "پاکستانیان", f: "paakistaaniyáan", e: "Pakistanis" },
+      { p: "پاکستانی", f: "paakistaanáy", e: "a Pakistani (man)"},
+      { p: "پاکستانیان", f: "paakistaaniyáan", e: "Pakistanis"},
     ],
   ]}
 </PluralTable>
@@ -308,15 +290,15 @@ Note that with these kinds of animate nouns we have a choice to either use the p
     ],
     [
       { p: "", f: "", e: "" },
-      { p: "زمري", f: "zmarée", e: "lions", sub: "inflected" },
+      { p: "زمري", f: "zmarée", e: "lions", sub: "inflected"}
     ],
     [
       { p: "سپی", f: "spáy", e: "dog" },
-      { p: "سپیان", f: "spiyáan", e: "dogs", sub: "w/ plural ending" },
+      { p: "سپیان", f: "spiyáan", e: "dogs", sub: "w/ plural ending"}
     ],
     [
       { p: "", f: "", e: "" },
-      { p: "سپي", f: "spée", e: "dogs", sub: "inflected" },
+      { p: "سپي", f: "spée", e: "dogs", sub: "inflected"}
     ],
     [
       { p: "بچی", f: "bacháy", e: "child" },
@@ -343,7 +325,7 @@ If the long vowel is an <InlinePs opts={opts} ps={{ p: "ا", f: "aa" }} /> or <I
     ],
     [
       { p: "باڼو", f: "baaNoo", e: "eyelash" },
-      { p: "باڼوګان", f: "baaNoogáan", e: "eyelashes" },
+      { p: "باڼوګان", f: "baaNoogáan", e: "eyelashes"}
     ],
     [
       { p: "کاکا", f: "kaakaa", e: "paternal uncle" },
@@ -363,18 +345,14 @@ If long vowel is a <InlinePs opts={opts} ps={{ p: "ي", f: "ee" }} />, then the 
     [
       { p: "درزي", f: "darzée", e: "tailor" },
       {
-        p: "دریان",
-        f: "darziyáan",
-        e: "tailors",
+        p: "دریان", f: "darziyáan", e: "tailors",
       },
     ],
     [
       { p: "یاغي", f: "yaaghée", e: "rebel" },
       {
-        p: "یاغیان",
-        f: "yaaghiyáan",
-        e: "rebels",
-      },
+        p: "یاغیان", f: "yaaghiyáan", e: "rebels",
+      }
     ],
   ]}
 </PluralTable>
@@ -396,7 +374,7 @@ If long vowel is a <InlinePs opts={opts} ps={{ p: "ي", f: "ee" }} />, then the 
 
 ##### With Pattern #1 Animate Nouns
 
-Just like with masculine #1 animate nouns, we can also add a <InlinePs opts={opts} ps={{ p: "انې", f: "áane" }} /> ending to feminine <Pattern1 /> nouns. Notice that this is the same as the <InlinePs opts={opts} ps={{ p: "ان", f: "áan" }} /> ending, but with an added <InlinePs opts={opts} ps={{ p: "ې", f: "e" }} /> on the end to signify femininity.
+Just like with masculine #1 animate nouns, we can also add a <InlinePs opts={opts} ps={{ p: "انې", f: "áane" }} /> ending to feminine <Pattern1 /> nouns. Notice that this is the same as the <InlinePs opts={opts} ps={{ p: "ان", f: "áan" }} /> ending, but with an added  <InlinePs opts={opts} ps={{ p: "ې", f: "e" }} /> on the end to signify femininity.
 
 <PluralTable>
   {[
@@ -410,8 +388,8 @@ Just like with masculine #1 animate nouns, we can also add a <InlinePs opts={opt
     ],
     [
       { p: "نرسه", f: "núrsa", e: "nurse (f.)" },
-      { p: "نرسانې", f: "nursáane", e: "nurses (f.)" },
-    ],
+      { p: "نرسانې", f: "nursáane", e: "nurses (f.)" }, 
+    ]
   ]}
 </PluralTable>
 
@@ -421,12 +399,7 @@ Notice that with these types of nouns we have the option of either using these p
   {[
     [
       { p: "ډاکټره", f: "DakTára", e: "doctor (f.)" },
-      {
-        p: "ډاکټرانې",
-        f: "DakTaráane",
-        e: "doctors (f.)",
-        sub: "w/ plural ending",
-      },
+      { p: "ډاکټرانې", f: "DakTaráane", e: "doctors (f.)", sub: "w/ plural ending" },
     ],
     [
       { p: "", f: "", e: "" },
@@ -450,19 +423,15 @@ In the same way we added the <InlinePs opts={opts} ps={{ p: "ان", f: "áan" }}
 <PluralTable>
   {[
     [
-      { p: "پاکستانۍ", f: "paakistaanúy", e: "a Pakistani (f.)" },
-      { p: "پاکستانیانې", f: "paakistaaniyáane", e: "Pakistanis (f.)" },
+      { p: "پاکستانۍ", f: "paakistaanúy", e: "a Pakistani (f.)"},
+      { p: "پاکستانیانې", f: "paakistaaniyáane", e: "Pakistanis (f.)"},
     ],
     [
       {
-        p: "بچۍ",
-        f: "bachúy",
-        e: "child (f.)",
+        p: "بچۍ", f: "bachúy", e: "child (f.)",
       },
       {
-        p: "بچیانې",
-        f: "bachiyáane",
-        e: "children (f.)",
+        p: "بچیانې", f: "bachiyáane", e: "children (f.)",
       },
     ],
   ]}
@@ -474,26 +443,18 @@ Again, with this form we have the option to use either the plural endings or jus
   {[
     [
       {
-        p: "بچۍ",
-        f: "bachúy",
-        e: "child (f.)",
+        p: "بچۍ", f: "bachúy", e: "child (f.)",
       },
       {
-        p: "بچیانې",
-        f: "bachiyáane",
-        e: "children (f.)",
-        sub: "w/ plural ending",
+        p: "بچیانې", f: "bachiyáane", e: "children (f.)", sub: "w/ plural ending"
       },
     ],
     [
       { p: "", f: "", e: "" },
       {
-        p: "بچۍ",
-        f: "bachúy",
-        e: "children (f.)",
-        sub: "inflected",
-      },
-    ],
+        p: "بچۍ", f: "bachúy", e: "children (f.)", sub: "inflected"
+      }
+    ]
   ]}
 </PluralTable>
 
@@ -516,11 +477,9 @@ If a noun ends ends in a long vowel <InlinePs opts={opts} ps={{ p: "ا", f: "aa"
     [
       { p: "اړتیا", f: "aRtiyáa", e: "need" },
       {
-        p: "اړتیاوې",
-        f: "aRtiyáawe",
-        e: "needs",
+        p: "اړتیاوې", f: "aRtiyáawe", e: "needs",
       },
-    ],
+    ]
   ]}
 </PluralTable>
 
@@ -543,11 +502,9 @@ If a noun ends ends in a long vowel <InlinePs opts={opts} ps={{ p: "ا", f: "aa"
     [
       { p: "اړتیا", f: "aRtiyáa", e: "need" },
       {
-        p: "اړتیاوې",
-        f: "aRtiyáawe",
-        e: "needs",
+        p: "اړتیاوې", f: "aRtiyáawe", e: "needs",
       },
-    ],
+    ]
   ]}
 </PluralTable>
 
@@ -568,11 +525,9 @@ Often instead of the <InlinePs opts={opts} ps={{ p: "وې", f: "وې" }} /> endi
     [
       { p: "یې", f: "ye", e: "the letter ی" },
       {
-        p: "یې ګانې",
-        f: "ye gáane",
-        e: "the ی letters",
+        p: "یې ګانې", f: "ye gáane", e: "the ی letters",
       },
-    ],
+    ]
   ]}
 </PluralTable>
 
@@ -588,22 +543,14 @@ The <InlinePs opts={opts} ps={{ p: "انې", f: "áane" }} /> can be added to fe
     ],
     [
       { p: "سختي", f: "sakhtée", e: "difficulty" },
-      {
-        p: "سختیانې",
-        f: "sakhtiyáane",
-        e: "difficulties",
-        sub: "w/ plural ending",
-      },
+      { p: "سختیانې", f: "sakhtiyáane", e: "difficulties", sub: "w/ plural ending" },
     ],
     [
       { p: "", f: "", e: "" },
       {
-        p: "سختۍ",
-        f: "sakhtúy",
-        e: "difficulties",
-        sub: "inflected",
+        p: "سختۍ", f: "sakhtúy", e: "difficulties", sub: "inflected"
       },
-    ],
+    ]
   ]}
 </PluralTable>
 
@@ -619,3 +566,4 @@ The <InlinePs opts={opts} ps={{ p: "انې", f: "áane" }} /> can be added to fe
 </div>
 
 <GameDisplay record={pluralNounGame} />
+
