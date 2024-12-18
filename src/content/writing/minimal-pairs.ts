@@ -2084,7 +2084,7 @@ export default [
             i: 235,
             g: "ajRaa,ijRaa",
           },
-          f: "ajRáa, ijRáa",
+          f: "ijRáa",
         },
       ],
       [
