@@ -1,0 +1,75 @@
+---
+title: Minimal Pairs 👂
+---
+
+import {
+  defaultTextOptions as opts,
+  Examples,
+  InlinePs,
+} from "@lingdocs/ps-react";
+import psmd from "../../lib/psmd";
+import Link from "../../components/Link";
+import MinimalPairs from "./MinimalPairs.tsx";
+import minimalPairs from "./minimal-pairs.ts";
+
+There are certain sounds in Pashto that are quite difficult for some learners to distinguish.
+
+For example, English speakers have a very hard time hearing the difference between the dental <InlinePs opts={opts} ps={{ p: "ت", f: "t" }}/> and retroflex <InlinePs opts={opts} ps={{ p: "ټ", f: "T" }}/>. Some of the vowels like <InlinePs opts={opts} ps={{ p: "ي", f: "ee" }}/> and <InlinePs opts={opts} ps={{ p: "ې", f: "e" }}/> can also be very tricky to distinguish.
+
+Here are some examples of words that vary by these different sounds. Listen to them to train your ear to the difference, and then use the games to see if you can hear the difference yourself. (Games coming soon! 🚧)
+
+## ت - t and ټ - T
+
+<MinimalPairs
+  opts={opts}
+  section={minimalPairs.find((x) => x.title === "t and T")}
+/>
+
+## د - d and ډ - D
+
+<MinimalPairs
+  opts={opts}
+  section={minimalPairs.find((x) => x.title === "d and D")}
+/>
+
+## ر - r and ړ - R
+
+<MinimalPairs
+  opts={opts}
+  section={minimalPairs.find((x) => x.title === "r and R")}
+/>
+
+## ن - n and ڼ - N
+
+<MinimalPairs
+  opts={opts}
+  section={minimalPairs.find((x) => x.title === "n and N")}
+/>
+
+## ه - a and ا - aa
+
+<MinimalPairs
+  opts={opts}
+  section={minimalPairs.find((x) => x.title === "a and aa")}
+/>
+
+## ی - ay and ۍ - uy
+
+<MinimalPairs
+  opts={opts}
+  section={minimalPairs.find((x) => x.title === "ay and uy")}
+/>
+
+## ی - ay and ې - e
+
+<MinimalPairs
+  opts={opts}
+  section={minimalPairs.find((x) => x.title === "ay and e")}
+/>
+
+## ي - ee and ې - e
+
+<MinimalPairs
+  opts={opts}
+  section={minimalPairs.find((x) => x.title === "ee and e")}
+/>

@@ -119,6 +119,8 @@ import * as diacritics from "./writing/diacritics.mdx";
 import * as theFiveYeys from "./writing/the-five-yeys.mdx";
 // @ts-ignore
 import * as typingIssues from "./writing/typing-issues.mdx";
+// @ts-ignore
+import * as minimalPairs from "./writing/minimal-pairs.mdx";
 
 // @ts-ignore
 import * as unrealConditionals from "./recipes/unreal-conditionals.mdx";
@@ -419,6 +421,10 @@ export const contentTree: (ChapterSection | ChaptersSection)[] =
         {
           "import": typingIssues,
           "slug": "typing-issues"
+        },
+        {
+          "import": minimalPairs,
+          "slug": "minimal-pairs"
         }
       ]
     },
