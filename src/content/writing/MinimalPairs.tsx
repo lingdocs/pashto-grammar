@@ -20,10 +20,14 @@ export default function MinimalPairs({
         {opened ? "▼" : "▶"} View Pairs
       </h5>
       <SmoothCollapse expanded={opened}>
-        {section.pairs.map((pairs) => (
-          <div className="d-flex flex-row" style={{ gap: "1rem" }}>
-            {pairs.map((e) => (
-              <PairItem entry={e} opts={opts} />
+        {section.pairs.map((pairs, i) => (
+          <div className="row mb-3" key={`${section.title}-${i}`}>
+            {pairs.map((e, j) => (
+              <PairItem
+                entry={e}
+                opts={opts}
+                key={`${section.title}-${i}-${j}`}
+              />
             ))}
           </div>
         ))}
@@ -40,7 +44,7 @@ function PairItem({
   opts: T.TextOptions;
 }) {
   return (
-    <div>
+    <div className="col-sm">
       <div className="mb-1">
         <InlinePs
           opts={opts}
