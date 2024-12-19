@@ -11643,7 +11643,7 @@ const minimalPairs: {
             i: 9803,
             g: "skhay",
           },
-          f: "sakhúy",
+          f: "sakháy",
         },
         {
           entry: {
