@@ -8951,36 +8951,6 @@ const minimalPairs: {
       [
         {
           entry: {
-            ts: 1527819708,
-            p: "کریابول",
-            f: "karyaabawúl",
-            e: "to neglect, to fail to use, to detain, to stop, to put in a difficult situation",
-            r: 3,
-            c: "v. stat. comp. trans.",
-            l: 1527819707,
-            a: 2,
-            i: 12898,
-            g: "karyaabawul",
-          },
-          f: "karyaabawúl",
-        },
-        {
-          entry: {
-            ts: 1527813106,
-            p: "کاریابول",
-            f: "kaaryaabawúl",
-            e: "to neglect, delay, obstruct, to put in a difficult situation",
-            r: 2,
-            a: 2,
-            i: 12598,
-            g: "kaaryaabawul",
-          },
-          f: "kaaryaabawúl",
-        },
-      ],
-      [
-        {
-          entry: {
             ts: 1527822283,
             p: "کل",
             f: "kal",
