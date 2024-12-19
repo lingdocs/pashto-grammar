@@ -24,7 +24,6 @@ export function makePool<P>(poolBase: P[], removalLaxity = 0): () => P {
       return pick;
     }
     const index = pool.findIndex((v) => equal(v, pick));
-    console.log({ pool });
     if (index === -1) throw new Error("could not find pick from pool");
     pool.splice(index, 1);
     // If the pool is empty, reset it

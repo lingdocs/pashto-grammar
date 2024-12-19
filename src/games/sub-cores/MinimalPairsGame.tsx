@@ -36,7 +36,6 @@ export default function MinimalPairsGame({
     minimalPairs.find((x) => x.title === level)?.pairs || []
   );
   function getQuestion(): Question {
-    console.log("getting question");
     const pair = getPair();
     const selected: 0 | 1 = randFromArray([0, 1]);
     return { pair, selected };

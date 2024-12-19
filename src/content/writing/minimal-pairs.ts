@@ -12475,36 +12475,6 @@ const minimalPairs: {
       [
         {
           entry: {
-            ts: 1527816181,
-            p: "قی",
-            f: "qay",
-            e: "vomit, nausea (Arabic)",
-            r: 4,
-            c: "n. m.",
-            a: 3,
-            i: 12516,
-            g: "kay",
-          },
-          f: "qay",
-        },
-        {
-          entry: {
-            ts: 1527812753,
-            p: "کې",
-            f: "ke",
-            e: "in, at په ... کې, pa … ke",
-            r: 1,
-            c: "adpos.",
-            a: 3,
-            i: 13538,
-            g: "ke",
-          },
-          f: "ke",
-        },
-      ],
-      [
-        {
-          entry: {
             ts: 1708000020265,
             p: "کیک",
             f: "kayk",

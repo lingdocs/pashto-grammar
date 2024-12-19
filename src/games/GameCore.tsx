@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, memo } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import Reward, { RewardElement } from "react-rewards";
 import Link from "../components/Link";
@@ -25,7 +25,7 @@ type GameState<Question> = (
     }
 ) & {
   numberComplete: number;
-  current: Question;
+  current: Question | undefined;
   timerKey: number;
   strikes: number;
   justStruck: boolean;
@@ -74,10 +74,13 @@ function GameCore<Question>({
   timeLimit: number;
   amount: number;
 }) {
+  // TODO STOP THE DOUBLE POOL DIPPING !!!
+  // POSSIBLE SOLUTION - allow question to be undefined... then use useEffect
+  // to grab the first question
   const initialState: GameState<Question> = {
     mode: "intro",
     numberComplete: 0,
-    current: getQuestion(),
+    current: undefined,
     timerKey: 0,
     strikes: 0,
     justStruck: false,
@@ -91,6 +94,10 @@ function GameCore<Question>({
     useState<GameState<Question>>(initialState);
   useEffect(() => {
     parent.current && autoAnimate(parent.current);
+    setStateDangerous((s) => ({
+      ...s,
+      current: getQuestion(),
+    }));
   }, [parent]);
 
   const gameReducer = (
@@ -173,6 +180,7 @@ function GameCore<Question>({
     if (action.type === "quit") {
       return {
         ...initialState,
+        current: getQuestion(),
         timerKey: gs.timerKey + 1,
       };
     }
@@ -372,7 +380,7 @@ function GameCore<Question>({
                 <ActionButtons />
               </div>
             )}
-            {gameRunning && (
+            {gameRunning && state.current && (
               <Display
                 question={state.current}
                 callback={(correct) =>
@@ -394,7 +402,7 @@ function GameCore<Question>({
                   </button>
                 </div>
               )}
-            {state.showAnswer && state.mode === "practice" && (
+            {state.showAnswer && state.mode === "practice" && state.current && (
               <div className="my-2">
                 <div className="my-1">
                   <DisplayCorrectAnswer question={state.current} />
@@ -423,24 +431,25 @@ function GameCore<Question>({
                 </button>
               </div>
             )}
-            {(state.mode === "timeout" || state.mode === "fail") && (
-              <div className="mb-4">
-                <h4 className="mt-4">
-                  {failMessage({
-                    numberComplete: state.numberComplete,
-                    amount,
-                    type: state.mode,
-                  })}
-                </h4>
-                <div>The correct answer was:</div>
-                <div className="my-2">
-                  <DisplayCorrectAnswer question={state.current} />
+            {(state.mode === "timeout" || state.mode === "fail") &&
+              state.current && (
+                <div className="mb-4">
+                  <h4 className="mt-4">
+                    {failMessage({
+                      numberComplete: state.numberComplete,
+                      amount,
+                      type: state.mode,
+                    })}
+                  </h4>
+                  <div>The correct answer was:</div>
+                  <div className="my-2">
+                    <DisplayCorrectAnswer question={state.current} />
+                  </div>
+                  <div className="my-3">
+                    <ActionButtons />
+                  </div>
                 </div>
-                <div className="my-3">
-                  <ActionButtons />
-                </div>
-              </div>
-            )}
+              )}
           </div>
         </Reward>
       </div>
