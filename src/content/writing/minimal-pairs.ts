@@ -1,4 +1,13 @@
-export default [
+import { Types as T } from "@lingdocs/ps-react";
+import { MinimalPairsSection } from "./minimal-pairs-type";
+
+const minimalPairs: {
+  title: MinimalPairsSection;
+  pairs: [
+    { f: string; entry: T.DictionaryEntry },
+    { f: string; entry: T.DictionaryEntry }
+  ][];
+}[] = [
   {
     title: "t and T",
     pairs: [
@@ -60,7 +69,7 @@ export default [
             i: 2267,
             g: "boT,booT",
           },
-          f: "boT, booT",
+          f: "booT",
         },
       ],
       [
@@ -136,7 +145,7 @@ export default [
             i: 3979,
             g: "tapos,tupoos,tapoos",
           },
-          f: "tapós, tupóos, tapóos",
+          f: "tapóos",
         },
         {
           entry: {
@@ -388,7 +397,7 @@ export default [
             i: 5165,
             g: "Tang,Tung",
           },
-          f: "Tang, Tung",
+          f: "Tang",
         },
       ],
       [
@@ -527,7 +536,7 @@ export default [
             i: 4901,
             g: "twalawul,tolawul",
           },
-          f: "twalawúl, tolawúl",
+          f: "tolawúl",
         },
         {
           entry: {
@@ -559,7 +568,7 @@ export default [
             i: 4904,
             g: "tawluy,toluy",
           },
-          f: "tawlúy, tolúy",
+          f: "tolúy",
         },
         {
           entry: {
@@ -788,34 +797,6 @@ export default [
       [
         {
           entry: {
-            ts: 1672406384728,
-            p: "سکړوته",
-            f: "skaRwáta",
-            e: "hot coal, ember",
-            c: "n. f.",
-            a: 2,
-            i: 10010,
-            g: "skaRwata",
-          },
-          f: "skaRwáta",
-        },
-        {
-          entry: {
-            ts: 1708187795248,
-            p: "سکروټه",
-            f: "skarwáTa",
-            e: "hot coal, ember",
-            c: "n. f.",
-            a: 3,
-            i: 10008,
-            g: "skarwaTa",
-          },
-          f: "skarwáTa",
-        },
-      ],
-      [
-        {
-          entry: {
             ts: 1527820856,
             p: "سیستم",
             f: "seestúm",
@@ -994,7 +975,7 @@ export default [
             i: 13209,
             g: "kanTrol,kunTrol",
           },
-          f: "kanTról, kunTról",
+          f: "kanTról",
         },
       ],
       [
@@ -1226,7 +1207,7 @@ export default [
             i: 1707,
             g: "bud,bad",
           },
-          f: "bud, bad",
+          f: "bud",
         },
         {
           entry: {
@@ -1315,7 +1296,7 @@ export default [
             i: 3533,
             g: "podar,pawdar",
           },
-          f: "podár, pawdár",
+          f: "podár",
         },
         {
           entry: {
@@ -1328,7 +1309,7 @@ export default [
             i: 3535,
             g: "poDar,pawDar",
           },
-          f: "poDár, pawDár",
+          f: "poDár",
         },
       ],
       [
@@ -1599,7 +1580,7 @@ export default [
             i: 8268,
             g: "DaD,DuD",
           },
-          f: "DaD, DuD",
+          f: "DaD",
         },
       ],
       [
@@ -1778,7 +1759,7 @@ export default [
             i: 8344,
             g: "DanDa,DanDa",
           },
-          f: "DanDá, DánDa",
+          f: "DánDa",
         },
       ],
       [
@@ -1991,7 +1972,7 @@ export default [
             i: 14474,
             g: "lanDawul,lunDawul",
           },
-          f: "lanDawúl, lunDawúl",
+          f: "lanDawúl",
         },
       ],
       [
@@ -2114,7 +2095,7 @@ export default [
             i: 501,
             g: "aRa,aRa",
           },
-          f: "áRa, aRá",
+          f: "aRá",
         },
       ],
       [
@@ -2444,7 +2425,7 @@ export default [
             i: 4299,
             g: "tRapawul,taRpawul",
           },
-          f: "tRapawúl, taRpawúl",
+          f: "taRpawúl",
         },
       ],
       [
@@ -2460,7 +2441,7 @@ export default [
             i: 4160,
             g: "trapedul,tarpedul",
           },
-          f: "trapedúl, tarpedúl",
+          f: "tarpedúl",
         },
         {
           entry: {
@@ -2474,7 +2455,7 @@ export default [
             i: 4300,
             g: "tRapedul,taRpedul",
           },
-          f: "tRapedúl, taRpedúl",
+          f: "taRpedúl",
         },
       ],
       [
@@ -2520,7 +2501,7 @@ export default [
             i: 6034,
             g: "char,chur",
           },
-          f: "char, chur",
+          f: "chur",
         },
         {
           entry: {
@@ -2534,7 +2515,7 @@ export default [
             i: 6071,
             g: "chaR,chuR",
           },
-          f: "chaR, chuR",
+          f: "chuR",
         },
       ],
       [
@@ -2642,7 +2623,7 @@ export default [
             i: 7006,
             g: "khrawul,khurawul",
           },
-          f: "khrawúl, khurawúl",
+          f: "khurawúl",
         },
         {
           entry: {
@@ -2673,7 +2654,7 @@ export default [
             i: 7010,
             g: "khUredul,khuredul",
           },
-          f: "khUredúl, khuredúl",
+          f: "khuredúl",
         },
         {
           entry: {
@@ -2734,7 +2715,7 @@ export default [
             i: 7827,
             g: "dara,darra",
           },
-          f: "dará, darrá",
+          f: "dará",
         },
         {
           entry: {
@@ -2795,7 +2776,7 @@ export default [
             i: 8092,
             g: "doredul,dauredul,dooredul",
           },
-          f: "doredúl, dauredúl, dooredúl",
+          f: "dooredúl",
         },
         {
           entry: {
@@ -2869,7 +2850,7 @@ export default [
             i: 8992,
             g: "Rung,Rang",
           },
-          f: "Rung, Rang",
+          f: "Rang",
         },
       ],
       [
@@ -2967,7 +2948,7 @@ export default [
             i: 9332,
             g: "zeeR,zyaR",
           },
-          f: "zeeR, zyaR",
+          f: "zeeR",
         },
       ],
       [
@@ -3027,7 +3008,7 @@ export default [
             i: 9337,
             g: "zeRay,zeRay",
           },
-          f: "zeRáy, zéRay",
+          f: "zéRay",
         },
       ],
       [
@@ -3043,7 +3024,7 @@ export default [
             i: 9475,
             g: "saaree,saaree",
           },
-          f: "saarée, sáaree",
+          f: "sáaree",
         },
         {
           entry: {
@@ -3122,7 +3103,7 @@ export default [
             i: 10266,
             g: "soR,sooR",
           },
-          f: "soR, sooR",
+          f: "sooR",
         },
       ],
       [
@@ -3216,7 +3197,7 @@ export default [
             i: 10663,
             g: "shRamawul,shaRmawul",
           },
-          f: "shRamawúl, shaRmawúl",
+          f: "shaRmawúl",
         },
       ],
       [
@@ -3236,7 +3217,7 @@ export default [
             i: 11647,
             g: "ghar,ghur",
           },
-          f: "ghar, ghur",
+          f: "ghar",
         },
         {
           entry: {
@@ -3250,7 +3231,7 @@ export default [
             i: 11691,
             g: "ghuR,ghaR",
           },
-          f: "ghuR, ghaR",
+          f: "ghaR",
         },
       ],
       [
@@ -3325,7 +3306,7 @@ export default [
             i: 12826,
             g: "karbezee,karbeezee",
           },
-          f: "karbézee, karbeezee",
+          f: "karbeezee",
         },
         {
           entry: {
@@ -3339,7 +3320,7 @@ export default [
             i: 12918,
             g: "kaRbezee,kaRbezee",
           },
-          f: "kaRbézee, kaRbezee",
+          f: "kaRbezee",
         },
       ],
       [
@@ -3384,7 +3365,7 @@ export default [
             i: 13066,
             g: "kakar,kakur",
           },
-          f: "kakár, kakúr",
+          f: "kakúr",
         },
         {
           entry: {
@@ -3398,7 +3379,7 @@ export default [
             i: 13068,
             g: "kakuR,kakaR",
           },
-          f: "kakúR, kakáR",
+          f: "kakúR",
         },
       ],
       [
@@ -3474,7 +3455,7 @@ export default [
             i: 13381,
             g: "kora,koora",
           },
-          f: "korá, koorá",
+          f: "korá",
         },
         {
           entry: {
@@ -3517,7 +3498,7 @@ export default [
             i: 13985,
             g: "gooR,gwuR",
           },
-          f: "gooR, gwuR",
+          f: "gooR",
         },
       ],
       [
@@ -3716,7 +3697,7 @@ export default [
             i: 14291,
             g: "lara,lara",
           },
-          f: "lára, lará",
+          f: "lára",
         },
         {
           entry: {
@@ -3762,7 +3743,7 @@ export default [
             i: 14573,
             g: "lawuR,lUwuR,looR",
           },
-          f: "lawúR, lUwúR, looR",
+          f: "looR",
         },
       ],
       [
@@ -3778,7 +3759,7 @@ export default [
             i: 15300,
             g: "mUr,mur",
           },
-          f: "mUr, mur",
+          f: "mur",
         },
         {
           entry: {
@@ -3856,7 +3837,7 @@ export default [
             i: 15440,
             g: "maRuz,maRz",
           },
-          f: "maRúz, maRz",
+          f: "maRz",
         },
       ],
       [
@@ -3968,7 +3949,7 @@ export default [
             i: 16859,
             g: "nur,nar",
           },
-          f: "nur, nar",
+          f: "nur",
         },
         {
           entry: {
@@ -4010,7 +3991,7 @@ export default [
             i: 17038,
             g: "nghuRul,nughuRul",
           },
-          f: "nghuRúl, nughuRúl",
+          f: "nughuRúl",
         },
       ],
       [
@@ -4216,7 +4197,7 @@ export default [
             i: 4916,
             g: "toman,tooman",
           },
-          f: "tomán, toomán",
+          f: "tomán",
         },
         {
           entry: {
@@ -4261,35 +4242,6 @@ export default [
             g: "chaaN",
           },
           f: "chaaN",
-        },
-      ],
-      [
-        {
-          entry: {
-            ts: 1573768771851,
-            p: "چنه",
-            f: "chúna, chína",
-            e: "jaw; province, district, region",
-            r: 2,
-            c: "n. f.",
-            a: 2,
-            i: 6192,
-            g: "chuna,china",
-          },
-          f: "chúna, chína",
-        },
-        {
-          entry: {
-            ts: 1708352960073,
-            p: "چڼه",
-            f: "chuNá",
-            e: "chickpea",
-            c: "n. f.",
-            a: 3,
-            i: 6207,
-            g: "chuNa",
-          },
-          f: "chuNá",
         },
       ],
       [
@@ -4481,7 +4433,7 @@ export default [
             i: 16189,
             g: "mana,mana",
           },
-          f: "mána', mána'",
+          f: "mána'",
         },
         {
           entry: {
@@ -4608,7 +4560,7 @@ export default [
             i: 207,
             g: "asar,asar",
           },
-          f: "asár, ásar",
+          f: "ásar",
         },
         {
           entry: {
@@ -4858,7 +4810,7 @@ export default [
             i: 923,
             g: "ilghaa,alghaa",
           },
-          f: "ilgháa, algháa",
+          f: "algháa",
         },
       ],
       [
@@ -5112,7 +5064,7 @@ export default [
             i: 1688,
             g: "bahr,bahar",
           },
-          f: "bahr, báhar",
+          f: "báhar",
         },
         {
           entry: {
@@ -5141,7 +5093,7 @@ export default [
             i: 1707,
             g: "bud,bad",
           },
-          f: "bud, bad",
+          f: "bud",
         },
         {
           entry: {
@@ -5408,7 +5360,7 @@ export default [
             i: 2017,
             g: "bus,bas",
           },
-          f: "bus, bas",
+          f: "bas",
         },
         {
           entry: {
@@ -5804,7 +5756,7 @@ export default [
             i: 3023,
             g: "purhar,parhar",
           },
-          f: "purhár, parhár",
+          f: "parhár",
         },
         {
           entry: {
@@ -5818,7 +5770,7 @@ export default [
             i: 3020,
             g: "parhaar,purhaar",
           },
-          f: "parháar, purháar",
+          f: "parháar",
         },
       ],
       [
@@ -5894,7 +5846,7 @@ export default [
             i: 3216,
             g: "pal,pul",
           },
-          f: "pal, pul",
+          f: "pal",
         },
         {
           entry: {
@@ -5984,7 +5936,7 @@ export default [
             i: 3344,
             g: "paNa,paNa",
           },
-          f: "paNá, páNa",
+          f: "páNa",
         },
         {
           entry: {
@@ -6166,7 +6118,7 @@ export default [
             i: 4257,
             g: "traha,turha",
           },
-          f: "traha, turha",
+          f: "tarha",
         },
         {
           entry: {
@@ -6180,7 +6132,7 @@ export default [
             i: 4252,
             g: "trahaa,tarhaa",
           },
-          f: "traháa, tarháa",
+          f: "tarháa",
         },
       ],
       [
@@ -6374,7 +6326,7 @@ export default [
             i: 4777,
             g: "twaanee,tuwaanee,tawaanee",
           },
-          f: "twaanée, tuwaanée, tawaanée",
+          f: "tawaanée",
         },
         {
           entry: {
@@ -6404,7 +6356,7 @@ export default [
             i: 4912,
             g: "toliya,tawliya",
           },
-          f: "toliyá, tawliyá",
+          f: "tawliyá",
         },
         {
           entry: {
@@ -6554,7 +6506,7 @@ export default [
             i: 5165,
             g: "Tang,Tung",
           },
-          f: "Tang, Tung",
+          f: "Tang",
         },
         {
           entry: {
@@ -6688,7 +6640,7 @@ export default [
             i: 5397,
             g: "jaama,jaama",
           },
-          f: "jáama, jaamá",
+          f: "jáama",
         },
       ],
       [
@@ -7195,7 +7147,7 @@ export default [
             i: 6494,
             g: "tsanga,tsunga,tsinga",
           },
-          f: "tsánga, tsúnga, tsínga",
+          f: "tsánga",
         },
         {
           entry: {
@@ -7524,7 +7476,7 @@ export default [
             i: 7827,
             g: "dara,darra",
           },
-          f: "dará, darrá",
+          f: "dará",
         },
         {
           entry: {
@@ -7810,7 +7762,7 @@ export default [
             i: 8250,
             g: "Dibbaa,Dabaa",
           },
-          f: "Dibbáa, Dabáa",
+          f: "Dabáa",
         },
       ],
       [
@@ -7826,7 +7778,7 @@ export default [
             i: 8268,
             g: "DaD,DuD",
           },
-          f: "DaD, DuD",
+          f: "DaD",
         },
         {
           entry: {
@@ -7916,7 +7868,7 @@ export default [
             i: 8307,
             g: "Daka,Daka",
           },
-          f: "Daká, Dáka",
+          f: "Dáka",
         },
         {
           entry: {
@@ -7930,7 +7882,7 @@ export default [
             i: 8221,
             g: "Daaka,Daaka",
           },
-          f: "Daaká, Dáaka",
+          f: "Dáaka",
         },
       ],
       [
@@ -8006,7 +7958,7 @@ export default [
             i: 8344,
             g: "DanDa,DanDa",
           },
-          f: "DanDá, DánDa",
+          f: "DánDa",
         },
         {
           entry: {
@@ -8066,7 +8018,7 @@ export default [
             i: 8750,
             g: "rikat,rakat",
           },
-          f: "riqát, raqát",
+          f: "raqát",
         },
         {
           entry: {
@@ -8189,7 +8141,7 @@ export default [
             i: 9235,
             g: "zuna,zina",
           },
-          f: "zúna, zína",
+          f: "zína",
         },
         {
           entry: {
@@ -8280,7 +8232,7 @@ export default [
             i: 9809,
             g: "sUda,sada",
           },
-          f: "sUdá, sadá",
+          f: "sadá",
         },
         {
           entry: {
@@ -8555,7 +8507,7 @@ export default [
             i: 10846,
             g: "shoopa,shopa",
           },
-          f: "shoopá, shopá",
+          f: "shoopá",
         },
         {
           entry: {
@@ -8771,7 +8723,7 @@ export default [
             i: 11647,
             g: "ghar,ghur",
           },
-          f: "ghar, ghur",
+          f: "ghar",
         },
         {
           entry: {
@@ -8844,7 +8796,7 @@ export default [
             i: 11721,
             g: "ghuzaa,ghazaa",
           },
-          f: "ghuzáa, ghazáa",
+          f: "ghazáa",
         },
       ],
       [
@@ -8860,7 +8812,7 @@ export default [
             i: 11864,
             g: "ghawr,ghor,ghawur",
           },
-          f: "ghawr, ghor, gháwur",
+          f: "gháwur",
         },
         {
           entry: {
@@ -8874,7 +8826,7 @@ export default [
             i: 11604,
             g: "ghaawur,ghaawir",
           },
-          f: "ghaawúr, ghaawír",
+          f: "ghaawúr",
         },
       ],
       [
@@ -8903,7 +8855,7 @@ export default [
             i: 11835,
             g: "ghwaayay,ghwaayay",
           },
-          f: "ghwáayay, ghwaayáy",
+          f: "ghwaayáy",
         },
       ],
       [
@@ -9129,7 +9081,7 @@ export default [
             i: 13178,
             g: "kamara,kamra",
           },
-          f: "kamará, kamrá",
+          f: "kamrá",
         },
         {
           entry: {
@@ -9491,7 +9443,7 @@ export default [
             i: 13902,
             g: "gangoR,gangwUR",
           },
-          f: "gangóR, gangwÚR",
+          f: "gangóR",
         },
         {
           entry: {
@@ -9505,7 +9457,7 @@ export default [
             i: 13617,
             g: "gaangoR,gaangwUR",
           },
-          f: "gaangóR, gaangwÚR",
+          f: "gaangóR",
         },
       ],
       [
@@ -9611,7 +9563,7 @@ export default [
             i: 14291,
             g: "lara,lara",
           },
-          f: "lára, lará",
+          f: "lára",
         },
         {
           entry: {
@@ -9730,7 +9682,7 @@ export default [
             i: 14336,
             g: "las,lus",
           },
-          f: "las, lus",
+          f: "las",
         },
         {
           entry: {
@@ -10049,7 +10001,7 @@ export default [
             i: 14821,
             g: "maalika,maalika",
           },
-          f: "maalíka, maaliká",
+          f: "maaliká",
         },
       ],
       [
@@ -10154,7 +10106,7 @@ export default [
             i: 16717,
             g: "naakara,naakara",
           },
-          f: "naakára, naakará",
+          f: "naakará",
         },
         {
           entry: {
@@ -11091,7 +11043,7 @@ export default [
             i: 2072,
             g: "bagharay,baghray",
           },
-          f: "bagharáy, baghráy",
+          f: "baghráy",
         },
         {
           entry: {
@@ -11241,7 +11193,7 @@ export default [
             i: 3333,
             g: "panDay,punDay",
           },
-          f: "panDáy, punDáy",
+          f: "panDáy",
         },
         {
           entry: {
@@ -11255,7 +11207,7 @@ export default [
             i: 3336,
             g: "pUnDuy,punDuy",
           },
-          f: "pUnDúy, punDúy",
+          f: "punDúy",
         },
       ],
       [
@@ -11271,7 +11223,7 @@ export default [
             i: 3519,
             g: "pooTay,poTay",
           },
-          f: "póoTay, póTay",
+          f: "póTay",
         },
         {
           entry: {
@@ -11408,7 +11360,7 @@ export default [
             i: 4293,
             g: "treengluy,treenguluy",
           },
-          f: "treenglúy, treengulúy",
+          f: "treengulúy",
         },
       ],
       [
@@ -11483,7 +11435,7 @@ export default [
             i: 5213,
             g: "Tokray,Tookray",
           },
-          f: "Tokráy, Tookráy",
+          f: "Tookráy",
         },
         {
           entry: {
@@ -11497,7 +11449,7 @@ export default [
             i: 5214,
             g: "Tokruy,Tookruy",
           },
-          f: "Tokrúy, Tookrúy",
+          f: "Tookrúy",
         },
       ],
       [
@@ -11543,7 +11495,7 @@ export default [
             i: 7884,
             g: "daRay,daRay",
           },
-          f: "dáRay, daRáy",
+          f: "dáRay",
         },
         {
           entry: {
@@ -11721,7 +11673,7 @@ export default [
             i: 9803,
             g: "skhay",
           },
-          f: "skháy",
+          f: "sakhúy",
         },
         {
           entry: {
@@ -11735,7 +11687,7 @@ export default [
             i: 9805,
             g: "skhuy,sakhuy",
           },
-          f: "skhúy, sakhúy",
+          f: "sakhúy",
         },
       ],
       [
@@ -11781,7 +11733,7 @@ export default [
             i: 10299,
             g: "swakay,sokay",
           },
-          f: "swakáy, sokáy",
+          f: "sokáy",
         },
         {
           entry: {
@@ -11795,7 +11747,7 @@ export default [
             i: 10300,
             g: "suwakuy,swukuy,sokuy",
           },
-          f: "suwakúy, swukúy, sokúy",
+          f: "sokúy",
         },
       ],
       [
@@ -11960,7 +11912,7 @@ export default [
             i: 13448,
             g: "kokay,kookay",
           },
-          f: "kokáy, kookáy",
+          f: "kookáy",
         },
         {
           entry: {
@@ -11990,7 +11942,7 @@ export default [
             i: 13599,
             g: "gaaDay,gaaDay",
           },
-          f: "gáaDay, gaaDáy",
+          f: "gaaDáy",
         },
         {
           entry: {
@@ -12112,7 +12064,7 @@ export default [
             i: 14453,
             g: "lmasay,lamsay",
           },
-          f: "lmasáy, lamsáy",
+          f: "lamsáy",
         },
         {
           entry: {
@@ -12126,7 +12078,7 @@ export default [
             i: 14454,
             g: "lmasuy,lamsuy",
           },
-          f: "lmasúy, lamsúy",
+          f: "lamsúy",
         },
       ],
       [
@@ -12233,7 +12185,7 @@ export default [
             i: 17140,
             g: "nmasay,namsay",
           },
-          f: "nmasáy, namsáy",
+          f: "namsáy",
         },
         {
           entry: {
@@ -12247,7 +12199,7 @@ export default [
             i: 17141,
             g: "nmasuy,namsuy",
           },
-          f: "nmasúy, namsúy",
+          f: "namsúy",
         },
       ],
       [
@@ -12263,7 +12215,7 @@ export default [
             i: 17248,
             g: "nwusay,nwasay,nosay",
           },
-          f: "nwusáy, nwasáy, nosáy",
+          f: "nawsáy",
         },
         {
           entry: {
@@ -12277,7 +12229,7 @@ export default [
             i: 17249,
             g: "nwusuy,nwasuy,nawsuy",
           },
-          f: "nwusúy, nwasúy, nawsúy",
+          f: "nawsúy",
         },
       ],
       [
@@ -12902,7 +12854,7 @@ export default [
             i: 4286,
             g: "treelay,treelay",
           },
-          f: "treeláy, tréelay",
+          f: "tréelay",
         },
         {
           entry: {
@@ -12916,7 +12868,7 @@ export default [
             i: 4287,
             g: "trelay,trelay",
           },
-          f: "treláy, trélay",
+          f: "trélay",
         },
       ],
       [
@@ -13121,7 +13073,7 @@ export default [
             i: 7344,
             g: "khwushe,khooshe",
           },
-          f: "khwúshe, khóoshe",
+          f: "khwúshe",
         },
       ],
       [
@@ -13285,7 +13237,7 @@ export default [
             i: 9332,
             g: "zeeR,zyaR",
           },
-          f: "zeeR, zyaR",
+          f: "zeeR",
         },
         {
           entry: {
@@ -13314,7 +13266,7 @@ export default [
             i: 9336,
             g: "zeeRay,zyeRay,zeeRay",
           },
-          f: "zeeRáy, zyeRáy, zéeRay",
+          f: "zéeRay",
         },
         {
           entry: {
@@ -13328,7 +13280,7 @@ export default [
             i: 9337,
             g: "zeRay,zeRay",
           },
-          f: "zeRáy, zéRay",
+          f: "zéRay",
         },
       ],
       [
@@ -13913,7 +13865,7 @@ export default [
             i: 18374,
             g: "wye,we",
           },
-          f: "wye, we",
+          f: "we",
         },
       ],
       [
@@ -13978,3 +13930,5 @@ export default [
     ],
   },
 ];
+
+export default minimalPairs;

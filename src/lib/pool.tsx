@@ -6,14 +6,16 @@ import equal from "fast-deep-equal";
  * @param poolBase an array of things you want to use as the pool to pick from
  * @param removalLaxity If set, thery will be a n% chance that the pick will NOT
  * be removed after use. Defaults to 0, meaning that every time an item is picked
- * it is removed from the. 100 means that items will never be removed from the pool.
+ * it is removed from the pool. 100 means that items will never be removed from the pool.
  * @returns
  */
 export function makePool<P>(poolBase: P[], removalLaxity = 0): () => P {
   let pool = [...poolBase];
   function shouldStillKeepIt() {
     if (!removalLaxity) return false;
-    return Math.random() < removalLaxity / 100;
+    const r = Math.random() < removalLaxity / 100;
+    console.log({ r });
+    return r;
   }
   function pickRandomFromPool(): P {
     // Pick an item from the pool;

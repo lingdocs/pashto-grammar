@@ -17,7 +17,7 @@ export default function MinimalPairs({
   return (
     <div>
       <h5 className="my-3" onClick={() => setOpened((x) => !x)}>
-        {opened ? "▼" : "▶"} View Pairs
+        {opened ? "▼" : "▶"} Browse Pairs
       </h5>
       <SmoothCollapse expanded={opened}>
         {section.pairs.map((pairs, i) => (

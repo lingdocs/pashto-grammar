@@ -3,6 +3,7 @@ import VerbGame from "./sub-cores/VerbGame";
 import GenderGame from "./sub-cores/GenderGame";
 import PluralNounGame from "./sub-cores/PluralNounGame";
 import UnisexNounGame from "./sub-cores/UnisexNounGame";
+import MinimalPairsGame from "./sub-cores/MinimalPairsGame";
 import EquativeSituations from "./sub-cores/EquativeSituations";
 import VerbSituations from "./sub-cores/VerbSituations";
 import EquativeIdentify from "./sub-cores/EquativeIdentify";
@@ -12,6 +13,64 @@ import InflectionsWriting from "./sub-cores/InflectionsWriting";
 import PerfectVerbsIntransitive from "./sub-cores/PerfectGame";
 import NPAdjWriting from "./sub-cores/NPAdjGame";
 import EPAdjGame from "./sub-cores/EPAdjGame";
+
+// MINIMAL PAIRS
+export const minimalPairsT = makeGameRecord({
+  title: "Minimal Pairs - t and T",
+  id: "minimal-pairs-t",
+  link: "/writing/minimal-pairs/#ت---t-and-ټ---t",
+  level: "t and T",
+  SubCore: MinimalPairsGame,
+});
+export const minimalPairsD = makeGameRecord({
+  title: "Minimal Pairs - d and D",
+  id: "minimal-pairs-d",
+  link: "/writing/minimal-pairs/#د---d-and-ډ---d",
+  level: "d and D",
+  SubCore: MinimalPairsGame,
+});
+export const minimalPairsR = makeGameRecord({
+  title: "Minimal Pairs - r and R",
+  id: "minimal-pairs-r",
+  link: "/writing/minimal-pairs/#ر---r-and-ړ---r",
+  level: "r and R",
+  SubCore: MinimalPairsGame,
+});
+export const minimalPairsN = makeGameRecord({
+  title: "Minimal Pairs - n and N",
+  id: "minimal-pairs-n",
+  link: "/writing/aiilmmn - pairs / #ن-- - n - and - ڼ-- - n",
+  level: "n and N",
+  SubCore: MinimalPairsGame,
+});
+export const minimalPairsAa = makeGameRecord({
+  title: "Minimal Pairs - a and aa",
+  id: "minimal-pairs-aa",
+  link: "/writing/minimal-pairs/#ه---a-and-ا---aa",
+  level: "a and aa",
+  SubCore: MinimalPairsGame,
+});
+export const minimalPairsAyUy = makeGameRecord({
+  title: "Minimal Pairs - ay and uy",
+  id: "minimal-pairs-ay-uy",
+  link: "/writing/minimal-pairs/#ی---ay-and-ۍ---uy",
+  level: "ay and uy",
+  SubCore: MinimalPairsGame,
+});
+export const minimalPairsAyE = makeGameRecord({
+  title: "Minimal Pairs - ay and e",
+  id: "minimal-pairs-ay-e",
+  link: "/writing/minimal-pairs/#ی---ay-and-ې---e",
+  level: "ay and e",
+  SubCore: MinimalPairsGame,
+});
+export const minimalPairsEeE = makeGameRecord({
+  title: "Minimal Pairs - ee and e",
+  id: "minimal-pairs-ee-e",
+  link: "ي - ee and ې - e",
+  level: "ee and e",
+  SubCore: MinimalPairsGame,
+});
 
 // NOUNS
 export const nounGenderGame1 = makeGameRecord({
@@ -443,6 +502,19 @@ export const npWithAdjectivesInSandwiches = makeGameRecord({
 });
 
 const games: { chapter: string; items: GameRecord[] }[] = [
+  {
+    chapter: "Minimal Pairs",
+    items: [
+      minimalPairsT,
+      minimalPairsD,
+      minimalPairsR,
+      minimalPairsN,
+      minimalPairsAa,
+      minimalPairsAyUy,
+      minimalPairsAyE,
+      minimalPairsEeE,
+    ],
+  },
   {
     chapter: "Nouns",
     items: [nounGenderGame1, nounGenderGame2, unisexNounGame, pluralNounGame],
