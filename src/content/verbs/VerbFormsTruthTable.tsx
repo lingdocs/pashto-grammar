@@ -39,13 +39,14 @@ function VerbFormsTruthTable() {
                 <td>
                   {t[2] ? (
                     <div>
-                      <Video />
-                      {` `}imperfective
+                      {" "}
+                      <Camera />
+                      {` `}perfective
                     </div>
                   ) : (
                     <div>
-                      <Camera />
-                      {` `}perfective
+                      <Video />
+                      {` `}imperfective
                     </div>
                   )}
                 </td>
