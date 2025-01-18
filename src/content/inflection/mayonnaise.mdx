@@ -11,6 +11,7 @@ import {
 import mayoImage from "../../images/mayonnaise-a.jpg";
 import psmd from "../../lib/psmd";
 import MayoSandwiches from "./MayoSandwiches";
+import Formula from "../../components/formula/Formula";
 
 In the earlier chapters we learned that words inside <Link to="/sandwiches/sandwiches">sandwiches</Link> inflect. There is also a certain type of sandwiches that adds a little extra <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> to certain words. Some linguists might call this the "ablative" case, but that term doesn't quite fit how it's used in Pashto. In the interest of linguistic accuracy, we will call this **mayonnaise**.
 
@@ -32,6 +33,15 @@ To add mayonnaise to a sandwich there are **two conditions**:
 ## Mayo-Friendly Sandwiches 🥪
 
 <MayoSandwiches opts={opts} />
+
+## How to Add Mayo
+
+To add mayonnaise, you simply add a <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> to the end of the <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> masculine, singular word. This is exactly the same process as making a <Link to="/nouns/bundled-plurals/">bundled noun</Link>.
+
+<Formula>
+  <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link>{" "}
+  masculine, singular word + <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} />
+</Formula>
 
 ## Examples
 

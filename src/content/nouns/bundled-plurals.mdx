@@ -4,6 +4,8 @@ title: Bundled Plurals
 
 import { InlinePs, defaultTextOptions as opts } from "@lingdocs/ps-react";
 import Table from "../../components/Table";
+import Link from "../../components/Link";
+import Formula from "../../components/formula/Formula";
 import penBundle from "../../images/pen-bundle.jpg";
 
 export function BundledPluralTable({ children, inflection }) {
@@ -14,13 +16,18 @@ export function BundledPluralTable({ children, inflection }) {
   );
 }
 
-For many nouns ending in a consonant, we can make a special kind of **"bundled plural"** to show that the things are closely lumped together.
+With plain, <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> masculine nouns we can make a special kind of **"bundled plural"** to show that the things are closely lumped together.
 
 <div className="mx-auto" style={{ maxWidth: "300px" }}>
   <img src={penBundle} className="img-fluid" />
 </div>
 
-To make this "bundled plural" we add a <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> to the end of the noun.
+This is done by adding a <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> on the end of the <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> masculine noun, just like we would with <Link to="/inflection/mayonnaise">mayonnaise</Link> in a sandwich.
+
+<Formula>
+  <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link>{" "}
+  masculine, singular word + <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} />
+</Formula>
 
 <BundledPluralTable>
   {[
