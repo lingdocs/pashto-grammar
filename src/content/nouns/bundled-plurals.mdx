@@ -16,17 +16,17 @@ export function BundledPluralTable({ children, inflection }) {
   );
 }
 
-With plain, <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> masculine nouns we can make a special kind of **"bundled plural"** to show that the things are closely lumped together.
+With plain, <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> masculine nouns that don't end in <InlinePs opts={opts} ps={{ p: "ـه", f: "-u" }} />, we can make a special kind of **"bundled plural"** to show that the things are closely lumped together.
 
 <div className="mx-auto" style={{ maxWidth: "300px" }}>
   <img src={penBundle} className="img-fluid" />
 </div>
 
-This is done by adding a <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> on the end of the <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> masculine noun, just like we would with <Link to="/inflection/mayonnaise">mayonnaise</Link> in a sandwich.
+This is done by adding a <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> on the end of the <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> masculine noun. This only works as long as the noun does not end with an <InlinePs opts={opts} ps={{ p: "ـه", f: "-u" }} />. This is just like we would add <Link to="/inflection/mayonnaise">mayonnaise</Link> to a sandwich.
 
 <Formula>
   <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link>{" "}
-  masculine, singular word + <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} />
+  masculine noun + <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} />
 </Formula>
 
 <BundledPluralTable>
@@ -46,4 +46,6 @@ This is done by adding a <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> on
   ]}
 </BundledPluralTable>
 
-Unlike the other plural forms these **bundled plurals can only be used when you have a quantifier in front of the noun** such as a number or a phrase like <InlinePs opts={opts} ps={{ p: "یو شمېر", f: "yo shmer", e: "a number of..." }} />.
+Note that this does not work with nouns like <InlinePs opts={opts} ps={{ p: "کارغه", f: "kaarghú", e: "crow (n. m.)" }} /> that end in a <InlinePs opts={opts} ps={{ p: "ـه", f: "-u" }} />.
+
+Unlike the other plural forms these **bundled plurals can only be used when you have a quantifier in front of the noun** such as a number or a phrase like <InlinePs opts={opts} ps={{ p: "یو شمېر", f: "yo shmer", e: "a number of..." }} />. You need to have some sort of number or quantifier before a bundled plural.
