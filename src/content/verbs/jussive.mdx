@@ -30,16 +30,8 @@ import deMuCowboysOk from "./de-mu-cowboys-ok.jpg";
 import deMuCowboysNotOk from "./de-mu-cowboys-not-ok.jpg";
 import psmd from "../../lib/psmd";
 
-export const De = (props) => (
-  <InlinePs opts={opts}>
-    {{ p: "دې", f: "de", e: props.e || undefined }}
-  </InlinePs>
-);
-export const MU = (props) => (
-  <InlinePs opts={opts}>
-    {{ p: "مو", f: "mU", e: props.e || undefined }}
-  </InlinePs>
-);
+export const De = (props) => <InlinePs opts={opts} ps={{ p: "دې", f: "de" }} />;
+export const MU = (props) => <InlinePs opts={opts} ps={{ p: "مو", f: "mU" }} />;
 
 In Pashto the [jussive form](https://en.wikipedia.org/wiki/Jussive_mood) is used to make orders or commands directed towards the 3rd person. This is also used for blessings and curses.
 
@@ -70,6 +62,7 @@ There are a couple of questions that can confuse learners when they encounter th
 In this section, we'll explain how this all works.
 
 <details>
+
 <summary>Spoiler quick answer:</summary>
 
 - _Basic form_: Jussive phrases are made using the jussive <De /> particle with subjunctive or present verbs.
@@ -164,9 +157,9 @@ First let's look at an example without this دې conflict:
   ])}
 </Examples>
 
-In this example <InlinePs opts={opts}>{{ p: "تا", f: "taa", e: "you" }}</InlinePs> is the <Servant /> so we can <Link to="/phrase-structure/shortening-vps/">🪄 shrink it</Link> into a <MiniPronoun /> <De />.
+In this example <InlinePs opts={opts} ps={{ p: "تا", f: "taa", e: "you" }} /> is the <Servant /> so we can <Link to="/phrase-structure/shortening-vps/">🪄 shrink it</Link> into a <MiniPronoun /> <De />.
 
-But now we've got the problem of the two <InlinePs opts={opts}>{{ p: "دې", f: "de", e: "you" }}</InlinePs> particles. We can't say this:
+But now we've got the problem of the two <InlinePs opts={opts} ps={{ p: "دې", f: "de", e: "you" }} /> particles. We can't say this:
 
 <Examples opts={opts}>
   {psmd([
@@ -193,7 +186,7 @@ So here's the solution in Pashto... 🥁 Instead we **get rid of the jussive <De
 
 This is interesting, because normally we only use that imperative form when making commands to a **a 2nd person singular** (ie. "you"), but because we lost the ability to use the jussive <De />, we are using to make a _3rd person jussive phrase_.
 
-Here are more examples of how we use this to resolve the <InlinePs opts={opts}>{{ p: "دې دې", f: "de de" }}</InlinePs> conflict:
+Here are more examples of how we use this to resolve the <InlinePs opts={opts} ps={{ p: "دې دې", f: "de de" }} /> conflict:
 
 <Examples opts={opts}>
   {psmd([
@@ -280,7 +273,7 @@ Things get a little more interesting when the jussive <De /> clashes with the <M
   <img src={deMuCowboysNotOk} className="img-fluid" />
 </div>
 
-Just like you can't say <InlinePs opts={opts}>{{ p: "دې دې", f: "de de" }}</InlinePs>, you also can't have the jussive <De /> together with the second person plural <MU e="you, your" />.
+Just like you can't say <InlinePs opts={opts} ps={{ p: "دې دې", f: "de de" }} />, you also can't have the jussive <De /> together with the second person plural <MU e="you, your" />.
 
 <Examples opts={opts}>
   {psmd([
