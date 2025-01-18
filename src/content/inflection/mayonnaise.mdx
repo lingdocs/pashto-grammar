@@ -1,0 +1,115 @@
+---
+title: Mayonnaise
+---
+
+import Link from "../../components/Link";
+import {
+  defaultTextOptions as opts,
+  InlinePs,
+  Examples,
+} from "@lingdocs/ps-react";
+import mayoImage from "../../images/mayonnaise-a.jpg";
+import psmd from "../../lib/psmd";
+import MayoSandwiches from "./MayoSandwiches";
+
+In the earlier chapters we learned that words inside <Link to="/sandwiches/sandwiches">sandwiches</Link> inflect. There is also a certain type of sandwiches that adds a little extra <InlinePs opts={opts} ps={{ p: "ـه", f: "-a" }} /> to certain words. Some linguists might call this the "ablative" case, but that term doesn't quite fit how it's used in Pashto. In the interest of linguistic accuracy, we will call this **mayonnaise**.
+
+<div className="text-center mb-3">
+  <img
+    alt="picture of mayonnaise with 'a' ending beside it"
+    src={mayoImage}
+    style={{ maxWidth: "250px" }}
+  />
+</div>
+
+## When to Use Mayo
+
+To add mayonnaise to a sandwich there are **two conditions**:
+
+1. It has to be one of the mayo-friendly sandwiches below.
+2. The words getting mayo have to be <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> masculine, singular words.
+
+## Mayo-Friendly Sandwiches 🥪
+
+<MayoSandwiches opts={opts} />
+
+## Examples
+
+Let's look at some examples of how we add mayo to these sandwiches when they contain <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> masculine, singular words.
+
+With <InlinePs opts={opts} ps={{ p: "کور", f: "kor", e: "house - n. m." }} />:
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "زه **له کوره** ووتم",
+      f: "zu **la kóra** óowatum",
+      e: "I went out from the house",
+    },
+    {
+      p: "دا ځای **له کوره څخه** لرې دی",
+      f: "daa dzaay **la kóra tsukha** lúre day",
+      e: "That place is far from home",
+    },
+    {
+      p: "**تر کوره پورې** ما سره ځي",
+      f: "**tur kóra pore** maa sara dzée",
+      e: "He goes with me up until (my) house",
+    },
+  ])}
+</Examples>
+
+With <InlinePs opts={opts} ps={{ p: "زحمت", f: "zahmat", e: "effort/trouble - n. m." }} />:
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "**بې له زحمته** راحت نشته",
+      f: "**be la zahmáta** raahát nushta",
+      e: "There's no comfort without effort",
+    },
+  ])}
+</Examples>
+
+Notice that with other kinds of words in these sandwiches, they just inflect as they normally would.
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "زه **له کوټې** ووتم",
+      f: "zu **la koTé** óowatum",
+      e: "I went out from the room",
+    },
+    {
+      p: "دا ځای **له کورونو څخه** لرې دی",
+      f: "daa dzaay **la koróono tsukha** lúre day",
+      e: "That place is far from the houses",
+    },
+  ])}
+</Examples>
+
+If we put a <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> masculine, singular noun in a sandwich, any <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> adjectives and intensifiers will also inflect.
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "زه له ډېره غټه کوره ووتم",
+      f: "zu **la Déra ghúTa kóra** óowatum",
+      e: "I went out from the really big house",
+    },
+  ])}
+</Examples>
+
+The words <InlinePs opts={opts} ps={{ p: "ډېر", f: "Der", e: "very" }} /> and <InlinePs opts={opts} ps={{ p: "غټ", f: "ghuT", e: "big" }} /> are also <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> masculine, singular words, so they also get mayonnaise!
+
+## Other notes
+
+### Mayo Only Goes on Pattern #1 Words
+
+If a word is <Link to="/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern">Pattern #4</Link> or <Link to="/inflection/inflection-patterns/#5-shorter-words-that-squish">Pattern #5</Link>, it does not get mayonnaise. Some of these words may look the same as the <Link to="/inflection/inflection-patterns/#1-basic">Pattern #1</Link> words because they end in a consonant. But remember, <Link to="/inflection/inflection-patterns/#4-words-with-the-pashtoon-pattern">Pattern #4</Link> and <Link to="/inflection/inflection-patterns/#5-shorter-words-that-squish">Pattern #5</Link> words are different. They have their own way of inflecting.
+
+### Is Mayo Optional or Required?
+
+If the sandwich has **no end-piece** (e.g. <InlinePs opts={opts} ps={{ p: "له ...", f: "la ..." }} /> or <InlinePs opts={opts} ps={{ p: "تر ...", f: "tur ..." }} />) then mayonnaise is **required**. You cannot make the sandwich without it.
+
+If the sandwich has an end-piece (e.g. <InlinePs opts={opts} ps={{ p: "له ... څخه", f: "la ... tsúkha" }} />) then mayonnaise is optional. In that case, it's a matter of taste.

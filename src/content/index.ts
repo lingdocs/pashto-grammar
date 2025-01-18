@@ -108,7 +108,7 @@ import * as inflectionPatterns from "./inflection/inflection-patterns.mdx";
 // @ts-ignore
 import * as vocative from "./inflection/vocative.mdx";
 // @ts-ignore
-import * as ablative from "./inflection/ablative.mdx";
+import * as mayonnaise from "./inflection/mayonnaise.mdx";
 
 // @ts-ignore
 import * as sandwiches from "./sandwiches/sandwiches.mdx";
@@ -201,8 +201,8 @@ export const contentTree: (ChapterSection | ChaptersSection)[] =
           "slug": "vocative"
         },
         {
-          "import": ablative,
-          "slug": "ablative"
+          "import": mayonnaise,
+          "slug": "mayonnaise"
         }
       ]
     },
