@@ -1,0 +1,24 @@
+For the sandwich with just <InlinePs opts={opts} ps={{ p: "له", f: "la" }} /> on the front, mayonnaise is _required_. It is _optional_ for sandwiches with an ending part.
+
+<Examples opts={opts}>
+  {[
+    {
+      p: "له ...",
+      f: "la ...",
+      e: "from / than",
+      sub: <strong>Required</strong>,
+    },
+    {
+      p: "له ... نه",
+      f: "la ... na",
+      e: "from / than",
+      sub: <strong>Optional</strong>,
+    },
+    {
+      p: "له ... څخه",
+      f: "la ... tsúkha",
+      e: "from / than",
+      sub: <strong>Optional</strong>,
+    },
+  ]}
+</Examples>
