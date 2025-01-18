@@ -5,6 +5,7 @@ title: Intro to Inflection
 import { defaultTextOptions as opts, InlinePs } from "@lingdocs/ps-react";
 import Table from "../../components/Table";
 import InlineInflectionButton from "../../components/InlineInflectionButton";
+import Link from "../../components/Link";
 import catInflectionGif from "../../images/cat-inflection.gif";
 import VideoPlayer from "../../components/VideoPlayer";
 
@@ -31,7 +32,7 @@ In this chapter we will explain **why** inflection happens (in what situations w
 
 ## 3 reasons to inflect:
 
-There are 3 reasons to inflect a word:
+There are 3 basic reasons to inflect a word:
 
 1. It's plural
 2. It's in a sandwich (adpositional phrase)
@@ -39,7 +40,9 @@ There are 3 reasons to inflect a word:
 
 For any of these three reasons, you do the same thing to the word: inflect it!
 
-If we think of a word as a little button <InlineInflectionButton />, then we can think of inflection as pressing down the button <InlineInflectionButton inflection={1} /> and modifying the word slightly.
+_We could call this the **basic inflection**. There are a couple of other special cases of inflection (<Link to="/inflection/vocative">vocative</Link> and <Link to="/inflection/ablative">ablative</Link>), but we will look at those later._
+
+If we think of a word as a little button <InlineInflectionButton />, then we can think of this **basic inflection** as pressing down the button <InlineInflectionButton inflection={1} /> and modifying the word slightly.
 
 <div className="text-center mb-3">
   <img

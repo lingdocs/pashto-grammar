@@ -87,6 +87,14 @@
 
 }
 
+a.heading-link::before {
+    content: '';
+    display: block;
+    height: 75px;
+    margin-top: -75px;
+    visibility: hidden;
+}
+
 @media (max-width: 820px) {
     .main-row {
         height: calc(100vh - 62px);
