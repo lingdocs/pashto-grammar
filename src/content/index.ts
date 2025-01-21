@@ -97,6 +97,8 @@ import * as introToParticiples from "./participles/intro.mdx";
 // @ts-ignore
 import * as pronounsBasic from "./pronouns/pronouns-basic.mdx";
 // @ts-ignore
+import * as pronounsIndefinite from "./pronouns/pronouns-indefinite.mdx";
+// @ts-ignore
 import * as pronounsMini from "./pronouns/pronouns-mini.mdx";
 // @ts-ignore
 import * as directionalPronouns from "./pronouns/pronouns-directional.mdx";
@@ -247,6 +249,10 @@ export const contentTree: (ChapterSection | ChaptersSection)[] =
         {
           "import": pronounsBasic,
           "slug": "pronouns-basic"
+        },
+        {
+          "import": pronounsIndefinite,
+          "slug": "pronouns-indefinate"
         },
         {
           "import": pronounsMini,

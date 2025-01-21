@@ -1,0 +1,195 @@
+---
+title: Indefinite Pronouns
+---
+
+import {
+  Examples,
+  InlinePs,
+  defaultTextOptions as opts,
+} from "@lingdocs/ps-react";
+import Link from "../../components/Link";
+import psmd from "../../lib/psmd";
+import Table from "../../components/Table";
+import InlineInflectionButton from "../../components/InlineInflectionButton";
+
+Words like **who**, **what**, **someone**, **no-one**, **something**, **nothing** are [indefinite prounouns](https://en.wikipedia.org/wiki/Indefinite_pronoun). In Pashto these are all based off of two main words.
+
+- <InlinePs opts={opts} ps={{ p: "څه", f: "tsu" }} /> (something / what)
+- <InlinePs opts={opts} ps={{ p: "څوک", f: "tsok" }} /> (someone / who)
+
+<Table
+  opts={opts}
+  headRow={[
+    <div></div>,
+    <div className="d-flex flex-row flex-align-items-center">
+      <div className="mr-2">
+        <InlineInflectionButton />
+      </div>
+      <div className="align-self-center">Plain</div>
+    </div>,
+    <div className="d-flex flex-row flex-align-items-center">
+      <div className="mr-2">
+        <InlineInflectionButton inflection={1} />
+      </div>
+      <div className="align-self-center">Inflected</div>
+    </div>,
+  ]}
+>
+  {[
+    [
+      <div>
+        <div>What / something</div>
+        <div className="text-muted">Sing. or Plural</div>
+      </div>,
+      { p: "څه", f: "tsu" },
+      { p: "څه", f: "tsu" },
+    ],
+    [
+      <div>
+        <div>Who / someone</div>
+        <div className="text-muted">Sing. or Plural</div>
+      </div>,
+      { p: "څوک", f: "tsok" },
+      { p: "چا", f: "chaa" },
+    ],
+  ]}
+</Table>
+
+## What/something: څه - tsu
+
+The word <InlinePs opts={opts} ps={{ p: "څه", f: "tsu", e: "what" }} /> is used to talk about an unspecified thing or things. It can either be used in a _question_, meaning "what?" or in a statement meaning "something."
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "ته **څه** کوې؟",
+      f: "tu **tsu** kawé?",
+      e: "**What** are you doing",
+    },
+    {
+      p: "څه وخرو؟",
+      f: "**tsu** óokhroo?",
+      e: "**What** should we eat?",
+    },
+    {
+      p: "هغه په کور کې **څه** کوي",
+      f: "haghá pu kor ke **tsu** kawée",
+      e: "He's doing **something** at home",
+    },
+    {
+      p: "هتله به **څه** وخرو",
+      f: "halta ba **tsu** óokhroo",
+      e: "We'll eat **something** over there",
+    },
+    {
+      p: "په اسمان کې **څه** ځلېږي",
+      f: "pu asmaan ke **tsu** dzaléGee",
+      e: "Something is shining in the sky.",
+    },
+    {
+      p: "په اسمان کې **څه** ځلېږي؟",
+      f: "pu asmaan ke **tsu** dzaléGee?",
+      e: "What is shining in the sky?",
+    },
+  ])}
+</Examples>
+
+## Who/someone: څوک - tsok
+
+The word <InlinePs opts={opts} ps={{ p: "څوک", f: "tsok", e: "who" }} /> is used to talk about an unspecified person or people (or animals). It can either be used in a _question_, meaning "who?" or in a statement meaning "someone."
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "ته **څوک** یې؟",
+      f: "tu **tsok** ye?",
+      e: "Who are you?",
+    },
+    {
+      p: "څوک خبرې کوي؟",
+      f: "**tsok** khabúre kawée?",
+      e: "**Who** is speaking?",
+    },
+    {
+      p: "څوک راځي؟",
+      f: "**tsok** raadzée?",
+      e: "**Who** is coming?",
+    },
+    {
+      p: "**څوک** راځي.",
+      f: "**tsok** raadzée.",
+      e: "**Someone** is coming.",
+    },
+  ])}
+</Examples>
+
+### Inflecting څوک - tsok
+
+When we need to inflect <InlinePs opts={opts} ps={{ p: "څوک", f: "tsok" }} /> it changes to <InlinePs opts={opts} ps={{ p: "چا", f: "chaa"}} />. The word <InlinePs opts={opts} ps={{ p: "څوک", f: "tsok" }} /> can be singular or plural, so it will not inflect for being plural. But it will inflect for the other two reasons:
+
+- being the subject of a past tense transitive verb
+- being in a sandwich
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "**چا** زه ووهلم؟",
+      f: "**chaa** zu óowahulum?",
+      e: "**Who** hit me?",
+      sub: "Inflected because it's the subject of a past tense transitive verb",
+    },
+    {
+      p: "دا وریژې چا وخوړلې؟",
+      f: "daa wrijze **chaa** óokhoRule?",
+      e: "**Who** ate that rice?",
+      sub: "Inflected because it's the subject of a past tense transitive verb",
+    },
+    {
+      p: "**چا** به ته لیدلی یې.",
+      f: "**chaa** ba tu leedúlay ye.",
+      e: "**Someone** will have seen you.",
+      sub: "Inflected because it's the subject of a past tense transitive verb",
+    },
+    {
+      p: "ته له **چا** سره خبرې کوې؟",
+      f: "tu la **chaa** sara khabúre kawé?",
+      e: "**Who** are you talking with?",
+      sub: "Inflected because it's in a sandwich",
+    },
+    {
+      p: "زه به دا کتاب **چا** ته ورکړم.",
+      f: "zu ba daa kitáab **chaa** ta wárkRum.",
+      e: "I will give this book to **someone**.",
+      sub: "Inflected because it's in a sandwich",
+    },
+  ])}
+</Examples>
+
+It's important to remember that <InlinePs opts={opts} ps={{ p: "څوک", f: "tsok" }} /> **does not inflect as an object** for the present/future tense. It is essentially a third-person pronoun, so it <Link to="/pronouns/pronouns-basic/#%EF%B8%8F-inflecting-1st2nd-person-pronouns-%EF%B8%8F">does not inflect like 1st and 2nd person pronouns do</Link>.
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "زه **تا** وینم.",
+      f: "zu **taa** wéenum.",
+      e: "I see **you**.",
+      sub: "Inflected because it's a 1st/2nd pers. pronoun used as an object for the present/future tense.",
+    },
+    {
+      p: "زه **څوک** وینم.",
+      f: "zu **tsok** wéenum.",
+      e: "I see **someone**.",
+      sub: "Does **NOT** inflect because it's not a 1st/2nd pers. pronoun.",
+    },
+    {
+      p: "❌ زه **چا** وینم.",
+      f: "❌ zu **cháa** wéenum.",
+      e: "I see **someone**.",
+      sub: "This is incorrect. The pronoun should not be inflected.",
+    },
+  ])}
+</Examples>
+
+## Other Indefinite Pronouns
+
+Coming soon... 🚧

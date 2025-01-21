@@ -3,12 +3,17 @@ title: Pronouns
 ---
 
 import {
-  defaultTextOptions,
+  defaultTextOptions as opts,
   grammarUnits,
   VerbTable,
   ButtonSelect,
+  Examples,
 } from "@lingdocs/ps-react";
+import Table from "../../components/Table";
+import Link from "../../components/Link";
+import psmd from "../../lib/psmd";
 import { useState } from "react";
+import InlineInflectionButton from "../../components/InlineInflectionButton";
 
 export function PronounInflectionChoice({ pronouns, far }) {
   const [choice, setChoice] = useState("plain");
@@ -35,8 +40,28 @@ export function PronounInflectionChoice({ pronouns, far }) {
       <div className="text-center my-3">
         <ButtonSelect
           options={[
-            { label: "Plain", value: "plain" },
-            { label: "Inflected", value: "inflected" },
+            {
+              label: (
+                <div className="d-flex flex-row flex-align-items-center">
+                  <div className="mr-2">
+                    <InlineInflectionButton />
+                  </div>
+                  <div className="align-self-center">Plain</div>
+                </div>
+              ),
+              value: "plain",
+            },
+            {
+              label: (
+                <div className="d-flex flex-row flex-align-items-center">
+                  <div className="mr-2">
+                    <InlineInflectionButton inflection={1} />
+                  </div>
+                  <div className="align-self-center">Inflected</div>
+                </div>
+              ),
+              value: "inflected",
+            },
           ]}
           value={choice}
           handleChange={(p) => setChoice(p)}
@@ -44,7 +69,7 @@ export function PronounInflectionChoice({ pronouns, far }) {
       </div>
       <VerbTable
         block={pronouns[choice]}
-        textOptions={defaultTextOptions}
+        textOptions={opts}
         english={english[choice]}
       />
     </div>
@@ -64,3 +89,97 @@ These pronouns are used to reference people or things that are close (either phy
 Notice that only the third person pronouns are different from the far pronouns.
 
 <PronounInflectionChoice pronouns={grammarUnits.pronouns.near} />
+
+## Inflecting Pronouns
+
+Since there are singular and plural versions of pronouns, pronouns will not inflect for being plural. But the singular pronouns will inflect for the other two reasons:
+
+- being the subject of a past tense transitive verb
+- being in a sandwich
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "**هغې** زه ولیدم.",
+      f: "**haghé** zu óoleedum.",
+      e: "**She** saw me",
+      sub: "Inflected because 'she' is the subject of a past tense transitive verb.",
+    },
+    {
+      p: "زه له **ده** سره خبرې کوم.",
+      f: "zu la **dú** sara khabúre kawúm.",
+      e: "I'm talking with **him**.",
+      sub: "Inflected because 'he' is in a sandwich.",
+    },
+  ])}
+</Examples>
+
+### ⚠️ Inflecting 1st/2nd Person Pronouns ⚠️
+
+Normally <Link to="/phrase-structure/vp/">the object of transitive verbs never inflects</Link>. But **1st and 2nd person pronouns (I, you) are an exception**. 1st and 2nd person pronouns (I, you) will inflect if they are the object of a present/future tense verb. The **3rd person pronouns, however, do NOT inflect as objects.**
+
+The only time you ever inflect an object in Pashto:
+
+- The object is a 1st or 2nd person pronoun (not 3rd!)
+- The verb is not past tense
+
+This is tricky for English speakers to remember, because in English we inflect all 1st and 3rd person pronouns when they are objects. For example, we say "he sees **me**," and "I see **him**." _In Pashto we have to say "he sees **me**" and "I see **he**."_
+
+#### When do you inflect an object in Pashto?
+
+<Table
+  opts={opts}
+  headRow={["", "object is a 1st/2nd pers. pronoun", "object is anything else"]}
+>
+  {[
+    ["verb is past tense", "❌", "❌"],
+    ["verb is not past tense", "✅", "❌"],
+  ]}
+</Table>
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "زه **تا** وینم.",
+      f: "zu **taa** wéenum.",
+      e: "I see **you**. (obj.)",
+      sub: "Inflected 2nd pers. pronoun",
+    },
+    {
+      p: "ما **ته** ولیدلې.",
+      f: "maa **tu** óoleedule.",
+      e: "I saw **you**. (obj.)",
+      sub: "Object is **not** inflected, because this is past tense",
+    },
+    {
+      p: "ته **ما** وینې.",
+      f: "tu **maa** wéene.",
+      e: "You see **me**. (obj.)",
+      sub: "Inflected 1st pers. pronoun",
+    },
+    {
+      p: "زه **هغه** وینم.",
+      f: "zu **haghá** wéenum.",
+      e: "I see **her**. (obj.)",
+      sub: "3rd pers. pronoun is **not** inflected",
+    },
+    {
+      p: "❌ زه **هغې** وینم.",
+      f: "❌ zu **haghé** wéenum.",
+      e: "I see **her**. (obj.)",
+      sub: "3rd pers. pronoun should **not** inflect here",
+    },
+    {
+      p: "**ما** مه وهه!",
+      f: "**maa** mú wahá!",
+      e: "Don't hit **me**! (obj.)",
+      sub: "Inflected 1st pers. pronoun",
+    },
+    {
+      p: "**دی** مه وهه!",
+      f: "**day** mú wahá!",
+      e: "Don't hit **him**! (obj.)",
+      sub: "3rd pers. pronoun is **not** inflected",
+    },
+  ])}
+</Examples>
