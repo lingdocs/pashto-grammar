@@ -190,6 +190,87 @@ It's important to remember that <InlinePs opts={opts} ps={{ p: "څوک", f: "tso
   ])}
 </Examples>
 
-## Other Indefinite Pronouns
+## Gender and Number of Indefinite Pronouns
 
-Coming soon... 🚧
+By default, these indefinite pronouns are considered **masculine plural**. When the indefinite pronoun is the <Link to="/phrase-structure/vp/">king of the sentence</Link>, the verb will be 3rd person masculine plural.
+
+In rare cases where we know they are for sure referring to some specific thing or person, then they can take a different gender and number.
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "تا **څه** کول؟",
+      f: "taa **tsu** kawúl?",
+      e: "**What** were you doing?",
+      sub: "The object څه, is **masculine plural**. Here the object is king. The verb is 3rd pers. masc. plural",
+    },
+    {
+      p: "تا څه لیدلي دي؟",
+      f: "taa **tsu** leedúlee dee?",
+      e: "**What** did you see?",
+      sub: "The object څه, is **masculine plural**. Here the object is king. The verb is 3rd pers. masc. plural",
+    },
+    {
+      p: "**څه** شوي دي؟",
+      f: "**tsu** shúwee dee?",
+      e: "**What** happened?",
+      sub: "The subject څه is **masculine plural**. Here the subject is king. The verb is 3rd pers. masc. plural",
+    },
+    {
+      p: "څوک** نه دي راغلي**",
+      f: "**tsok** nú dee raaghúlee",
+      e: "Nobody has come. (lit. **Someone** has not come - meaning no person/people have come)",
+      sub: "The subject څوک is **masculine plural**. Here the subject is king. The verb is 3rd pers. masc. plural",
+    },
+  ])}
+</Examples>
+
+## Some/every/no + one/thing
+
+The words <InlinePs opts={opts} ps={{ p: "هر", f: "har", e: "every" }} />, <InlinePs opts={opts} ps={{ p: "هیڅ", f: "heets", e: "no" }} />, and <InlinePs opts={opts} ps={{ p: "یو", f: "yo", e: "one" }} /> can be combined to form the following indefinite articles. Inflection works just the same.
+
+### With هر - every
+
+- <InlinePs opts={opts} ps={{ p: "هر څوک", f: "har tsok", e: "everybody" }} />
+- <InlinePs opts={opts} ps={{ p: "هر څه", f: "har tsu", e: "everything" }} />
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "**هر څه** ولرې او دوستان ونه لرې...",
+      f: "**har tsu** óolare aw dostáan on-nú lare...",
+      e: "If you have **everything** and don't have friends...",
+    },
+    {
+      p: "**هر څوک** خاشحاله دي",
+      f: "**har tsok** khoshháala dee",
+      e: "**Everyone** is happy",
+    },
+    {
+      p: "**هر چا** دا لوبه ولیده",
+      f: "**har chaa** daa lóba óoleeda",
+      e: "**Everyone** saw that game",
+      sub: "Inflected because it is the subject of a past tense transitive verb",
+    },
+    {
+      p: "له **هر چا** سره ملګرتیا مه کوه!",
+      f: "la **har chaa** sara malgurtyáa má kawa!",
+      e: "Don't make friends with everyone!",
+      sub: "Inflected because it is in a sandwich",
+    },
+  ])}
+</Examples>
+
+### With هیڅ - none
+
+- <InlinePs opts={opts} ps={{ p: "هیځ څوک", f: "heets tsok", e: "nobody" }} />
+- <InlinePs opts={opts} ps={{ p: "هیڅ څه", f: "heets tsu", e: "nothing" }} />
+
+These negative forms are used with negative verbs to make a **double negative** for emphasis.
+
+### With یو - one
+
+- <InlinePs opts={opts} ps={{ p: "یو څوک", f: "yo tsok", e: "someone" }} />
+- <InlinePs opts={opts} ps={{ p: "یو څه", f: "yo tsu", e: "something" }} />
+
+More coming soon... 🚧
