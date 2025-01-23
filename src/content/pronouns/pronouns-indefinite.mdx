@@ -263,14 +263,88 @@ The words <InlinePs opts={opts} ps={{ p: "هر", f: "har", e: "every" }} />, <In
 
 ### With هیڅ - none
 
-- <InlinePs opts={opts} ps={{ p: "هیځ څوک", f: "heets tsok", e: "nobody" }} />
+- <InlinePs opts={opts} ps={{ p: "هیڅ څوک", f: "heets tsok", e: "nobody" }} />
+  - inflects to <InlinePs
+    opts={opts}
+    ps={{ p: "هیڅ چا", f: "heets chaa" }}
+  /> or <InlinePs opts={opts} ps={{ p: "جیچا", f: "heechaa" }} />
 - <InlinePs opts={opts} ps={{ p: "هیڅ څه", f: "heets tsu", e: "nothing" }} />
 
-These negative forms are used with negative verbs to make a **double negative** for emphasis.
+These negative forms are used with negative verbs and equatives to make a **double negative** for emphasis.
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "دلته **څه** نشته",
+      f: "dalta **tsu** nushta",
+      e: "There is nothing here",
+      sub: "Here څه means 'nothing' because of negative نشته",
+    },
+    {
+      p: "دلته **هیڅ څه** نشته",
+      f: "dalta **heets tsu** nushta",
+      e: "There is _absolutely_ nothing here",
+      sub: "Double negative (هیڅ څه and نشته) for emphasis",
+    },
+    {
+      p: "❌ دلته **هیڅ څه** شته",
+      f: "❌ dalta **heets tsu** shta",
+      e: "There is nothing here",
+      sub: "You can't use هیڅ څه with a positive phrase (شته)",
+    },
+    {
+      p: "**چا** نه دي وایلي چې...",
+      f: "**chaa** nú dee waayulee che...",
+      e: "**Nobody** has said that...",
+      sub: "inflected as the subject of a past tense transitive verb",
+    },
+    {
+      p: "**هیڅ چا** نه دي وایلي چې...",
+      f: "**heets chaa** nú dee waayulee che...",
+      e: "_Absolutely nobody_ has said that...",
+      sub: "Double negative (هیڅ چا and نه دي وایلي) for emphasis",
+    },
+    {
+      p: "❌ **هیڅ چا** وایلي دي چې...",
+      f: "❌ **heets chaa** waayulee dee che...",
+      e: "_Nobody_ has said that...",
+      sub: "You can't use هیڅ چا with a positive verb (وایلي دي)",
+    },
+  ])}
+</Examples>
 
 ### With یو - one
 
 - <InlinePs opts={opts} ps={{ p: "یو څوک", f: "yo tsok", e: "someone" }} />
 - <InlinePs opts={opts} ps={{ p: "یو څه", f: "yo tsu", e: "something" }} />
 
-More coming soon... 🚧
+These forms can be used to emphasize that you are talking about one person, or about a little, or one, of something.
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "زه باید **یو څه** وکړم!",
+      f: "zu baayad **yo tsu** óokRum!",
+      e: "I have to do (at least) _something_!",
+    },
+    {
+      p: "کله چې یو څوک تا ته خفه وي...",
+      f: "kala che **yo tsok** taa ta khufá wee...",
+      e: "When **somone** (one person) is upset with you...",
+    },
+  ])}
+</Examples>
+
+#### Using <InlinePs opts={opts} ps={{ p: "یو څه", f: "yo tsu" }} /> as an intensifier
+
+Note that <InlinePs opts={opts} ps={{ p: "یو څه", f: "yo tsu" }} /> and <InlinePs opts={opts} ps={{ p: "څه", f: "tsu" }} /> can also be used as intensifiers with adjectives to mean "somewhat" or "a little."
+
+<Examples opts={opts}>
+  {psmd([
+    {
+      p: "هغه له ما نه **یو څه** خفه دی",
+      f: "haghá la maa na **yo tsu** khufá day",
+      e: "He's _a little_ upset with me",
+    },
+  ])}
+</Examples>
