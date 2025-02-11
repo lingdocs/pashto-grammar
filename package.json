@@ -17,7 +17,7 @@
     "@formkit/auto-animate": "^1.0.0-beta.6",
     "@fortawesome/fontawesome-free": "5.15.4",
     "@lingdocs/lingdocs-main": "^0.3.3",
-    "@lingdocs/ps-react": "7.8.2",
+    "@lingdocs/ps-react": "7.8.4",
     "@mdx-js/rollup": "^2.2.1",
     "@stefanprobst/rehype-extract-toc": "^2.2.0",
     "@types/mdx": "^2.0.3",
