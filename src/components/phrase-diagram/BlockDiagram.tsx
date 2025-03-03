@@ -18,7 +18,15 @@ function BlockDiagram({
     const rendered =
       children.type === "AP"
         ? renderAPSelection(children, 0)
-        : renderNPSelection(children, false, false, "subject", "none", false);
+        : renderNPSelection(
+            children,
+            false,
+            false,
+            "subject",
+            "none",
+            false,
+            "no"
+          );
     const english = getEnglishFromRendered(rendered);
     return (
       <div className="mb-3">

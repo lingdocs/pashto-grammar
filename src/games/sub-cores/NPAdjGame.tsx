@@ -46,7 +46,7 @@ const NPAdjWriting: GameSubCore<Level> = ({
     const rendered: T.Rendered<T.NPSelection> | T.Rendered<T.APSelection> =
       selection.type === "AP"
         ? renderAPSelection(selection, 0) // WOULD BE CLEANER IF THIS WAS JUST A PURE SANDWICH, NOT AT AP
-        : renderNPSelection(np, false, false, "subject", "none", false);
+        : renderNPSelection(np, false, false, "subject", "none", false, "no");
     const answer = getPashtoFromRendered(rendered, false);
     return {
       selection,
