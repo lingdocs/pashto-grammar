@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "vite",
     "dev-w-user": "REACT_APP_ENV=dev vite",
-    "build": "yarn get-words && yarn make-sitemap && tsc && vite build",
+    "build": "npm run get-words && npm run make-sitemap && tsc && vite build",
     "preview": "vite preview",
-    "infup": "yarn upgrade @lingdocs/ps-react --latest",
-    "bump-dep": "yarn install && git add . && git commit -m up && git push origin master",
+    "infup": "npm update @lingdocs/ps-react --latest --legacy-peer-deps",
+    "bump-dep": "npm run install && git add . && git commit -m up && git push origin master",
     "get-words": "node scripts/get-words.js",
     "make-sitemap": "node scripts/make-sitemap.js"
   },
