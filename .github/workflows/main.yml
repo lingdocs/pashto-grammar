@@ -22,4 +22,4 @@ jobs:
           npm run get-words && \
           npx playwright install --with-deps && \
           npm run test && \
-          npm build
+          npm run build
