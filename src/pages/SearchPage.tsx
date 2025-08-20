@@ -45,8 +45,8 @@ type Hit = {
 }
 
 const client = algoliasearch(
-  process.env.ALGOLIA_GRAMMAR_APP_ID || "",
-  process.env.ALGOLIA_GRAMMAR_API_KEY || "",
+  process.env.ALGOLIA_GRAMMAR_APP_ID || "no_id",
+  process.env.ALGOLIA_GRAMMAR_API_KEY || "no_id",
 );
 const indexName = process.env.ALGOLIA_GRAMMAR_INDEX || "";
 
