@@ -28,4 +28,4 @@ jobs:
           # npx playwright install --with-deps && \
           # npm run test && \
           npm run build && \
-          npx netlify deploy --prod --side-id $NETLIFY_SITE_ID
+          npx netlify deploy --prod --site-id $NETLIFY_SITE_ID
