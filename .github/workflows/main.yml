@@ -18,7 +18,8 @@ jobs:
         with:
           node-version: 22
       - run: |
-          npm install --force
-          npx playwright install --with-deps
-          npm run test
+          npm install --force && \
+          npm run get-words && \
+          npx playwright install --with-deps && \
+          npm run test && \
           npm build
