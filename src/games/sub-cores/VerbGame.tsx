@@ -1,8 +1,9 @@
+import type { JSX } from "react";
 import { useState } from "react";
 import { comparePs } from "../../lib/game-utils";
 import GameCore from "../GameCore";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   defaultTextOptions as opts,
   makeNounSelection,
   randFromArray,
@@ -84,17 +85,17 @@ type VerbGameLevel = {
   /* 1 is just a single verb, 2 picks a random verb for every question */
   level: 1 | 2;
   type:
-    | "presentVerb"
-    | "subjunctiveVerb"
-    | "futureVerb"
-    | "imperative"
-    | "intransitivePerfectivePast"
-    | "intransitiveImperfectivePast"
-    | "transitivePerfectivePast"
-    | "transitiveImperfectivePast"
-    | "allPast"
-    | "habitualPast"
-    | "allTenses";
+  | "presentVerb"
+  | "subjunctiveVerb"
+  | "futureVerb"
+  | "imperative"
+  | "intransitivePerfectivePast"
+  | "intransitiveImperfectivePast"
+  | "transitivePerfectivePast"
+  | "transitiveImperfectivePast"
+  | "allPast"
+  | "habitualPast"
+  | "allTenses";
 };
 type VerbPoolName =
   | "basic"
@@ -107,22 +108,22 @@ function selectVerbPool({ type }: VerbGameLevel): VerbPoolName {
   return type === "presentVerb"
     ? "basic"
     : type === "futureVerb"
-    ? "basic"
-    : type === "subjunctiveVerb"
-    ? "basic"
-    : type === "imperative"
-    ? "basic"
-    : type === "intransitiveImperfectivePast"
-    ? "intransitivePast"
-    : type === "intransitivePerfectivePast"
-    ? "intransitivePast"
-    : type === "transitiveImperfectivePast"
-    ? "transitivePast"
-    : type === "transitivePerfectivePast"
-    ? "transitivePast"
-    : type === "habitualPast" || type === "allPast"
-    ? "mixedPast"
-    : "mixedAll";
+      ? "basic"
+      : type === "subjunctiveVerb"
+        ? "basic"
+        : type === "imperative"
+          ? "basic"
+          : type === "intransitiveImperfectivePast"
+            ? "intransitivePast"
+            : type === "intransitivePerfectivePast"
+              ? "intransitivePast"
+              : type === "transitiveImperfectivePast"
+                ? "transitivePast"
+                : type === "transitivePerfectivePast"
+                  ? "transitivePast"
+                  : type === "habitualPast" || type === "allPast"
+                    ? "mixedPast"
+                    : "mixedAll";
 }
 
 // TODO: Level where you create the formulas (seperate file)
@@ -349,8 +350,8 @@ export function QuestionDisplay({
     "grammaticallyTransitive" in infoV
       ? infoV.grammaticallyTransitive
       : "stative" in infoV
-      ? infoV.stative
-      : infoV;
+        ? infoV.stative
+        : infoV;
   return (
     <div className="mb-3">
       <div className="mb-2">
@@ -433,25 +434,25 @@ function levelToDescription({ type }: VerbGameLevel): string {
   return type === "presentVerb"
     ? "present"
     : type === "subjunctiveVerb"
-    ? "subjunctive"
-    : type === "futureVerb"
-    ? "imperfective future or perfective future"
-    : type === "intransitivePerfectivePast"
-    ? "simple past intransitive"
-    : type === "intransitiveImperfectivePast"
-    ? "continuous past intransitive"
-    : type === "transitiveImperfectivePast"
-    ? "continuous past transitive"
-    : type === "transitivePerfectivePast"
-    ? "simple past transitive"
-    : type === "imperative"
-    ? "imperfective imperative or perfective imperative"
-    : type === "allPast"
-    ? "past tense"
-    : type === "habitualPast"
-    ? "habitual past"
-    : // : type === "allTenses"
-      "";
+      ? "subjunctive"
+      : type === "futureVerb"
+        ? "imperfective future or perfective future"
+        : type === "intransitivePerfectivePast"
+          ? "simple past intransitive"
+          : type === "intransitiveImperfectivePast"
+            ? "continuous past intransitive"
+            : type === "transitiveImperfectivePast"
+              ? "continuous past transitive"
+              : type === "transitivePerfectivePast"
+                ? "simple past transitive"
+                : type === "imperative"
+                  ? "imperfective imperative or perfective imperative"
+                  : type === "allPast"
+                    ? "past tense"
+                    : type === "habitualPast"
+                      ? "habitual past"
+                      : // : type === "allTenses"
+                      "";
 }
 
 function levelToTense({
@@ -460,26 +461,26 @@ function levelToTense({
   return type === "presentVerb"
     ? type
     : type === "subjunctiveVerb"
-    ? type
-    : type === "futureVerb"
-    ? randFromArray(["perfectiveFuture", "imperfectiveFuture"])
-    : type === "imperative"
-    ? randFromArray(["perfectiveImperative", "imperfectiveImperative"])
-    : type === "intransitiveImperfectivePast" ||
-      type === "transitiveImperfectivePast"
-    ? "imperfectivePast"
-    : type === "intransitivePerfectivePast" ||
-      type === "transitivePerfectivePast"
-    ? "perfectivePast"
-    : type === "habitualPast"
-    ? randFromArray(["habitualPerfectivePast", "habitualImperfectivePast"])
-    : // : type === "allPast"
-      randFromArray([
-        "perfectivePast",
-        "imperfectivePast",
-        "habitualPerfectivePast",
-        "habitualImperfectivePast",
-      ]);
+      ? type
+      : type === "futureVerb"
+        ? randFromArray(["perfectiveFuture", "imperfectiveFuture"])
+        : type === "imperative"
+          ? randFromArray(["perfectiveImperative", "imperfectiveImperative"])
+          : type === "intransitiveImperfectivePast" ||
+            type === "transitiveImperfectivePast"
+            ? "imperfectivePast"
+            : type === "intransitivePerfectivePast" ||
+              type === "transitivePerfectivePast"
+              ? "perfectivePast"
+              : type === "habitualPast"
+                ? randFromArray(["habitualPerfectivePast", "habitualImperfectivePast"])
+                : // : type === "allPast"
+                randFromArray([
+                  "perfectivePast",
+                  "imperfectivePast",
+                  "habitualPerfectivePast",
+                  "habitualImperfectivePast",
+                ]);
 }
 
 function makeVPS({
@@ -530,8 +531,8 @@ function makeVPS({
             transitivity === "intransitive"
               ? "none"
               : transitivity === "grammatically transitive"
-              ? 10
-              : object,
+                ? 10
+                : object,
         },
       },
     ]),

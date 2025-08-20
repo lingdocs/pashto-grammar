@@ -28,22 +28,22 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
   // filling in and sending the feedback textbox
   // not doing this yet because not sure if it's a clean setup like "componentWillUnmount"
   // or if it unecessarily unmounts and re-renders
-  // useEffect(() => {
-  //     return () => {
-  //         if (rating === undefined || feedbackStatus === "sent") return;
-  //         fetch("https://account.lingdocs.com/feedback", {
-  //             method: "PUT",
-  //             credentials: "include",
-  //             headers: {
-  //                 "Content-Type": "application/json",
-  //             },
-  //             body: JSON.stringify({ feedback: "", rating }),
-  //         }).catch(() => {
-  //             console.error("couldn't send chapter feedback");
-  //         });
-  //     }
-  //     // eslint-disable-next-line
-  // }, []);
+  useEffect(() => {
+    return () => {
+      if (rating === undefined || feedbackStatus === "sent") return;
+      fetch("https://account.lingdocs.com/feedback", {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ feedback: "", rating }),
+      }).catch(() => {
+        console.error("couldn't send chapter feedback");
+      });
+    }
+    // eslint-disable-next-line
+  }, []);
   function handleSendFeedback() {
     const toSend = {
       chapter,
@@ -102,9 +102,9 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
               style={
                 rating !== value
                   ? {
-                      filter: "grayscale(100%)",
-                      fontSize: "2.25rem",
-                    }
+                    filter: "grayscale(100%)",
+                    fontSize: "2.25rem",
+                  }
                   : { fontSize: "2.75rem" }
               }
               onClick={() => handleRatingClick(value)}
@@ -131,7 +131,7 @@ function ChapterFeedback({ chapter }: { chapter: string }) {
             <div className="d-flex flex-row justify-content-between align-items-center">
               <div className="small">
                 {user && !anonymous
-                  ? `Your feedback is private but will be sent to the author will be sent as "${user.name}"`
+                  ? `Your feedback is private but will be sent to the author will be sent as ${user.name}`
                   : `Your feedback is private and anonymous`}
               </div>
               <div className="d-flex flex-row align-items-center">

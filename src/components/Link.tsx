@@ -7,32 +7,32 @@
  */
 
 import { HashLink } from 'react-router-hash-link';
-import { Link } from "react-router-dom";
-import type { CSSProperties, ReactElement, ReactNode } from 'react';
+import { Link } from "react-router";
+import type { CSSProperties, ReactNode } from 'react';
 // import scrollWithOffset from "../../lib/scroll-with-offset.js";
 
 export default function L(props: {
-    to: string,
-    style?: CSSProperties,
-    children: string | ReactNode,
-    className?: string,
+  to: string,
+  style?: CSSProperties,
+  children: string | ReactNode,
+  className?: string,
 }) {
-    const { to } = props || "";
-    const toA = (to.includes("#") && to.split("#")[0] === window.location.pathname)
-        ? ("#" + to.split("#")[1])
-        : to;
-    if (toA.includes("#")) {
-        // If it's a hash link return the special hash link
-        return <HashLink
-            // scroll={scrollWithOffset}
-            smooth
-            to={to}
-            style={props.style}
-        >{props.children}</HashLink>;
-    }
-    if (toA.startsWith("http")) {
-        return <a href={toA} style={props.style} className={props.className}>{props.children}</a>
-    }
-    // If it's a regular link return the regular router linker
-    return <Link to={toA} style={props.style} className={props.className}>{props.children}</Link>;
+  const { to } = props || "";
+  const toA = (to.includes("#") && to.split("#")[0] === window.location.pathname)
+    ? ("#" + to.split("#")[1])
+    : to;
+  if (toA.includes("#")) {
+    // If it's a hash link return the special hash link
+    return <HashLink
+      // scroll={scrollWithOffset}
+      smooth
+      to={to}
+      style={props.style}
+    >{props.children}</HashLink>;
+  }
+  if (toA.startsWith("http")) {
+    return <a href={toA} style={props.style} className={props.className}>{props.children}</a>
+  }
+  // If it's a regular link return the regular router linker
+  return <Link to={toA} style={props.style} className={props.className}>{props.children}</Link>;
 }; 

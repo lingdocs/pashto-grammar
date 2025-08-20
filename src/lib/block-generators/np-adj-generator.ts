@@ -1,5 +1,5 @@
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   makeNounSelection,
   makeAdjectiveSelection,
   randFromArray,
@@ -75,7 +75,7 @@ const adjectives = wordQuery("adjectives", [
 ]);
 
 export function makeNPAdjGenerator(
-  pluralsLevel: "none" | "low" | "high"
+  pluralsLevel: "none" | "low" | "high",
 ): () => T.NPSelection {
   const nounPool = makePool(nouns);
   const adjPool = makePool(adjectives);
@@ -90,7 +90,7 @@ export function makeNPAdjGenerator(
             number: randFromArray(
               pluralsLevel === "high"
                 ? ["singular", "plural", "plural", "plural", "singular"]
-                : ["singular", "plural", "singular"]
+                : ["singular", "plural", "singular"],
             ),
           }
         : {}),

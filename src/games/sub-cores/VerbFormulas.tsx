@@ -1,13 +1,15 @@
 import GameCore from "../GameCore";
+import type { JSX } from "react";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
   humanReadableVerbForm,
-  Types as T,
   InlinePs,
   grammarUnits,
   defaultTextOptions as opts,
 } from "@lingdocs/ps-react";
 import { makePool } from "../../lib/pool";
-import { CSSProperties, useEffect, useState } from "react";
+import type { CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { isImperativeTense } from "@lingdocs/ps-react/dist/lib/src/type-predicates";
 
@@ -138,7 +140,6 @@ export default function VerbFormulas({
   inChapter,
   id,
   link,
-  level,
 }: {
   inChapter: boolean;
   id: string;
@@ -186,9 +187,9 @@ function Display({ question, callback }: QuestionDisplayProps<Question>) {
     const { formula } = question;
     callback(
       ba === formula.ba &&
-        mu === formula.mu &&
-        stemRoot === formula.stemRoot &&
-        ending === formula.ending
+      mu === formula.mu &&
+      stemRoot === formula.stemRoot &&
+      ending === formula.ending
     );
   }
   return (

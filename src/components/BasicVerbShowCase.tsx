@@ -1,5 +1,5 @@
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   RootsAndStems,
   conjugateVerb,
   VerbTable,
@@ -40,8 +40,8 @@ function BasicVerbShowCase({
   const items = isPastTense(tense)
     ? intransitivePastVerbs
     : passive
-    ? basicVerbs.filter((v) => v.entry.p !== "کول")
-    : basicVerbs;
+      ? basicVerbs.filter((v) => v.entry.p !== "کول")
+      : basicVerbs;
   return (
     <Carousel
       stickyTitle
@@ -96,8 +96,8 @@ function BasicVerbChart({
     "stative" in c
       ? c.stative
       : "grammaticallyTransitive" in c
-      ? c.grammaticallyTransitive
-      : c;
+        ? c.grammaticallyTransitive
+        : c;
   const phrasesForTable = makeExamplePhrases(
     verb,
     tense,
@@ -151,9 +151,9 @@ function BasicVerbChart({
           category === "ability"
             ? getAbilityRootsAndStems(conjugations.info)
             : voice === "passive"
-            ? getPassiveRootsAndStems(conjugations.info) ||
+              ? getPassiveRootsAndStems(conjugations.info) ||
               /* type safety */ conjugations.info
-            : conjugations.info
+              : conjugations.info
         }
         hidePastParticiple={isPerfectTense(tense) ? false : true}
         highlighted={[tenseToStem(tense)]}
@@ -161,18 +161,18 @@ function BasicVerbChart({
       <div className="my-3 d-flex flex-row justify-content-center">
         {((isPastTense(tense) && !isPerfectTense(tense)) ||
           category === "ability") && (
-          <div className="mx-2">
-            <ButtonSelect
-              handleChange={setLength}
-              value={length}
-              small
-              options={[
-                { value: "long", label: "long" },
-                { value: "short", label: "short" },
-              ]}
-            />
-          </div>
-        )}
+            <div className="mx-2">
+              <ButtonSelect
+                handleChange={setLength}
+                value={length}
+                small
+                options={[
+                  { value: "long", label: "long" },
+                  { value: "short", label: "short" },
+                ]}
+              />
+            </div>
+          )}
         <div className="mx-2">
           <ButtonSelect
             handleChange={(value) => setNegative(value === "true")}
@@ -235,28 +235,28 @@ function makeExamplePhrases(
             verb.entry.c?.includes("intrans.") || voice === "passive"
               ? { type: "objectSelection", selection: "none" }
               : {
-                  type: "objectSelection",
+                type: "objectSelection",
+                selection: {
+                  type: "NP",
                   selection: {
-                    type: "NP",
-                    selection: {
-                      type: "noun",
-                      entry: {
-                        ts: 1527812817,
-                        i: 10011,
-                        p: "کتاب",
-                        f: "kitáab",
-                        g: "kitaab",
-                        e: "book",
-                        c: "n. m.",
-                      },
-                      gender: "masc",
-                      genderCanChange: false,
-                      number: "singular",
-                      numberCanChange: true,
-                      adjectives: [],
+                    type: "noun",
+                    entry: {
+                      ts: 1527812817,
+                      i: 10011,
+                      p: "کتاب",
+                      f: "kitáab",
+                      g: "kitaab",
+                      e: "book",
+                      c: "n. m.",
                     },
+                    gender: "masc",
+                    genderCanChange: false,
+                    number: "singular",
+                    numberCanChange: true,
+                    adjectives: [],
                   },
                 },
+              },
         },
       ],
       verb: {
@@ -281,7 +281,6 @@ function makeExamplePhrases(
     const selection = makeSelection(person);
     const rendered = renderVP(selection);
     const compiled = compileVP(rendered, rendered.form);
-    console.log({ rendered, compiled });
     return {
       ps: [
         modifyP(getLengthTempFix(getLength(compiled.ps, "long"), length)[0]),
@@ -296,8 +295,8 @@ function makeExamplePhrases(
     isImperativeTense(tense)
       ? "imperative"
       : isPastTense(tense)
-      ? "past"
-      : "nonImperative"
+        ? "past"
+        : "nonImperative"
   );
 }
 
@@ -318,11 +317,11 @@ function modifyEnglish(
   return isPerfectTense(tense) || (isPastTense(tense) && isThirdPerson)
     ? dummyObjectRemoved
     : dummyObjectRemoved
-        .replace(/he\/it/gi, "he/she/it")
-        .replace(/We \(m\. pl\.\)/gi, "We ")
-        .replace(/They \(m\. pl\.\)/gi, "They ")
-        .replace(/\(m\. pl\.\)/gi, "(pl.)")
-        .replace(/\(m\.\)/gi, "");
+      .replace(/he\/it/gi, "he/she/it")
+      .replace(/We \(m\. pl\.\)/gi, "We ")
+      .replace(/They \(m\. pl\.\)/gi, "They ")
+      .replace(/\(m\. pl\.\)/gi, "(pl.)")
+      .replace(/\(m\.\)/gi, "");
 }
 
 function tenseToStem(
@@ -337,26 +336,26 @@ function tenseToStem(
     t === "presentVerb"
       ? "imperfective stem"
       : t === "subjunctiveVerb"
-      ? "perfective stem"
-      : t === "imperfectiveFuture"
-      ? "imperfective stem"
-      : t === "perfectiveFuture"
-      ? "perfective stem"
-      : t === "imperfectivePast"
-      ? "imperfective root"
-      : t === "perfectivePast"
-      ? "perfective root"
-      : t === "habitualImperfectivePast"
-      ? "imperfective root"
-      : t === "habitualPerfectivePast"
-      ? "perfective root"
-      : t === "imperfectiveImperative"
-      ? "imperfective stem"
-      : t === "perfectiveImperative"
-      ? "perfective stem"
-      : t.endsWith("Perfect")
-      ? "past participle"
-      : "perfective root";
+        ? "perfective stem"
+        : t === "imperfectiveFuture"
+          ? "imperfective stem"
+          : t === "perfectiveFuture"
+            ? "perfective stem"
+            : t === "imperfectivePast"
+              ? "imperfective root"
+              : t === "perfectivePast"
+                ? "perfective root"
+                : t === "habitualImperfectivePast"
+                  ? "imperfective root"
+                  : t === "habitualPerfectivePast"
+                    ? "perfective root"
+                    : t === "imperfectiveImperative"
+                      ? "imperfective stem"
+                      : t === "perfectiveImperative"
+                        ? "perfective stem"
+                        : t.endsWith("Perfect")
+                          ? "past participle"
+                          : "perfective root";
   return stem;
 }
 

@@ -1,11 +1,11 @@
 import {
   removeAccents,
   hasAccents,
-  Types as T,
   standardizePashto,
   standardizePhonetics,
   flattenLengths,
 } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/ps-react";
 import { removeAShort } from "./misc-helpers";
 
 export function getPercentageDone(current: number, total: number): number {
@@ -28,7 +28,7 @@ export function compareF(input: string, answer: string): boolean {
 
 export function comparePs(
   inputRaw: string,
-  answer: T.SingleOrLengthOpts<T.PsString[]>
+  answer: T.SingleOrLengthOpts<T.PsString[]>,
 ): boolean {
   function cleanSpaces(s: string): string {
     return s.replace(/\s+/g, " ");

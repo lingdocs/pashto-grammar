@@ -1,7 +1,7 @@
 import genderColors from "../../lib/gender-colors";
 import GameCore from "../GameCore";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   Examples,
   defaultTextOptions as opts,
   endsWith,

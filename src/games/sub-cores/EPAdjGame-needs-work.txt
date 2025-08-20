@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { comparePs } from "../../lib/game-utils";
 import GameCore from "../GameCore";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   renderEP,
   compileEP,
   randFromArray,
@@ -207,16 +207,21 @@ function addUserAnswer(a: string, ps: T.PsString): T.PsString {
   };
 }
 
+// TODO: this could be rough
 function getAdjectiveFromRendered(
   EP: T.EPRendered
 ): T.Rendered<T.AdjectiveSelection> {
-  const pred = getPredicateSelectionFromBlocks(EP.blocks);
+  const pred = EP.blocks[0].find(x => x.block.type == "predicate");
   if (
-    pred.selection.type !== "complement" ||
-    pred.selection.selection.type !== "adjective"
+    !pred ||
+    (!("selection" in pred.block) || typeof pred.block.selection !== "object") ||
+    !("type" in pred.block.selection) ||
+    pred.block.selection.type !== "complement" ||
+    pred.block.selection.selection.type !== "adjective"
   ) {
     throw new Error("adjective not found in predicate");
   }
+  // @ts-ignore
   return pred.selection.selection;
 }
 

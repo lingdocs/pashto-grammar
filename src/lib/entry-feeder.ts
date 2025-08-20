@@ -1,18 +1,19 @@
-import { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-    nouns,
-    verbs,
-    adjectives,
-    locativeAdverbs,
-    adverbs,
+  nouns,
+  verbs,
+  adjectives,
+  locativeAdverbs,
+  adverbs,
 } from "../words/words";
 
 const entryFeeder: T.EntryFeeder = {
-    nouns,
-    verbs,
-    adjectives,
-    locativeAdverbs,
-    adverbs,
-}
+  nouns,
+  verbs,
+  adjectives,
+  locativeAdverbs,
+  adverbs,
+};
 
 export default entryFeeder;
+

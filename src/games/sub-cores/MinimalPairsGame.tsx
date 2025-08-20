@@ -1,14 +1,14 @@
 import GameCore from "../GameCore";
+import type { JSX } from "react";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
-  defaultTextOptions as opts,
   randFromArray,
   removeAccents,
 } from "@lingdocs/ps-react";
 import minimalPairs from "../../content/writing/minimal-pairs";
 import { makePool } from "../../lib/pool";
 import { useEffect, useRef } from "react";
-import { MinimalPairsSection } from "../../content/writing/minimal-pairs-type";
+import type { MinimalPairsSection } from "../../content/writing/minimal-pairs-type";
 
 // is it removing from the pool properly ? or is it a problem with strict mode doing double?
 
@@ -41,7 +41,7 @@ export default function MinimalPairsGame({
     return { pair, selected };
   }
   function Display({ question, callback }: QuestionDisplayProps<Question>) {
-    const audioRef = useRef<HTMLAudioElement>();
+    const audioRef = useRef<HTMLAudioElement>(null);
     useEffect(() => {
       if (audioRef && audioRef.current) {
         audioRef.current.play();
@@ -61,7 +61,6 @@ export default function MinimalPairsGame({
       <div>
         <audio
           src={audioSrc}
-          // @ts-expect-error // typing not playing nice here
           ref={audioRef}
         />
         <div>
@@ -92,8 +91,8 @@ export default function MinimalPairsGame({
   }
 
   function DisplayCorrectAnswer({ question }: { question: Question }) {
-    const audioRef0 = useRef<HTMLAudioElement>();
-    const audioRef1 = useRef<HTMLAudioElement>();
+    const audioRef0 = useRef<HTMLAudioElement>(null);
+    const audioRef1 = useRef<HTMLAudioElement>(null);
     const [audioSrc0, audioSrc1] = question.pair.map(getAudioSrc);
     const playAudio = (n: 0 | 1) => () => {
       const audio = n === 0 ? audioRef0 : audioRef1;
@@ -103,13 +102,11 @@ export default function MinimalPairsGame({
       <div>
         <audio
           src={audioSrc0}
-          // @ts-expect-error // typing not playing nice here
           ref={audioRef0}
           preload="auto"
         />
         <audio
           src={audioSrc1}
-          // @ts-expect-error // typing not playing nice here
           ref={audioRef1}
           preload="auto"
         />

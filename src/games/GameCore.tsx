@@ -1,28 +1,31 @@
-import { useState, useRef, useEffect, memo } from "react";
+import { useState, useRef, useEffect } from "react";
+import type { JSX } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import Reward, { RewardElement } from "react-rewards";
+import { useReward } from "react-rewards";
 import Link from "../components/Link";
 import { useUser } from "../user-context";
 import "./timer.css";
 import { getPercentageDone } from "../lib/game-utils";
 import { saveResult, postSavedResults } from "../lib/game-results";
 import { AT, getTimestamp } from "@lingdocs/lingdocs-main";
-import { randFromArray, Types } from "@lingdocs/ps-react";
+import { randFromArray } from "@lingdocs/ps-react";
+import type { Types } from "@lingdocs/ps-react";
 import ReactGA from "react-ga4";
 import { isProd } from "../lib/isProd";
+// @ts-ignore
 import autoAnimate from "@formkit/auto-animate";
 const errorVibration = 200;
 const strikesToFail = 3;
 
 type GameState<Question> = (
   | {
-      mode: "practice";
-      showAnswer: boolean;
-    }
+    mode: "practice";
+    showAnswer: boolean;
+  }
   | {
-      mode: "intro" | "test" | "fail" | "timeout" | "complete";
-      showAnswer: false;
-    }
+    mode: "intro" | "test" | "fail" | "timeout" | "complete";
+    showAnswer: false;
+  }
 ) & {
   numberComplete: number;
   current: Question | undefined;
@@ -33,25 +36,25 @@ type GameState<Question> = (
 
 type GameReducerAction =
   | {
-      type: "handle question response";
-      payload: { correct: boolean };
-    }
+    type: "handle question response";
+    payload: { correct: boolean };
+  }
   | {
-      type: "start";
-      payload: "practice" | "test";
-    }
+    type: "start";
+    payload: "practice" | "test";
+  }
   | {
-      type: "quit";
-    }
+    type: "quit";
+  }
   | {
-      type: "timeout";
-    }
+    type: "timeout";
+  }
   | {
-      type: "toggle show answer";
-    }
+    type: "toggle show answer";
+  }
   | {
-      type: "skip";
-    };
+    type: "skip";
+  };
 
 function GameCore<Question>({
   inChapter,
@@ -74,6 +77,7 @@ function GameCore<Question>({
   timeLimit: number;
   amount: number;
 }) {
+  const { reward } = useReward('rewardId', 'confetti');
   // TODO STOP THE DOUBLE POOL DIPPING !!!
   // POSSIBLE SOLUTION - allow question to be undefined... then use useEffect
   // to grab the first question
@@ -87,7 +91,6 @@ function GameCore<Question>({
     showAnswer: false,
   };
   // TODO: report pass with id to user info
-  const rewardRef = useRef<RewardElement | null>(null);
   const parent = useRef<HTMLDivElement | null>(null);
   const { user, pullUser, setUser } = useUser();
   const [state, setStateDangerous] =
@@ -109,9 +112,9 @@ function GameCore<Question>({
         if (action.payload.correct) {
           const numberComplete = gs.numberComplete + 1;
           if (numberComplete === amount) {
-            logGameEvent("passed");
-            rewardRef.current?.rewardMe();
-            handleResult(true);
+            // logGameEvent("passed");
+            reward();
+            // handleResult(true);
             return {
               ...gs,
               numberComplete,
@@ -265,16 +268,16 @@ function GameCore<Question>({
     const num = !state.current
       ? 0
       : state.mode === "complete"
-      ? 100
-      : getPercentageDone(state.numberComplete, amount);
+        ? 100
+        : getPercentageDone(state.numberComplete, amount);
     return `${num}%`;
   }
   const progressColor =
     state.mode === "complete"
       ? "success"
       : state.mode === "fail" || state.mode === "timeout"
-      ? "danger"
-      : "primary";
+        ? "danger"
+        : "primary";
   const gameRunning = state.mode === "practice" || state.mode === "test";
   function ActionButtons() {
     return (
@@ -360,98 +363,87 @@ function GameCore<Question>({
             </div>
           )}
         </div>
-        <Reward
-          ref={rewardRef}
-          config={{
-            lifetime: 130,
-            spread: 90,
-            elementCount: 150,
-            zIndex: 999999999,
-          }}
-          type="confetti"
-        >
-          <div className="mb-2">
-            {state.mode === "intro" && (
-              <div>
-                <div className="pt-3">
-                  {/* TODO: ADD IN TEXT DISPLAY OPTIONS HERE TOO - WHEN WE START USING THEM*/}
-                  <Instructions />
-                </div>
-                <ActionButtons />
+        <div className="mb-2" id="rewardId">
+          {state.mode === "intro" && (
+            <div>
+              <div className="pt-3">
+                {/* TODO: ADD IN TEXT DISPLAY OPTIONS HERE TOO - WHEN WE START USING THEM*/}
+                <Instructions />
+              </div>
+              <ActionButtons />
+            </div>
+          )}
+          {gameRunning && state.current && (
+            <Display
+              question={state.current}
+              callback={(correct) =>
+                dispatch({
+                  type: "handle question response",
+                  payload: { correct },
+                })
+              }
+            />
+          )}
+          {state.mode === "practice" &&
+            (state.justStruck || state.showAnswer) && (
+              <div className="my-3">
+                <button
+                  className="btn btn-sm btn-secondary"
+                  onClick={() => dispatch({ type: "toggle show answer" })}
+                >
+                  {state.showAnswer ? "Hide" : "Show"} Answer
+                </button>
               </div>
             )}
-            {gameRunning && state.current && (
-              <Display
-                question={state.current}
-                callback={(correct) =>
-                  dispatch({
-                    type: "handle question response",
-                    payload: { correct },
-                  })
-                }
-              />
-            )}
-            {state.mode === "practice" &&
-              (state.justStruck || state.showAnswer) && (
-                <div className="my-3">
-                  <button
-                    className="btn btn-sm btn-secondary"
-                    onClick={() => dispatch({ type: "toggle show answer" })}
-                  >
-                    {state.showAnswer ? "Hide" : "Show"} Answer
-                  </button>
-                </div>
-              )}
-            {state.showAnswer && state.mode === "practice" && state.current && (
-              <div className="my-2">
-                <div className="my-1">
+          {state.showAnswer && state.mode === "practice" && state.current && (
+            <div className="my-2">
+              <div className="my-1">
+                <DisplayCorrectAnswer question={state.current} />
+              </div>
+              <button
+                className="btn btn-sm btn-primary my-2"
+                onClick={() => dispatch({ type: "skip" })}
+              >
+                Next Question
+              </button>
+            </div>
+          )}
+          {state.mode === "complete" && (
+            <div>
+              <h4 className="mt-4">
+                <span role="img" aria-label="celebration">
+                  🎉
+                </span>{" "}
+                Finished!
+              </h4>
+              <button
+                className="btn btn-secondary mt-4"
+                onClick={() => dispatch({ type: "start", payload: "test" })}
+              >
+                Try Again
+              </button>
+            </div>
+          )}
+          {(state.mode === "timeout" || state.mode === "fail") &&
+            state.current && (
+              <div className="mb-4">
+                <h4 className="mt-4">
+                  {failMessage({
+                    numberComplete: state.numberComplete,
+                    amount,
+                    type: state.mode,
+                  })}
+                </h4>
+                <div>The correct answer was:</div>
+                <div className="my-2">
                   <DisplayCorrectAnswer question={state.current} />
                 </div>
-                <button
-                  className="btn btn-sm btn-primary my-2"
-                  onClick={() => dispatch({ type: "skip" })}
-                >
-                  Next Question
-                </button>
-              </div>
-            )}
-            {state.mode === "complete" && (
-              <div>
-                <h4 className="mt-4">
-                  <span role="img" aria-label="celebration">
-                    🎉
-                  </span>{" "}
-                  Finished!
-                </h4>
-                <button
-                  className="btn btn-secondary mt-4"
-                  onClick={() => dispatch({ type: "start", payload: "test" })}
-                >
-                  Try Again
-                </button>
-              </div>
-            )}
-            {(state.mode === "timeout" || state.mode === "fail") &&
-              state.current && (
-                <div className="mb-4">
-                  <h4 className="mt-4">
-                    {failMessage({
-                      numberComplete: state.numberComplete,
-                      amount,
-                      type: state.mode,
-                    })}
-                  </h4>
-                  <div>The correct answer was:</div>
-                  <div className="my-2">
-                    <DisplayCorrectAnswer question={state.current} />
-                  </div>
-                  <div className="my-3">
-                    <ActionButtons />
-                  </div>
+                <div className="my-3">
+                  <ActionButtons />
                 </div>
-              )}
-          </div>
-        </Reward>
+              </div>
+            )}
+        </div>
       </div>
       {gameRunning && (
         <div
@@ -526,12 +518,12 @@ function failMessage({
     pDone < 20
       ? { message: "No, sorry", face: "😑" }
       : pDone < 30
-      ? { message: "Oops, that's wrong", face: "😟" }
-      : pDone < 55
-      ? { message: "Fail", face: "😕" }
-      : pDone < 78
-      ? { message: "You almost got it!", face: "😩" }
-      : { message: "Nooo! So close!", face: "😭" };
+        ? { message: "Oops, that's wrong", face: "😟" }
+        : pDone < 55
+          ? { message: "Fail", face: "😕" }
+          : pDone < 78
+            ? { message: "You almost got it!", face: "😩" }
+            : { message: "Nooo! So close!", face: "😭" };
   return type === "fail" ? `${message} ${face}` : `⏳ Time's Up ${face}`;
 }
 

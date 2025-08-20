@@ -1,4 +1,5 @@
-import { InlinePs, Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/ps-react";
+import { InlinePs } from "@lingdocs/ps-react";
 import { useState } from "react";
 // @ts-ignore
 import SmoothCollapse from "react-smooth-collapse";

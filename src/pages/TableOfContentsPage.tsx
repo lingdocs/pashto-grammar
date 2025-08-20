@@ -6,7 +6,7 @@
  *
  */
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import Footer from "../components/Footer";
 import { content } from "../content/index";
 // import algoliasearch from 'algoliasearch/lite';
@@ -34,7 +34,7 @@ const TableOfContentsPage = () => {
       <div className="flex-shrink-0">
         <div className="mb-2" style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", maxWidth: "700px" }}>
           <h1>Table of Contents</h1>
-          {navigator.share && <div onClick={handleShare} className="clickable">
+          {!!navigator.share && <div onClick={handleShare} className="clickable">
             <i className="fas fa-share-alt" style={{ fontSize: "1.8rem" }} />
           </div>}
         </div>
@@ -48,28 +48,28 @@ const TableOfContentsPage = () => {
         <Link to="/" className="plain-link">
           <h3 className="mb-3">Home / Front Page</h3>
         </Link>
-        {content.map((section) => (
-          section.path ?
-            <Link to={section.path} className="plain-link">
+        {content.map((section, i) => (
+          section.type === "chapter-data" ?
+            <Link key={`${section.path}${i}`} to={section.path} className="plain-link">
               <h3 className="mb-3">{section.frontMatter.title}</h3>
             </Link>
-          : <div>
-            <Link to={section.chapters[0].path} className="plain-link">
-              <h3>{section.heading}</h3>
-            </Link>
-            <div className="ml-3">
-              {section.chapters.map((chapter) => (
-                <Link to={chapter.path} className="plain-link">
-                  <div className="my-3" style={{ fontSize: "larger"}}>
-                    {chapter.frontMatter.title}
-                  </div>
-                </Link>
-              ))}
+            : <div key={`${section.heading}${i}`}>
+              <Link to={section.chapters[0].path} className="plain-link">
+                <h3>{section.heading}</h3>
+              </Link>
+              <div className="ml-3">
+                {section.chapters.map((chapter) => (
+                  <Link key={chapter.path} to={chapter.path} className="plain-link">
+                    <div className="my-3" style={{ fontSize: "larger" }}>
+                      {chapter.frontMatter.title}
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
         ))}
       </div>
-      <Footer />
+      <Footer chapter={undefined} />
     </main>
   </>;
 };

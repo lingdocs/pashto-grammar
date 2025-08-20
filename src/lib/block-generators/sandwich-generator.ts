@@ -1,4 +1,5 @@
-import { Types as T, randFromArray, sandwiches } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/ps-react";
+import { randFromArray, sandwiches } from "@lingdocs/ps-react";
 
 export function makeSandwich(np: T.NPSelection): T.APSelection {
   return {

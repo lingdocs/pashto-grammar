@@ -1,6 +1,7 @@
 import GameCore from "../GameCore";
+import type { JSX } from "react";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   getInflectionPattern,
   Examples,
   defaultTextOptions as opts,
@@ -65,21 +66,21 @@ export default function InflectionPatterns({
       level === 2
         ? (x) => x
         : (x) =>
-            tp.isUnisexNounEntry(x) ||
-            tp.isAdjectiveEntry(x) ||
-            (tp.isFemNounEntry(x) && tp.isPattern6FemEntry(x))
+          tp.isUnisexNounEntry(x) ||
+          tp.isAdjectiveEntry(x) ||
+          (tp.isFemNounEntry(x) && tp.isPattern6FemEntry(x))
     )
     .map((x) => ({ entry: x, pattern: getInflectionPattern(x) }));
   const words: Record<T.InflectionPattern, (T.NounEntry | T.AdjectiveEntry)[]> =
-    {
-      0: w.filter((x) => x.pattern === 0).map((x) => x.entry),
-      1: w.filter((x) => x.pattern === 1).map((x) => x.entry),
-      2: w.filter((x) => x.pattern === 2).map((x) => x.entry),
-      3: w.filter((x) => x.pattern === 3).map((x) => x.entry),
-      4: w.filter((x) => x.pattern === 4).map((x) => x.entry),
-      5: w.filter((x) => x.pattern === 5).map((x) => x.entry),
-      6: w.filter((x) => x.pattern === 6).map((x) => x.entry),
-    };
+  {
+    0: w.filter((x) => x.pattern === 0).map((x) => x.entry),
+    1: w.filter((x) => x.pattern === 1).map((x) => x.entry),
+    2: w.filter((x) => x.pattern === 2).map((x) => x.entry),
+    3: w.filter((x) => x.pattern === 3).map((x) => x.entry),
+    4: w.filter((x) => x.pattern === 4).map((x) => x.entry),
+    5: w.filter((x) => x.pattern === 5).map((x) => x.entry),
+    6: w.filter((x) => x.pattern === 6).map((x) => x.entry),
+  };
   const pools: Record<
     T.InflectionPattern,
     () => T.NounEntry | T.AdjectiveEntry

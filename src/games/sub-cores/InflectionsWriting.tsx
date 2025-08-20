@@ -1,6 +1,7 @@
 import GameCore from "../GameCore";
+import type { JSX } from "react";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   getInflectionPattern,
   Examples,
   defaultTextOptions as opts,
@@ -13,7 +14,11 @@ import {
 import { makePool } from "../../lib/pool";
 import { nouns, adjectives } from "../../words/words";
 import { isAdverbEntry } from "@lingdocs/ps-react/dist/lib/src/type-predicates";
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type {
+  ChangeEvent,
+  FormEvent,
+} from "react";
 import { comparePs } from "../../lib/game-utils";
 
 const amount = 8;
@@ -85,8 +90,8 @@ export default function InflectionsWriting({
             isUnisexSet(question.inflections)
               ? "unisex"
               : "masc" in question.inflections
-              ? "masc"
-              : "fem"
+                ? "masc"
+                : "fem"
           }
         />
       </div>

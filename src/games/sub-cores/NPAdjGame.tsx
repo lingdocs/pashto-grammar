@@ -1,6 +1,7 @@
 import GameCore from "../GameCore";
+import type { JSX } from "react";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   renderNPSelection,
   getEnglishFromRendered,
   getPashtoFromRendered,

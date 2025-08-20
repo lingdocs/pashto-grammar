@@ -1,6 +1,4 @@
-type TableOfContents = {
-    depth: number,
-    value: string,
-    id: string,
-    children?: TableOfContents,
-}[];
+declare module "*.jpg";
+declare module "*.svg";
+declare module "*.png";
+declare module "*.css";

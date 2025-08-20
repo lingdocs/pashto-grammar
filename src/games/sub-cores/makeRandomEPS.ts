@@ -1,5 +1,5 @@
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   typePredicates as tp,
   makeNounSelection,
   randFromArray,
@@ -88,7 +88,7 @@ export function randomEPSPool(l: T.EquativeTense | "allTenses") {
 function makeEPS(
   subject: T.NPSelection,
   predicate: T.AdjectiveEntry | T.LocativeAdverbEntry,
-  tense: T.EquativeTense
+  tense: T.EquativeTense,
 ): T.EPSelectionComplete {
   return {
     blocks: [
@@ -101,20 +101,17 @@ function makeEPS(
       },
     ],
     predicate: {
-      type: "predicateSelection",
-      selection: {
-        type: "complement",
-        selection: tp.isAdjectiveEntry(predicate)
-          ? {
-              type: "adjective",
-              entry: predicate,
-              sandwich: undefined,
-            }
-          : {
-              type: "loc. adv.",
-              entry: predicate,
-            },
-      },
+      type: "complement",
+      selection: tp.isAdjectiveEntry(predicate)
+        ? {
+            type: "adjective",
+            entry: predicate,
+            sandwich: undefined,
+          }
+        : {
+            type: "loc. adv.",
+            entry: predicate,
+          },
     },
     equative: {
       tense,

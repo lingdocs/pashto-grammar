@@ -2,9 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ '*' ]
-  pull_request:
-    branches: [ '*' ]
+    branches: [ 'main' ]
 
   workflow_dispatch:
 
@@ -15,9 +13,12 @@ jobs:
       LINGDOCS_NPM_TOKEN: ${{ secrets.LINGDOCS_NPM_TOKEN }}
       LINGDOCS_DICTIONARY_URL: ${{ secrets.LINGDOCS_DICTIONARY_URL }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - run: yarn install
-      - run: yarn build
+          node-version: 22
+      - run: |
+          npm install --force
+          npx playwright install --with-deps
+          npm run test
+          npm build

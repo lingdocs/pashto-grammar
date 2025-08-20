@@ -1,9 +1,7 @@
-import { Types as T, EPDisplay, EPPicker } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/ps-react";
+import { EPDisplay, EPPicker } from "@lingdocs/ps-react";
 import entryFeeder from "../../lib/entry-feeder";
 import { useState } from "react";
-import ReactGA from "react-ga4";
-import { isProd } from "../../lib/isProd";
-import { useUser } from "../../user-context";
 
 export function EditIcon() {
   return <i className="fas fa-edit" />;
@@ -22,19 +20,9 @@ function EditableEPEx({
 }) {
   const [editing, setEditing] = useState<boolean>(false);
   const [eps, setEps] = useState<T.EPSelectionState>(children);
-  const { user } = useUser();
   function handleReset() {
     setEditing(false);
     setEps(children);
-  }
-  function logEdit() {
-    if (isProd && !user?.admin) {
-      ReactGA.event({
-        category: "Example",
-        action: `edit EPex - ${window.location.pathname}`,
-        label: "edit EPex",
-      });
-    }
   }
   return (
     <div className="mt-2 mb-4">
@@ -46,9 +34,8 @@ function EditableEPEx({
             editing
               ? handleReset
               : () => {
-                  setEditing(true);
-                  logEdit();
-                }
+                setEditing(true);
+              }
           }
         >
           {!editing ? <EditIcon /> : <i className="fas fa-undo" />}
@@ -69,10 +56,10 @@ function EditableEPEx({
           hideOmitSubject
             ? false
             : (value) =>
-                setEps((o) => ({
-                  ...o,
-                  omitSubject: value === "true",
-                }))
+              setEps((o) => ({
+                ...o,
+                omitSubject: value === "true",
+              }))
         }
         justify="left"
         onlyOne

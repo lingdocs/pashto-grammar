@@ -1,8 +1,0 @@
-[build]
-  command = "yarn build"
-  publish = "dist/"
-[[plugins]]
-package = "@algolia/netlify-plugin-crawler"
-  [plugins.inputs]
-  renderJavaScript = true
-  template = "hierarchical"

@@ -1,14 +1,12 @@
+import type { Types as T } from "@lingdocs/ps-react";
+import type { JSX } from "react";
 import {
-  Types as T,
   VPDisplay,
   VPPicker,
   vpsReducer,
 } from "@lingdocs/ps-react";
 import entryFeeder from "../../lib/entry-feeder";
 import { useState } from "react";
-import ReactGA from "react-ga4";
-import { isProd } from "../../lib/isProd";
-import { useUser } from "../../user-context";
 
 export function EditIcon() {
   return <i className="fas fa-edit" />;
@@ -19,7 +17,6 @@ export function EditIcon() {
 function EditableVPEx({
   children,
   opts,
-  formChoice,
   noEdit,
   length,
   mode,
@@ -40,23 +37,13 @@ function EditableVPEx({
     length || "short"
   );
   const [vps, setVps] = useState<T.VPSelectionState>({ ...children });
-  const { user } = useUser();
-  function logEdit() {
-    if (isProd && !user?.admin) {
-      ReactGA.event({
-        category: "Example",
-        action: `edit VPex - ${window.location.pathname}`,
-        label: "edit VPex",
-      });
-    }
-  }
   function handleReset() {
     // TODO: this is crazy, how does children get changed after calling setVps ???
     setVps(children);
     setEditing(false);
   }
   function handleSetForm(form: T.FormVersion) {
-    setVps(vpsReducer(vps, { type: "set form", payload: form }));
+    setVps(vpsReducer(entryFeeder)(vps, { type: "set form", payload: form }));
   }
   return (
     <div className="mt-2 mb-4">
@@ -68,9 +55,8 @@ function EditableVPEx({
             editing
               ? handleReset
               : () => {
-                  setEditing(true);
-                  logEdit();
-                }
+                setEditing(true);
+              }
           }
         >
           {!editing ? <EditIcon /> : <i className="fas fa-undo" />}

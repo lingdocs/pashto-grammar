@@ -7,10 +7,11 @@
  */
 
 import { useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router";
 import "./App.css";
-import Page404 from "./pages/404";
+import Page404 from "./pages/FourOFour";
 import Chapter from "./components/Chapter";
+import type { ChapterData } from "./content/index";
 import { content } from "./content/index";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
@@ -24,9 +25,9 @@ import { useUser } from "./user-context";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import SearchPage from "./pages/SearchPage";
 
-const chapters = content.reduce(
+const chapters = content.reduce<ChapterData[]>(
   (chapters, item) =>
-    item.content ? [...chapters, item] : [...chapters, ...item.chapters],
+    item.type === "chapter-data" ? [...chapters, item] : [...chapters, ...item.chapters],
   []
 );
 
@@ -86,7 +87,7 @@ function App() {
               path="/table-of-contents"
               element={<TableOfContentsPage />}
             />
-            {chapters.map((chapter: any) => (
+            {chapters.map((chapter) => (
               <Route
                 key={chapter.path}
                 path={chapter.path}

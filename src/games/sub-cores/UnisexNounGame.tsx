@@ -2,8 +2,8 @@ import { useState } from "react";
 import { comparePs } from "../../lib/game-utils";
 import genderColors from "../../lib/gender-colors";
 import GameCore from "../GameCore";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   Examples,
   defaultTextOptions as opts,
   inflectWord,
@@ -152,16 +152,15 @@ export default function UnisexNounGame({
 
   function DisplayCorrectAnswer({ question }: { question: Question }) {
     const infOut = inflectWord(question.entry);
-    if (!infOut) return <div>WORD ERROR</div>;
+    if (!infOut || !infOut.inflections) return <div>WORD ERROR</div>;
     const { inflections } = infOut;
-    // @ts-ignore
-    const correctAnswer = inflections[flipGender(question.gender)][0];
+    const correctAnswer = getGenderFromInf(inflections, flipGender(question.gender));
     return (
       <div>
         {correctAnswer.length > 1 && (
           <div className="text-muted">One of the following:</div>
         )}
-        {correctAnswer.map((ps: any) => (
+        {correctAnswer.map((ps) => (
           <Examples opts={opts}>{ps}</Examples>
         ))}
       </div>
@@ -181,6 +180,15 @@ export default function UnisexNounGame({
       Instructions={Instructions}
     />
   );
+}
+
+function getGenderFromInf(inf: T.Inflections, gender: T.Gender): T.InflectionSet {
+  if (gender in inf) {
+    // @ts-ignore
+    return inf[gender];
+  }
+  // @ts-ignore 
+  return inf[flipGender(gender)];
 }
 
 function flipGender(g: T.Gender): T.Gender {

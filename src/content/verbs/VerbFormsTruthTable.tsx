@@ -9,7 +9,7 @@ type State = [boolean, boolean, boolean];
 function VerbFormsTruthTable() {
   const [state, setState] = useState<State>([false, false, false]);
   const [hitSwitch, setHitSwitch] = useState<boolean>(false);
-  const [form] = tenseData.find(([t, ...switches]) => {
+  const [form] = tenseData.find(([_, ...switches]) => {
     return JSON.stringify(state) === JSON.stringify(switches);
   }) as ["string"];
   return (
@@ -79,9 +79,8 @@ function StateInFormula({
 }) {
   return (
     <samp className="my-2">
-      {`${hasBa ? "ba + " : ""}${perfective ? "" : "im"}perfective ${
-        root ? "root" : "stem"
-      } + ${root ? "past" : "present"} ending`}
+      {`${hasBa ? "ba + " : ""}${perfective ? "" : "im"}perfective ${root ? "root" : "stem"
+        } + ${root ? "past" : "present"} ending`}
     </samp>
   );
 }

@@ -83,9 +83,7 @@ An adjective is a word that describes what the subject is like. Notice that if p
       },
     ],
     predicate: {
-      type: "Complement",
-      Complement: {
-        type: "EQComp",
+      type: "complement",
         selection: {
           type: "adjective",
           entry: {
@@ -98,7 +96,6 @@ An adjective is a word that describes what the subject is like. Notice that if p
             c: "adj.",
           },
         },
-      },
     },
     equative: { tense: "present", negative: false },
     omitSubject: false,
@@ -120,9 +117,7 @@ An adjective is a word that describes what the subject is like. Notice that if p
       },
     ],
     predicate: {
-      type: "Complement",
-      Complement: {
-        type: "EQComp",
+      type: "complement",
         selection: {
           type: "adjective",
           entry: {
@@ -135,7 +130,6 @@ An adjective is a word that describes what the subject is like. Notice that if p
             c: "adj.",
           },
         },
-      },
     },
     equative: { tense: "present", negative: false },
     omitSubject: false,
@@ -161,9 +155,7 @@ A location adverb is a word that describes the location of the subject. Don't wo
       },
     ],
     predicate: {
-      type: "Complement",
-      Complement: {
-        type: "EQComp",
+      type: "complement",
         selection: {
           type: "loc. adv.",
           entry: {
@@ -177,7 +169,6 @@ A location adverb is a word that describes the location of the subject. Don't wo
           },
         },
       },
-    },
     equative: { tense: "present", negative: false },
     omitSubject: false,
   }}
@@ -198,9 +189,7 @@ A location adverb is a word that describes the location of the subject. Don't wo
       },
     ],
     predicate: {
-      type: "Complement",
-      Complement: {
-        type: "EQComp",
+      type: "complement",
         selection: {
           type: "loc. adv.",
           entry: {
@@ -213,7 +202,6 @@ A location adverb is a word that describes the location of the subject. Don't wo
             c: "loc. adv.",
           },
         },
-      },
     },
     equative: { tense: "present", negative: false },
     omitSubject: false,
@@ -239,9 +227,7 @@ You can also use any kind of sandwich to describe the subject of an EP.
       },
     ],
     predicate: {
-      type: "Complement",
-      Complement: {
-        type: "EQComp",
+      type: "complement",
         selection: {
           type: "sandwich",
           before: { p: "له", f: "la" },
@@ -253,7 +239,6 @@ You can also use any kind of sandwich to describe the subject of an EP.
           },
         },
       },
-    },
     equative: { tense: "present", negative: false },
     omitSubject: false,
   }}
@@ -274,9 +259,7 @@ You can also use any kind of sandwich to describe the subject of an EP.
       },
     ],
     predicate: {
-      type: "Complement",
-      Complement: {
-        type: "EQComp",
+      type: "complement",
         selection: {
           type: "sandwich",
           before: { p: "په", f: "pu" },
@@ -304,7 +287,6 @@ You can also use any kind of sandwich to describe the subject of an EP.
           },
         },
       },
-    },
     equative: { tense: "present", negative: false },
     omitSubject: false,
   }}
@@ -404,8 +386,8 @@ Sometimes you need to say that an <Link to="/phrase-structure/np/">NP</Link> is 
       },
     ],
     predicate: {
-      type: "NP",
-      NP: {
+      type: "complement",
+      selection: {
         type: "NP",
         selection: {
           type: "noun",
@@ -462,8 +444,8 @@ Sometimes you need to say that an <Link to="/phrase-structure/np/">NP</Link> is 
       },
     ],
     predicate: {
-      type: "NP",
-      NP: {
+      type: "complement",
+      selection: {
         type: "NP",
         selection: {
           type: "noun",
@@ -520,8 +502,8 @@ Sometimes you need to say that an <Link to="/phrase-structure/np/">NP</Link> is 
       },
     ],
     predicate: {
-      type: "NP",
-      NP: {
+      type: "complement",
+      selection: {
         type: "NP",
         selection: {
           type: "noun",
@@ -630,29 +612,7 @@ You can add as many <Link to="/phrase-structure/ap/">APs</Link> as you like to a
       },
     ],
     predicate: {
-      type: "Complement",
-      NP: {
-        type: "NP",
-        selection: {
-          type: "noun",
-          entry: {
-            ts: 1527812817,
-            i: 10010,
-            p: "کتاب",
-            f: "kitáab",
-            g: "kitaab",
-            e: "book",
-            c: "n. m.",
-          },
-          gender: "masc",
-          genderCanChange: false,
-          number: "plural",
-          numberCanChange: true,
-          adjectives: [],
-        },
-      },
-      Complement: {
-        type: "EQComp",
+      type: "complement",
         selection: {
           type: "adjective",
           entry: {
@@ -666,7 +626,6 @@ You can add as many <Link to="/phrase-structure/ap/">APs</Link> as you like to a
           },
         },
       },
-    },
     equative: { tense: "present", negative: false },
     omitSubject: false,
   }}
@@ -693,29 +652,7 @@ If it's obvious who/what you're talking about you can always leave out the subje
       },
     ],
     predicate: {
-      type: "Complement",
-      NP: {
-        type: "NP",
-        selection: {
-          type: "noun",
-          entry: {
-            ts: 1527812817,
-            i: 10010,
-            p: "کتاب",
-            f: "kitáab",
-            g: "kitaab",
-            e: "book",
-            c: "n. m.",
-          },
-          gender: "masc",
-          genderCanChange: false,
-          number: "plural",
-          numberCanChange: true,
-          adjectives: [],
-        },
-      },
-      Complement: {
-        type: "EQComp",
+      type: "complement",
         selection: {
           type: "adjective",
           entry: {
@@ -729,7 +666,6 @@ If it's obvious who/what you're talking about you can always leave out the subje
           },
         },
       },
-    },
     equative: { tense: "present", negative: false },
     omitSubject: true,
   }}
@@ -750,29 +686,7 @@ If it's obvious who/what you're talking about you can always leave out the subje
       },
     ],
     predicate: {
-      type: "Complement",
-      NP: {
-        type: "NP",
-        selection: {
-          type: "noun",
-          entry: {
-            ts: 1527812817,
-            i: 10010,
-            p: "کتاب",
-            f: "kitáab",
-            g: "kitaab",
-            e: "book",
-            c: "n. m.",
-          },
-          gender: "masc",
-          genderCanChange: false,
-          number: "plural",
-          numberCanChange: true,
-          adjectives: [],
-        },
-      },
-      Complement: {
-        type: "EQComp",
+      type: "complement",
         selection: {
           type: "adjective",
           entry: {
@@ -786,7 +700,6 @@ If it's obvious who/what you're talking about you can always leave out the subje
           },
         },
       },
-    },
     equative: { tense: "present", negative: false },
     omitSubject: true,
   }}

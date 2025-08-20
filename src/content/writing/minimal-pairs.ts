@@ -1,11 +1,11 @@
-import { Types as T } from "@lingdocs/ps-react";
-import { MinimalPairsSection } from "./minimal-pairs-type";
+import type { Types as T } from "@lingdocs/ps-react";
+import type { MinimalPairsSection } from "./minimal-pairs-type";
 
 const minimalPairs: {
   title: MinimalPairsSection;
   pairs: [
     { f: string; entry: T.DictionaryEntry },
-    { f: string; entry: T.DictionaryEntry }
+    { f: string; entry: T.DictionaryEntry },
   ][];
 }[] = [
   {

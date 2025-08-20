@@ -1,7 +1,8 @@
 import { Component } from "react";
 import classNames from "classnames";
 import highlightExample from "./highlight-example";
-import { phonemes, Phoneme, PhonemeExample } from "./phonemes";
+import { phonemes } from "./phonemes";
+import type { Phoneme, PhonemeExample } from "./phonemes";
 import playAudio from "../../lib/play-audio";
 import views from "./views";
 import Media from "react-media";
@@ -30,7 +31,7 @@ class PhoneticsViewer extends Component<any, IAppState> {
       this.state.view === "all"
         ? phonemes
         : // @ts-ignore
-          phonemes.filter((p) => p[this.state.view]);
+        phonemes.filter((p) => p[this.state.view]);
     const selectedOption = views.find((v) => v.value === this.state.view);
     const generatePlayerFunction = (item: Phoneme | PhonemeExample) => {
       if ("phoneme" in item && item.a) {
@@ -118,12 +119,11 @@ class PhoneticsViewer extends Component<any, IAppState> {
                   <td>
                     {phoneme.possibleLetters
                       ? phoneme.possibleLetters.reduce(
-                          (s, l) =>
-                            `${s}${l.letter}  ${
-                              l.alternate ? ` (${l.alternate}) ` : ""
-                            }`,
-                          ""
-                        )
+                        (s, l) =>
+                          `${s}${l.letter}  ${l.alternate ? ` (${l.alternate}) ` : ""
+                          }`,
+                        ""
+                      )
                       : ""}
                     {/* phoneme.diacritic && `(diacritic ◌${phoneme.diacritic})` */}
                   </td>

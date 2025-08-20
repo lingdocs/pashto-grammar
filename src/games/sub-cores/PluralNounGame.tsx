@@ -2,8 +2,8 @@ import { useState } from "react";
 import { comparePs } from "../../lib/game-utils";
 import genderColors from "../../lib/gender-colors";
 import GameCore from "../GameCore";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   Examples,
   defaultTextOptions as opts,
   inflectWord,
@@ -141,11 +141,10 @@ export default function PluralNounGame({
     const gender: T.Gender = tp.isUnisexNounEntry(entry)
       ? randFromArray(genders)
       : tp.isFemNounEntry(entry)
-      ? "fem"
-      : "masc";
+        ? "fem"
+        : "masc";
     const [singular, plural] = getSingAndPlural({ entry, gender });
     if (!singular || plural.length === 0) {
-      console.log({ singular, plural });
       throw new Error("unable to generate plurals for " + entry.p);
     }
     return {
@@ -170,7 +169,7 @@ export default function PluralNounGame({
     const inflections: T.InflectionSet =
       infs.inflections && gender in infs.inflections
         ? // @ts-ignore
-          infs.inflections[gender]
+        infs.inflections[gender]
         : undefined;
     const plural: T.PluralInflectionSet =
       // @ts-ignore
@@ -202,9 +201,8 @@ export default function PluralNounGame({
       callback(correct);
     };
     function makePartOfSpeechInfo(q: Question) {
-      return `(n. ${q.gender === "masc" ? "m" : "f"}. ${
-        q.entry.c?.includes("anim.") ? "anim." : ""
-      })`;
+      return `(n. ${q.gender === "masc" ? "m" : "f"}. ${q.entry.c?.includes("anim.") ? "anim." : ""
+        })`;
     }
 
     return (
@@ -265,7 +263,7 @@ export default function PluralNounGame({
         {question.plural.length > 1 && (
           <div className="text-muted">One of the following:</div>
         )}
-        {question.plural.map((ps: any) => (
+        {question.plural.map((ps) => (
           <Examples opts={opts}>{ps}</Examples>
         ))}
       </div>

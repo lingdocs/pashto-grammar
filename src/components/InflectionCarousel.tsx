@@ -1,4 +1,5 @@
 import Carousel from "./Carousel";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
   InlinePs,
   removeFVarients,
@@ -6,7 +7,6 @@ import {
   inflectWord,
   defaultTextOptions as opts,
   getEnglishWord,
-  Types as T,
 } from "@lingdocs/ps-react";
 
 function InflectionCarousel({
@@ -27,10 +27,10 @@ function InflectionCarousel({
             e === undefined
               ? item.e
               : typeof e === "string"
-              ? e
-              : e.singular !== undefined
-              ? e.singular
-              : item.e;
+                ? e
+                : e.singular !== undefined
+                  ? e.singular
+                  : item.e;
           const infOut = inflectWord(item);
           if (!infOut || !infOut.inflections) {
             return {

@@ -1,4 +1,6 @@
-import React, { createContext, useEffect } from "react"
+import React, { createContext, useEffect } from "react";
+import type { JSX } from "react";
+
 import {
   AT,
   getUser,
@@ -20,7 +22,7 @@ const UserContext = createContext<
 >(undefined);
 
 // TODO: persisting user in local state
-function UserProvider({ children }: any) {
+function UserProvider({ children }: { children: JSX.Element }) {
   const [value, setValue] = useStickyState<AT.LingdocsUser | undefined>(
     undefined,
     "saved-user",

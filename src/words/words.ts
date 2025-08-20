@@ -1,9 +1,9 @@
 import rawWords from "./raw-words";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
   removeAccents,
   removeFVarients,
   typePredicates as tp,
-  Types as T,
 } from "@lingdocs/ps-react";
 import { categorize } from "../lib/categorize";
 import { removeAShort, removeAyn } from "../lib/misc-helpers";
@@ -18,6 +18,7 @@ const words = categorize<
     adverbs: T.AdverbEntry[];
     locativeAdverbs: T.LocativeAdverbEntry[];
   }
+  // @ts-ignore
 >(rawWords, {
   nouns: tp.isNounEntry,
   adjectives: tp.isAdjectiveEntry,
@@ -33,17 +34,17 @@ export const { nouns, adjectives, verbs, adverbs, locativeAdverbs } = words;
 export function wordQuery(category: "nouns", w: string[]): T.NounEntry[];
 export function wordQuery(
   category: "adjectives",
-  w: string[]
+  w: string[],
 ): T.AdjectiveEntry[];
 export function wordQuery(category: "adverbs", w: string[]): T.AdverbEntry[];
 export function wordQuery(
   category: "locativeAdverbs",
-  w: string[]
+  w: string[],
 ): T.LocativeAdverbEntry[];
 export function wordQuery(category: "verbs", w: string[]): T.VerbEntry[];
 export function wordQuery(
   category: "nouns" | "adjectives" | "adverbs" | "locativeAdverbs" | "verbs",
-  w: string[]
+  w: string[],
 ):
   | T.NounEntry[]
   | T.AdjectiveEntry[]
@@ -73,6 +74,7 @@ export function wordQuery(
       queryRemoveAccents(y) === queryRemoveAccents(removeFVarients(x.f))
     );
   }
+  // @ts-ignore
   return w.map((word) => {
     const l = words[category];
     // @ts-ignore

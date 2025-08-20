@@ -34,6 +34,16 @@
     <meta name="robots" content="index, follow" />
     <!-- <script defer src="https://remark42.lingdocs.com/web/embed.js"></script> -->
     <title>LingDocs Pashto Grammar</title>
+
+    <!-- for weird error https://old.reddit.com/r/react/comments/1kwej1u/component_examplejsx8_uncaught_error/ -->
+    <script type="module">
+     import RefreshRuntime from "/@react-refresh"
+     RefreshRuntime.injectIntoGlobalHook(window)
+     window.$RefreshReg$ = () => {}
+     window.$RefreshSig$ = () => (type) => type
+     window.__vite_plugin_react_preamble_installed__ = true
+    </script>
+
   </head>
   <body>
     <div id="root"></div>

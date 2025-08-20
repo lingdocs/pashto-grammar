@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import type { JSX } from "react";
 import { comparePs } from "../../lib/game-utils";
 import GameCore from "../GameCore";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   Examples,
   defaultTextOptions as opts,
   renderEP,
@@ -217,12 +218,12 @@ function humanReadableTense(tense: T.EquativeTense | "allProduce"): string {
   return tense === "allProduce"
     ? ""
     : tense === "pastSubjunctive"
-    ? "past subjunctive"
-    : tense === "wouldBe"
-    ? `"would be"`
-    : tense === "wouldHaveBeen"
-    ? `"would have been"`
-    : tense;
+      ? "past subjunctive"
+      : tense === "wouldBe"
+        ? `"would be"`
+        : tense === "wouldHaveBeen"
+          ? `"would have been"`
+          : tense;
 }
 
 function getEqFromRendered(e: T.EPRendered): T.EquativeRendered {

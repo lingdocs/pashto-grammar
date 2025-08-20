@@ -1,8 +1,9 @@
 import { useState } from "react";
+import type { JSX } from "react";
 import { comparePs } from "../../lib/game-utils";
 import GameCore from "../GameCore";
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   defaultTextOptions as opts,
   makeNounSelection,
   randFromArray,
@@ -13,13 +14,9 @@ import {
   makeVPSelectionState,
   compileVP,
   isInvalidSubjObjCombo,
-  blank,
-  kidsBlank,
-  isPashtoScript,
 } from "@lingdocs/ps-react";
 import { isPastTense, isThirdPerson } from "@lingdocs/ps-react";
 import { maybeShuffleArray } from "../../lib/shuffle-array";
-import { baParticle } from "@lingdocs/ps-react/dist/lib/src/grammar-units";
 import { intransitivePastVerbs } from "../../content/verbs/basic-present-verbs";
 import { makePool } from "../../lib/pool";
 import { wordQuery } from "../../words/words";
@@ -375,27 +372,27 @@ function DisplayCorrectAnswer({
 //     });
 // }
 
-function addUserAnswer(
-  a: { withBa: boolean; answer: string },
-  ps: T.PsString
-): T.PsString {
-  function addBa(x: T.PsString) {
-    if (!a.withBa) return x;
-    return {
-      p: x.p.replace(kidsBlank.p, baParticle.p),
-      f: x.f.replace(kidsBlank.f, baParticle.f),
-    };
-  }
-  function addAnswer(x: T.PsString): T.PsString {
-    if (!a.answer) return x;
-    const field = isPashtoScript(a.answer) ? "p" : "f";
-    return {
-      ...x,
-      [field]: x[field].replace(blank[field], a.answer),
-    };
-  }
-  return addAnswer(addBa(ps));
-}
+// function addUserAnswer(
+//   a: { withBa: boolean; answer: string },
+//   ps: T.PsString
+// ): T.PsString {
+//   function addBa(x: T.PsString) {
+//     if (!a.withBa) return x;
+//     return {
+//       p: x.p.replace(kidsBlank.p, baParticle.p),
+//       f: x.f.replace(kidsBlank.f, baParticle.f),
+//     };
+//   }
+//   function addAnswer(x: T.PsString): T.PsString {
+//     if (!a.answer) return x;
+//     const field = isPashtoScript(a.answer) ? "p" : "f";
+//     return {
+//       ...x,
+//       [field]: x[field].replace(blank[field], a.answer),
+//     };
+//   }
+//   return addAnswer(addBa(ps));
+// }
 
 function makeVPS({
   verb,
@@ -445,8 +442,8 @@ function makeVPS({
             transitivity === "intransitive"
               ? "none"
               : transitivity === "grammatically transitive"
-              ? 10
-              : object,
+                ? 10
+                : object,
         },
       },
     ]),

@@ -1,4 +1,4 @@
-import { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/ps-react";
 
 type SandwichInfo = {
   pre?: T.PsString;

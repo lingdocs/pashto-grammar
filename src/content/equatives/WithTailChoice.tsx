@@ -1,5 +1,5 @@
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  Types as T,
   concatPsString,
   ButtonSelect,
   InlinePs,
@@ -42,22 +42,22 @@ function WithTailChoice({ opts, ba }: { opts: T.TextOptions; ba: boolean }) {
         forms={{
           sentence: !ba
             ? {
-                displayForm: concatPsString(
-                  { p: "کاشکې ... ...", f: "kaashke ... ..." },
-                  " ",
-                  waay,
-                  { p: "!", f: "!" }
-                ),
-                english: [[["If only ... was/were ...!"]]],
-              }
+              displayForm: concatPsString(
+                { p: "کاشکې ... ...", f: "kaashke ... ..." },
+                " ",
+                waay,
+                { p: "!", f: "!" }
+              ),
+              english: [[["If only ... was/were ...!"]]],
+            }
             : {
-                displayForm: concatPsString(
-                  { p: "به ...", f: "ba ..." },
-                  " ",
-                  waay
-                ),
-                english: [[["... would have been ..."]]],
-              },
+              displayForm: concatPsString(
+                { p: "به ...", f: "ba ..." },
+                " ",
+                waay
+              ),
+              english: [[["... would have been ..."]]],
+            },
           pure: {
             displayForm: !ba
               ? waay

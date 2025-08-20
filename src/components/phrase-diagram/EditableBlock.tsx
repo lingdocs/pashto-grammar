@@ -1,8 +1,10 @@
-import { Types as T, NPPicker, APPicker } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/ps-react";
+import { NPPicker, APPicker } from "@lingdocs/ps-react";
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import BlockDiagram from "./BlockDiagram";
 import entryFeeder from "../../lib/entry-feeder";
+// @ts-ignore
 import autoAnimate from "@formkit/auto-animate";
 
 export function EditIcon() {
@@ -31,13 +33,13 @@ function EditableBlock({
   const [editing, setEditing] = useState<boolean>(false);
   const [edited, setEdited] = useState<
     | {
-        type: "NP";
-        block: T.NPSelection | undefined;
-      }
+      type: "NP";
+      block: T.NPSelection | undefined;
+    }
     | {
-        type: "AP";
-        block: T.APSelection | undefined;
-      }
+      type: "AP";
+      block: T.APSelection | undefined;
+    }
   >(selectionToBlock(block));
   function handleNPChange(np: T.NPSelection | undefined) {
     setEdited({ type: "NP", block: np });

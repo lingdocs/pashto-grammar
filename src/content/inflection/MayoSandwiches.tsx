@@ -1,7 +1,6 @@
+import type { Types as T } from "@lingdocs/ps-react";
 import {
-  defaultTextOptions as opts,
   Examples,
-  Types as T,
 } from "@lingdocs/ps-react";
 
 const mayoSandwiches = [

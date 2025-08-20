@@ -1,6 +1,6 @@
+import type { Types as T } from "@lingdocs/ps-react";
 import {
   renderNPSelection,
-  Types as T,
   renderAPSelection,
   NPBlock,
   APBlock,
@@ -19,14 +19,14 @@ function BlockDiagram({
       children.type === "AP"
         ? renderAPSelection(children, 0)
         : renderNPSelection(
-            children,
-            false,
-            false,
-            "subject",
-            "none",
-            false,
-            "no"
-          );
+          children,
+          false,
+          false,
+          "subject",
+          "none",
+          false,
+          "no"
+        );
     const english = getEnglishFromRendered(rendered);
     return (
       <div className="mb-3">
