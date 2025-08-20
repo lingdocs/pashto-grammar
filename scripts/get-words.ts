@@ -1,5 +1,4 @@
 import fs from "fs";
-import fetch from "node-fetch";
 import type { Types as T } from "@lingdocs/ps-react";
 
 import nounAdjTs from "../src/words/nouns-adjs";

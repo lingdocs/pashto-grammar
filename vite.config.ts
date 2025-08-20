@@ -42,6 +42,8 @@ export default defineConfig({
         globPatterns: ["*/*.*", "*.*"],
         maximumFileSizeToCacheInBytes: 5242880,
       },
+      injectRegister: "auto",
+      registerType: "prompt",
       includeAssets: ["**/*.(js|html|svg|png|jpg|jpeg|eot|woff|woff2|ttf)"],
       manifest: {
         short_name: "Pashto Grammar",

@@ -12,6 +12,11 @@ jobs:
     env:
       LINGDOCS_NPM_TOKEN: ${{ secrets.LINGDOCS_NPM_TOKEN }}
       LINGDOCS_DICTIONARY_URL: ${{ secrets.LINGDOCS_DICTIONARY_URL }}
+      ALGOLIA_GRAMMAR_API_KEY: ${{ secrets.ALGOLIA_GRAMMAR_API_KEY }} 
+      ALGOLIA_GRAMMAR_APP_ID: ${{ secrets.ALGOLIA_GRAMMAR_APP_ID }}
+      ALGOLIA_GRAMMAR_INDEX: ${{ secrets.ALGOLIA_GRAMMAR_INDEX }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -23,4 +28,4 @@ jobs:
           # npx playwright install --with-deps && \
           # npm run test && \
           npm run build && \
-          netlify deploy
+          npx netlify deploy --prod --side-id $NETLIFY_SITE_ID

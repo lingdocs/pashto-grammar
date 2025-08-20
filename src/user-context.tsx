@@ -9,7 +9,6 @@ import {
 import {
   useStickyState,
 } from "@lingdocs/ps-react";
-import { CronJob } from "cron";
 import { postSavedResults } from "./lib/game-results";
 
 const UserContext = createContext<
@@ -38,18 +37,16 @@ function UserProvider({ children }: { children: JSX.Element }) {
     }).catch(console.error);
   }
 
-  const checkUserCronJob = new CronJob("10 * * * *", () => {
-    pullUser();
-    if (value) {
-      postSavedResults(value.userId);
-    }
-  });
-
   useEffect(() => {
     pullUser();
-    checkUserCronJob.start();
+    const checkForUser = setInterval(() => {
+      pullUser()
+      if (value) {
+        postSavedResults(value.userId)
+      }
+    }, 1000 * 60)
     return () => {
-      checkUserCronJob.stop();
+      clearInterval(checkForUser)
     }
     // eslint-disable-next-line
   }, []);
