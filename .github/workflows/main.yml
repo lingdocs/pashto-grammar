@@ -25,7 +25,7 @@ jobs:
       - run: |
           npm install --force && \
           npm run get-words && \
-          # npx playwright install --with-deps && \
-          # npm run test && \
+          npx playwright install --with-deps && \
+          npm run test && \
           npm run build && \
           npx netlify deploy --prod --site $NETLIFY_SITE_ID
