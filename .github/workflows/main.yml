@@ -22,10 +22,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: |
+      - name: Install dependencies
+        run: |
           npm install && \
           npm run get-words && \
-          npx playwright install --with-deps && \
-          npm run test && \
+          npx playwright install --with-deps
+      - name: Build and test
+        run: |
           npm run build && \
-          npx netlify deploy --prod --site $NETLIFY_SITE_ID
+          npm run test
+      - name: Deploy
+        run: npx netlify deploy --prod --site $NETLIFY_SITE_ID
