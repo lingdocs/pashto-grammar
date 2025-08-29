@@ -2,13 +2,13 @@ import React, { createContext, useEffect } from "react";
 import type { JSX } from "react";
 
 import {
-  AT,
+  type AT,
   getUser,
   userObjIsEqual,
-} from "@lingdocs/lingdocs-main";
+} from "@lingdocs/auth-shared";
 import {
   useStickyState,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import { postSavedResults } from "./lib/game-results";
 
 const UserContext = createContext<

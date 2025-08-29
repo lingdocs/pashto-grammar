@@ -1,5 +1,5 @@
-import type { Types as T } from "@lingdocs/ps-react";
-import { typePredicates } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
+import { typePredicates } from "@lingdocs/pashto-inflector";
 const {
   isPattern1Entry,
   isPattern2Entry,
@@ -113,4 +113,3 @@ export function intoPatterns<T extends T.NounEntry | T.AdjectiveEntry>(
     other: "leftovers",
   });
 }
-

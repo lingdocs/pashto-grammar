@@ -1,10 +1,10 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import type { JSX } from "react";
 import {
   VPDisplay,
   VPPicker,
   vpsReducer,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import entryFeeder from "../../lib/entry-feeder";
 import { useState } from "react";
 

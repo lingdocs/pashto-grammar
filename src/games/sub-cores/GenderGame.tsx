@@ -1,6 +1,6 @@
 import genderColors from "../../lib/gender-colors";
 import GameCore from "../GameCore";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   Examples,
   defaultTextOptions as opts,
@@ -11,7 +11,7 @@ import {
   typePredicates as tp,
   firstVariation,
   randFromArray,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import { nouns } from "../../words/words";
 import { categorize } from "../../lib/categorize";
 

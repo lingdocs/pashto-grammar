@@ -1,6 +1,6 @@
 import GameCore from "../GameCore";
 import type { JSX } from "react";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   renderNPSelection,
   getEnglishFromRendered,
@@ -9,7 +9,7 @@ import {
   InlinePs,
   defaultTextOptions as opts,
   concatPsString,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import { makeNPAdjGenerator } from "../../lib/block-generators/np-adj-generator";
 import { useState } from "react";
 import { comparePs } from "../../lib/game-utils";

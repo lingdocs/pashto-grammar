@@ -1,14 +1,14 @@
 import GameCore from "../GameCore";
 import type { JSX } from "react";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   Examples,
   defaultTextOptions as opts,
   randFromArray,
   renderEP,
   compileEP,
-} from "@lingdocs/ps-react";
-import { psStringEquals } from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
+import { psStringEquals } from "@lingdocs/pashto-inflector";
 import { randomEPSPool } from "./makeRandomEPS";
 import { useEffect, useState } from "react";
 import classNames from "classnames";

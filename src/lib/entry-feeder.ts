@@ -1,4 +1,4 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   nouns,
   verbs,
@@ -16,4 +16,3 @@ const entryFeeder: T.EntryFeeder = {
 };
 
 export default entryFeeder;
-

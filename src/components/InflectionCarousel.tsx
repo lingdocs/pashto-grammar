@@ -1,5 +1,5 @@
 import Carousel from "./Carousel";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   InlinePs,
   removeFVarients,
@@ -7,7 +7,7 @@ import {
   inflectWord,
   defaultTextOptions as opts,
   getEnglishWord,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 
 function InflectionCarousel({
   items,

@@ -1,6 +1,6 @@
 import GameCore from "../GameCore";
 import type { JSX } from "react";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   getInflectionPattern,
   Examples,
@@ -10,10 +10,10 @@ import {
   HumanReadableInflectionPattern,
   isUnisexSet,
   InflectionsTable,
-} from "@lingdocs/ps-react";
+  typePredicates,
+} from "@lingdocs/pashto-inflector";
 import { makePool } from "../../lib/pool";
 import { nouns, adjectives } from "../../words/words";
-import { isAdverbEntry } from "@lingdocs/ps-react/dist/lib/src/type-predicates";
 import { useEffect, useRef, useState } from "react";
 import type {
   ChangeEvent,
@@ -47,7 +47,7 @@ export default function InflectionsWriting({
 }) {
   const wordPool = makePool(
     [...nouns, ...adjectives].filter((x) => {
-      if (isAdverbEntry(x)) return false;
+      if (typePredicates.isAdverbEntry(x)) return false;
       const infs = inflectWord(x);
       if (!infs || !infs.inflections) return false;
       return getInflectionPattern(x) === level;

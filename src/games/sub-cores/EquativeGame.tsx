@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { JSX } from "react";
 import { comparePs } from "../../lib/game-utils";
 import GameCore from "../GameCore";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   Examples,
   defaultTextOptions as opts,
@@ -11,7 +11,7 @@ import {
   flattenLengths,
   InlinePs,
   grammarUnits,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import { randomEPSPool } from "./makeRandomEPS";
 
 const kidsColor = "#017BFE";

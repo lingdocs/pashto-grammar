@@ -6,7 +6,7 @@ import {
   Examples,
   InlinePs,
   defaultTextOptions as opts,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import Link from "../../components/Link";
 import mascEndingChart from "./masc-plural-ending-decision-chart.excalidraw.svg";
 import femEndingChart from "./fem-plural-ending-decision-chart.excalidraw.svg";

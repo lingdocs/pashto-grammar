@@ -1,4 +1,4 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import { wordQuery } from "../../words/words";
 
 export const basicVerbs: T.VerbEntry[] = wordQuery("verbs", [

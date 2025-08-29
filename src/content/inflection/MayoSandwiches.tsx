@@ -1,7 +1,7 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   Examples,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 
 const mayoSandwiches = [
   {

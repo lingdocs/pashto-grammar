@@ -1,5 +1,5 @@
 import Table from "../../components/Table";
-import { defaultTextOptions as opts } from "@lingdocs/ps-react";
+import { defaultTextOptions as opts } from "@lingdocs/pashto-inflector";
 
 function PluralTable({
   children,
@@ -24,13 +24,13 @@ function PluralTable({
         ],
         ...(children[0].length === 3
           ? [
-              <div>
-                <div>plural and inflected</div>
-                {inflection && (
-                  <div className="small text-muted">double inflected</div>
-                )}
-              </div>,
-            ]
+            <div>
+              <div>plural and inflected</div>
+              {inflection && (
+                <div className="small text-muted">double inflected</div>
+              )}
+            </div>,
+          ]
           : []),
       ]}
       opts={opts}

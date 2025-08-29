@@ -1,9 +1,9 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   makeNounSelection,
   makeAdjectiveSelection,
   randFromArray,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import { makePool } from "../pool";
 import { wordQuery } from "../../words/words";
 

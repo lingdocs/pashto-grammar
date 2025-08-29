@@ -1,10 +1,10 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   concatPsString,
   ButtonSelect,
   InlinePs,
   grammarUnits,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import { useState } from "react";
 import EquativeFormChoice from "../../components/EquativeFormChoice";
 

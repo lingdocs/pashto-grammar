@@ -1,5 +1,5 @@
-import type { Types as T } from "@lingdocs/ps-react";
-import { EPDisplay, EPPicker } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
+import { EPDisplay, EPPicker } from "@lingdocs/pashto-inflector";
 import entryFeeder from "../../lib/entry-feeder";
 import { useState } from "react";
 

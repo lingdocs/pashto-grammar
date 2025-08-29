@@ -1,10 +1,10 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T, PsJSX } from "@lingdocs/pashto-inflector";
 
 type SandwichInfo = {
   pre?: T.PsString;
   post?: T.PsString;
   e: string;
-  examples: (T.PsJSX | T.PsString)[];
+  examples: (PsJSX | T.PsString)[];
 };
 
 const sandwiches: SandwichInfo[] = [

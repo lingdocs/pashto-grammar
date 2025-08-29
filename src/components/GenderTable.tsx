@@ -1,7 +1,7 @@
 import {
   InlinePs,
   defaultTextOptions as opts,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import genderColors from "../lib/gender-colors";
 
 export default function GenderTable({ rows }: { rows: any }) {

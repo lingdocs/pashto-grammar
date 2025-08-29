@@ -1,4 +1,4 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   RootsAndStems,
   conjugateVerb,
@@ -13,18 +13,15 @@ import {
   getPassiveRootsAndStems,
   getAbilityRootsAndStems,
   getLength,
-} from "@lingdocs/ps-react";
-import {
-  isImperativeTense,
-  isPerfectTense,
-} from "@lingdocs/ps-react/dist/lib/src/type-predicates";
+  typePredicates,
+} from "@lingdocs/pashto-inflector";
 import { useState } from "react";
 import Carousel from "./Carousel";
 import {
   basicVerbs,
   intransitivePastVerbs,
 } from "../content/verbs/basic-present-verbs";
-import { isThirdPerson } from "@lingdocs/ps-react";
+import { isThirdPerson } from "@lingdocs/pashto-inflector";
 
 function BasicVerbShowCase({
   opts,
@@ -155,11 +152,11 @@ function BasicVerbChart({
               /* type safety */ conjugations.info
               : conjugations.info
         }
-        hidePastParticiple={isPerfectTense(tense) ? false : true}
+        hidePastParticiple={typePredicates.isPerfectTense(tense) ? false : true}
         highlighted={[tenseToStem(tense)]}
       />
       <div className="my-3 d-flex flex-row justify-content-center">
-        {((isPastTense(tense) && !isPerfectTense(tense)) ||
+        {((isPastTense(tense) && !typePredicates.isPerfectTense(tense)) ||
           category === "ability") && (
             <div className="mx-2">
               <ButtonSelect
@@ -207,10 +204,10 @@ function makeExamplePhrases(
   function tenseToModal(
     t: T.VerbTense | T.ImperativeTense | T.PerfectTense
   ): T.AbilityTense {
-    if (isImperativeTense(t)) {
+    if (typePredicates.isImperativeTense(t)) {
       throw new Error("can't have imperative tense with modal");
     }
-    if (isPerfectTense(t)) {
+    if (typePredicates.isPerfectTense(t)) {
       throw new Error("cant' have perfect tense with modal");
     }
     return `${t}Modal`;
@@ -292,7 +289,7 @@ function makeExamplePhrases(
   }
   return createVerbTable(
     makePhrase,
-    isImperativeTense(tense)
+    typePredicates.isImperativeTense(tense)
       ? "imperative"
       : isPastTense(tense)
         ? "past"
@@ -314,7 +311,7 @@ function modifyEnglish(
 ): string {
   // "kitaab" used as a dummy object
   const dummyObjectRemoved = e.replace(/\(a\/the\) +book/gi, "");
-  return isPerfectTense(tense) || (isPastTense(tense) && isThirdPerson)
+  return typePredicates.isPerfectTense(tense) || (isPastTense(tense) && isThirdPerson)
     ? dummyObjectRemoved
     : dummyObjectRemoved
       .replace(/he\/it/gi, "he/she/it")

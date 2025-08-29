@@ -1,15 +1,15 @@
 import GameCore from "../GameCore";
 import type { JSX } from "react";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   getInflectionPattern,
   Examples,
   defaultTextOptions as opts,
   firstVariation,
-} from "@lingdocs/ps-react";
+  typePredicates as tp,
+} from "@lingdocs/pashto-inflector";
 import { makePool } from "../../lib/pool";
 import { nouns, adjectives } from "../../words/words";
-import * as tp from "@lingdocs/ps-react/dist/lib/src/type-predicates";
 
 const amount = 20;
 const timeLimit = 150;

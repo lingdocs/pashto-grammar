@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { JSX } from "react";
 import { comparePs } from "../../lib/game-utils";
 import GameCore from "../GameCore";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   defaultTextOptions as opts,
   makeNounSelection,
@@ -14,13 +14,13 @@ import {
   makeVPSelectionState,
   compileVP,
   isInvalidSubjObjCombo,
-} from "@lingdocs/ps-react";
-import { isPastTense, isThirdPerson } from "@lingdocs/ps-react";
+  typePredicates as tp,
+} from "@lingdocs/pashto-inflector";
+import { isPastTense, isThirdPerson } from "@lingdocs/pashto-inflector";
 import { maybeShuffleArray } from "../../lib/shuffle-array";
 import { intransitivePastVerbs } from "../../content/verbs/basic-present-verbs";
 import { makePool } from "../../lib/pool";
 import { wordQuery } from "../../words/words";
-import { isImperativeTense } from "@lingdocs/ps-react/dist/lib/src/type-predicates";
 import { getVerbPs, verbHasBa, QuestionDisplay } from "./VerbGame";
 
 const kidsColor = "#017BFE";
@@ -420,7 +420,7 @@ function makeVPS({
     ...vps,
     verb: {
       ...vps.verb,
-      negative: isImperativeTense(tense)
+      negative: tp.isImperativeTense(tense)
         ? randFromArray([false, false, true])
         : false,
       transitivity,

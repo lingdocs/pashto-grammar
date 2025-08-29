@@ -1,10 +1,10 @@
 import rawWords from "./raw-words";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   removeAccents,
   removeFVarients,
   typePredicates as tp,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import { categorize } from "../lib/categorize";
 import { removeAShort, removeAyn } from "../lib/misc-helpers";
 

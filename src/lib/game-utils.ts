@@ -4,8 +4,8 @@ import {
   standardizePashto,
   standardizePhonetics,
   flattenLengths,
-} from "@lingdocs/ps-react";
-import type { Types as T } from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import { removeAShort } from "./misc-helpers";
 
 export function getPercentageDone(current: number, total: number): number {

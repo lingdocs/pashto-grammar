@@ -1,5 +1,5 @@
 import shuffle from "./shuffle-array";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 
 export const startingWord = (
   words: Readonly<(T.NounEntry | T.AdjectiveEntry)[]>,
@@ -11,4 +11,3 @@ export const startingWord = (
     ...shuffle(words.filter((w) => w.p !== p)),
   ];
 };
-

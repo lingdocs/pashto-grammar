@@ -1,10 +1,10 @@
 import GameCore from "../GameCore";
 import type { JSX } from "react";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   randFromArray,
   removeAccents,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import minimalPairs from "../../content/writing/minimal-pairs";
 import { makePool } from "../../lib/pool";
 import { useEffect, useRef } from "react";

@@ -1,5 +1,5 @@
-import type { Types as T } from "@lingdocs/ps-react";
-import { InlinePs } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
+import { InlinePs } from "@lingdocs/pashto-inflector";
 import { useState } from "react";
 // @ts-ignore
 import SmoothCollapse from "react-smooth-collapse";

@@ -1,5 +1,5 @@
-import type { Types as T } from "@lingdocs/ps-react";
-import { NPPicker, APPicker } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
+import { NPPicker, APPicker } from "@lingdocs/pashto-inflector";
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import BlockDiagram from "./BlockDiagram";

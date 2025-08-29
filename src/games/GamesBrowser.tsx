@@ -4,7 +4,7 @@ import Link from "../components/Link";
 // @ts-ignore
 import SmoothCollapse from "react-smooth-collapse";
 import { useUser } from "../user-context";
-import { AT } from "@lingdocs/lingdocs-main";
+import { type AT } from "@lingdocs/auth-shared";
 
 function GamesBrowser() {
   const { user } = useUser();

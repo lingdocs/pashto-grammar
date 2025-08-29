@@ -1,5 +1,5 @@
 import fs from "fs";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 
 import nounAdjTs from "../src/words/nouns-adjs";
 import verbs from "../src/words/verbs";

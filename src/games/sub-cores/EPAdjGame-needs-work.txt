@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { comparePs } from "../../lib/game-utils";
 import GameCore from "../GameCore";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   renderEP,
   compileEP,
@@ -10,10 +10,10 @@ import {
   Examples,
   blank,
   isPashtoScript,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 import { wordQuery } from "../../words/words";
 import { makePool } from "../../lib/pool";
-import { getPredicateSelectionFromBlocks } from "@lingdocs/ps-react/dist/lib/src/phrase-building/blocks-utils";
+import { getPredicateSelectionFromBlocks } from "@lingdocs/pashto-inflector/dist/lib/src/phrase-building/blocks-utils";
 import WordCard from "../../components/WordCard";
 
 const amount = 12;

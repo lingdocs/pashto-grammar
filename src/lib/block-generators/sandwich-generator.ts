@@ -1,5 +1,5 @@
-import type { Types as T } from "@lingdocs/ps-react";
-import { randFromArray, sandwiches } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
+import { randFromArray, sandwiches } from "@lingdocs/pashto-inflector";
 
 export function makeSandwich(np: T.NPSelection): T.APSelection {
   return {

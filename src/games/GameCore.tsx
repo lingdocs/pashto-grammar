@@ -7,9 +7,9 @@ import { useUser } from "../user-context";
 import "./timer.css";
 import { getPercentageDone } from "../lib/game-utils";
 import { saveResult, postSavedResults } from "../lib/game-results";
-import { AT, getTimestamp } from "@lingdocs/lingdocs-main";
-import { randFromArray } from "@lingdocs/ps-react";
-import type { Types } from "@lingdocs/ps-react";
+import { type AT, getTimestamp } from "@lingdocs/auth-shared";
+import { randFromArray } from "@lingdocs/pashto-inflector";
+import type { Types } from "@lingdocs/pashto-inflector";
 import ReactGA from "react-ga4";
 import { isProd } from "../lib/isProd";
 // @ts-ignore

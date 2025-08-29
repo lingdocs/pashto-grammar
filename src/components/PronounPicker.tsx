@@ -1,10 +1,10 @@
 // TODO: DEPRECATE THIS AND USE THE PASHTO INFLECTER NP PRONOUN PICKER!
 
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   ButtonSelect,
   useStickyState,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 
 const gColors = {
   masc: "LightSkyBlue",

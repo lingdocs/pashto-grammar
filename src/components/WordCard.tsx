@@ -1,4 +1,4 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   Examples,
   defaultTextOptions as opts,
@@ -6,7 +6,7 @@ import {
   removeFVarients,
   getInflectionPattern,
   HumanReadableInflectionPattern,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 
 function WordCard({ showHint, entry, selection }: {
   showHint: boolean

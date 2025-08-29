@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useUser } from "../user-context";
-import { signOut } from "@lingdocs/lingdocs-main";
+import { signOut } from "@lingdocs/auth-shared";
 const providers: ("google" | "twitter" | "github")[] = ["google", "twitter", "github"];
 
 let popupRef: Window | null = null;

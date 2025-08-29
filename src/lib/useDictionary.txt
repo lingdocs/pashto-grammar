@@ -1,4 +1,4 @@
-import { dictionary, DT, entryFeeder } from "@lingdocs/lingdocs-main";
+import { dictionary, entryFeeder } from "@lingdocs/auth-shared";
 import { useEffect, useState } from "react";
 
 function useDictionary() {

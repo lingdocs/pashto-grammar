@@ -1,4 +1,4 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 
 const englishPronouns = {
   subject: [
@@ -37,4 +37,3 @@ export function getEnglishPronoun(
 ): string {
   return englishPronouns[type][person];
 }
-

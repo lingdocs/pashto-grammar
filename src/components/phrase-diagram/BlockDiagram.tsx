@@ -1,11 +1,11 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   renderNPSelection,
   renderAPSelection,
   NPBlock,
   APBlock,
   getEnglishFromRendered,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 
 function BlockDiagram({
   opts,

@@ -1,6 +1,6 @@
 import {
   Examples,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 export const femColor = "#FFECEF"
 export const mascColor = "#C1D5F4";
 

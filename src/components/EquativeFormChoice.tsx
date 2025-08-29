@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   VerbFormDisplay,
   ButtonSelect,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 
 function EquativeFormChoice({ forms, opts }: { forms: any, opts: any }) {
   const [choice, setChoice] = useState("pure");

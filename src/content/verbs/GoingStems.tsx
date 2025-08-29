@@ -7,7 +7,7 @@ import {
   getAbilityRootsAndStems,
   removeFVarients,
   ensureNonComboVerbInfo,
-} from "@lingdocs/ps-react";
+} from "@lingdocs/pashto-inflector";
 
 export default function GoingStems() {
   const items = [

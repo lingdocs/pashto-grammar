@@ -1,4 +1,4 @@
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import type { MinimalPairsSection } from "./minimal-pairs-type";
 
 const minimalPairs: {

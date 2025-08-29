@@ -1,4 +1,4 @@
-import { AT, postTestResults } from "@lingdocs/lingdocs-main";
+import { type AT, postTestResults } from "@lingdocs/auth-shared";
 
 const fullKey = (uid: string /* AT.UUID */) => `test-results-${uid}`;
 

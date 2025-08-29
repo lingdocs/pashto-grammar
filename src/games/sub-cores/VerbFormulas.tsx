@@ -1,17 +1,17 @@
 import GameCore from "../GameCore";
 import type { JSX } from "react";
-import type { Types as T } from "@lingdocs/ps-react";
+import type { Types as T } from "@lingdocs/pashto-inflector";
 import {
   humanReadableVerbForm,
   InlinePs,
   grammarUnits,
   defaultTextOptions as opts,
-} from "@lingdocs/ps-react";
+  typePredicates,
+} from "@lingdocs/pashto-inflector";
 import { makePool } from "../../lib/pool";
 import type { CSSProperties } from "react";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
-import { isImperativeTense } from "@lingdocs/ps-react/dist/lib/src/type-predicates";
 
 const amount = 12;
 const timeLimit = 125;
@@ -182,7 +182,7 @@ function Display({ question, callback }: QuestionDisplayProps<Question>) {
   const canSubmit = !!(stemRoot && ending);
   const showMu =
     question.tense === "negative imperative" ||
-    isImperativeTense(question.tense);
+    typePredicates.isImperativeTense(question.tense);
   function handleSubmit() {
     const { formula } = question;
     callback(
