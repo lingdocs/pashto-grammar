@@ -1,8 +1,7 @@
 import type { Types as T } from "@lingdocs/pashto-inflector";
 import { InlinePs } from "@lingdocs/pashto-inflector";
 import { useState } from "react";
-// @ts-ignore
-import SmoothCollapse from "react-smooth-collapse";
+import SmoothCollapse from "../../components/SmoothCollapse"
 
 export default function MinimalPairs({
   opts,
@@ -20,7 +19,7 @@ export default function MinimalPairs({
       <h5 className="my-3" onClick={() => setOpened((x) => !x)}>
         {opened ? "▼" : "▶"} Browse Pairs
       </h5>
-      <SmoothCollapse expanded={opened}>
+      <SmoothCollapse isOpen={opened}>
         {section.pairs.map((pairs, i) => (
           <div className="row mb-3" key={`${section.title}-${i}`}>
             {pairs.map((e, j) => (

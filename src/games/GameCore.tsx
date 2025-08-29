@@ -12,8 +12,6 @@ import { randFromArray } from "@lingdocs/pashto-inflector";
 import type { Types } from "@lingdocs/pashto-inflector";
 import ReactGA from "react-ga4";
 import { isProd } from "../lib/isProd";
-// @ts-ignore
-import autoAnimate from "@formkit/auto-animate";
 const errorVibration = 200;
 const strikesToFail = 3;
 
@@ -96,7 +94,6 @@ function GameCore<Question>({
   const [state, setStateDangerous] =
     useState<GameState<Question>>(initialState);
   useEffect(() => {
-    parent.current && autoAnimate(parent.current);
     setStateDangerous((s) => ({
       ...s,
       current: getQuestion(),
@@ -352,7 +349,7 @@ function GameCore<Question>({
             )}
           </div>
         </div>
-        <div ref={parent}>
+        <div>
           {state.justStruck && (
             <div
               className="alert alert-warning my-2"

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import games from "./games";
 import Link from "../components/Link";
-// @ts-ignore
-import SmoothCollapse from "react-smooth-collapse";
+import SmoothCollapse from "../components/SmoothCollapse";
 import { useUser } from "../user-context";
 import { type AT } from "@lingdocs/auth-shared";
 
@@ -60,7 +59,7 @@ function ChapterDisplay({
           <ChapterProgress progress={progress} />
         </div>
       </div>
-      <SmoothCollapse expanded={expanded}>
+      <SmoothCollapse isOpen={expanded}>
         {chapter.items.map(({ id, title, Game }) => {
           const done = user?.tests.some((t) => t.done && t.id === id);
           const open = opened === id;
@@ -81,7 +80,7 @@ function ChapterDisplay({
                 </div>
                 <div>{done && <h4>✅</h4>}</div>
               </div>
-              <SmoothCollapse expanded={open}>
+              <SmoothCollapse isOpen={open}>
                 {open && <Game inChapter={false} />}
               </SmoothCollapse>
             </div>

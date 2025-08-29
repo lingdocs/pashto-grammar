@@ -9,7 +9,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import classNames from "classnames";
-import SmoothCollapse from "react-smooth-collapse";
+import SmoothCollapse from "./SmoothCollapse";
 import type { ChapterData, SectionData } from "../content";
 
 function Sidebar({ content, navOpen, setNavOpen, pathname }: {
@@ -74,7 +74,7 @@ function Sidebar({ content, navOpen, setNavOpen, pathname }: {
                 <div className="side-nav-item" onClick={() => handleHeadingClick(item.heading)}>
                   {item.heading}
                 </div>
-                <SmoothCollapse expanded={sectionOpen === item.heading}>
+                <SmoothCollapse isOpen={sectionOpen === item.heading}>
                   <>
                     {item.chapters.map((chapter) => (
                       <Link key={chapter.path} to={chapter.path} style={{ textDecoration: "none" }} onClick={() => setNavOpen(false)}>

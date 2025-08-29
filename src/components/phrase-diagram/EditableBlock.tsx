@@ -1,11 +1,8 @@
 import type { Types as T } from "@lingdocs/pashto-inflector";
 import { NPPicker, APPicker } from "@lingdocs/pashto-inflector";
-import { useEffect, useRef } from "react";
 import { useState } from "react";
 import BlockDiagram from "./BlockDiagram";
 import entryFeeder from "../../lib/entry-feeder";
-// @ts-ignore
-import autoAnimate from "@formkit/auto-animate";
 
 export function EditIcon() {
   return <i className="fas fa-edit" />;
@@ -26,10 +23,6 @@ function EditableBlock({
   opts: T.TextOptions;
   children: T.NPSelection | T.APSelection;
 }) {
-  const parent = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    parent.current && autoAnimate(parent.current);
-  }, [parent]);
   const [editing, setEditing] = useState<boolean>(false);
   const [edited, setEdited] = useState<
     | {
@@ -59,7 +52,7 @@ function EditableBlock({
       >
         {!editing ? <EditIcon /> : <i className="fas fa-undo" />}
       </div>
-      <div ref={parent} className="d-flex flex-column align-items-center">
+      <div className="d-flex flex-column align-items-center">
         {editing && (
           <div style={{ maxWidth: "225px", marginBottom: "2rem" }}>
             {edited.type === "NP" ? (
