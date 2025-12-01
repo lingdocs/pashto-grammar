@@ -26,7 +26,7 @@ const content: {
     {
       title: "Watch Videos 📺",
       subTitle: "LingDocs YouTube",
-      description: "Watch explanainer videos about different grammar topis, and see how you can use the phrase engine to play around with sentences",
+      description: "Watch explanainer videos about different grammar topics, and see how you can use the phrase engine to play around with sentences",
       link: "https://www.youtube.com/channel/UC1-yjDec5VDtia5s1gcMw4A",
       linkDescription: "LingDocs YouTube Channel",
     },
