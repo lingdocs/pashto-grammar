@@ -227,7 +227,7 @@ function makeExamplePhrases(
         },
         {
           key: Math.random(),
-          // @ts-ignore
+          // @ts-expect-error - bc 
           block:
             verb.entry.c?.includes("intrans.") || voice === "passive"
               ? { type: "objectSelection", selection: "none" }
@@ -278,6 +278,7 @@ function makeExamplePhrases(
     const selection = makeSelection(person);
     const rendered = renderVP(selection);
     const compiled = compileVP(rendered, rendered.form);
+    console.log({ rendered, compiled });
     return {
       ps: [
         modifyP(getLengthTempFix(getLength(compiled.ps, "long"), length)[0]),
@@ -298,10 +299,12 @@ function makeExamplePhrases(
 }
 
 function modifyP(ps: T.PsString): T.PsString {
-  return {
-    p: ps.p.replace(" کتاب ", ""),
-    f: ps.f.replace(" kitáab ", ""),
+  const out = {
+    p: ps.p.replace(" کتاب ", " "),
+    f: ps.f.replace(" kitáab ", " "),
   };
+  console.log({ ps, out });
+  return out;
 }
 
 function modifyEnglish(
