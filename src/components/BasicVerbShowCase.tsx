@@ -299,12 +299,10 @@ function makeExamplePhrases(
 }
 
 function modifyP(ps: T.PsString): T.PsString {
-  const out = {
+  return {
     p: ps.p.replace(" کتاب ", " "),
     f: ps.f.replace(" kitáab ", " "),
   };
-  console.log({ ps, out });
-  return out;
 }
 
 function modifyEnglish(
