@@ -88,17 +88,17 @@ type LevelInfo = {
 
 const levelInfos: Record<PerfectGameLevel["type"], LevelInfo> = {
   intransitive: {
-    description: "present perfect form of the verb",
+    description: "present perfect",
     tense: "presentPerfect",
     pool: "intransitivePast",
   },
   "transitive-intransitive": {
-    description: "present perfect form of the verb",
+    description: "present perfect",
     tense: "presentPerfect",
     pool: "mixedPast",
   },
   "all-tenses": {
-    description: "correct perfect form of the verb",
+    description: "correct perfect",
     tense: "allTenses",
     pool: "mixedPast",
   },
@@ -304,7 +304,7 @@ const VerbGame: GameSubCore<PerfectGameLevel> = ({
     return (
       <div>
         <p className="lead">
-          Write the {desc} verb to complete the phrase
+          Write the {desc} form of the verb to complete the phrase
           {desc ? "" : " (all tenses)"}
         </p>
       </div>
